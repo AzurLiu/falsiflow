@@ -37,7 +37,7 @@ jobs:
         with:
           python-version: "3.11"
       - name: Configure Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
       - name: Build public demo package
         run: |
           python scripts/falsiflow.py demo-package \
@@ -46,7 +46,7 @@ jobs:
             --json > /tmp/falsiflow_demo_package.json
           cp /tmp/falsiflow_demo_package.json public_demo/demo_package_summary.stdout.json
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: public_demo
 
@@ -59,4 +59,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
