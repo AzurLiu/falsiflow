@@ -2,6 +2,9 @@
 
 Evidence-gated R&D workflow engine for high-risk technical claims.
 
+[![Falsiflow](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow.yml)
+[![Falsiflow Cross Platform](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-cross-platform.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-cross-platform.yml)
+
 Falsiflow turns a claim into explicit gates, required evidence rows, source-file
 policy, derived metrics, and acceptance rules. A claim only becomes ready when
 the project config is valid, the evidence CSV is structurally sound, required
