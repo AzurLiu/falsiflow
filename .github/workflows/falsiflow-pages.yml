@@ -30,6 +30,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
       - name: Build public demo package
         run: |
           python scripts/falsiflow.py demo-package \
