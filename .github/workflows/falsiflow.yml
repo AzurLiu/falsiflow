@@ -11,7 +11,13 @@ jobs:
   regression:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout public repository
+        shell: bash
+        run: |
+          git init .
+          git remote add origin "https://github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --no-tags --depth=1 origin "+${GITHUB_REF}:${GITHUB_REF}"
+          git checkout --detach "${GITHUB_SHA}"
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
