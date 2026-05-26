@@ -35,7 +35,7 @@ jobs:
             --out-dir /tmp/falsiflow_release_check \
             --json > /tmp/falsiflow_release_check.json
       - name: Upload distribution artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: falsiflow-dist
           path: dist/*
