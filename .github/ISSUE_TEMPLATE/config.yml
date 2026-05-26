@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Responsible-use boundary
+    url: https://github.com/AzurLiu/falsiflow/blob/main/RESPONSIBLE_USE.md
+    about: Read how to interpret Falsiflow readiness before relying on a claim.
+  - name: Security and integrity reports
+    url: https://github.com/AzurLiu/falsiflow/blob/main/SECURITY.md
+    about: Report provenance, bundle verification, path handling, or supply-chain issues privately.

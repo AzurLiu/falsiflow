@@ -1,0 +1,58 @@
+name: Claim gate or template request
+description: Request a new evidence-gated workflow, starter template, or template review.
+title: "[Claim gate]: "
+labels: ["template", "evidence-gate", "needs-triage"]
+body:
+  - type: textarea
+    id: decision
+    attributes:
+      label: Decision to gate
+      description: What claim, handoff, or project decision should Falsiflow block until evidence is ready?
+      placeholder: Advance a coating candidate only when adhesion, cytotoxicity, impedance drift, and source provenance pass configured thresholds.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Required evidence
+      description: List the evidence rows, metadata, source files, and derived metrics this gate needs.
+      placeholder: adhesion_mpa with raw test export, cytotoxicity_percent with lab report source, impedance_drift_percent derived from day 0 and day 30 measurements.
+    validations:
+      required: true
+  - type: textarea
+    id: thresholds
+    attributes:
+      label: Acceptance rules
+      description: Describe the thresholds or review rules that should control claim_ready.
+      placeholder: adhesion_mpa >= 2.0, cytotoxicity_percent <= 10, impedance_drift_percent <= 15, every required source file present.
+    validations:
+      required: true
+  - type: dropdown
+    id: stage
+    attributes:
+      label: Current stage
+      options:
+        - Idea only
+        - Draft project.json exists
+        - Template files exist
+        - Template pack exists
+        - Template release bundle exists
+    validations:
+      required: true
+  - type: textarea
+    id: artifacts
+    attributes:
+      label: Existing artifacts
+      description: Link or describe any project.json, evidence CSV, raw source file, template pack, lockfile, attestation, policy, release bundle, or verification report.
+      placeholder: examples/falsiflow/my_template/project.json and evidence_pass_demo.csv
+    validations:
+      required: false
+  - type: checkboxes
+    id: boundaries
+    attributes:
+      label: Responsible-use boundary
+      options:
+        - label: I understand `claim_ready` means supplied evidence passed configured gates, not that the underlying scientific or commercial claim is independently true.
+          required: true
+        - label: I can provide non-sensitive sample evidence or sanitized fixtures for tests.
+          required: false

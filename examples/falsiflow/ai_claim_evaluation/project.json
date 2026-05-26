@@ -1,0 +1,222 @@
+{
+  "project": {
+    "id": "falsiflow_ai_claim_evaluation_demo",
+    "name": "Falsiflow AI claim evaluation demo",
+    "domain": "ai-evaluation-and-benchmark-claims",
+    "version": "0.1.0"
+  },
+  "claim": {
+    "id": "model_claim_ready_for_public_comparison",
+    "statement": "An AI model quality claim is ready for public comparison only after versioned evaluation provenance, benchmark quality gates, and reproducibility artifacts pass.",
+    "requires_gates": [
+      "eval_provenance",
+      "benchmark_quality",
+      "reproducibility_package"
+    ]
+  },
+  "evidence_policy": {
+    "require_source_files": true,
+    "reject_placeholder_values": true,
+    "allowed_source_roots": [
+      "source_files"
+    ],
+    "required_metadata_fields": [
+      "source_file",
+      "measured_at",
+      "operator_or_agent"
+    ],
+    "placeholder_markers": [
+      "dataset_pending",
+      "model_pending",
+      "raw_outputs_pending",
+      "not_measured",
+      "todo"
+    ]
+  },
+  "gates": [
+    {
+      "id": "eval_provenance",
+      "title": "Evaluation provenance",
+      "samples": [
+        {
+          "candidate_id": "candidate_model",
+          "sample_id": "eval_run_001"
+        }
+      ],
+      "required_fields": [
+        "dataset_version_recorded",
+        "prompt_set_hash_recorded",
+        "candidate_model_version_recorded",
+        "baseline_model_version_recorded",
+        "evaluator_version_recorded"
+      ],
+      "acceptance_rules": [
+        {
+          "field": "dataset_version_recorded",
+          "operator": "==",
+          "value": true,
+          "reason": "Evaluation dataset version must be recorded before comparing model quality."
+        },
+        {
+          "field": "prompt_set_hash_recorded",
+          "operator": "==",
+          "value": true,
+          "reason": "Prompt or task set hash must be recorded before claiming improvement."
+        },
+        {
+          "field": "candidate_model_version_recorded",
+          "operator": "==",
+          "value": true,
+          "reason": "Candidate model version must be pinned."
+        },
+        {
+          "field": "baseline_model_version_recorded",
+          "operator": "==",
+          "value": true,
+          "reason": "Baseline model version must be pinned."
+        },
+        {
+          "field": "evaluator_version_recorded",
+          "operator": "==",
+          "value": true,
+          "reason": "Evaluator harness version must be pinned."
+        }
+      ]
+    },
+    {
+      "id": "benchmark_quality",
+      "title": "Benchmark quality gate",
+      "samples": [
+        {
+          "candidate_id": "candidate_model",
+          "sample_id": "eval_run_001"
+        },
+        {
+          "candidate_id": "baseline_model",
+          "sample_id": "eval_run_001"
+        }
+      ],
+      "required_fields": [
+        "exact_match_rate",
+        "hallucination_rate",
+        "safety_policy_failure_rate",
+        "evaluated_item_count"
+      ],
+      "derived_fields": [
+        {
+          "field": "accuracy_ratio_vs_baseline",
+          "operation": "ratio",
+          "numerator": "exact_match_rate",
+          "denominator": {
+            "candidate_id": "baseline_model",
+            "sample_id": "eval_run_001",
+            "field": "exact_match_rate"
+          }
+        },
+        {
+          "field": "hallucination_ratio_vs_baseline",
+          "operation": "ratio",
+          "numerator": "hallucination_rate",
+          "denominator": {
+            "candidate_id": "baseline_model",
+            "sample_id": "eval_run_001",
+            "field": "hallucination_rate"
+          }
+        }
+      ],
+      "acceptance_rules": [
+        {
+          "field": "exact_match_rate",
+          "operator": ">=",
+          "value": 0.82,
+          "candidate_id": "candidate_model",
+          "reason": "Candidate model must clear the absolute quality floor."
+        },
+        {
+          "field": "accuracy_ratio_vs_baseline",
+          "operator": ">=",
+          "value": 1.08,
+          "candidate_id": "candidate_model",
+          "reason": "Candidate model must beat the pinned baseline by a meaningful margin."
+        },
+        {
+          "field": "hallucination_rate",
+          "operator": "<=",
+          "value": 0.05,
+          "candidate_id": "candidate_model",
+          "reason": "Candidate model must keep hallucination rate inside the release claim boundary."
+        },
+        {
+          "field": "hallucination_ratio_vs_baseline",
+          "operator": "<=",
+          "value": 0.8,
+          "candidate_id": "candidate_model",
+          "reason": "Candidate model should reduce hallucination relative to the pinned baseline."
+        },
+        {
+          "field": "safety_policy_failure_rate",
+          "operator": "<=",
+          "value": 0.02,
+          "candidate_id": "candidate_model",
+          "reason": "Candidate model must keep safety-policy failures below the public comparison threshold."
+        },
+        {
+          "field": "evaluated_item_count",
+          "operator": ">=",
+          "value": 500,
+          "candidate_id": "candidate_model",
+          "reason": "The evaluation must cover enough items to support the public comparison claim."
+        }
+      ]
+    },
+    {
+      "id": "reproducibility_package",
+      "title": "Reproducibility package",
+      "samples": [
+        {
+          "candidate_id": "candidate_model",
+          "sample_id": "eval_run_001"
+        }
+      ],
+      "required_fields": [
+        "eval_script_hash_recorded",
+        "random_seed_logged",
+        "raw_outputs_archived",
+        "human_spotcheck_passed",
+        "regression_ci_run_recorded"
+      ],
+      "acceptance_rules": [
+        {
+          "field": "eval_script_hash_recorded",
+          "operator": "==",
+          "value": true,
+          "reason": "Evaluation script hash must be recorded."
+        },
+        {
+          "field": "random_seed_logged",
+          "operator": "==",
+          "value": true,
+          "reason": "Random seed or deterministic decode settings must be logged."
+        },
+        {
+          "field": "raw_outputs_archived",
+          "operator": "==",
+          "value": true,
+          "reason": "Raw model outputs must be archived for review."
+        },
+        {
+          "field": "human_spotcheck_passed",
+          "operator": "==",
+          "value": true,
+          "reason": "Human spotcheck must pass before the claim is public-facing."
+        },
+        {
+          "field": "regression_ci_run_recorded",
+          "operator": "==",
+          "value": true,
+          "reason": "A regression CI run must be recorded before publishing the comparison."
+        }
+      ]
+    }
+  ]
+}

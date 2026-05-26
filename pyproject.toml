@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "falsiflow"
-version = "0.1.0"
-description = "Evidence-gated R&D workflow engine for high-risk technical claims."
+version = "0.1.1"
+description = "Evidence-gated CLI and CI action for AI eval, product-metric, and R&D claims."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { file = "LICENSE" }
@@ -13,19 +13,51 @@ authors = [
   { name = "Falsiflow contributors" }
 ]
 keywords = [
+  "ai",
+  "audit",
+  "claim-checking",
   "evidence",
+  "evaluation",
+  "provenance",
+  "quality-gates",
+  "rd",
   "research",
-  "workflow",
-  "biomaterials",
-  "audit"
+  "templates",
+  "workflow"
 ]
 classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
-  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
   "Topic :: Scientific/Engineering",
-  "Topic :: Software Development :: Quality Assurance"
+  "Topic :: Software Development :: Quality Assurance",
+  "Topic :: Utilities"
 ]
+
+[project.urls]
+Homepage = "https://github.com/AzurLiu/falsiflow"
+Documentation = "https://github.com/AzurLiu/falsiflow#readme"
+Architecture = "https://github.com/AzurLiu/falsiflow/blob/main/docs/falsiflow_architecture.md"
+DataContract = "https://github.com/AzurLiu/falsiflow/blob/main/docs/falsiflow_data_contract.md"
+AdapterProfiles = "https://github.com/AzurLiu/falsiflow/blob/main/docs/falsiflow_adapter_profiles.md"
+CasebookCheck = "https://github.com/AzurLiu/falsiflow/blob/main/docs/falsiflow_casebook_check.md"
+TemplateAuthoring = "https://github.com/AzurLiu/falsiflow/blob/main/docs/falsiflow_template_authoring.md"
+Troubleshooting = "https://github.com/AzurLiu/falsiflow/blob/main/docs/falsiflow_troubleshooting.md"
+Source = "https://github.com/AzurLiu/falsiflow"
+Issues = "https://github.com/AzurLiu/falsiflow/issues"
+Changelog = "https://github.com/AzurLiu/falsiflow/blob/main/CHANGELOG.md"
+Demo = "https://falsiflow-demo.netlify.app"
+Citation = "https://github.com/AzurLiu/falsiflow/blob/main/CITATION.cff"
+Governance = "https://github.com/AzurLiu/falsiflow/blob/main/GOVERNANCE.md"
 
 [project.scripts]
 falsiflow = "falsiflow.cli:main"

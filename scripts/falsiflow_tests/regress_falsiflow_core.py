@@ -41,6 +41,15 @@ PLACEHOLDER_EVIDENCE = ROOT / "examples" / "falsiflow" / "neural_materials" / "e
 CLI = ROOT / "scripts" / "falsiflow.py"
 EXAMPLE_TEMPLATE_ROOT = ROOT / "examples" / "falsiflow"
 PACKAGE_TEMPLATE_ROOT = ROOT / "falsiflow" / "templates"
+EXPECTED_TEMPLATE_IDS = {
+    "neural_materials",
+    "rfq_vendor_evidence",
+    "biointerface_coatings",
+    "wetware_support_hardware",
+    "ai_claim_evaluation",
+}
+EXPECTED_TEMPLATE_COUNT = len(EXPECTED_TEMPLATE_IDS)
+EXPECTED_NON_NEURAL_TEMPLATE_COUNT = EXPECTED_TEMPLATE_COUNT - 1
 
 
 def relative_files(root: Path) -> list[Path]:
@@ -288,7 +297,7 @@ def assert_schema_contract() -> None:
     assert "source_file" in evidence_schema["properties"]
 
     all_schemas = falsiflow_schema("all")
-    assert {"project", "evidence-row", "evidence-record", "candidate-recipe", "discovery-summary", "claim-summary", "audit-review", "portfolio-summary", "import-coverage", "source-manifest", "bundle-manifest", "bundle-verification", "claim-check", "quickstart-summary", "doctor-summary", "demo-summary", "template-check", "template-pack-manifest", "template-pack-verification", "template-install", "template-registry", "template-lock", "template-attestation", "template-attestation-verification", "template-policy", "template-policy-verification", "template-release", "template-release-verification", "template-gallery", "adoption-check", "release-check"} <= set(all_schemas)
+    assert {"project", "evidence-row", "evidence-record", "candidate-recipe", "discovery-summary", "claim-summary", "audit-review", "portfolio-summary", "import-coverage", "source-manifest", "bundle-manifest", "bundle-verification", "claim-check", "quickstart-summary", "doctor-summary", "demo-summary", "template-check", "template-pack-manifest", "template-pack-verification", "template-install", "template-registry", "template-lock", "template-attestation", "template-attestation-verification", "template-policy", "template-policy-verification", "template-release", "template-release-verification", "template-gallery", "casebook-check", "external-evidence", "external-readiness", "adoption-check", "release-check"} <= set(all_schemas)
     evidence_record_schema = falsiflow_schema("evidence-record")
     assert evidence_record_schema["title"] == "Falsiflow discovery evidence record"
     assert "source_url" in evidence_record_schema["required"]
@@ -381,6 +390,20 @@ def assert_schema_contract() -> None:
     assert template_gallery_schema["title"] == "Falsiflow template gallery"
     assert "template_gallery_ready" in template_gallery_schema["properties"]["status"]["enum"]
     assert "non_neural_template_count" in template_gallery_schema["required"]
+    casebook_check_schema = falsiflow_schema("casebook-check")
+    assert casebook_check_schema["title"] == "Falsiflow casebook check"
+    assert "casebook_check_ready" in casebook_check_schema["properties"]["status"]["enum"]
+    assert "blocked_path_count" in casebook_check_schema["required"]
+    external_evidence_schema = falsiflow_schema("external-evidence")
+    assert external_evidence_schema["title"] == "Falsiflow external evidence"
+    assert "public_demo_url" in external_evidence_schema["properties"]["checks"]["required"]
+    assert "pypi_package_url" in external_evidence_schema["properties"]["checks"]["required"]
+    assert "pipx_smoke" in external_evidence_schema["properties"]["checks"]["required"]
+    assert "pipx_public_package" in external_evidence_schema["properties"]["checks"]["required"]
+    external_readiness_schema = falsiflow_schema("external-readiness")
+    assert external_readiness_schema["title"] == "Falsiflow external readiness"
+    assert "external_ready" in external_readiness_schema["properties"]["status"]["enum"]
+    assert "external_evidence_status" in external_readiness_schema["required"]
     adoption_schema = falsiflow_schema("adoption-check")
     assert adoption_schema["title"] == "Falsiflow adoption check"
     assert "adoption_ready" in adoption_schema["properties"]["status"]["enum"]
@@ -389,6 +412,7 @@ def assert_schema_contract() -> None:
     assert "release_validation_status" in adoption_schema["required"]
     assert "release_validation_ready" in adoption_schema["properties"]["release_validation_status"]["enum"]
     assert "release_validation_skipped" in adoption_schema["properties"]["release_validation_status"]["enum"]
+    assert "casebook_check_status" in adoption_schema["required"]
     assert "repair_checklist" in adoption_schema["required"]
     release_schema = falsiflow_schema("release-check")
     assert release_schema["title"] == "Falsiflow release check"
@@ -398,6 +422,10 @@ def assert_schema_contract() -> None:
     assert "release_validation_status" in release_schema["required"]
     assert "release_validation_ready" in release_schema["properties"]["release_validation_status"]["enum"]
     assert "release_validation_skipped" in release_schema["properties"]["release_validation_status"]["enum"]
+    assert "demo_package_status" in release_schema["required"]
+    assert "external_check_status" in release_schema["required"]
+    assert "publish_kit_status" in release_schema["required"]
+    assert "launch_kit_status" in release_schema["required"]
     assert "template_check_ready_count" in release_schema["required"]
     assert "template_pack_verification_status" in release_schema["required"]
     assert "template_install_status" in release_schema["required"]
@@ -413,6 +441,7 @@ def assert_schema_contract() -> None:
     assert "template_release_status" in release_schema["required"]
     assert "template_release_verification_status" in release_schema["required"]
     assert "template_gallery_status" in release_schema["required"]
+    assert "casebook_check_status" in release_schema["required"]
     assert "adoption_check_status" in release_schema["required"]
 
 
@@ -766,7 +795,7 @@ def assert_cli_contract() -> None:
         )
         records = json.loads(templates.stdout)
         template_ids = {record["template"] for record in records}
-        assert {"neural_materials", "rfq_vendor_evidence", "biointerface_coatings", "wetware_support_hardware"} <= template_ids
+        assert EXPECTED_TEMPLATE_IDS <= template_ids
         assert all(record["status"] == "valid" for record in records)
 
         template_gallery_out = Path(tmp) / "template_gallery.md"
@@ -789,14 +818,61 @@ def assert_cli_contract() -> None:
         )
         template_gallery_summary = json.loads(template_gallery.stdout)
         assert template_gallery_summary["status"] == "template_gallery_ready"
-        assert template_gallery_summary["template_count"] == 4
-        assert template_gallery_summary["valid_template_count"] == 4
-        assert template_gallery_summary["non_neural_template_count"] == 3
+        assert template_gallery_summary["template_count"] == EXPECTED_TEMPLATE_COUNT
+        assert template_gallery_summary["valid_template_count"] == EXPECTED_TEMPLATE_COUNT
+        assert template_gallery_summary["non_neural_template_count"] == EXPECTED_NON_NEURAL_TEMPLATE_COUNT
         gallery_ids = {template["template"] for template in template_gallery_summary["templates"]}
-        assert {"neural_materials", "rfq_vendor_evidence", "biointerface_coatings", "wetware_support_hardware"} <= gallery_ids
+        assert EXPECTED_TEMPLATE_IDS <= gallery_ids
         assert all(any("doctor --project-dir" in command for command in template["first_commands"]) for template in template_gallery_summary["templates"])
         assert template_gallery_json.exists()
         assert "Falsiflow Template Gallery" in template_gallery_out.read_text(encoding="utf-8")
+
+        casebook_dir = Path(tmp) / "casebook_check"
+        casebook_check = subprocess.run(
+            [
+                sys.executable,
+                str(CLI),
+                "casebook-check",
+                "--out-dir",
+                str(casebook_dir),
+                "--force",
+                "--json",
+            ],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        casebook_summary = json.loads(casebook_check.stdout)
+        assert casebook_summary["status"] == "casebook_check_ready"
+        assert casebook_summary["template_count"] == EXPECTED_TEMPLATE_COUNT
+        assert casebook_summary["positive_demo_ready_count"] == EXPECTED_TEMPLATE_COUNT
+        assert casebook_summary["blocked_path_count"] == EXPECTED_TEMPLATE_COUNT
+        assert casebook_summary["bundle_verified_count"] == EXPECTED_TEMPLATE_COUNT
+        assert len(casebook_summary["reviewer_replay"]) == EXPECTED_TEMPLATE_COUNT
+        assert any(entry["template"] == "biointerface_coatings" for entry in casebook_summary["reviewer_replay"])
+        assert any(entry["template"] == "ai_claim_evaluation" for entry in casebook_summary["reviewer_replay"])
+        assert all(entry["expected_placeholder_status"] == "claim_check_blocked" for entry in casebook_summary["reviewer_replay"])
+        assert all(template["placeholder_blocks_claim"] is True for template in casebook_summary["templates"])
+        assert (casebook_dir / "casebook_check.json").exists()
+        assert (casebook_dir / "casebook_reviewer_replay.md").exists()
+        assert (casebook_dir / "casebook_reviewer_replay.sh").exists()
+        assert (casebook_dir / "casebook_reviewer_replay.ps1").exists()
+        assert os.access(casebook_dir / "casebook_reviewer_replay.sh", os.X_OK)
+        casebook_report = (casebook_dir / "casebook_check.md").read_text(encoding="utf-8")
+        assert "Falsiflow Casebook Check" in casebook_report
+        assert "Reviewer Replay" in casebook_report
+        replay_markdown = (casebook_dir / "casebook_reviewer_replay.md").read_text(encoding="utf-8")
+        replay_shell = (casebook_dir / "casebook_reviewer_replay.sh").read_text(encoding="utf-8")
+        replay_powershell = (casebook_dir / "casebook_reviewer_replay.ps1").read_text(encoding="utf-8")
+        assert "Falsiflow Casebook Reviewer Replay" in replay_markdown
+        assert "positive demos finish as `claim_check_ready`" in replay_markdown
+        assert "claim_check_blocked" in replay_markdown
+        assert "evidence_placeholder_demo.csv" in replay_shell
+        assert "assert_status" in replay_shell
+        assert "casebook-check" in replay_shell
+        assert "evidence_placeholder_demo.csv" in replay_powershell
+        assert "Assert-Status" in replay_powershell
 
         for record in records:
             template_dir = Path(record["path"])
@@ -1059,10 +1135,19 @@ def assert_cli_contract() -> None:
         assert claim_check_summary["source_status"] == "sources_ready"
         assert claim_check_summary["bundle_status"] == "bundle_ready"
         assert claim_check_summary["verification_status"] == "bundle_verified"
+        assert any(artifact["artifact"] == "Source manifest" for artifact in claim_check_summary["review_artifact_index"])
+        assert any(artifact["artifact"] == "Bundle verification" for artifact in claim_check_summary["review_artifact_index"])
         assert (claim_check_dir / "claim_check.json").exists()
         assert (claim_check_dir / "claim_check.md").exists()
         assert (claim_check_dir / "evidence_bundle.zip").exists()
-        assert "Falsiflow Claim Check" in (claim_check_dir / "claim_check.md").read_text(encoding="utf-8")
+        claim_check_report = (claim_check_dir / "claim_check.md").read_text(encoding="utf-8")
+        assert "Falsiflow Claim Check" in claim_check_report
+        assert "Review Artifact Index" in claim_check_report
+        assert "evidence_bundle/source_manifest.md" in claim_check_report
+        assert "evidence_bundle_verify.md" in claim_check_report
+        bundle_verification_report = (claim_check_dir / "evidence_bundle_verify.md").read_text(encoding="utf-8")
+        assert "Review Artifact Index" in bundle_verification_report
+        assert "source_manifest.md" in bundle_verification_report
 
         blocked_claim_check_dir = Path(tmp) / "blocked_claim_check"
         blocked_claim_check = subprocess.run(
@@ -1247,12 +1332,25 @@ def assert_cli_contract() -> None:
         assert (start_dir / "index.html").exists()
         assert (start_dir / "workbench.html").exists()
         assert (start_dir / "serve_summary.json").exists()
+        workbench_html = (start_dir / "workbench.html").read_text(encoding="utf-8")
+        assert "Review Flow" in workbench_html
+        assert "Evidence Lineage" in workbench_html
+        assert "Repair Checklist" in workbench_html
+        assert "/api/workbench/state" in workbench_html
         workbench_summary = run_workbench_check(start_dir, {"template": "biointerface_coatings", "project_json": "", "evidence_csv": "", "source_files": []})
         assert workbench_summary["status"] == "workbench_ready"
         assert workbench_summary["claim_check_status"] == "claim_check_ready"
         assert workbench_summary["source_status"] == "sources_ready"
         assert workbench_summary["claim_ready"] is True
         assert workbench_summary["links"]["dashboard"].endswith("dashboard.html")
+        assert workbench_summary["links"]["source_manifest_report"].endswith("source_manifest.md")
+        assert workbench_summary["links"]["bundle_verification_report"].endswith("evidence_bundle_verify.md")
+        assert len(workbench_summary["review_flow"]) >= 7
+        assert workbench_summary["review_flow"][-1]["stage"] == "Human handoff"
+        assert workbench_summary["evidence_lineage"]["present_source_file_count"] >= 1
+        assert workbench_summary["evidence_lineage"]["checked_artifact_count"] >= 1
+        assert any(artifact["label"] == "Source manifest" for artifact in workbench_summary["review_artifacts"])
+        assert workbench_summary["repair_checklist"][0]["command"].startswith("falsiflow claim-check")
         assert (start_dir / "workbench_summary.json").exists()
 
         install_dir = Path(tmp) / "installer_home"
@@ -1378,11 +1476,81 @@ def assert_cli_contract() -> None:
         publish_kit_summary = json.loads(publish_kit.stdout)
         assert publish_kit_summary["status"] == "publish_kit_ready"
         assert publish_kit_summary["account_action_required"] is True
+        assert publish_kit_summary["public_release_evidence_status"] == "public_release_evidence_ready"
+        assert publish_kit_summary["release_rehearsal_status"] == "release_rehearsal_ready"
         assert (publish_kit_dir / "publish_handoff.json").exists()
         assert (publish_kit_dir / "publish_handoff.md").exists()
         assert (publish_kit_dir / "publish.env.example").exists()
         assert (publish_kit_dir / "github_publish_commands.sh").exists()
+        assert "Falsiflow External Evidence" in (publish_kit_dir / "github_publish_commands.sh").read_text(encoding="utf-8")
+        assert (publish_kit_dir / "external_evidence_template.json").exists()
+        assert (publish_kit_dir / "public_release_evidence.json").exists()
+        assert (publish_kit_dir / "public_release_evidence.md").exists()
+        release_evidence = json.loads((publish_kit_dir / "public_release_evidence.json").read_text(encoding="utf-8"))
+        assert release_evidence["status"] == "public_release_evidence_ready"
+        assert {"public_package_pipx_smoke", "scorecard_workflow", "launch_metrics"} <= {item["id"] for item in release_evidence["evidence"]}
+        release_evidence_report = (publish_kit_dir / "public_release_evidence.md").read_text(encoding="utf-8")
+        assert "Falsiflow Public Release Evidence Ledger" in release_evidence_report
+        assert "external-check --strict" in release_evidence_report
+        assert (publish_kit_dir / "release_rehearsal.json").exists()
+        assert (publish_kit_dir / "release_rehearsal.md").exists()
+        release_rehearsal = json.loads((publish_kit_dir / "release_rehearsal.json").read_text(encoding="utf-8"))
+        assert release_rehearsal["status"] == "release_rehearsal_ready"
+        assert {"external_check_strict", "public_announcement"} <= {step["id"] for step in release_rehearsal["steps"]}
+        release_rehearsal_report = (publish_kit_dir / "release_rehearsal.md").read_text(encoding="utf-8")
+        assert "Falsiflow Public Release Rehearsal" in release_rehearsal_report
+        assert "external-check --strict" in release_rehearsal_report
+        assert "public_release_evidence.md" in release_rehearsal_report
         assert (publish_kit_dir / "public_demo" / "demo_package_summary.json").exists()
+
+        launch_kit_dir = Path(tmp) / "launch_kit"
+        launch_kit = subprocess.run(
+            [
+                sys.executable,
+                str(CLI),
+                "launch-kit",
+                "--out-dir",
+                str(launch_kit_dir),
+                "--force",
+                "--json",
+            ],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        launch_kit_summary = json.loads(launch_kit.stdout)
+        assert launch_kit_summary["status"] == "launch_kit_ready"
+        assert launch_kit_summary["account_action_required"] is True
+        assert launch_kit_summary["launch_metrics_status"] == "launch_metrics_ready"
+        assert launch_kit_summary["release_rehearsal_status"] == "release_rehearsal_ready"
+        assert (launch_kit_dir / "launch_summary.json").exists()
+        assert (launch_kit_dir / "proof_card.md").exists()
+        assert (launch_kit_dir / "announcement.md").exists()
+        assert (launch_kit_dir / "demo_script.md").exists()
+        assert (launch_kit_dir / "readme_proof_strip.svg").exists()
+        assert "claim_ready after proof" in (launch_kit_dir / "readme_proof_strip.svg").read_text(encoding="utf-8")
+        assert (launch_kit_dir / "social_preview.svg").exists()
+        assert "Falsiflow GitHub social preview" in (launch_kit_dir / "social_preview.svg").read_text(encoding="utf-8")
+        assert (launch_kit_dir / "github_repo_profile.md").exists()
+        assert "## Topics" in (launch_kit_dir / "github_repo_profile.md").read_text(encoding="utf-8")
+        assert (launch_kit_dir / "launch_posts.md").exists()
+        assert "Show HN" in (launch_kit_dir / "launch_posts.md").read_text(encoding="utf-8")
+        assert (launch_kit_dir / "launch_metrics.json").exists()
+        assert (launch_kit_dir / "launch_metrics.md").exists()
+        launch_metrics = json.loads((launch_kit_dir / "launch_metrics.json").read_text(encoding="utf-8"))
+        assert launch_metrics["status"] == "launch_metrics_ready"
+        assert any(row["stage"] == "verification" for row in launch_metrics["funnel"])
+        launch_metrics_report = (launch_kit_dir / "launch_metrics.md").read_text(encoding="utf-8")
+        assert "Falsiflow 1k-Star Launch Tracker" in launch_metrics_report
+        assert "GitHub traffic" in launch_metrics_report
+        assert "day-14" in launch_metrics_report
+        assert "quality-gates" in launch_kit_summary["github_topics"]
+        assert (launch_kit_dir / "maintainer_checklist.md").exists()
+        assert "Launch Metrics" in (launch_kit_dir / "maintainer_checklist.md").read_text(encoding="utf-8")
+        assert (launch_kit_dir / "publish_kit" / "publish_handoff.json").exists()
+        assert (launch_kit_dir / "publish_kit" / "public_release_evidence.md").exists()
+        assert (launch_kit_dir / "publish_kit" / "release_rehearsal.md").exists()
 
         external_check_dir = Path(tmp) / "external_check"
         external_check = subprocess.run(
@@ -1402,9 +1570,111 @@ def assert_cli_contract() -> None:
         )
         external_check_summary = json.loads(external_check.stdout)
         assert external_check_summary["status"] in {"external_ready", "external_blocked"}
-        assert external_check_summary["check_count"] >= 6
+        assert external_check_summary["check_count"] >= 8
+        external_check_ids = {check["check"] for check in external_check_summary["checks"]}
+        assert {"pypi_package_url", "pipx_public_package"} <= external_check_ids
         assert (external_check_dir / "external_readiness.json").exists()
         assert (external_check_dir / "external_readiness.md").exists()
+
+        external_evidence_path = Path(tmp) / "external_evidence.json"
+        external_evidence = subprocess.run(
+            [
+                sys.executable,
+                str(CLI),
+                "external-evidence",
+                "--out",
+                str(external_evidence_path),
+                "--repo-url",
+                "https://github.com/AzurLiu/falsiflow",
+                "--public-demo-url",
+                "https://falsiflow-demo.netlify.app",
+                "--pypi-package-url",
+                "https://pypi.org/project/falsiflow/",
+                "--force",
+                "--json",
+            ],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        external_evidence_summary = json.loads(external_evidence.stdout)
+        assert external_evidence_summary["status"] == "external_evidence_template_ready"
+        evidence_doc = json.loads(external_evidence_path.read_text(encoding="utf-8"))
+        assert "pypi_package_url" in evidence_doc["checks"]
+        assert "pipx_public_package" in evidence_doc["checks"]
+        assert evidence_doc["checks"]["pypi_package_url"]["verification_url"] == "https://pypi.org/pypi/falsiflow/json"
+        assert evidence_doc["checks"]["pypi_package_url"]["artifact"] == "falsiflow_pypi_project.json"
+        evidence_doc["checks"]["public_repo_url"]["status"] = "passed"
+        evidence_doc["checks"]["public_repo_url"]["evidence_url"] = "https://github.com/AzurLiu/falsiflow"
+        evidence_doc["checks"]["public_demo_url"]["status"] = "passed"
+        evidence_doc["checks"]["public_demo_url"]["evidence_url"] = "https://falsiflow-demo.netlify.app"
+        evidence_doc["checks"]["pypi_package_url"]["status"] = "passed"
+        evidence_doc["checks"]["pypi_package_url"]["evidence_url"] = "https://pypi.org/project/falsiflow/"
+        evidence_doc["checks"]["pipx_smoke"]["status"] = "passed"
+        evidence_doc["checks"]["pipx_smoke"]["workflow_url"] = "https://github.com/AzurLiu/falsiflow/actions/runs/1"
+        evidence_doc["checks"]["pipx_public_package"]["status"] = "passed"
+        evidence_doc["checks"]["pipx_public_package"]["workflow_url"] = "https://github.com/AzurLiu/falsiflow/actions/runs/3"
+        evidence_doc["checks"]["windows_powershell"]["status"] = "passed"
+        evidence_doc["checks"]["windows_powershell"]["workflow_url"] = "https://github.com/AzurLiu/falsiflow/actions/runs/2"
+        external_evidence_path.write_text(json.dumps(evidence_doc, indent=2, sort_keys=True), encoding="utf-8")
+        external_ready_dir = Path(tmp) / "external_ready"
+        external_ready = subprocess.run(
+            [
+                sys.executable,
+                str(CLI),
+                "external-check",
+                "--out-dir",
+                str(external_ready_dir),
+                "--evidence",
+                str(external_evidence_path),
+                "--force",
+                "--strict",
+                "--json",
+            ],
+            cwd=ROOT,
+            env={**os.environ, "FALSIFLOW_REPO_URL": "https://github.com/AzurLiu/falsiflow", "FALSIFLOW_PYPI_PACKAGE_URL": "https://pypi.org/project/falsiflow/"},
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        external_ready_summary = json.loads(external_ready.stdout)
+        assert external_ready_summary["status"] == "external_ready"
+        assert external_ready_summary["external_evidence_status"] == "loaded"
+        ready_checks = {check["check"]: check for check in external_ready_summary["checks"]}
+        assert ready_checks["pypi_package_url"]["status"] == "passed"
+        assert ready_checks["pipx_public_package"]["status"] == "passed"
+
+        cli_reference_md = Path(tmp) / "cli_reference.md"
+        cli_reference_json = Path(tmp) / "cli_reference.json"
+        cli_reference = subprocess.run(
+            [
+                sys.executable,
+                str(CLI),
+                "cli-reference",
+                "--out",
+                str(cli_reference_md),
+                "--json-out",
+                str(cli_reference_json),
+                "--json",
+            ],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        cli_reference_summary = json.loads(cli_reference.stdout)
+        assert cli_reference_summary["status"] == "cli_reference_ready"
+        commands = {record["command"] for record in cli_reference_summary["commands"]}
+        assert {"start", "cli-reference", "release-check", "external-evidence", "casebook-check", "evidence import", "template-release"} <= commands
+        assert cli_reference_summary["command_count"] >= 50
+        assert cli_reference_md.exists()
+        assert cli_reference_json.exists()
+        cli_reference_text = cli_reference_md.read_text(encoding="utf-8")
+        assert "Falsiflow CLI Reference" in cli_reference_text
+        assert "falsiflow casebook-check" in cli_reference_text
+        assert "--profile" in cli_reference_text
+        assert "falsiflow evidence import" in cli_reference_text
 
         discovery_dir = Path(tmp) / "discovery"
         discovery_summary = run_discover("MEA neural interface material", discovery_dir, force=True)
@@ -1629,6 +1899,7 @@ def assert_cli_contract() -> None:
         assert adoption_summary["status"] == "adoption_ready"
         assert adoption_summary["release_validation_status"] == "release_validation_skipped"
         assert "Distribution validation was skipped" in adoption_summary["release_validation_message"]
+        assert adoption_summary["casebook_check_status"] == "casebook_check_ready"
         assert adoption_summary["ready_priority_count"] == 5
         assert adoption_summary["priority_count"] == 5
         assert adoption_summary["repair_checklist"][0]["command"].startswith("falsiflow adoption-check")
@@ -1641,8 +1912,10 @@ def assert_cli_contract() -> None:
         assert adoption_release_checks["source_build_cache_cleanup"]["status"] == "passed"
         assert "skipped" in adoption_release_checks["source_build_cache_cleanup"]["message"]
         assert (adoption_check_dir / "adoption_check.json").exists()
+        assert (adoption_check_dir / "casebook_check" / "casebook_check.json").exists()
         adoption_report = (adoption_check_dir / "adoption_check.md").read_text(encoding="utf-8")
         assert "Falsiflow Adoption Check" in adoption_report
+        assert "casebook_check_ready" in adoption_report
         assert "release_validation_skipped" in adoption_report
         assert "Repair Checklist" in adoption_report
         adoption_human_dir = Path(tmp) / "adoption_check_human"
@@ -1740,11 +2013,11 @@ def assert_cli_contract() -> None:
         )
         selftest_summary = json.loads(selftest_json.stdout)
         assert selftest_summary["status"] == "passed"
-        assert selftest_summary["template_count"] == 4
-        assert selftest_summary["audit_ready_count"] == 4
+        assert selftest_summary["template_count"] == EXPECTED_TEMPLATE_COUNT
+        assert selftest_summary["audit_ready_count"] == EXPECTED_TEMPLATE_COUNT
         assert selftest_summary["failure_count"] == 0
         schema_kinds = {schema["kind"] for schema in selftest_summary["schemas"]}
-        assert {"project", "evidence-row", "claim-summary", "audit-review", "portfolio-summary", "import-coverage", "source-manifest", "bundle-manifest", "bundle-verification", "claim-check", "quickstart-summary", "doctor-summary", "demo-summary", "template-check", "template-pack-manifest", "template-pack-verification", "template-install", "template-registry", "template-lock", "template-attestation", "template-attestation-verification", "template-policy", "template-policy-verification", "template-release", "template-release-verification", "template-gallery", "adoption-check", "release-check", "all"} <= schema_kinds
+        assert {"project", "evidence-row", "claim-summary", "audit-review", "portfolio-summary", "import-coverage", "source-manifest", "bundle-manifest", "bundle-verification", "claim-check", "quickstart-summary", "doctor-summary", "demo-summary", "template-check", "template-pack-manifest", "template-pack-verification", "template-install", "template-registry", "template-lock", "template-attestation", "template-attestation-verification", "template-policy", "template-policy-verification", "template-release", "template-release-verification", "template-gallery", "casebook-check", "external-evidence", "external-readiness", "adoption-check", "release-check", "all"} <= schema_kinds
         assert (selftest_out / "portfolio" / "portfolio_summary.json").exists()
 
         demo_out = Path(tmp) / "demo"
@@ -2224,9 +2497,14 @@ def assert_cli_contract() -> None:
         assert template_release_verification_summary["policy_verification_status"] == "template_policy_verified"
         assert template_release_verification_summary["unsafe_path_count"] == 0
         assert template_release_verification_summary["unmanifested_file_count"] == 0
+        assert template_release_verification_summary["artifact_members"]["template_pack"] == "template_pack.zip"
         assert json.loads(template_release_verify_out.read_text(encoding="utf-8"))["status"] == "template_release_verified"
-        assert "Falsiflow Template Release Verification" in template_release_verify_report.read_text(encoding="utf-8")
-        assert "No issues found." in template_release_verify_report.read_text(encoding="utf-8")
+        template_release_report = template_release_verify_report.read_text(encoding="utf-8")
+        assert "Falsiflow Template Release Verification" in template_release_report
+        assert "Review Artifact Index" in template_release_report
+        assert "template_release_manifest.json" in template_release_report
+        assert "template_pack.zip" in template_release_report
+        assert "No issues found." in template_release_report
 
         unsafe_release_out = Path(tmp) / "unsafe_template_release.zip"
 
@@ -2479,7 +2757,8 @@ def assert_cli_contract() -> None:
         assert release_summary["publish_kit_status"] == "publish_kit_ready"
         assert release_summary["publish_kit_summary"]["account_action_required"] is True
         assert release_summary["external_check_status"] in {"external_ready", "external_blocked"}
-        assert release_summary["external_check_summary"]["check_count"] >= 6
+        assert release_summary["external_check_summary"]["check_count"] >= 8
+        assert any(check["check"] == "pipx_public_package" for check in release_summary["external_check_summary"]["checks"])
         assert release_summary["quickstart_status"] == "quickstart_ready"
         assert release_summary["quickstart_summary"]["claim_check_status"] == "claim_check_ready"
         assert release_summary["quickstart_summary"]["verification_status"] == "bundle_verified"
@@ -2502,10 +2781,14 @@ def assert_cli_contract() -> None:
         assert release_adoption_checks["gitignore_build_artifacts"]["status"] == "passed"
         assert release_adoption_checks["source_build_cache_cleanup"]["status"] == "passed"
         assert release_summary["template_gallery_status"] == "template_gallery_ready"
-        assert release_summary["template_gallery_summary"]["template_count"] == 4
-        assert release_summary["template_gallery_summary"]["non_neural_template_count"] == 3
-        assert release_summary["template_check_count"] == 4
-        assert release_summary["template_check_ready_count"] == 4
+        assert release_summary["template_gallery_summary"]["template_count"] == EXPECTED_TEMPLATE_COUNT
+        assert release_summary["template_gallery_summary"]["non_neural_template_count"] == EXPECTED_NON_NEURAL_TEMPLATE_COUNT
+        assert release_summary["casebook_check_status"] == "casebook_check_ready"
+        assert release_summary["casebook_check_summary"]["positive_demo_ready_count"] == EXPECTED_TEMPLATE_COUNT
+        assert release_summary["casebook_check_summary"]["blocked_path_count"] == EXPECTED_TEMPLATE_COUNT
+        assert release_summary["casebook_check_summary"]["bundle_verified_count"] == EXPECTED_TEMPLATE_COUNT
+        assert release_summary["template_check_count"] == EXPECTED_TEMPLATE_COUNT
+        assert release_summary["template_check_ready_count"] == EXPECTED_TEMPLATE_COUNT
         assert all(item["status"] == "template_ready" for item in release_summary["template_checks"])
         assert release_summary["template_pack_status"] == "template_pack_ready"
         assert release_summary["template_pack_verification_status"] == "template_pack_verified"
@@ -2538,8 +2821,27 @@ def assert_cli_contract() -> None:
         assert {
             "changelog_current_version",
             "console_script",
+            "pyproject_requires_python",
+            "pyproject_keywords",
+            "pyproject_classifiers",
+            "pyproject_project_urls",
             "manifest_release_docs",
             "readme_adoption_entry",
+            "readme_community_health_entry",
+            "readme_citation_governance_entry",
+            "readme_architecture_entry",
+            "readme_data_contract_entry",
+            "readme_adapter_profiles_entry",
+            "readme_template_authoring_entry",
+            "readme_troubleshooting_entry",
+            "readme_security_posture_entry",
+            "readme_cli_reference_entry",
+            "readme_positioning_entry",
+            "readme_public_casebook_entry",
+            "readme_casebook_check_entry",
+            "readme_proof_strip_exists",
+            "readme_visual_asset",
+            "readme_first_screen_story",
             "start_docs",
             "install_docs",
             "install_script",
@@ -2549,15 +2851,24 @@ def assert_cli_contract() -> None:
             "static_demo_docs",
             "demo_package_docs",
             "publish_kit_docs",
+            "launch_kit_docs",
+            "launch_metrics_docs",
             "external_check_docs",
+            "readme_github_action_docs",
             "workbench_docs",
             "discover_docs",
             "public_interface_docs",
             "makefile_entrypoints",
             "github_ci_workflow",
+            "github_action_exists",
+            "github_action_entrypoint",
+            "github_action_yaml_safe",
             "github_pages_workflow",
             "github_cross_platform_workflow",
+            "github_external_evidence_workflow",
+            "github_scorecard_workflow",
             "github_pypi_publish_workflow",
+            "github_dependabot_config",
             "try_docs",
             "launchpad_docs",
             "wizard_docs",
@@ -2566,12 +2877,34 @@ def assert_cli_contract() -> None:
             "doctor_docs",
             "adoption_check_docs",
             "adoption_priorities",
+            "architecture_exists",
+            "architecture_docs",
+            "data_contract_exists",
+            "data_contract_docs",
+            "adapter_profiles_exists",
+            "adapter_profiles_docs",
+            "casebook_check_exists",
+            "casebook_check_docs",
+            "template_authoring_exists",
+            "template_authoring_docs",
+            "troubleshooting_exists",
+            "troubleshooting_docs",
+            "cli_reference_docs",
+            "positioning_casebook",
+            "public_casebook",
+            "security_posture_exists",
+            "security_posture_docs",
             "audit_review_docs",
             "gitignore_build_artifacts",
             "contributing_gates",
             "release_checklist",
+            "citation_metadata",
             "security_policy",
+            "code_of_conduct_policy",
+            "governance_policy",
+            "support_policy",
             "responsible_use_policy",
+            "roadmap_policy",
             "claim_check_docs",
             "walkthrough_commands",
             "template_package_data",
@@ -2585,14 +2918,31 @@ def assert_cli_contract() -> None:
             "template_release_docs",
             "template_gallery_docs",
         } <= package_checks
-        dist_checks = {check["check"] for check in release_summary["dist_checks"]}
-        assert {"wheel_build", "sdist_build", "wheel_install", "installed_release_check", "installed_templates", "source_build_cache_cleanup"} <= dist_checks
+        dist_checks = {check["check"]: check for check in release_summary["dist_checks"]}
+        assert {"wheel_build", "sdist_build", "wheel_install", "installed_release_check", "installed_templates", "source_build_cache_cleanup"} <= set(dist_checks)
+        assert "isolated PEP 517" in dist_checks["sdist_build"]["message"]
         package_check_map = {check["check"]: check for check in release_summary["package_checks"]}
         assert package_check_map["release_checklist"]["status"] == "passed"
+        assert package_check_map["github_action_entrypoint"]["status"] == "passed"
+        assert package_check_map["github_action_yaml_safe"]["status"] == "passed"
+        assert package_check_map["github_external_evidence_workflow"]["status"] == "passed"
+        assert package_check_map["readme_github_action_docs"]["status"] == "passed"
+        action_text = (ROOT / "action.yml").read_text(encoding="utf-8")
+        assert "using: composite" in action_text
+        assert "actions/setup-python@v5" in action_text
+        assert 'description: "Gate to run:' in action_text
+        assert {"claim-check", "template-check", "casebook-check", "release-check", "adoption-check", "quickstart", "external-check"} <= set(action_text.replace(",", " ").split())
+        readme_first_screen = (ROOT / "README.md").read_text(encoding="utf-8")[:2400]
+        assert "AI eval" in readme_first_screen
+        assert "falsiflow quickstart --template ai_claim_evaluation" in readme_first_screen
+        assert "claim_check_blocked" in readme_first_screen
         assert "release_validation_ready" in (ROOT / "RELEASE.md").read_text(encoding="utf-8")
-        assert release_summary["template_count"] == 4
-        assert release_summary["bundle_verified_count"] == 4
+        assert release_summary["template_count"] == EXPECTED_TEMPLATE_COUNT
+        assert release_summary["bundle_verified_count"] == EXPECTED_TEMPLATE_COUNT
         assert release_summary["failure_count"] == 0
+        assert any(artifact["artifact"] == "Launch metrics tracker" for artifact in release_summary["release_review_artifact_index"])
+        assert any(artifact["artifact"] == "Public release evidence ledger" for artifact in release_summary["release_review_artifact_index"])
+        assert any(artifact["artifact"] == "Public release rehearsal" for artifact in release_summary["release_review_artifact_index"])
         assert (release_check_out / "release_check.json").exists()
         assert (release_check_out / "release_check.md").exists()
         assert (release_check_out / "adoption_check.json").exists()
@@ -2603,10 +2953,31 @@ def assert_cli_contract() -> None:
         assert (release_check_out / "doctor" / "doctor_summary.md").exists()
         assert (release_check_out / "template_gallery.json").exists()
         assert (release_check_out / "template_gallery.md").exists()
+        assert (release_check_out / "casebook_check" / "casebook_check.json").exists()
+        assert (release_check_out / "casebook_check" / "casebook_check.md").exists()
+        assert (release_check_out / "casebook_check" / "casebook_reviewer_replay.md").exists()
+        assert (release_check_out / "casebook_check" / "casebook_reviewer_replay.sh").exists()
+        assert (release_check_out / "casebook_check" / "casebook_reviewer_replay.ps1").exists()
         assert (release_check_out / "claim_check" / "claim_check.json").exists()
         assert (release_check_out / "claim_check" / "claim_check.md").exists()
+        assert (release_check_out / "launch_kit" / "launch_summary.json").exists()
+        assert (release_check_out / "launch_kit" / "launch_metrics.json").exists()
+        assert (release_check_out / "launch_kit" / "launch_metrics.md").exists()
+        assert (release_check_out / "publish_kit" / "public_release_evidence.json").exists()
+        assert (release_check_out / "publish_kit" / "public_release_evidence.md").exists()
+        assert (release_check_out / "publish_kit" / "release_rehearsal.json").exists()
+        assert (release_check_out / "publish_kit" / "release_rehearsal.md").exists()
         release_report = (release_check_out / "release_check.md").read_text(encoding="utf-8")
         assert "Adoption Repair Checklist" in release_report
+        assert "Release Review Artifact Index" in release_report
+        assert "Template release verification" in release_report
+        assert "Launch metrics tracker" in release_report
+        assert "Public release evidence ledger" in release_report
+        assert "Public release rehearsal" in release_report
+        assert "claim_check/claim_check.md" in release_report
+        assert "launch_kit/launch_metrics.md" in release_report
+        assert "publish_kit/public_release_evidence.md" in release_report
+        assert "publish_kit/release_rehearsal.md" in release_report
         assert "Release validation: `release_validation_ready`" in release_report
         assert "Adoption release validation: `release_validation_ready`" in release_report
         assert "Adoption Priority Evidence" in release_report
@@ -2678,9 +3049,12 @@ def assert_cli_contract() -> None:
         assert (stale_release_out / "release_check.json").exists()
         assert "Falsiflow Adoption Check" in (release_check_out / "adoption_check.md").read_text(encoding="utf-8")
         assert "Falsiflow Template Gallery" in (release_check_out / "template_gallery.md").read_text(encoding="utf-8")
+        assert "Falsiflow Casebook Check" in (release_check_out / "casebook_check" / "casebook_check.md").read_text(encoding="utf-8")
         assert (release_check_out / "template_release_verification.json").exists()
         assert (release_check_out / "template_release_verification.md").exists()
-        assert "Falsiflow Template Release Verification" in (release_check_out / "template_release_verification.md").read_text(encoding="utf-8")
+        release_template_report = (release_check_out / "template_release_verification.md").read_text(encoding="utf-8")
+        assert "Falsiflow Template Release Verification" in release_template_report
+        assert "Review Artifact Index" in release_template_report
         assert (release_check_out / "templates" / "neural_materials" / "bundle_verification.md").exists()
 
 
@@ -2973,6 +3347,49 @@ def assert_wide_ingest_contract() -> None:
         assert "h_a_medium_stability,candidate_a,sample_a,ph_initial,7.20" in evidence_import
         assert "h_a_medium_stability,candidate_a,sample_b,ph_final,7.24" in evidence_import
 
+        vendor_csv = tmp_dir / "vendor_return.csv"
+        vendor_csv.write_text(
+            "\n".join([
+                "sample,article,measured_at,vendor_contact,instrument_id,source_file,notes,vendor,adhesion_mpa,cytotoxicity_fraction",
+                "coupon_001,coating_a,2026-05-25T11:00:00Z,vendor_lab,utm_01,vendor_raw.csv,first return,Example Labs,2.4,0.02",
+            ]),
+            encoding="utf-8",
+        )
+        profile_out = tmp_dir / "profile_evidence.csv"
+        profile_summary = tmp_dir / "profile_summary.json"
+        subprocess.run(
+            [
+                sys.executable,
+                str(CLI),
+                "evidence",
+                "import",
+                "--profile",
+                "vendor-measurement",
+                "--input",
+                str(vendor_csv),
+                "--out",
+                str(profile_out),
+                "--summary-out",
+                str(profile_summary),
+                "--gate-id",
+                "vendor_return_gate",
+                "--candidate-id",
+                "fallback_candidate",
+            ],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        profile_summary_json = json.loads(profile_summary.read_text(encoding="utf-8"))
+        assert profile_summary_json["adapter_profile"] == "vendor-measurement"
+        assert profile_summary_json["adapter_settings"]["sample_id_column"] == "sample"
+        assert profile_summary_json["adapter_settings"]["candidate_id_column"] == "article"
+        assert profile_summary_json["evidence_rows"] == 2
+        profile_evidence = profile_out.read_text(encoding="utf-8")
+        assert "vendor_return_gate,coating_a,coupon_001,adhesion_mpa,2.4,vendor_raw.csv" in profile_evidence
+        assert "vendor_return_gate,coating_a,coupon_001,cytotoxicity_fraction,0.02,vendor_raw.csv" in profile_evidence
+
         project_dir = tmp_dir / "wide_project"
         subprocess.run(
             [
@@ -3137,7 +3554,7 @@ def assert_packaged_template_contract() -> None:
         )
         records = json.loads(templates.stdout)
         template_ids = {record["template"] for record in records}
-        assert {"neural_materials", "rfq_vendor_evidence", "biointerface_coatings", "wetware_support_hardware"} <= template_ids
+        assert EXPECTED_TEMPLATE_IDS <= template_ids
         assert all("/falsiflow/templates/" in record["path"] for record in records)
 
         template_gallery = subprocess.run(
@@ -3150,8 +3567,8 @@ def assert_packaged_template_contract() -> None:
         )
         template_gallery_summary = json.loads(template_gallery.stdout)
         assert template_gallery_summary["status"] == "template_gallery_ready"
-        assert template_gallery_summary["template_count"] == 4
-        assert template_gallery_summary["non_neural_template_count"] == 3
+        assert template_gallery_summary["template_count"] == EXPECTED_TEMPLATE_COUNT
+        assert template_gallery_summary["non_neural_template_count"] == EXPECTED_NON_NEURAL_TEMPLATE_COUNT
 
         schema = subprocess.run(
             [sys.executable, "-m", "falsiflow.cli", "schema", "--kind", "claim-summary"],
@@ -3313,7 +3730,9 @@ def assert_packaged_template_contract() -> None:
         packaged_claim_check_summary = json.loads(packaged_claim_check.stdout)
         assert packaged_claim_check_summary["status"] == "claim_check_ready"
         assert packaged_claim_check_summary["verification_status"] == "bundle_verified"
-        assert "Falsiflow Claim Check" in (packaged_claim_check_dir / "claim_check.md").read_text(encoding="utf-8")
+        packaged_claim_check_report = (packaged_claim_check_dir / "claim_check.md").read_text(encoding="utf-8")
+        assert "Falsiflow Claim Check" in packaged_claim_check_report
+        assert "Review Artifact Index" in packaged_claim_check_report
 
         packaged_quickstart_dir = work_dir / "quickstart_project"
         packaged_quickstart = subprocess.run(
@@ -3506,6 +3925,84 @@ def assert_packaged_template_contract() -> None:
         packaged_publish_kit_summary = json.loads(packaged_publish_kit.stdout)
         assert packaged_publish_kit_summary["status"] == "publish_kit_ready"
         assert (packaged_publish_kit_dir / "publish_handoff.json").exists()
+        assert (packaged_publish_kit_dir / "external_evidence_template.json").exists()
+        assert (packaged_publish_kit_dir / "public_release_evidence.json").exists()
+        assert (packaged_publish_kit_dir / "public_release_evidence.md").exists()
+        assert (packaged_publish_kit_dir / "release_rehearsal.json").exists()
+        assert (packaged_publish_kit_dir / "release_rehearsal.md").exists()
+        packaged_launch_kit_dir = work_dir / "launch_kit"
+        packaged_launch_kit = subprocess.run(
+            [
+                sys.executable,
+                "-m",
+                "falsiflow.cli",
+                "launch-kit",
+                "--out-dir",
+                str(packaged_launch_kit_dir),
+                "--force",
+                "--json",
+            ],
+            cwd=work_dir,
+            env=env,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        packaged_launch_kit_summary = json.loads(packaged_launch_kit.stdout)
+        assert packaged_launch_kit_summary["status"] == "launch_kit_ready"
+        assert (packaged_launch_kit_dir / "launch_summary.json").exists()
+        assert (packaged_launch_kit_dir / "proof_card.md").exists()
+        assert (packaged_launch_kit_dir / "readme_proof_strip.svg").exists()
+        assert (packaged_launch_kit_dir / "social_preview.svg").exists()
+        assert (packaged_launch_kit_dir / "github_repo_profile.md").exists()
+        assert (packaged_launch_kit_dir / "launch_posts.md").exists()
+        assert (packaged_launch_kit_dir / "launch_metrics.json").exists()
+        assert (packaged_launch_kit_dir / "launch_metrics.md").exists()
+        assert (packaged_launch_kit_dir / "publish_kit" / "public_release_evidence.md").exists()
+        assert (packaged_launch_kit_dir / "publish_kit" / "release_rehearsal.md").exists()
+        packaged_external_evidence_path = work_dir / "external_evidence.json"
+        packaged_external_evidence = subprocess.run(
+            [
+                sys.executable,
+                "-m",
+                "falsiflow.cli",
+                "external-evidence",
+                "--out",
+                str(packaged_external_evidence_path),
+                "--force",
+                "--json",
+            ],
+            cwd=work_dir,
+            env=env,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        packaged_external_evidence_summary = json.loads(packaged_external_evidence.stdout)
+        assert packaged_external_evidence_summary["status"] == "external_evidence_template_ready"
+        assert packaged_external_evidence_path.exists()
+        packaged_cli_reference_md = work_dir / "cli_reference.md"
+        packaged_cli_reference = subprocess.run(
+            [
+                sys.executable,
+                "-m",
+                "falsiflow.cli",
+                "cli-reference",
+                "--out",
+                str(packaged_cli_reference_md),
+                "--json",
+            ],
+            cwd=work_dir,
+            env=env,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        packaged_cli_reference_summary = json.loads(packaged_cli_reference.stdout)
+        assert packaged_cli_reference_summary["status"] == "cli_reference_ready"
+        packaged_commands = {record["command"] for record in packaged_cli_reference_summary["commands"]}
+        assert "casebook-check" in packaged_commands
+        assert packaged_cli_reference_md.exists()
         packaged_external_check_dir = work_dir / "external_check"
         packaged_external_check = subprocess.run(
             [
@@ -3592,6 +4089,7 @@ def assert_packaged_template_contract() -> None:
         packaged_adoption_summary = json.loads(packaged_adoption_check.stdout)
         assert packaged_adoption_summary["status"] == "adoption_ready"
         assert packaged_adoption_summary["release_validation_status"] == "release_validation_skipped"
+        assert packaged_adoption_summary["casebook_check_status"] == "casebook_check_ready"
         assert packaged_adoption_summary["ready_priority_count"] == 5
         assert packaged_adoption_summary["repair_checklist"][0]["command"].startswith("falsiflow adoption-check")
         packaged_adoption_report = (packaged_adoption_check_dir / "adoption_check.md").read_text(encoding="utf-8")
@@ -3634,8 +4132,8 @@ def assert_packaged_template_contract() -> None:
         )
         selftest_summary = json.loads(selftest.stdout)
         assert selftest_summary["status"] == "passed"
-        assert selftest_summary["template_count"] == 4
-        assert selftest_summary["audit_ready_count"] == 4
+        assert selftest_summary["template_count"] == EXPECTED_TEMPLATE_COUNT
+        assert selftest_summary["audit_ready_count"] == EXPECTED_TEMPLATE_COUNT
         assert selftest_summary["failure_count"] == 0
         assert (selftest_dir / "portfolio" / "portfolio_summary.json").exists()
 
@@ -4148,8 +4646,10 @@ def assert_packaged_template_contract() -> None:
         assert packaged_release_checks["gitignore_build_artifacts"]["status"] == "passed"
         assert packaged_release_checks["source_build_cache_cleanup"]["status"] == "passed"
         assert release_check_summary["template_gallery_status"] == "template_gallery_ready"
-        assert release_check_summary["template_gallery_summary"]["template_count"] == 4
-        assert release_check_summary["template_check_ready_count"] == 4
+        assert release_check_summary["template_gallery_summary"]["template_count"] == EXPECTED_TEMPLATE_COUNT
+        assert release_check_summary["casebook_check_status"] == "casebook_check_ready"
+        assert release_check_summary["casebook_check_summary"]["blocked_path_count"] == EXPECTED_TEMPLATE_COUNT
+        assert release_check_summary["template_check_ready_count"] == EXPECTED_TEMPLATE_COUNT
         assert release_check_summary["template_pack_status"] == "template_pack_ready"
         assert release_check_summary["template_pack_verification_status"] == "template_pack_verified"
         assert release_check_summary["template_registry_status"] == "template_registry_ready"
@@ -4165,7 +4665,7 @@ def assert_packaged_template_contract() -> None:
         assert release_check_summary["template_install_summary"]["attestation_status"] == "template_attestation_verified"
         assert release_check_summary["template_install_summary"]["policy_status"] == "template_policy_verified"
         assert release_check_summary["template_install_summary"]["release_status"] == "template_release_verified"
-        assert release_check_summary["bundle_verified_count"] == 4
+        assert release_check_summary["bundle_verified_count"] == EXPECTED_TEMPLATE_COUNT
         assert (release_check_dir / "release_check.json").exists()
         assert (release_check_dir / "adoption_check.json").exists()
         assert (release_check_dir / "adoption_check.md").exists()
@@ -4173,6 +4673,7 @@ def assert_packaged_template_contract() -> None:
         assert (release_check_dir / "doctor" / "doctor_summary.json").exists()
         assert (release_check_dir / "claim_check" / "claim_check.json").exists()
         assert (release_check_dir / "template_gallery.md").exists()
+        assert (release_check_dir / "casebook_check" / "casebook_check.md").exists()
         installed_release_report = (release_check_dir / "release_check.md").read_text(encoding="utf-8")
         assert "Adoption Repair Checklist" in installed_release_report
         assert "Release validation: `release_validation_skipped`" in installed_release_report

@@ -1,4 +1,4 @@
-.PHONY: install-local pipx-install pipx-start start start-check onboard-check static-demo demo-package publish-kit external-check test release-check clean
+.PHONY: install-local pipx-install pipx-start start start-check onboard-check static-demo demo-package publish-kit launch-kit external-evidence external-check cli-reference casebook-check test release-check clean
 
 PYTHON ?= python3
 FALSIFLOW_OUT ?= falsiflow_start
@@ -30,11 +30,23 @@ demo-package: install-local
 publish-kit: install-local
 	falsiflow publish-kit --out-dir falsiflow_publish_kit --force
 
+launch-kit: install-local
+	falsiflow launch-kit --out-dir falsiflow_launch_kit --force
+
+external-evidence: install-local
+	falsiflow external-evidence --out falsiflow_external_evidence.json --force
+
 external-check: install-local
 	falsiflow external-check --out-dir falsiflow_external_check --force
 
+cli-reference: install-local
+	falsiflow cli-reference --out docs/falsiflow_cli_reference.md
+
+casebook-check: install-local
+	falsiflow casebook-check --out-dir data/falsiflow/casebook_check --force
+
 test:
-	$(PYTHON) -m py_compile falsiflow/core.py falsiflow/cli.py falsiflow/adapters.py scripts/falsiflow.py scripts/falsiflow_tests/regress_falsiflow_core.py
+	$(PYTHON) -m py_compile falsiflow/core.py falsiflow/cli.py falsiflow/adapters.py falsiflow/release.py falsiflow/adoption.py falsiflow/casebook_check.py falsiflow/bundle.py falsiflow/browser_demo.py falsiflow/demo.py falsiflow/discovery.py falsiflow/local_server.py falsiflow/public_release.py falsiflow/claim_check.py falsiflow/doctor.py falsiflow/quickstart.py falsiflow/scaffold.py falsiflow/template_discovery.py falsiflow/template_gallery.py falsiflow/template_check.py falsiflow/template_pack.py falsiflow/template_registry.py falsiflow/template_provenance.py falsiflow/template_release.py falsiflow/template_install.py scripts/falsiflow.py scripts/falsiflow_tests/regress_falsiflow_core.py
 	$(PYTHON) scripts/falsiflow_tests/regress_falsiflow_core.py
 
 release-check:

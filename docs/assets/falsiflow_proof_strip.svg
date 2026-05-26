@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
+  <title id="title">Falsiflow evidence-gated claim workflow</title>
+  <desc id="desc">A visual proof strip showing a claim moving through evidence gates, source provenance, audit bundles, and ready or blocked release decisions.</desc>
+  <rect width="1200" height="420" rx="18" fill="#f8fbff"/>
+  <rect x="24" y="24" width="1152" height="372" rx="16" fill="#ffffff" stroke="#d8e2ef"/>
+
+  <text x="58" y="72" fill="#122033" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="700">Falsiflow turns risky claims into auditable gates</text>
+  <text x="58" y="108" fill="#52677f" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18">A claim is ready only when evidence rows, source files, metrics, templates, bundles, and release checks agree.</text>
+
+  <g font-family="Inter, Segoe UI, Arial, sans-serif">
+    <g transform="translate(58 156)">
+      <rect width="190" height="126" rx="12" fill="#fff7ed" stroke="#f2c99a"/>
+      <text x="18" y="34" fill="#8a4b10" font-size="15" font-weight="700">1. Claim</text>
+      <text x="18" y="65" fill="#2f3b4a" font-size="18" font-weight="700">High-risk decision</text>
+      <text x="18" y="94" fill="#6a7889" font-size="14">thresholds must be explicit</text>
+    </g>
+
+    <path d="M268 219h48" stroke="#90a4bc" stroke-width="3" stroke-linecap="round"/>
+    <path d="M308 210l12 9-12 9" fill="none" stroke="#90a4bc" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <g transform="translate(336 156)">
+      <rect width="190" height="126" rx="12" fill="#eef8f2" stroke="#a8d8b4"/>
+      <text x="18" y="34" fill="#24643a" font-size="15" font-weight="700">2. Evidence gates</text>
+      <text x="18" y="65" fill="#2f3b4a" font-size="18" font-weight="700">CSV + rules</text>
+      <text x="18" y="94" fill="#6a7889" font-size="14">missing rows stay blocked</text>
+    </g>
+
+    <path d="M546 219h48" stroke="#90a4bc" stroke-width="3" stroke-linecap="round"/>
+    <path d="M586 210l12 9-12 9" fill="none" stroke="#90a4bc" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <g transform="translate(614 156)">
+      <rect width="190" height="126" rx="12" fill="#eef6ff" stroke="#a7cdf7"/>
+      <text x="18" y="34" fill="#1d5a9e" font-size="15" font-weight="700">3. Provenance</text>
+      <text x="18" y="65" fill="#2f3b4a" font-size="18" font-weight="700">Source files</text>
+      <text x="18" y="94" fill="#6a7889" font-size="14">hashes and manifests travel</text>
+    </g>
+
+    <path d="M824 219h48" stroke="#90a4bc" stroke-width="3" stroke-linecap="round"/>
+    <path d="M864 210l12 9-12 9" fill="none" stroke="#90a4bc" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <g transform="translate(892 156)">
+      <rect width="250" height="126" rx="12" fill="#f4f1ff" stroke="#c6b8f4"/>
+      <text x="18" y="34" fill="#5639a6" font-size="15" font-weight="700">4. Audit bundle</text>
+      <text x="18" y="65" fill="#2f3b4a" font-size="18" font-weight="700">Review + release checks</text>
+      <text x="18" y="94" fill="#6a7889" font-size="14">ready only when all gates pass</text>
+    </g>
+  </g>
+
+  <g font-family="Inter, Segoe UI, Arial, sans-serif" transform="translate(58 320)">
+    <rect width="226" height="46" rx="23" fill="#eaf8ef" stroke="#9fd4ae"/>
+    <circle cx="26" cy="23" r="10" fill="#2e9d52"/>
+    <path d="M21 23l4 4 8-9" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="48" y="29" fill="#205e35" font-size="16" font-weight="700">claim_ready after proof</text>
+
+    <rect x="250" width="250" height="46" rx="23" fill="#fff1f0" stroke="#f0b2ab"/>
+    <circle cx="278" cy="23" r="10" fill="#d84b3f"/>
+    <path d="M274 19l8 8m0-8l-8 8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="300" y="29" fill="#9b2d24" font-size="16" font-weight="700">claim_blocked on gaps</text>
+
+    <rect x="524" width="296" height="46" rx="23" fill="#eef6ff" stroke="#b6d4f3"/>
+    <text x="548" y="29" fill="#2c5b88" font-size="16" font-weight="700">JSON + Markdown + zip bundle</text>
+
+    <rect x="844" width="238" height="46" rx="23" fill="#f8fafc" stroke="#d0d9e4"/>
+    <text x="868" y="29" fill="#475569" font-size="16" font-weight="700">local-first, no cloud upload</text>
+  </g>
+</svg>

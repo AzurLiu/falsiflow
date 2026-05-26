@@ -1,0 +1,228 @@
+name: Falsiflow External Evidence
+
+on:
+  workflow_dispatch:
+    inputs:
+      public_demo_url:
+        description: "Hosted public demo URL to verify, for example https://OWNER.github.io/falsiflow/"
+        required: true
+        type: string
+      repo_url:
+        description: "Public repository URL. Defaults to the current GitHub repository."
+        required: false
+        type: string
+      pypi_package_url:
+        description: "Published PyPI project URL, for example https://pypi.org/project/falsiflow/"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  pipx-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout public repository
+        shell: bash
+        run: |
+          git init .
+          git remote add origin "https://github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --no-tags --depth=1 origin "+${GITHUB_REF}:${GITHUB_REF}"
+          git checkout --detach "${GITHUB_SHA}"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: pipx install and browser-entry smoke
+        shell: bash
+        run: |
+          python -m pip install --user pipx
+          python -m pipx install --force .
+          python -m pipx run --spec . falsiflow start --out-dir "$RUNNER_TEMP/falsiflow_start" --check --json > "$RUNNER_TEMP/falsiflow_pipx_start.json"
+      - name: Upload pipx smoke artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: falsiflow-pipx-smoke
+          path: ${{ runner.temp }}/falsiflow_pipx_start.json
+
+  pipx-public-package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: pipx public package smoke
+        shell: bash
+        run: |
+          python -m pip install --user pipx
+          python -m pipx run --spec falsiflow falsiflow start --out-dir "$RUNNER_TEMP/falsiflow_public_package_start" --check --json > "$RUNNER_TEMP/falsiflow_public_package_start.json"
+      - name: Upload public package pipx smoke artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: falsiflow-pipx-public-package-smoke
+          path: ${{ runner.temp }}/falsiflow_public_package_start.json
+
+  windows-powershell:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout public repository
+        shell: bash
+        run: |
+          git init .
+          git remote add origin "https://github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --no-tags --depth=1 origin "+${GITHUB_REF}:${GITHUB_REF}"
+          git checkout --detach "${GITHUB_SHA}"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: PowerShell installer smoke
+        shell: pwsh
+        run: |
+          ./scripts/install_local.ps1 -FromLocal . -Prefix "$env:RUNNER_TEMP/falsiflow_install" -Check
+
+  evidence-summary:
+    needs:
+      - pipx-smoke
+      - pipx-public-package
+      - windows-powershell
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout public repository
+        shell: bash
+        run: |
+          git init .
+          git remote add origin "https://github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --no-tags --depth=1 origin "+${GITHUB_REF}:${GITHUB_REF}"
+          git checkout --detach "${GITHUB_SHA}"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Verify hosted demo URL
+        shell: bash
+        env:
+          FALSIFLOW_PUBLIC_DEMO_URL: ${{ inputs.public_demo_url }}
+        run: |
+          test -n "$FALSIFLOW_PUBLIC_DEMO_URL"
+          curl -fsSL "$FALSIFLOW_PUBLIC_DEMO_URL" -o "$RUNNER_TEMP/falsiflow_public_demo_index.html"
+          grep -E "Falsiflow|Launchpad|Try" "$RUNNER_TEMP/falsiflow_public_demo_index.html"
+      - name: Verify PyPI project URL
+        shell: bash
+        env:
+          FALSIFLOW_PYPI_PACKAGE_URL: ${{ inputs.pypi_package_url }}
+        run: |
+          test -n "$FALSIFLOW_PYPI_PACKAGE_URL"
+          python - <<'PY'
+          import os
+          from urllib.parse import urlparse
+
+          url = os.environ["FALSIFLOW_PYPI_PACKAGE_URL"].strip()
+          parsed = urlparse(url)
+          expected_path = "/project/falsiflow/"
+          if parsed.scheme != "https" or parsed.netloc != "pypi.org" or parsed.path.rstrip("/") + "/" != expected_path:
+              raise SystemExit(f"Expected https://pypi.org/project/falsiflow/, got {url}")
+          PY
+          curl -fsSL "https://pypi.org/pypi/falsiflow/json" -o "$RUNNER_TEMP/falsiflow_pypi_project.json"
+          python - <<'PY'
+          import json
+          import os
+          import pathlib
+
+          payload = json.loads(pathlib.Path(os.environ["RUNNER_TEMP"], "falsiflow_pypi_project.json").read_text(encoding="utf-8"))
+          info = payload.get("info", {})
+          if str(info.get("name", "")).lower() != "falsiflow":
+              raise SystemExit("PyPI JSON did not describe the falsiflow package")
+          if not str(info.get("version", "")).strip():
+              raise SystemExit("PyPI JSON did not include a released version")
+          PY
+      - name: Write structured external evidence
+        shell: bash
+        env:
+          FALSIFLOW_REPO_URL_INPUT: ${{ inputs.repo_url }}
+          FALSIFLOW_PUBLIC_DEMO_URL: ${{ inputs.public_demo_url }}
+          FALSIFLOW_PYPI_PACKAGE_URL: ${{ inputs.pypi_package_url }}
+          FALSIFLOW_WORKFLOW_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          FALSIFLOW_REPOSITORY: ${{ github.repository }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import pathlib
+
+          repo_url = os.environ.get("FALSIFLOW_REPO_URL_INPUT") or f"https://github.com/{os.environ['FALSIFLOW_REPOSITORY']}"
+          demo_url = os.environ["FALSIFLOW_PUBLIC_DEMO_URL"]
+          pypi_url = os.environ["FALSIFLOW_PYPI_PACKAGE_URL"]
+          workflow_url = os.environ["FALSIFLOW_WORKFLOW_URL"]
+          evidence = {
+              "status": "external_evidence_ready",
+              "version": 1,
+              "instructions": "Generated by the Falsiflow External Evidence workflow after public demo, PyPI package, checkout pipx, public-package pipx, and Windows smoke checks passed.",
+              "checks": {
+                  "public_repo_url": {
+                      "status": "passed",
+                      "url": repo_url,
+                      "evidence_url": workflow_url,
+                      "notes": "Workflow ran from the public GitHub repository.",
+                  },
+                  "public_demo_url": {
+                      "status": "passed",
+                      "url": demo_url,
+                      "evidence_url": workflow_url,
+                      "artifact": "falsiflow_public_demo_index.html",
+                      "notes": "curl fetched the hosted static demo and found Falsiflow launch text.",
+                  },
+                  "pypi_package_url": {
+                      "status": "passed",
+                      "url": pypi_url,
+                      "evidence_url": workflow_url,
+                      "artifact": "falsiflow_pypi_project.json",
+                      "verification_url": "https://pypi.org/pypi/falsiflow/json",
+                      "notes": "curl fetched the PyPI JSON API and confirmed the published package name and version.",
+                  },
+                  "pipx_smoke": {
+                      "status": "passed",
+                      "command": "python -m pipx install --force . && python -m pipx run --spec . falsiflow start --check --json",
+                      "workflow_url": workflow_url,
+                      "artifact": "falsiflow_pipx_start.json",
+                      "notes": "Ubuntu checkout-based pipx install and browser-entry smoke passed.",
+                  },
+                  "pipx_public_package": {
+                      "status": "passed",
+                      "command": "python -m pipx run --spec falsiflow falsiflow start --check --json",
+                      "workflow_url": workflow_url,
+                      "artifact": "falsiflow_public_package_start.json",
+                      "notes": "Ubuntu pipx run from the published package passed.",
+                  },
+                  "windows_powershell": {
+                      "status": "passed",
+                      "command": ".\\scripts\\install_local.ps1 -FromLocal . -Check",
+                      "workflow_url": workflow_url,
+                      "notes": "Windows PowerShell installer smoke passed.",
+                  },
+              },
+          }
+          pathlib.Path("falsiflow_external_evidence.json").write_text(json.dumps(evidence, indent=2, sort_keys=True), encoding="utf-8")
+          PY
+      - name: Verify external readiness with structured evidence
+        shell: bash
+        env:
+          FALSIFLOW_REPO_URL: ${{ inputs.repo_url || format('https://github.com/{0}', github.repository) }}
+          FALSIFLOW_PUBLIC_DEMO_URL: ${{ inputs.public_demo_url }}
+          FALSIFLOW_PYPI_PACKAGE_URL: ${{ inputs.pypi_package_url }}
+        run: |
+          python scripts/falsiflow.py external-check \
+            --out-dir falsiflow_external_check \
+            --evidence falsiflow_external_evidence.json \
+            --force \
+            --strict \
+            --json > falsiflow_external_readiness.stdout.json
+      - name: Upload external evidence artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: falsiflow-external-evidence
+          path: |
+            falsiflow_external_evidence.json
+            falsiflow_external_readiness.stdout.json
+            falsiflow_external_check/external_readiness.json
+            falsiflow_external_check/external_readiness.md
+            ${{ runner.temp }}/falsiflow_public_demo_index.html
+            ${{ runner.temp }}/falsiflow_pypi_project.json

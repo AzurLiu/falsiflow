@@ -47,6 +47,110 @@ DEFAULT_PLACEHOLDERS = [
     "not_measured",
 ]
 
+ADAPTER_PROFILES: dict[str, dict[str, object]] = {
+    "generic-wide": {
+        "description": "Generic wide CSV with sample_id plus measured value columns.",
+        "sample_id_column": "sample_id",
+        "gate_id_column": "",
+        "candidate_id_column": "",
+        "source_file_column": "",
+        "measured_at_column": "",
+        "operator_or_agent_column": "",
+        "instrument_id_column": "",
+        "notes_column": "",
+        "exclude_columns": [],
+    },
+    "vendor-measurement": {
+        "description": "Vendor or external-lab measurement return with sample, source file, contact, instrument, and notes columns.",
+        "sample_id_column": "sample",
+        "gate_id_column": "",
+        "candidate_id_column": "article",
+        "source_file_column": "source_file",
+        "measured_at_column": "measured_at",
+        "operator_or_agent_column": "vendor_contact",
+        "instrument_id_column": "instrument_id",
+        "notes_column": "notes",
+        "exclude_columns": ["vendor", "quote_id", "work_order"],
+    },
+    "instrument-export": {
+        "description": "Instrument export with sample_id, timestamp, operator, instrument_id, raw_file, and measured columns.",
+        "sample_id_column": "sample_id",
+        "gate_id_column": "",
+        "candidate_id_column": "candidate_id",
+        "source_file_column": "raw_file",
+        "measured_at_column": "timestamp",
+        "operator_or_agent_column": "operator",
+        "instrument_id_column": "instrument_id",
+        "notes_column": "notes",
+        "exclude_columns": ["run_id", "method", "batch_id"],
+    },
+    "plate-reader": {
+        "description": "Plate-reader style export with well_id, read_at, operator, plate_reader_id, raw_file, and assay columns.",
+        "sample_id_column": "well_id",
+        "gate_id_column": "",
+        "candidate_id_column": "sample_name",
+        "source_file_column": "raw_file",
+        "measured_at_column": "read_at",
+        "operator_or_agent_column": "operator",
+        "instrument_id_column": "plate_reader_id",
+        "notes_column": "notes",
+        "exclude_columns": ["plate_id", "assay_id", "well_id"],
+    },
+}
+
+
+def adapter_profile_names() -> list[str]:
+    return sorted(ADAPTER_PROFILES)
+
+
+def adapter_profile_summary() -> list[dict[str, object]]:
+    return [
+        {
+            "profile": name,
+            **profile,
+        }
+        for name, profile in sorted(ADAPTER_PROFILES.items())
+    ]
+
+
+def resolve_wide_adapter_settings(
+    profile: str,
+    sample_id_column: str,
+    exclude_columns: list[str],
+    gate_id_column: str,
+    candidate_id_column: str,
+    source_file_column: str,
+    measured_at_column: str,
+    operator_or_agent_column: str,
+    instrument_id_column: str,
+    notes_column: str,
+) -> dict[str, object]:
+    if profile not in ADAPTER_PROFILES:
+        raise ValueError(f"Unknown adapter profile `{profile}`. Expected one of: {', '.join(adapter_profile_names())}.")
+    profile_data = ADAPTER_PROFILES[profile]
+
+    def column(name: str, override: str) -> str:
+        return clean(override) or clean(profile_data.get(name, ""))
+
+    profile_excludes = [str(item) for item in profile_data.get("exclude_columns", []) if str(item)]
+    merged_excludes = list(dict.fromkeys([*profile_excludes, *exclude_columns]))
+    settings = {
+        "profile": profile,
+        "profile_description": str(profile_data.get("description", "")),
+        "sample_id_column": column("sample_id_column", sample_id_column),
+        "gate_id_column": column("gate_id_column", gate_id_column),
+        "candidate_id_column": column("candidate_id_column", candidate_id_column),
+        "source_file_column": column("source_file_column", source_file_column),
+        "measured_at_column": column("measured_at_column", measured_at_column),
+        "operator_or_agent_column": column("operator_or_agent_column", operator_or_agent_column),
+        "instrument_id_column": column("instrument_id_column", instrument_id_column),
+        "notes_column": column("notes_column", notes_column),
+        "exclude_columns": merged_excludes,
+    }
+    if not settings["sample_id_column"]:
+        raise ValueError(f"Adapter profile `{profile}` does not define a sample_id_column and no --sample-id-column override was provided.")
+    return settings
+
 
 def rule(field: str, operator: str, value: Any, reason: str, **filters: Any) -> dict[str, Any]:
     payload = {
@@ -403,6 +507,7 @@ def write_wide_lab_conversion(
     inputs: list[Path],
     evidence_out: Path,
     summary_out: Path | None,
+    profile: str,
     gate_id: str,
     candidate_id: str,
     sample_id_column: str,
@@ -421,28 +526,43 @@ def write_wide_lab_conversion(
     notes: str,
     notes_column: str,
 ) -> dict[str, Any]:
+    settings = resolve_wide_adapter_settings(
+        profile=profile,
+        sample_id_column=sample_id_column,
+        exclude_columns=exclude_columns,
+        gate_id_column=gate_id_column,
+        candidate_id_column=candidate_id_column,
+        source_file_column=source_file_column,
+        measured_at_column=measured_at_column,
+        operator_or_agent_column=operator_or_agent_column,
+        instrument_id_column=instrument_id_column,
+        notes_column=notes_column,
+    )
     evidence_rows, summary = convert_wide_lab_csv(
         inputs=inputs,
         gate_id=gate_id,
         candidate_id=candidate_id,
-        sample_id_column=sample_id_column,
+        sample_id_column=str(settings["sample_id_column"]),
         field_columns=field_columns,
-        exclude_columns=exclude_columns,
-        gate_id_column=gate_id_column,
-        candidate_id_column=candidate_id_column,
+        exclude_columns=[str(item) for item in settings["exclude_columns"]],
+        gate_id_column=str(settings["gate_id_column"]),
+        candidate_id_column=str(settings["candidate_id_column"]),
         source_file=source_file,
-        source_file_column=source_file_column,
+        source_file_column=str(settings["source_file_column"]),
         measured_at=measured_at,
-        measured_at_column=measured_at_column,
+        measured_at_column=str(settings["measured_at_column"]),
         operator_or_agent=operator_or_agent,
-        operator_or_agent_column=operator_or_agent_column,
+        operator_or_agent_column=str(settings["operator_or_agent_column"]),
         instrument_id=instrument_id,
-        instrument_id_column=instrument_id_column,
+        instrument_id_column=str(settings["instrument_id_column"]),
         notes=notes,
-        notes_column=notes_column,
+        notes_column=str(settings["notes_column"]),
     )
     write_csv(evidence_out, evidence_rows, EVIDENCE_FIELDS)
     summary["evidence_out"] = str(evidence_out)
+    summary["adapter_profile"] = profile
+    summary["adapter_profile_description"] = settings["profile_description"]
+    summary["adapter_settings"] = settings
     if summary_out is not None:
         summary_out.parent.mkdir(parents=True, exist_ok=True)
         summary_out.write_text(json.dumps(summary, indent=2, sort_keys=True), encoding="utf-8")

@@ -1,12 +1,15 @@
 # Changelog
 
-## 0.1.0
+## 0.1.1
 
 - Introduced the Falsiflow evidence-gated R&D workflow engine.
 - Added configurable project gates, evidence CSV validation, derived metrics,
   claim audits, next actions, dashboards, and portfolio aggregation.
 - Added starter templates for neural materials, biointerface coatings, RFQ
-  vendor evidence, and wetware support hardware.
+  vendor evidence, wetware support hardware, and AI claim evaluation.
+- Added root `action.yml` so downstream GitHub Actions workflows can run
+  Falsiflow claim, template, casebook, release, adoption, quickstart, and
+  external-readiness gates with one `uses:` step.
 - Added source-file provenance manifests, portable evidence bundles,
   bundle zip verification, and release-check quality gates.
 - Added template-check, template-scaffold, template-pack, template-registry,
@@ -30,11 +33,38 @@
   optimization focused on open-source usability.
 - Added `template-gallery` JSON and Markdown outputs so cross-domain starter
   breadth is visible and checked by release workflows.
+- Added `casebook-check` JSON and Markdown outputs so public starter casebook
+  positive demos, placeholder blockers, source provenance, and verified bundles
+  are checked by adoption and release workflows.
+- Added casebook reviewer replay artifacts (`casebook_reviewer_replay.md`,
+  `.sh`, and `.ps1`) so launch reviewers can rerun every positive demo and
+  placeholder blocked-path proof from generated scripts.
+- Added launch metrics artifacts (`launch_metrics.json` and
+  `launch_metrics.md`) so the 1k-star path has review windows for traffic,
+  referrers, stars, demo visits, install signals, repeated questions, and
+  follow-up fixes.
+- Added public package evidence checks to `external-evidence`,
+  `external-check`, and the external evidence workflow so final external
+  readiness requires a PyPI project URL and a pipx smoke test from the published
+  package, not only a local checkout.
+- Added `public_release_evidence.json` and `public_release_evidence.md` to the
+  publish kit so final public release evidence across repo, demo, PyPI, pipx,
+  Windows, Scorecard, release-check, casebook replay, and launch metrics is
+  reviewed from one generated ledger.
+- Added `release_rehearsal.json` and `release_rehearsal.md` to the publish kit
+  so public release reviewers can rehearse the final command sequence, expected
+  artifacts, success signals, and external stop conditions before announcements.
+- Added adapter profiles for generic wide CSV, vendor measurement returns,
+  instrument exports, and plate-reader exports in `evidence import` and
+  `ingest-wide-csv`.
 - Added `audit_review.json` and `audit_review.md` decision cards for faster
   human review of audit status, blockers, next actions, and release boundaries.
 - Added `claim-check` with `claim_check.json` and `claim_check.md` so audit,
   source provenance, bundle creation, and zip verification can run as one
   user-facing claim gate.
+- Added review artifact indexes to claim-check, bundle verification, release
+  check, and template release verification reports so reviewers can jump between
+  source manifests, bundle integrity, dashboards, and template-release artifacts.
 - Added `claim-check --project-dir` so initialized starter projects can use
   default `project.json`, `evidence_pass_demo.csv`, and `claim_check/` paths.
 - Added `quickstart` with `quickstart_summary.json` and `quickstart_summary.md`
@@ -66,7 +96,8 @@
   and pipx smoke tests, and PyPI trusted-publishing release builds.
 - Added a localhost `workbench.html` and API behind `falsiflow start` so browser
   users can upload project/evidence/source files, run the local evidence gate,
-  and inspect ready/blocked results without touching the terminal.
+  and inspect ready/blocked results, review flow, evidence lineage, repair
+  checklist, and linked review artifacts without touching the terminal.
 - Added `discover` with `evidence_records.json`, `candidate_queue.json`,
   `ranking.md`, `assay_plan.md`, `rfq_package.md`, and a placeholder
   `project_draft/` so discovery output is structured while remaining

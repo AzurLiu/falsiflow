@@ -25,6 +25,7 @@ python3 -m py_compile \
   falsiflow/core.py \
   falsiflow/cli.py \
   falsiflow/adapters.py \
+  falsiflow/casebook_check.py \
   scripts/falsiflow.py \
   scripts/falsiflow_tests/regress_falsiflow_core.py
 
@@ -42,6 +43,10 @@ python3 scripts/falsiflow.py release-check --out-dir data/falsiflow/release_chec
 - If a command emits machine-readable JSON, document and test its schema.
 - If a bundle or verification artifact changes, run zip verification and update
   release-check expectations.
+- If import adapter profiles or CSV column mappings change, update
+  `docs/falsiflow_adapter_profiles.md` and the wide-ingest regression tests.
+- If public starter examples or launch proof changes, run `casebook-check` and
+  update `docs/falsiflow_casebook_check.md`.
 - If starter template authoring or distribution changes, run `template-check`,
   `template-pack`, `verify-template-pack`, `template-registry`,
   `template-lock`, `template-attest`, `verify-template-attestation`, and
@@ -60,6 +65,18 @@ python3 scripts/falsiflow.py release-check --out-dir data/falsiflow/release_chec
 - `release-check` passes, or the reason it cannot run is documented.
 - New public commands or fields are reflected in `README.md`,
   `docs/falsiflow_mvp.md`, and schemas.
+- Data-contract changes update `docs/falsiflow_data_contract.md`.
+- Adapter-profile changes update `docs/falsiflow_adapter_profiles.md`.
+- Public casebook or starter-proof changes update
+  `docs/falsiflow_casebook_check.md`.
+- Architecture-impacting changes update `docs/falsiflow_architecture.md`.
+- Template authoring or template admission changes update
+  `docs/falsiflow_template_authoring.md`.
+- User-facing failures or repair actions update
+  `docs/falsiflow_troubleshooting.md`.
 - Version-facing changes are summarized in `CHANGELOG.md`.
 - Security or responsible-use changes update `SECURITY.md` or
   `RESPONSIBLE_USE.md` and keep `release-check` passing.
+- Community behavior, support expectations, or project-direction changes update
+  `CODE_OF_CONDUCT.md`, `SUPPORT.md`, `GOVERNANCE.md`, `CITATION.cff`, or
+  `ROADMAP.md` when relevant.

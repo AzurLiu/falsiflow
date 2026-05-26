@@ -27,6 +27,27 @@ jobs:
             falsiflow/core.py \
             falsiflow/cli.py \
             falsiflow/adapters.py \
+            falsiflow/release.py \
+            falsiflow/adoption.py \
+            falsiflow/casebook_check.py \
+            falsiflow/bundle.py \
+            falsiflow/browser_demo.py \
+            falsiflow/demo.py \
+            falsiflow/discovery.py \
+            falsiflow/local_server.py \
+            falsiflow/public_release.py \
+            falsiflow/claim_check.py \
+            falsiflow/doctor.py \
+            falsiflow/quickstart.py \
+            falsiflow/scaffold.py \
+            falsiflow/template_discovery.py \
+            falsiflow/template_gallery.py \
+            falsiflow/template_check.py \
+            falsiflow/template_pack.py \
+            falsiflow/template_registry.py \
+            falsiflow/template_provenance.py \
+            falsiflow/template_release.py \
+            falsiflow/template_install.py \
             scripts/falsiflow.py \
             scripts/falsiflow_tests/regress_falsiflow_core.py
       - name: Regression
@@ -62,6 +83,7 @@ jobs:
           python scripts/falsiflow.py schema --kind template-release > /tmp/falsiflow_template_release_schema.json
           python scripts/falsiflow.py schema --kind template-release-verification > /tmp/falsiflow_template_release_verification_schema.json
           python scripts/falsiflow.py schema --kind template-gallery > /tmp/falsiflow_template_gallery_schema.json
+          python scripts/falsiflow.py schema --kind casebook-check > /tmp/falsiflow_casebook_check_schema.json
           python scripts/falsiflow.py schema --kind adoption-check > /tmp/falsiflow_adoption_check_schema.json
           python scripts/falsiflow.py schema --kind release-check > /tmp/falsiflow_release_check_schema.json
           python scripts/falsiflow.py schema --kind all --out /tmp/falsiflow_schemas.json
@@ -82,6 +104,14 @@ jobs:
             --out /tmp/falsiflow_quickstart \
             --strict \
             --json > /tmp/falsiflow_quickstart.json
+      - name: Reusable action smoke
+        uses: ./
+        with:
+          install-command: python -m pip install -e .
+          mode: quickstart
+          template: ai_claim_evaluation
+          out-dir: /tmp/falsiflow_action_quickstart
+          strict: "true"
       - name: Doctor
         run: |
           python scripts/falsiflow.py doctor \
@@ -94,6 +124,12 @@ jobs:
             --out /tmp/falsiflow_template_gallery.md \
             --json-out /tmp/falsiflow_template_gallery.json \
             --json > /tmp/falsiflow_template_gallery_stdout.json
+      - name: Casebook check
+        run: |
+          python scripts/falsiflow.py casebook-check \
+            --out-dir /tmp/falsiflow_casebook_check \
+            --force \
+            --json > /tmp/falsiflow_casebook_check.json
       - name: Browser and discovery public interfaces
         run: |
           python scripts/falsiflow.py start \

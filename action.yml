@@ -1,0 +1,221 @@
+name: Falsiflow
+description: "Install Falsiflow and run evidence gates in GitHub Actions."
+author: Falsiflow contributors
+
+branding:
+  icon: check-circle
+  color: blue
+
+inputs:
+  mode:
+    description: "Gate to run: claim-check, template-check, casebook-check, release-check, adoption-check, quickstart, or external-check."
+    required: false
+    default: claim-check
+  python-version:
+    description: "Python version for actions/setup-python."
+    required: false
+    default: "3.11"
+  install-command:
+    description: "Command that installs Falsiflow before running the gate."
+    required: false
+    default: "python -m pip install falsiflow"
+  working-directory:
+    description: "Directory where the Falsiflow command should run."
+    required: false
+    default: "."
+  out-dir:
+    description: "Output directory for generated Falsiflow artifacts."
+    required: false
+    default: data/falsiflow/action_check
+  project-dir:
+    description: "Project directory for claim-check mode."
+    required: false
+    default: ""
+  config:
+    description: "Project config path for claim-check mode when project-dir is not used."
+    required: false
+    default: ""
+  evidence:
+    description: "Evidence CSV path for claim-check mode when project-dir is not used."
+    required: false
+    default: ""
+  template-dir:
+    description: "Template directory for template-check mode."
+    required: false
+    default: ""
+  template:
+    description: "Starter template for quickstart mode."
+    required: false
+    default: biointerface_coatings
+  evidence-file:
+    description: "Structured external evidence JSON for external-check mode."
+    required: false
+    default: ""
+  strict:
+    description: "Use strict mode for claim-check, quickstart, and external-check."
+    required: false
+    default: "true"
+  force:
+    description: "Replace existing Falsiflow output directories."
+    required: false
+    default: "true"
+  skip-dist:
+    description: "Skip distribution build inside release-check."
+    required: false
+    default: "false"
+  extra-args:
+    description: "Additional shell-split arguments appended to the Falsiflow command."
+    required: false
+    default: ""
+
+outputs:
+  out-dir:
+    description: "Directory containing generated Falsiflow artifacts."
+    value: ${{ steps.falsiflow.outputs.out-dir }}
+  summary-json:
+    description: "Main machine-readable summary file produced by the selected mode."
+    value: ${{ steps.falsiflow.outputs.summary-json }}
+  summary-md:
+    description: "Main human-readable Markdown report produced by the selected mode when available."
+    value: ${{ steps.falsiflow.outputs.summary-md }}
+
+runs:
+  using: composite
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: Install Falsiflow
+      shell: bash
+      run: |
+        set -euo pipefail
+        cd "${{ inputs.working-directory }}"
+        python -m pip install --upgrade pip
+        ${{ inputs.install-command }}
+
+    - name: Run Falsiflow gate
+      id: falsiflow
+      shell: bash
+      env:
+        FALSIFLOW_MODE: ${{ inputs.mode }}
+        FALSIFLOW_OUT_DIR: ${{ inputs.out-dir }}
+        FALSIFLOW_PROJECT_DIR: ${{ inputs.project-dir }}
+        FALSIFLOW_CONFIG: ${{ inputs.config }}
+        FALSIFLOW_EVIDENCE: ${{ inputs.evidence }}
+        FALSIFLOW_TEMPLATE_DIR: ${{ inputs.template-dir }}
+        FALSIFLOW_TEMPLATE: ${{ inputs.template }}
+        FALSIFLOW_EVIDENCE_FILE: ${{ inputs.evidence-file }}
+        FALSIFLOW_STRICT: ${{ inputs.strict }}
+        FALSIFLOW_FORCE: ${{ inputs.force }}
+        FALSIFLOW_SKIP_DIST: ${{ inputs.skip-dist }}
+        FALSIFLOW_EXTRA_ARGS: ${{ inputs.extra-args }}
+      run: |
+        set -euo pipefail
+        cd "${{ inputs.working-directory }}"
+
+        mode="$FALSIFLOW_MODE"
+        out_dir="$FALSIFLOW_OUT_DIR"
+        summary_json=""
+        summary_md=""
+        cmd=(falsiflow)
+
+        add_force() {
+          if [ "$FALSIFLOW_FORCE" = "true" ]; then
+            cmd+=(--force)
+          fi
+        }
+
+        add_strict() {
+          if [ "$FALSIFLOW_STRICT" = "true" ]; then
+            cmd+=(--strict)
+          fi
+        }
+
+        case "$mode" in
+          claim-check)
+            cmd+=(claim-check --out-dir "$out_dir")
+            if [ -n "$FALSIFLOW_PROJECT_DIR" ]; then
+              cmd+=(--project-dir "$FALSIFLOW_PROJECT_DIR")
+            else
+              if [ -z "$FALSIFLOW_CONFIG" ] || [ -z "$FALSIFLOW_EVIDENCE" ]; then
+                echo "claim-check mode requires project-dir, or both config and evidence." >&2
+                exit 2
+              fi
+              cmd+=(--config "$FALSIFLOW_CONFIG" --evidence "$FALSIFLOW_EVIDENCE")
+            fi
+            add_force
+            add_strict
+            summary_json="$out_dir/claim_check.json"
+            summary_md="$out_dir/claim_check.md"
+            ;;
+          template-check)
+            if [ -z "$FALSIFLOW_TEMPLATE_DIR" ]; then
+              echo "template-check mode requires template-dir." >&2
+              exit 2
+            fi
+            cmd+=(template-check --template-dir "$FALSIFLOW_TEMPLATE_DIR" --out-dir "$out_dir")
+            add_force
+            summary_json="$out_dir/template_check.json"
+            summary_md="$out_dir/template_check.md"
+            ;;
+          casebook-check)
+            cmd+=(casebook-check --out-dir "$out_dir")
+            add_force
+            summary_json="$out_dir/casebook_check.json"
+            summary_md="$out_dir/casebook_check.md"
+            ;;
+          release-check)
+            cmd+=(release-check --out-dir "$out_dir")
+            add_force
+            if [ "$FALSIFLOW_SKIP_DIST" = "true" ]; then
+              cmd+=(--skip-dist)
+            fi
+            summary_json="$out_dir/release_check.json"
+            summary_md="$out_dir/release_check.md"
+            ;;
+          adoption-check)
+            cmd+=(adoption-check --out-dir "$out_dir")
+            add_force
+            summary_json="$out_dir/adoption_check.json"
+            summary_md="$out_dir/adoption_check.md"
+            ;;
+          quickstart)
+            cmd+=(quickstart --template "$FALSIFLOW_TEMPLATE" --out "$out_dir")
+            add_force
+            add_strict
+            summary_json="$out_dir/quickstart_summary.json"
+            summary_md="$out_dir/quickstart_summary.md"
+            ;;
+          external-check)
+            cmd+=(external-check --out-dir "$out_dir")
+            if [ -n "$FALSIFLOW_EVIDENCE_FILE" ]; then
+              cmd+=(--evidence "$FALSIFLOW_EVIDENCE_FILE")
+            fi
+            add_force
+            add_strict
+            summary_json="$out_dir/external_readiness.json"
+            summary_md="$out_dir/external_readiness.md"
+            ;;
+          *)
+            echo "Unsupported Falsiflow action mode: $mode" >&2
+            exit 2
+            ;;
+        esac
+
+        if [ -n "$FALSIFLOW_EXTRA_ARGS" ]; then
+          # shellcheck disable=SC2206
+          extra_args=($FALSIFLOW_EXTRA_ARGS)
+          cmd+=("${extra_args[@]}")
+        fi
+        cmd+=(--json)
+
+        echo "Running: ${cmd[*]}"
+        "${cmd[@]}"
+
+        {
+          echo "out-dir=$out_dir"
+          echo "summary-json=$summary_json"
+          echo "summary-md=$summary_md"
+        } >> "$GITHUB_OUTPUT"

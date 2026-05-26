@@ -1,0 +1,58 @@
+name: Bug report
+description: Report a reproducible Falsiflow failure or regression.
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a concrete failure. Please include commands and generated artifacts when you can.
+  - type: textarea
+    id: command
+    attributes:
+      label: Command or workflow
+      description: Paste the exact command, Make target, CI job, or browser workflow that failed.
+      placeholder: falsiflow release-check --out-dir data/falsiflow/release_check --force
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+      description: What status, artifact, report, or behavior did you expect?
+      placeholder: release_ready with package_ready, dist_ready, and release_validation_ready.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual result
+      description: Include the first failing status, traceback, report excerpt, or CI link.
+      placeholder: release_blocked because sdist_required_files failed.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include OS, Python version, install method, and whether this was local, pipx, or CI.
+      placeholder: macOS 15, Python 3.12, editable install with python3 -m pip install -e .
+    validations:
+      required: true
+  - type: textarea
+    id: artifacts
+    attributes:
+      label: Relevant artifacts
+      description: Link or paste paths for release_check.json, adoption_check.json, claim_check.json, bundle verification, or template verification reports.
+      placeholder: data/falsiflow/release_check/release_check.json
+    validations:
+      required: false
+  - type: checkboxes
+    id: boundaries
+    attributes:
+      label: Checks before filing
+      options:
+        - label: I checked that this is not a claim that Falsiflow should treat as scientific proof, safety proof, regulatory approval, or clinical validation.
+          required: true
+        - label: I removed secrets, private raw data, and credentials from shared logs or artifacts.
+          required: true

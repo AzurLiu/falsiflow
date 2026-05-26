@@ -1,0 +1,52 @@
+name: Feature request
+description: Propose a CLI, template, documentation, or workflow improvement.
+title: "[Feature]: "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What adoption, review, template-authoring, or evidence-gate problem should this solve?
+      placeholder: New users can run the quickstart, but template authors need a clearer install verification path.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: Describe the command, report, template, documentation, or CI behavior you want.
+      placeholder: Add a command that verifies a template release bundle and writes a Markdown review card.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - First-run experience
+        - Audit reports
+        - Starter templates
+        - Release and packaging
+        - Local browser app
+        - Documentation
+        - Security or provenance
+    validations:
+      required: true
+  - type: textarea
+    id: success
+    attributes:
+      label: Success criteria
+      description: What command, artifact, status, or documentation would show the feature is complete?
+      placeholder: adoption-check reports adoption_ready and release-check still reports release_ready.
+    validations:
+      required: true
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution path
+      options:
+        - label: I can help test this with `falsiflow quickstart`, `falsiflow doctor`, `falsiflow adoption-check`, or `falsiflow release-check`.
+          required: false
+        - label: I can open a pull request using `.github/PULL_REQUEST_TEMPLATE.md`.
+          required: false

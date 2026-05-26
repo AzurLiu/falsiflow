@@ -7,17 +7,42 @@ Use this checklist before tagging or publishing a Falsiflow release.
 1. Confirm the version in [pyproject.toml](pyproject.toml) matches
    [falsiflow/__init__.py](falsiflow/__init__.py).
 2. Update [CHANGELOG.md](CHANGELOG.md) for the release version.
-3. Confirm [README.md](README.md), [CONTRIBUTING.md](CONTRIBUTING.md), and
-   [docs/falsiflow_mvp.md](docs/falsiflow_mvp.md) describe any new public
-   commands, schemas, or release gates.
-4. Confirm [scripts/install_local.sh](scripts/install_local.sh),
-   [scripts/install_local.ps1](scripts/install_local.ps1), and
-   [Makefile](Makefile) still install and launch the local browser app.
-5. Confirm [docs/falsiflow_adoption_priorities.md](docs/falsiflow_adoption_priorities.md)
-   still matches the current optimization priorities.
-6. Confirm [SECURITY.md](SECURITY.md) and
+3. Confirm the PyPI package metadata in [pyproject.toml](pyproject.toml):
+   `requires-python`, keywords, classifiers, and project URLs for homepage,
+   docs, source, issues, changelog, demo, architecture, data contract,
+   casebook check, citation, and governance.
+4. Confirm [README.md](README.md), [CONTRIBUTING.md](CONTRIBUTING.md),
+   [CITATION.cff](CITATION.cff), [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md),
+   [GOVERNANCE.md](GOVERNANCE.md), [SUPPORT.md](SUPPORT.md),
+   [ROADMAP.md](ROADMAP.md), and
+   [docs/falsiflow_architecture.md](docs/falsiflow_architecture.md) plus
+   [docs/falsiflow_data_contract.md](docs/falsiflow_data_contract.md),
+   [docs/falsiflow_adapter_profiles.md](docs/falsiflow_adapter_profiles.md),
+   [docs/falsiflow_casebook_check.md](docs/falsiflow_casebook_check.md),
+   [docs/falsiflow_security_posture.md](docs/falsiflow_security_posture.md),
+   [docs/falsiflow_template_authoring.md](docs/falsiflow_template_authoring.md),
+   and [docs/falsiflow_troubleshooting.md](docs/falsiflow_troubleshooting.md)
+   describe the current citation, community, governance, security,
+   architecture, data contract, adapter profiles, casebook proof, template authoring, troubleshooting,
+   supply-chain, and release posture.
+5. Confirm [SECURITY.md](SECURITY.md) and
    [RESPONSIBLE_USE.md](RESPONSIBLE_USE.md) still match the release behavior and
    evidence-boundary language.
+6. Confirm `.github/dependabot.yml` still tracks GitHub Actions and Python
+   packaging inputs, and `.github/workflows/falsiflow-scorecard.yml` still runs
+   OpenSSF Scorecard with SARIF upload.
+7. Confirm [scripts/install_local.sh](scripts/install_local.sh),
+   [scripts/install_local.ps1](scripts/install_local.ps1), and
+   [Makefile](Makefile) still install and launch the local browser app.
+8. Confirm [action.yml](action.yml) still exposes the reusable GitHub Action
+   for `claim-check`, `template-check`, `casebook-check`, `release-check`,
+   `adoption-check`, `quickstart`, and `external-check` modes.
+9. Confirm [docs/falsiflow_adoption_priorities.md](docs/falsiflow_adoption_priorities.md)
+   still matches the current optimization priorities.
+10. Confirm
+   [docs/falsiflow_mvp.md](docs/falsiflow_mvp.md) describe any new public
+   commands, schemas, community expectations, support boundaries, roadmap
+   direction, security posture, or release gates.
 
 ## Required Gates
 
@@ -26,6 +51,27 @@ python3 -m py_compile \
   falsiflow/core.py \
   falsiflow/cli.py \
   falsiflow/adapters.py \
+  falsiflow/release.py \
+  falsiflow/adoption.py \
+  falsiflow/casebook_check.py \
+  falsiflow/bundle.py \
+  falsiflow/browser_demo.py \
+  falsiflow/demo.py \
+  falsiflow/discovery.py \
+  falsiflow/local_server.py \
+  falsiflow/public_release.py \
+  falsiflow/claim_check.py \
+  falsiflow/doctor.py \
+  falsiflow/quickstart.py \
+  falsiflow/scaffold.py \
+  falsiflow/template_discovery.py \
+  falsiflow/template_gallery.py \
+  falsiflow/template_check.py \
+  falsiflow/template_pack.py \
+  falsiflow/template_registry.py \
+  falsiflow/template_provenance.py \
+  falsiflow/template_release.py \
+  falsiflow/template_install.py \
   scripts/falsiflow.py \
   scripts/falsiflow_tests/regress_falsiflow_core.py
 
@@ -35,7 +81,10 @@ python3 scripts/falsiflow.py onboard --out-dir /tmp/falsiflow_onboard_check --ch
 python3 scripts/falsiflow.py static-demo --out-dir /tmp/falsiflow_static_demo_check --force --json
 python3 scripts/falsiflow.py demo-package --out-dir /tmp/falsiflow_public_demo_check --force --json
 python3 scripts/falsiflow.py publish-kit --out-dir /tmp/falsiflow_publish_kit_check --force --json
+python3 scripts/falsiflow.py launch-kit --out-dir /tmp/falsiflow_launch_kit_check --force --json
+python3 scripts/falsiflow.py external-evidence --out /tmp/falsiflow_external_evidence.json --force --json
 python3 scripts/falsiflow.py external-check --out-dir /tmp/falsiflow_external_check --force
+python3 scripts/falsiflow.py casebook-check --out-dir data/falsiflow/casebook_check --force
 python3 scripts/falsiflow.py adoption-check --out-dir data/falsiflow/adoption_check --force
 python3 scripts/falsiflow.py release-check --out-dir data/falsiflow/release_check --force
 ```
@@ -49,9 +98,18 @@ The final `release-check` must report:
 - `dist_ready`
 - `demo_package_ready`
 - `publish_kit_ready` for the generated release handoff kit
+- `launch_kit_ready` for public copy, proof card, demo script, launch metrics,
+  and maintainer checklist
+- `external-evidence` has produced a structured evidence file for hosted demo,
+  public PyPI package URL, checkout-based pipx smoke, public-package pipx
+  smoke, Windows/PowerShell smoke results, and the PyPI JSON API response
+- the `Falsiflow External Evidence` workflow artifact includes
+  `falsiflow_external_evidence.json`, `falsiflow_pypi_project.json`,
+  `external_readiness.json`, and `external_readiness.md` for the final public
+  demo URL and PyPI package
 - `external_check_status` is `external_ready` for a public release, or
-  `external_blocked` only while public repo/demo URLs, pipx, or Windows
-  validation are intentionally pending
+  `external_blocked` only while public repo/demo/PyPI URLs, pipx public-package
+  smoke, or Windows validation are intentionally pending
 - zero package failures
 - zero dist failures
 - one-command `quickstart` reports `quickstart_ready`
@@ -62,6 +120,9 @@ The final `release-check` must report:
 - audit review decision cards generated and bundled
 - all starter bundles verified
 - template gallery ready with the bundled cross-domain starters
+- `casebook_check_ready` with positive demo proofs, placeholder blockers, source
+  provenance, verified bundles, and reviewer replay scripts across bundled
+  starters
 - packaged starter template pack verified
 - template registry ready and template lock written
 - registry `source_url` and lockfile SHA-256 source pin verified
@@ -71,24 +132,73 @@ The final `release-check` must report:
 - `adoption_check.json` reports all five priorities ready
 - `adoption_check.json` includes a `repair_checklist` command with expected
   artifact and success signal
+- PyPI metadata declares `requires-python`, discovery keywords, audience/topic
+  classifiers, and project URLs for homepage, docs, source, issues, changelog,
+  demo, architecture, data contract, adapter profiles, casebook check, citation,
+  and governance
+- architecture documentation is present:
+  `docs/falsiflow_architecture.md`
+- data contract documentation is present:
+  `docs/falsiflow_data_contract.md`
+- adapter profile documentation is present:
+  `docs/falsiflow_adapter_profiles.md`
+- casebook-check documentation is present:
+  `docs/falsiflow_casebook_check.md`
+- template authoring documentation is present:
+  `docs/falsiflow_template_authoring.md`
+- troubleshooting documentation is present:
+  `docs/falsiflow_troubleshooting.md`
+- community trust files are present: `CODE_OF_CONDUCT.md`, `SUPPORT.md`, and
+  `ROADMAP.md`
+- citation and governance files are present: `CITATION.cff` and
+  `GOVERNANCE.md`
+- security posture files and automation are present: `SECURITY.md`,
+  `docs/falsiflow_security_posture.md`, `.github/dependabot.yml`, and the
+  `Falsiflow Scorecard` workflow with SARIF upload
 - local build caches such as `build/` and `falsiflow.egg-info/` are not left
   behind by the distribution gate
 - zero unsafe paths, unmanifested files, or registry/lock SHA-256 mismatches in
   the template release verification report
 - GitHub Actions workflow files exist for full CI, GitHub Pages demo deploy,
-  cross-platform Windows/macOS/Linux smoke tests, pipx smoke tests, and PyPI
-  trusted-publishing release builds
+  cross-platform Windows/macOS/Linux smoke tests, pipx smoke tests, external
+  evidence artifact capture with PyPI JSON verification, OpenSSF Scorecard
+  reporting, and PyPI trusted-publishing release builds
+- `action.yml` exists for downstream GitHub Actions adoption and the main CI
+  workflow runs a reusable-action quickstart smoke
 
 ## Artifact Review
 
 Inspect these generated files before publishing:
 
+- `data/falsiflow/release_check/release_check.md`, especially the
+  `Release Review Artifact Index` linking claim-check, source manifest, bundle
+  verification, evidence bundle, and template release verification artifacts
 - `data/falsiflow/release_check/release_check.json`
 - `data/falsiflow/release_check/release_check.md`
 - `data/falsiflow/release_check/public_demo/demo_package_summary.json`
 - `data/falsiflow/release_check/public_demo/publish_checklist.md`
 - `data/falsiflow/publish_kit/publish_handoff.json`
 - `data/falsiflow/publish_kit/github_publish_commands.sh`
+- `data/falsiflow/release_check/publish_kit/public_release_evidence.json`
+- `data/falsiflow/release_check/publish_kit/public_release_evidence.md`
+- `data/falsiflow/release_check/publish_kit/release_rehearsal.json`
+- `data/falsiflow/release_check/publish_kit/release_rehearsal.md`
+  for the public release rehearsal commands, expected artifacts, success
+  signals, and strict external stop conditions
+- `data/falsiflow/release_check/launch_kit/launch_summary.json`
+- `data/falsiflow/release_check/launch_kit/proof_card.md`
+- `data/falsiflow/release_check/launch_kit/announcement.md`
+- `data/falsiflow/release_check/launch_kit/demo_script.md`
+- `data/falsiflow/release_check/launch_kit/readme_proof_strip.svg`
+- `data/falsiflow/release_check/launch_kit/social_preview.svg`
+- `data/falsiflow/release_check/launch_kit/github_repo_profile.md`
+- `data/falsiflow/release_check/launch_kit/launch_posts.md`
+- `data/falsiflow/release_check/launch_kit/launch_metrics.json`
+- `data/falsiflow/release_check/launch_kit/launch_metrics.md`
+- `data/falsiflow/release_check/launch_kit/maintainer_checklist.md`
+- `data/falsiflow/release_check/launch_kit/publish_kit/public_release_evidence.md`
+- `data/falsiflow/release_check/launch_kit/publish_kit/release_rehearsal.md`
+- `data/falsiflow/release_check/publish_kit/external_evidence_template.json`
 - `data/falsiflow/release_check/external_readiness/external_readiness.json`
 - `data/falsiflow/release_check/external_readiness/external_readiness.md`
 - `data/falsiflow/release_check/adoption_check.json`
@@ -104,10 +214,15 @@ Inspect these generated files before publishing:
 - `data/falsiflow/release_check/claim_check/claim_check.json`
 - `data/falsiflow/release_check/claim_check/claim_check.md`
 - `data/falsiflow/release_check/claim_check/evidence_bundle_verify.md`
+- the `Review Artifact Index` sections in `claim_check.md`,
+  `evidence_bundle_verify.md`, and `template_release_verification.md`
 - `data/falsiflow/release_check/demo/audit/audit_review.json`
 - `data/falsiflow/release_check/demo/audit/audit_review.md`
 - `data/falsiflow/release_check/template_gallery.json`
 - `data/falsiflow/release_check/template_gallery.md`
+- `data/falsiflow/release_check/casebook_check/casebook_reviewer_replay.md`
+- `data/falsiflow/release_check/casebook_check/casebook_reviewer_replay.sh`
+- `data/falsiflow/release_check/casebook_check/casebook_reviewer_replay.ps1`
 - `data/falsiflow/release_check/template_pack.zip`
 - `data/falsiflow/release_check/template_pack_verification.md`
 - `data/falsiflow/release_check/template_registry.json`
@@ -122,5 +237,10 @@ Inspect these generated files before publishing:
 - `data/falsiflow/release_check/dist/sdist/*.tar.gz`
 
 The wheel must install in isolation and pass installed-package `release-check`.
-The sdist must include release docs, package modules, and starter template data.
-Security and responsible-use docs must be present in the sdist.
+The sdist must include release docs, package modules, starter template data,
+community templates, architecture documentation, template authoring
+documentation, data contract documentation, adapter profile documentation,
+casebook-check documentation, citation and governance files,
+Dependabot config, Scorecard workflow, troubleshooting documentation, and the
+security posture documentation. Security and responsible-use docs must be
+present in the sdist.

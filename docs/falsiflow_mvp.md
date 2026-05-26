@@ -26,6 +26,37 @@ other high-uncertainty R&D domains: biomaterials, MEA interfaces, cartridges,
 wetware support hardware, coatings, and later any project where unsupported
 claims are expensive.
 
+For positioning against spreadsheets, CI suites, ELN/LIMS systems, ML eval
+harnesses, materials databases, and workflow orchestrators, see
+[falsiflow_positioning.md](falsiflow_positioning.md).
+For the module map, command flow, release invariants, and extension points, see
+[falsiflow_architecture.md](falsiflow_architecture.md).
+For evidence CSV fields, JSON status contracts, report artifacts, schemas, and
+CI/ELN/LIMS integration boundaries, see
+[falsiflow_data_contract.md](falsiflow_data_contract.md).
+For vendor, instrument, plate-reader, and generic wide-CSV adapter profiles,
+see [falsiflow_adapter_profiles.md](falsiflow_adapter_profiles.md).
+For blocked command recovery, install/start failures, template verification
+failures, `claim_check_blocked`, and `external_blocked`, see
+[falsiflow_troubleshooting.md](falsiflow_troubleshooting.md).
+For external template authoring, placeholder demo design, source provenance, and
+verified release flow, see
+[falsiflow_template_authoring.md](falsiflow_template_authoring.md).
+For public case cards covering the bundled starter templates and reviewer
+scripts, see [falsiflow_public_casebook.md](falsiflow_public_casebook.md).
+For machine-verifiable casebook proof across positive demos and placeholder
+blockers, see [falsiflow_casebook_check.md](falsiflow_casebook_check.md).
+For community expectations, support boundaries, and public project direction,
+see [../CODE_OF_CONDUCT.md](../CODE_OF_CONDUCT.md),
+[../SUPPORT.md](../SUPPORT.md), [../GOVERNANCE.md](../GOVERNANCE.md),
+[../CITATION.cff](../CITATION.cff), and [../ROADMAP.md](../ROADMAP.md).
+For the local-first security posture, Dependabot automation, OpenSSF Scorecard
+workflow, bundle verification boundary, and release trust gates, see
+[falsiflow_security_posture.md](falsiflow_security_posture.md).
+For the generated command reference, see
+[falsiflow_cli_reference.md](falsiflow_cli_reference.md), which is produced by
+`falsiflow cli-reference --out docs/falsiflow_cli_reference.md`.
+
 ## MVP Commands
 
 Run the beginner local app:
@@ -90,18 +121,56 @@ python3 scripts/falsiflow.py demo-package \
 python3 scripts/falsiflow.py publish-kit \
   --out-dir data/falsiflow/publish_kit \
   --force
+python3 scripts/falsiflow.py launch-kit \
+  --out-dir data/falsiflow/launch_kit \
+  --force
+python3 scripts/falsiflow.py external-evidence \
+  --out data/falsiflow/external_evidence.json \
+  --force
 python3 scripts/falsiflow.py external-check \
   --out-dir data/falsiflow/external_check \
+  --evidence data/falsiflow/external_evidence.json \
   --force
 ```
 
 `demo-package` adds `demo_package_summary.json`, `.nojekyll`, `netlify.toml`,
 and `publish_checklist.md`. `publish-kit` writes `publish_handoff.json`,
-`publish_handoff.md`, `publish.env.example`, `github_publish_commands.sh`, and
-a nested public demo package so account-bound GitHub/Pages/PyPI steps have a
-reviewable handoff artifact. `external-check` writes `external_readiness.json`
-and reports `external_ready` or `external_blocked` based on public repo URL,
-hosted demo URL, pipx, and Windows/PowerShell validation evidence.
+`publish_handoff.md`, `publish.env.example`, `github_publish_commands.sh`,
+`public_release_evidence.json`, `public_release_evidence.md`,
+`release_rehearsal.json`, `release_rehearsal.md`, and a nested public demo
+package so account-bound GitHub/Pages/PyPI steps have a reviewable handoff
+artifact, a one-page final evidence ledger, and a public release rehearsal with
+ordered commands, expected artifacts, success signals, and stop conditions.
+`launch-kit` adds
+`launch_summary.json`,
+`proof_card.md`, `announcement.md`, `demo_script.md`,
+`readme_proof_strip.svg`, `social_preview.svg`, `github_repo_profile.md`,
+`launch_posts.md`, `launch_metrics.json`, `launch_metrics.md`, and
+`maintainer_checklist.md` so public launch copy, GitHub repository profile
+settings, social preview imagery, proof points, and 1k-star launch tracking are
+reviewed before account-bound publishing. The nested publish handoff also
+includes `release_rehearsal.md` so launch reviewers can rehearse the final
+public release path before announcements. `external-evidence` writes a fillable JSON
+template for hosted demo, public PyPI package URL plus PyPI JSON API proof,
+checkout-based pipx smoke, public-package pipx smoke, and Windows/PowerShell
+smoke evidence.
+`external-check --evidence` writes `external_readiness.json` and reports
+`external_ready` or `external_blocked` based on public repo URL, hosted demo
+URL, PyPI package URL, pipx, and Windows/PowerShell validation evidence.
+After the hosted demo is live, the `Falsiflow External Evidence` GitHub Actions
+workflow accepts the demo URL and PyPI package URL, verifies the demo over
+HTTPS, fetches `https://pypi.org/pypi/falsiflow/json`, runs checkout pipx,
+public-package pipx, and Windows smoke tests, writes
+`falsiflow_external_evidence.json`, runs
+`external-check --strict`, and uploads the evidence/readiness artifact.
+
+The root `action.yml` is the downstream CI entry point. It installs Falsiflow and
+can run `claim-check`, `template-check`, `casebook-check`, `release-check`,
+`adoption-check`, `quickstart`, or `external-check`, writing the same JSON and
+Markdown artifacts that local commands produce. Public downstream repositories
+use the default PyPI install; this repository's own CI overrides
+`install-command` with `python -m pip install -e .` for local action smoke
+coverage before publishing.
 
 For repository-local CI checks:
 
@@ -118,7 +187,8 @@ bundle, wizard, and `workbench.html` without requiring an account. The workbench
 adds the first browser-side closed loop: select a template, upload an optional
 `project.json`, evidence CSV, and source files, run the local doctor/claim-check
 path through the localhost API, and inspect ready/blocked status plus report,
-dashboard, and bundle links.
+review flow, evidence lineage, repair checklist, source manifest, dashboard,
+bundle verification, and bundle links.
 
 Run a static local browser demo:
 
@@ -259,6 +329,23 @@ summary that show each starter template's domain, claim, gates, required
 evidence rows, demo evidence, placeholder evidence, source files, and first
 commands. It is the release-checked generality proof that the engine is not
 limited to the original neural-materials use case.
+
+Generate the machine-verifiable public casebook proof:
+
+```bash
+python3 scripts/falsiflow.py casebook-check \
+  --out-dir data/falsiflow/casebook_check \
+  --force
+```
+
+`casebook-check` writes `casebook_check.json` and `casebook_check.md`. The
+Markdown report is titled `Falsiflow Casebook Check`. `casebook_check_ready`
+means every starter's positive demo reaches `claim_ready`, every placeholder
+demo stays blocked, source provenance is ready, and every positive demo bundle
+verifies from zip. It also writes `casebook_reviewer_replay.md`,
+`casebook_reviewer_replay.sh`, and `casebook_reviewer_replay.ps1`; those replay
+artifacts run each template's positive claim-check and placeholder blocked-path
+claim-check for reviewers who want to reproduce the casebook outside CI.
 
 Run the adoption-priority readiness gate:
 
@@ -422,7 +509,9 @@ internal gate still matches. Verification rejects unsafe artifact paths,
 duplicate artifact paths, unmanifested files, and registry bytes that no longer
 match the lockfile's `registry_sha256`. Use `--report-out` to write a Markdown
 audit report such as `falsiflow_template_release_verification.md` for human
-review alongside the JSON verification report.
+review alongside the JSON verification report. The report includes a
+`Review Artifact Index` for the release zip, release manifest, template pack,
+registry, lock, attestation, and policy.
 
 Install a verified template release into an external template root:
 
@@ -500,6 +589,9 @@ python3 scripts/falsiflow.py schema --kind template-policy-verification
 python3 scripts/falsiflow.py schema --kind template-release
 python3 scripts/falsiflow.py schema --kind template-release-verification
 python3 scripts/falsiflow.py schema --kind template-gallery
+python3 scripts/falsiflow.py schema --kind casebook-check
+python3 scripts/falsiflow.py schema --kind external-evidence
+python3 scripts/falsiflow.py schema --kind external-readiness
 python3 scripts/falsiflow.py schema --kind adoption-check
 python3 scripts/falsiflow.py schema --kind release-check
 python3 scripts/falsiflow.py schema --kind all --out data/falsiflow/schemas.json
@@ -512,8 +604,8 @@ Schema kinds are `project`, `evidence-row`, `claim-summary`, `audit-review`,
 `template-registry`, `template-lock`, `template-attestation`,
 `template-attestation-verification`, `template-policy`,
 `template-policy-verification`, `template-release`,
-`template-release-verification`, `template-gallery`, `adoption-check`,
-`release-check`, and
+`template-release-verification`, `template-gallery`, `casebook-check`,
+`adoption-check`, `release-check`, and
 `all`. They are
 generated from the same operation, operator, and evidence-column constants used
 by the runtime, so integrations can pin their forms and editor hints to the
@@ -528,6 +620,8 @@ Available starter templates:
   matched-control bioresponse screening.
 - `wetware_support_hardware`: fluid-path provenance, medium-contact stability,
   and operational safety for support hardware.
+- `ai_claim_evaluation`: versioned AI evaluation provenance, benchmark quality,
+  and reproducibility-package evidence for public model comparison claims.
 
 The repository also has Python package metadata, so local development can use a
 standard console command after installation:
@@ -652,9 +746,11 @@ python3 scripts/falsiflow.py claim-check \
 `evidence_bundle_verify.md`. The Markdown report is titled
 `Falsiflow Claim Check`. Machine status is `claim_check_ready` only when audit,
 source provenance, bundle generation, and bundle verification all pass; otherwise
-it returns `claim_check_blocked` with a blocking stage and next actions. With
-`--project-dir`, default inputs are `project.json` and `evidence_pass_demo.csv`,
-and default output is `PROJECT_DIR/claim_check`.
+it returns `claim_check_blocked` with a blocking stage and next actions. The
+report includes a `Review Artifact Index` linking the audit review, source
+manifest, bundle manifest, dashboard, bundle verification, and evidence bundle.
+With `--project-dir`, default inputs are `project.json` and
+`evidence_pass_demo.csv`, and default output is `PROJECT_DIR/claim_check`.
 
 Build a portable evidence bundle:
 
@@ -685,8 +781,10 @@ python3 scripts/falsiflow.py verify-bundle \
 Verification checks required artifact roles, relative paths, byte sizes,
 SHA-256 hashes, duplicate paths, missing files, copied source records, and
 unmanifested files. With `--strict`, a bundle only exits zero when its integrity
-is verified and its manifest status is `bundle_ready`. Use `--bundle-dir` when
-the evidence bundle has already been extracted.
+is verified and its manifest status is `bundle_ready`. The Markdown verification
+report includes a `Review Artifact Index` pointing to the bundle manifest, audit
+review, source manifest, dashboard, and integrity issue table. Use `--bundle-dir`
+when the evidence bundle has already been extracted.
 
 Convert a generic wide lab CSV into Falsiflow evidence:
 
@@ -710,6 +808,7 @@ New workflows can use the namespaced public interface:
 
 ```bash
 python3 scripts/falsiflow.py evidence import \
+  --profile generic-wide \
   --input path/to/lab_export.csv \
   --out data/falsiflow/my_run/evidence.csv \
   --gate-id h_a_medium_stability \
@@ -723,6 +822,21 @@ When `--config` is present, the import writes a coverage precheck that compares
 the generated evidence keys against the configured required rows. `--strict`
 turns missing required rows or duplicate configured rows into a non-zero exit,
 so field/sample mapping mistakes can be caught before full audit.
+
+Built-in adapter profiles cover common shapes:
+
+```bash
+python3 scripts/falsiflow.py evidence import \
+  --profile vendor-measurement \
+  --input vendor_return.csv \
+  --out data/falsiflow/vendor_return/evidence.csv \
+  --summary-out data/falsiflow/vendor_return/import_summary.json \
+  --gate-id vendor_return_gate \
+  --candidate-id fallback_candidate
+```
+
+The import summary records `adapter_profile` and `adapter_settings`. Profile
+details live in [falsiflow_adapter_profiles.md](falsiflow_adapter_profiles.md).
 
 ## Neural-Materials Template
 
@@ -776,7 +890,8 @@ The `ingest-wide-csv` command is the generic adapter for common lab exports:
 one row per sample, metadata columns such as `sample_id`/`measured_at`, and one
 or more measurement columns. It writes standard Falsiflow evidence rows, so the
 same audit engine can process vendor exports, instrument summaries, or small
-bench spreadsheets.
+bench spreadsheets. Adapter profiles add named mappings for `generic-wide`,
+`vendor-measurement`, `instrument-export`, and `plate-reader`.
 
 ## Current Schema
 
@@ -910,6 +1025,9 @@ Machine-readable schemas:
   Reports include counters for missing artifacts, byte/hash mismatches, unsafe
   paths, duplicate paths, unmanifested files, and zip extraction issues.
 - `template-gallery`: JSON Schema for the starter template gallery summary.
+- `casebook-check`: JSON Schema for public casebook proof reports, including
+  positive demos, placeholder blockers, source provenance, and bundle
+  verification counters.
 - `adoption-check`: JSON Schema for the five-priority adoption readiness gate,
   including `repair_checklist` commands, expected artifacts, and success
   signals, plus `release_validation_status` so fast `--skip-dist` runs are not
@@ -924,7 +1042,8 @@ CI:
   regression script, emits schemas, runs `falsiflow selftest`, validates all
   starter templates, runs `falsiflow demo`, runs `falsiflow quickstart`, runs
   `falsiflow doctor`, runs `falsiflow template-gallery`, runs
-  `falsiflow adoption-check`, runs `falsiflow template-check`, runs
+  `falsiflow casebook-check`, runs `falsiflow adoption-check`, runs
+  `falsiflow template-check`, runs
   `falsiflow claim-check`, verifies all passing demo audits, checks
   source manifests, verifies evidence bundle zip archives, smoke-tests
   `falsiflow template-scaffold`, runs
@@ -944,16 +1063,34 @@ CI:
   Windows smoke tests covering `scripts/install_local.sh`,
   `scripts/install_local.ps1`, `pipx`, `start --check`, `demo-package`, and
   `external-check`.
+- `.github/workflows/falsiflow-external-evidence.yml` verifies the hosted demo
+  URL, runs pipx and Windows PowerShell smoke tests, writes
+  `falsiflow_external_evidence.json`, runs `external-check --strict`, and
+  uploads the evidence/readiness artifact for public release review.
+- `.github/workflows/falsiflow-scorecard.yml` runs OpenSSF Scorecard, writes a
+  SARIF report, uploads it with `github/codeql-action/upload-sarif`, and
+  publishes repository security signals for public trust review.
 - `.github/workflows/falsiflow-publish.yml` builds wheel/sdist distributions,
   runs `twine check`, uploads the dist artifact, and can publish to PyPI through
   trusted publishing when a GitHub release is published.
+- `.github/dependabot.yml` schedules weekly Dependabot updates for GitHub
+  Actions and Python packaging inputs.
 - `release-check` also verifies release surface files and metadata:
-  `pyproject.toml`, `README.md`, `LICENSE`, `CHANGELOG.md`, `CONTRIBUTING.md`,
-  `RELEASE.md`, `SECURITY.md`, `RESPONSIBLE_USE.md`, `MANIFEST.in`, version
-  consistency, contributor and release instructions, responsible-use boundaries,
-  security reporting guidance, console script entry points, package template
-  data, starter template files, the end-to-end walkthrough, external template
-  authoring docs, starter template generation docs, one-command quickstart docs,
+  `pyproject.toml`, PyPI package metadata (`requires-python`, keywords,
+  classifiers, and project URLs), `README.md`, `LICENSE`, `CHANGELOG.md`,
+  `CONTRIBUTING.md`, `RELEASE.md`, `SECURITY.md`, `RESPONSIBLE_USE.md`,
+  `CITATION.cff`, `GOVERNANCE.md`, `docs/falsiflow_architecture.md`,
+  `docs/falsiflow_data_contract.md`,
+  `docs/falsiflow_adapter_profiles.md`,
+  `docs/falsiflow_casebook_check.md`,
+  `docs/falsiflow_security_posture.md`,
+  `docs/falsiflow_template_authoring.md`,
+  `docs/falsiflow_troubleshooting.md`, `MANIFEST.in`,
+  `.github/dependabot.yml`, `.github/workflows/falsiflow-scorecard.yml`,
+  version consistency, contributor and release instructions,
+  responsible-use boundaries, security reporting guidance, console script entry
+  points, package template data, starter template files, the end-to-end
+  walkthrough, external template authoring docs, starter template generation docs, one-command quickstart docs,
   one-command doctor docs, one-command claim gate docs, trusted audit review docs,
   template gallery docs, `template-check` results for packaged templates,
   template pack verification
