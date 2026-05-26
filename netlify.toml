@@ -1,5 +1,5 @@
 [build]
-  publish = "docs/public_demo"
+  publish = "docs"
   command = ""
 
 [[headers]]

@@ -5,6 +5,8 @@ Evidence-gated R&D workflow engine for high-risk technical claims.
 [![Falsiflow](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow.yml)
 [![Falsiflow Cross Platform](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-cross-platform.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-cross-platform.yml)
 
+Public demo: <https://falsiflow-demo.netlify.app>
+
 Falsiflow turns a claim into explicit gates, required evidence rows, source-file
 policy, derived metrics, and acceptance rules. A claim only becomes ready when
 the project config is valid, the evidence CSV is structurally sound, required
@@ -112,9 +114,10 @@ The static demo directory includes `static_demo_summary.json` and can be served
 by GitHub Pages, Netlify, or any static file server.
 
 This repository also includes a prebuilt public demo at `docs/public_demo` and a
-root `netlify.toml`, so Netlify can publish the demo without GitHub Pages. For
-Cloudflare Pages or Vercel, use `docs/public_demo` as the output directory and
-leave the build command empty. See `docs/static_hosting.md`.
+root `netlify.toml`, so Netlify publishes `docs` and opens the demo without
+GitHub Pages. The current public demo is <https://falsiflow-demo.netlify.app>.
+For Cloudflare Pages or Vercel, use `docs` as the output directory and leave the
+build command empty. See `docs/static_hosting.md`.
 
 To prepare a publish-ready static demo directory with hosting metadata:
 
