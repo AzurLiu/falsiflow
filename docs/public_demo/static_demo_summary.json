@@ -1,0 +1,255 @@
+{
+  "index": "public_demo/index.html",
+  "publish_note": "Host this directory with GitHub Pages, Netlify, or any static file server.",
+  "publishable": true,
+  "site_dir": "public_demo",
+  "status": "static_demo_ready",
+  "try_report": "public_demo/try_report.html",
+  "try_summary": {
+    "audit_review_status": "review_ready",
+    "bundle_status": "bundle_ready",
+    "claim_check_status": "claim_check_ready",
+    "claim_ready": true,
+    "failure_count": 0,
+    "failures": [],
+    "next_commands": [
+      "falsiflow doctor --project-dir public_demo/project --strict",
+      "falsiflow claim-check --project-dir public_demo/project --strict --force",
+      "open public_demo/index.html",
+      "open public_demo/falsiflow_wizard.html"
+    ],
+    "out_dir": "public_demo",
+    "outputs": {
+      "bundle_verification_report": "public_demo/project/claim_check/evidence_bundle_verify.md",
+      "claim_check": "public_demo/project/claim_check/claim_check.json",
+      "claim_check_report": "public_demo/project/claim_check/claim_check.md",
+      "dashboard": "public_demo/project/claim_check/evidence_bundle/audit/dashboard.html",
+      "evidence_bundle_zip": "public_demo/project/claim_check/evidence_bundle.zip",
+      "launchpad": "public_demo/index.html",
+      "project_dir": "public_demo/project",
+      "quickstart_report": "public_demo/project/quickstart_summary.md",
+      "quickstart_summary": "public_demo/project/quickstart_summary.json",
+      "try_report": "public_demo/try_report.html",
+      "try_summary": "public_demo/try_summary.json",
+      "wizard": "public_demo/falsiflow_wizard.html",
+      "workbench": "public_demo/workbench.html"
+    },
+    "project_dir": "public_demo/project",
+    "quickstart_status": "quickstart_ready",
+    "quickstart_summary": {
+      "audit_review_status": "review_ready",
+      "bundle_status": "bundle_ready",
+      "claim_check_status": "claim_check_ready",
+      "claim_check_summary": {
+        "artifact_count": 13,
+        "audit_review_status": "review_ready",
+        "audit_status": "claim_ready",
+        "blocker_count": 0,
+        "blocking_stage": "ready_for_human_review",
+        "bundle_status": "bundle_ready",
+        "bundle_summary": {
+          "artifact_count": 13,
+          "artifacts": [
+            {
+              "bytes": 5436,
+              "path": "inputs/project.json",
+              "role": "project_config",
+              "sha256": "d3e25e19e8cdb8f84cb60e668cc0b07725733a3642439879ae0885c0442baf24"
+            },
+            {
+              "bytes": 3120,
+              "path": "inputs/evidence.csv",
+              "role": "evidence_csv",
+              "sha256": "b0097a9fad0c58ad2051a36b0e96f7ad3e4f8c92bb3bd06be24f129c2f6c209e"
+            },
+            {
+              "bytes": 1732,
+              "path": "audit/measurement_template.csv",
+              "role": "measurement_template",
+              "sha256": "81bb179398c272cdbcba54caa2abbd906d7c172a96f31a0a5397568178fbafb5"
+            },
+            {
+              "bytes": 3888,
+              "path": "audit/claim_audit.json",
+              "role": "claim_audit",
+              "sha256": "ba49f537b8e0f8e738780b79b442a75b6892bd8171e65127830b4761fc90bc38"
+            },
+            {
+              "bytes": 664,
+              "path": "audit/claim_audit.md",
+              "role": "claim_audit_report",
+              "sha256": "36c2dca925eb694f2606e0974b23780096ba577fdfe30149f2d47889f264778e"
+            },
+            {
+              "bytes": 3287,
+              "path": "audit/audit_review.json",
+              "role": "audit_review",
+              "sha256": "59c65bccfb4bae0acd673e8ba233732867cdda1ebec651e556a8eedac6396a83"
+            },
+            {
+              "bytes": 1622,
+              "path": "audit/audit_review.md",
+              "role": "audit_review_report",
+              "sha256": "abb885c2ed8cb99e28f771561d6e47679e9d7b5a84239a26c1f949d77083c31b"
+            },
+            {
+              "bytes": 1466,
+              "path": "audit/claim_summary.json",
+              "role": "claim_summary",
+              "sha256": "fd19b1b821f34760e9705bdbd61833aaeb71d26139cf0dd022ba7c1436724f7f"
+            },
+            {
+              "bytes": 235,
+              "path": "audit/next_actions.json",
+              "role": "next_actions",
+              "sha256": "db3e59a288337b32787edbcbb1a0b1214676746ce746a0f98dc2345bd3a7fd7a"
+            },
+            {
+              "bytes": 6696,
+              "path": "audit/dashboard.html",
+              "role": "dashboard",
+              "sha256": "593f6935f7ec1d64081ea85ef731cc50fd78ddb3cebf11f0e040f6b73a375cad"
+            },
+            {
+              "bytes": 4514,
+              "path": "source_manifest.json",
+              "role": "source_manifest",
+              "sha256": "f3537096999f6b70304e4adcaeb065c7d315cc2c91c0f945bde0d3e74fa4ffb0"
+            },
+            {
+              "bytes": 686,
+              "path": "source_manifest.md",
+              "role": "source_manifest_report",
+              "sha256": "19d2a1190768de850b336f1dc565c0192a7af9b1b94021693428eb3ec2645fe4"
+            },
+            {
+              "bytes": 1479,
+              "path": "sources/source_files/coating_raw_export.csv",
+              "role": "source_file",
+              "sha256": "657c9bb8431b4794b699c57c8c5954eb318dd3655c52b01ce59b3838ad638c0e"
+            }
+          ],
+          "audit_status": "claim_ready",
+          "claim_id": "coating_ready_for_cell_contact_screen",
+          "claim_ready": true,
+          "copied_source_files": [
+            {
+              "bytes": 1479,
+              "path": "sources/source_files/coating_raw_export.csv",
+              "role": "source_file",
+              "sha256": "657c9bb8431b4794b699c57c8c5954eb318dd3655c52b01ce59b3838ad638c0e"
+            }
+          ],
+          "project_id": "falsiflow_biointerface_coatings_demo",
+          "source_file_count": 1,
+          "source_status": "sources_ready",
+          "status": "bundle_ready",
+          "zip_path": "public_demo/project/claim_check/evidence_bundle.zip"
+        },
+        "bundle_verification_summary": {
+          "artifact_count": 13,
+          "bundle_dir": "public_demo/project/claim_check/evidence_bundle.zip",
+          "bundle_status": "bundle_ready",
+          "bytes_mismatch_count": 0,
+          "checked_artifact_count": 13,
+          "duplicate_path_count": 0,
+          "error_count": 0,
+          "hash_mismatch_count": 0,
+          "input_format": "zip",
+          "input_path": "public_demo/project/claim_check/evidence_bundle.zip",
+          "integrity_status": "integrity_verified",
+          "issue_count": 0,
+          "issues": [],
+          "manifest_path": "public_demo/project/claim_check/evidence_bundle.zip:bundle_manifest.json",
+          "missing_artifact_count": 0,
+          "status": "bundle_verified",
+          "unmanifested_file_count": 0,
+          "unsafe_path_count": 0,
+          "warning_count": 0,
+          "zip_bundle_root": ".",
+          "zip_extracted_file_count": 14,
+          "zip_issue_count": 0,
+          "zip_member_count": 14,
+          "zip_path": "public_demo/project/claim_check/evidence_bundle.zip"
+        },
+        "checked_artifact_count": 13,
+        "claim_check_ready": true,
+        "claim_id": "coating_ready_for_cell_contact_screen",
+        "claim_ready": true,
+        "completion_pct": 100.0,
+        "config_path": "public_demo/project/project.json",
+        "evidence_path": "public_demo/project/evidence_pass_demo.csv",
+        "failure_count": 0,
+        "failures": [],
+        "gate_count": 3,
+        "issue_count": 0,
+        "next_actions": [
+          {
+            "action_id": "review_claim_for_release",
+            "rank": 1,
+            "success_criterion": "Human review confirms raw sources and claim wording before release.",
+            "why": "All required gates passed with source-backed evidence."
+          }
+        ],
+        "out_dir": "public_demo/project/claim_check",
+        "outputs": {
+          "audit_review": "public_demo/project/claim_check/evidence_bundle/audit/audit_review.json",
+          "audit_review_report": "public_demo/project/claim_check/evidence_bundle/audit/audit_review.md",
+          "bundle_manifest": "public_demo/project/claim_check/evidence_bundle/bundle_manifest.json",
+          "bundle_verification": "public_demo/project/claim_check/evidence_bundle_verify.json",
+          "bundle_verification_report": "public_demo/project/claim_check/evidence_bundle_verify.md",
+          "bundle_zip": "public_demo/project/claim_check/evidence_bundle.zip",
+          "claim_audit": "public_demo/project/claim_check/evidence_bundle/audit/claim_audit.json",
+          "claim_audit_report": "public_demo/project/claim_check/evidence_bundle/audit/claim_audit.md",
+          "claim_check": "public_demo/project/claim_check/claim_check.json",
+          "claim_check_report": "public_demo/project/claim_check/claim_check.md",
+          "claim_summary": "public_demo/project/claim_check/evidence_bundle/audit/claim_summary.json",
+          "dashboard": "public_demo/project/claim_check/evidence_bundle/audit/dashboard.html",
+          "next_actions": "public_demo/project/claim_check/evidence_bundle/audit/next_actions.json",
+          "source_manifest": "public_demo/project/claim_check/evidence_bundle/source_manifest.json",
+          "source_manifest_report": "public_demo/project/claim_check/evidence_bundle/source_manifest.md"
+        },
+        "project_id": "falsiflow_biointerface_coatings_demo",
+        "source_blocker_count": 0,
+        "source_file_count": 1,
+        "source_status": "sources_ready",
+        "status": "claim_check_ready",
+        "verification_issue_count": 0,
+        "verification_status": "bundle_verified"
+      },
+      "claim_ready": true,
+      "config_path": "public_demo/project/project.json",
+      "evidence_path": "public_demo/project/evidence_pass_demo.csv",
+      "failure_count": 0,
+      "failures": [],
+      "next_commands": [
+        "falsiflow doctor --project-dir public_demo/project --strict",
+        "falsiflow claim-check --project-dir public_demo/project --strict --force"
+      ],
+      "outputs": {
+        "bundle_verification": "public_demo/project/claim_check/evidence_bundle_verify.json",
+        "bundle_verification_report": "public_demo/project/claim_check/evidence_bundle_verify.md",
+        "claim_check": "public_demo/project/claim_check/claim_check.json",
+        "claim_check_report": "public_demo/project/claim_check/claim_check.md",
+        "dashboard": "public_demo/project/claim_check/evidence_bundle/audit/dashboard.html",
+        "evidence": "public_demo/project/evidence_pass_demo.csv",
+        "evidence_bundle_zip": "public_demo/project/claim_check/evidence_bundle.zip",
+        "project_config": "public_demo/project/project.json",
+        "project_dir": "public_demo/project",
+        "quickstart_report": "public_demo/project/quickstart_summary.md",
+        "quickstart_summary": "public_demo/project/quickstart_summary.json"
+      },
+      "project_dir": "public_demo/project",
+      "source_status": "sources_ready",
+      "status": "quickstart_ready",
+      "template": "biointerface_coatings",
+      "verification_status": "bundle_verified"
+    },
+    "source_status": "sources_ready",
+    "status": "try_ready",
+    "template": "biointerface_coatings",
+    "verification_status": "bundle_verified"
+  },
+  "wizard": "public_demo/falsiflow_wizard.html",
+  "workbench": "public_demo/workbench.html"
+}

@@ -1,0 +1,102 @@
+{
+  "blocked_gate_count": 0,
+  "blocker_count": 0,
+  "blocking_stage": "ready_for_human_review",
+  "check_count": 6,
+  "checks": [
+    {
+      "check": "project_config_errors",
+      "message": "Project validation errors: 0.",
+      "status": "passed"
+    },
+    {
+      "check": "evidence_file_errors",
+      "message": "Evidence diagnostics errors: 0.",
+      "status": "passed"
+    },
+    {
+      "check": "required_gate_evidence",
+      "message": "Required evidence completion: 100.0%.",
+      "status": "passed"
+    },
+    {
+      "check": "gate_blockers",
+      "message": "Gate blockers: 0.",
+      "status": "passed"
+    },
+    {
+      "check": "warnings_review",
+      "message": "Warnings requiring reviewer attention: 0.",
+      "status": "passed"
+    },
+    {
+      "check": "human_release_review",
+      "message": "A ready audit still needs human review of raw sources, claim wording, and downstream-use boundaries.",
+      "status": "review"
+    }
+  ],
+  "claim_id": "coating_ready_for_cell_contact_screen",
+  "claim_ready": true,
+  "claim_statement": "A candidate biointerface coating is ready for early cell-contact screening only after source-backed formulation provenance, extract stability, and basic bioresponse gates pass.",
+  "completion_pct": 100.0,
+  "decision": "ready_for_human_release_review",
+  "derived_field_count": 6,
+  "evidence_error_count": 0,
+  "evidence_warning_count": 0,
+  "failed_gate_count": 0,
+  "gate_count": 3,
+  "gates": [
+    {
+      "blocker_count": 0,
+      "completion_pct": 100.0,
+      "derived_field_count": 0,
+      "gate_id": "coating_provenance",
+      "required_evidence_rows": 3,
+      "status": "passed",
+      "title": "Coating provenance",
+      "valid_required_evidence_rows": 3
+    },
+    {
+      "blocker_count": 0,
+      "completion_pct": 100.0,
+      "derived_field_count": 2,
+      "gate_id": "extract_stability",
+      "required_evidence_rows": 5,
+      "status": "passed",
+      "title": "Acellular extract stability",
+      "valid_required_evidence_rows": 5
+    },
+    {
+      "blocker_count": 0,
+      "completion_pct": 100.0,
+      "derived_field_count": 4,
+      "gate_id": "bioresponse_screen",
+      "required_evidence_rows": 6,
+      "status": "passed",
+      "title": "Basic bioresponse screen",
+      "valid_required_evidence_rows": 6
+    }
+  ],
+  "human_review_checklist": [
+    "Confirm raw source files match the evidence rows and sample ids.",
+    "Confirm claim wording is no broader than the configured gates and measured evidence.",
+    "Confirm warnings are intentionally accepted or repaired before release.",
+    "Confirm the audit is not treated as biological safety, clinical efficacy, regulatory compliance, or commercial readiness proof."
+  ],
+  "next_actions": [
+    {
+      "action_id": "review_claim_for_release",
+      "rank": 1,
+      "success_criterion": "Human review confirms raw sources and claim wording before release.",
+      "why": "All required gates passed with source-backed evidence."
+    }
+  ],
+  "passed_gate_count": 3,
+  "project_id": "falsiflow_biointerface_coatings_demo",
+  "project_validation_error_count": 0,
+  "project_validation_warning_count": 0,
+  "required_evidence_rows": 14,
+  "status": "review_ready",
+  "top_blockers": [],
+  "valid_required_evidence_rows": 14
+}

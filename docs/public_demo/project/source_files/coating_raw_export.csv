@@ -1,0 +1,15 @@
+record_id,gate_id,sample_id,field,value,unit,observed_at
+coat_001,coating_provenance,coating_demo_001,formulation_recorded,true,boolean,2026-05-25T08:00:00Z
+coat_002,coating_provenance,coating_demo_001,substrate_recorded,true,boolean,2026-05-25T08:00:00Z
+coat_003,coating_provenance,coating_demo_001,sterilization_or_aseptic_recorded,true,boolean,2026-05-25T08:00:00Z
+coat_004,extract_stability,coating_demo_001,ph_initial,7.20,pH,2026-05-25T09:00:00Z
+coat_005,extract_stability,coating_demo_001,ph_final,7.28,pH,2026-05-25T09:00:00Z
+coat_006,extract_stability,coating_demo_001,conductivity_initial_ms_cm,14.0,mS/cm,2026-05-25T09:00:00Z
+coat_007,extract_stability,coating_demo_001,conductivity_final_ms_cm,14.6,mS/cm,2026-05-25T09:00:00Z
+coat_008,extract_stability,coating_demo_001,visible_residue_present,false,boolean,2026-05-25T09:00:00Z
+coat_009,bioresponse_screen,coating_candidate_cells,viability_fraction,0.91,fraction,2026-05-25T14:00:00Z
+coat_010,bioresponse_screen,coating_candidate_cells,cell_attachment_fraction,0.82,fraction,2026-05-25T14:00:00Z
+coat_011,bioresponse_screen,coating_candidate_cells,inflammatory_marker,1.08,ratio,2026-05-25T14:00:00Z
+coat_012,bioresponse_screen,coating_control_cells,viability_fraction,0.95,fraction,2026-05-25T14:00:00Z
+coat_013,bioresponse_screen,coating_control_cells,cell_attachment_fraction,0.80,fraction,2026-05-25T14:00:00Z
+coat_014,bioresponse_screen,coating_control_cells,inflammatory_marker,1.00,ratio,2026-05-25T14:00:00Z

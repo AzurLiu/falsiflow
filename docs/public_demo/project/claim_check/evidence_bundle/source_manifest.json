@@ -1,0 +1,133 @@
+{
+  "allowed_source_roots": [
+    "/Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/public_demo/project/source_files"
+  ],
+  "blank_source_row_count": 0,
+  "blank_source_rows": [],
+  "blocker_count": 0,
+  "claim_id": "coating_ready_for_cell_contact_screen",
+  "evidence_file_error_count": 0,
+  "evidence_file_issue_count": 0,
+  "evidence_file_warning_count": 0,
+  "evidence_row_count": 14,
+  "missing_source_file_count": 0,
+  "outside_allowed_roots_count": 0,
+  "present_source_file_count": 1,
+  "project_id": "falsiflow_biointerface_coatings_demo",
+  "referenced_source_file_count": 1,
+  "source_blocker_count": 0,
+  "source_file_base_dir": "/Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/public_demo/project",
+  "source_files": [
+    {
+      "exists": true,
+      "issue": "",
+      "reference_count": 14,
+      "references": [
+        {
+          "candidate_id": "zwitterionic_coating_demo",
+          "field": "formulation_recorded",
+          "gate_id": "coating_provenance",
+          "row_number": 2,
+          "sample_id": "coating_demo_001"
+        },
+        {
+          "candidate_id": "zwitterionic_coating_demo",
+          "field": "substrate_recorded",
+          "gate_id": "coating_provenance",
+          "row_number": 3,
+          "sample_id": "coating_demo_001"
+        },
+        {
+          "candidate_id": "zwitterionic_coating_demo",
+          "field": "sterilization_or_aseptic_recorded",
+          "gate_id": "coating_provenance",
+          "row_number": 4,
+          "sample_id": "coating_demo_001"
+        },
+        {
+          "candidate_id": "zwitterionic_coating_demo",
+          "field": "ph_initial",
+          "gate_id": "extract_stability",
+          "row_number": 5,
+          "sample_id": "coating_demo_001"
+        },
+        {
+          "candidate_id": "zwitterionic_coating_demo",
+          "field": "ph_final",
+          "gate_id": "extract_stability",
+          "row_number": 6,
+          "sample_id": "coating_demo_001"
+        },
+        {
+          "candidate_id": "zwitterionic_coating_demo",
+          "field": "conductivity_initial_ms_cm",
+          "gate_id": "extract_stability",
+          "row_number": 7,
+          "sample_id": "coating_demo_001"
+        },
+        {
+          "candidate_id": "zwitterionic_coating_demo",
+          "field": "conductivity_final_ms_cm",
+          "gate_id": "extract_stability",
+          "row_number": 8,
+          "sample_id": "coating_demo_001"
+        },
+        {
+          "candidate_id": "zwitterionic_coating_demo",
+          "field": "visible_residue_present",
+          "gate_id": "extract_stability",
+          "row_number": 9,
+          "sample_id": "coating_demo_001"
+        },
+        {
+          "candidate_id": "zwitterionic_coating_demo",
+          "field": "viability_fraction",
+          "gate_id": "bioresponse_screen",
+          "row_number": 10,
+          "sample_id": "coating_candidate_cells"
+        },
+        {
+          "candidate_id": "zwitterionic_coating_demo",
+          "field": "cell_attachment_fraction",
+          "gate_id": "bioresponse_screen",
+          "row_number": 11,
+          "sample_id": "coating_candidate_cells"
+        },
+        {
+          "candidate_id": "zwitterionic_coating_demo",
+          "field": "inflammatory_marker",
+          "gate_id": "bioresponse_screen",
+          "row_number": 12,
+          "sample_id": "coating_candidate_cells"
+        },
+        {
+          "candidate_id": "uncoated_control",
+          "field": "viability_fraction",
+          "gate_id": "bioresponse_screen",
+          "row_number": 13,
+          "sample_id": "coating_control_cells"
+        },
+        {
+          "candidate_id": "uncoated_control",
+          "field": "cell_attachment_fraction",
+          "gate_id": "bioresponse_screen",
+          "row_number": 14,
+          "sample_id": "coating_control_cells"
+        },
+        {
+          "candidate_id": "uncoated_control",
+          "field": "inflammatory_marker",
+          "gate_id": "bioresponse_screen",
+          "row_number": 15,
+          "sample_id": "coating_control_cells"
+        }
+      ],
+      "resolved_path": "/Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/public_demo/project/source_files/coating_raw_export.csv",
+      "source_file": "source_files/coating_raw_export.csv",
+      "status": "present",
+      "within_allowed_roots": true
+    }
+  ],
+  "source_policy_required": true,
+  "status": "sources_ready"
+}

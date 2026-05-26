@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Falsiflow Browser Wizard</title>
+  <style>
+    :root {
+      --ink: #1f2933;
+      --muted: #5f6f80;
+      --line: #d9e1ea;
+      --bg: #f7f9fb;
+      --panel: #ffffff;
+      --accent: #276a7b;
+      --focus: #c5dce5;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--ink); }
+    main { width: min(1120px, calc(100% - 32px)); margin: 24px auto 48px; }
+    h1 { margin: 0 0 6px; font-size: 30px; letter-spacing: 0; }
+    p { margin: 0; color: var(--muted); line-height: 1.5; }
+    .grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, 0.9fr); gap: 14px; margin-top: 18px; align-items: start; }
+    form, section { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 16px; }
+    fieldset { border: 0; padding: 0; margin: 0 0 18px; }
+    legend, h2 { font-size: 16px; font-weight: 700; margin: 0 0 12px; letter-spacing: 0; }
+    label { display: block; color: var(--muted); font-size: 12px; margin: 0 0 6px; }
+    input, textarea, select { width: 100%; border: 1px solid var(--line); border-radius: 6px; padding: 10px 11px; font: inherit; color: var(--ink); background: #fff; }
+    textarea { min-height: 84px; resize: vertical; }
+    input:focus, textarea:focus, select:focus { outline: 3px solid var(--focus); border-color: var(--accent); }
+    .row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 10px; }
+    .row.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    pre { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; background: #eef3f7; border: 1px solid var(--line); border-radius: 6px; padding: 12px; min-height: 112px; }
+    button, a.download { display: inline-flex; align-items: center; justify-content: center; min-height: 38px; border-radius: 6px; border: 1px solid var(--accent); background: var(--accent); color: #fff; padding: 8px 12px; font: inherit; font-weight: 700; text-decoration: none; cursor: pointer; }
+    .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .ghost { background: #fff; color: var(--accent); }
+    .hint { color: var(--muted); font-size: 12px; margin-top: 8px; }
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+      .row, .row.three { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Falsiflow Browser Wizard</h1>
+    <p>Start from a plain-language checklist, then export the command and starter files.</p>
+    <div class="grid">
+      <form id="wizard">
+        <fieldset>
+          <legend>Choose a starter</legend>
+          <label for="preset">Plain-language use case</label>
+          <select id="preset">
+            <option value="biointerface">Material or coating screen</option>
+            <option value="vendor">Vendor evidence review</option>
+            <option value="custom">Custom R&D decision</option>
+          </select>
+          <p class="hint">Pick the closest use case first. You can still edit every field below.</p>
+        </fieldset>
+        <fieldset>
+          <legend>Decision</legend>
+          <div class="row">
+            <div>
+              <label for="projectId">Project ID</label>
+              <input id="projectId" value="my_rd_screen">
+            </div>
+            <div>
+              <label for="claimId">Claim ID</label>
+              <input id="claimId" value="candidate_claim">
+            </div>
+          </div>
+          <label for="claimStatement">Decision to check</label>
+          <textarea id="claimStatement">Candidate has enough source-backed screening evidence to proceed.</textarea>
+        </fieldset>
+        <fieldset>
+          <legend>Evidence checklist</legend>
+          <div class="row">
+            <div>
+              <label for="gateId">Checklist ID</label>
+              <input id="gateId" value="screening_gate">
+            </div>
+            <div>
+              <label for="fields">Values you need</label>
+              <input id="fields" value="viability_pct,response_score">
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label for="candidateId">Option being checked</label>
+              <input id="candidateId" value="candidate_a">
+            </div>
+            <div>
+              <label for="sampleId">Sample or record ID</label>
+              <input id="sampleId" value="sample_001">
+            </div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Pass rule</legend>
+          <div class="row three">
+            <div>
+              <label for="ruleField">Value to compare</label>
+              <input id="ruleField" value="viability_pct">
+            </div>
+            <div>
+              <label for="operator">Operator</label>
+              <select id="operator">
+                <option>&gt;=</option>
+                <option>&gt;</option>
+                <option>&lt;=</option>
+                <option>&lt;</option>
+                <option>==</option>
+                <option>!=</option>
+              </select>
+            </div>
+            <div>
+              <label for="ruleValue">Value</label>
+              <input id="ruleValue" value="80">
+            </div>
+          </div>
+        </fieldset>
+      </form>
+      <section>
+        <h2>Command</h2>
+        <pre id="command"></pre>
+        <div class="actions">
+          <button id="copyCommand" type="button">Copy Command</button>
+          <a id="downloadProject" class="download ghost" download="project.json" href="#">Download project.json</a>
+          <a id="downloadEvidence" class="download ghost" download="evidence_template.csv" href="#">Download evidence_template.csv</a>
+        </div>
+        <p class="hint">Run the command, fill measured values and source files, then run <code>falsiflow doctor --project-dir my_falsiflow_project --strict</code>.</p>
+      </section>
+    </div>
+  </main>
+  <script>
+    const ids = ["projectId", "claimId", "claimStatement", "gateId", "fields", "candidateId", "sampleId", "ruleField", "operator", "ruleValue"];
+    const $ = (id) => document.getElementById(id);
+    const presets = {
+      biointerface: {
+        projectId: "material_screen",
+        claimId: "ready_for_cell_contact_screen",
+        claimStatement: "Candidate material has enough source-backed screening evidence to proceed to cell-contact testing.",
+        gateId: "screening_gate",
+        fields: "viability_pct,response_score",
+        candidateId: "candidate_material_a",
+        sampleId: "sample_001",
+        ruleField: "viability_pct",
+        operator: ">=",
+        ruleValue: "80"
+      },
+      vendor: {
+        projectId: "vendor_evidence_review",
+        claimId: "supplier_ready_for_shortlist",
+        claimStatement: "Supplier has enough documented evidence to stay on the shortlist.",
+        gateId: "vendor_evidence_gate",
+        fields: "certificate_present,response_time_days,quoted_price_usd",
+        candidateId: "supplier_a",
+        sampleId: "quote_001",
+        ruleField: "response_time_days",
+        operator: "<=",
+        ruleValue: "7"
+      },
+      custom: {
+        projectId: "my_rd_screen",
+        claimId: "candidate_claim",
+        claimStatement: "Candidate has enough source-backed screening evidence to proceed.",
+        gateId: "screening_gate",
+        fields: "value,response_score",
+        candidateId: "candidate_a",
+        sampleId: "sample_001",
+        ruleField: "value",
+        operator: ">=",
+        ruleValue: "1"
+      }
+    };
+    function cleanId(value, fallback) {
+      const cleaned = String(value || "").trim().replace(/[^A-Za-z0-9_.-]+/g, "_").replace(/^_+|_+$/g, "");
+      return cleaned || fallback;
+    }
+    function fieldList() {
+      return $("fields").value.split(",").map((item) => cleanId(item, "")).filter(Boolean);
+    }
+    function shellQuote(value) {
+      return "'" + String(value).replace(/'/g, "'\"'\"'") + "'";
+    }
+    function projectJson() {
+      const gateId = cleanId($("gateId").value, "screening_gate");
+      const fields = fieldList();
+      const ruleField = cleanId($("ruleField").value, fields[0] || "value");
+      const rule = {
+        field: ruleField,
+        operator: $("operator").value,
+        value: Number.isNaN(Number($("ruleValue").value)) ? $("ruleValue").value : Number($("ruleValue").value),
+        reason: "Wizard threshold."
+      };
+      return {
+        project: {
+          id: cleanId($("projectId").value, "my_rd_screen"),
+          name: cleanId($("projectId").value, "my_rd_screen").replaceAll("_", " "),
+          domain: "custom-rd",
+          version: "0.1.0"
+        },
+        claim: {
+          id: cleanId($("claimId").value, "candidate_claim"),
+          statement: $("claimStatement").value.trim() || "Candidate has enough source-backed evidence to proceed.",
+          requires_gates: [gateId]
+        },
+        evidence_policy: {
+          source_file_base_dir: ".",
+          require_source_files: true,
+          reject_placeholder_values: true,
+          allowed_source_roots: ["source_files"],
+          required_metadata_fields: ["source_file", "measured_at", "operator_or_agent"],
+          placeholder_markers: ["record_actual", "raw_file_needed", "not_measured"]
+        },
+        gates: [{
+          id: gateId,
+          title: gateId.replaceAll("_", " "),
+          samples: [{ candidate_id: cleanId($("candidateId").value, "candidate_a"), sample_id: cleanId($("sampleId").value, "sample_001") }],
+          required_fields: fields.length ? fields : ["value"],
+          acceptance_rules: [rule]
+        }]
+      };
+    }
+    function evidenceCsv() {
+      const gateId = cleanId($("gateId").value, "screening_gate");
+      const candidateId = cleanId($("candidateId").value, "candidate_a");
+      const sampleId = cleanId($("sampleId").value, "sample_001");
+      const header = "gate_id,candidate_id,sample_id,field,value,source_file,measured_at,operator_or_agent,instrument_id,notes";
+      const rows = fieldList().map((field) => [gateId, candidateId, sampleId, field, "record_actual", "source_files/raw_export.csv", "record_actual", "record_actual", "", ""].join(","));
+      return [header, ...rows].join("\n") + "\n";
+    }
+    function setDownload(link, text, type) {
+      const blob = new Blob([text], { type });
+      const old = link.dataset.url;
+      if (old) URL.revokeObjectURL(old);
+      const url = URL.createObjectURL(blob);
+      link.href = url;
+      link.dataset.url = url;
+    }
+    function update() {
+      const project = projectJson();
+      const gateId = project.gates[0].id;
+      const fields = project.gates[0].required_fields.join(",");
+      const rule = project.gates[0].acceptance_rules[0];
+      const command = [
+        "falsiflow scaffold",
+        "--out my_falsiflow_project",
+        "--project-id " + shellQuote(project.project.id),
+        "--claim-id " + shellQuote(project.claim.id),
+        "--claim-statement " + shellQuote(project.claim.statement),
+        "--gate " + shellQuote(gateId + ":" + fields),
+        "--sample " + shellQuote(project.gates[0].samples[0].candidate_id + ":" + project.gates[0].samples[0].sample_id),
+        "--rule " + shellQuote(gateId + ":" + rule.field + ":" + rule.operator + ":" + rule.value + ":" + rule.reason)
+      ].join(" \\\n  ");
+      $("command").textContent = command;
+      setDownload($("downloadProject"), JSON.stringify(project, null, 2) + "\n", "application/json");
+      setDownload($("downloadEvidence"), evidenceCsv(), "text/csv");
+    }
+    function applyPreset() {
+      const preset = presets[$("preset").value] || presets.biointerface;
+      Object.entries(preset).forEach(([id, value]) => {
+        if ($(id)) $(id).value = value;
+      });
+      update();
+    }
+    ids.forEach((id) => $(id).addEventListener("input", update));
+    $("operator").addEventListener("change", update);
+    $("preset").addEventListener("change", applyPreset);
+    $("copyCommand").addEventListener("click", async () => {
+      await navigator.clipboard.writeText($("command").textContent);
+    });
+    applyPreset();
+  </script>
+</body>
+</html>

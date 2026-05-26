@@ -1,0 +1,54 @@
+{
+  "blocker_count": 0,
+  "claim_id": "coating_ready_for_cell_contact_screen",
+  "claim_ready": true,
+  "completion_pct": 100.0,
+  "derived_field_count": 6,
+  "evidence_error_count": 0,
+  "evidence_issue_count": 0,
+  "evidence_warning_count": 0,
+  "gate_count": 3,
+  "gates": [
+    {
+      "blocker_count": 0,
+      "completion_pct": 100.0,
+      "derived_field_count": 0,
+      "gate_id": "coating_provenance",
+      "required_evidence_rows": 3,
+      "status": "passed",
+      "title": "Coating provenance",
+      "valid_required_evidence_rows": 3
+    },
+    {
+      "blocker_count": 0,
+      "completion_pct": 100.0,
+      "derived_field_count": 2,
+      "gate_id": "extract_stability",
+      "required_evidence_rows": 5,
+      "status": "passed",
+      "title": "Acellular extract stability",
+      "valid_required_evidence_rows": 5
+    },
+    {
+      "blocker_count": 0,
+      "completion_pct": 100.0,
+      "derived_field_count": 4,
+      "gate_id": "bioresponse_screen",
+      "required_evidence_rows": 6,
+      "status": "passed",
+      "title": "Basic bioresponse screen",
+      "valid_required_evidence_rows": 6
+    }
+  ],
+  "next_action_count": 1,
+  "project_config_valid": true,
+  "project_id": "falsiflow_biointerface_coatings_demo",
+  "project_validation_error_count": 0,
+  "project_validation_warning_count": 0,
+  "required_evidence_rows": 14,
+  "status": "claim_ready",
+  "status_counts": {
+    "passed": 3
+  },
+  "valid_required_evidence_rows": 14
+}

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Falsiflow Launchpad</title>
+  <style>
+    :root {
+      --ink: #1f2933;
+      --muted: #5f6f80;
+      --line: #d9e1ea;
+      --bg: #f7f9fb;
+      --panel: #ffffff;
+      --ready: #177245;
+      --blocked: #b42318;
+      --accent: #276a7b;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--ink); }
+    main { width: min(1080px, calc(100% - 32px)); margin: 24px auto 48px; }
+    header { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 18px; align-items: start; margin-bottom: 16px; }
+    h1 { margin: 0 0 8px; font-size: 34px; letter-spacing: 0; }
+    p { margin: 0; color: var(--muted); line-height: 1.5; }
+    .status { min-width: 184px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); padding: 12px 14px; text-align: right; }
+    .status span, article span, .metric span { display: block; color: var(--muted); font-size: 12px; margin-bottom: 5px; }
+    .status strong { color: var(--blocked); font-size: 20px; }
+    .status.ready strong { color: var(--ready); }
+    .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 12px; }
+    .metric, article, section { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; }
+    .metric { padding: 14px; min-height: 76px; }
+    .metric strong { font-size: 18px; overflow-wrap: anywhere; }
+    .cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 12px 0; }
+    article { padding: 16px; min-height: 188px; display: flex; flex-direction: column; gap: 10px; }
+    article h2 { font-size: 17px; margin: 0; letter-spacing: 0; }
+    article p { flex: 1; }
+    a { color: var(--accent); font-weight: 700; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    section { padding: 16px; margin-top: 12px; }
+    section h2 { font-size: 16px; margin: 0 0 10px; letter-spacing: 0; }
+    code { display: block; background: #eef3f7; border: 1px solid var(--line); border-radius: 5px; padding: 10px; overflow-wrap: anywhere; }
+    @media (max-width: 900px) {
+      header { grid-template-columns: 1fr; }
+      .status { text-align: left; }
+      .metrics, .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 620px) {
+      .metrics, .cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>Falsiflow Launchpad</h1>
+        <p>A local app for checking whether a project decision has enough evidence. No account or upload is needed. Start with the example result, then use the wizard to make your own evidence checklist.</p>
+      </div>
+      <div class="status ready">
+        <span>Status</span>
+        <strong>try_ready</strong>
+      </div>
+    </header>
+    <div class="metrics">
+      <div class="metric"><span>Example</span><strong>biointerface_coatings</strong></div>
+      <div class="metric"><span>Decision check</span><strong>claim_check_ready</strong></div>
+      <div class="metric"><span>Source files</span><strong>sources_ready</strong></div>
+      <div class="metric"><span>Review package</span><strong>bundle_verified</strong></div>
+    </div>
+    <div class="cards">
+      <article>
+        <span>1. Run your own check</span>
+        <h2>Open workbench</h2>
+        <p>Upload project, evidence, and source files, then run the local evidence gate from this browser.</p>
+        <a href="public_demo/workbench.html">Open workbench</a>
+      </article>
+      <article>
+        <span>2. See the example result</span>
+        <h2>Open report</h2>
+        <p>A readable pass/fail report that shows the decision, the evidence, and what to check next.</p>
+        <a href="public_demo/try_report.html">Open report</a>
+      </article>
+      <article>
+        <span>3. Make your own checklist</span>
+        <h2>Open wizard</h2>
+        <p>Answer a few form fields and download starter files without writing JSON by hand.</p>
+        <a href="public_demo/falsiflow_wizard.html">Open wizard</a>
+      </article>
+      <article>
+        <span>4. Inspect the evidence</span>
+        <h2>Open dashboard</h2>
+        <p>See which measured values and source files support the example decision.</p>
+        <a href="public_demo/project/claim_check/evidence_bundle/audit/dashboard.html">Open dashboard</a>
+      </article>
+    </div>
+    <section>
+      <h2>Advanced CLI Handoff</h2>
+      <p>Use this only when you are ready to inspect or rerun the generated project from the terminal.</p>
+      <code>falsiflow doctor --project-dir public_demo/project --strict</code>
+    </section>
+  </main>
+</body>
+</html>
