@@ -2,16 +2,6 @@ name: Falsiflow Pages Demo
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-      - master
-    paths:
-      - "falsiflow/**"
-      - "scripts/falsiflow.py"
-      - "README.md"
-      - "pyproject.toml"
-      - ".github/workflows/falsiflow-pages.yml"
 
 permissions:
   contents: read

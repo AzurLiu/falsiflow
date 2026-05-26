@@ -111,6 +111,11 @@ falsiflow static-demo --out-dir falsiflow_static_demo --force
 The static demo directory includes `static_demo_summary.json` and can be served
 by GitHub Pages, Netlify, or any static file server.
 
+This repository also includes a prebuilt public demo at `docs/public_demo` and a
+root `netlify.toml`, so Netlify can publish the demo without GitHub Pages. For
+Cloudflare Pages or Vercel, use `docs/public_demo` as the output directory and
+leave the build command empty. See `docs/static_hosting.md`.
+
 To prepare a publish-ready static demo directory with hosting metadata:
 
 ```bash
