@@ -21,7 +21,7 @@ jobs:
           git remote add origin "https://github.com/${GITHUB_REPOSITORY}.git"
           git fetch --no-tags --depth=1 origin "+${GITHUB_REF}:${GITHUB_REF}"
           git checkout --detach "${GITHUB_SHA}"
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
       - name: Build and check distributions
