@@ -1,0 +1,186 @@
+{
+  "project": {
+    "id": "falsiflow_biointerface_coatings_demo",
+    "name": "Falsiflow biointerface coatings demo",
+    "domain": "cell-contact-coatings-and-surfaces",
+    "version": "0.1.0"
+  },
+  "claim": {
+    "id": "coating_ready_for_cell_contact_screen",
+    "statement": "A candidate biointerface coating is ready for early cell-contact screening only after source-backed formulation provenance, extract stability, and basic bioresponse gates pass.",
+    "requires_gates": [
+      "coating_provenance",
+      "extract_stability",
+      "bioresponse_screen"
+    ]
+  },
+  "evidence_policy": {
+    "require_source_files": true,
+    "reject_placeholder_values": true,
+    "allowed_source_roots": [
+      "source_files"
+    ],
+    "required_metadata_fields": [
+      "source_file",
+      "measured_at",
+      "operator_or_agent"
+    ],
+    "placeholder_markers": [
+      "lot_pending",
+      "method_pending",
+      "not_measured"
+    ]
+  },
+  "gates": [
+    {
+      "id": "coating_provenance",
+      "title": "Coating provenance",
+      "samples": [
+        {
+          "candidate_id": "zwitterionic_coating_demo",
+          "sample_id": "coating_demo_001"
+        }
+      ],
+      "required_fields": [
+        "formulation_recorded",
+        "substrate_recorded",
+        "sterilization_or_aseptic_recorded"
+      ],
+      "acceptance_rules": [
+        {
+          "field": "formulation_recorded",
+          "operator": "==",
+          "value": true,
+          "reason": "Coating formulation and lot provenance must be recorded."
+        },
+        {
+          "field": "substrate_recorded",
+          "operator": "==",
+          "value": true,
+          "reason": "Substrate identity must be recorded."
+        },
+        {
+          "field": "sterilization_or_aseptic_recorded",
+          "operator": "==",
+          "value": true,
+          "reason": "Sterilization or aseptic handling must be recorded."
+        }
+      ]
+    },
+    {
+      "id": "extract_stability",
+      "title": "Acellular extract stability",
+      "samples": [
+        {
+          "candidate_id": "zwitterionic_coating_demo",
+          "sample_id": "coating_demo_001"
+        }
+      ],
+      "required_fields": [
+        "ph_initial",
+        "ph_final",
+        "conductivity_initial_ms_cm",
+        "conductivity_final_ms_cm",
+        "visible_residue_present"
+      ],
+      "derived_fields": [
+        {
+          "field": "ph_drift_abs",
+          "operation": "abs_delta",
+          "left": "ph_final",
+          "right": "ph_initial"
+        },
+        {
+          "field": "conductivity_drift_pct",
+          "operation": "abs_pct_change",
+          "before": "conductivity_initial_ms_cm",
+          "after": "conductivity_final_ms_cm"
+        }
+      ],
+      "acceptance_rules": [
+        {
+          "field": "ph_drift_abs",
+          "operator": "<=",
+          "value": 0.2,
+          "reason": "Extract pH drift must remain inside the coating stability window."
+        },
+        {
+          "field": "conductivity_drift_pct",
+          "operator": "<=",
+          "value": 10,
+          "reason": "Conductivity drift must remain inside the coating stability window."
+        },
+        {
+          "field": "visible_residue_present",
+          "operator": "==",
+          "value": false,
+          "reason": "Coating extract must not show visible residue or shedding."
+        }
+      ]
+    },
+    {
+      "id": "bioresponse_screen",
+      "title": "Basic bioresponse screen",
+      "samples": [
+        {
+          "candidate_id": "zwitterionic_coating_demo",
+          "sample_id": "coating_candidate_cells"
+        },
+        {
+          "candidate_id": "uncoated_control",
+          "sample_id": "coating_control_cells"
+        }
+      ],
+      "required_fields": [
+        "viability_fraction",
+        "cell_attachment_fraction",
+        "inflammatory_marker"
+      ],
+      "derived_fields": [
+        {
+          "field": "viability_ratio_vs_control",
+          "operation": "ratio",
+          "numerator": "viability_fraction",
+          "denominator": {
+            "candidate_id": "uncoated_control",
+            "sample_id": "coating_control_cells",
+            "field": "viability_fraction"
+          }
+        },
+        {
+          "field": "inflammatory_marker_ratio_vs_control",
+          "operation": "ratio",
+          "numerator": "inflammatory_marker",
+          "denominator": {
+            "candidate_id": "uncoated_control",
+            "sample_id": "coating_control_cells",
+            "field": "inflammatory_marker"
+          }
+        }
+      ],
+      "acceptance_rules": [
+        {
+          "field": "viability_ratio_vs_control",
+          "operator": ">=",
+          "value": 0.85,
+          "candidate_id": "zwitterionic_coating_demo",
+          "reason": "Candidate coating viability must be non-inferior enough for early screening."
+        },
+        {
+          "field": "cell_attachment_fraction",
+          "operator": ">=",
+          "value": 0.75,
+          "candidate_id": "zwitterionic_coating_demo",
+          "reason": "Candidate coating must support adequate cell attachment."
+        },
+        {
+          "field": "inflammatory_marker_ratio_vs_control",
+          "operator": "<=",
+          "value": 1.2,
+          "candidate_id": "zwitterionic_coating_demo",
+          "reason": "Candidate coating must not materially elevate inflammatory marker response."
+        }
+      ]
+    }
+  ]
+}

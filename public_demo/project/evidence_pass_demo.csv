@@ -1,0 +1,15 @@
+gate_id,candidate_id,sample_id,field,value,source_file,measured_at,operator_or_agent,instrument_id,notes
+coating_provenance,zwitterionic_coating_demo,coating_demo_001,formulation_recorded,true,source_files/coating_raw_export.csv,2026-05-25T08:00:00Z,falsiflow_demo_operator,,Formulation record pass example.
+coating_provenance,zwitterionic_coating_demo,coating_demo_001,substrate_recorded,true,source_files/coating_raw_export.csv,2026-05-25T08:00:00Z,falsiflow_demo_operator,,Substrate record pass example.
+coating_provenance,zwitterionic_coating_demo,coating_demo_001,sterilization_or_aseptic_recorded,true,source_files/coating_raw_export.csv,2026-05-25T08:00:00Z,falsiflow_demo_operator,,Handling record pass example.
+extract_stability,zwitterionic_coating_demo,coating_demo_001,ph_initial,7.20,source_files/coating_raw_export.csv,2026-05-25T09:00:00Z,falsiflow_demo_operator,meter_demo_001,Extract stability pass example.
+extract_stability,zwitterionic_coating_demo,coating_demo_001,ph_final,7.28,source_files/coating_raw_export.csv,2026-05-25T09:00:00Z,falsiflow_demo_operator,meter_demo_001,Extract stability pass example.
+extract_stability,zwitterionic_coating_demo,coating_demo_001,conductivity_initial_ms_cm,14.0,source_files/coating_raw_export.csv,2026-05-25T09:00:00Z,falsiflow_demo_operator,conductivity_demo_001,Extract stability pass example.
+extract_stability,zwitterionic_coating_demo,coating_demo_001,conductivity_final_ms_cm,14.6,source_files/coating_raw_export.csv,2026-05-25T09:00:00Z,falsiflow_demo_operator,conductivity_demo_001,Extract stability pass example.
+extract_stability,zwitterionic_coating_demo,coating_demo_001,visible_residue_present,false,source_files/coating_raw_export.csv,2026-05-25T09:00:00Z,falsiflow_demo_operator,visual_qc_demo_001,Extract stability pass example.
+bioresponse_screen,zwitterionic_coating_demo,coating_candidate_cells,viability_fraction,0.91,source_files/coating_raw_export.csv,2026-05-25T14:00:00Z,falsiflow_demo_operator,plate_reader_demo_001,Bioresponse pass example.
+bioresponse_screen,zwitterionic_coating_demo,coating_candidate_cells,cell_attachment_fraction,0.82,source_files/coating_raw_export.csv,2026-05-25T14:00:00Z,falsiflow_demo_operator,image_station_demo_001,Bioresponse pass example.
+bioresponse_screen,zwitterionic_coating_demo,coating_candidate_cells,inflammatory_marker,1.08,source_files/coating_raw_export.csv,2026-05-25T14:00:00Z,falsiflow_demo_operator,plate_reader_demo_002,Bioresponse pass example.
+bioresponse_screen,uncoated_control,coating_control_cells,viability_fraction,0.95,source_files/coating_raw_export.csv,2026-05-25T14:00:00Z,falsiflow_demo_operator,plate_reader_demo_001,Control response example.
+bioresponse_screen,uncoated_control,coating_control_cells,cell_attachment_fraction,0.80,source_files/coating_raw_export.csv,2026-05-25T14:00:00Z,falsiflow_demo_operator,image_station_demo_001,Control response example.
+bioresponse_screen,uncoated_control,coating_control_cells,inflammatory_marker,1.00,source_files/coating_raw_export.csv,2026-05-25T14:00:00Z,falsiflow_demo_operator,plate_reader_demo_002,Control response example.

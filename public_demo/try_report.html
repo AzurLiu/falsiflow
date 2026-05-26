@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Falsiflow Try</title>
+  <style>
+    :root {
+      --ink: #1f2933;
+      --muted: #5f6f80;
+      --line: #d9e1ea;
+      --bg: #f7f9fb;
+      --panel: #ffffff;
+      --ready: #177245;
+      --blocked: #b42318;
+      --accent: #276a7b;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--ink); }
+    main { width: min(1060px, calc(100% - 32px)); margin: 24px auto 48px; }
+    header { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; margin-bottom: 18px; }
+    h1 { margin: 0 0 8px; font-size: 30px; letter-spacing: 0; }
+    p { margin: 0; color: var(--muted); line-height: 1.5; }
+    .status { min-width: 180px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); padding: 12px 14px; text-align: right; }
+    .status span { display: block; color: var(--muted); font-size: 12px; margin-bottom: 4px; }
+    .status strong { color: var(--blocked); font-size: 20px; }
+    .status.ready strong { color: var(--ready); }
+    .summary { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 16px 0; }
+    .metric, section { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; }
+    .metric { padding: 14px; min-height: 78px; }
+    .metric span { display: block; color: var(--muted); font-size: 12px; margin-bottom: 6px; }
+    .metric strong { font-size: 19px; overflow-wrap: anywhere; }
+    section { padding: 16px; margin-top: 12px; }
+    h2 { font-size: 16px; margin: 0 0 10px; letter-spacing: 0; }
+    ul { margin: 0; padding-left: 20px; }
+    li { margin: 8px 0; }
+    a { color: var(--accent); font-weight: 600; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code { background: #eef3f7; border: 1px solid var(--line); border-radius: 4px; padding: 2px 5px; overflow-wrap: anywhere; }
+    .callout { border-left: 4px solid var(--accent); padding-left: 12px; }
+    @media (max-width: 760px) {
+      header { display: block; }
+      .status { text-align: left; margin-top: 12px; }
+      .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>Falsiflow Try</h1>
+        <p>The starter claim is ready: gates passed, source provenance is present, and the evidence bundle verified.</p>
+      </div>
+      <div class="status ready">
+        <span>Status</span>
+        <strong>try_ready</strong>
+      </div>
+    </header>
+    <div class="summary">
+      <div class="metric"><span>Template</span><strong>biointerface_coatings</strong></div>
+      <div class="metric"><span>Claim check</span><strong>claim_check_ready</strong></div>
+      <div class="metric"><span>Sources</span><strong>sources_ready</strong></div>
+      <div class="metric"><span>Verification</span><strong>bundle_verified</strong></div>
+    </div>
+    <section class="callout">
+      <h2>Open</h2>
+      <ul>
+        <li><a href="public_demo/index.html">Launchpad</a></li>
+<li><a href="public_demo/project/claim_check/evidence_bundle/audit/dashboard.html">Claim dashboard</a></li>
+<li><a href="public_demo/project/quickstart_summary.md">Quickstart report</a></li>
+<li><a href="public_demo/project/claim_check/claim_check.md">Claim-check report</a></li>
+<li><a href="public_demo/project/claim_check/evidence_bundle.zip">Evidence bundle</a></li>
+<li><a href="public_demo/project/claim_check/evidence_bundle_verify.md">Bundle verification</a></li>
+<li><a href="public_demo/falsiflow_wizard.html">Start your own project</a></li>
+      </ul>
+    </section>
+    <section>
+      <h2>Start Your Own Project</h2>
+      <p>Use the browser wizard to draft a claim, gate, threshold, starter project JSON, evidence CSV, and scaffold command without writing the schema by hand.</p>
+    </section>
+    <section>
+      <h2>Next Commands</h2>
+      <ul>
+        <li><code>falsiflow doctor --project-dir public_demo/project --strict</code></li>
+<li><code>falsiflow claim-check --project-dir public_demo/project --strict --force</code></li>
+<li><code>open public_demo/index.html</code></li>
+<li><code>open public_demo/falsiflow_wizard.html</code></li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

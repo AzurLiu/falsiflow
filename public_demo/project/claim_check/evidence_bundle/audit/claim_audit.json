@@ -1,0 +1,127 @@
+{
+  "claim": {
+    "id": "coating_ready_for_cell_contact_screen",
+    "requires_gates": [
+      "coating_provenance",
+      "extract_stability",
+      "bioresponse_screen"
+    ],
+    "statement": "A candidate biointerface coating is ready for early cell-contact screening only after source-backed formulation provenance, extract stability, and basic bioresponse gates pass."
+  },
+  "claim_ready": true,
+  "evidence_error_count": 0,
+  "evidence_issue_count": 0,
+  "evidence_issues": [],
+  "evidence_warning_count": 0,
+  "gates": [
+    {
+      "blocker_count": 0,
+      "blockers": [],
+      "derived_field_count": 0,
+      "derived_fields": [],
+      "gate_id": "coating_provenance",
+      "required_evidence_rows": 3,
+      "status": "passed",
+      "title": "Coating provenance",
+      "valid_required_evidence_rows": 3
+    },
+    {
+      "blocker_count": 0,
+      "blockers": [],
+      "derived_field_count": 2,
+      "derived_fields": [
+        {
+          "candidate_id": "zwitterionic_coating_demo",
+          "field": "ph_drift_abs",
+          "gate_id": "extract_stability",
+          "operation": "abs_delta",
+          "sample_id": "coating_demo_001",
+          "value": 0.08000000000000007
+        },
+        {
+          "candidate_id": "zwitterionic_coating_demo",
+          "field": "conductivity_drift_pct",
+          "gate_id": "extract_stability",
+          "operation": "abs_pct_change",
+          "sample_id": "coating_demo_001",
+          "value": 4.285714285714283
+        }
+      ],
+      "gate_id": "extract_stability",
+      "required_evidence_rows": 5,
+      "status": "passed",
+      "title": "Acellular extract stability",
+      "valid_required_evidence_rows": 5
+    },
+    {
+      "blocker_count": 0,
+      "blockers": [],
+      "derived_field_count": 4,
+      "derived_fields": [
+        {
+          "candidate_id": "zwitterionic_coating_demo",
+          "field": "viability_ratio_vs_control",
+          "gate_id": "bioresponse_screen",
+          "operation": "ratio",
+          "sample_id": "coating_candidate_cells",
+          "value": 0.9578947368421054
+        },
+        {
+          "candidate_id": "uncoated_control",
+          "field": "viability_ratio_vs_control",
+          "gate_id": "bioresponse_screen",
+          "operation": "ratio",
+          "sample_id": "coating_control_cells",
+          "value": 1.0
+        },
+        {
+          "candidate_id": "zwitterionic_coating_demo",
+          "field": "inflammatory_marker_ratio_vs_control",
+          "gate_id": "bioresponse_screen",
+          "operation": "ratio",
+          "sample_id": "coating_candidate_cells",
+          "value": 1.08
+        },
+        {
+          "candidate_id": "uncoated_control",
+          "field": "inflammatory_marker_ratio_vs_control",
+          "gate_id": "bioresponse_screen",
+          "operation": "ratio",
+          "sample_id": "coating_control_cells",
+          "value": 1.0
+        }
+      ],
+      "gate_id": "bioresponse_screen",
+      "required_evidence_rows": 6,
+      "status": "passed",
+      "title": "Basic bioresponse screen",
+      "valid_required_evidence_rows": 6
+    }
+  ],
+  "missing_required_gates": [],
+  "next_actions": [
+    {
+      "action_id": "review_claim_for_release",
+      "rank": 1,
+      "success_criterion": "Human review confirms raw sources and claim wording before release.",
+      "why": "All required gates passed with source-backed evidence."
+    }
+  ],
+  "project": {
+    "domain": "cell-contact-coatings-and-surfaces",
+    "id": "falsiflow_biointerface_coatings_demo",
+    "name": "Falsiflow biointerface coatings demo",
+    "version": "0.1.0"
+  },
+  "project_config_valid": true,
+  "project_validation": {
+    "error_count": 0,
+    "issues": [],
+    "status": "valid",
+    "valid": true,
+    "warning_count": 0
+  },
+  "project_validation_error_count": 0,
+  "project_validation_warning_count": 0,
+  "status": "claim_ready"
+}

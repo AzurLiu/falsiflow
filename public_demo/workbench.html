@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Falsiflow Workbench</title>
+  <style>
+    :root {
+      --ink: #1f2933;
+      --muted: #607080;
+      --line: #d9e1ea;
+      --bg: #f7f9fb;
+      --panel: #ffffff;
+      --ready: #177245;
+      --blocked: #b42318;
+      --accent: #276a7b;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--ink); }
+    main { width: min(1120px, calc(100% - 32px)); margin: 24px auto 48px; }
+    header { display: flex; justify-content: space-between; gap: 18px; align-items: flex-start; margin-bottom: 14px; }
+    h1 { margin: 0 0 8px; font-size: 32px; letter-spacing: 0; }
+    h2 { margin: 0 0 10px; font-size: 17px; letter-spacing: 0; }
+    p { margin: 0; color: var(--muted); line-height: 1.5; }
+    a { color: var(--accent); font-weight: 700; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 0.8fr); gap: 12px; }
+    section, .status { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 16px; }
+    label { display: block; font-size: 13px; font-weight: 700; margin: 14px 0 6px; }
+    select, input[type="file"] { width: 100%; border: 1px solid var(--line); border-radius: 5px; background: white; padding: 9px; color: var(--ink); }
+    button { border: 0; border-radius: 5px; background: var(--accent); color: #fff; font-weight: 700; padding: 10px 14px; cursor: pointer; margin-top: 14px; }
+    button[disabled] { opacity: 0.55; cursor: progress; }
+    .hint { margin-top: 6px; font-size: 13px; color: var(--muted); }
+    .status strong { font-size: 22px; color: var(--blocked); }
+    .status.ready strong { color: var(--ready); }
+    .metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+    .metric { border: 1px solid var(--line); border-radius: 5px; padding: 10px; min-height: 70px; }
+    .metric span { display: block; color: var(--muted); font-size: 12px; margin-bottom: 4px; }
+    .metric b { overflow-wrap: anywhere; }
+    ul { margin: 10px 0 0; padding-left: 20px; }
+    li { margin: 8px 0; }
+    pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #eef3f7; border: 1px solid var(--line); border-radius: 5px; padding: 12px; max-height: 260px; overflow: auto; }
+    .hidden { display: none; }
+    @media (max-width: 860px) { header, .grid { display: block; } section, .status { margin-top: 12px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>Falsiflow Workbench</h1>
+        <p>Run a local evidence check from the browser. Files stay on this machine and are processed by the localhost Falsiflow server.</p>
+      </div>
+      <p><a href="index.html">Launchpad</a> · <a href="try_report.html">Example report</a> · <a href="falsiflow_wizard.html">Wizard</a></p>
+    </header>
+    <div class="grid">
+      <section>
+        <h2>Project And Evidence</h2>
+        <p>Select a template, then optionally replace the project config and evidence with your own files.</p>
+        <label for="template">Template</label>
+        <select id="template"></select>
+        <label for="project">Project JSON</label>
+        <input id="project" type="file" accept=".json,application/json">
+        <div class="hint">Optional. If empty, the selected template project is used.</div>
+        <label for="evidence">Evidence CSV</label>
+        <input id="evidence" type="file" accept=".csv,text/csv">
+        <div class="hint">Optional. If empty, the selected template passing demo evidence is used.</div>
+        <label for="sources">Raw Source Files</label>
+        <input id="sources" type="file" multiple>
+        <div class="hint">Optional. Files are copied into <code>source_files/</code> by filename.</div>
+        <button id="run">Run Evidence Check</button>
+      </section>
+      <section>
+        <h2>Result</h2>
+        <div id="status" class="status">
+          <span>Status</span>
+          <strong>not_run</strong>
+          <p class="hint">Run a check to see claim readiness, blockers, and review links.</p>
+        </div>
+        <div class="metrics">
+          <div class="metric"><span>Claim</span><b id="claim">-</b></div>
+          <div class="metric"><span>Sources</span><b id="sourcesStatus">-</b></div>
+          <div class="metric"><span>Bundle</span><b id="bundle">-</b></div>
+          <div class="metric"><span>Failures</span><b id="failures">-</b></div>
+        </div>
+        <ul id="links"></ul>
+        <pre id="details" class="hidden"></pre>
+      </section>
+    </div>
+  </main>
+  <script>
+    const $ = (id) => document.getElementById(id);
+    async function loadTemplates() {
+      const response = await fetch("/api/templates");
+      const payload = await response.json();
+      $("template").innerHTML = payload.templates.map((item) => `<option value="${item.template}">${item.template} - ${item.name}</option>`).join("");
+    }
+    function readText(file) {
+      if (!file) return Promise.resolve("");
+      return file.text();
+    }
+    function readSource(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onerror = () => reject(reader.error);
+        reader.onload = () => {
+          const value = String(reader.result || "");
+          resolve({ name: file.name, content_b64: value.split(",").pop() || "" });
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+    function setResult(payload) {
+      const status = $("status");
+      status.className = payload.status === "workbench_ready" ? "status ready" : "status";
+      status.querySelector("strong").textContent = payload.status || "unknown";
+      $("claim").textContent = payload.claim_check_status || "-";
+      $("sourcesStatus").textContent = payload.source_status || "-";
+      $("bundle").textContent = payload.bundle_status || "-";
+      $("failures").textContent = String(payload.failure_count ?? "-");
+      const links = payload.links || {};
+      $("links").innerHTML = Object.entries(links).filter(([, href]) => href).map(([label, href]) => `<li><a href="${href}">${label.replaceAll("_", " ")}</a></li>`).join("");
+      $("details").classList.remove("hidden");
+      $("details").textContent = JSON.stringify(payload.next_actions || payload.failures || [], null, 2);
+    }
+    async function runCheck() {
+      $("run").disabled = true;
+      try {
+        const sourceFiles = await Promise.all(Array.from($("sources").files || []).map(readSource));
+        const payload = {
+          template: $("template").value,
+          project_json: await readText($("project").files[0]),
+          evidence_csv: await readText($("evidence").files[0]),
+          source_files: sourceFiles
+        };
+        const response = await fetch("/api/workbench/check", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        const result = await response.json();
+        setResult(result);
+      } catch (error) {
+        setResult({ status: "workbench_blocked", failure_count: 1, failures: [{ message: String(error) }] });
+      } finally {
+        $("run").disabled = false;
+      }
+    }
+    $("run").addEventListener("click", runCheck);
+    loadTemplates().catch((error) => setResult({ status: "workbench_blocked", failure_count: 1, failures: [{ message: String(error) }] }));
+  </script>
+</body>
+</html>

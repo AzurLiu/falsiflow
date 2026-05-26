@@ -1,0 +1,99 @@
+{
+  "artifact_count": 13,
+  "artifacts": [
+    {
+      "bytes": 5436,
+      "path": "inputs/project.json",
+      "role": "project_config",
+      "sha256": "d3e25e19e8cdb8f84cb60e668cc0b07725733a3642439879ae0885c0442baf24"
+    },
+    {
+      "bytes": 3120,
+      "path": "inputs/evidence.csv",
+      "role": "evidence_csv",
+      "sha256": "b0097a9fad0c58ad2051a36b0e96f7ad3e4f8c92bb3bd06be24f129c2f6c209e"
+    },
+    {
+      "bytes": 1732,
+      "path": "audit/measurement_template.csv",
+      "role": "measurement_template",
+      "sha256": "81bb179398c272cdbcba54caa2abbd906d7c172a96f31a0a5397568178fbafb5"
+    },
+    {
+      "bytes": 3888,
+      "path": "audit/claim_audit.json",
+      "role": "claim_audit",
+      "sha256": "ba49f537b8e0f8e738780b79b442a75b6892bd8171e65127830b4761fc90bc38"
+    },
+    {
+      "bytes": 664,
+      "path": "audit/claim_audit.md",
+      "role": "claim_audit_report",
+      "sha256": "36c2dca925eb694f2606e0974b23780096ba577fdfe30149f2d47889f264778e"
+    },
+    {
+      "bytes": 3287,
+      "path": "audit/audit_review.json",
+      "role": "audit_review",
+      "sha256": "59c65bccfb4bae0acd673e8ba233732867cdda1ebec651e556a8eedac6396a83"
+    },
+    {
+      "bytes": 1622,
+      "path": "audit/audit_review.md",
+      "role": "audit_review_report",
+      "sha256": "abb885c2ed8cb99e28f771561d6e47679e9d7b5a84239a26c1f949d77083c31b"
+    },
+    {
+      "bytes": 1466,
+      "path": "audit/claim_summary.json",
+      "role": "claim_summary",
+      "sha256": "fd19b1b821f34760e9705bdbd61833aaeb71d26139cf0dd022ba7c1436724f7f"
+    },
+    {
+      "bytes": 235,
+      "path": "audit/next_actions.json",
+      "role": "next_actions",
+      "sha256": "db3e59a288337b32787edbcbb1a0b1214676746ce746a0f98dc2345bd3a7fd7a"
+    },
+    {
+      "bytes": 6696,
+      "path": "audit/dashboard.html",
+      "role": "dashboard",
+      "sha256": "593f6935f7ec1d64081ea85ef731cc50fd78ddb3cebf11f0e040f6b73a375cad"
+    },
+    {
+      "bytes": 4514,
+      "path": "source_manifest.json",
+      "role": "source_manifest",
+      "sha256": "f3537096999f6b70304e4adcaeb065c7d315cc2c91c0f945bde0d3e74fa4ffb0"
+    },
+    {
+      "bytes": 686,
+      "path": "source_manifest.md",
+      "role": "source_manifest_report",
+      "sha256": "19d2a1190768de850b336f1dc565c0192a7af9b1b94021693428eb3ec2645fe4"
+    },
+    {
+      "bytes": 1479,
+      "path": "sources/source_files/coating_raw_export.csv",
+      "role": "source_file",
+      "sha256": "657c9bb8431b4794b699c57c8c5954eb318dd3655c52b01ce59b3838ad638c0e"
+    }
+  ],
+  "audit_status": "claim_ready",
+  "claim_id": "coating_ready_for_cell_contact_screen",
+  "claim_ready": true,
+  "copied_source_files": [
+    {
+      "bytes": 1479,
+      "path": "sources/source_files/coating_raw_export.csv",
+      "role": "source_file",
+      "sha256": "657c9bb8431b4794b699c57c8c5954eb318dd3655c52b01ce59b3838ad638c0e"
+    }
+  ],
+  "project_id": "falsiflow_biointerface_coatings_demo",
+  "source_file_count": 1,
+  "source_status": "sources_ready",
+  "status": "bundle_ready",
+  "zip_path": "public_demo/project/claim_check/evidence_bundle.zip"
+}
