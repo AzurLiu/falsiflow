@@ -1,0 +1,11 @@
+include CHANGELOG.md
+include CONTRIBUTING.md
+include RELEASE.md
+include SECURITY.md
+include RESPONSIBLE_USE.md
+include Makefile
+include scripts/install_local.sh
+include scripts/install_local.ps1
+include examples/README.md
+include docs/falsiflow_adoption_priorities.md
+recursive-include .github/workflows *.yml

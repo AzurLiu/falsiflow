@@ -1,0 +1,27 @@
+{
+  "boundary": "This extractor reads only existing raw CSV/TSV files in allowed source-file roots. It writes a non-evidence source-value sidecar for the wide importer; missing files produce no synthetic rows.",
+  "generated_artifacts": {
+    "json": "data/zrc_nd_phase_a_raw_csv_value_extraction.json",
+    "report": "reports/zrc_nd_phase_a_raw_csv_value_extraction.md",
+    "values_out": "data/zrc_nd_phase_a_raw_csv_extracted_values.csv"
+  },
+  "inputs": {
+    "source_manifest": "data/limina_source_file_manifest.json",
+    "source_values": "data/zrc_nd_phase_a_source_values.csv"
+  },
+  "issues": [],
+  "profile": "zrc_phase_a",
+  "source_files": [],
+  "status": "zrc_nd_phase_a_raw_csv_value_extraction_no_raw_csv",
+  "summary": {
+    "ambiguous_rows": 0,
+    "error_count": 0,
+    "extracted_rows": 0,
+    "plan_rows": 304,
+    "raw_csv_found": 0,
+    "raw_csv_missing": 280,
+    "raw_csv_source_files": 0,
+    "raw_csv_unsupported": 24,
+    "warning_count": 0
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "applied_bundles": [],
+  "boundary": "This apply step only copies user-entered, source-file-backed bundle values into the H-A source-values sheet. The importer, merge, QC, gates, and claim audit still decide whether anything is real evidence.",
+  "inputs": {
+    "bundle_manifest": "data/nhi_pedot_h_a_source_unlock_bundle_manifest.csv",
+    "sheet": "data/nhi_pedot_h_a_bundle_entry_sheet.csv",
+    "source_manifest": "data/limina_source_file_manifest.json",
+    "source_values": "data/nhi_pedot_h_a_source_values.csv"
+  },
+  "issues": [],
+  "status": "h_a_bundle_entry_apply_no_apply_rows",
+  "summary": {
+    "applied_bundles": 0,
+    "applied_source_value_rows": 0,
+    "duplicate_apply_rows": 0,
+    "error_count": 0,
+    "sheet_rows": 96,
+    "skipped_apply_no_rows": 96,
+    "warning_count": 0
+  },
+  "updated_source_values": ""
+}

@@ -1,0 +1,54 @@
+To: The Osmolality Lab team
+Source URL: https://theosmolalitylab.com/
+Subject: RFQ: non-GLP acellular hydrogel-coupon H-A measurements (The Osmolality Lab)
+
+Hello The Osmolality Lab team,
+
+I am requesting a feasibility review and non-GLP R&D quote for a small acellular biomaterials measurement package.
+
+Study summary:
+- Active material route: limina_alg_lam_pedot_lowdose_v0_2
+- Runs: 12
+- Raw measurement entries requested: 228
+- Articles: no-coating control, alginate-laminin hydrogel control, low-loading ALG-LAM-PEDOT lead, high-loading boundary comparator
+- Timepoints: 0 h, 24 h, 72 h
+- Required outputs: sample-level pH, osmolality, conductivity, visible precipitate, visible shedding, swelling fraction, delamination score, optical transparency fraction, raw exports/images, and chain-of-custody by run_id
+
+Important constraint: we need one result per provided run_id/sample_event/target_field. Pooled averages or narrative certificates alone will not satisfy the study. The compact bundle entry sheet is preferred when one raw export/report supports multiple values.
+
+Could you please confirm:
+- Can they run matched pre/post aliquots from 37 C acellular neural-medium soaks?
+- Can they preserve one result per LIMINA run_id rather than batch averages?
+- Can they accept PEDOT:PSS/alginate/laminin soak media as nonclinical R&D samples?
+- Whether you can fill or accept the provided raw-measurement CSV or compact bundle-entry CSV schema without changing column names
+- Minimum sample volume/coupon count requirements
+- Expected turnaround time, quote range, and any sample-prep constraints
+
+Attached/package files to review:
+- reports/nhi_pedot_h_a_service_request.md
+- data/nhi_pedot_h_a_raw_measurements_template.csv
+- data/nhi_pedot_h_a_bundle_entry_sheet.csv
+- reports/nhi_pedot_h_a_bundle_entry_sheet.md
+- data/nhi_pedot_h_a_source_unlock_bundle_manifest.csv
+- reports/nhi_pedot_h_a_source_unlock_pack.md
+- reports/nhi_pedot_h_a_sentinel_packet.md
+- data/nhi_pedot_h_a_sentinel_sample_manifest.csv
+- data/nhi_pedot_h_a_sample_labels.csv
+- data/nhi_pedot_h_a_chain_of_custody.csv
+- reports/nhi_pedot_h_a_chain_of_custody.md
+- reports/nhi_pedot_h_a_sample_submission_pack.md
+- reports/nhi_pedot_h_a_split_scope_plan.md
+- data/nhi_pedot_h_a_split_scope_plan.csv
+- data/nhi_pedot_h_a_material_disclosure.csv
+- reports/nhi_pedot_h_a_bench_sheet.md
+- reports/nhi_pedot_h_a_minimum_measurement_checklist.md
+- reports/nhi_pedot_alg_lam_protocol.md
+- data/nhi_pedot_recipe_lock_v0_2.json
+- reports/nhi_pedot_next_measurements.md
+
+This is exploratory R&D screening. We are not requesting a material suitability claim from the vendor; we only need traceable raw measurements to feed our internal QC gates.
+
+Thank you.
+
+Boundary:
+RFQ emails, vendor capability replies, and quote packages are sourcing artifacts only. They do not count as material evidence until real returned measurements pass LIMINA QC.

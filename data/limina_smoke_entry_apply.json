@@ -1,0 +1,21 @@
+{
+  "boundary": "Applying an entry sheet only copies user-entered values into smoke templates. Downstream preflight, rehearsal, QC, gates, and claim audit still control evidence status.",
+  "inputs": {
+    "queue": "data/limina_smoke_execution_queue.json",
+    "sheet": "data/limina_smoke_entry_sheet.csv",
+    "source_manifest": "data/limina_source_file_manifest.json"
+  },
+  "issues": [],
+  "status": "smoke_entry_apply_no_filled_rows",
+  "summary": {
+    "applied_values": 0,
+    "error_count": 0,
+    "sheet_rows": 172,
+    "skipped_apply_no_rows": 0,
+    "skipped_blank_rows": 172,
+    "skipped_invalid_rows": 0,
+    "skipped_missing_target_rows": 0,
+    "warning_count": 0
+  },
+  "updated_templates": []
+}

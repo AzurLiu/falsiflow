@@ -1,0 +1,9 @@
+profile,run_id,phase,sample_event,target_field,measured_at,operator_or_agent,instrument_id,value,unit,source_file_to_save_as,source_file_requirement,method_or_record_id,notes,image_file_name,imaging_method,scoring_method,score_or_boolean,reviewer
+zrc_phase_a,ZRCND-A-baseline_rc_3p5m_guard-R1-0h,A,,visible_precipitate,,,,,,data/source_files/full/zrc_nd_phase_a/ZRCND-A-baseline_rc_3p5m_guard-R1-0h/visible_precipitate_image_or_scoring_worksheet.png,,,,,,,,
+zrc_phase_a,ZRCND-A-baseline_rc_3p5m_guard-R1-24h,A,,visible_precipitate,,,,,,data/source_files/full/zrc_nd_phase_a/ZRCND-A-baseline_rc_3p5m_guard-R1-24h/visible_precipitate_image_or_scoring_worksheet.png,,,,,,,,
+zrc_phase_a,ZRCND-A-challenge_zrc_nd_10m_guard-R1-0h,A,,visible_precipitate,,,,,,data/source_files/full/zrc_nd_phase_a/ZRCND-A-challenge_zrc_nd_10m_guard-R1-0h/visible_precipitate_image_or_scoring_worksheet.png,,,,,,,,
+zrc_phase_a,ZRCND-A-challenge_zrc_nd_10m_guard-R1-24h,A,,visible_precipitate,,,,,,data/source_files/full/zrc_nd_phase_a/ZRCND-A-challenge_zrc_nd_10m_guard-R1-24h/visible_precipitate_image_or_scoring_worksheet.png,,,,,,,,
+zrc_phase_a,ZRCND-A-lead_zrc_nd_3p5m_guard-R1-0h,A,,visible_precipitate,,,,,,data/source_files/full/zrc_nd_phase_a/ZRCND-A-lead_zrc_nd_3p5m_guard-R1-0h/visible_precipitate_image_or_scoring_worksheet.png,,,,,,,,
+zrc_phase_a,ZRCND-A-lead_zrc_nd_3p5m_guard-R1-24h,A,,visible_precipitate,,,,,,data/source_files/full/zrc_nd_phase_a/ZRCND-A-lead_zrc_nd_3p5m_guard-R1-24h/visible_precipitate_image_or_scoring_worksheet.png,,,,,,,,
+zrc_phase_a,ZRCND-A-no_module_static_control-R1-0h,A,,visible_precipitate,,,,,,data/source_files/full/zrc_nd_phase_a/ZRCND-A-no_module_static_control-R1-0h/visible_precipitate_image_or_scoring_worksheet.png,,,,,,,,
+zrc_phase_a,ZRCND-A-no_module_static_control-R1-24h,A,,visible_precipitate,,,,,,data/source_files/full/zrc_nd_phase_a/ZRCND-A-no_module_static_control-R1-24h/visible_precipitate_image_or_scoring_worksheet.png,,,,,,,,

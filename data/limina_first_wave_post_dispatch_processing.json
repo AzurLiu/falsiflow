@@ -1,0 +1,384 @@
+{
+  "boundary": "This processing step handles outreach and sourcing artifacts only. It does not create measurements, authorize execution, or support a material suitability claim without real returned measurement rows.",
+  "commands": [
+    {
+      "argv": [
+        "scripts/intake_limina_rfq_send_confirmations.py",
+        "--profile",
+        "h_a"
+      ],
+      "elapsed_seconds": 0.042,
+      "id": "intake_h_a_send_confirmations",
+      "purpose": "Register source-backed H-A sent-email or web-form confirmations.",
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "NHI-PEDOT H-A RFQ send confirmation intake: nhi_pedot_h_a_rfq_send_confirmation_intake_waiting_for_confirmation_files\nFiles scanned: 0\nApplied rows: 0\nNeeds review: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_send_confirmation_intake.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_send_confirmation_intake.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_rfq_send_confirmation_intake.md",
+      "track": "h_a"
+    },
+    {
+      "argv": [
+        "scripts/render_nhi_pedot_h_a_rfq_send_confirmation_entry_sheet.py"
+      ],
+      "elapsed_seconds": 0.028,
+      "id": "render_h_a_non_eml_confirmation_sheet",
+      "purpose": "Refresh guarded H-A manual-confirmation rows for non-EML confirmations.",
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "H-A RFQ send confirmation entry sheet: h_a_rfq_send_confirmation_entry_sheet_waiting_for_confirmation_files\nReady to apply: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_send_confirmation_entry_sheet.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_send_confirmation_entry_sheet.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_rfq_send_confirmation_entry_sheet.md",
+      "track": "h_a"
+    },
+    {
+      "argv": [
+        "scripts/apply_nhi_pedot_h_a_rfq_send_confirmation_entry_sheet.py"
+      ],
+      "elapsed_seconds": 0.027,
+      "id": "apply_h_a_non_eml_confirmation_sheet",
+      "purpose": "Apply reviewed H-A non-EML confirmation entries into the send log.",
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "H-A RFQ send confirmation entry apply: h_a_rfq_send_confirmation_entry_apply_no_apply_rows\nApplied: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_send_confirmation_entry_apply.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_rfq_send_confirmation_entry_apply.md",
+      "track": "h_a"
+    },
+    {
+      "argv": [
+        "scripts/apply_limina_rfq_send_log.py",
+        "--profile",
+        "h_a"
+      ],
+      "elapsed_seconds": 0.035,
+      "id": "apply_h_a_send_log",
+      "purpose": "Apply verified H-A send rows into the quote tracker.",
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "NHI-PEDOT H-A RFQ send log: nhi_pedot_h_a_rfq_send_log_waiting_for_sent_entries\nRows: 4\nSent rows: 0\nApplied tracker contact dates: 0\nErrors: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_send_log.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_send_log.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_rfq_send_log.md",
+      "track": "h_a"
+    },
+    {
+      "argv": [
+        "scripts/intake_limina_rfq_replies.py",
+        "--profile",
+        "h_a"
+      ],
+      "elapsed_seconds": 0.043,
+      "id": "intake_h_a_replies",
+      "purpose": "Register original H-A reply source files for review.",
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "NHI-PEDOT H-A RFQ reply intake: nhi_pedot_h_a_rfq_reply_intake_waiting_for_reply_files\nFiles scanned: 0\nApplied rows: 0\nNeeds manual review: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_reply_intake.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_reply_intake.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_rfq_reply_intake.md",
+      "track": "h_a"
+    },
+    {
+      "argv": [
+        "scripts/apply_limina_rfq_reply_log.py",
+        "--profile",
+        "h_a"
+      ],
+      "elapsed_seconds": 0.034,
+      "id": "apply_h_a_reply_log",
+      "purpose": "Apply reviewed H-A reply fields into the quote tracker.",
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "NHI-PEDOT H-A RFQ reply log: nhi_pedot_h_a_rfq_reply_log_waiting_for_reply_files\nRows: 4\nReceived rows: 0\nApplied tracker field updates: 0\nErrors: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_reply_log.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_reply_log.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_rfq_reply_log.md",
+      "track": "h_a"
+    },
+    {
+      "argv": [
+        "scripts/evaluate_nhi_pedot_h_a_quote_replies.py"
+      ],
+      "elapsed_seconds": 0.025,
+      "id": "evaluate_h_a_quotes",
+      "purpose": "Evaluate source-backed H-A quote replies for provider selection.",
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "H-A quote selection: pending_outreach\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_quote_selection.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_quote_selection.md",
+      "track": "h_a"
+    },
+    {
+      "argv": [
+        "scripts/apply_limina_execution_authorization_log.py",
+        "--profile",
+        "h_a"
+      ],
+      "elapsed_seconds": 0.033,
+      "id": "apply_h_a_execution_authorization",
+      "purpose": "Validate any H-A execution authorization records.",
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "NHI-PEDOT H-A execution authorization log: nhi_pedot_h_a_execution_authorization_waiting_for_selected_provider\nRows: 0\nValid authorizations: 0\nErrors: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_execution_authorization_log.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_execution_authorization_log.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_execution_authorization_log.md",
+      "track": "h_a"
+    },
+    {
+      "argv": [
+        "scripts/audit_limina_execution_release.py",
+        "--profile",
+        "h_a"
+      ],
+      "elapsed_seconds": 0.032,
+      "id": "audit_h_a_execution_release",
+      "purpose": "Check whether H-A execution can be released after provider selection and authorization.",
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "NHI-PEDOT H-A execution release audit: nhi_pedot_h_a_execution_release_blocked_no_source_backed_provider_selection\nReady for authorization: false\nReleased for execution: false\nBlockers: 1\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_execution_release_audit.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_execution_release_audit.md",
+      "track": "h_a"
+    },
+    {
+      "argv": [
+        "scripts/render_nhi_pedot_h_a_vendor_return_intake.py"
+      ],
+      "elapsed_seconds": 0.028,
+      "id": "check_h_a_vendor_return",
+      "purpose": "Check whether real H-A return files are ready for merge/QC.",
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "H-A vendor return intake: awaiting_vendor_return_files\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_vendor_return_checklist.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_vendor_return_intake.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_vendor_return_intake.md",
+      "track": "h_a"
+    },
+    {
+      "argv": [
+        "scripts/intake_limina_rfq_send_confirmations.py",
+        "--profile",
+        "zrc_phase_a"
+      ],
+      "elapsed_seconds": 0.042,
+      "id": "intake_zrc_send_confirmations",
+      "purpose": "Register source-backed ZRC sent-email or web-form confirmations.",
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "ZRC-ND Phase A RFQ send confirmation intake: zrc_nd_phase_a_rfq_send_confirmation_intake_waiting_for_confirmation_files\nFiles scanned: 0\nApplied rows: 0\nNeeds review: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_send_confirmation_intake.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_send_confirmation_intake.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_rfq_send_confirmation_intake.md",
+      "track": "zrc_phase_a"
+    },
+    {
+      "argv": [
+        "scripts/render_zrc_nd_phase_a_rfq_send_confirmation_entry_sheet.py"
+      ],
+      "elapsed_seconds": 0.028,
+      "id": "render_zrc_non_eml_confirmation_sheet",
+      "purpose": "Refresh guarded ZRC manual-confirmation rows for non-EML confirmations.",
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "ZRC-ND Phase A RFQ send confirmation entry sheet: zrc_phase_a_rfq_send_confirmation_entry_sheet_waiting_for_confirmation_files\nReady to apply: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_send_confirmation_entry_sheet.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_send_confirmation_entry_sheet.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_rfq_send_confirmation_entry_sheet.md",
+      "track": "zrc_phase_a"
+    },
+    {
+      "argv": [
+        "scripts/apply_zrc_nd_phase_a_rfq_send_confirmation_entry_sheet.py"
+      ],
+      "elapsed_seconds": 0.027,
+      "id": "apply_zrc_non_eml_confirmation_sheet",
+      "purpose": "Apply reviewed ZRC non-EML confirmation entries into the send log.",
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "ZRC-ND Phase A RFQ send confirmation entry apply: zrc_phase_a_rfq_send_confirmation_entry_apply_no_apply_rows\nApplied: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_send_confirmation_entry_apply.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_rfq_send_confirmation_entry_apply.md",
+      "track": "zrc_phase_a"
+    },
+    {
+      "argv": [
+        "scripts/apply_limina_rfq_send_log.py",
+        "--profile",
+        "zrc_phase_a"
+      ],
+      "elapsed_seconds": 0.035,
+      "id": "apply_zrc_send_log",
+      "purpose": "Apply verified ZRC send rows into the quote tracker.",
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "ZRC-ND Phase A RFQ send log: zrc_nd_phase_a_rfq_send_log_waiting_for_sent_entries\nRows: 4\nSent rows: 0\nApplied tracker contact dates: 0\nErrors: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_send_log.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_send_log.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_rfq_send_log.md",
+      "track": "zrc_phase_a"
+    },
+    {
+      "argv": [
+        "scripts/intake_limina_rfq_replies.py",
+        "--profile",
+        "zrc_phase_a"
+      ],
+      "elapsed_seconds": 0.042,
+      "id": "intake_zrc_replies",
+      "purpose": "Register original ZRC reply source files for review.",
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "ZRC-ND Phase A RFQ reply intake: zrc_nd_phase_a_rfq_reply_intake_waiting_for_reply_files\nFiles scanned: 0\nApplied rows: 0\nNeeds manual review: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_reply_intake.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_reply_intake.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_rfq_reply_intake.md",
+      "track": "zrc_phase_a"
+    },
+    {
+      "argv": [
+        "scripts/apply_limina_rfq_reply_log.py",
+        "--profile",
+        "zrc_phase_a"
+      ],
+      "elapsed_seconds": 0.035,
+      "id": "apply_zrc_reply_log",
+      "purpose": "Apply reviewed ZRC reply fields into the quote tracker.",
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "ZRC-ND Phase A RFQ reply log: zrc_nd_phase_a_rfq_reply_log_waiting_for_reply_files\nRows: 4\nReceived rows: 0\nApplied tracker field updates: 0\nErrors: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_reply_log.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_reply_log.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_rfq_reply_log.md",
+      "track": "zrc_phase_a"
+    },
+    {
+      "argv": [
+        "scripts/evaluate_zrc_nd_phase_a_quote_replies.py"
+      ],
+      "elapsed_seconds": 0.025,
+      "id": "evaluate_zrc_quotes",
+      "purpose": "Evaluate source-backed ZRC quote replies for provider selection.",
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "ZRC-ND Phase A quote selection: pending_outreach\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_quote_selection.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_quote_selection.md",
+      "track": "zrc_phase_a"
+    },
+    {
+      "argv": [
+        "scripts/apply_limina_execution_authorization_log.py",
+        "--profile",
+        "zrc_phase_a"
+      ],
+      "elapsed_seconds": 0.034,
+      "id": "apply_zrc_execution_authorization",
+      "purpose": "Validate any ZRC execution authorization records.",
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "ZRC-ND Phase A execution authorization log: zrc_nd_phase_a_execution_authorization_waiting_for_selected_provider\nRows: 0\nValid authorizations: 0\nErrors: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_execution_authorization_log.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_execution_authorization_log.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_execution_authorization_log.md",
+      "track": "zrc_phase_a"
+    },
+    {
+      "argv": [
+        "scripts/audit_limina_execution_release.py",
+        "--profile",
+        "zrc_phase_a"
+      ],
+      "elapsed_seconds": 0.032,
+      "id": "audit_zrc_execution_release",
+      "purpose": "Check whether ZRC execution can be released after provider selection and authorization.",
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "ZRC-ND Phase A execution release audit: zrc_nd_phase_a_execution_release_blocked_no_source_backed_provider_selection\nReady for authorization: false\nReleased for execution: false\nBlockers: 1\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_execution_release_audit.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_execution_release_audit.md",
+      "track": "zrc_phase_a"
+    },
+    {
+      "argv": [
+        "scripts/render_zrc_nd_phase_a_vendor_return_intake.py"
+      ],
+      "elapsed_seconds": 0.028,
+      "id": "check_zrc_vendor_return",
+      "purpose": "Check whether real ZRC return files are ready for merge/QC.",
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "ZRC-ND Phase A vendor return intake: awaiting_vendor_return_files\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_vendor_return_checklist.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_vendor_return_intake.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_vendor_return_intake.md",
+      "track": "zrc_phase_a"
+    },
+    {
+      "argv": [
+        "scripts/render_limina_first_wave_rfq_dispatch_cockpit.py"
+      ],
+      "elapsed_seconds": 0.029,
+      "id": "refresh_first_wave_cockpit",
+      "purpose": "Refresh the combined dispatch cockpit after processing saved files.",
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "First-wave RFQ dispatch cockpit: first_wave_rfq_dispatch_cockpit_ready_for_manual_send\nReady to send: 8 / 8\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_first_wave_rfq_dispatch_cockpit.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_first_wave_rfq_dispatch_cockpit.md\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_first_wave_rfq_dispatch_cockpit.html",
+      "track": "combined"
+    }
+  ],
+  "failed_command_ids": [],
+  "first_wave_cockpit_status": "first_wave_rfq_dispatch_cockpit_ready_for_manual_send",
+  "first_wave_cockpit_summary": {
+    "confirmation_files_present": 0,
+    "h_a_archive_status": "h_a_rfq_dispatch_archive_ready",
+    "h_a_cockpit_status": "h_a_rfq_send_cockpit_ready_for_manual_send",
+    "missing_bundle_files": 0,
+    "missing_message_files": 0,
+    "ready_to_send_rows": 8,
+    "reply_files_present": 0,
+    "track_count": 2,
+    "track_counts": {
+      "h_a": {
+        "confirmations": 0,
+        "ready": 4,
+        "replies": 0,
+        "rows": 4
+      },
+      "zrc_phase_a": {
+        "confirmations": 0,
+        "ready": 4,
+        "replies": 0,
+        "rows": 4
+      }
+    },
+    "vendor_rows": 8,
+    "zrc_phase_a_archive_status": "zrc_phase_a_rfq_dispatch_archive_ready",
+    "zrc_phase_a_cockpit_status": "zrc_phase_a_rfq_send_cockpit_ready_for_manual_send"
+  },
+  "generated_artifacts": {
+    "json": "data/limina_first_wave_post_dispatch_processing.json",
+    "report": "reports/limina_first_wave_post_dispatch_processing.md"
+  },
+  "next_commands": [
+    "python3 scripts/process_limina_first_wave_post_dispatch.py",
+    "python3 scripts/run_limina_iteration.py"
+  ],
+  "purpose": "Process real first-wave RFQ send confirmations and replies after manual dispatch.",
+  "status": "first_wave_post_dispatch_waiting_for_real_send_confirmations",
+  "track_summaries": [
+    {
+      "execution_release_ready": false,
+      "execution_release_status": "nhi_pedot_h_a_execution_release_blocked_no_source_backed_provider_selection",
+      "execution_released": false,
+      "quote_selection_replies": 0,
+      "quote_selection_shortlist": 0,
+      "quote_selection_source_backed": 0,
+      "quote_selection_status": "pending_outreach",
+      "reply_intake_applied": 0,
+      "reply_intake_files": 0,
+      "reply_intake_needs_review": 0,
+      "reply_intake_status": "nhi_pedot_h_a_rfq_reply_intake_waiting_for_reply_files",
+      "reply_log_received": 0,
+      "reply_log_rows": 4,
+      "reply_log_status": "nhi_pedot_h_a_rfq_reply_log_waiting_for_reply_files",
+      "reply_log_valid": 0,
+      "send_entry_applied": 0,
+      "send_entry_apply_rows": 0,
+      "send_entry_blocked": 0,
+      "send_entry_status": "h_a_rfq_send_confirmation_entry_apply_no_apply_rows",
+      "send_intake_applied": 0,
+      "send_intake_files": 0,
+      "send_intake_needs_review": 0,
+      "send_intake_status": "nhi_pedot_h_a_rfq_send_confirmation_intake_waiting_for_confirmation_files",
+      "send_log_rows": 4,
+      "send_log_sent": 0,
+      "send_log_status": "nhi_pedot_h_a_rfq_send_log_waiting_for_sent_entries",
+      "send_log_valid": 0,
+      "track": "h_a",
+      "vendor_return_status": "awaiting_vendor_return_files"
+    },
+    {
+      "execution_release_ready": false,
+      "execution_release_status": "zrc_nd_phase_a_execution_release_blocked_no_source_backed_provider_selection",
+      "execution_released": false,
+      "quote_selection_replies": 0,
+      "quote_selection_shortlist": 0,
+      "quote_selection_source_backed": 0,
+      "quote_selection_status": "pending_outreach",
+      "reply_intake_applied": 0,
+      "reply_intake_files": 0,
+      "reply_intake_needs_review": 0,
+      "reply_intake_status": "zrc_nd_phase_a_rfq_reply_intake_waiting_for_reply_files",
+      "reply_log_received": 0,
+      "reply_log_rows": 4,
+      "reply_log_status": "zrc_nd_phase_a_rfq_reply_log_waiting_for_reply_files",
+      "reply_log_valid": 0,
+      "send_entry_applied": 0,
+      "send_entry_apply_rows": 0,
+      "send_entry_blocked": 0,
+      "send_entry_status": "zrc_phase_a_rfq_send_confirmation_entry_apply_no_apply_rows",
+      "send_intake_applied": 0,
+      "send_intake_files": 0,
+      "send_intake_needs_review": 0,
+      "send_intake_status": "zrc_nd_phase_a_rfq_send_confirmation_intake_waiting_for_confirmation_files",
+      "send_log_rows": 4,
+      "send_log_sent": 0,
+      "send_log_status": "zrc_nd_phase_a_rfq_send_log_waiting_for_sent_entries",
+      "send_log_valid": 0,
+      "track": "zrc_phase_a",
+      "vendor_return_status": "awaiting_vendor_return_files"
+    }
+  ]
+}

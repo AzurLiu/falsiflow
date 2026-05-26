@@ -1,0 +1,54 @@
+{
+  "blocker_count": 1008,
+  "claim_id": "limina_nhi_pedot_habc_evidence_completeness",
+  "claim_ready": false,
+  "completion_pct": 0.0,
+  "derived_field_count": 0,
+  "evidence_error_count": 0,
+  "evidence_issue_count": 0,
+  "evidence_warning_count": 0,
+  "gate_count": 3,
+  "gates": [
+    {
+      "blocker_count": 336,
+      "completion_pct": 0.0,
+      "derived_field_count": 0,
+      "gate_id": "h_a_medium_stability",
+      "required_evidence_rows": 228,
+      "status": "blocked_missing_evidence",
+      "title": "H-A medium stability and physical integrity",
+      "valid_required_evidence_rows": 0
+    },
+    {
+      "blocker_count": 308,
+      "completion_pct": 0.0,
+      "derived_field_count": 0,
+      "gate_id": "h_b_electrical_interface",
+      "required_evidence_rows": 240,
+      "status": "blocked_missing_evidence",
+      "title": "H-B electrical and physical interface benefit",
+      "valid_required_evidence_rows": 0
+    },
+    {
+      "blocker_count": 364,
+      "completion_pct": 0.0,
+      "derived_field_count": 0,
+      "gate_id": "h_c_network_response",
+      "required_evidence_rows": 352,
+      "status": "blocked_missing_evidence",
+      "title": "H-C cell and network response",
+      "valid_required_evidence_rows": 0
+    }
+  ],
+  "next_action_count": 3,
+  "project_config_valid": true,
+  "project_id": "limina_nhi_pedot_habc_falsiflow",
+  "project_validation_error_count": 0,
+  "project_validation_warning_count": 0,
+  "required_evidence_rows": 820,
+  "status": "claim_blocked",
+  "status_counts": {
+    "blocked_missing_evidence": 3
+  },
+  "valid_required_evidence_rows": 0
+}

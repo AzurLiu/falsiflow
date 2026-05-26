@@ -1,0 +1,152 @@
+{
+  "active_candidate": "limina_alg_lam_pedot_lowdose_v0_2",
+  "attachment_paths": [
+    "reports/nhi_pedot_h_a_service_request.md",
+    "data/nhi_pedot_h_a_raw_measurements_template.csv",
+    "data/nhi_pedot_h_a_bundle_entry_sheet.csv",
+    "reports/nhi_pedot_h_a_bundle_entry_sheet.md",
+    "data/nhi_pedot_h_a_source_unlock_bundle_manifest.csv",
+    "reports/nhi_pedot_h_a_source_unlock_pack.md",
+    "reports/nhi_pedot_h_a_sentinel_packet.md",
+    "data/nhi_pedot_h_a_sentinel_sample_manifest.csv",
+    "data/nhi_pedot_h_a_sample_labels.csv",
+    "data/nhi_pedot_h_a_chain_of_custody.csv",
+    "reports/nhi_pedot_h_a_chain_of_custody.md",
+    "reports/nhi_pedot_h_a_sample_submission_pack.md",
+    "reports/nhi_pedot_h_a_split_scope_plan.md",
+    "data/nhi_pedot_h_a_split_scope_plan.csv",
+    "data/nhi_pedot_h_a_material_disclosure.csv",
+    "reports/nhi_pedot_h_a_bench_sheet.md",
+    "reports/nhi_pedot_h_a_minimum_measurement_checklist.md",
+    "reports/nhi_pedot_alg_lam_protocol.md",
+    "data/nhi_pedot_recipe_lock_v0_2.json",
+    "reports/nhi_pedot_next_measurements.md"
+  ],
+  "disqualifiers": [
+    "Only returns pooled averages or narrative pass/fail certificates.",
+    "Will not preserve run_id, sample_event, and target_field mapping.",
+    "Cannot return source files or raw exports for provenance.",
+    "Requires replacing the requested material stack or timepoints without a documented deviation log.",
+    "Treats vendor capability claims as final material suitability evidence."
+  ],
+  "non_claim_boundary": "Vendor capability claims do not count as material evidence. Only returned real run-level measurements that pass LIMINA QC and claim audit can advance the material.",
+  "purpose": "Per-candidate RFQ material for obtaining real NHI-PEDOT H-A measurements.",
+  "quote_requests": [
+    {
+      "candidate_id": "materials_metric",
+      "email_body": "Hello Materials Metric team,\n\nI am requesting a feasibility review and non-GLP R&D quote for a small acellular biomaterials measurement package.\n\nStudy summary:\n- Active material route: limina_alg_lam_pedot_lowdose_v0_2\n- Runs: 12\n- Raw measurement entries requested: 228\n- Articles: no-coating control, alginate-laminin hydrogel control, low-loading ALG-LAM-PEDOT lead, high-loading boundary comparator\n- Timepoints: 0 h, 24 h, 72 h\n- Required outputs: sample-level pH, osmolality, conductivity, visible precipitate, visible shedding, swelling fraction, delamination score, optical transparency fraction, raw exports/images, and chain-of-custody by run_id\n\nImportant constraint: we need one result per provided run_id/sample_event/target_field. Pooled averages or narrative certificates alone will not satisfy the study. The compact bundle entry sheet is preferred when one raw export/report supports multiple values.\n\nCould you please confirm:\n- Can they execute the entire 12-run H-A service request as a custom R&D study?\n- Can they include pH, osmolality, and conductivity, or should media tests be subcontracted?\n- Can they return raw exports plus chain-of-custody by run_id?\n- Whether you can fill or accept the provided raw-measurement CSV or compact bundle-entry CSV schema without changing column names\n- Minimum sample volume/coupon count requirements\n- Expected turnaround time, quote range, and any sample-prep constraints\n\nAttached/package files to review:\n- reports/nhi_pedot_h_a_service_request.md\n- data/nhi_pedot_h_a_raw_measurements_template.csv\n- data/nhi_pedot_h_a_bundle_entry_sheet.csv\n- reports/nhi_pedot_h_a_bundle_entry_sheet.md\n- data/nhi_pedot_h_a_source_unlock_bundle_manifest.csv\n- reports/nhi_pedot_h_a_source_unlock_pack.md\n- reports/nhi_pedot_h_a_sentinel_packet.md\n- data/nhi_pedot_h_a_sentinel_sample_manifest.csv\n- data/nhi_pedot_h_a_sample_labels.csv\n- data/nhi_pedot_h_a_chain_of_custody.csv\n- reports/nhi_pedot_h_a_chain_of_custody.md\n- reports/nhi_pedot_h_a_sample_submission_pack.md\n- reports/nhi_pedot_h_a_split_scope_plan.md\n- data/nhi_pedot_h_a_split_scope_plan.csv\n- data/nhi_pedot_h_a_material_disclosure.csv\n- reports/nhi_pedot_h_a_bench_sheet.md\n- reports/nhi_pedot_h_a_minimum_measurement_checklist.md\n- reports/nhi_pedot_alg_lam_protocol.md\n- data/nhi_pedot_recipe_lock_v0_2.json\n- reports/nhi_pedot_next_measurements.md\n\nThis is exploratory R&D screening. We are not requesting a material suitability claim from the vendor; we only need traceable raw measurements to feed our internal QC gates.\n\nThank you.",
+      "name": "Materials Metric",
+      "scope_instruction": "Ask whether they can execute the full H-A package or pair with a media physicochemical lab.",
+      "service_type": "custom_biomaterials_characterization",
+      "source_url": "https://materialsmetric.com/",
+      "subject": "RFQ: non-GLP acellular hydrogel-coupon H-A measurements (Materials Metric)",
+      "unknowns_to_resolve": [
+        "Can they execute the entire 12-run H-A service request as a custom R&D study?",
+        "Can they include pH, osmolality, and conductivity, or should media tests be subcontracted?",
+        "Can they return raw exports plus chain-of-custody by run_id?"
+      ]
+    },
+    {
+      "candidate_id": "the_osmolality_lab",
+      "email_body": "Hello The Osmolality Lab team,\n\nI am requesting a feasibility review and non-GLP R&D quote for a small acellular biomaterials measurement package.\n\nStudy summary:\n- Active material route: limina_alg_lam_pedot_lowdose_v0_2\n- Runs: 12\n- Raw measurement entries requested: 228\n- Articles: no-coating control, alginate-laminin hydrogel control, low-loading ALG-LAM-PEDOT lead, high-loading boundary comparator\n- Timepoints: 0 h, 24 h, 72 h\n- Required outputs: sample-level pH, osmolality, conductivity, visible precipitate, visible shedding, swelling fraction, delamination score, optical transparency fraction, raw exports/images, and chain-of-custody by run_id\n\nImportant constraint: we need one result per provided run_id/sample_event/target_field. Pooled averages or narrative certificates alone will not satisfy the study. The compact bundle entry sheet is preferred when one raw export/report supports multiple values.\n\nCould you please confirm:\n- Can they run matched pre/post aliquots from 37 C acellular neural-medium soaks?\n- Can they preserve one result per LIMINA run_id rather than batch averages?\n- Can they accept PEDOT:PSS/alginate/laminin soak media as nonclinical R&D samples?\n- Whether you can fill or accept the provided raw-measurement CSV or compact bundle-entry CSV schema without changing column names\n- Minimum sample volume/coupon count requirements\n- Expected turnaround time, quote range, and any sample-prep constraints\n\nAttached/package files to review:\n- reports/nhi_pedot_h_a_service_request.md\n- data/nhi_pedot_h_a_raw_measurements_template.csv\n- data/nhi_pedot_h_a_bundle_entry_sheet.csv\n- reports/nhi_pedot_h_a_bundle_entry_sheet.md\n- data/nhi_pedot_h_a_source_unlock_bundle_manifest.csv\n- reports/nhi_pedot_h_a_source_unlock_pack.md\n- reports/nhi_pedot_h_a_sentinel_packet.md\n- data/nhi_pedot_h_a_sentinel_sample_manifest.csv\n- data/nhi_pedot_h_a_sample_labels.csv\n- data/nhi_pedot_h_a_chain_of_custody.csv\n- reports/nhi_pedot_h_a_chain_of_custody.md\n- reports/nhi_pedot_h_a_sample_submission_pack.md\n- reports/nhi_pedot_h_a_split_scope_plan.md\n- data/nhi_pedot_h_a_split_scope_plan.csv\n- data/nhi_pedot_h_a_material_disclosure.csv\n- reports/nhi_pedot_h_a_bench_sheet.md\n- reports/nhi_pedot_h_a_minimum_measurement_checklist.md\n- reports/nhi_pedot_alg_lam_protocol.md\n- data/nhi_pedot_recipe_lock_v0_2.json\n- reports/nhi_pedot_next_measurements.md\n\nThis is exploratory R&D screening. We are not requesting a material suitability claim from the vendor; we only need traceable raw measurements to feed our internal QC gates.\n\nThank you.",
+      "name": "The Osmolality Lab",
+      "scope_instruction": "Ask for pH/osmolality/conductivity on all pre/post aliquots and whether they can add appearance/clarity notes.",
+      "service_type": "media_physicochemical_testing",
+      "source_url": "https://theosmolalitylab.com/",
+      "subject": "RFQ: non-GLP acellular hydrogel-coupon H-A measurements (The Osmolality Lab)",
+      "unknowns_to_resolve": [
+        "Can they run matched pre/post aliquots from 37 C acellular neural-medium soaks?",
+        "Can they preserve one result per LIMINA run_id rather than batch averages?",
+        "Can they accept PEDOT:PSS/alginate/laminin soak media as nonclinical R&D samples?"
+      ]
+    },
+    {
+      "candidate_id": "cambridge_polymer_group_hydrogel",
+      "email_body": "Hello Cambridge Polymer Group team,\n\nI am requesting a feasibility review and non-GLP R&D quote for a small acellular biomaterials measurement package.\n\nStudy summary:\n- Active material route: limina_alg_lam_pedot_lowdose_v0_2\n- Runs: 12\n- Raw measurement entries requested: 228\n- Articles: no-coating control, alginate-laminin hydrogel control, low-loading ALG-LAM-PEDOT lead, high-loading boundary comparator\n- Timepoints: 0 h, 24 h, 72 h\n- Required outputs: sample-level pH, osmolality, conductivity, visible precipitate, visible shedding, swelling fraction, delamination score, optical transparency fraction, raw exports/images, and chain-of-custody by run_id\n\nImportant constraint: we need one result per provided run_id/sample_event/target_field. Pooled averages or narrative certificates alone will not satisfy the study. The compact bundle entry sheet is preferred when one raw export/report supports multiple values.\n\nCould you please confirm:\n- Can they do simple optical transparency and delamination scoring on MEA witness coupons?\n- Can they handle hydrated alginate-laminin-PEDOT:PSS coupons under culture-medium timing?\n- Can they pair physical scoring with pH/osmolality/conductivity or only coupon characterization?\n- Whether you can fill or accept the provided raw-measurement CSV or compact bundle-entry CSV schema without changing column names\n- Minimum sample volume/coupon count requirements\n- Expected turnaround time, quote range, and any sample-prep constraints\n\nAttached/package files to review:\n- reports/nhi_pedot_h_a_service_request.md\n- data/nhi_pedot_h_a_raw_measurements_template.csv\n- data/nhi_pedot_h_a_bundle_entry_sheet.csv\n- reports/nhi_pedot_h_a_bundle_entry_sheet.md\n- data/nhi_pedot_h_a_source_unlock_bundle_manifest.csv\n- reports/nhi_pedot_h_a_source_unlock_pack.md\n- reports/nhi_pedot_h_a_sentinel_packet.md\n- data/nhi_pedot_h_a_sentinel_sample_manifest.csv\n- data/nhi_pedot_h_a_sample_labels.csv\n- data/nhi_pedot_h_a_chain_of_custody.csv\n- reports/nhi_pedot_h_a_chain_of_custody.md\n- reports/nhi_pedot_h_a_sample_submission_pack.md\n- reports/nhi_pedot_h_a_split_scope_plan.md\n- data/nhi_pedot_h_a_split_scope_plan.csv\n- data/nhi_pedot_h_a_material_disclosure.csv\n- reports/nhi_pedot_h_a_bench_sheet.md\n- reports/nhi_pedot_h_a_minimum_measurement_checklist.md\n- reports/nhi_pedot_alg_lam_protocol.md\n- data/nhi_pedot_recipe_lock_v0_2.json\n- reports/nhi_pedot_next_measurements.md\n\nThis is exploratory R&D screening. We are not requesting a material suitability claim from the vendor; we only need traceable raw measurements to feed our internal QC gates.\n\nThank you.",
+      "name": "Cambridge Polymer Group",
+      "scope_instruction": "Ask whether they can execute the full H-A package or pair with a media physicochemical lab.",
+      "service_type": "hydrogel_characterization",
+      "source_url": "https://www.campoly.com/services/analytical-testing/material-characterization-techniques/hydrogel-characterization/",
+      "subject": "RFQ: non-GLP acellular hydrogel-coupon H-A measurements (Cambridge Polymer Group)",
+      "unknowns_to_resolve": [
+        "Can they do simple optical transparency and delamination scoring on MEA witness coupons?",
+        "Can they handle hydrated alginate-laminin-PEDOT:PSS coupons under culture-medium timing?",
+        "Can they pair physical scoring with pH/osmolality/conductivity or only coupon characterization?"
+      ]
+    },
+    {
+      "candidate_id": "sigmaaldrich_media_testing",
+      "email_body": "Hello MilliporeSigma Cell Culture Media Stability and Testing Services team,\n\nI am requesting a feasibility review and non-GLP R&D quote for a small acellular biomaterials measurement package.\n\nStudy summary:\n- Active material route: limina_alg_lam_pedot_lowdose_v0_2\n- Runs: 12\n- Raw measurement entries requested: 228\n- Articles: no-coating control, alginate-laminin hydrogel control, low-loading ALG-LAM-PEDOT lead, high-loading boundary comparator\n- Timepoints: 0 h, 24 h, 72 h\n- Required outputs: sample-level pH, osmolality, conductivity, visible precipitate, visible shedding, swelling fraction, delamination score, optical transparency fraction, raw exports/images, and chain-of-custody by run_id\n\nImportant constraint: we need one result per provided run_id/sample_event/target_field. Pooled averages or narrative certificates alone will not satisfy the study. The compact bundle entry sheet is preferred when one raw export/report supports multiple values.\n\nCould you please confirm:\n- Can conductivity be added to the report?\n- Can the service handle customer-prepared hydrogel coupon soak media rather than only standard media lots?\n- Can they return raw sample-level values in the LIMINA CSV schema?\n- Whether you can fill or accept the provided raw-measurement CSV or compact bundle-entry CSV schema without changing column names\n- Minimum sample volume/coupon count requirements\n- Expected turnaround time, quote range, and any sample-prep constraints\n\nAttached/package files to review:\n- reports/nhi_pedot_h_a_service_request.md\n- data/nhi_pedot_h_a_raw_measurements_template.csv\n- data/nhi_pedot_h_a_bundle_entry_sheet.csv\n- reports/nhi_pedot_h_a_bundle_entry_sheet.md\n- data/nhi_pedot_h_a_source_unlock_bundle_manifest.csv\n- reports/nhi_pedot_h_a_source_unlock_pack.md\n- reports/nhi_pedot_h_a_sentinel_packet.md\n- data/nhi_pedot_h_a_sentinel_sample_manifest.csv\n- data/nhi_pedot_h_a_sample_labels.csv\n- data/nhi_pedot_h_a_chain_of_custody.csv\n- reports/nhi_pedot_h_a_chain_of_custody.md\n- reports/nhi_pedot_h_a_sample_submission_pack.md\n- reports/nhi_pedot_h_a_split_scope_plan.md\n- data/nhi_pedot_h_a_split_scope_plan.csv\n- data/nhi_pedot_h_a_material_disclosure.csv\n- reports/nhi_pedot_h_a_bench_sheet.md\n- reports/nhi_pedot_h_a_minimum_measurement_checklist.md\n- reports/nhi_pedot_alg_lam_protocol.md\n- data/nhi_pedot_recipe_lock_v0_2.json\n- reports/nhi_pedot_next_measurements.md\n\nThis is exploratory R&D screening. We are not requesting a material suitability claim from the vendor; we only need traceable raw measurements to feed our internal QC gates.\n\nThank you.",
+      "name": "MilliporeSigma Cell Culture Media Stability and Testing Services",
+      "scope_instruction": "Ask for pH/osmolality/conductivity on all pre/post aliquots and whether they can add appearance/clarity notes.",
+      "service_type": "cell_culture_media_testing",
+      "source_url": "https://www.sigmaaldrich.com/US/en/services/testing/cell-culture-media-stability-and-testing-services",
+      "subject": "RFQ: non-GLP acellular hydrogel-coupon H-A measurements (MilliporeSigma Cell Culture Media Stability and Testing Services)",
+      "unknowns_to_resolve": [
+        "Can conductivity be added to the report?",
+        "Can the service handle customer-prepared hydrogel coupon soak media rather than only standard media lots?",
+        "Can they return raw sample-level values in the LIMINA CSV schema?"
+      ]
+    }
+  ],
+  "scorecard_columns": [
+    "candidate_id",
+    "contact_date",
+    "reply_date",
+    "can_cover_full_h_a",
+    "needs_split_scope",
+    "run_id_level_raw_data",
+    "media_physicochemical_coverage",
+    "coupon_physical_coverage",
+    "csv_schema_acceptance",
+    "bundle_entry_sheet_acceptance",
+    "sample_handling_fit",
+    "turnaround_days",
+    "quoted_cost",
+    "decision",
+    "notes"
+  ],
+  "scoring_rubric": [
+    {
+      "criterion": "run_id_level_raw_data",
+      "pass_condition": "Vendor accepts one result per run_id/sample_event/target_field and does not require pooled reporting.",
+      "weight": 5
+    },
+    {
+      "criterion": "media_physicochemical_coverage",
+      "pass_condition": "Vendor can report pH, osmolality, and conductivity before/after the requested timepoints, or clearly names a partner/subcontract path.",
+      "weight": 4
+    },
+    {
+      "criterion": "coupon_physical_coverage",
+      "pass_condition": "Vendor can report swelling fraction, visible precipitate, shedding, delamination score, optical transparency, and supporting images.",
+      "weight": 4
+    },
+    {
+      "criterion": "csv_schema_acceptance",
+      "pass_condition": "Vendor can fill or accept either the LIMINA raw-measurement CSV or the compact bundle-entry CSV without changing column names.",
+      "weight": 4
+    },
+    {
+      "criterion": "bundle_entry_sheet_acceptance",
+      "pass_condition": "Vendor can use the compact one-row-per-source-file bundle sheet when one raw export/report supports multiple values.",
+      "weight": 2
+    },
+    {
+      "criterion": "sample_handling_fit",
+      "pass_condition": "Vendor can handle neural medium, alginate/laminin/PEDOT:PSS coupons, 37 C timing, and chain-of-custody constraints.",
+      "weight": 3
+    },
+    {
+      "criterion": "turnaround_and_cost",
+      "pass_condition": "Vendor can provide a practical R&D quote and turnaround for the 12-run/228-entry package.",
+      "weight": 2
+    },
+    {
+      "criterion": "non_glp_scope_control",
+      "pass_condition": "Vendor can keep the first pass as exploratory R&D and not force a full GLP/ISO program before H-A.",
+      "weight": 2
+    }
+  ],
+  "status": "ready_to_send_rfq"
+}

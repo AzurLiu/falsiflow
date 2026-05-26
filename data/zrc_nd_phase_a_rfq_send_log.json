@@ -1,0 +1,45 @@
+{
+  "applied_tracker_contact_dates": 0,
+  "error_count": 0,
+  "errors": [],
+  "field_contract": {
+    "confirmation_hash_rule": "If send_confirmation_source_sha256 is supplied, it must match the current SHA-256 of send_confirmation_source_file.",
+    "hash_rule": "If sent_bundle_sha256 is supplied, it must match expected_bundle_sha256 from the RFQ outbox manifest.",
+    "required_when_sent": [
+      "sent_at",
+      "sent_by",
+      "send_method",
+      "recipient_or_form",
+      "message_id_or_confirmation",
+      "send_confirmation_source_file"
+    ],
+    "send_status_values": [
+      "do_not_send",
+      "emailed",
+      "form_submitted",
+      "needs_attention",
+      "paused",
+      "pending_send",
+      "sent",
+      "submitted"
+    ]
+  },
+  "label": "ZRC-ND Phase A",
+  "non_evidence_boundary": "RFQ send logs and quote trackers only document execution logistics. They are not material evidence and cannot advance suitability gates without returned measured rows.",
+  "pending_rows": 4,
+  "profile": "zrc_phase_a",
+  "purpose": "Track real RFQ send confirmations and safely apply verified send dates to the quote tracker.",
+  "row_count": 4,
+  "send_confirmation_dir": "data/rfq_send_confirmation_files/zrc_phase_a",
+  "send_confirmation_readme": "data/rfq_send_confirmation_files/zrc_phase_a/README.md",
+  "send_log_csv": "data/zrc_nd_phase_a_rfq_send_log.csv",
+  "sent_rows": 0,
+  "status": "zrc_nd_phase_a_rfq_send_log_waiting_for_sent_entries",
+  "tracker_csv": "data/zrc_nd_phase_a_quote_tracker.csv",
+  "unknown_existing_rows": [],
+  "valid_sent_candidate_ids": [],
+  "valid_sent_rows": 0,
+  "valid_sent_summaries": [],
+  "warning_count": 0,
+  "warnings": []
+}

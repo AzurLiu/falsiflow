@@ -1,0 +1,23 @@
+{
+  "boundary": "This sheet is a fillable intake surface only. Values require real source files and downstream preflight before they can reach any evidence gate.",
+  "generated_artifacts": {
+    "json": "data/limina_smoke_entry_sheet.json",
+    "report": "reports/limina_smoke_entry_sheet.md",
+    "sheet": "data/limina_smoke_entry_sheet.csv"
+  },
+  "post_fill_command": "python3 scripts/apply_limina_smoke_entry_sheet.py",
+  "source_queue": {
+    "path": "data/limina_smoke_execution_queue.json",
+    "queue_row_count": 172,
+    "status": "smoke_execution_queue_ready"
+  },
+  "status": "smoke_entry_sheet_ready",
+  "summary": {
+    "blocked_value_rows": 0,
+    "entry_rows": 172,
+    "filled_source_file_rows": 172,
+    "filled_value_rows": 0,
+    "ready_to_apply_rows": 0,
+    "skipped_rows": 0
+  }
+}

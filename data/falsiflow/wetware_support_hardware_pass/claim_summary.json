@@ -1,0 +1,54 @@
+{
+  "blocker_count": 0,
+  "claim_id": "support_hardware_ready_for_wetware_screen",
+  "claim_ready": true,
+  "completion_pct": 100.0,
+  "derived_field_count": 2,
+  "evidence_error_count": 0,
+  "evidence_issue_count": 0,
+  "evidence_warning_count": 0,
+  "gate_count": 3,
+  "gates": [
+    {
+      "blocker_count": 0,
+      "completion_pct": 100.0,
+      "derived_field_count": 0,
+      "gate_id": "hardware_provenance",
+      "required_evidence_rows": 3,
+      "status": "passed",
+      "title": "Hardware material provenance",
+      "valid_required_evidence_rows": 3
+    },
+    {
+      "blocker_count": 0,
+      "completion_pct": 100.0,
+      "derived_field_count": 2,
+      "gate_id": "medium_contact_stability",
+      "required_evidence_rows": 6,
+      "status": "passed",
+      "title": "Medium-contact stability",
+      "valid_required_evidence_rows": 6
+    },
+    {
+      "blocker_count": 0,
+      "completion_pct": 100.0,
+      "derived_field_count": 0,
+      "gate_id": "operational_safety",
+      "required_evidence_rows": 4,
+      "status": "passed",
+      "title": "Operational safety",
+      "valid_required_evidence_rows": 4
+    }
+  ],
+  "next_action_count": 1,
+  "project_config_valid": true,
+  "project_id": "falsiflow_wetware_support_hardware_demo",
+  "project_validation_error_count": 0,
+  "project_validation_warning_count": 0,
+  "required_evidence_rows": 13,
+  "status": "claim_ready",
+  "status_counts": {
+    "passed": 3
+  },
+  "valid_required_evidence_rows": 13
+}

@@ -1,0 +1,7 @@
+check_id,stage,applies_to,requirement,fail_if,owner,status,notes
+LC-QC-001,pre_entry,all templates,Every run_id must exactly match the generated template run_id.,"run_id is edited, missing, duplicated incorrectly, or invented.",operator,pending_real_measurement,
+LC-QC-002,provenance,all measured fields,"Every measured value must include measured_at, operator_or_agent, instrument_id, and source_file.","any provenance field is blank, placeholder, synthetic, or not traceable to the row.",operator,pending_real_measurement,
+LC-QC-003,source_files,all measured fields,"source_file must point to raw export, image, worksheet, calibration log, or vendor report.","source_file is only an email, quote, verbal note, capability claim, or blank.",operator,pending_real_measurement,
+LC-QC-004,units,pH/conductivity/osmolality/temperature/swelling fields,Units must match the generated template or an accepted alias in the merge script.,unit is missing where required or inconsistent with the target field.,operator,pending_real_measurement,
+LC-QC-005,visual_scoring,"visible_precipitate,visible_shedding,delamination_score,optical_transparency_fraction",Use the same imaging/scoring method across all matched rows.,"lighting, magnification, scoring rubric, or threshold changes without deviation log.",operator,pending_real_measurement,
+LC-QC-006,claim_guard,all outputs,Do not treat local capture templates or partially filled rows as suitability evidence.,claim_ready is inferred before evaluator gates and claim audit pass on real rows.,agent,active_guard,

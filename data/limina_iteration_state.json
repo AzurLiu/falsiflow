@@ -1,0 +1,2588 @@
+{
+  "commands": [
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/import_evidence.py"
+      ],
+      "artifact": "reports/evidence_register.md",
+      "elapsed_seconds": 0.024,
+      "id": "import_evidence",
+      "purpose": "Refresh the evidence register and optional DuckDB index.",
+      "returncode": 0,
+      "stage": "evidence",
+      "stderr": "",
+      "stdout": "Imported 50 evidence records\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/evidence_records.jsonl\nSkipped DuckDB export because duckdb is not installed in this Python environment\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/evidence_register.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/validate_limina_data.py"
+      ],
+      "artifact": "reports/data_validation.md",
+      "elapsed_seconds": 0.024,
+      "id": "validate_data_refs",
+      "purpose": "Reject missing evidence references across candidates, protocols, and validation packages.",
+      "returncode": 0,
+      "stage": "evidence",
+      "stderr": "",
+      "stdout": "Validation passed for 50 evidence ids\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/data_validation.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/rank_limina_discovery_candidates.py"
+      ],
+      "artifact": "reports/limina_discovery_ranking.md",
+      "elapsed_seconds": 0.03,
+      "id": "rank_discovery_candidates",
+      "purpose": "Refresh the active material-technology ranking.",
+      "returncode": 0,
+      "stage": "candidate_selection",
+      "stderr": "",
+      "stdout": "Top discovery prospect: limina_alg_lam_pedot_lowdose_v0_2\nPriority: promote_now\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_discovery_ranking.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_discovery_ranking.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_nhi_pedot_protocol.py"
+      ],
+      "artifact": "reports/nhi_pedot_alg_lam_protocol.md",
+      "elapsed_seconds": 0.024,
+      "id": "render_alg_lam_protocol",
+      "purpose": "Refresh the recipe-specific ALG-LAM-PEDOT protocol handoff.",
+      "returncode": 0,
+      "stage": "candidate_handoff",
+      "stderr": "",
+      "stdout": "Rendered protocol: nhi_pedot_alg_lam_protocol_v0_2\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_alg_lam_protocol.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_limina_source_file_manifest.py"
+      ],
+      "artifact": "reports/limina_source_file_manifest.md",
+      "elapsed_seconds": 0.026,
+      "id": "render_source_file_manifest",
+      "purpose": "Refresh allowed source-file roots and policy before any source-backed import runs.",
+      "returncode": 0,
+      "stage": "source_file_guard",
+      "stderr": "",
+      "stdout": "Source-file manifest: source_file_manifest_ready\nAllowed roots: 12\nExpected source classes: 12\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_source_file_manifest.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_source_file_manifest.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_source_file_manifest.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_nhi_pedot_h_a_source_values_sheet.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_source_values_sheet.md",
+      "elapsed_seconds": 0.035,
+      "id": "render_h_a_source_values_sheet",
+      "purpose": "Render a fillable source-backed sidecar for formal H-A raw rows.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A source values sheet: h_a_source_values_sheet_ready\nRows: 228\nImport-ready rows: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_source_values.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_source_values_sheet.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_source_values_sheet.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_limina_source_value_drop_plan.py",
+        "--profile",
+        "h_a"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_source_drop_plan.md",
+      "elapsed_seconds": 0.092,
+      "id": "render_h_a_source_drop_plan",
+      "purpose": "Create allowed H-A source-file drop directories and a missing-file plan before import.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "Source drop plan: nhi_pedot_h_a_source_drop_plan_ready\nPlanned source files: 228\nCreated directories: 0\nExisting source files: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_source_drop_plan.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_source_drop_plan.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_source_drop_plan.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_nhi_pedot_h_a_source_unlock_pack.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_source_unlock_pack.md",
+      "elapsed_seconds": 0.047,
+      "id": "render_h_a_source_unlock_pack",
+      "purpose": "Group H-A source-value rows into consolidated raw-file handoff bundles.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A source unlock bundles: 96 for 228 source-value rows\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_source_unlock_pack.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_source_unlock_bundle_manifest.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_source_unlock_pack.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_nhi_pedot_h_a_bundle_entry_sheet.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_bundle_entry_sheet.md",
+      "elapsed_seconds": 0.03,
+      "id": "render_h_a_bundle_entry_sheet",
+      "purpose": "Render a consolidated one-row-per-bundle H-A entry sheet while preserving user-entered values.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A bundle entry sheet: h_a_bundle_entry_sheet_ready\nBundles: 96\nReady to apply: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_bundle_entry_sheet.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_bundle_entry_sheet.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_bundle_entry_sheet.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_nhi_pedot_h_a_vendor_bundle_entry_sheet.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_vendor_bundle_entry_sheet.md",
+      "elapsed_seconds": 0.036,
+      "id": "render_h_a_vendor_bundle_entry_sheet",
+      "purpose": "Render a vendor-return H-A bundle-entry sheet in the return inbox while preserving provider-entered values.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A vendor bundle entry sheet: h_a_vendor_bundle_entry_sheet_ready\nBundles: 96\nReady to apply: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_vendor_return_inbox/completed_bundle_entry_sheet.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_vendor_bundle_entry_sheet.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_vendor_bundle_entry_sheet.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/apply_nhi_pedot_h_a_bundle_entry_sheet.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_bundle_entry_apply.md",
+      "elapsed_seconds": 0.027,
+      "id": "apply_h_a_bundle_entry_sheet",
+      "purpose": "Apply validated H-A bundle-entry rows into the source-values sheet without creating evidence.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A bundle entry apply: h_a_bundle_entry_apply_no_apply_rows\nApplied bundles: 0\nApplied source-value rows: 0\nErrors: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_bundle_entry_apply.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_bundle_entry_apply.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/apply_nhi_pedot_h_a_vendor_bundle_entry_return.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_vendor_bundle_entry_apply.md",
+      "elapsed_seconds": 0.026,
+      "id": "apply_h_a_vendor_bundle_entry_return",
+      "purpose": "Apply a returned compact H-A bundle-entry sheet from the vendor inbox when present.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A vendor bundle entry return apply: h_a_vendor_bundle_entry_return_no_apply_rows\nApplied bundles: 0\nApplied source-value rows: 0\nErrors: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_vendor_bundle_entry_apply.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_vendor_bundle_entry_apply.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_limina_source_file_template_pack.py",
+        "--profile",
+        "h_a"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_source_file_template_pack.md",
+      "elapsed_seconds": 0.029,
+      "id": "render_h_a_source_file_template_pack",
+      "purpose": "Render source-class raw-file templates for H-A source files without creating evidence.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "Source file template pack: nhi_pedot_h_a_source_file_template_pack_ready\nSource-class templates: 8\nTarget source files: 228\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_source_file_template_pack.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_source_file_template_manifest.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_source_file_template_pack.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/extract_nhi_pedot_h_a_raw_csv_values.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_raw_csv_value_extraction.md",
+      "elapsed_seconds": 0.029,
+      "id": "extract_h_a_raw_csv_values",
+      "purpose": "Extract source-backed H-A values from existing raw CSV/TSV source files into an importer sidecar.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A raw CSV value extraction: h_a_raw_csv_value_extraction_no_raw_csv\nRaw CSV/TSV files found: 0\nExtracted rows: 0\nErrors: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_raw_csv_extracted_values.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_raw_csv_value_extraction.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_raw_csv_value_extraction.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/import_nhi_pedot_h_a_source_values.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_source_value_import.md",
+      "elapsed_seconds": 0.028,
+      "id": "import_h_a_source_values",
+      "purpose": "Import valid source-file-backed H-A sidecar rows into the formal raw template before merge.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A source value import: h_a_source_value_import_no_importable_rows\nSource value files: 2\nImported rows: 0\nErrors: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_source_value_import.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_source_value_import.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/merge_nhi_pedot_h_a_raw_measurements.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_measurement_merge.md",
+      "elapsed_seconds": 0.028,
+      "id": "merge_h_a_raw_measurements",
+      "purpose": "Merge any filled long-form H-A raw measurements into the active run table.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "Merged H-A raw measurements: applied=0 unresolved=0 unknown_run_ids=0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_raw_measurements_template.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_runs_active.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_measurement_merge.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_measurement_merge.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_nhi_pedot_h_a_bench_sheet.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_bench_sheet.md",
+      "elapsed_seconds": 0.026,
+      "id": "render_h_a_bench_sheet",
+      "purpose": "Refresh the compact H-A bench sheet from the active run table and raw template.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "Rendered H-A bench sheet: tasks=12 blank_raw_entries=228\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_bench_sheet.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_bench_sheet.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_bench_sheet.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/qc_nhi_pedot_h_a_intake.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_intake_qc.md",
+      "elapsed_seconds": 0.029,
+      "id": "qc_h_a_intake",
+      "purpose": "Check whether H-A rows have real, claimable measured provenance.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A intake QC: h_a_intake_not_ready\nErrors: 183\nWarnings: 24\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_intake_qc.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_intake_qc.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_nhi_pedot_h_a_minimum_measurement_checklist.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_minimum_measurement_checklist.md",
+      "elapsed_seconds": 0.024,
+      "id": "render_h_a_minimum_checklist",
+      "purpose": "Compress the H-A work into a minimum real-measurement checklist.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "Rendered H-A minimum measurement checklist: runs=12\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_minimum_measurement_checklist.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_minimum_measurement_checklist.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_nhi_pedot_h_a_service_request.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_service_request.md",
+      "elapsed_seconds": 0.024,
+      "id": "render_h_a_service_request",
+      "purpose": "Render a vendor/cooperator service request for real H-A measurements.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "Rendered H-A service request: runs=12 raw_entries=228\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_service_request.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_service_request.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_nhi_pedot_h_a_chain_of_custody.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_chain_of_custody.md",
+      "elapsed_seconds": 0.026,
+      "id": "render_h_a_chain_of_custody",
+      "purpose": "Render sample labels and chain-of-custody blanks for real H-A sample transfer.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A chain of custody: ready_for_sample_handoff\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_sample_labels.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_chain_of_custody.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_chain_of_custody.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_chain_of_custody.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_nhi_pedot_h_a_sample_submission_pack.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_sample_submission_pack.md",
+      "elapsed_seconds": 0.025,
+      "id": "render_h_a_sample_submission_pack",
+      "purpose": "Render material disclosure and pre-shipment questions for vendor sample submission.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A sample submission pack: sample_submission_precheck_ready\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_material_disclosure.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_sample_submission_pack.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_sample_submission_pack.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_nhi_pedot_h_a_split_scope_plan.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_split_scope_plan.md",
+      "elapsed_seconds": 0.025,
+      "id": "render_h_a_split_scope_plan",
+      "purpose": "Render fallback vendor pairings for split media chemistry and coupon physical/imaging execution.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A split-scope plan: split_scope_plan_ready\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_split_scope_plan.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_split_scope_plan.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_split_scope_plan.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_nhi_pedot_h_a_delivery_package.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_delivery_package_manifest.md",
+      "elapsed_seconds": 0.026,
+      "id": "render_h_a_delivery_package",
+      "purpose": "Render a sendable H-A package manifest with checksums and return-file expectations.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A delivery package: ready_to_send\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_delivery_package_manifest.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_delivery_package_manifest.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_nhi_pedot_h_a_vendor_outreach.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_vendor_outreach_brief.md",
+      "elapsed_seconds": 0.024,
+      "id": "render_h_a_vendor_outreach",
+      "purpose": "Render a vendor/cooperator screening brief for real H-A measurement execution.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A vendor outreach: ready_for_vendor_screening\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_vendor_outreach.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_vendor_outreach_brief.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_nhi_pedot_h_a_rfq_packet.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_rfq_packet.md",
+      "elapsed_seconds": 0.024,
+      "id": "render_h_a_rfq_packet",
+      "purpose": "Render per-vendor RFQ text, attachment list, disqualifiers, and quote scoring rubric.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A RFQ packet: ready_to_send_rfq\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_packet.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_rfq_packet.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_nhi_pedot_h_a_rfq_outbox.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_rfq_outbox.md",
+      "elapsed_seconds": 0.043,
+      "id": "render_h_a_rfq_outbox",
+      "purpose": "Render vendor-specific RFQ email files and zip bundles for the H-A measurement request.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A RFQ outbox: ready_to_send_outbox\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_outbox_manifest.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_rfq_outbox.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_nhi_pedot_h_a_quote_tracker.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_quote_tracker.md",
+      "elapsed_seconds": 0.025,
+      "id": "render_h_a_quote_tracker",
+      "purpose": "Render a blank tracker for vendor quote replies and selection decisions.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A quote tracker: pending_outreach\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_quote_tracker.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_quote_tracker.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_quote_tracker.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/intake_limina_rfq_send_confirmations.py",
+        "--profile",
+        "h_a"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_rfq_send_confirmation_intake.md",
+      "elapsed_seconds": 0.043,
+      "id": "intake_h_a_rfq_send_confirmations",
+      "purpose": "Scan original H-A RFQ send confirmations and auto-fill send-log rows only when a sent EML proves the expected bundle attachment.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "NHI-PEDOT H-A RFQ send confirmation intake: nhi_pedot_h_a_rfq_send_confirmation_intake_waiting_for_confirmation_files\nFiles scanned: 0\nApplied rows: 0\nNeeds review: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_send_confirmation_intake.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_send_confirmation_intake.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_rfq_send_confirmation_intake.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_nhi_pedot_h_a_rfq_send_confirmation_entry_sheet.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_rfq_send_confirmation_entry_sheet.md",
+      "elapsed_seconds": 0.028,
+      "id": "render_h_a_rfq_send_confirmation_entry_sheet",
+      "purpose": "Render a guarded entry sheet for non-EML H-A RFQ send confirmations such as web-form confirmations, PDFs, screenshots, or saved pages.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A RFQ send confirmation entry sheet: h_a_rfq_send_confirmation_entry_sheet_waiting_for_confirmation_files\nReady to apply: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_send_confirmation_entry_sheet.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_send_confirmation_entry_sheet.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_rfq_send_confirmation_entry_sheet.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/apply_nhi_pedot_h_a_rfq_send_confirmation_entry_sheet.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_rfq_send_confirmation_entry_apply.md",
+      "elapsed_seconds": 0.029,
+      "id": "apply_h_a_rfq_send_confirmation_entry_sheet",
+      "purpose": "Apply human-reviewed non-EML H-A RFQ send confirmations into the send log without treating outreach as evidence.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A RFQ send confirmation entry apply: h_a_rfq_send_confirmation_entry_apply_no_apply_rows\nApplied: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_send_confirmation_entry_apply.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_rfq_send_confirmation_entry_apply.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/apply_limina_rfq_send_log.py",
+        "--profile",
+        "h_a"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_rfq_send_log.md",
+      "elapsed_seconds": 0.034,
+      "id": "apply_h_a_rfq_send_log",
+      "purpose": "Render/apply verified H-A RFQ send confirmations into the quote tracker without treating outreach as evidence.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "NHI-PEDOT H-A RFQ send log: nhi_pedot_h_a_rfq_send_log_waiting_for_sent_entries\nRows: 4\nSent rows: 0\nApplied tracker contact dates: 0\nErrors: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_send_log.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_send_log.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_rfq_send_log.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/intake_limina_rfq_replies.py",
+        "--profile",
+        "h_a"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_rfq_reply_intake.md",
+      "elapsed_seconds": 0.042,
+      "id": "intake_h_a_rfq_replies",
+      "purpose": "Scan original H-A RFQ reply EML files and register verified-send replies for human review without scoring them.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "NHI-PEDOT H-A RFQ reply intake: nhi_pedot_h_a_rfq_reply_intake_waiting_for_reply_files\nFiles scanned: 0\nApplied rows: 0\nNeeds manual review: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_reply_intake.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_reply_intake.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_rfq_reply_intake.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/apply_limina_rfq_reply_log.py",
+        "--profile",
+        "h_a"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_rfq_reply_log.md",
+      "elapsed_seconds": 0.034,
+      "id": "apply_h_a_rfq_reply_log",
+      "purpose": "Render/apply source-backed H-A RFQ replies into the quote tracker without treating replies as measurement evidence.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "NHI-PEDOT H-A RFQ reply log: nhi_pedot_h_a_rfq_reply_log_waiting_for_reply_files\nRows: 4\nReceived rows: 0\nApplied tracker field updates: 0\nErrors: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_reply_log.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_reply_log.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_rfq_reply_log.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_nhi_pedot_h_a_vendor_contact_plan.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_vendor_contact_plan.md",
+      "elapsed_seconds": 0.025,
+      "id": "render_h_a_vendor_contact_plan",
+      "purpose": "Render official contact channels for sending RFQ outbox bundles and tracking replies.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A vendor contact plan: contact_plan_ready\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_vendor_contact_plan.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_vendor_contact_plan.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_vendor_contact_plan.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/audit_nhi_pedot_h_a_vendor_contact_sources.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_vendor_contact_source_audit.md",
+      "elapsed_seconds": 0.029,
+      "id": "audit_h_a_vendor_contact_sources",
+      "purpose": "Audit first-wave H-A RFQ contact channels against official-source proof rows before manual dispatch.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A vendor contact source audit: h_a_vendor_contact_source_audit_ready\nPass: 4 / 4\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_vendor_contact_source_audit.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_vendor_contact_source_audit.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_vendor_contact_source_audit.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_nhi_pedot_h_a_rfq_eml_drafts.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_rfq_eml_drafts.md",
+      "elapsed_seconds": 0.046,
+      "id": "render_h_a_rfq_eml_drafts",
+      "purpose": "Render attached EML drafts for first-wave H-A RFQ sends without sending them.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A RFQ EML drafts: h_a_rfq_eml_drafts_ready\nReady to open: 4\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_eml_drafts.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_eml_drafts.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_rfq_eml_drafts.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/audit_nhi_pedot_h_a_rfq_eml_integrity.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_rfq_eml_integrity_audit.md",
+      "elapsed_seconds": 0.042,
+      "id": "audit_h_a_rfq_eml_integrity",
+      "purpose": "Parse every H-A RFQ EML draft and verify recipient, boundary headers, bundle hash, and attached zip hash before manual sending.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A RFQ EML integrity audit: h_a_rfq_eml_integrity_ready\nPass: 4 / 4\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_eml_integrity_audit.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_eml_integrity_audit.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_rfq_eml_integrity_audit.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_nhi_pedot_h_a_rfq_send_action_pack.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_rfq_send_action_pack.md",
+      "elapsed_seconds": 0.026,
+      "id": "render_h_a_rfq_send_action_pack",
+      "purpose": "Render an actionable first-wave RFQ send queue with confirmation-file instructions.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A RFQ send action pack: h_a_rfq_send_action_pack_ready\nReady to send: 4\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_send_action_queue.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_send_action_pack.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_rfq_send_action_pack.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_nhi_pedot_h_a_rfq_dispatch_manifest.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_rfq_dispatch_manifest.md",
+      "elapsed_seconds": 0.028,
+      "id": "render_h_a_rfq_dispatch_manifest",
+      "purpose": "Bind each first-wave H-A RFQ draft to the exact audited bundle, recipient, and confirmation-save path before manual dispatch.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A RFQ dispatch manifest: h_a_rfq_dispatch_manifest_ready\nReady for manual dispatch: 4 / 4\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_dispatch_manifest.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_dispatch_manifest.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_rfq_dispatch_manifest.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_nhi_pedot_h_a_rfq_reply_action_pack.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_rfq_reply_action_pack.md",
+      "elapsed_seconds": 0.026,
+      "id": "render_h_a_rfq_reply_action_pack",
+      "purpose": "Render an actionable source-backed RFQ reply intake queue for provider selection.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A RFQ reply action pack: h_a_rfq_reply_action_pack_waiting_for_send\nAction rows: 4\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_reply_action_queue.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_reply_action_pack.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_rfq_reply_action_pack.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_nhi_pedot_h_a_rfq_send_cockpit.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_rfq_send_cockpit.md",
+      "elapsed_seconds": 0.029,
+      "id": "render_h_a_rfq_send_cockpit",
+      "purpose": "Render a single local cockpit for opening H-A RFQ drafts and preserving real send/reply source files.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A RFQ send cockpit: h_a_rfq_send_cockpit_ready_for_manual_send\nReady to use: 4 / 4\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_send_cockpit.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_rfq_send_cockpit.md\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_rfq_send_cockpit.html"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_nhi_pedot_h_a_rfq_dispatch_archive.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_rfq_dispatch_archive_manifest.md",
+      "elapsed_seconds": 0.04,
+      "id": "render_h_a_rfq_dispatch_archive",
+      "purpose": "Render a single audited archive containing H-A RFQ drafts, bundles, manifests, contact audits, cockpit, and confirmation templates for manual dispatch.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A RFQ dispatch archive: h_a_rfq_dispatch_archive_ready\nIncluded files: 22\nArchive SHA-256: b739036ff6d618bec4b57e1c028676338ef58599a11fb7a6822a6df9b725368b\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_dispatch_archive/nhi_pedot_h_a_rfq_dispatch_archive.zip\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_dispatch_archive_manifest.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_dispatch_archive_manifest.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_rfq_dispatch_archive_manifest.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/evaluate_nhi_pedot_h_a_quote_replies.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_quote_selection.md",
+      "elapsed_seconds": 0.025,
+      "id": "evaluate_h_a_quote_replies",
+      "purpose": "Score any RFQ replies for H-A execution selection without treating quotes as evidence.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A quote selection: pending_outreach\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_quote_selection.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_quote_selection.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/apply_limina_execution_authorization_log.py",
+        "--profile",
+        "h_a"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_execution_authorization_log.md",
+      "elapsed_seconds": 0.034,
+      "id": "apply_h_a_execution_authorization_log",
+      "purpose": "Render/validate human H-A execution authorization records without treating authorization as evidence.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "NHI-PEDOT H-A execution authorization log: nhi_pedot_h_a_execution_authorization_waiting_for_selected_provider\nRows: 0\nValid authorizations: 0\nErrors: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_execution_authorization_log.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_execution_authorization_log.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_execution_authorization_log.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/audit_limina_execution_release.py",
+        "--profile",
+        "h_a"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_execution_release_audit.md",
+      "elapsed_seconds": 0.033,
+      "id": "audit_h_a_execution_release",
+      "purpose": "Block H-A sample or outsourced execution release until a source-backed selected provider is verified.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "NHI-PEDOT H-A execution release audit: nhi_pedot_h_a_execution_release_blocked_no_source_backed_provider_selection\nReady for authorization: false\nReleased for execution: false\nBlockers: 1\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_execution_release_audit.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_execution_release_audit.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_nhi_pedot_h_a_vendor_return_intake.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_vendor_return_intake.md",
+      "elapsed_seconds": 0.028,
+      "id": "render_h_a_vendor_return_intake",
+      "purpose": "Check the vendor-return inbox for real H-A measurement files ready for merge/QC.",
+      "returncode": 0,
+      "stage": "h_a_intake",
+      "stderr": "",
+      "stdout": "H-A vendor return intake: awaiting_vendor_return_files\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_vendor_return_checklist.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_vendor_return_intake.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_vendor_return_intake.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/interpret_nhi_pedot_h_a_sentinel.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_sentinel_interpretation.md",
+      "elapsed_seconds": 0.026,
+      "id": "interpret_h_a_sentinel",
+      "purpose": "Interpret H-A only if provenance is acceptable; otherwise keep the blocker explicit.",
+      "returncode": 0,
+      "stage": "h_a_gate",
+      "stderr": "",
+      "stdout": "NHI-PEDOT H-A sentinel: h_a_invalid_provenance\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_sentinel_interpretation.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_sentinel_interpretation.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/suggest_nhi_pedot_next_measurements.py"
+      ],
+      "artifact": "reports/nhi_pedot_next_measurements.md",
+      "elapsed_seconds": 0.025,
+      "id": "refresh_next_measurements",
+      "purpose": "Refresh the next H-A measurement selector.",
+      "returncode": 0,
+      "stage": "h_a_next_actions",
+      "stderr": "",
+      "stdout": "Recommendation: needs_h_a_sentinel\nRecommended rows: 12\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_next_measurements.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_next_measurements.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_next_measurements.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/generate_nhi_pedot_sentinel_packet.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_sentinel_packet.md",
+      "elapsed_seconds": 0.025,
+      "id": "refresh_h_a_packet",
+      "purpose": "Regenerate the H-A sentinel packet for real measurement entry.",
+      "returncode": 0,
+      "stage": "h_a_next_actions",
+      "stderr": "",
+      "stdout": "Generated 12 NHI-PEDOT H-A sentinel template rows\nGenerated 36 sample manifest rows\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_sentinel_template.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_sentinel_sample_manifest.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_sentinel_packet.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/design_nhi_pedot_variant_ladder.py"
+      ],
+      "artifact": "reports/nhi_pedot_variant_ladder.md",
+      "elapsed_seconds": 0.024,
+      "id": "design_variant_ladder",
+      "purpose": "Refresh the predeclared rescue and comparator ladder.",
+      "returncode": 0,
+      "stage": "adaptive_design",
+      "stderr": "",
+      "stdout": "Designed 7 NHI-PEDOT variant ladder rows\nTop variant: alg_lam_pedot_0p6pct_lead\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_variant_ladder.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_variant_ladder.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_variant_ladder.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/generate_nhi_pedot_forward_gate_package.py"
+      ],
+      "artifact": "reports/nhi_pedot_forward_gate_package.md",
+      "elapsed_seconds": 0.026,
+      "id": "generate_forward_gate_package",
+      "purpose": "Pre-register H-B/H-C gate rows and decision triggers after H-A.",
+      "returncode": 0,
+      "stage": "forward_evidence",
+      "stderr": "",
+      "stdout": "NHI-PEDOT forward gate package: preregistered_waiting_for_h_a\nRows: 28\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_forward_gate_package.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_forward_gate_rows.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_forward_gate_package.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_limina_wide_source_values_sheet.py",
+        "--profile",
+        "nhi_forward"
+      ],
+      "artifact": "reports/nhi_pedot_forward_source_values_sheet.md",
+      "elapsed_seconds": 0.046,
+      "id": "render_nhi_forward_source_values_sheet",
+      "purpose": "Render a source-file-backed sidecar for NHI-PEDOT H-B/H-C wide run rows.",
+      "returncode": 0,
+      "stage": "forward_evidence",
+      "stderr": "",
+      "stdout": "NHI-PEDOT H-B/H-C source values sheet: nhi_pedot_forward_source_values_sheet_ready\nRows: 592\nImport-ready rows: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_forward_source_values.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_forward_source_values_sheet.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_forward_source_values_sheet.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_limina_source_value_drop_plan.py",
+        "--profile",
+        "nhi_forward"
+      ],
+      "artifact": "reports/nhi_pedot_forward_source_drop_plan.md",
+      "elapsed_seconds": 0.142,
+      "id": "render_nhi_forward_source_drop_plan",
+      "purpose": "Create allowed H-B/H-C source-file drop directories and a missing-file plan before import.",
+      "returncode": 0,
+      "stage": "forward_evidence",
+      "stderr": "",
+      "stdout": "Source drop plan: nhi_pedot_forward_source_drop_plan_ready\nPlanned source files: 592\nCreated directories: 0\nExisting source files: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_forward_source_drop_plan.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_forward_source_drop_plan.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_forward_source_drop_plan.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_limina_source_file_template_pack.py",
+        "--profile",
+        "nhi_forward"
+      ],
+      "artifact": "reports/nhi_pedot_forward_source_file_template_pack.md",
+      "elapsed_seconds": 0.033,
+      "id": "render_nhi_forward_source_file_template_pack",
+      "purpose": "Render source-class raw-file templates for H-B/H-C source files without creating evidence.",
+      "returncode": 0,
+      "stage": "forward_evidence",
+      "stderr": "",
+      "stdout": "Source file template pack: nhi_pedot_forward_source_file_template_pack_ready\nSource-class templates: 6\nTarget source files: 592\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_forward_source_file_template_pack.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_forward_source_file_template_manifest.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_forward_source_file_template_pack.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/extract_limina_wide_raw_csv_values.py",
+        "--profile",
+        "nhi_forward"
+      ],
+      "artifact": "reports/nhi_pedot_forward_raw_csv_value_extraction.md",
+      "elapsed_seconds": 0.032,
+      "id": "extract_nhi_forward_raw_csv_values",
+      "purpose": "Extract NHI-PEDOT H-B/H-C source values from existing raw CSV/TSV files in allowed source-file roots.",
+      "returncode": 0,
+      "stage": "forward_evidence",
+      "stderr": "",
+      "stdout": "NHI-PEDOT H-B/H-C raw CSV value extraction: nhi_pedot_forward_raw_csv_value_extraction_no_raw_csv\nRaw CSV/TSV files found: 0\nExtracted rows: 0\nErrors: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_forward_raw_csv_extracted_values.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_forward_raw_csv_value_extraction.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_forward_raw_csv_value_extraction.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/import_limina_wide_source_values.py",
+        "--profile",
+        "nhi_forward"
+      ],
+      "artifact": "reports/nhi_pedot_forward_source_values_import.md",
+      "elapsed_seconds": 0.031,
+      "id": "import_nhi_forward_source_values",
+      "purpose": "Import valid source-file-backed H-B/H-C values into the NHI-PEDOT evaluator table.",
+      "returncode": 0,
+      "stage": "forward_evidence",
+      "stderr": "",
+      "stdout": "NHI-PEDOT H-B/H-C source value import: nhi_pedot_forward_source_value_import_no_importable_rows\nSource value files: 2\nImported rows: 0\nErrors: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_forward_source_values_import.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_forward_source_values_import.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/evaluate_nhi_pedot_runs.py"
+      ],
+      "artifact": "reports/nhi_pedot_results.md",
+      "elapsed_seconds": 0.025,
+      "id": "evaluate_nhi_coupon_runs",
+      "purpose": "Refresh NHI-PEDOT coupon gate results from the current evaluator table.",
+      "returncode": 0,
+      "stage": "forward_evidence",
+      "stderr": "",
+      "stdout": "NHI-PEDOT: no_data\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_results.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_results.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_limina_wide_source_values_sheet.py",
+        "--profile",
+        "nhi_long"
+      ],
+      "artifact": "reports/nhi_pedot_long_source_values_sheet.md",
+      "elapsed_seconds": 0.207,
+      "id": "render_nhi_long_source_values_sheet",
+      "purpose": "Render a source-file-backed sidecar for NHI-PEDOT long-duration wide run rows.",
+      "returncode": 0,
+      "stage": "long_duration_evidence",
+      "stderr": "",
+      "stdout": "NHI-PEDOT long-duration source values sheet: nhi_pedot_long_source_values_sheet_ready\nRows: 4836\nImport-ready rows: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_long_source_values.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_long_source_values_sheet.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_long_source_values_sheet.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_limina_source_value_drop_plan.py",
+        "--profile",
+        "nhi_long"
+      ],
+      "artifact": "reports/nhi_pedot_long_source_drop_plan.md",
+      "elapsed_seconds": 1.214,
+      "id": "render_nhi_long_source_drop_plan",
+      "purpose": "Create allowed long-duration source-file drop directories and a missing-file plan before import.",
+      "returncode": 0,
+      "stage": "long_duration_evidence",
+      "stderr": "",
+      "stdout": "Source drop plan: nhi_pedot_long_source_drop_plan_ready\nPlanned source files: 4836\nCreated directories: 0\nExisting source files: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_long_source_drop_plan.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_long_source_drop_plan.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_long_source_drop_plan.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_limina_source_file_template_pack.py",
+        "--profile",
+        "nhi_long"
+      ],
+      "artifact": "reports/nhi_pedot_long_source_file_template_pack.md",
+      "elapsed_seconds": 0.09,
+      "id": "render_nhi_long_source_file_template_pack",
+      "purpose": "Render source-class raw-file templates for long-duration source files without creating evidence.",
+      "returncode": 0,
+      "stage": "long_duration_evidence",
+      "stderr": "",
+      "stdout": "Source file template pack: nhi_pedot_long_source_file_template_pack_ready\nSource-class templates: 5\nTarget source files: 4836\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_long_source_file_template_pack.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_long_source_file_template_manifest.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_long_source_file_template_pack.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/extract_limina_wide_raw_csv_values.py",
+        "--profile",
+        "nhi_long"
+      ],
+      "artifact": "reports/nhi_pedot_long_raw_csv_value_extraction.md",
+      "elapsed_seconds": 0.078,
+      "id": "extract_nhi_long_raw_csv_values",
+      "purpose": "Extract NHI-PEDOT long-duration source values from existing raw CSV/TSV files in allowed source-file roots.",
+      "returncode": 0,
+      "stage": "long_duration_evidence",
+      "stderr": "",
+      "stdout": "NHI-PEDOT long-duration raw CSV value extraction: nhi_pedot_long_raw_csv_value_extraction_no_raw_csv\nRaw CSV/TSV files found: 0\nExtracted rows: 0\nErrors: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_long_raw_csv_extracted_values.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_long_raw_csv_value_extraction.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_long_raw_csv_value_extraction.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/import_limina_wide_source_values.py",
+        "--profile",
+        "nhi_long"
+      ],
+      "artifact": "reports/nhi_pedot_long_source_values_import.md",
+      "elapsed_seconds": 0.052,
+      "id": "import_nhi_long_source_values",
+      "purpose": "Import valid source-file-backed long-duration values into the NHI-PEDOT long evaluator table.",
+      "returncode": 0,
+      "stage": "long_duration_evidence",
+      "stderr": "",
+      "stdout": "NHI-PEDOT long-duration source value import: nhi_pedot_long_source_value_import_no_importable_rows\nSource value files: 2\nImported rows: 0\nErrors: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_long_source_values_import.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_long_source_values_import.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/evaluate_nhi_pedot_long_runs.py"
+      ],
+      "artifact": "reports/nhi_pedot_long_results.md",
+      "elapsed_seconds": 0.028,
+      "id": "evaluate_nhi_long_runs",
+      "purpose": "Refresh NHI-PEDOT long-duration gate results from the current evaluator table.",
+      "returncode": 0,
+      "stage": "long_duration_evidence",
+      "stderr": "",
+      "stdout": "NHI-PEDOT long: no_data\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_long_results.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_long_results.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/interpret_zrc_nd_sentinel.py"
+      ],
+      "artifact": "reports/zrc_nd_sentinel_interpretation.md",
+      "elapsed_seconds": 0.025,
+      "id": "interpret_zrc_phase_a_sentinel",
+      "purpose": "Refresh the ZRC-ND Phase A sentinel interpretation without treating blank rows as evidence.",
+      "returncode": 0,
+      "stage": "zrc_phase_a",
+      "stderr": "",
+      "stdout": "Sentinel: no_sentinel_rows\nNext action: Generate and fill the Phase A sentinel packet.\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_sentinel_interpretation.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_sentinel_interpretation.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/suggest_zrc_nd_next_measurements.py"
+      ],
+      "artifact": "reports/zrc_nd_next_measurements.md",
+      "elapsed_seconds": 0.027,
+      "id": "suggest_zrc_next_measurements",
+      "purpose": "Refresh the adaptive ZRC-ND external-material next measurement selector.",
+      "returncode": 0,
+      "stage": "zrc_phase_a",
+      "stderr": "",
+      "stdout": "Recommendation: needs_phase_a_sentinel\nRecommended rows: 8\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_next_measurements.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_next_measurements.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_next_measurements.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/generate_zrc_nd_sentinel_packet.py"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_sentinel_packet.md",
+      "elapsed_seconds": 0.025,
+      "id": "generate_zrc_phase_a_packet",
+      "purpose": "Regenerate the 8-row ZRC-ND Phase A sentinel data-entry packet.",
+      "returncode": 0,
+      "stage": "zrc_phase_a",
+      "stderr": "",
+      "stdout": "Generated 8 Phase A sentinel template rows\nGenerated 16 sample manifest rows\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_sentinel_template.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_sentinel_sample_manifest.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_sentinel_packet.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_limina_wide_source_values_sheet.py",
+        "--profile",
+        "zrc_phase_a"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_source_values_sheet.md",
+      "elapsed_seconds": 0.036,
+      "id": "render_zrc_phase_a_source_values_sheet",
+      "purpose": "Render a source-file-backed sidecar for ZRC-ND Phase A wide measurement rows.",
+      "returncode": 0,
+      "stage": "zrc_phase_a",
+      "stderr": "",
+      "stdout": "ZRC-ND Phase A source values sheet: zrc_nd_phase_a_source_values_sheet_ready\nRows: 304\nImport-ready rows: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_source_values.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_source_values_sheet.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_source_values_sheet.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_limina_source_value_drop_plan.py",
+        "--profile",
+        "zrc_phase_a"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_source_drop_plan.md",
+      "elapsed_seconds": 0.07,
+      "id": "render_zrc_phase_a_source_drop_plan",
+      "purpose": "Create allowed ZRC-ND Phase A source-file drop directories and a missing-file plan before import.",
+      "returncode": 0,
+      "stage": "zrc_phase_a",
+      "stderr": "",
+      "stdout": "Source drop plan: zrc_nd_phase_a_source_drop_plan_ready\nPlanned source files: 304\nCreated directories: 0\nExisting source files: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_source_drop_plan.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_source_drop_plan.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_source_drop_plan.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_limina_source_file_template_pack.py",
+        "--profile",
+        "zrc_phase_a"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_source_file_template_pack.md",
+      "elapsed_seconds": 0.03,
+      "id": "render_zrc_phase_a_source_file_template_pack",
+      "purpose": "Render source-class raw-file templates for ZRC-ND Phase A source files without creating evidence.",
+      "returncode": 0,
+      "stage": "zrc_phase_a",
+      "stderr": "",
+      "stdout": "Source file template pack: zrc_nd_phase_a_source_file_template_pack_ready\nSource-class templates: 8\nTarget source files: 304\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_source_file_template_pack.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_source_file_template_manifest.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_source_file_template_pack.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_zrc_nd_phase_a_vendor_bundle_entry_sheet.py"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_vendor_bundle_entry_sheet.md",
+      "elapsed_seconds": 0.032,
+      "id": "render_zrc_phase_a_vendor_bundle_entry_sheet",
+      "purpose": "Render a compact one-row-per-run/source-class ZRC-ND Phase A vendor return sheet while preserving user-entered values.",
+      "returncode": 0,
+      "stage": "zrc_phase_a",
+      "stderr": "",
+      "stdout": "ZRC-ND Phase A vendor bundle entry sheet: zrc_phase_a_vendor_bundle_entry_sheet_ready\nBundles: 64\nReady to apply: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_vendor_return_inbox/completed_bundle_entry_sheet.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_vendor_bundle_entry_sheet.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_vendor_bundle_entry_sheet.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/apply_zrc_nd_phase_a_vendor_bundle_entry_sheet.py"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_vendor_bundle_entry_apply.md",
+      "elapsed_seconds": 0.028,
+      "id": "apply_zrc_phase_a_vendor_bundle_entry_sheet",
+      "purpose": "Apply reviewed ZRC-ND Phase A vendor bundle-entry rows into the source-values sheet without creating evidence.",
+      "returncode": 0,
+      "stage": "zrc_phase_a",
+      "stderr": "",
+      "stdout": "ZRC-ND Phase A vendor bundle entry apply: zrc_phase_a_vendor_bundle_entry_apply_no_apply_rows\nApplied bundles: 0\nApplied source-value rows: 0\nErrors: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_vendor_bundle_entry_apply.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_vendor_bundle_entry_apply.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/extract_limina_wide_raw_csv_values.py",
+        "--profile",
+        "zrc_phase_a"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_raw_csv_value_extraction.md",
+      "elapsed_seconds": 0.029,
+      "id": "extract_zrc_phase_a_raw_csv_values",
+      "purpose": "Extract ZRC-ND Phase A source values from existing raw CSV/TSV files in allowed source-file roots.",
+      "returncode": 0,
+      "stage": "zrc_phase_a",
+      "stderr": "",
+      "stdout": "ZRC-ND Phase A raw CSV value extraction: zrc_nd_phase_a_raw_csv_value_extraction_no_raw_csv\nRaw CSV/TSV files found: 0\nExtracted rows: 0\nErrors: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_raw_csv_extracted_values.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_raw_csv_value_extraction.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_raw_csv_value_extraction.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/import_limina_wide_source_values.py",
+        "--profile",
+        "zrc_phase_a"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_source_values_import.md",
+      "elapsed_seconds": 0.029,
+      "id": "import_zrc_phase_a_source_values",
+      "purpose": "Import valid source-file-backed ZRC-ND Phase A values into the vendor-return measurement CSV.",
+      "returncode": 0,
+      "stage": "zrc_phase_a",
+      "stderr": "",
+      "stdout": "ZRC-ND Phase A source value import: zrc_nd_phase_a_source_value_import_no_importable_rows\nSource value files: 2\nImported rows: 0\nErrors: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_source_values_import.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_source_values_import.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_zrc_nd_phase_a_service_request.py"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_service_request.md",
+      "elapsed_seconds": 0.025,
+      "id": "render_zrc_phase_a_service_request",
+      "purpose": "Render a service request for real ZRC-ND Phase A medium-integrity measurements.",
+      "returncode": 0,
+      "stage": "zrc_phase_a",
+      "stderr": "",
+      "stdout": "ZRC-ND Phase A service request: ready_to_request_real_phase_a_measurements\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_service_request.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_service_request.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_limina_hybrid_measurement_plan.py"
+      ],
+      "artifact": "reports/limina_hybrid_measurement_plan.md",
+      "elapsed_seconds": 0.026,
+      "id": "render_hybrid_measurement_plan",
+      "purpose": "Split H-A and ZRC-ND Phase A fields into local, outsourced, and provenance-only measurement routes.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "Hybrid measurement plan: hybrid_measurement_plan_ready\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_hybrid_measurement_plan.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_hybrid_measurement_plan.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_hybrid_measurement_plan.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_limina_local_capture_pack.py"
+      ],
+      "artifact": "reports/limina_local_capture_pack.md",
+      "elapsed_seconds": 0.035,
+      "id": "render_local_capture_pack",
+      "purpose": "Render fillable local/outsource capture templates, instrument register, and QC checklist.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "Local capture pack: local_capture_pack_ready\nTasks: 350\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_local_capture_pack.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_local_capture_pack.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/audit_limina_source_file_inventory.py"
+      ],
+      "artifact": "reports/limina_source_file_inventory.md",
+      "elapsed_seconds": 0.064,
+      "id": "audit_source_file_inventory",
+      "purpose": "Inventory source-file dropboxes, hash raw files, and reconcile capture-template source_file references.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "Source-file inventory: source_file_inventory_empty\nFiles: 0\nMissing references: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_source_file_inventory.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_source_file_inventory.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_source_file_inventory.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/regress_limina_source_value_inventory.py"
+      ],
+      "artifact": "reports/limina_source_value_inventory_regression.md",
+      "elapsed_seconds": 0.035,
+      "id": "regress_source_value_inventory",
+      "purpose": "Verify filled source-value rows are reconciled by source-file inventory and blank rows are ignored.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "LIMINA source-value inventory regression: pass\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_source_value_inventory_regression.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_source_value_inventory_regression.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/regress_nhi_pedot_h_a_raw_csv_extraction.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_raw_csv_extraction_regression.md",
+      "elapsed_seconds": 0.03,
+      "id": "regress_h_a_raw_csv_extraction",
+      "purpose": "Verify H-A raw CSV extraction only accepts real source files and rejects placeholder-looking values.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "NHI-PEDOT H-A raw CSV extraction regression: pass\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_raw_csv_extraction_regression.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_raw_csv_extraction_regression.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/regress_nhi_pedot_h_a_bundle_entry.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_bundle_entry_regression.md",
+      "elapsed_seconds": 0.028,
+      "id": "regress_h_a_bundle_entry",
+      "purpose": "Verify H-A bundle entry sheets do not mutate source values unless valid source-backed rows are applied.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "NHI-PEDOT H-A bundle entry regression: pass\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_bundle_entry_regression.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_bundle_entry_regression.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/regress_nhi_pedot_h_a_vendor_bundle_entry_return.py"
+      ],
+      "artifact": "reports/nhi_pedot_h_a_vendor_bundle_entry_return_regression.md",
+      "elapsed_seconds": 0.028,
+      "id": "regress_h_a_vendor_bundle_entry_return",
+      "purpose": "Verify returned compact H-A bundle-entry sheets only update source values when source-backed.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "NHI-PEDOT H-A vendor bundle-entry return regression: pass\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_vendor_bundle_entry_return_regression.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/nhi_pedot_h_a_vendor_bundle_entry_return_regression.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/regress_limina_wide_raw_csv_extraction.py"
+      ],
+      "artifact": "reports/limina_wide_raw_csv_extraction_regression.md",
+      "elapsed_seconds": 0.028,
+      "id": "regress_wide_raw_csv_extraction",
+      "purpose": "Verify wide raw CSV extraction only accepts real source files and rejects placeholder-looking values.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "LIMINA wide raw CSV extraction regression: pass\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_wide_raw_csv_extraction_regression.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_wide_raw_csv_extraction_regression.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/regress_limina_rfq_send_log.py"
+      ],
+      "artifact": "reports/limina_rfq_send_log_regression.md",
+      "elapsed_seconds": 0.042,
+      "id": "regress_rfq_send_log",
+      "purpose": "Verify RFQ send logs only update quote trackers with valid real send confirmations.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "LIMINA RFQ send-log regression: pass\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_rfq_send_log_regression.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_rfq_send_log_regression.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/regress_limina_rfq_send_confirmation_intake.py"
+      ],
+      "artifact": "reports/limina_rfq_send_confirmation_intake_regression.md",
+      "elapsed_seconds": 0.053,
+      "id": "regress_rfq_send_confirmation_intake",
+      "purpose": "Verify RFQ send-confirmation intake only auto-applies sent EML files with matching bundle attachments.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "LIMINA RFQ send-confirmation intake regression: pass\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_rfq_send_confirmation_intake_regression.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_rfq_send_confirmation_intake_regression.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/regress_limina_rfq_reply_intake.py"
+      ],
+      "artifact": "reports/limina_rfq_reply_intake_regression.md",
+      "elapsed_seconds": 0.053,
+      "id": "regress_rfq_reply_intake",
+      "purpose": "Verify RFQ reply intake only registers parsable EML replies after verified sends and does not auto-score providers.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "LIMINA RFQ reply intake regression: pass\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_rfq_reply_intake_regression.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_rfq_reply_intake_regression.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/regress_limina_rfq_reply_log.py"
+      ],
+      "artifact": "reports/limina_rfq_reply_log_regression.md",
+      "elapsed_seconds": 0.037,
+      "id": "regress_rfq_reply_log",
+      "purpose": "Verify RFQ reply logs only update quote trackers with source-backed replies.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "LIMINA RFQ reply-log regression: pass\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_rfq_reply_log_regression.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_rfq_reply_log_regression.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/regress_limina_quote_selection_source_guard.py"
+      ],
+      "artifact": "reports/limina_quote_selection_source_guard_regression.md",
+      "elapsed_seconds": 0.022,
+      "id": "regress_quote_selection_source_guard",
+      "purpose": "Verify quote selection cannot shortlist or select providers from unbacked tracker replies.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "LIMINA quote-selection source guard regression: pass\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_quote_selection_source_guard_regression.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_quote_selection_source_guard_regression.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/regress_limina_execution_release.py"
+      ],
+      "artifact": "reports/limina_execution_release_regression.md",
+      "elapsed_seconds": 0.029,
+      "id": "regress_execution_release",
+      "purpose": "Verify execution release remains blocked until a source-backed selected provider has verified send and reply records.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "LIMINA execution-release regression: pass\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_execution_release_regression.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_execution_release_regression.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/regress_limina_execution_authorization_log.py"
+      ],
+      "artifact": "reports/limina_execution_authorization_log_regression.md",
+      "elapsed_seconds": 0.037,
+      "id": "regress_execution_authorization_log",
+      "purpose": "Verify execution authorization logs require source-backed selected providers and source-file-backed authorization records.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "LIMINA execution authorization log regression: pass\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_execution_authorization_log_regression.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_execution_authorization_log_regression.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/preflight_limina_local_capture.py"
+      ],
+      "artifact": "reports/limina_local_capture_preflight.md",
+      "elapsed_seconds": 0.04,
+      "id": "preflight_local_capture",
+      "purpose": "Check filled local/outsource capture templates before any merge into evaluator tables.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "Local capture preflight: local_capture_preflight_awaiting_entries\nFilled tasks: 0 / 350\nErrors: 0\nWarnings: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_local_capture_preflight.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_local_capture_preflight.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_limina_smoke_capture_tranche.py"
+      ],
+      "artifact": "reports/limina_smoke_capture_tranche.md",
+      "elapsed_seconds": 0.028,
+      "id": "render_smoke_capture_tranche",
+      "purpose": "Render the smallest useful capture tranche for real-measurement pipeline rehearsal and early red flags.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "Smoke capture tranche: smoke_capture_tranche_ready\nTasks: 172\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_smoke_capture_tranche.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_smoke_capture_tranche.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_limina_smoke_execution_queue.py"
+      ],
+      "artifact": "reports/limina_smoke_execution_queue.md",
+      "elapsed_seconds": 0.031,
+      "id": "render_smoke_execution_queue",
+      "purpose": "Turn smoke-tranche rows into a source-file-aware execution queue for real capture.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "Smoke execution queue: smoke_execution_queue_ready\nRows: 172\nAwaiting values: 172\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_smoke_execution_queue.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_smoke_execution_queue.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_smoke_execution_queue.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_limina_smoke_entry_sheet.py"
+      ],
+      "artifact": "reports/limina_smoke_entry_sheet.md",
+      "elapsed_seconds": 0.028,
+      "id": "render_smoke_entry_sheet",
+      "purpose": "Render a single fillable smoke entry sheet while preserving any user-entered values.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "Smoke entry sheet: smoke_entry_sheet_ready\nRows: 172\nReady to apply: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_smoke_entry_sheet.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_smoke_entry_sheet.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_smoke_entry_sheet.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_limina_smoke_source_drop_plan.py"
+      ],
+      "artifact": "reports/limina_smoke_source_drop_plan.md",
+      "elapsed_seconds": 0.041,
+      "id": "render_smoke_source_drop_plan",
+      "purpose": "Create source-file drop directories and a missing-file plan for the smoke entry sheet.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "Smoke source drop plan: smoke_source_drop_plan_ready\nPlanned source files: 172\nCreated directories: 0\nExisting source files: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_smoke_source_drop_plan.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_smoke_source_drop_plan.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_smoke_source_drop_plan.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_limina_smoke_source_values_sheet.py"
+      ],
+      "artifact": "reports/limina_smoke_source_values_sheet.md",
+      "elapsed_seconds": 0.03,
+      "id": "render_smoke_source_values_sheet",
+      "purpose": "Render a consolidated source-values sheet and starter batch for real smoke measurements.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "Smoke source values sheet: smoke_source_values_sheet_ready\nRows: 172\nStarter rows: 19\nImport-ready rows: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_smoke_source_values.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_smoke_source_values_starter_batch.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_smoke_source_values_sheet.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_smoke_source_values_sheet.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/audit_limina_smoke_starter_batch_readiness.py"
+      ],
+      "artifact": "reports/limina_smoke_starter_batch_readiness.md",
+      "elapsed_seconds": 0.027,
+      "id": "audit_smoke_starter_batch_readiness",
+      "purpose": "Audit whether the 19-row smoke starter batch has real values and source files ready for import.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "Smoke starter batch readiness: smoke_starter_batch_awaiting_values\nStarter rows: 19\nReady for import: 0\nBlocked rows: 19\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_smoke_starter_batch_readiness.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_smoke_starter_batch_readiness.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_smoke_starter_batch_readiness.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_limina_smoke_starter_execution_pack.py"
+      ],
+      "artifact": "reports/limina_smoke_starter_execution_pack.md",
+      "elapsed_seconds": 0.027,
+      "id": "render_smoke_starter_execution_pack",
+      "purpose": "Render the operational file checklist for the 19-row smoke starter batch.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "Smoke starter execution pack: smoke_starter_execution_pack_ready\nStarter rows: 19\nReady for import: 0\nBlocked rows: 19\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_smoke_starter_execution_pack.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_smoke_starter_execution_pack.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_smoke_starter_execution_pack.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_limina_smoke_starter_raw_file_template_pack.py"
+      ],
+      "artifact": "reports/limina_smoke_starter_raw_file_template_pack.md",
+      "elapsed_seconds": 0.026,
+      "id": "render_smoke_starter_raw_file_template_pack",
+      "purpose": "Render source-class raw-file templates outside source-file roots for the starter batch.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "Smoke starter raw-file template pack: smoke_starter_raw_file_template_pack_ready\nStarter rows covered: 19\nSource-class templates: 8\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_smoke_starter_raw_file_template_pack.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_smoke_starter_raw_file_template_manifest.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_smoke_starter_raw_file_template_pack.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/extract_limina_smoke_raw_csv_values.py"
+      ],
+      "artifact": "reports/limina_smoke_raw_csv_value_extraction.md",
+      "elapsed_seconds": 0.026,
+      "id": "extract_smoke_raw_csv_values",
+      "purpose": "Extract source-backed values from existing raw CSV/TSV starter files without creating evidence.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "Smoke raw CSV value extraction: smoke_raw_csv_value_extraction_no_raw_csv\nRaw CSV/TSV files found: 0\nExtracted rows: 0\nErrors: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_smoke_raw_csv_extracted_values.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_smoke_raw_csv_value_extraction.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_smoke_raw_csv_value_extraction.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/intake_limina_smoke_unstructured_sources.py"
+      ],
+      "artifact": "reports/limina_smoke_unstructured_source_intake.md",
+      "elapsed_seconds": 0.044,
+      "id": "intake_smoke_unstructured_sources",
+      "purpose": "Hash and route existing PDF/image starter source files for value extraction without creating evidence.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "Smoke unstructured source intake: smoke_unstructured_source_intake_waiting_for_files\nUnstructured plan rows: 10\nReady for value extraction: 0\nInvalid source files: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_smoke_unstructured_source_intake.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_smoke_unstructured_source_intake.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_smoke_unstructured_source_intake.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_limina_smoke_unstructured_review_values.py"
+      ],
+      "artifact": "reports/limina_smoke_unstructured_review_values.md",
+      "elapsed_seconds": 0.026,
+      "id": "render_smoke_unstructured_review_values",
+      "purpose": "Render fillable source-value rows for manually extracting values from existing unstructured starter files.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "Smoke unstructured review values: smoke_unstructured_review_values_waiting_for_source_files\nReview rows: 10\nReady source rows: 0\nImport-ready rows: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_smoke_unstructured_review_values.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_smoke_unstructured_review_values.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_smoke_unstructured_review_values.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/import_limina_smoke_source_values.py"
+      ],
+      "artifact": "reports/limina_smoke_source_value_import.md",
+      "elapsed_seconds": 0.029,
+      "id": "import_smoke_source_values",
+      "purpose": "Import real source-file-backed value sidecars into the smoke entry sheet before validation and apply.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "Smoke source value import: smoke_source_value_import_no_importable_rows\nSource value files: 3\nImported rows: 0\nErrors: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_smoke_source_value_import.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_smoke_source_value_import.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/apply_limina_smoke_entry_sheet.py"
+      ],
+      "artifact": "reports/limina_smoke_entry_apply.md",
+      "elapsed_seconds": 0.027,
+      "id": "apply_smoke_entry_sheet",
+      "purpose": "Apply validated filled smoke entry-sheet rows into the H-A/ZRC smoke templates.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "Smoke entry apply: smoke_entry_apply_no_filled_rows\nApplied values: 0\nErrors: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_smoke_entry_apply.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_smoke_entry_apply.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_limina_smoke_execution_queue.py"
+      ],
+      "artifact": "reports/limina_smoke_execution_queue.md",
+      "elapsed_seconds": 0.03,
+      "id": "refresh_smoke_execution_queue_after_entry_apply",
+      "purpose": "Refresh smoke queue statuses after entry-sheet application and before preflight.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "Smoke execution queue: smoke_execution_queue_ready\nRows: 172\nAwaiting values: 172\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_smoke_execution_queue.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_smoke_execution_queue.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_smoke_execution_queue.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/preflight_limina_local_capture.py",
+        "--tasks",
+        "data/limina_smoke_capture_tasks.csv",
+        "--h-a-local",
+        "data/nhi_pedot_h_a_smoke_local_capture_template.csv",
+        "--h-a-outsource",
+        "data/nhi_pedot_h_a_smoke_osmolality_outsource_template.csv",
+        "--zrc-local",
+        "data/zrc_nd_phase_a_smoke_local_capture_template.csv",
+        "--zrc-outsource",
+        "data/zrc_nd_phase_a_smoke_osmolality_outsource_template.csv",
+        "--json-out",
+        "data/limina_smoke_capture_preflight.json",
+        "--report",
+        "reports/limina_smoke_capture_preflight.md"
+      ],
+      "artifact": "reports/limina_smoke_capture_preflight.md",
+      "elapsed_seconds": 0.034,
+      "id": "preflight_smoke_capture",
+      "purpose": "Check whether the smoke tranche is filled well enough for a merge rehearsal.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "Local capture preflight: local_capture_preflight_awaiting_entries\nFilled tasks: 0 / 172\nErrors: 0\nWarnings: 0\nWrote data/limina_smoke_capture_preflight.json\nWrote reports/limina_smoke_capture_preflight.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/run_limina_smoke_rehearsal.py"
+      ],
+      "artifact": "reports/limina_smoke_rehearsal.md",
+      "elapsed_seconds": 0.027,
+      "id": "run_smoke_rehearsal",
+      "purpose": "Run smoke-only merge/QC/evaluation rehearsal into temporary files when preflight is ready.",
+      "returncode": 0,
+      "stage": "measurement_routing",
+      "stderr": "",
+      "stdout": "Smoke rehearsal: smoke_rehearsal_waiting_for_preflight\nPreflight: local_capture_preflight_awaiting_entries\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_smoke_rehearsal.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_smoke_rehearsal.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_zrc_nd_phase_a_chain_of_custody.py"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_chain_of_custody.md",
+      "elapsed_seconds": 0.026,
+      "id": "render_zrc_phase_a_chain_of_custody",
+      "purpose": "Render ZRC-ND Phase A sample labels and chain-of-custody blanks.",
+      "returncode": 0,
+      "stage": "zrc_phase_a",
+      "stderr": "",
+      "stdout": "ZRC-ND Phase A chain of custody: ready_for_phase_a_sample_handoff\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_sample_labels.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_chain_of_custody.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_chain_of_custody.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_chain_of_custody.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_zrc_nd_phase_a_delivery_package.py"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_delivery_package_manifest.md",
+      "elapsed_seconds": 0.026,
+      "id": "render_zrc_phase_a_delivery_package",
+      "purpose": "Render a sendable ZRC-ND Phase A delivery package manifest.",
+      "returncode": 0,
+      "stage": "zrc_phase_a",
+      "stderr": "",
+      "stdout": "ZRC-ND Phase A delivery package: ready_to_send\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_delivery_package_manifest.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_delivery_package_manifest.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_zrc_nd_phase_a_vendor_outreach.py"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_vendor_outreach_brief.md",
+      "elapsed_seconds": 0.024,
+      "id": "render_zrc_phase_a_vendor_outreach",
+      "purpose": "Render vendor/cooperator screening for real ZRC-ND Phase A measurement execution.",
+      "returncode": 0,
+      "stage": "zrc_phase_a_sourcing",
+      "stderr": "",
+      "stdout": "ZRC-ND Phase A vendor outreach: ready_for_vendor_screening\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_vendor_outreach.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_vendor_outreach_brief.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_zrc_nd_phase_a_rfq_packet.py"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_rfq_packet.md",
+      "elapsed_seconds": 0.024,
+      "id": "render_zrc_phase_a_rfq_packet",
+      "purpose": "Render per-vendor ZRC-ND Phase A RFQ text and scoring rubric.",
+      "returncode": 0,
+      "stage": "zrc_phase_a_sourcing",
+      "stderr": "",
+      "stdout": "ZRC-ND Phase A RFQ packet: ready_to_send_rfq\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_packet.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_rfq_packet.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_zrc_nd_phase_a_rfq_outbox.py"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_rfq_outbox.md",
+      "elapsed_seconds": 0.037,
+      "id": "render_zrc_phase_a_rfq_outbox",
+      "purpose": "Render vendor-specific ZRC-ND Phase A RFQ email files and zip bundles.",
+      "returncode": 0,
+      "stage": "zrc_phase_a_sourcing",
+      "stderr": "",
+      "stdout": "ZRC-ND Phase A RFQ outbox: ready_to_send_outbox\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_outbox_manifest.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_rfq_outbox.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_zrc_nd_phase_a_quote_tracker.py"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_quote_tracker.md",
+      "elapsed_seconds": 0.024,
+      "id": "render_zrc_phase_a_quote_tracker",
+      "purpose": "Render a tracker for ZRC-ND Phase A RFQ replies and execution selection.",
+      "returncode": 0,
+      "stage": "zrc_phase_a_sourcing",
+      "stderr": "",
+      "stdout": "ZRC-ND Phase A quote tracker: pending_outreach\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_quote_tracker.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_quote_tracker.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_quote_tracker.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_zrc_nd_phase_a_vendor_contact_plan.py"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_vendor_contact_plan.md",
+      "elapsed_seconds": 0.024,
+      "id": "render_zrc_phase_a_vendor_contact_plan",
+      "purpose": "Render official contact channels for ZRC-ND Phase A RFQ bundles.",
+      "returncode": 0,
+      "stage": "zrc_phase_a_sourcing",
+      "stderr": "",
+      "stdout": "ZRC-ND Phase A vendor contact plan: contact_plan_ready\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_vendor_contact_plan.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_vendor_contact_plan.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_vendor_contact_plan.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_zrc_nd_phase_a_rfq_dispatch_manifest.py"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_rfq_dispatch_manifest.md",
+      "elapsed_seconds": 0.028,
+      "id": "render_zrc_phase_a_rfq_dispatch_manifest",
+      "purpose": "Bind each ZRC-ND Phase A RFQ text file to the exact bundle, contact path, and confirmation-save path before manual dispatch.",
+      "returncode": 0,
+      "stage": "zrc_phase_a_sourcing",
+      "stderr": "",
+      "stdout": "ZRC-ND Phase A RFQ dispatch manifest: zrc_phase_a_rfq_dispatch_manifest_ready\nReady rows: 4 / 4\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_dispatch_manifest.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_rfq_dispatch_manifest.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/intake_limina_rfq_send_confirmations.py",
+        "--profile",
+        "zrc_phase_a"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_rfq_send_confirmation_intake.md",
+      "elapsed_seconds": 0.042,
+      "id": "intake_zrc_phase_a_rfq_send_confirmations",
+      "purpose": "Scan saved ZRC-ND Phase A send confirmations and conservatively register source-backed outreach.",
+      "returncode": 0,
+      "stage": "zrc_phase_a_sourcing",
+      "stderr": "",
+      "stdout": "ZRC-ND Phase A RFQ send confirmation intake: zrc_nd_phase_a_rfq_send_confirmation_intake_waiting_for_confirmation_files\nFiles scanned: 0\nApplied rows: 0\nNeeds review: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_send_confirmation_intake.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_send_confirmation_intake.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_rfq_send_confirmation_intake.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_zrc_nd_phase_a_rfq_send_confirmation_entry_sheet.py"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_rfq_send_confirmation_entry_sheet.md",
+      "elapsed_seconds": 0.028,
+      "id": "render_zrc_phase_a_rfq_send_confirmation_entry_sheet",
+      "purpose": "Render guarded manual-entry rows for non-EML ZRC-ND Phase A send confirmations such as web-form screenshots or PDFs.",
+      "returncode": 0,
+      "stage": "zrc_phase_a_sourcing",
+      "stderr": "",
+      "stdout": "ZRC-ND Phase A RFQ send confirmation entry sheet: zrc_phase_a_rfq_send_confirmation_entry_sheet_waiting_for_confirmation_files\nReady to apply: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_send_confirmation_entry_sheet.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_send_confirmation_entry_sheet.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_rfq_send_confirmation_entry_sheet.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/apply_zrc_nd_phase_a_rfq_send_confirmation_entry_sheet.py"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_rfq_send_confirmation_entry_apply.md",
+      "elapsed_seconds": 0.026,
+      "id": "apply_zrc_phase_a_rfq_send_confirmation_entry_sheet",
+      "purpose": "Apply reviewed non-EML ZRC-ND Phase A send confirmations into the RFQ send log without treating outreach as evidence.",
+      "returncode": 0,
+      "stage": "zrc_phase_a_sourcing",
+      "stderr": "",
+      "stdout": "ZRC-ND Phase A RFQ send confirmation entry apply: zrc_phase_a_rfq_send_confirmation_entry_apply_no_apply_rows\nApplied: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_send_confirmation_entry_apply.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_rfq_send_confirmation_entry_apply.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/apply_limina_rfq_send_log.py",
+        "--profile",
+        "zrc_phase_a"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_rfq_send_log.md",
+      "elapsed_seconds": 0.033,
+      "id": "apply_zrc_phase_a_rfq_send_log",
+      "purpose": "Render/apply verified ZRC-ND Phase A RFQ send confirmations into the quote tracker without treating outreach as evidence.",
+      "returncode": 0,
+      "stage": "zrc_phase_a_sourcing",
+      "stderr": "",
+      "stdout": "ZRC-ND Phase A RFQ send log: zrc_nd_phase_a_rfq_send_log_waiting_for_sent_entries\nRows: 4\nSent rows: 0\nApplied tracker contact dates: 0\nErrors: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_send_log.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_send_log.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_rfq_send_log.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/intake_limina_rfq_replies.py",
+        "--profile",
+        "zrc_phase_a"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_rfq_reply_intake.md",
+      "elapsed_seconds": 0.043,
+      "id": "intake_zrc_phase_a_rfq_replies",
+      "purpose": "Scan saved ZRC-ND Phase A vendor replies and conservatively register source-backed replies for review.",
+      "returncode": 0,
+      "stage": "zrc_phase_a_sourcing",
+      "stderr": "",
+      "stdout": "ZRC-ND Phase A RFQ reply intake: zrc_nd_phase_a_rfq_reply_intake_waiting_for_reply_files\nFiles scanned: 0\nApplied rows: 0\nNeeds manual review: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_reply_intake.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_reply_intake.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_rfq_reply_intake.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/apply_limina_rfq_reply_log.py",
+        "--profile",
+        "zrc_phase_a"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_rfq_reply_log.md",
+      "elapsed_seconds": 0.034,
+      "id": "apply_zrc_phase_a_rfq_reply_log",
+      "purpose": "Render/apply source-backed ZRC-ND Phase A RFQ replies into the quote tracker without treating replies as measurement evidence.",
+      "returncode": 0,
+      "stage": "zrc_phase_a_sourcing",
+      "stderr": "",
+      "stdout": "ZRC-ND Phase A RFQ reply log: zrc_nd_phase_a_rfq_reply_log_waiting_for_reply_files\nRows: 4\nReceived rows: 0\nApplied tracker field updates: 0\nErrors: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_reply_log.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_reply_log.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_rfq_reply_log.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_zrc_nd_phase_a_rfq_dispatch_archive.py"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_rfq_dispatch_archive_manifest.md",
+      "elapsed_seconds": 0.034,
+      "id": "render_zrc_phase_a_rfq_dispatch_archive",
+      "purpose": "Render a single archive containing ZRC-ND Phase A RFQ text files, bundles, manifests, and confirmation templates for manual dispatch.",
+      "returncode": 0,
+      "stage": "zrc_phase_a_sourcing",
+      "stderr": "",
+      "stdout": "ZRC-ND Phase A RFQ dispatch archive: zrc_phase_a_rfq_dispatch_archive_ready\nArchive SHA-256: 2a2ca661089a7d5ae0a91205968a383b98d7fbd90cea45c46fd4f6c8eab917d7\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_dispatch_archive_manifest.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_rfq_dispatch_archive_manifest.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_zrc_nd_phase_a_rfq_reply_action_pack.py"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_rfq_reply_action_pack.md",
+      "elapsed_seconds": 0.026,
+      "id": "render_zrc_phase_a_rfq_reply_action_pack",
+      "purpose": "Render source-backed reply intake/review checklist for ZRC-ND Phase A RFQ responses.",
+      "returncode": 0,
+      "stage": "zrc_phase_a_sourcing",
+      "stderr": "",
+      "stdout": "ZRC-ND Phase A RFQ reply action pack: zrc_phase_a_rfq_reply_action_pack_waiting_for_send\nAction rows: 4\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_reply_action_queue.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_reply_action_pack.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_rfq_reply_action_pack.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_zrc_nd_phase_a_rfq_send_cockpit.py"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_rfq_send_cockpit.md",
+      "elapsed_seconds": 0.03,
+      "id": "render_zrc_phase_a_rfq_send_cockpit",
+      "purpose": "Render a single local cockpit for manual ZRC-ND Phase A RFQ dispatch and source-file follow-through.",
+      "returncode": 0,
+      "stage": "zrc_phase_a_sourcing",
+      "stderr": "",
+      "stdout": "ZRC-ND Phase A RFQ send cockpit: zrc_phase_a_rfq_send_cockpit_ready_for_manual_send\nReady to use: 4 / 4\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_send_cockpit.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_rfq_send_cockpit.md\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_rfq_send_cockpit.html"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_limina_first_wave_rfq_dispatch_cockpit.py"
+      ],
+      "artifact": "reports/limina_first_wave_rfq_dispatch_cockpit.md",
+      "elapsed_seconds": 0.029,
+      "id": "render_first_wave_rfq_dispatch_cockpit",
+      "purpose": "Render one combined H-A and ZRC first-wave RFQ dispatch cockpit for the real-measurement unlock step.",
+      "returncode": 0,
+      "stage": "sourcing",
+      "stderr": "",
+      "stdout": "First-wave RFQ dispatch cockpit: first_wave_rfq_dispatch_cockpit_ready_for_manual_send\nReady to send: 8 / 8\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_first_wave_rfq_dispatch_cockpit.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_first_wave_rfq_dispatch_cockpit.md\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_first_wave_rfq_dispatch_cockpit.html"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/process_limina_first_wave_post_dispatch.py"
+      ],
+      "artifact": "reports/limina_first_wave_post_dispatch_processing.md",
+      "elapsed_seconds": 0.712,
+      "id": "process_first_wave_post_dispatch",
+      "purpose": "Process saved first-wave RFQ confirmations and replies across H-A and ZRC without treating sourcing artifacts as evidence.",
+      "returncode": 0,
+      "stage": "sourcing",
+      "stderr": "",
+      "stdout": "First-wave post-dispatch processing: first_wave_post_dispatch_waiting_for_real_send_confirmations\nFailed commands: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_first_wave_post_dispatch_processing.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_first_wave_post_dispatch_processing.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/evaluate_zrc_nd_phase_a_quote_replies.py"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_quote_selection.md",
+      "elapsed_seconds": 0.025,
+      "id": "evaluate_zrc_phase_a_quote_replies",
+      "purpose": "Score any ZRC-ND Phase A RFQ replies without treating quotes as evidence.",
+      "returncode": 0,
+      "stage": "zrc_phase_a_sourcing",
+      "stderr": "",
+      "stdout": "ZRC-ND Phase A quote selection: pending_outreach\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_quote_selection.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_quote_selection.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/apply_limina_execution_authorization_log.py",
+        "--profile",
+        "zrc_phase_a"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_execution_authorization_log.md",
+      "elapsed_seconds": 0.033,
+      "id": "apply_zrc_phase_a_execution_authorization_log",
+      "purpose": "Render/validate human ZRC-ND Phase A execution authorization records without treating authorization as evidence.",
+      "returncode": 0,
+      "stage": "zrc_phase_a_sourcing",
+      "stderr": "",
+      "stdout": "ZRC-ND Phase A execution authorization log: zrc_nd_phase_a_execution_authorization_waiting_for_selected_provider\nRows: 0\nValid authorizations: 0\nErrors: 0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_execution_authorization_log.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_execution_authorization_log.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_execution_authorization_log.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/audit_limina_execution_release.py",
+        "--profile",
+        "zrc_phase_a"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_execution_release_audit.md",
+      "elapsed_seconds": 0.031,
+      "id": "audit_zrc_phase_a_execution_release",
+      "purpose": "Block ZRC-ND Phase A sample or outsourced execution release until a source-backed selected provider is verified.",
+      "returncode": 0,
+      "stage": "zrc_phase_a_sourcing",
+      "stderr": "",
+      "stdout": "ZRC-ND Phase A execution release audit: zrc_nd_phase_a_execution_release_blocked_no_source_backed_provider_selection\nReady for authorization: false\nReleased for execution: false\nBlockers: 1\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_execution_release_audit.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_execution_release_audit.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_zrc_nd_phase_a_vendor_return_intake.py"
+      ],
+      "artifact": "reports/zrc_nd_phase_a_vendor_return_intake.md",
+      "elapsed_seconds": 0.027,
+      "id": "render_zrc_phase_a_vendor_return_intake",
+      "purpose": "Check the ZRC-ND Phase A vendor-return inbox before merge/QC.",
+      "returncode": 0,
+      "stage": "zrc_phase_a_intake",
+      "stderr": "",
+      "stdout": "ZRC-ND Phase A vendor return intake: awaiting_vendor_return_files\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_vendor_return_checklist.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_vendor_return_intake.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_phase_a_vendor_return_intake.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/merge_zrc_nd_measurements.py"
+      ],
+      "artifact": "reports/zrc_nd_measurement_merge.md",
+      "elapsed_seconds": 0.023,
+      "id": "merge_zrc_phase_a_measurements",
+      "purpose": "Merge returned ZRC-ND Phase A measurement rows into the active validation CSV.",
+      "returncode": 0,
+      "stage": "zrc_phase_a_intake",
+      "stderr": "",
+      "stdout": "Merged measurements: inserted=0 updated=0 skipped=0\nStatus: awaiting_measurement_file\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_measurement_merge.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_validation_runs_active.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_measurement_merge.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/check_zrc_nd_run_completeness.py"
+      ],
+      "artifact": "reports/zrc_nd_run_completeness.md",
+      "elapsed_seconds": 0.024,
+      "id": "check_zrc_run_completeness",
+      "purpose": "Check whether active ZRC-ND non-cell rows are complete enough for gate interpretation.",
+      "returncode": 0,
+      "stage": "zrc_phase_a_intake",
+      "stderr": "",
+      "stdout": "Completeness: no_measured_rows\nMeasured/planned: 0 / 132\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_run_completeness.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_run_completeness.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/evaluate_zrc_nd_validation_runs.py"
+      ],
+      "artifact": "reports/zrc_nd_validation_results.md",
+      "elapsed_seconds": 0.029,
+      "id": "evaluate_zrc_validation_runs",
+      "purpose": "Evaluate the active ZRC-ND non-cell run table after any returned rows are merged.",
+      "returncode": 0,
+      "stage": "zrc_phase_a_gate",
+      "stderr": "",
+      "stdout": "Evaluated 0 row(s): no_data\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_validation_results.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_validation_results.md\nTemplate ready at /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_validation_runs_active.csv"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/interpret_zrc_nd_sentinel.py"
+      ],
+      "artifact": "reports/zrc_nd_sentinel_interpretation.md",
+      "elapsed_seconds": 0.024,
+      "id": "refresh_zrc_phase_a_sentinel_after_merge",
+      "purpose": "Refresh the Phase A sentinel interpretation from the active ZRC-ND run table.",
+      "returncode": 0,
+      "stage": "zrc_phase_a_gate",
+      "stderr": "",
+      "stdout": "Sentinel: no_sentinel_rows\nNext action: Generate and fill the Phase A sentinel packet.\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_sentinel_interpretation.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_sentinel_interpretation.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/suggest_zrc_nd_next_measurements.py"
+      ],
+      "artifact": "reports/zrc_nd_next_measurements.md",
+      "elapsed_seconds": 0.027,
+      "id": "refresh_zrc_next_measurements_after_merge",
+      "purpose": "Refresh adaptive ZRC-ND measurement recommendations from the active run table and latest sentinel.",
+      "returncode": 0,
+      "stage": "zrc_phase_a_next_actions",
+      "stderr": "",
+      "stdout": "Recommendation: needs_phase_a_sentinel\nRecommended rows: 8\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_next_measurements.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_next_measurements.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_next_measurements.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/audit_zrc_nd_readiness.py"
+      ],
+      "artifact": "reports/zrc_nd_readiness_audit.md",
+      "elapsed_seconds": 0.024,
+      "id": "audit_zrc_readiness",
+      "purpose": "Refresh the ZRC-ND readiness audit while preserving the no-measured-data blocker.",
+      "returncode": 0,
+      "stage": "zrc_claim_guard",
+      "stderr": "",
+      "stdout": "Readiness: not_suitable_yet_no_measured_data\nSuitable: False\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_readiness_audit.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/zrc_nd_readiness_audit.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/select_limina_next_technology.py"
+      ],
+      "artifact": "reports/limina_technology_portfolio.md",
+      "elapsed_seconds": 0.024,
+      "id": "select_portfolio_branch",
+      "purpose": "Refresh the portfolio branch selector across NHI-PEDOT and ZRC-ND.",
+      "returncode": 0,
+      "stage": "portfolio",
+      "stderr": "",
+      "stdout": "Portfolio: no_suitable_material_yet\nPrimary next branch: limina_nhi_pedot_laminin_v0_1\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_technology_portfolio.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_technology_portfolio.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_limina_second_wave_candidate_queue.py"
+      ],
+      "artifact": "reports/limina_second_wave_candidate_queue.md",
+      "elapsed_seconds": 0.026,
+      "id": "render_second_wave_candidate_queue",
+      "purpose": "Render the highest-value second-wave candidate scope-lock queue without bypassing first-wave evidence gates.",
+      "returncode": 0,
+      "stage": "portfolio",
+      "stderr": "",
+      "stdout": "Second-wave candidate queue: second_wave_candidate_queue_ready_while_first_wave_waits\nRows: 6\nReady for scope lock: 2\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_second_wave_candidate_queue.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_second_wave_candidate_queue.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_second_wave_candidate_queue.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/render_limina_second_wave_scope_lock_pack.py"
+      ],
+      "artifact": "reports/limina_second_wave_scope_lock_pack.md",
+      "elapsed_seconds": 0.024,
+      "id": "render_second_wave_scope_lock_pack",
+      "purpose": "Turn ready second-wave candidates into material-identity and future source-class scope-lock tasks.",
+      "returncode": 0,
+      "stage": "portfolio",
+      "stderr": "",
+      "stdout": "Second-wave scope-lock pack: second_wave_scope_lock_pack_ready\nReady candidates: 2\nTasks: 8\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_second_wave_scope_lock_pack.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_second_wave_scope_lock_tasks.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_second_wave_scope_lock_pack.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/audit_limina_suitability_claim.py"
+      ],
+      "artifact": "reports/limina_suitability_claim_audit.md",
+      "elapsed_seconds": 0.027,
+      "id": "audit_claim_readiness",
+      "purpose": "Check whether any branch can support a first material suitability claim.",
+      "returncode": 0,
+      "stage": "claim_guard",
+      "stderr": "",
+      "stdout": "Claim ready: False\nStatus: no_suitable_material_claim_ready\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_suitability_claim_audit.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_suitability_claim_audit.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/audit_limina_portfolio_bypass_paths.py"
+      ],
+      "artifact": "reports/limina_portfolio_bypass_audit.md",
+      "elapsed_seconds": 0.024,
+      "id": "audit_portfolio_bypass_paths",
+      "purpose": "Check whether any ranked prospect can bypass the active H-A gate and still satisfy the claim audit boundary.",
+      "returncode": 0,
+      "stage": "claim_guard",
+      "stderr": "",
+      "stdout": "Portfolio bypass status: no_h_a_bypass_claim_ready\nNon-H-A claim-ready rows: 0\nTop non-H-A candidate: limina_all_dry_zwitterionic_external_v0_1\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_portfolio_bypass_audit.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_portfolio_bypass_audit.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/regress_limina_portfolio_claim_boundary.py"
+      ],
+      "artifact": "reports/limina_portfolio_claim_boundary_regression.md",
+      "elapsed_seconds": 0.053,
+      "id": "regress_portfolio_claim_boundary",
+      "purpose": "Verify the portfolio selector cannot declare suitability before the final claim audit.",
+      "returncode": 0,
+      "stage": "claim_guard",
+      "stderr": "",
+      "stdout": "LIMINA portfolio claim-boundary regression: pass\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_portfolio_claim_boundary_regression.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_portfolio_claim_boundary_regression.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/regress_limina_source_file_claim_guard.py"
+      ],
+      "artifact": "reports/limina_source_file_claim_guard_regression.md",
+      "elapsed_seconds": 0.027,
+      "id": "regress_source_file_claim_guard",
+      "purpose": "Verify measured-looking rows without valid source_file provenance cannot become claimable.",
+      "returncode": 0,
+      "stage": "claim_guard",
+      "stderr": "",
+      "stdout": "LIMINA source-file claim guard regression: pass\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_source_file_claim_guard_regression.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_source_file_claim_guard_regression.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/run_limina_discovery_cycle.py"
+      ],
+      "artifact": "reports/limina_discovery_cycle_state.md",
+      "elapsed_seconds": 0.056,
+      "id": "summarize_cycle_state",
+      "purpose": "Write the final next-action report for this iteration.",
+      "returncode": 0,
+      "stage": "cycle_state",
+      "stderr": "",
+      "stdout": "Mission state: awaiting_real_h_a_measurements\nClaim ready: False\nActive candidate: limina_alg_lam_pedot_lowdose_v0_2\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_discovery_cycle_state.json\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/reports/limina_discovery_cycle_state.md"
+    }
+  ],
+  "root": "/Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot",
+  "run_timestamp_utc": "2026-05-24T07:25:44+00:00",
+  "summary": {
+    "claim_ready": false,
+    "claim_status": "no_suitable_material_claim_ready",
+    "failed_command_ids": [],
+    "first_wave_post_dispatch_confirmations": 0,
+    "first_wave_post_dispatch_failed_commands": 0,
+    "first_wave_post_dispatch_replies": 0,
+    "first_wave_post_dispatch_status": "first_wave_post_dispatch_waiting_for_real_send_confirmations",
+    "first_wave_rfq_dispatch_cockpit_confirmations": 0,
+    "first_wave_rfq_dispatch_cockpit_html": "reports/limina_first_wave_rfq_dispatch_cockpit.html",
+    "first_wave_rfq_dispatch_cockpit_missing_bundles": 0,
+    "first_wave_rfq_dispatch_cockpit_missing_messages": 0,
+    "first_wave_rfq_dispatch_cockpit_ready_rows": 8,
+    "first_wave_rfq_dispatch_cockpit_replies": 0,
+    "first_wave_rfq_dispatch_cockpit_rows": 8,
+    "first_wave_rfq_dispatch_cockpit_status": "first_wave_rfq_dispatch_cockpit_ready_for_manual_send",
+    "forward_gate_rows": 28,
+    "forward_gate_status": "preregistered_waiting_for_h_a",
+    "h_a_bench_tasks": 12,
+    "h_a_blank_raw_entries_to_fill": 228,
+    "h_a_bundle_entry_apply_bundles": 0,
+    "h_a_bundle_entry_apply_errors": 0,
+    "h_a_bundle_entry_apply_source_rows": 0,
+    "h_a_bundle_entry_apply_status": "h_a_bundle_entry_apply_no_apply_rows",
+    "h_a_bundle_entry_sheet_existing_files": 0,
+    "h_a_bundle_entry_sheet_filled_rows": 0,
+    "h_a_bundle_entry_sheet_ready_rows": 0,
+    "h_a_bundle_entry_sheet_rows": 96,
+    "h_a_bundle_entry_sheet_status": "h_a_bundle_entry_sheet_ready",
+    "h_a_chain_of_custody_rows": 36,
+    "h_a_chain_of_custody_status": "ready_for_sample_handoff",
+    "h_a_delivery_package_missing_files": 0,
+    "h_a_delivery_package_status": "ready_to_send",
+    "h_a_execution_authorization_errors": 0,
+    "h_a_execution_authorization_rows": 0,
+    "h_a_execution_authorization_status": "nhi_pedot_h_a_execution_authorization_waiting_for_selected_provider",
+    "h_a_execution_authorization_valid_rows": 0,
+    "h_a_execution_release_authorization_blockers": 0,
+    "h_a_execution_release_blockers": 1,
+    "h_a_execution_release_ready": false,
+    "h_a_execution_release_released": false,
+    "h_a_execution_release_status": "nhi_pedot_h_a_execution_release_blocked_no_source_backed_provider_selection",
+    "h_a_measured_rows": 0,
+    "h_a_merge_applied_values": 0,
+    "h_a_merge_unresolved_targets": 0,
+    "h_a_pending_transfer_rows": 36,
+    "h_a_placeholder_rows": 12,
+    "h_a_qc_errors": 183,
+    "h_a_qc_status": "h_a_intake_not_ready",
+    "h_a_qc_warnings": 24,
+    "h_a_quote_selection_reply_count": 0,
+    "h_a_quote_selection_sent_count": 0,
+    "h_a_quote_selection_shortlist_count": 0,
+    "h_a_quote_selection_source_backed_reply_count": 0,
+    "h_a_quote_selection_status": "pending_outreach",
+    "h_a_quote_tracker_status": "pending_outreach",
+    "h_a_raw_csv_extraction_errors": 0,
+    "h_a_raw_csv_extraction_files": 0,
+    "h_a_raw_csv_extraction_rows": 0,
+    "h_a_raw_csv_extraction_status": "h_a_raw_csv_value_extraction_no_raw_csv",
+    "h_a_rfq_dispatch_archive_files": 22,
+    "h_a_rfq_dispatch_archive_hash_mismatches": 0,
+    "h_a_rfq_dispatch_archive_missing_files": 0,
+    "h_a_rfq_dispatch_archive_path": "data/nhi_pedot_h_a_rfq_dispatch_archive/nhi_pedot_h_a_rfq_dispatch_archive.zip",
+    "h_a_rfq_dispatch_archive_sha256": "b739036ff6d618bec4b57e1c028676338ef58599a11fb7a6822a6df9b725368b",
+    "h_a_rfq_dispatch_archive_status": "h_a_rfq_dispatch_archive_ready",
+    "h_a_rfq_dispatch_manifest_blocked_rows": 0,
+    "h_a_rfq_dispatch_manifest_bundle_match_rows": 4,
+    "h_a_rfq_dispatch_manifest_ready_rows": 4,
+    "h_a_rfq_dispatch_manifest_rows": 4,
+    "h_a_rfq_dispatch_manifest_status": "h_a_rfq_dispatch_manifest_ready",
+    "h_a_rfq_eml_drafts_missing_bundle_rows": 0,
+    "h_a_rfq_eml_drafts_missing_to_rows": 0,
+    "h_a_rfq_eml_drafts_ready_rows": 4,
+    "h_a_rfq_eml_drafts_rows": 4,
+    "h_a_rfq_eml_drafts_status": "h_a_rfq_eml_drafts_ready",
+    "h_a_rfq_eml_integrity_attachment_mismatch_rows": 0,
+    "h_a_rfq_eml_integrity_fail_rows": 0,
+    "h_a_rfq_eml_integrity_pass_rows": 4,
+    "h_a_rfq_eml_integrity_rows": 4,
+    "h_a_rfq_eml_integrity_status": "h_a_rfq_eml_integrity_ready",
+    "h_a_rfq_outbox_quote_count": 4,
+    "h_a_rfq_outbox_ready_count": 4,
+    "h_a_rfq_outbox_status": "ready_to_send_outbox",
+    "h_a_rfq_packet_status": "ready_to_send_rfq",
+    "h_a_rfq_reply_action_awaiting_reply": 0,
+    "h_a_rfq_reply_action_needs_source_file": 0,
+    "h_a_rfq_reply_action_pack_status": "h_a_rfq_reply_action_pack_waiting_for_send",
+    "h_a_rfq_reply_action_ready_to_apply": 0,
+    "h_a_rfq_reply_action_rows": 4,
+    "h_a_rfq_reply_action_waiting_for_send": 4,
+    "h_a_rfq_reply_intake_applied": 0,
+    "h_a_rfq_reply_intake_files": 0,
+    "h_a_rfq_reply_intake_needs_review": 0,
+    "h_a_rfq_reply_intake_needs_verified_send": 0,
+    "h_a_rfq_reply_intake_status": "nhi_pedot_h_a_rfq_reply_intake_waiting_for_reply_files",
+    "h_a_rfq_reply_log_applied_fields": 0,
+    "h_a_rfq_reply_log_errors": 0,
+    "h_a_rfq_reply_log_received_rows": 0,
+    "h_a_rfq_reply_log_rows": 4,
+    "h_a_rfq_reply_log_status": "nhi_pedot_h_a_rfq_reply_log_waiting_for_reply_files",
+    "h_a_rfq_reply_log_valid_rows": 0,
+    "h_a_rfq_send_action_needs_confirmation_rows": 0,
+    "h_a_rfq_send_action_pack_status": "h_a_rfq_send_action_pack_ready",
+    "h_a_rfq_send_action_ready_rows": 4,
+    "h_a_rfq_send_action_rows": 4,
+    "h_a_rfq_send_action_verified_rows": 0,
+    "h_a_rfq_send_cockpit_confirmations": 0,
+    "h_a_rfq_send_cockpit_html": "reports/nhi_pedot_h_a_rfq_send_cockpit.html",
+    "h_a_rfq_send_cockpit_missing_bundle": 0,
+    "h_a_rfq_send_cockpit_missing_eml": 0,
+    "h_a_rfq_send_cockpit_ready_rows": 4,
+    "h_a_rfq_send_cockpit_replies": 0,
+    "h_a_rfq_send_cockpit_rows": 4,
+    "h_a_rfq_send_cockpit_status": "h_a_rfq_send_cockpit_ready_for_manual_send",
+    "h_a_rfq_send_confirmation_entry_apply_applied": 0,
+    "h_a_rfq_send_confirmation_entry_apply_apply_rows": 0,
+    "h_a_rfq_send_confirmation_entry_apply_blocked": 0,
+    "h_a_rfq_send_confirmation_entry_apply_status": "h_a_rfq_send_confirmation_entry_apply_no_apply_rows",
+    "h_a_rfq_send_confirmation_entry_sheet_blocked": 0,
+    "h_a_rfq_send_confirmation_entry_sheet_ready": 0,
+    "h_a_rfq_send_confirmation_entry_sheet_rows": 4,
+    "h_a_rfq_send_confirmation_entry_sheet_source_files": 0,
+    "h_a_rfq_send_confirmation_entry_sheet_status": "h_a_rfq_send_confirmation_entry_sheet_waiting_for_confirmation_files",
+    "h_a_rfq_send_confirmation_intake_applied": 0,
+    "h_a_rfq_send_confirmation_intake_bundle_matched": 0,
+    "h_a_rfq_send_confirmation_intake_files": 0,
+    "h_a_rfq_send_confirmation_intake_needs_review": 0,
+    "h_a_rfq_send_confirmation_intake_status": "nhi_pedot_h_a_rfq_send_confirmation_intake_waiting_for_confirmation_files",
+    "h_a_rfq_send_log_applied_dates": 0,
+    "h_a_rfq_send_log_errors": 0,
+    "h_a_rfq_send_log_rows": 4,
+    "h_a_rfq_send_log_sent_rows": 0,
+    "h_a_rfq_send_log_status": "nhi_pedot_h_a_rfq_send_log_waiting_for_sent_entries",
+    "h_a_rfq_send_log_valid_sent_rows": 0,
+    "h_a_sample_label_count": 36,
+    "h_a_sample_submission_shipping_status": "do_not_ship_until_vendor_confirms_quote_sample_acceptance_sds_and_custody",
+    "h_a_sample_submission_status": "sample_submission_precheck_ready",
+    "h_a_service_request_raw_entries": 228,
+    "h_a_service_request_status": "ready_to_request_real_measurements",
+    "h_a_source_drop_dirs": 48,
+    "h_a_source_drop_existing_files": 0,
+    "h_a_source_drop_missing_files": 228,
+    "h_a_source_drop_planned_files": 228,
+    "h_a_source_drop_status": "nhi_pedot_h_a_source_drop_plan_ready",
+    "h_a_source_template_pack_status": "nhi_pedot_h_a_source_file_template_pack_ready",
+    "h_a_source_template_pack_target_files": 228,
+    "h_a_source_template_pack_templates": 8,
+    "h_a_source_unlock_pack_bundles": 96,
+    "h_a_source_unlock_pack_existing_files": 0,
+    "h_a_source_unlock_pack_missing_files": 96,
+    "h_a_source_unlock_pack_source_rows": 228,
+    "h_a_source_unlock_pack_status": "h_a_source_unlock_pack_ready",
+    "h_a_source_value_import_errors": 0,
+    "h_a_source_value_import_files": 2,
+    "h_a_source_value_import_imported_rows": 0,
+    "h_a_source_value_import_rows": 228,
+    "h_a_source_value_import_status": "h_a_source_value_import_no_importable_rows",
+    "h_a_source_values_sheet_filled_rows": 0,
+    "h_a_source_values_sheet_import_ready_rows": 0,
+    "h_a_source_values_sheet_rows": 228,
+    "h_a_source_values_sheet_source_file_exists_rows": 0,
+    "h_a_source_values_sheet_status": "h_a_source_values_sheet_ready",
+    "h_a_split_scope_pair_count": 7,
+    "h_a_split_scope_preferred_count": 5,
+    "h_a_split_scope_status": "split_scope_plan_ready",
+    "h_a_status": "h_a_invalid_provenance",
+    "h_a_synthetic_rows": 0,
+    "h_a_total_rows": 12,
+    "h_a_vendor_bundle_entry_apply_bundles": 0,
+    "h_a_vendor_bundle_entry_apply_errors": 0,
+    "h_a_vendor_bundle_entry_apply_sheet_exists": true,
+    "h_a_vendor_bundle_entry_apply_source_rows": 0,
+    "h_a_vendor_bundle_entry_apply_status": "h_a_vendor_bundle_entry_return_no_apply_rows",
+    "h_a_vendor_bundle_entry_sheet_blocked_rows": 0,
+    "h_a_vendor_bundle_entry_sheet_existing_files": 0,
+    "h_a_vendor_bundle_entry_sheet_ready_rows": 0,
+    "h_a_vendor_bundle_entry_sheet_rows": 96,
+    "h_a_vendor_bundle_entry_sheet_status": "h_a_vendor_bundle_entry_sheet_ready",
+    "h_a_vendor_contact_plan_status": "contact_plan_ready",
+    "h_a_vendor_contact_ready_count": 4,
+    "h_a_vendor_contact_row_count": 8,
+    "h_a_vendor_contact_source_audit_fail_rows": 0,
+    "h_a_vendor_contact_source_audit_pass_rows": 4,
+    "h_a_vendor_contact_source_audit_rows": 4,
+    "h_a_vendor_contact_source_audit_stale_rows": 0,
+    "h_a_vendor_contact_source_audit_status": "h_a_vendor_contact_source_audit_ready",
+    "h_a_vendor_contact_standby_count": 4,
+    "h_a_vendor_first_wave_count": 4,
+    "h_a_vendor_outreach_status": "ready_for_vendor_screening",
+    "h_a_vendor_return_bundle_entry_apply_rows": 0,
+    "h_a_vendor_return_bundle_entry_rows": 96,
+    "h_a_vendor_return_export_files": 0,
+    "h_a_vendor_return_raw_value_rows": 0,
+    "h_a_vendor_return_status": "awaiting_vendor_return_files",
+    "hybrid_measurement_inhouse_rows": 184,
+    "hybrid_measurement_outsource_rows": 40,
+    "hybrid_measurement_plan_status": "hybrid_measurement_plan_ready",
+    "hybrid_measurement_provenance_rows": 126,
+    "hybrid_measurement_total_rows": 350,
+    "local_capture_local_tasks": 184,
+    "local_capture_outsource_tasks": 40,
+    "local_capture_pack_status": "local_capture_pack_ready",
+    "local_capture_preflight_errors": 0,
+    "local_capture_preflight_filled_tasks": 0,
+    "local_capture_preflight_pending_tasks": 350,
+    "local_capture_preflight_ready": false,
+    "local_capture_preflight_status": "local_capture_preflight_awaiting_entries",
+    "local_capture_preflight_warnings": 0,
+    "local_capture_provenance_tasks": 126,
+    "local_capture_task_count": 350,
+    "mission_reason": "Replace fixture, pending, and record_actual/record_lot placeholders with real measured provenance before interpreting H-A.",
+    "mission_state": "awaiting_real_h_a_measurements",
+    "next_action_boundary": "No suitability claim is allowed until real, non-placeholder, non-synthetic measured rows pass the required gates.",
+    "nhi_coupon_result_rows": 0,
+    "nhi_coupon_result_status": "no_data",
+    "nhi_forward_raw_csv_extraction_errors": 0,
+    "nhi_forward_raw_csv_extraction_files": 0,
+    "nhi_forward_raw_csv_extraction_rows": 0,
+    "nhi_forward_raw_csv_extraction_status": "nhi_pedot_forward_raw_csv_value_extraction_no_raw_csv",
+    "nhi_forward_source_drop_dirs": 28,
+    "nhi_forward_source_drop_existing_files": 0,
+    "nhi_forward_source_drop_missing_files": 592,
+    "nhi_forward_source_drop_planned_files": 592,
+    "nhi_forward_source_drop_status": "nhi_pedot_forward_source_drop_plan_ready",
+    "nhi_forward_source_import_errors": 0,
+    "nhi_forward_source_import_imported_rows": 0,
+    "nhi_forward_source_import_rows": 592,
+    "nhi_forward_source_import_status": "nhi_pedot_forward_source_value_import_no_importable_rows",
+    "nhi_forward_source_template_pack_status": "nhi_pedot_forward_source_file_template_pack_ready",
+    "nhi_forward_source_template_pack_target_files": 592,
+    "nhi_forward_source_template_pack_templates": 6,
+    "nhi_forward_source_values_filled_rows": 0,
+    "nhi_forward_source_values_import_ready_rows": 0,
+    "nhi_forward_source_values_rows": 592,
+    "nhi_forward_source_values_status": "nhi_pedot_forward_source_values_sheet_ready",
+    "nhi_long_raw_csv_extraction_errors": 0,
+    "nhi_long_raw_csv_extraction_files": 0,
+    "nhi_long_raw_csv_extraction_rows": 0,
+    "nhi_long_raw_csv_extraction_status": "nhi_pedot_long_raw_csv_value_extraction_no_raw_csv",
+    "nhi_long_result_rows": 0,
+    "nhi_long_result_status": "no_data",
+    "nhi_long_source_drop_dirs": 156,
+    "nhi_long_source_drop_existing_files": 0,
+    "nhi_long_source_drop_missing_files": 4836,
+    "nhi_long_source_drop_planned_files": 4836,
+    "nhi_long_source_drop_status": "nhi_pedot_long_source_drop_plan_ready",
+    "nhi_long_source_import_errors": 0,
+    "nhi_long_source_import_imported_rows": 0,
+    "nhi_long_source_import_rows": 4836,
+    "nhi_long_source_import_status": "nhi_pedot_long_source_value_import_no_importable_rows",
+    "nhi_long_source_template_pack_status": "nhi_pedot_long_source_file_template_pack_ready",
+    "nhi_long_source_template_pack_target_files": 4836,
+    "nhi_long_source_template_pack_templates": 5,
+    "nhi_long_source_values_filled_rows": 0,
+    "nhi_long_source_values_import_ready_rows": 0,
+    "nhi_long_source_values_rows": 4836,
+    "nhi_long_source_values_status": "nhi_pedot_long_source_values_sheet_ready",
+    "portfolio_bypass_non_h_a_claim_ready_rows": 0,
+    "portfolio_bypass_recommended_action": "run_zrc_phase_a_real_measurements_before_any_non_h_a_claim",
+    "portfolio_bypass_status": "no_h_a_bypass_claim_ready",
+    "portfolio_bypass_top_non_h_a_candidate": "limina_all_dry_zwitterionic_external_v0_1",
+    "second_wave_candidate_queue_hold_rows": 2,
+    "second_wave_candidate_queue_ready_scope_lock_rows": 2,
+    "second_wave_candidate_queue_rows": 6,
+    "second_wave_candidate_queue_status": "second_wave_candidate_queue_ready_while_first_wave_waits",
+    "second_wave_candidate_queue_watch_rows": 2,
+    "second_wave_scope_lock_pack_claim_evidence_created": false,
+    "second_wave_scope_lock_pack_ready_candidates": 2,
+    "second_wave_scope_lock_pack_source_classes": 5,
+    "second_wave_scope_lock_pack_status": "second_wave_scope_lock_pack_ready",
+    "second_wave_scope_lock_pack_tasks": 8,
+    "smoke_capture_local_or_record_tasks": 152,
+    "smoke_capture_outsource_tasks": 20,
+    "smoke_capture_preflight_errors": 0,
+    "smoke_capture_preflight_filled_tasks": 0,
+    "smoke_capture_preflight_pending_tasks": 172,
+    "smoke_capture_preflight_ready": false,
+    "smoke_capture_preflight_status": "local_capture_preflight_awaiting_entries",
+    "smoke_capture_preflight_warnings": 0,
+    "smoke_capture_task_count": 172,
+    "smoke_capture_tranche_status": "smoke_capture_tranche_ready",
+    "smoke_entry_apply_applied_values": 0,
+    "smoke_entry_apply_errors": 0,
+    "smoke_entry_apply_status": "smoke_entry_apply_no_filled_rows",
+    "smoke_entry_sheet_filled_value_rows": 0,
+    "smoke_entry_sheet_ready_rows": 0,
+    "smoke_entry_sheet_rows": 172,
+    "smoke_entry_sheet_status": "smoke_entry_sheet_ready",
+    "smoke_execution_queue_awaiting_rows": 172,
+    "smoke_execution_queue_h_a_rows": 114,
+    "smoke_execution_queue_rows": 172,
+    "smoke_execution_queue_source_ready_rows": 0,
+    "smoke_execution_queue_status": "smoke_execution_queue_ready",
+    "smoke_execution_queue_zrc_rows": 58,
+    "smoke_raw_csv_extraction_errors": 0,
+    "smoke_raw_csv_extraction_files": 0,
+    "smoke_raw_csv_extraction_rows": 0,
+    "smoke_raw_csv_extraction_status": "smoke_raw_csv_value_extraction_no_raw_csv",
+    "smoke_rehearsal_errors": 0,
+    "smoke_rehearsal_filled_tasks": 0,
+    "smoke_rehearsal_h_a_qc_status": "-",
+    "smoke_rehearsal_pending_tasks": 172,
+    "smoke_rehearsal_preflight_ready": false,
+    "smoke_rehearsal_preflight_status": "local_capture_preflight_awaiting_entries",
+    "smoke_rehearsal_status": "smoke_rehearsal_waiting_for_preflight",
+    "smoke_rehearsal_warnings": 0,
+    "smoke_rehearsal_zrc_validation_status": "-",
+    "smoke_source_drop_dirs": 10,
+    "smoke_source_drop_existing_files": 0,
+    "smoke_source_drop_missing_files": 172,
+    "smoke_source_drop_planned_files": 172,
+    "smoke_source_drop_status": "smoke_source_drop_plan_ready",
+    "smoke_source_value_import_errors": 0,
+    "smoke_source_value_import_files": 3,
+    "smoke_source_value_import_imported_rows": 0,
+    "smoke_source_value_import_rows": 182,
+    "smoke_source_value_import_status": "smoke_source_value_import_no_importable_rows",
+    "smoke_source_values_sheet_filled_rows": 0,
+    "smoke_source_values_sheet_import_ready_rows": 0,
+    "smoke_source_values_sheet_rows": 172,
+    "smoke_source_values_sheet_starter_rows": 19,
+    "smoke_source_values_sheet_status": "smoke_source_values_sheet_ready",
+    "smoke_starter_batch_blocked_rows": 19,
+    "smoke_starter_batch_readiness_status": "smoke_starter_batch_awaiting_values",
+    "smoke_starter_batch_ready_rows": 0,
+    "smoke_starter_batch_rows": 19,
+    "smoke_starter_execution_pack_dirs": 1,
+    "smoke_starter_execution_pack_existing_files": 0,
+    "smoke_starter_execution_pack_rows": 19,
+    "smoke_starter_execution_pack_status": "smoke_starter_execution_pack_ready",
+    "smoke_starter_template_pack_rows": 19,
+    "smoke_starter_template_pack_status": "smoke_starter_raw_file_template_pack_ready",
+    "smoke_starter_template_pack_templates": 8,
+    "smoke_unstructured_intake_invalid": 0,
+    "smoke_unstructured_intake_missing": 10,
+    "smoke_unstructured_intake_ready": 0,
+    "smoke_unstructured_intake_rows": 10,
+    "smoke_unstructured_intake_status": "smoke_unstructured_source_intake_waiting_for_files",
+    "smoke_unstructured_review_values_filled_rows": 0,
+    "smoke_unstructured_review_values_import_ready_rows": 0,
+    "smoke_unstructured_review_values_invalid_sources": 0,
+    "smoke_unstructured_review_values_ready_sources": 0,
+    "smoke_unstructured_review_values_rows": 10,
+    "smoke_unstructured_review_values_status": "smoke_unstructured_review_values_waiting_for_source_files",
+    "source_file_allowed_root_count": 12,
+    "source_file_expected_class_count": 12,
+    "source_file_inventory_capture_reference_count": 0,
+    "source_file_inventory_file_count": 0,
+    "source_file_inventory_missing_reference_count": 0,
+    "source_file_inventory_reference_count": 0,
+    "source_file_inventory_source_value_reference_count": 0,
+    "source_file_inventory_status": "source_file_inventory_empty",
+    "source_file_inventory_unreferenced_file_count": 0,
+    "source_file_manifest_status": "source_file_manifest_ready",
+    "status": "completed",
+    "top_candidate": "limina_alg_lam_pedot_lowdose_v0_2",
+    "top_priority": "promote_now",
+    "zrc_measurement_merge_inserted": 0,
+    "zrc_measurement_merge_output_rows": 0,
+    "zrc_measurement_merge_status": "awaiting_measurement_file",
+    "zrc_measurement_merge_updated": 0,
+    "zrc_next_recommended_rows": 8,
+    "zrc_next_status": "needs_phase_a_sentinel",
+    "zrc_phase_a_chain_rows": 16,
+    "zrc_phase_a_chain_status": "ready_for_phase_a_sample_handoff",
+    "zrc_phase_a_contact_plan_status": "contact_plan_ready",
+    "zrc_phase_a_contact_ready_count": 4,
+    "zrc_phase_a_contact_row_count": 8,
+    "zrc_phase_a_contact_standby_count": 4,
+    "zrc_phase_a_delivery_missing_files": 0,
+    "zrc_phase_a_delivery_status": "ready_to_send",
+    "zrc_phase_a_execution_authorization_errors": 0,
+    "zrc_phase_a_execution_authorization_rows": 0,
+    "zrc_phase_a_execution_authorization_status": "zrc_nd_phase_a_execution_authorization_waiting_for_selected_provider",
+    "zrc_phase_a_execution_authorization_valid_rows": 0,
+    "zrc_phase_a_execution_release_authorization_blockers": 0,
+    "zrc_phase_a_execution_release_blockers": 1,
+    "zrc_phase_a_execution_release_ready": false,
+    "zrc_phase_a_execution_release_released": false,
+    "zrc_phase_a_execution_release_status": "zrc_nd_phase_a_execution_release_blocked_no_source_backed_provider_selection",
+    "zrc_phase_a_pending_transfer_rows": 16,
+    "zrc_phase_a_quote_selection_reply_count": 0,
+    "zrc_phase_a_quote_selection_sent_count": 0,
+    "zrc_phase_a_quote_selection_shortlist_count": 0,
+    "zrc_phase_a_quote_selection_source_backed_reply_count": 0,
+    "zrc_phase_a_quote_selection_status": "pending_outreach",
+    "zrc_phase_a_quote_tracker_status": "pending_outreach",
+    "zrc_phase_a_raw_csv_extraction_errors": 0,
+    "zrc_phase_a_raw_csv_extraction_files": 0,
+    "zrc_phase_a_raw_csv_extraction_rows": 0,
+    "zrc_phase_a_raw_csv_extraction_status": "zrc_nd_phase_a_raw_csv_value_extraction_no_raw_csv",
+    "zrc_phase_a_rfq_dispatch_archive_files": 24,
+    "zrc_phase_a_rfq_dispatch_archive_hash_mismatches": 0,
+    "zrc_phase_a_rfq_dispatch_archive_missing_files": 0,
+    "zrc_phase_a_rfq_dispatch_archive_path": "data/zrc_nd_phase_a_rfq_dispatch_archive/zrc_nd_phase_a_rfq_dispatch_archive.zip",
+    "zrc_phase_a_rfq_dispatch_archive_sha256": "2a2ca661089a7d5ae0a91205968a383b98d7fbd90cea45c46fd4f6c8eab917d7",
+    "zrc_phase_a_rfq_dispatch_archive_status": "zrc_phase_a_rfq_dispatch_archive_ready",
+    "zrc_phase_a_rfq_dispatch_manifest_blocked_rows": 0,
+    "zrc_phase_a_rfq_dispatch_manifest_ready_rows": 4,
+    "zrc_phase_a_rfq_dispatch_manifest_rows": 4,
+    "zrc_phase_a_rfq_dispatch_manifest_status": "zrc_phase_a_rfq_dispatch_manifest_ready",
+    "zrc_phase_a_rfq_outbox_quote_count": 4,
+    "zrc_phase_a_rfq_outbox_ready_count": 4,
+    "zrc_phase_a_rfq_outbox_status": "ready_to_send_outbox",
+    "zrc_phase_a_rfq_reply_action_pack_awaiting_reply_rows": 0,
+    "zrc_phase_a_rfq_reply_action_pack_needs_source_rows": 0,
+    "zrc_phase_a_rfq_reply_action_pack_ready_apply_rows": 0,
+    "zrc_phase_a_rfq_reply_action_pack_rows": 4,
+    "zrc_phase_a_rfq_reply_action_pack_status": "zrc_phase_a_rfq_reply_action_pack_waiting_for_send",
+    "zrc_phase_a_rfq_reply_action_pack_waiting_send_rows": 4,
+    "zrc_phase_a_rfq_reply_intake_applied_rows": 0,
+    "zrc_phase_a_rfq_reply_intake_files": 0,
+    "zrc_phase_a_rfq_reply_intake_needs_review_rows": 0,
+    "zrc_phase_a_rfq_reply_intake_needs_verified_send_rows": 0,
+    "zrc_phase_a_rfq_reply_intake_status": "zrc_nd_phase_a_rfq_reply_intake_waiting_for_reply_files",
+    "zrc_phase_a_rfq_reply_log_applied_fields": 0,
+    "zrc_phase_a_rfq_reply_log_errors": 0,
+    "zrc_phase_a_rfq_reply_log_received_rows": 0,
+    "zrc_phase_a_rfq_reply_log_rows": 4,
+    "zrc_phase_a_rfq_reply_log_status": "zrc_nd_phase_a_rfq_reply_log_waiting_for_reply_files",
+    "zrc_phase_a_rfq_reply_log_valid_rows": 0,
+    "zrc_phase_a_rfq_send_cockpit_confirmations": 0,
+    "zrc_phase_a_rfq_send_cockpit_html": "reports/zrc_nd_phase_a_rfq_send_cockpit.html",
+    "zrc_phase_a_rfq_send_cockpit_missing_bundle": 0,
+    "zrc_phase_a_rfq_send_cockpit_missing_email": 0,
+    "zrc_phase_a_rfq_send_cockpit_ready_rows": 4,
+    "zrc_phase_a_rfq_send_cockpit_replies": 0,
+    "zrc_phase_a_rfq_send_cockpit_rows": 4,
+    "zrc_phase_a_rfq_send_cockpit_status": "zrc_phase_a_rfq_send_cockpit_ready_for_manual_send",
+    "zrc_phase_a_rfq_send_confirmation_entry_apply_applied_rows": 0,
+    "zrc_phase_a_rfq_send_confirmation_entry_apply_blocked_rows": 0,
+    "zrc_phase_a_rfq_send_confirmation_entry_apply_rows": 0,
+    "zrc_phase_a_rfq_send_confirmation_entry_apply_status": "zrc_phase_a_rfq_send_confirmation_entry_apply_no_apply_rows",
+    "zrc_phase_a_rfq_send_confirmation_entry_sheet_blocked_rows": 0,
+    "zrc_phase_a_rfq_send_confirmation_entry_sheet_ready_rows": 0,
+    "zrc_phase_a_rfq_send_confirmation_entry_sheet_rows": 4,
+    "zrc_phase_a_rfq_send_confirmation_entry_sheet_source_files": 0,
+    "zrc_phase_a_rfq_send_confirmation_entry_sheet_status": "zrc_phase_a_rfq_send_confirmation_entry_sheet_waiting_for_confirmation_files",
+    "zrc_phase_a_rfq_send_confirmation_intake_applied_rows": 0,
+    "zrc_phase_a_rfq_send_confirmation_intake_bundle_matched_rows": 0,
+    "zrc_phase_a_rfq_send_confirmation_intake_files": 0,
+    "zrc_phase_a_rfq_send_confirmation_intake_needs_review_rows": 0,
+    "zrc_phase_a_rfq_send_confirmation_intake_status": "zrc_nd_phase_a_rfq_send_confirmation_intake_waiting_for_confirmation_files",
+    "zrc_phase_a_rfq_send_log_applied_dates": 0,
+    "zrc_phase_a_rfq_send_log_errors": 0,
+    "zrc_phase_a_rfq_send_log_rows": 4,
+    "zrc_phase_a_rfq_send_log_sent_rows": 0,
+    "zrc_phase_a_rfq_send_log_status": "zrc_nd_phase_a_rfq_send_log_waiting_for_sent_entries",
+    "zrc_phase_a_rfq_send_log_valid_sent_rows": 0,
+    "zrc_phase_a_rfq_status": "ready_to_send_rfq",
+    "zrc_phase_a_sample_label_count": 16,
+    "zrc_phase_a_service_runs": 8,
+    "zrc_phase_a_service_status": "ready_to_request_real_phase_a_measurements",
+    "zrc_phase_a_source_drop_dirs": 8,
+    "zrc_phase_a_source_drop_existing_files": 0,
+    "zrc_phase_a_source_drop_missing_files": 304,
+    "zrc_phase_a_source_drop_planned_files": 304,
+    "zrc_phase_a_source_drop_status": "zrc_nd_phase_a_source_drop_plan_ready",
+    "zrc_phase_a_source_import_errors": 0,
+    "zrc_phase_a_source_import_imported_rows": 0,
+    "zrc_phase_a_source_import_rows": 304,
+    "zrc_phase_a_source_import_status": "zrc_nd_phase_a_source_value_import_no_importable_rows",
+    "zrc_phase_a_source_template_pack_status": "zrc_nd_phase_a_source_file_template_pack_ready",
+    "zrc_phase_a_source_template_pack_target_files": 304,
+    "zrc_phase_a_source_template_pack_templates": 8,
+    "zrc_phase_a_source_values_filled_rows": 0,
+    "zrc_phase_a_source_values_import_ready_rows": 0,
+    "zrc_phase_a_source_values_rows": 304,
+    "zrc_phase_a_source_values_status": "zrc_nd_phase_a_source_values_sheet_ready",
+    "zrc_phase_a_vendor_bundle_entry_apply_bundles": 0,
+    "zrc_phase_a_vendor_bundle_entry_apply_errors": 0,
+    "zrc_phase_a_vendor_bundle_entry_apply_rows": 0,
+    "zrc_phase_a_vendor_bundle_entry_apply_source_rows": 0,
+    "zrc_phase_a_vendor_bundle_entry_apply_status": "zrc_phase_a_vendor_bundle_entry_apply_no_apply_rows",
+    "zrc_phase_a_vendor_bundle_entry_sheet_blocked_rows": 0,
+    "zrc_phase_a_vendor_bundle_entry_sheet_bundles": 64,
+    "zrc_phase_a_vendor_bundle_entry_sheet_ready_rows": 0,
+    "zrc_phase_a_vendor_bundle_entry_sheet_status": "zrc_phase_a_vendor_bundle_entry_sheet_ready",
+    "zrc_phase_a_vendor_first_wave_count": 4,
+    "zrc_phase_a_vendor_outreach_status": "ready_for_vendor_screening",
+    "zrc_phase_a_vendor_return_export_files": 0,
+    "zrc_phase_a_vendor_return_rows": 0,
+    "zrc_phase_a_vendor_return_status": "awaiting_vendor_return_files",
+    "zrc_readiness": "not_suitable_yet_no_measured_data",
+    "zrc_run_completeness_measured_known_rows": 0,
+    "zrc_run_completeness_planned_rows": 132,
+    "zrc_run_completeness_status": "no_measured_rows",
+    "zrc_sentinel_rows": 0,
+    "zrc_sentinel_status": "no_sentinel_rows",
+    "zrc_suitable": false,
+    "zrc_validation_result_rows": 0,
+    "zrc_validation_result_status": "no_data"
+  }
+}

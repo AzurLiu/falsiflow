@@ -1,0 +1,225 @@
+{
+  "active_candidate": "limina_alg_lam_pedot_lowdose_v0_2",
+  "expected_return_files": [
+    {
+      "acceptance": "Same schema as the package template, with all requested real values and provenance fields filled.",
+      "id": "completed_raw_measurement_csv",
+      "path": "data/nhi_pedot_h_a_raw_measurements_template.csv"
+    },
+    {
+      "acceptance": "Preferred compact return option: filled value_* columns, measured_at, operator_or_agent, instrument_id where required, source_file, and apply=yes for each completed raw-file bundle.",
+      "id": "completed_bundle_entry_sheet",
+      "path": "data/nhi_pedot_h_a_bundle_entry_sheet.csv"
+    },
+    {
+      "acceptance": "Original pH, osmolality, conductivity, chain-of-custody, build, and image/inspection files referenced by source_file.",
+      "id": "instrument_exports",
+      "path": "external_lab_exports/"
+    },
+    {
+      "acceptance": "Prepared/released/received fields, actual medium lot, coupon or well ID, condition on receipt, and transfer deviations filled for every returned sample row.",
+      "id": "completed_chain_of_custody",
+      "path": "data/nhi_pedot_h_a_chain_of_custody.csv"
+    },
+    {
+      "acceptance": "Lists every deviation from recipe, timing, instrument, sample, medium, or storage assumptions.",
+      "id": "deviation_log",
+      "path": "reports/nhi_pedot_h_a_deviation_log.md"
+    }
+  ],
+  "missing_required_file_ids": [],
+  "non_claim_boundary": "This manifest only packages the measurement request. Suitability still requires real rows to pass H-A, H-B, H-C, long follow-up, and the final claim audit.",
+  "package_files": [
+    {
+      "bytes": 6071,
+      "exists": true,
+      "id": "service_request",
+      "path": "reports/nhi_pedot_h_a_service_request.md",
+      "required": true,
+      "role": "Primary lab/cooperator request: matrix, deliverables, capabilities, stop rules, and rejection rules.",
+      "sha256": "14d7277ad1e8dd613c02fbfaad69e6f26722c482d4af1be9b562c498db79b539"
+    },
+    {
+      "bytes": 19363,
+      "exists": true,
+      "id": "raw_measurement_template",
+      "path": "data/nhi_pedot_h_a_raw_measurements_template.csv",
+      "required": true,
+      "role": "The long-form CSV to fill with real instrument and inspection values.",
+      "sha256": "461bc7c75b03a261844d06078bf3cbd867ad58cead4c1145f9beb244a8c7eb3c"
+    },
+    {
+      "bytes": 78006,
+      "exists": true,
+      "id": "bundle_entry_sheet",
+      "path": "data/nhi_pedot_h_a_bundle_entry_sheet.csv",
+      "required": true,
+      "role": "Preferred compact CSV for returning one row per raw-file bundle; it expands into the source-values sheet after validation.",
+      "sha256": "900bf5c472a6ae2abb0b4fd5a3e9a4ed950a78b05aaf0bd42dadc853d8b0b328"
+    },
+    {
+      "bytes": 14450,
+      "exists": true,
+      "id": "bundle_entry_report",
+      "path": "reports/nhi_pedot_h_a_bundle_entry_sheet.md",
+      "required": true,
+      "role": "Human-readable instructions for filling the compact H-A bundle entry sheet.",
+      "sha256": "9461cd24b403ac176a3893d03257bee0daa9520dcbbbf6f788c4300bd863c0b4"
+    },
+    {
+      "bytes": 55071,
+      "exists": true,
+      "id": "source_unlock_bundle_manifest",
+      "path": "data/nhi_pedot_h_a_source_unlock_bundle_manifest.csv",
+      "required": true,
+      "role": "Machine-readable manifest mapping run_id/source_class bundles to consolidated source-file paths and target fields.",
+      "sha256": "afbe99df61e730fdc27cd0a66bd0c9da352002227ec0a02265097f87e2c2361c"
+    },
+    {
+      "bytes": 12281,
+      "exists": true,
+      "id": "source_unlock_pack",
+      "path": "reports/nhi_pedot_h_a_source_unlock_pack.md",
+      "required": true,
+      "role": "Human-readable overview of required H-A raw-file bundles and source classes.",
+      "sha256": "0ee3c70dbfc6b2216ef2007a8454685bc648931d7dea83bdb98ac9b92ebc278f"
+    },
+    {
+      "bytes": 3391,
+      "exists": true,
+      "id": "sentinel_packet",
+      "path": "reports/nhi_pedot_h_a_sentinel_packet.md",
+      "required": true,
+      "role": "Recipe-locked H-A sentinel packet and sample handling context.",
+      "sha256": "614e63ace4f0c46031ee8a257b76a6986afd4a29fd6b5f56e35d80058626155a"
+    },
+    {
+      "bytes": 13687,
+      "exists": true,
+      "id": "sample_manifest",
+      "path": "data/nhi_pedot_h_a_sentinel_sample_manifest.csv",
+      "required": true,
+      "role": "Sample-level manifest tying run_id to sample_event, article, timepoint, and readouts.",
+      "sha256": "f9ef2f6783f34bfb840da22b79586890a7ff93b02c3ccd89f23a731c310dd6cb"
+    },
+    {
+      "bytes": 19897,
+      "exists": true,
+      "id": "sample_labels",
+      "path": "data/nhi_pedot_h_a_sample_labels.csv",
+      "required": true,
+      "role": "Printable/transferable label rows with sample IDs, planned container IDs, article IDs, and handling notes.",
+      "sha256": "06fafd2460820f073e9947506e9981295b7f168145633857f23ee302be84a69e"
+    },
+    {
+      "bytes": 9320,
+      "exists": true,
+      "id": "chain_of_custody_csv",
+      "path": "data/nhi_pedot_h_a_chain_of_custody.csv",
+      "required": true,
+      "role": "Blank chain-of-custody transfer rows to complete during preparation, release, receipt, and return.",
+      "sha256": "250f8486ecca4206273ba608706f7820cffb2b482537e4b722006dd5456fca5c"
+    },
+    {
+      "bytes": 3959,
+      "exists": true,
+      "id": "chain_of_custody_report",
+      "path": "reports/nhi_pedot_h_a_chain_of_custody.md",
+      "required": true,
+      "role": "Human-readable sample handoff instructions, blank fields, and rejection rules.",
+      "sha256": "caae2d348bdcf5036bfff16762d7334ddc11f2d791e41f00388a0c5532901535"
+    },
+    {
+      "bytes": 5872,
+      "exists": true,
+      "id": "sample_submission_pack",
+      "path": "reports/nhi_pedot_h_a_sample_submission_pack.md",
+      "required": true,
+      "role": "Vendor-facing nonclinical sample-submission precheck, material disclosure, pre-ship questions, and shipping boundary.",
+      "sha256": "c5d6ce3d89cfa7e1c338aa6864440396ab546340570e157a37553670384fc255"
+    },
+    {
+      "bytes": 3145,
+      "exists": true,
+      "id": "split_scope_plan",
+      "path": "reports/nhi_pedot_h_a_split_scope_plan.md",
+      "required": true,
+      "role": "Fallback execution plan for splitting media chemistry and coupon physical/imaging readouts across vendors.",
+      "sha256": "5ab79c352248c1dc8b11903a7b6dc72c813523a11d244a15e3fcd49d78282db9"
+    },
+    {
+      "bytes": 6892,
+      "exists": true,
+      "id": "split_scope_plan_csv",
+      "path": "data/nhi_pedot_h_a_split_scope_plan.csv",
+      "required": true,
+      "role": "Machine-readable split-scope vendor pairings, field assignments, shared requirements, and decisions.",
+      "sha256": "1d0bd6ca8844067b28bf769afb268bc0acc437616bdd76e125fbea26529b613b"
+    },
+    {
+      "bytes": 1858,
+      "exists": true,
+      "id": "material_disclosure_csv",
+      "path": "data/nhi_pedot_h_a_material_disclosure.csv",
+      "required": true,
+      "role": "Machine-readable component disclosure checklist for sample submission and SDS readiness.",
+      "sha256": "9d2be57f0822e11693a02ab6a4c240c56fad5ac9379494fde7728e4f70bacb46"
+    },
+    {
+      "bytes": 7103,
+      "exists": true,
+      "id": "bench_sheet",
+      "path": "reports/nhi_pedot_h_a_bench_sheet.md",
+      "required": true,
+      "role": "Operator-facing bench sheet with task order and stop criteria.",
+      "sha256": "4273e8690d386bbd23f800da3fe53e93b3d9bdd947a2da7b8699b9d5ac219a16"
+    },
+    {
+      "bytes": 3105,
+      "exists": true,
+      "id": "minimum_checklist",
+      "path": "reports/nhi_pedot_h_a_minimum_measurement_checklist.md",
+      "required": true,
+      "role": "Compact checklist of claim-critical fields and current QC hotspots.",
+      "sha256": "c2868593b7cea471469f85eb1d46970c6da75085177d16d8b21eb05d1f34efdf"
+    },
+    {
+      "bytes": 4980,
+      "exists": true,
+      "id": "recipe_protocol",
+      "path": "reports/nhi_pedot_alg_lam_protocol.md",
+      "required": true,
+      "role": "Recipe-specific ALG-LAM-PEDOT protocol handoff.",
+      "sha256": "c3b05c0991bbfe1076112c89181d32111d1564687aafa0547a39d66aa12db54f"
+    },
+    {
+      "bytes": 3671,
+      "exists": true,
+      "id": "recipe_lock",
+      "path": "data/nhi_pedot_recipe_lock_v0_2.json",
+      "required": true,
+      "role": "Machine-readable recipe lock that defines the active lead and controls.",
+      "sha256": "2cba9abebc5126ba262497584cffa8111ae72c210d509c01699bd7170f5b49bc"
+    },
+    {
+      "bytes": 2586,
+      "exists": true,
+      "id": "next_measurements",
+      "path": "reports/nhi_pedot_next_measurements.md",
+      "required": true,
+      "role": "Current recommended H-A measurement rows.",
+      "sha256": "3cb57c4162cabf07db76163ae30f0b55093d5f7fa442811ccd896c863f3b5214"
+    }
+  ],
+  "post_return_verification": [
+    "python3 scripts/render_nhi_pedot_h_a_vendor_return_intake.py",
+    "python3 scripts/apply_nhi_pedot_h_a_bundle_entry_sheet.py",
+    "python3 scripts/import_nhi_pedot_h_a_source_values.py",
+    "python3 scripts/merge_nhi_pedot_h_a_raw_measurements.py",
+    "python3 scripts/qc_nhi_pedot_h_a_intake.py --strict-exit",
+    "python3 scripts/interpret_nhi_pedot_h_a_sentinel.py",
+    "python3 scripts/run_limina_iteration.py"
+  ],
+  "purpose": "Manifest for the current real-measurement package needed to unblock the ALG-LAM-PEDOT H-A gate.",
+  "status": "ready_to_send"
+}

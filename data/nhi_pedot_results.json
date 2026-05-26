@@ -1,0 +1,18 @@
+{
+  "evaluations": [],
+  "summary": {
+    "failed_lead_rows": 0,
+    "lead_rows": 0,
+    "min_passed_lead_replicates_per_phase": 3,
+    "passed_lead_replicates_by_phase": {},
+    "passed_lead_rows": 0,
+    "phase_coverage": [],
+    "required_phases": [
+      "H-A",
+      "H-B",
+      "H-C"
+    ],
+    "rows": 0,
+    "status": "no_data"
+  }
+}

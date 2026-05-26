@@ -1,0 +1,33 @@
+{
+  "version": "0.1",
+  "scale": "1_to_5",
+  "scope": "limina_external_materials",
+  "weights": {
+    "target_selectivity": 0.2,
+    "growth_factor_retention": 0.18,
+    "low_leachables": 0.14,
+    "culture_stability": 0.13,
+    "integration_complexity": 0.11,
+    "monitorability": 0.08,
+    "novelty_upside": 0.08,
+    "risk_control": 0.08
+  },
+  "gates": [
+    {
+      "field": "growth_factor_retention",
+      "minimum": 3,
+      "reason": "A waste cartridge must not silently strip critical trophic factors or serum proteins."
+    },
+    {
+      "field": "low_leachables",
+      "minimum": 3,
+      "reason": "Leachables in warm neuronal culture medium could invalidate otherwise promising waste removal."
+    },
+    {
+      "field": "culture_stability",
+      "minimum": 3,
+      "reason": "The cartridge must remain stable under long-duration 37 C perfusion."
+    }
+  ]
+}
+

@@ -1,0 +1,30 @@
+{
+  "boundary": "This regression uses temporary source-value rows only. It does not create source files or measured material evidence.",
+  "checks": {
+    "blank_source_value_row_ignored": true,
+    "filled_source_value_reference_count_is_one": true,
+    "missing_reference_detected": true,
+    "status_reports_missing_reference": true
+  },
+  "inventory_summary": {
+    "allowed_root_count": 12,
+    "capture_template_reference_count": 0,
+    "file_count": 0,
+    "filled_source_value_reference_count": 1,
+    "missing_reference_count": 1,
+    "source_reference_count": 1,
+    "unreferenced_file_count": 0
+  },
+  "missing_references": [
+    {
+      "capture_file": "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_source_value_inventory_1nq6brmd/source_values.csv",
+      "line": "2",
+      "reference_type": "filled_source_value",
+      "resolved_path": "data/source_files/full/h_a/inventory_regression/missing_pH_export.csv",
+      "run_id": "INV-REG-001",
+      "source_file": "data/source_files/full/h_a/inventory_regression/missing_pH_export.csv",
+      "target_field": "pH"
+    }
+  ],
+  "status": "pass"
+}

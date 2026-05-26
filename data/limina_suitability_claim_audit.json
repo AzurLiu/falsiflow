@@ -1,0 +1,224 @@
+{
+  "active_discovery_candidate": "limina_alg_lam_pedot_lowdose_v0_2",
+  "candidate_audits": [
+    {
+      "blockers": [
+        "ZRC-ND readiness audit is not suitable; measured non-cell and biological gates are incomplete.",
+        "ZRC-ND non-cell source has no measured run rows.",
+        "ZRC-ND biological source has no measured run rows."
+      ],
+      "claim_candidate_id": "limina_zrc_nd_v0_1",
+      "claim_ready": false,
+      "decision": "not_claim_ready",
+      "evidence_status": {
+        "readiness": "not_suitable_yet_no_measured_data",
+        "suitable": false
+      },
+      "provenance": {
+        "biological": {
+          "claimable_measurement_source": false,
+          "exists": true,
+          "measured_row_count": 0,
+          "path": "data/zrc_nd_bio_runs_template.csv",
+          "path_fixture_marker": false,
+          "placeholder_examples": [],
+          "placeholder_row_count": 0,
+          "row_count": 0,
+          "source_file_issue_count": 0,
+          "source_file_issue_examples": [],
+          "synthetic_examples": [],
+          "synthetic_row_count": 0
+        },
+        "non_cell": {
+          "claimable_measurement_source": false,
+          "exists": true,
+          "measured_row_count": 0,
+          "path": "data/zrc_nd_validation_runs_active.csv",
+          "path_fixture_marker": false,
+          "placeholder_examples": [],
+          "placeholder_row_count": 0,
+          "row_count": 0,
+          "source_file_issue_count": 0,
+          "source_file_issue_examples": [],
+          "synthetic_examples": [],
+          "synthetic_row_count": 0
+        }
+      },
+      "technology_id": "limina_zrc_nd_v0_1"
+    },
+    {
+      "blockers": [
+        "NHI-PEDOT H-A sentinel is `h_a_invalid_provenance`, not a QC-clean pass/continue status.",
+        "NHI-PEDOT coupon gates are `no_data`, not `nhi_pedot_passes_gates`.",
+        "NHI-PEDOT H-B/H-C forward gate package is preregistered and waiting for H-A, not measured evidence.",
+        "NHI-PEDOT long-duration gates are `no_data`, not `nhi_pedot_long_passes_gates`.",
+        "NHI-PEDOT H-A sentinel source has no measured run rows.",
+        "NHI-PEDOT H-A sentinel source contains placeholder or pending-measurement rows.",
+        "NHI-PEDOT coupon source has no measured run rows.",
+        "NHI-PEDOT long-duration source has no measured run rows."
+      ],
+      "claim_candidate_id": "limina_alg_lam_pedot_lowdose_v0_2",
+      "claim_ready": false,
+      "decision": "not_claim_ready",
+      "evidence_status": {
+        "coupon_result_rows": 0,
+        "coupon_status": "no_data",
+        "forward_rows": 28,
+        "forward_status": "preregistered_waiting_for_h_a",
+        "h_a_measured_rows": 0,
+        "h_a_status": "h_a_invalid_provenance",
+        "long_result_rows": 0,
+        "long_status": "no_data"
+      },
+      "provenance": {
+        "coupon": {
+          "claimable_measurement_source": false,
+          "exists": true,
+          "measured_row_count": 0,
+          "path": "data/nhi_pedot_runs_template.csv",
+          "path_fixture_marker": false,
+          "placeholder_examples": [],
+          "placeholder_row_count": 0,
+          "row_count": 0,
+          "source_file_issue_count": 0,
+          "source_file_issue_examples": [],
+          "synthetic_examples": [],
+          "synthetic_row_count": 0
+        },
+        "h_a_sentinel": {
+          "claimable_measurement_source": false,
+          "exists": true,
+          "measured_row_count": 0,
+          "path": "data/nhi_pedot_h_a_runs_active.csv",
+          "path_fixture_marker": false,
+          "placeholder_examples": [
+            {
+              "markers": [
+                "date=missing",
+                "laminin_or_peptide_density=record_lot",
+                "medium_name=record_actual",
+                "notes=pending_real_measurement",
+                "source_file=missing",
+                "sterilization_or_aseptic_protocol=record_lot"
+              ],
+              "row_number": 1,
+              "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-0h"
+            },
+            {
+              "markers": [
+                "date=missing",
+                "laminin_or_peptide_density=record_lot",
+                "medium_name=record_actual",
+                "notes=pending_real_measurement",
+                "source_file=missing",
+                "sterilization_or_aseptic_protocol=record_lot"
+              ],
+              "row_number": 2,
+              "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-24h"
+            },
+            {
+              "markers": [
+                "date=missing",
+                "laminin_or_peptide_density=record_lot",
+                "medium_name=record_actual",
+                "notes=pending_real_measurement",
+                "source_file=missing",
+                "sterilization_or_aseptic_protocol=record_lot"
+              ],
+              "row_number": 3,
+              "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-72h"
+            },
+            {
+              "markers": [
+                "date=missing",
+                "laminin_or_peptide_density=record_lot",
+                "medium_name=record_actual",
+                "notes=pending_real_measurement",
+                "source_file=missing",
+                "sterilization_or_aseptic_protocol=record_lot"
+              ],
+              "row_number": 4,
+              "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-0h"
+            },
+            {
+              "markers": [
+                "date=missing",
+                "laminin_or_peptide_density=record_lot",
+                "medium_name=record_actual",
+                "notes=pending_real_measurement",
+                "source_file=missing",
+                "sterilization_or_aseptic_protocol=record_lot"
+              ],
+              "row_number": 5,
+              "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-24h"
+            },
+            {
+              "markers": [
+                "date=missing",
+                "laminin_or_peptide_density=record_lot",
+                "medium_name=record_actual",
+                "notes=pending_real_measurement",
+                "source_file=missing",
+                "sterilization_or_aseptic_protocol=record_lot"
+              ],
+              "row_number": 6,
+              "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-72h"
+            },
+            {
+              "markers": [
+                "date=missing",
+                "laminin_or_peptide_density=record_lot",
+                "medium_name=record_actual",
+                "notes=pending_real_measurement",
+                "source_file=missing",
+                "sterilization_or_aseptic_protocol=record_lot"
+              ],
+              "row_number": 7,
+              "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-0h"
+            },
+            {
+              "markers": [
+                "date=missing",
+                "laminin_or_peptide_density=record_lot",
+                "medium_name=record_actual",
+                "notes=pending_real_measurement",
+                "source_file=missing",
+                "sterilization_or_aseptic_protocol=record_lot"
+              ],
+              "row_number": 8,
+              "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h"
+            }
+          ],
+          "placeholder_row_count": 12,
+          "row_count": 12,
+          "source_file_issue_count": 0,
+          "source_file_issue_examples": [],
+          "synthetic_examples": [],
+          "synthetic_row_count": 0
+        },
+        "long_duration": {
+          "claimable_measurement_source": false,
+          "exists": true,
+          "measured_row_count": 0,
+          "path": "data/nhi_pedot_long_runs_template.csv",
+          "path_fixture_marker": false,
+          "placeholder_examples": [],
+          "placeholder_row_count": 0,
+          "row_count": 0,
+          "source_file_issue_count": 0,
+          "source_file_issue_examples": [],
+          "synthetic_examples": [],
+          "synthetic_row_count": 0
+        }
+      },
+      "technology_id": "limina_nhi_pedot_laminin_v0_1"
+    }
+  ],
+  "claim_boundary": "Portfolio status selects workflow priority. Suitability claims require passing gates plus claimable non-synthetic measurement provenance.",
+  "claim_candidate": null,
+  "claim_parent_technology": null,
+  "claim_ready": false,
+  "portfolio_primary_next_branch": "limina_nhi_pedot_laminin_v0_1",
+  "portfolio_status": "no_suitable_material_yet",
+  "status": "no_suitable_material_claim_ready"
+}

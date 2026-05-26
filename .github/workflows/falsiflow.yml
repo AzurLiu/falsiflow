@@ -1,0 +1,322 @@
+name: Falsiflow
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Compile
+        run: |
+          python -m py_compile \
+            falsiflow/core.py \
+            falsiflow/cli.py \
+            falsiflow/adapters.py \
+            scripts/falsiflow.py \
+            scripts/falsiflow_tests/regress_falsiflow_core.py
+      - name: Regression
+        run: python scripts/falsiflow_tests/regress_falsiflow_core.py
+      - name: Schema contract
+        run: |
+          python scripts/falsiflow.py schema --kind project > /tmp/falsiflow_project_schema.json
+          python scripts/falsiflow.py schema --kind evidence-row > /tmp/falsiflow_evidence_row_schema.json
+          python scripts/falsiflow.py schema --kind evidence-record > /tmp/falsiflow_evidence_record_schema.json
+          python scripts/falsiflow.py schema --kind candidate-recipe > /tmp/falsiflow_candidate_recipe_schema.json
+          python scripts/falsiflow.py schema --kind discovery-summary > /tmp/falsiflow_discovery_summary_schema.json
+          python scripts/falsiflow.py schema --kind claim-summary > /tmp/falsiflow_claim_summary_schema.json
+          python scripts/falsiflow.py schema --kind audit-review > /tmp/falsiflow_audit_review_schema.json
+          python scripts/falsiflow.py schema --kind portfolio-summary > /tmp/falsiflow_portfolio_summary_schema.json
+          python scripts/falsiflow.py schema --kind import-coverage > /tmp/falsiflow_import_coverage_schema.json
+          python scripts/falsiflow.py schema --kind source-manifest > /tmp/falsiflow_source_manifest_schema.json
+          python scripts/falsiflow.py schema --kind bundle-manifest > /tmp/falsiflow_bundle_manifest_schema.json
+          python scripts/falsiflow.py schema --kind bundle-verification > /tmp/falsiflow_bundle_verification_schema.json
+          python scripts/falsiflow.py schema --kind claim-check > /tmp/falsiflow_claim_check_schema.json
+          python scripts/falsiflow.py schema --kind quickstart-summary > /tmp/falsiflow_quickstart_summary_schema.json
+          python scripts/falsiflow.py schema --kind doctor-summary > /tmp/falsiflow_doctor_summary_schema.json
+          python scripts/falsiflow.py schema --kind demo-summary > /tmp/falsiflow_demo_summary_schema.json
+          python scripts/falsiflow.py schema --kind template-check > /tmp/falsiflow_template_check_schema.json
+          python scripts/falsiflow.py schema --kind template-pack-manifest > /tmp/falsiflow_template_pack_manifest_schema.json
+          python scripts/falsiflow.py schema --kind template-pack-verification > /tmp/falsiflow_template_pack_verification_schema.json
+          python scripts/falsiflow.py schema --kind template-install > /tmp/falsiflow_template_install_schema.json
+          python scripts/falsiflow.py schema --kind template-registry > /tmp/falsiflow_template_registry_schema.json
+          python scripts/falsiflow.py schema --kind template-lock > /tmp/falsiflow_template_lock_schema.json
+          python scripts/falsiflow.py schema --kind template-attestation > /tmp/falsiflow_template_attestation_schema.json
+          python scripts/falsiflow.py schema --kind template-attestation-verification > /tmp/falsiflow_template_attestation_verification_schema.json
+          python scripts/falsiflow.py schema --kind template-policy > /tmp/falsiflow_template_policy_schema.json
+          python scripts/falsiflow.py schema --kind template-policy-verification > /tmp/falsiflow_template_policy_verification_schema.json
+          python scripts/falsiflow.py schema --kind template-release > /tmp/falsiflow_template_release_schema.json
+          python scripts/falsiflow.py schema --kind template-release-verification > /tmp/falsiflow_template_release_verification_schema.json
+          python scripts/falsiflow.py schema --kind template-gallery > /tmp/falsiflow_template_gallery_schema.json
+          python scripts/falsiflow.py schema --kind adoption-check > /tmp/falsiflow_adoption_check_schema.json
+          python scripts/falsiflow.py schema --kind release-check > /tmp/falsiflow_release_check_schema.json
+          python scripts/falsiflow.py schema --kind all --out /tmp/falsiflow_schemas.json
+      - name: Selftest
+        run: |
+          python scripts/falsiflow.py selftest \
+            --json \
+            --out-dir /tmp/falsiflow_selftest > /tmp/falsiflow_selftest.json
+      - name: Demo walkthrough
+        run: |
+          python scripts/falsiflow.py demo \
+            --out-dir /tmp/falsiflow_demo \
+            --json > /tmp/falsiflow_demo.json
+      - name: Quickstart
+        run: |
+          python scripts/falsiflow.py quickstart \
+            --template biointerface_coatings \
+            --out /tmp/falsiflow_quickstart \
+            --strict \
+            --json > /tmp/falsiflow_quickstart.json
+      - name: Doctor
+        run: |
+          python scripts/falsiflow.py doctor \
+            --project-dir /tmp/falsiflow_quickstart \
+            --strict \
+            --json > /tmp/falsiflow_doctor.json
+      - name: Template gallery
+        run: |
+          python scripts/falsiflow.py template-gallery \
+            --out /tmp/falsiflow_template_gallery.md \
+            --json-out /tmp/falsiflow_template_gallery.json \
+            --json > /tmp/falsiflow_template_gallery_stdout.json
+      - name: Browser and discovery public interfaces
+        run: |
+          python scripts/falsiflow.py start \
+            --out-dir /tmp/falsiflow_start \
+            --check \
+            --json > /tmp/falsiflow_start.json
+          python scripts/falsiflow.py demo-package \
+            --out-dir /tmp/falsiflow_public_demo \
+            --force \
+            --json > /tmp/falsiflow_demo_package.json
+          python scripts/falsiflow.py external-check \
+            --out-dir /tmp/falsiflow_external_check \
+            --force \
+            --json > /tmp/falsiflow_external_check.json
+          python scripts/falsiflow.py discover \
+            --goal "MEA neural interface material" \
+            --out-dir /tmp/falsiflow_discovery \
+            --force \
+            --json > /tmp/falsiflow_discovery.json
+          python scripts/falsiflow.py agent discover \
+            --goal "MEA neural interface material" \
+            --out-dir /tmp/falsiflow_agent_discovery \
+            --force \
+            --json > /tmp/falsiflow_agent_discovery.json
+          python scripts/falsiflow.py candidate rank \
+            --goal "MEA neural interface material" \
+            --out-dir /tmp/falsiflow_candidate_rank \
+            --force \
+            --json > /tmp/falsiflow_candidate_rank.json
+          python scripts/falsiflow.py assay-plan \
+            --goal "MEA neural interface material" \
+            --out-dir /tmp/falsiflow_assay_plan \
+            --force \
+            --json > /tmp/falsiflow_assay_plan.json
+          printf 'sample_id,measured_at,operator,ph_initial,ph_final\nsample_001,2026-05-25T09:00:00Z,ci,7.20,7.28\n' > /tmp/falsiflow_public_lab.csv
+          python scripts/falsiflow.py evidence import \
+            --input /tmp/falsiflow_public_lab.csv \
+            --out /tmp/falsiflow_public_evidence.csv \
+            --gate-id h_a_medium_stability \
+            --candidate-id candidate_a \
+            --sample-id-column sample_id \
+            --measured-at-column measured_at \
+            --operator-or-agent-column operator \
+            --field ph_initial \
+            --field ph_final
+      - name: Adoption check
+        run: |
+          python scripts/falsiflow.py adoption-check \
+            --out-dir /tmp/falsiflow_adoption_check \
+            --skip-dist \
+            --json > /tmp/falsiflow_adoption_check.json
+      - name: Template check
+        run: |
+          python scripts/falsiflow.py template-check \
+            --template-dir examples/falsiflow/neural_materials \
+            --out-dir /tmp/falsiflow_template_check \
+            --json > /tmp/falsiflow_template_check.json
+      - name: Template pack
+        run: |
+          python scripts/falsiflow.py template-pack \
+            --template-dir examples/falsiflow/neural_materials \
+            --out-dir /tmp/falsiflow_template_pack \
+            --zip-out /tmp/falsiflow_template_pack.zip \
+            --json > /tmp/falsiflow_template_pack.json
+          python scripts/falsiflow.py verify-template-pack \
+            --zip /tmp/falsiflow_template_pack.zip \
+            --strict
+          python scripts/falsiflow.py template-registry \
+            --pack-zip /tmp/falsiflow_template_pack.zip \
+            --out /tmp/falsiflow_template_registry.json \
+            --json > /tmp/falsiflow_template_registry_summary.json
+          python scripts/falsiflow.py template-lock \
+            --registry /tmp/falsiflow_template_registry.json \
+            --template neural_materials \
+            --version 0.1.0 \
+            --out /tmp/falsiflow_template_lock.json \
+            --json > /tmp/falsiflow_template_lock_summary.json
+          python scripts/falsiflow.py template-attest \
+            --subject /tmp/falsiflow_template_lock.json \
+            --subject-type template-lock \
+            --out /tmp/falsiflow_template_lock.attestation.json \
+            --builder ci \
+            --key-id ci-smoke \
+            --signing-key falsiflow-ci-smoke-key \
+            --json > /tmp/falsiflow_template_attestation.json
+          python scripts/falsiflow.py verify-template-attestation \
+            --attestation /tmp/falsiflow_template_lock.attestation.json \
+            --subject /tmp/falsiflow_template_lock.json \
+            --signing-key falsiflow-ci-smoke-key \
+            --strict \
+            --json > /tmp/falsiflow_template_attestation_verification.json
+          python scripts/falsiflow.py template-policy \
+            --lock /tmp/falsiflow_template_lock.json \
+            --attestation /tmp/falsiflow_template_lock.attestation.json \
+            --out /tmp/falsiflow_template_policy.json \
+            --policy-id ci-neural-materials \
+            --owner ci \
+            --signing-key falsiflow-ci-smoke-key \
+            --json > /tmp/falsiflow_template_policy_summary.json
+          python scripts/falsiflow.py verify-template-policy \
+            --policy /tmp/falsiflow_template_policy.json \
+            --lock /tmp/falsiflow_template_lock.json \
+            --attestation /tmp/falsiflow_template_lock.attestation.json \
+            --signing-key falsiflow-ci-smoke-key \
+            --strict \
+            --json > /tmp/falsiflow_template_policy_verification.json
+          python scripts/falsiflow.py template-release \
+            --pack-zip /tmp/falsiflow_template_pack.zip \
+            --registry /tmp/falsiflow_template_registry.json \
+            --lock /tmp/falsiflow_template_lock.json \
+            --attestation /tmp/falsiflow_template_lock.attestation.json \
+            --policy /tmp/falsiflow_template_policy.json \
+            --out /tmp/falsiflow_template_release.zip \
+            --signing-key falsiflow-ci-smoke-key \
+            --json > /tmp/falsiflow_template_release.json
+          python scripts/falsiflow.py verify-template-release \
+            --release /tmp/falsiflow_template_release.zip \
+            --signing-key falsiflow-ci-smoke-key \
+            --out /tmp/falsiflow_template_release_verification.json \
+            --report-out /tmp/falsiflow_template_release_verification.md \
+            --strict \
+            --json > /tmp/falsiflow_template_release_verification_stdout.json
+          python scripts/falsiflow.py template-install \
+            --release /tmp/falsiflow_template_release.zip \
+            --signing-key falsiflow-ci-smoke-key \
+            --templates-dir /tmp/falsiflow_installed_templates \
+            --json > /tmp/falsiflow_template_install.json
+      - name: Release check
+        run: |
+          python scripts/falsiflow.py release-check \
+            --out-dir /tmp/falsiflow_release_check \
+            --json > /tmp/falsiflow_release_check.json
+      - name: Scaffold smoke
+        run: |
+          python scripts/falsiflow.py scaffold \
+            --out /tmp/falsiflow_custom_project \
+            --project-id ci_custom_project \
+            --claim-id ci_custom_claim \
+            --claim-statement "CI custom claim has source-backed evidence." \
+            --gate gate_a:score,replicate_score \
+            --rule "gate_a:score:>=:1" \
+            --json > /tmp/falsiflow_scaffold.json
+          python scripts/falsiflow.py validate \
+            --config /tmp/falsiflow_custom_project/project.json \
+            --strict
+          printf 'sample_id,score,replicate_score\nsample_001,2,3\n' > /tmp/falsiflow_custom_lab.csv
+          python scripts/falsiflow.py ingest-wide-csv \
+            --input /tmp/falsiflow_custom_lab.csv \
+            --out /tmp/falsiflow_custom_evidence.csv \
+            --config /tmp/falsiflow_custom_project/project.json \
+            --coverage-out /tmp/falsiflow_custom_coverage.json \
+            --gate-id gate_a \
+            --candidate-id candidate_a \
+            --sample-id-column sample_id \
+            --field score \
+            --field replicate_score \
+            --strict
+          python scripts/falsiflow.py template-scaffold \
+            --out /tmp/falsiflow_generated_template \
+            --template-id ci_generated_template \
+            --claim-statement "CI generated template has source-backed evidence." \
+            --gate gate_a:score,replicate_score \
+            --rule "gate_a:score:>=:1" \
+            --check-out-dir /tmp/falsiflow_generated_template_check \
+            --json > /tmp/falsiflow_generated_template.json
+      - name: Template validation
+        run: |
+          python scripts/falsiflow.py templates
+          python scripts/falsiflow.py validate \
+            --config examples/falsiflow/neural_materials/project.json \
+            --strict
+          python scripts/falsiflow.py validate \
+            --config examples/falsiflow/rfq_vendor_evidence/project.json \
+            --strict
+          python scripts/falsiflow.py validate \
+            --config examples/falsiflow/biointerface_coatings/project.json \
+            --strict
+          python scripts/falsiflow.py validate \
+            --config examples/falsiflow/wetware_support_hardware/project.json \
+            --strict
+      - name: Demo audit
+        run: |
+          python scripts/falsiflow.py audit \
+            --config examples/falsiflow/neural_materials/project.json \
+            --evidence examples/falsiflow/neural_materials/evidence_pass_demo.csv \
+            --out-dir /tmp/falsiflow_neural_materials_pass \
+            --strict
+          python scripts/falsiflow.py claim-check \
+            --project-dir examples/falsiflow/neural_materials \
+            --out-dir /tmp/falsiflow_neural_materials_claim_check \
+            --strict
+          python scripts/falsiflow.py sources \
+            --config examples/falsiflow/neural_materials/project.json \
+            --evidence examples/falsiflow/neural_materials/evidence_pass_demo.csv \
+            --out /tmp/falsiflow_neural_materials_source_manifest.json \
+            --report-out /tmp/falsiflow_neural_materials_source_manifest.md \
+            --strict
+          python scripts/falsiflow.py bundle \
+            --config examples/falsiflow/neural_materials/project.json \
+            --evidence examples/falsiflow/neural_materials/evidence_pass_demo.csv \
+            --out-dir /tmp/falsiflow_neural_materials_bundle \
+            --zip-out /tmp/falsiflow_neural_materials_bundle.zip \
+            --strict
+          python scripts/falsiflow.py verify-bundle \
+            --zip /tmp/falsiflow_neural_materials_bundle.zip \
+            --out /tmp/falsiflow_neural_materials_bundle_verify.json \
+            --report-out /tmp/falsiflow_neural_materials_bundle_verify.md \
+            --strict
+          python scripts/falsiflow.py audit \
+            --config examples/falsiflow/rfq_vendor_evidence/project.json \
+            --evidence examples/falsiflow/rfq_vendor_evidence/evidence_pass_demo.csv \
+            --out-dir /tmp/falsiflow_rfq_vendor_pass \
+            --strict
+          python scripts/falsiflow.py audit \
+            --config examples/falsiflow/biointerface_coatings/project.json \
+            --evidence examples/falsiflow/biointerface_coatings/evidence_pass_demo.csv \
+            --out-dir /tmp/falsiflow_biointerface_coatings_pass \
+            --strict
+          python scripts/falsiflow.py audit \
+            --config examples/falsiflow/wetware_support_hardware/project.json \
+            --evidence examples/falsiflow/wetware_support_hardware/evidence_pass_demo.csv \
+            --out-dir /tmp/falsiflow_wetware_support_hardware_pass \
+            --strict
+      - name: Portfolio dashboard
+        run: |
+          python scripts/falsiflow.py portfolio \
+            --input /tmp/falsiflow_neural_materials_pass \
+            --input /tmp/falsiflow_rfq_vendor_pass \
+            --input /tmp/falsiflow_biointerface_coatings_pass \
+            --input /tmp/falsiflow_wetware_support_hardware_pass \
+            --out-dir /tmp/falsiflow_portfolio \
+            --strict

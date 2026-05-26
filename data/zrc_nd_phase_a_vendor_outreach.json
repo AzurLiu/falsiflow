@@ -1,0 +1,421 @@
+{
+  "active_candidate": "limina_zrc_nd_v0_1",
+  "delivery_package_status": "ready_to_send",
+  "first_wave": [
+    {
+      "contact_url": "https://pacificbiolabs.com/contact/",
+      "evidence_from_source": "Public page lists physicochemical testing including appearance, pH, osmolality, viscosity, optical activity, and spectral analysis; contact page provides quote phone and contact path.",
+      "fit_for_phase_a": "strong_integrated_physicochemical_candidate",
+      "id": "pacific_biolabs_physicochemical",
+      "likely_covers": [
+        "appearance",
+        "pH",
+        "osmolality",
+        "possible analytical add-ons"
+      ],
+      "name": "Pacific BioLabs Physicochemical Properties Testing",
+      "risk": "May be oriented toward regulated pharma/biologics lot-release workflows; exploratory R&D scope and conductivity need confirmation.",
+      "service_type": "physicochemical_testing",
+      "source_url": "https://pacificbiolabs.com/physicochemical-properties",
+      "unknowns_to_ask": [
+        "Can conductivity be added to the pH/osmolality/appearance panel or routed to another internal analytical service?",
+        "Can they accept nonclinical neural-medium aliquots exposed to regenerated-cellulose membrane/module articles?",
+        "Can they preserve one report row per LIMINA run_id and return raw values in the provided CSV schema?"
+      ]
+    },
+    {
+      "contact_url": "https://www.sigmaaldrich.com/US/en/collections/offices",
+      "evidence_from_source": "Service page lists cell culture media stability/testing with standard product release tests including appearance, pH, osmolality, endotoxin, bioburden, and solubility.",
+      "fit_for_phase_a": "strong_media_qc_candidate",
+      "id": "sigmaaldrich_media_testing",
+      "likely_covers": [
+        "appearance",
+        "pH",
+        "osmolality",
+        "media testing context"
+      ],
+      "name": "MilliporeSigma Cell Culture Media Stability and Testing Services",
+      "risk": "May focus on media products and release/stability programs rather than custom membrane exposure aliquots.",
+      "service_type": "cell_culture_media_testing",
+      "source_url": "https://www.sigmaaldrich.com/US/en/services/testing/cell-culture-media-stability-and-testing-services",
+      "unknowns_to_ask": [
+        "Can conductivity be added for the Phase A material-blank gate?",
+        "Can they test customer-prepared medium aliquots exposed to dialysis membrane/module witness articles?",
+        "Can they return one row per run_id instead of product-lot summaries?"
+      ]
+    },
+    {
+      "contact_url": "https://theosmolalitylab.com/contact-us/",
+      "evidence_from_source": "Service page lists osmolality by freezing point and vapor pressure plus pH testing; submission page asks for quote before samples and states sample policy constraints.",
+      "fit_for_phase_a": "focused_osmolality_ph_candidate",
+      "id": "the_osmolality_lab",
+      "likely_covers": [
+        "osmolality",
+        "pH"
+      ],
+      "name": "The Osmolality Lab",
+      "risk": "Likely needs pairing for conductivity and module-specific appearance/turbidity interpretation.",
+      "service_type": "osmolality_and_ph_testing",
+      "source_url": "https://theosmolalitylab.com/services/",
+      "unknowns_to_ask": [
+        "Can they accept acellular neural-medium aliquots that are non-biohazard and non-radioactive?",
+        "Can they run all 8 Phase A rows as individual run_id samples with pre/post mapping?",
+        "Can they support conductivity directly, or should conductivity be measured by another lab or internally?"
+      ]
+    },
+    {
+      "contact_url": "https://jordilabs.com/contact/",
+      "evidence_from_source": "Public lab-testing page describes contract polymer analytical testing with extractables/leachables, particulates/residue, polymer analysis, chromatography, mass spectrometry, microscopy, particle analysis, and physical testing.",
+      "fit_for_phase_a": "el_escalation_or_custom_chemistry_candidate",
+      "id": "jordi_labs_el_polymer",
+      "likely_covers": [
+        "extractables/leachables escalation",
+        "polymer analysis",
+        "particle or residue analysis",
+        "custom analytical chemistry"
+      ],
+      "name": "Jordi Labs Analytical Testing",
+      "risk": "Stronger for E&L and polymer chemistry than minimal Phase A media QC; may be better as escalation after blank-integrity drift.",
+      "service_type": "polymer_and_extractables_testing",
+      "source_url": "https://jordilabs.com/lab-testing/",
+      "unknowns_to_ask": [
+        "Can they run a minimal aqueous neural-medium material-blank screen before a full E&L program?",
+        "Can they preserve run_id-level aliquot identity and source-file provenance?",
+        "Can they add basic pH/osmolality/conductivity, or should they only be used after Phase A shows extractables or particulate concerns?"
+      ]
+    }
+  ],
+  "last_checked": "2026-05-24",
+  "non_claim_boundary": "Vendor capability claims and supplier guidance do not count as material evidence. Only returned real run-level measurements that pass LIMINA QC and claim audit can advance the material.",
+  "outreach_strategy": [
+    "Ask first for non-GLP or exploratory R&D feasibility and exact CSV return; escalate to GLP or E&L only after the material-blank gate identifies a need.",
+    "Prefer vendors that can report pH, osmolality, appearance/turbidity, and possibly conductivity at sample level.",
+    "If conductivity is not offered by a media lab, pair the media lab with an internal meter or a second physicochemical testing lab while preserving the same run_id labels.",
+    "Ask membrane/component vendors for article preparation and compatibility support, but do not treat supplier guidance as measurement evidence.",
+    "Reject any quote that returns only certificates, pooled averages, or narrative feasibility opinions."
+  ],
+  "purpose": "Shortlist external service options for returning real ZRC-ND Phase A measurement rows.",
+  "question_bank": [
+    "Can you accept nonclinical acellular neural-medium aliquots exposed to small membrane/module witness articles?",
+    "Can you preserve one result per LIMINA run_id rather than returning pooled averages?",
+    "Can you report pH, osmolality, conductivity, and appearance/turbidity/visible precipitate for every requested row?",
+    "If conductivity is not available, can you identify whether the sample may be returned or paired with a second lab while preserving run_id labels?",
+    "Can you fill or accept the provided Phase A CSV schema without changing column names?",
+    "What minimum aliquot volume, sample count, container, and turnaround time are required?",
+    "What handling constraints apply to regenerated-cellulose membranes, guard filters, COC/COP/PEEK modules, and neural-medium proxies?",
+    "Can you return raw exports or instrument reports with stable filenames that can be reconciled to run_id?",
+    "Can this be scoped as exploratory non-GLP R&D rather than a full regulated E&L or product-release program?",
+    "What sample acceptance, SDS, chain-of-custody, and quote-number requirements must be met before shipping?"
+  ],
+  "ranked_candidates": [
+    {
+      "contact_url": "https://pacificbiolabs.com/contact/",
+      "evidence_from_source": "Public page lists physicochemical testing including appearance, pH, osmolality, viscosity, optical activity, and spectral analysis; contact page provides quote phone and contact path.",
+      "fit_for_phase_a": "strong_integrated_physicochemical_candidate",
+      "id": "pacific_biolabs_physicochemical",
+      "likely_covers": [
+        "appearance",
+        "pH",
+        "osmolality",
+        "possible analytical add-ons"
+      ],
+      "name": "Pacific BioLabs Physicochemical Properties Testing",
+      "risk": "May be oriented toward regulated pharma/biologics lot-release workflows; exploratory R&D scope and conductivity need confirmation.",
+      "service_type": "physicochemical_testing",
+      "source_url": "https://pacificbiolabs.com/physicochemical-properties",
+      "unknowns_to_ask": [
+        "Can conductivity be added to the pH/osmolality/appearance panel or routed to another internal analytical service?",
+        "Can they accept nonclinical neural-medium aliquots exposed to regenerated-cellulose membrane/module articles?",
+        "Can they preserve one report row per LIMINA run_id and return raw values in the provided CSV schema?"
+      ]
+    },
+    {
+      "contact_url": "https://www.sigmaaldrich.com/US/en/collections/offices",
+      "evidence_from_source": "Service page lists cell culture media stability/testing with standard product release tests including appearance, pH, osmolality, endotoxin, bioburden, and solubility.",
+      "fit_for_phase_a": "strong_media_qc_candidate",
+      "id": "sigmaaldrich_media_testing",
+      "likely_covers": [
+        "appearance",
+        "pH",
+        "osmolality",
+        "media testing context"
+      ],
+      "name": "MilliporeSigma Cell Culture Media Stability and Testing Services",
+      "risk": "May focus on media products and release/stability programs rather than custom membrane exposure aliquots.",
+      "service_type": "cell_culture_media_testing",
+      "source_url": "https://www.sigmaaldrich.com/US/en/services/testing/cell-culture-media-stability-and-testing-services",
+      "unknowns_to_ask": [
+        "Can conductivity be added for the Phase A material-blank gate?",
+        "Can they test customer-prepared medium aliquots exposed to dialysis membrane/module witness articles?",
+        "Can they return one row per run_id instead of product-lot summaries?"
+      ]
+    },
+    {
+      "contact_url": "https://theosmolalitylab.com/contact-us/",
+      "evidence_from_source": "Service page lists osmolality by freezing point and vapor pressure plus pH testing; submission page asks for quote before samples and states sample policy constraints.",
+      "fit_for_phase_a": "focused_osmolality_ph_candidate",
+      "id": "the_osmolality_lab",
+      "likely_covers": [
+        "osmolality",
+        "pH"
+      ],
+      "name": "The Osmolality Lab",
+      "risk": "Likely needs pairing for conductivity and module-specific appearance/turbidity interpretation.",
+      "service_type": "osmolality_and_ph_testing",
+      "source_url": "https://theosmolalitylab.com/services/",
+      "unknowns_to_ask": [
+        "Can they accept acellular neural-medium aliquots that are non-biohazard and non-radioactive?",
+        "Can they run all 8 Phase A rows as individual run_id samples with pre/post mapping?",
+        "Can they support conductivity directly, or should conductivity be measured by another lab or internally?"
+      ]
+    },
+    {
+      "contact_url": "https://jordilabs.com/contact/",
+      "evidence_from_source": "Public lab-testing page describes contract polymer analytical testing with extractables/leachables, particulates/residue, polymer analysis, chromatography, mass spectrometry, microscopy, particle analysis, and physical testing.",
+      "fit_for_phase_a": "el_escalation_or_custom_chemistry_candidate",
+      "id": "jordi_labs_el_polymer",
+      "likely_covers": [
+        "extractables/leachables escalation",
+        "polymer analysis",
+        "particle or residue analysis",
+        "custom analytical chemistry"
+      ],
+      "name": "Jordi Labs Analytical Testing",
+      "risk": "Stronger for E&L and polymer chemistry than minimal Phase A media QC; may be better as escalation after blank-integrity drift.",
+      "service_type": "polymer_and_extractables_testing",
+      "source_url": "https://jordilabs.com/lab-testing/",
+      "unknowns_to_ask": [
+        "Can they run a minimal aqueous neural-medium material-blank screen before a full E&L program?",
+        "Can they preserve run_id-level aliquot identity and source-file provenance?",
+        "Can they add basic pH/osmolality/conductivity, or should they only be used after Phase A shows extractables or particulate concerns?"
+      ]
+    },
+    {
+      "contact_url": "https://www.repligen.com/support/contact-overview/contact",
+      "evidence_from_source": "Support page describes field application support for membrane selection and optimization, downstream processing, experimental design, and customer service for product and pricing inquiries.",
+      "fit_for_phase_a": "component_support_candidate",
+      "id": "repligen_field_application_support",
+      "likely_covers": [
+        "membrane selection guidance",
+        "product handling guidance",
+        "application support",
+        "supplier documentation"
+      ],
+      "name": "Repligen Field Applications and Customer Support",
+      "risk": "Supplier support can improve article preparation but does not itself generate Phase A evidence.",
+      "service_type": "membrane_supplier_application_support",
+      "source_url": "https://www.repligen.com/support/contact-overview",
+      "unknowns_to_ask": [
+        "Can they recommend an off-the-shelf regenerated-cellulose or equivalent membrane format for a small acellular medium-integrity sentinel?",
+        "Can they advise on rinse/preconditioning and preservative removal without changing MWCO behavior?",
+        "Can they provide lot documentation needed for chain-of-custody and later measurement interpretation?"
+      ]
+    },
+    {
+      "contact_url": "https://www.intertek.com.cn/contact/",
+      "evidence_from_source": "Official China site describes testing, inspection, certification, and healthcare/medical-device related services; exact pH/osmolality/conductivity coverage must be confirmed by RFQ.",
+      "fit_for_phase_a": "second_wave_apac_split_scope_candidate",
+      "id": "intertek_china_healthcare_testing",
+      "likely_covers": [
+        "China/APAC local intake",
+        "possible physicochemical testing routing",
+        "possible medical-device material testing"
+      ],
+      "name": "Intertek China Healthcare and Medical Device Testing",
+      "risk": "Useful for local routing but exact Phase A media-panel coverage is unconfirmed until technical review.",
+      "service_type": "apac_materials_and_healthcare_testing",
+      "source_url": "https://www.intertek.com.cn/",
+      "unknowns_to_ask": [
+        "Can the China lab route nonclinical neural-medium aliquots from membrane/module exposures to pH, osmolality, conductivity, and appearance testing?",
+        "Can they preserve one result per LIMINA run_id and return raw values in the Phase A CSV schema?",
+        "Can they keep this as exploratory non-GLP R&D instead of a certificate-only program?"
+      ]
+    },
+    {
+      "contact_url": "https://www.wuxiapptec.com/contact",
+      "evidence_from_source": "Official company site lists global testing services; RFQ must route specifically to medical-device chemistry, biocompatibility, or extractables/leachables feasibility.",
+      "fit_for_phase_a": "second_wave_apac_e_l_escalation_candidate",
+      "id": "wuxi_apptec_medical_device_testing",
+      "likely_covers": [
+        "medical-device testing routing",
+        "chemistry or biocompatibility escalation",
+        "China/APAC logistics"
+      ],
+      "name": "WuXi AppTec Medical Device Testing",
+      "risk": "Likely stronger after Phase A indicates chemical or biocompatibility risk; may be too heavy for first-pass media-panel testing.",
+      "service_type": "medical_device_biocompatibility_and_chemistry",
+      "source_url": "https://www.wuxiapptec.com/",
+      "unknowns_to_ask": [
+        "Can they run a small exploratory membrane/module material-blank screen before full ISO 10993 work?",
+        "Can pH, osmolality, conductivity, and appearance be returned at run_id level, or is this only an E&L escalation path?",
+        "What aliquot volume, module surface area, sample count, SDS, and custody requirements apply?"
+      ]
+    },
+    {
+      "contact_url": "https://www.tuvsud.cn/zh-cn/contact-us",
+      "evidence_from_source": "Official China site covers medical-device testing and certification services; use RFQ to confirm whether exploratory material-blank measurements can be scoped separately.",
+      "fit_for_phase_a": "second_wave_apac_regulatory_escalation_candidate",
+      "id": "tuv_sud_china_medical_device_testing",
+      "likely_covers": [
+        "medical-device testing routing",
+        "biocompatibility or chemical characterization escalation",
+        "China/APAC contact path"
+      ],
+      "name": "TUV SUD China Medical Device Testing",
+      "risk": "Regulatory-service orientation may slow or over-scope Phase A unless the request is routed as a small exploratory screen.",
+      "service_type": "medical_device_testing_and_biocompatibility",
+      "source_url": "https://www.tuvsud.cn/",
+      "unknowns_to_ask": [
+        "Can they quote the Phase A media-integrity panel as non-GLP R&D and return raw run_id-level values?",
+        "If not, can they quote a later ISO 10993 chemical characterization step after Phase A identifies a need?",
+        "What sample-prep, surface-area, and custody constraints apply to regenerated-cellulose/module witness articles?"
+      ]
+    },
+    {
+      "contact_url": "https://www.ponytest.com/",
+      "evidence_from_source": "Official site describes third-party testing services across health, safety, and product categories; exact medical-device, media chemistry, and custom R&D coverage must be confirmed.",
+      "fit_for_phase_a": "second_wave_china_screening_candidate",
+      "id": "pony_testing_medical_device",
+      "likely_covers": [
+        "China local third-party testing intake",
+        "possible physicochemical testing routing",
+        "possible product-safety or medical-device routing"
+      ],
+      "name": "PONY Testing Medical Device and Life-Science Services",
+      "risk": "Broad testing company; Phase A fit depends on successful technical routing and raw-data return agreement.",
+      "service_type": "china_third_party_testing",
+      "source_url": "https://www.ponytest.com/",
+      "unknowns_to_ask": [
+        "Can they route nonclinical neural-medium aliquots to pH, osmolality, conductivity, and appearance/turbidity readouts?",
+        "Can they return the provided Phase A CSV with one row per run_id and raw source-file references?",
+        "Can they avoid certificate-only or pooled-average reporting?"
+      ]
+    }
+  ],
+  "requested_matrix": {
+    "articles": [
+      "baseline_rc_3p5m_guard",
+      "challenge_zrc_nd_10m_guard",
+      "lead_zrc_nd_3p5m_guard",
+      "no_module_static_control"
+    ],
+    "replicates": [
+      "1"
+    ],
+    "runs": 8,
+    "sample_event_types": [
+      "final",
+      "initial"
+    ],
+    "sample_events": 16,
+    "timepoints": [
+      "0 h",
+      "24 h"
+    ]
+  },
+  "secondary_wave": [
+    {
+      "contact_url": "https://www.repligen.com/support/contact-overview/contact",
+      "evidence_from_source": "Support page describes field application support for membrane selection and optimization, downstream processing, experimental design, and customer service for product and pricing inquiries.",
+      "fit_for_phase_a": "component_support_candidate",
+      "id": "repligen_field_application_support",
+      "likely_covers": [
+        "membrane selection guidance",
+        "product handling guidance",
+        "application support",
+        "supplier documentation"
+      ],
+      "name": "Repligen Field Applications and Customer Support",
+      "risk": "Supplier support can improve article preparation but does not itself generate Phase A evidence.",
+      "service_type": "membrane_supplier_application_support",
+      "source_url": "https://www.repligen.com/support/contact-overview",
+      "unknowns_to_ask": [
+        "Can they recommend an off-the-shelf regenerated-cellulose or equivalent membrane format for a small acellular medium-integrity sentinel?",
+        "Can they advise on rinse/preconditioning and preservative removal without changing MWCO behavior?",
+        "Can they provide lot documentation needed for chain-of-custody and later measurement interpretation?"
+      ]
+    },
+    {
+      "contact_url": "https://www.intertek.com.cn/contact/",
+      "evidence_from_source": "Official China site describes testing, inspection, certification, and healthcare/medical-device related services; exact pH/osmolality/conductivity coverage must be confirmed by RFQ.",
+      "fit_for_phase_a": "second_wave_apac_split_scope_candidate",
+      "id": "intertek_china_healthcare_testing",
+      "likely_covers": [
+        "China/APAC local intake",
+        "possible physicochemical testing routing",
+        "possible medical-device material testing"
+      ],
+      "name": "Intertek China Healthcare and Medical Device Testing",
+      "risk": "Useful for local routing but exact Phase A media-panel coverage is unconfirmed until technical review.",
+      "service_type": "apac_materials_and_healthcare_testing",
+      "source_url": "https://www.intertek.com.cn/",
+      "unknowns_to_ask": [
+        "Can the China lab route nonclinical neural-medium aliquots from membrane/module exposures to pH, osmolality, conductivity, and appearance testing?",
+        "Can they preserve one result per LIMINA run_id and return raw values in the Phase A CSV schema?",
+        "Can they keep this as exploratory non-GLP R&D instead of a certificate-only program?"
+      ]
+    },
+    {
+      "contact_url": "https://www.wuxiapptec.com/contact",
+      "evidence_from_source": "Official company site lists global testing services; RFQ must route specifically to medical-device chemistry, biocompatibility, or extractables/leachables feasibility.",
+      "fit_for_phase_a": "second_wave_apac_e_l_escalation_candidate",
+      "id": "wuxi_apptec_medical_device_testing",
+      "likely_covers": [
+        "medical-device testing routing",
+        "chemistry or biocompatibility escalation",
+        "China/APAC logistics"
+      ],
+      "name": "WuXi AppTec Medical Device Testing",
+      "risk": "Likely stronger after Phase A indicates chemical or biocompatibility risk; may be too heavy for first-pass media-panel testing.",
+      "service_type": "medical_device_biocompatibility_and_chemistry",
+      "source_url": "https://www.wuxiapptec.com/",
+      "unknowns_to_ask": [
+        "Can they run a small exploratory membrane/module material-blank screen before full ISO 10993 work?",
+        "Can pH, osmolality, conductivity, and appearance be returned at run_id level, or is this only an E&L escalation path?",
+        "What aliquot volume, module surface area, sample count, SDS, and custody requirements apply?"
+      ]
+    },
+    {
+      "contact_url": "https://www.tuvsud.cn/zh-cn/contact-us",
+      "evidence_from_source": "Official China site covers medical-device testing and certification services; use RFQ to confirm whether exploratory material-blank measurements can be scoped separately.",
+      "fit_for_phase_a": "second_wave_apac_regulatory_escalation_candidate",
+      "id": "tuv_sud_china_medical_device_testing",
+      "likely_covers": [
+        "medical-device testing routing",
+        "biocompatibility or chemical characterization escalation",
+        "China/APAC contact path"
+      ],
+      "name": "TUV SUD China Medical Device Testing",
+      "risk": "Regulatory-service orientation may slow or over-scope Phase A unless the request is routed as a small exploratory screen.",
+      "service_type": "medical_device_testing_and_biocompatibility",
+      "source_url": "https://www.tuvsud.cn/",
+      "unknowns_to_ask": [
+        "Can they quote the Phase A media-integrity panel as non-GLP R&D and return raw run_id-level values?",
+        "If not, can they quote a later ISO 10993 chemical characterization step after Phase A identifies a need?",
+        "What sample-prep, surface-area, and custody constraints apply to regenerated-cellulose/module witness articles?"
+      ]
+    },
+    {
+      "contact_url": "https://www.ponytest.com/",
+      "evidence_from_source": "Official site describes third-party testing services across health, safety, and product categories; exact medical-device, media chemistry, and custom R&D coverage must be confirmed.",
+      "fit_for_phase_a": "second_wave_china_screening_candidate",
+      "id": "pony_testing_medical_device",
+      "likely_covers": [
+        "China local third-party testing intake",
+        "possible physicochemical testing routing",
+        "possible product-safety or medical-device routing"
+      ],
+      "name": "PONY Testing Medical Device and Life-Science Services",
+      "risk": "Broad testing company; Phase A fit depends on successful technical routing and raw-data return agreement.",
+      "service_type": "china_third_party_testing",
+      "source_url": "https://www.ponytest.com/",
+      "unknowns_to_ask": [
+        "Can they route nonclinical neural-medium aliquots to pH, osmolality, conductivity, and appearance/turbidity readouts?",
+        "Can they return the provided Phase A CSV with one row per run_id and raw source-file references?",
+        "Can they avoid certificate-only or pooled-average reporting?"
+      ]
+    }
+  ],
+  "service_request_status": "ready_to_request_real_phase_a_measurements",
+  "status": "ready_for_vendor_screening"
+}

@@ -1,0 +1,150 @@
+{
+  "active_candidate": "limina_zrc_nd_v0_1",
+  "decision_rules": [
+    "Reject any response that cannot preserve run_id-level raw data.",
+    "Prefer one provider only if it covers pH, osmolality, conductivity, and appearance without losing source-file provenance.",
+    "Use split scope if pH/osmolality and conductivity must be produced by different providers, but keep the same run_id labels.",
+    "Do not proceed without CSV schema acceptance or an explicit mapping back to the LIMINA Phase A template.",
+    "Do not treat quote responses or supplier guidance as material evidence; only returned measured rows can advance gates.",
+    "Rerunning this tracker preserves existing contact dates, replies, decisions, and notes by candidate_id."
+  ],
+  "disqualifiers": [
+    "Only returns pooled averages, certificates, or narrative feasibility opinions.",
+    "Will not preserve run_id, sample_event, and target-field mapping.",
+    "Cannot return raw exports, instrument reports, or traceable source files.",
+    "Requires changing article identity, timepoints, membrane material, or control rows without a deviation log.",
+    "Treats quote, supplier support, or vendor capability claims as final material suitability evidence."
+  ],
+  "fields": [
+    "candidate_id",
+    "vendor_name",
+    "contact_date",
+    "reply_date",
+    "can_cover_full_phase_a",
+    "needs_split_scope",
+    "run_id_level_raw_data",
+    "phase_a_media_panel_coverage",
+    "csv_schema_acceptance",
+    "sample_handling_fit",
+    "source_file_provenance",
+    "non_glp_scope_control",
+    "turnaround_days",
+    "quoted_cost",
+    "decision",
+    "notes"
+  ],
+  "purpose": "Track RFQ replies and decide which vendor/cooperator can generate claimable ZRC-ND Phase A measurement rows.",
+  "row_count": 4,
+  "rows": [
+    {
+      "can_cover_full_phase_a": "",
+      "candidate_id": "pacific_biolabs_physicochemical",
+      "contact_date": "",
+      "csv_schema_acceptance": "",
+      "decision": "pending_outreach",
+      "needs_split_scope": "",
+      "non_glp_scope_control": "",
+      "notes": "",
+      "phase_a_media_panel_coverage": "",
+      "quoted_cost": "",
+      "reply_date": "",
+      "run_id_level_raw_data": "",
+      "sample_handling_fit": "",
+      "source_file_provenance": "",
+      "turnaround_days": "",
+      "vendor_name": "Pacific BioLabs Physicochemical Properties Testing"
+    },
+    {
+      "can_cover_full_phase_a": "",
+      "candidate_id": "sigmaaldrich_media_testing",
+      "contact_date": "",
+      "csv_schema_acceptance": "",
+      "decision": "pending_outreach",
+      "needs_split_scope": "",
+      "non_glp_scope_control": "",
+      "notes": "",
+      "phase_a_media_panel_coverage": "",
+      "quoted_cost": "",
+      "reply_date": "",
+      "run_id_level_raw_data": "",
+      "sample_handling_fit": "",
+      "source_file_provenance": "",
+      "turnaround_days": "",
+      "vendor_name": "MilliporeSigma Cell Culture Media Stability and Testing Services"
+    },
+    {
+      "can_cover_full_phase_a": "",
+      "candidate_id": "the_osmolality_lab",
+      "contact_date": "",
+      "csv_schema_acceptance": "",
+      "decision": "pending_outreach",
+      "needs_split_scope": "",
+      "non_glp_scope_control": "",
+      "notes": "",
+      "phase_a_media_panel_coverage": "",
+      "quoted_cost": "",
+      "reply_date": "",
+      "run_id_level_raw_data": "",
+      "sample_handling_fit": "",
+      "source_file_provenance": "",
+      "turnaround_days": "",
+      "vendor_name": "The Osmolality Lab"
+    },
+    {
+      "can_cover_full_phase_a": "",
+      "candidate_id": "jordi_labs_el_polymer",
+      "contact_date": "",
+      "csv_schema_acceptance": "",
+      "decision": "pending_outreach",
+      "needs_split_scope": "",
+      "non_glp_scope_control": "",
+      "notes": "",
+      "phase_a_media_panel_coverage": "",
+      "quoted_cost": "",
+      "reply_date": "",
+      "run_id_level_raw_data": "",
+      "sample_handling_fit": "",
+      "source_file_provenance": "",
+      "turnaround_days": "",
+      "vendor_name": "Jordi Labs Analytical Testing"
+    }
+  ],
+  "scoring_rubric": [
+    {
+      "criterion": "run_id_level_raw_data",
+      "pass_condition": "Vendor accepts one result per run_id/sample_event/test field and does not require pooled reporting.",
+      "weight": 5
+    },
+    {
+      "criterion": "phase_a_media_panel_coverage",
+      "pass_condition": "Vendor can report pH, osmolality, conductivity, and appearance/turbidity/visible precipitate, or clearly defines a split path for the missing field.",
+      "weight": 5
+    },
+    {
+      "criterion": "csv_schema_acceptance",
+      "pass_condition": "Vendor can fill or accept the ZRC-ND Phase A CSV without changing column names.",
+      "weight": 4
+    },
+    {
+      "criterion": "sample_handling_fit",
+      "pass_condition": "Vendor can handle nonclinical neural-medium aliquots exposed to regenerated-cellulose/module witness articles.",
+      "weight": 3
+    },
+    {
+      "criterion": "source_file_provenance",
+      "pass_condition": "Vendor can return raw exports, instrument reports, or stable filenames that reconcile to run_id/sample_id.",
+      "weight": 3
+    },
+    {
+      "criterion": "turnaround_and_cost",
+      "pass_condition": "Vendor can provide practical R&D quote, sample requirements, and turnaround for the 8-run Phase A package.",
+      "weight": 2
+    },
+    {
+      "criterion": "non_glp_scope_control",
+      "pass_condition": "Vendor can keep the first pass exploratory and avoid forcing a full GLP/E&L program before Phase A.",
+      "weight": 2
+    }
+  ],
+  "status": "pending_outreach"
+}

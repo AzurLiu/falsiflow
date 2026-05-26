@@ -1,0 +1,1573 @@
+{
+  "assertions": [
+    {
+      "detail": "all steps returned 0",
+      "name": "all_commands_succeeded",
+      "passed": true
+    },
+    {
+      "detail": "coupon evaluator status=nhi_pedot_passes_gates",
+      "name": "coupon_fixture_exercises_full_pass",
+      "passed": true
+    },
+    {
+      "detail": "long evaluator status=nhi_pedot_long_passes_gates",
+      "name": "long_fixture_exercises_full_pass",
+      "passed": true
+    },
+    {
+      "detail": "zrc evaluator status=lead_passes_non_cell_gates",
+      "name": "zrc_fixture_exercises_full_pass",
+      "passed": true
+    },
+    {
+      "detail": "zrc bio evaluator status=bio_followup_passes_gates",
+      "name": "zrc_bio_fixture_exercises_full_pass",
+      "passed": true
+    },
+    {
+      "detail": "zrc readiness=suitable; suitable=True",
+      "name": "zrc_readiness_fixture_can_reach_suitable",
+      "passed": true
+    },
+    {
+      "detail": "h_a status=h_a_invalid_provenance; h_a_qc intake_ready=False",
+      "name": "h_a_fixture_rejected_before_interpretation",
+      "passed": true
+    },
+    {
+      "detail": "forward status=preregistered_waiting_for_h_a",
+      "name": "forward_package_not_activated_by_fixture",
+      "passed": true
+    },
+    {
+      "detail": "claim_ready=False; status=no_suitable_material_claim_ready",
+      "name": "audit_refuses_synthetic_claim",
+      "passed": true
+    },
+    {
+      "detail": "claimable=False; synthetic=12",
+      "name": "h_a_source_non_claimable",
+      "passed": true
+    },
+    {
+      "detail": "claimable=False; synthetic=168",
+      "name": "coupon_source_non_claimable",
+      "passed": true
+    },
+    {
+      "detail": "claimable=False; synthetic=156",
+      "name": "long_source_non_claimable",
+      "passed": true
+    },
+    {
+      "detail": "claimable=False; synthetic=72",
+      "name": "zrc_source_non_claimable",
+      "passed": true
+    },
+    {
+      "detail": "claimable=False; synthetic=54",
+      "name": "zrc_bio_source_non_claimable",
+      "passed": true
+    }
+  ],
+  "fixtures": {
+    "coupon_full_pass": "data/fixtures/nhi_pedot_runs_full_pass_fixture.csv",
+    "h_a_raw_full_pass": "data/fixtures/nhi_pedot_h_a_raw_full_pass_fixture.csv",
+    "long_full_pass": "data/fixtures/nhi_pedot_long_full_pass_fixture.csv",
+    "zrc_bio_full_pass": "data/fixtures/zrc_nd_bio_runs_full_pass_fixture.csv",
+    "zrc_full_pass": "data/fixtures/zrc_nd_validation_runs_full_pass_fixture.csv"
+  },
+  "status": "pass",
+  "steps": [
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/generate_nhi_pedot_h_a_raw_fixture_data.py"
+      ],
+      "id": "generate_h_a_raw_fixture",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Wrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/fixtures/nhi_pedot_h_a_raw_full_pass_fixture.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/fixtures/nhi_pedot_h_a_raw_lead_fail_fixture.csv\nRows per fixture: 228"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/generate_nhi_pedot_fixture_data.py"
+      ],
+      "id": "generate_coupon_fixture",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Wrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/fixtures/nhi_pedot_runs_full_pass_fixture.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/fixtures/nhi_pedot_runs_lead_fail_fixture.csv\nRows per fixture: 168"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/generate_nhi_pedot_long_fixture_data.py"
+      ],
+      "id": "generate_long_fixture",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Wrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/fixtures/nhi_pedot_long_full_pass_fixture.csv\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/fixtures/nhi_pedot_long_lead_fail_fixture.csv\nRows per fixture: 156"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/merge_nhi_pedot_h_a_raw_measurements.py",
+        "--raw",
+        "/Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/fixtures/nhi_pedot_h_a_raw_full_pass_fixture.csv",
+        "--out",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/h_a_active.csv",
+        "--json-out",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/h_a_merge.json",
+        "--report",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/h_a_merge.md"
+      ],
+      "id": "merge_h_a_full_pass_fixture",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Merged H-A raw measurements: applied=228 unresolved=0 unknown_run_ids=0\nWrote /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/fixtures/nhi_pedot_h_a_raw_full_pass_fixture.csv\nWrote /var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/h_a_active.csv\nWrote /var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/h_a_merge.json\nWrote /var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/h_a_merge.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/qc_nhi_pedot_h_a_intake.py",
+        "--runs",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/h_a_active.csv",
+        "--json-out",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/h_a_qc.json",
+        "--report",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/h_a_qc.md"
+      ],
+      "id": "qc_h_a_full_pass_fixture",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "H-A intake QC: h_a_intake_not_ready\nErrors: 36\nWarnings: 0\nWrote /var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/h_a_qc.json\nWrote /var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/h_a_qc.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/interpret_nhi_pedot_h_a_sentinel.py",
+        "--runs",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/h_a_active.csv",
+        "--json-out",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/h_a_interpretation.json",
+        "--report",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/h_a_interpretation.md"
+      ],
+      "id": "interpret_h_a_full_pass_fixture",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NHI-PEDOT H-A sentinel: h_a_invalid_provenance\nWrote /var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/h_a_interpretation.json\nWrote /var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/h_a_interpretation.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/generate_nhi_pedot_forward_gate_package.py",
+        "--h-a",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/h_a_interpretation.json",
+        "--json-out",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/forward.json",
+        "--csv-out",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/forward.csv",
+        "--report",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/forward.md"
+      ],
+      "id": "generate_forward_package",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NHI-PEDOT forward gate package: preregistered_waiting_for_h_a\nRows: 28\nWrote /var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/forward.json\nWrote /var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/forward.csv\nWrote /var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/forward.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/evaluate_nhi_pedot_runs.py",
+        "--runs",
+        "/Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/fixtures/nhi_pedot_runs_full_pass_fixture.csv",
+        "--results",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/coupon_results.json",
+        "--report",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/coupon_results.md"
+      ],
+      "id": "evaluate_coupon_full_pass_fixture",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NHI-PEDOT: nhi_pedot_passes_gates\nWrote /var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/coupon_results.json\nWrote /var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/coupon_results.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/evaluate_nhi_pedot_long_runs.py",
+        "--runs",
+        "/Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/fixtures/nhi_pedot_long_full_pass_fixture.csv",
+        "--results",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/long_results.json",
+        "--report",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/long_results.md"
+      ],
+      "id": "evaluate_long_full_pass_fixture",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "NHI-PEDOT long: nhi_pedot_long_passes_gates\nWrote /var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/long_results.json\nWrote /var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/long_results.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/evaluate_zrc_nd_validation_runs.py",
+        "--runs",
+        "/Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/fixtures/zrc_nd_validation_runs_full_pass_fixture.csv",
+        "--results",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/zrc_results.json",
+        "--report",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/zrc_results.md"
+      ],
+      "id": "evaluate_zrc_full_pass_fixture",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Evaluated 72 row(s): lead_passes_non_cell_gates\nWrote /var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/zrc_results.json\nWrote /var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/zrc_results.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/evaluate_zrc_nd_bio_runs.py",
+        "--runs",
+        "/Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/fixtures/zrc_nd_bio_runs_full_pass_fixture.csv",
+        "--results",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/zrc_bio_results.json",
+        "--report",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/zrc_bio_results.md"
+      ],
+      "id": "evaluate_zrc_bio_full_pass_fixture",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Evaluated 54 biological row(s): bio_followup_passes_gates\nWrote /var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/zrc_bio_results.json\nWrote /var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/zrc_bio_results.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/audit_zrc_nd_readiness.py",
+        "--results",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/zrc_results.json",
+        "--bio-results",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/zrc_bio_results.json",
+        "--json-out",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/zrc_readiness.json",
+        "--out",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/zrc_readiness.md"
+      ],
+      "id": "audit_zrc_with_full_pass_fixtures",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Readiness: suitable\nSuitable: True\nWrote /var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/zrc_readiness.json\nWrote /var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/zrc_readiness.md"
+    },
+    {
+      "argv": [
+        "/opt/miniconda3/bin/python3",
+        "scripts/audit_limina_suitability_claim.py",
+        "--zrc-readiness",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/zrc_readiness.json",
+        "--zrc-runs",
+        "/Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/fixtures/zrc_nd_validation_runs_full_pass_fixture.csv",
+        "--zrc-bio-runs",
+        "/Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/fixtures/zrc_nd_bio_runs_full_pass_fixture.csv",
+        "--nhi-h-a",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/h_a_interpretation.json",
+        "--nhi-h-a-runs",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/h_a_active.csv",
+        "--nhi-forward",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/forward.json",
+        "--nhi-results",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/coupon_results.json",
+        "--nhi-runs",
+        "/Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/fixtures/nhi_pedot_runs_full_pass_fixture.csv",
+        "--nhi-long-results",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/long_results.json",
+        "--nhi-long-runs",
+        "/Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/fixtures/nhi_pedot_long_full_pass_fixture.csv",
+        "--json-out",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/claim_audit.json",
+        "--report",
+        "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/claim_audit.md"
+      ],
+      "id": "audit_claim_with_full_pass_fixtures",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Claim ready: False\nStatus: no_suitable_material_claim_ready\nWrote /var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/claim_audit.json\nWrote /var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/claim_audit.md"
+    }
+  ],
+  "summaries": {
+    "claim_audit": {
+      "claim_ready": false,
+      "nhi": {
+        "blockers": [
+          "NHI-PEDOT H-A sentinel is `h_a_invalid_provenance`, not a QC-clean pass/continue status.",
+          "NHI-PEDOT H-B/H-C forward gate package is preregistered and waiting for H-A, not measured evidence.",
+          "NHI-PEDOT H-A sentinel source has no measured run rows.",
+          "NHI-PEDOT H-A sentinel source contains synthetic or fixture-marked rows.",
+          "NHI-PEDOT H-A sentinel source contains placeholder or pending-measurement rows.",
+          "NHI-PEDOT H-A sentinel source contains missing, rejected, or out-of-policy source_file references.",
+          "NHI-PEDOT coupon source has no measured run rows.",
+          "NHI-PEDOT coupon source contains synthetic or fixture-marked rows.",
+          "NHI-PEDOT coupon source contains placeholder or pending-measurement rows.",
+          "NHI-PEDOT long-duration source has no measured run rows.",
+          "NHI-PEDOT long-duration source contains synthetic or fixture-marked rows.",
+          "NHI-PEDOT long-duration source contains placeholder or pending-measurement rows.",
+          "NHI-PEDOT coupon result row count (168) does not match CSV rows (0).",
+          "NHI-PEDOT long-duration result row count (156) does not match CSV rows (0)."
+        ],
+        "claim_candidate_id": "limina_alg_lam_pedot_lowdose_v0_2",
+        "claim_ready": false,
+        "decision": "not_claim_ready",
+        "evidence_status": {
+          "coupon_result_rows": 168,
+          "coupon_status": "nhi_pedot_passes_gates",
+          "forward_rows": 28,
+          "forward_status": "preregistered_waiting_for_h_a",
+          "h_a_measured_rows": 0,
+          "h_a_status": "h_a_invalid_provenance",
+          "long_result_rows": 156,
+          "long_status": "nhi_pedot_long_passes_gates"
+        },
+        "provenance": {
+          "coupon": {
+            "claimable_measurement_source": false,
+            "exists": true,
+            "measured_row_count": 0,
+            "path": "data/fixtures/nhi_pedot_runs_full_pass_fixture.csv",
+            "path_fixture_marker": true,
+            "placeholder_examples": [
+              {
+                "markers": [
+                  "source_file=missing"
+                ],
+                "row_number": 1,
+                "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-0h"
+              },
+              {
+                "markers": [
+                  "source_file=missing"
+                ],
+                "row_number": 2,
+                "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-4h"
+              },
+              {
+                "markers": [
+                  "source_file=missing"
+                ],
+                "row_number": 3,
+                "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-24h"
+              },
+              {
+                "markers": [
+                  "source_file=missing"
+                ],
+                "row_number": 4,
+                "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-72h"
+              },
+              {
+                "markers": [
+                  "source_file=missing"
+                ],
+                "row_number": 5,
+                "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R2-0h"
+              },
+              {
+                "markers": [
+                  "source_file=missing"
+                ],
+                "row_number": 6,
+                "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R2-4h"
+              },
+              {
+                "markers": [
+                  "source_file=missing"
+                ],
+                "row_number": 7,
+                "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R2-24h"
+              },
+              {
+                "markers": [
+                  "source_file=missing"
+                ],
+                "row_number": 8,
+                "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R2-72h"
+              }
+            ],
+            "placeholder_row_count": 168,
+            "row_count": 168,
+            "source_file_issue_count": 0,
+            "source_file_issue_examples": [],
+            "synthetic_examples": [
+              {
+                "markers": [
+                  "date=fixture",
+                  "date=fixture_not_evidence",
+                  "date=not_evidence",
+                  "date=synthetic_fixture",
+                  "medium_lot=fixture",
+                  "notes=fixture",
+                  "notes=fixture_not_material",
+                  "notes=synthetic_fixture"
+                ],
+                "row_number": 1,
+                "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-0h"
+              },
+              {
+                "markers": [
+                  "date=fixture",
+                  "date=fixture_not_evidence",
+                  "date=not_evidence",
+                  "date=synthetic_fixture",
+                  "medium_lot=fixture",
+                  "notes=fixture",
+                  "notes=fixture_not_material",
+                  "notes=synthetic_fixture"
+                ],
+                "row_number": 2,
+                "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-4h"
+              },
+              {
+                "markers": [
+                  "date=fixture",
+                  "date=fixture_not_evidence",
+                  "date=not_evidence",
+                  "date=synthetic_fixture",
+                  "medium_lot=fixture",
+                  "notes=fixture",
+                  "notes=fixture_not_material",
+                  "notes=synthetic_fixture"
+                ],
+                "row_number": 3,
+                "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-24h"
+              },
+              {
+                "markers": [
+                  "date=fixture",
+                  "date=fixture_not_evidence",
+                  "date=not_evidence",
+                  "date=synthetic_fixture",
+                  "medium_lot=fixture",
+                  "notes=fixture",
+                  "notes=fixture_not_material",
+                  "notes=synthetic_fixture"
+                ],
+                "row_number": 4,
+                "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-72h"
+              },
+              {
+                "markers": [
+                  "date=fixture",
+                  "date=fixture_not_evidence",
+                  "date=not_evidence",
+                  "date=synthetic_fixture",
+                  "medium_lot=fixture",
+                  "notes=fixture",
+                  "notes=fixture_not_material",
+                  "notes=synthetic_fixture"
+                ],
+                "row_number": 5,
+                "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R2-0h"
+              },
+              {
+                "markers": [
+                  "date=fixture",
+                  "date=fixture_not_evidence",
+                  "date=not_evidence",
+                  "date=synthetic_fixture",
+                  "medium_lot=fixture",
+                  "notes=fixture",
+                  "notes=fixture_not_material",
+                  "notes=synthetic_fixture"
+                ],
+                "row_number": 6,
+                "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R2-4h"
+              },
+              {
+                "markers": [
+                  "date=fixture",
+                  "date=fixture_not_evidence",
+                  "date=not_evidence",
+                  "date=synthetic_fixture",
+                  "medium_lot=fixture",
+                  "notes=fixture",
+                  "notes=fixture_not_material",
+                  "notes=synthetic_fixture"
+                ],
+                "row_number": 7,
+                "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R2-24h"
+              },
+              {
+                "markers": [
+                  "date=fixture",
+                  "date=fixture_not_evidence",
+                  "date=not_evidence",
+                  "date=synthetic_fixture",
+                  "medium_lot=fixture",
+                  "notes=fixture",
+                  "notes=fixture_not_material",
+                  "notes=synthetic_fixture"
+                ],
+                "row_number": 8,
+                "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R2-72h"
+              }
+            ],
+            "synthetic_row_count": 168
+          },
+          "h_a_sentinel": {
+            "claimable_measurement_source": false,
+            "exists": true,
+            "measured_row_count": 0,
+            "path": "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/h_a_active.csv",
+            "path_fixture_marker": false,
+            "placeholder_examples": [
+              {
+                "markers": [
+                  "notes=pending_real_measurement"
+                ],
+                "row_number": 1,
+                "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-0h"
+              },
+              {
+                "markers": [
+                  "notes=pending_real_measurement"
+                ],
+                "row_number": 2,
+                "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-24h"
+              },
+              {
+                "markers": [
+                  "notes=pending_real_measurement"
+                ],
+                "row_number": 3,
+                "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-72h"
+              },
+              {
+                "markers": [
+                  "notes=pending_real_measurement"
+                ],
+                "row_number": 4,
+                "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-0h"
+              },
+              {
+                "markers": [
+                  "notes=pending_real_measurement"
+                ],
+                "row_number": 5,
+                "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-24h"
+              },
+              {
+                "markers": [
+                  "notes=pending_real_measurement"
+                ],
+                "row_number": 6,
+                "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-72h"
+              },
+              {
+                "markers": [
+                  "notes=pending_real_measurement"
+                ],
+                "row_number": 7,
+                "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-0h"
+              },
+              {
+                "markers": [
+                  "notes=pending_real_measurement"
+                ],
+                "row_number": 8,
+                "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h"
+              }
+            ],
+            "placeholder_row_count": 12,
+            "row_count": 12,
+            "source_file_issue_count": 12,
+            "source_file_issue_examples": [
+              {
+                "issues": [
+                  "synthetic_fixture_not_material_evidence.csv: rejected source marker"
+                ],
+                "row_number": 1,
+                "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-0h"
+              },
+              {
+                "issues": [
+                  "synthetic_fixture_not_material_evidence.csv: rejected source marker"
+                ],
+                "row_number": 2,
+                "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-24h"
+              },
+              {
+                "issues": [
+                  "synthetic_fixture_not_material_evidence.csv: rejected source marker"
+                ],
+                "row_number": 3,
+                "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-72h"
+              },
+              {
+                "issues": [
+                  "synthetic_fixture_not_material_evidence.csv: rejected source marker"
+                ],
+                "row_number": 4,
+                "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-0h"
+              },
+              {
+                "issues": [
+                  "synthetic_fixture_not_material_evidence.csv: rejected source marker"
+                ],
+                "row_number": 5,
+                "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-24h"
+              },
+              {
+                "issues": [
+                  "synthetic_fixture_not_material_evidence.csv: rejected source marker"
+                ],
+                "row_number": 6,
+                "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-72h"
+              },
+              {
+                "issues": [
+                  "synthetic_fixture_not_material_evidence.csv: rejected source marker"
+                ],
+                "row_number": 7,
+                "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-0h"
+              },
+              {
+                "issues": [
+                  "synthetic_fixture_not_material_evidence.csv: rejected source marker"
+                ],
+                "row_number": 8,
+                "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h"
+              }
+            ],
+            "synthetic_examples": [
+              {
+                "markers": [
+                  "notes=fixture",
+                  "notes=not_evidence",
+                  "notes=synthetic_fixture",
+                  "operator_or_agent=fixture",
+                  "operator_or_agent=synthetic_fixture",
+                  "source_file=fixture",
+                  "source_file=fixture_not_material",
+                  "source_file=synthetic_fixture"
+                ],
+                "row_number": 1,
+                "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-0h"
+              },
+              {
+                "markers": [
+                  "notes=fixture",
+                  "notes=not_evidence",
+                  "notes=synthetic_fixture",
+                  "operator_or_agent=fixture",
+                  "operator_or_agent=synthetic_fixture",
+                  "source_file=fixture",
+                  "source_file=fixture_not_material",
+                  "source_file=synthetic_fixture"
+                ],
+                "row_number": 2,
+                "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-24h"
+              },
+              {
+                "markers": [
+                  "notes=fixture",
+                  "notes=not_evidence",
+                  "notes=synthetic_fixture",
+                  "operator_or_agent=fixture",
+                  "operator_or_agent=synthetic_fixture",
+                  "source_file=fixture",
+                  "source_file=fixture_not_material",
+                  "source_file=synthetic_fixture"
+                ],
+                "row_number": 3,
+                "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-72h"
+              },
+              {
+                "markers": [
+                  "notes=fixture",
+                  "notes=not_evidence",
+                  "notes=synthetic_fixture",
+                  "operator_or_agent=fixture",
+                  "operator_or_agent=synthetic_fixture",
+                  "source_file=fixture",
+                  "source_file=fixture_not_material",
+                  "source_file=synthetic_fixture"
+                ],
+                "row_number": 4,
+                "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-0h"
+              },
+              {
+                "markers": [
+                  "notes=fixture",
+                  "notes=not_evidence",
+                  "notes=synthetic_fixture",
+                  "operator_or_agent=fixture",
+                  "operator_or_agent=synthetic_fixture",
+                  "source_file=fixture",
+                  "source_file=fixture_not_material",
+                  "source_file=synthetic_fixture"
+                ],
+                "row_number": 5,
+                "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-24h"
+              },
+              {
+                "markers": [
+                  "notes=fixture",
+                  "notes=not_evidence",
+                  "notes=synthetic_fixture",
+                  "operator_or_agent=fixture",
+                  "operator_or_agent=synthetic_fixture",
+                  "source_file=fixture",
+                  "source_file=fixture_not_material",
+                  "source_file=synthetic_fixture"
+                ],
+                "row_number": 6,
+                "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-72h"
+              },
+              {
+                "markers": [
+                  "notes=fixture",
+                  "notes=not_evidence",
+                  "notes=synthetic_fixture",
+                  "operator_or_agent=fixture",
+                  "operator_or_agent=synthetic_fixture",
+                  "source_file=fixture",
+                  "source_file=fixture_not_material",
+                  "source_file=synthetic_fixture"
+                ],
+                "row_number": 7,
+                "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-0h"
+              },
+              {
+                "markers": [
+                  "notes=fixture",
+                  "notes=not_evidence",
+                  "notes=synthetic_fixture",
+                  "operator_or_agent=fixture",
+                  "operator_or_agent=synthetic_fixture",
+                  "source_file=fixture",
+                  "source_file=fixture_not_material",
+                  "source_file=synthetic_fixture"
+                ],
+                "row_number": 8,
+                "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h"
+              }
+            ],
+            "synthetic_row_count": 12
+          },
+          "long_duration": {
+            "claimable_measurement_source": false,
+            "exists": true,
+            "measured_row_count": 0,
+            "path": "data/fixtures/nhi_pedot_long_full_pass_fixture.csv",
+            "path_fixture_marker": true,
+            "placeholder_examples": [
+              {
+                "markers": [
+                  "cell_model=tbd",
+                  "source_file=missing"
+                ],
+                "row_number": 1,
+                "run_id": "NHIPEDOT-LONG-L1-long_laminin_only_control-R1-0d"
+              },
+              {
+                "markers": [
+                  "cell_model=tbd",
+                  "source_file=missing"
+                ],
+                "row_number": 2,
+                "run_id": "NHIPEDOT-LONG-L1-long_laminin_only_control-R1-7d"
+              },
+              {
+                "markers": [
+                  "cell_model=tbd",
+                  "source_file=missing"
+                ],
+                "row_number": 3,
+                "run_id": "NHIPEDOT-LONG-L1-long_laminin_only_control-R1-14d"
+              },
+              {
+                "markers": [
+                  "cell_model=tbd",
+                  "source_file=missing"
+                ],
+                "row_number": 4,
+                "run_id": "NHIPEDOT-LONG-L1-long_laminin_only_control-R1-28d"
+              },
+              {
+                "markers": [
+                  "cell_model=tbd",
+                  "source_file=missing"
+                ],
+                "row_number": 5,
+                "run_id": "NHIPEDOT-LONG-L1-long_laminin_only_control-R1-42d"
+              },
+              {
+                "markers": [
+                  "cell_model=tbd",
+                  "source_file=missing"
+                ],
+                "row_number": 6,
+                "run_id": "NHIPEDOT-LONG-L1-long_laminin_only_control-R2-0d"
+              },
+              {
+                "markers": [
+                  "cell_model=tbd",
+                  "source_file=missing"
+                ],
+                "row_number": 7,
+                "run_id": "NHIPEDOT-LONG-L1-long_laminin_only_control-R2-7d"
+              },
+              {
+                "markers": [
+                  "cell_model=tbd",
+                  "source_file=missing"
+                ],
+                "row_number": 8,
+                "run_id": "NHIPEDOT-LONG-L1-long_laminin_only_control-R2-14d"
+              }
+            ],
+            "placeholder_row_count": 156,
+            "row_count": 156,
+            "source_file_issue_count": 0,
+            "source_file_issue_examples": [],
+            "synthetic_examples": [
+              {
+                "markers": [
+                  "date=fixture",
+                  "date=fixture_not_evidence",
+                  "date=not_evidence",
+                  "date=synthetic_fixture",
+                  "notes=fixture",
+                  "notes=fixture_not_material",
+                  "notes=synthetic_fixture"
+                ],
+                "row_number": 1,
+                "run_id": "NHIPEDOT-LONG-L1-long_laminin_only_control-R1-0d"
+              },
+              {
+                "markers": [
+                  "date=fixture",
+                  "date=fixture_not_evidence",
+                  "date=not_evidence",
+                  "date=synthetic_fixture",
+                  "notes=fixture",
+                  "notes=fixture_not_material",
+                  "notes=synthetic_fixture"
+                ],
+                "row_number": 2,
+                "run_id": "NHIPEDOT-LONG-L1-long_laminin_only_control-R1-7d"
+              },
+              {
+                "markers": [
+                  "date=fixture",
+                  "date=fixture_not_evidence",
+                  "date=not_evidence",
+                  "date=synthetic_fixture",
+                  "notes=fixture",
+                  "notes=fixture_not_material",
+                  "notes=synthetic_fixture"
+                ],
+                "row_number": 3,
+                "run_id": "NHIPEDOT-LONG-L1-long_laminin_only_control-R1-14d"
+              },
+              {
+                "markers": [
+                  "date=fixture",
+                  "date=fixture_not_evidence",
+                  "date=not_evidence",
+                  "date=synthetic_fixture",
+                  "notes=fixture",
+                  "notes=fixture_not_material",
+                  "notes=synthetic_fixture"
+                ],
+                "row_number": 4,
+                "run_id": "NHIPEDOT-LONG-L1-long_laminin_only_control-R1-28d"
+              },
+              {
+                "markers": [
+                  "date=fixture",
+                  "date=fixture_not_evidence",
+                  "date=not_evidence",
+                  "date=synthetic_fixture",
+                  "notes=fixture",
+                  "notes=fixture_not_material",
+                  "notes=synthetic_fixture"
+                ],
+                "row_number": 5,
+                "run_id": "NHIPEDOT-LONG-L1-long_laminin_only_control-R1-42d"
+              },
+              {
+                "markers": [
+                  "date=fixture",
+                  "date=fixture_not_evidence",
+                  "date=not_evidence",
+                  "date=synthetic_fixture",
+                  "notes=fixture",
+                  "notes=fixture_not_material",
+                  "notes=synthetic_fixture"
+                ],
+                "row_number": 6,
+                "run_id": "NHIPEDOT-LONG-L1-long_laminin_only_control-R2-0d"
+              },
+              {
+                "markers": [
+                  "date=fixture",
+                  "date=fixture_not_evidence",
+                  "date=not_evidence",
+                  "date=synthetic_fixture",
+                  "notes=fixture",
+                  "notes=fixture_not_material",
+                  "notes=synthetic_fixture"
+                ],
+                "row_number": 7,
+                "run_id": "NHIPEDOT-LONG-L1-long_laminin_only_control-R2-7d"
+              },
+              {
+                "markers": [
+                  "date=fixture",
+                  "date=fixture_not_evidence",
+                  "date=not_evidence",
+                  "date=synthetic_fixture",
+                  "notes=fixture",
+                  "notes=fixture_not_material",
+                  "notes=synthetic_fixture"
+                ],
+                "row_number": 8,
+                "run_id": "NHIPEDOT-LONG-L1-long_laminin_only_control-R2-14d"
+              }
+            ],
+            "synthetic_row_count": 156
+          }
+        },
+        "technology_id": "limina_nhi_pedot_laminin_v0_1"
+      },
+      "status": "no_suitable_material_claim_ready",
+      "zrc": {
+        "blockers": [
+          "ZRC-ND non-cell source has no measured run rows.",
+          "ZRC-ND non-cell source contains synthetic or fixture-marked rows.",
+          "ZRC-ND non-cell source contains placeholder or pending-measurement rows.",
+          "ZRC-ND biological source has no measured run rows.",
+          "ZRC-ND biological source contains synthetic or fixture-marked rows.",
+          "ZRC-ND biological source contains placeholder or pending-measurement rows."
+        ],
+        "claim_candidate_id": "limina_zrc_nd_v0_1",
+        "claim_ready": false,
+        "decision": "not_claim_ready",
+        "evidence_status": {
+          "readiness": "suitable",
+          "suitable": true
+        },
+        "provenance": {
+          "biological": {
+            "claimable_measurement_source": false,
+            "exists": true,
+            "measured_row_count": 0,
+            "path": "data/fixtures/zrc_nd_bio_runs_full_pass_fixture.csv",
+            "path_fixture_marker": true,
+            "placeholder_examples": [
+              {
+                "markers": [
+                  "source_file=missing"
+                ],
+                "row_number": 1,
+                "run_id": "fixture-D1-bio_no_module_control-R1-24h"
+              },
+              {
+                "markers": [
+                  "source_file=missing"
+                ],
+                "row_number": 2,
+                "run_id": "fixture-D1-bio_lead_zrc_nd_3p5m_guard-R1-24h"
+              },
+              {
+                "markers": [
+                  "source_file=missing"
+                ],
+                "row_number": 3,
+                "run_id": "fixture-D1-bio_baseline_rc_3p5m_guard-R1-24h"
+              },
+              {
+                "markers": [
+                  "source_file=missing"
+                ],
+                "row_number": 4,
+                "run_id": "fixture-D1-bio_challenge_zrc_nd_10m_guard-R1-24h"
+              },
+              {
+                "markers": [
+                  "source_file=missing"
+                ],
+                "row_number": 5,
+                "run_id": "fixture-D1-bio_positive_toxicity_control-R1-24h"
+              },
+              {
+                "markers": [
+                  "source_file=missing"
+                ],
+                "row_number": 6,
+                "run_id": "fixture-D1-bio_no_module_control-R1-72h"
+              },
+              {
+                "markers": [
+                  "source_file=missing"
+                ],
+                "row_number": 7,
+                "run_id": "fixture-D1-bio_lead_zrc_nd_3p5m_guard-R1-72h"
+              },
+              {
+                "markers": [
+                  "source_file=missing"
+                ],
+                "row_number": 8,
+                "run_id": "fixture-D1-bio_baseline_rc_3p5m_guard-R1-72h"
+              }
+            ],
+            "placeholder_row_count": 54,
+            "row_count": 54,
+            "source_file_issue_count": 0,
+            "source_file_issue_examples": [],
+            "synthetic_examples": [
+              {
+                "markers": [
+                  "morphology_notes=fixture",
+                  "notes=fixture",
+                  "operator_or_agent=fixture",
+                  "run_id=fixture"
+                ],
+                "row_number": 1,
+                "run_id": "fixture-D1-bio_no_module_control-R1-24h"
+              },
+              {
+                "markers": [
+                  "morphology_notes=fixture",
+                  "notes=fixture",
+                  "operator_or_agent=fixture",
+                  "run_id=fixture"
+                ],
+                "row_number": 2,
+                "run_id": "fixture-D1-bio_lead_zrc_nd_3p5m_guard-R1-24h"
+              },
+              {
+                "markers": [
+                  "morphology_notes=fixture",
+                  "notes=fixture",
+                  "operator_or_agent=fixture",
+                  "run_id=fixture"
+                ],
+                "row_number": 3,
+                "run_id": "fixture-D1-bio_baseline_rc_3p5m_guard-R1-24h"
+              },
+              {
+                "markers": [
+                  "morphology_notes=fixture",
+                  "notes=fixture",
+                  "operator_or_agent=fixture",
+                  "run_id=fixture"
+                ],
+                "row_number": 4,
+                "run_id": "fixture-D1-bio_challenge_zrc_nd_10m_guard-R1-24h"
+              },
+              {
+                "markers": [
+                  "morphology_notes=fixture",
+                  "notes=fixture",
+                  "operator_or_agent=fixture",
+                  "run_id=fixture"
+                ],
+                "row_number": 5,
+                "run_id": "fixture-D1-bio_positive_toxicity_control-R1-24h"
+              },
+              {
+                "markers": [
+                  "morphology_notes=fixture",
+                  "notes=fixture",
+                  "operator_or_agent=fixture",
+                  "run_id=fixture"
+                ],
+                "row_number": 6,
+                "run_id": "fixture-D1-bio_no_module_control-R1-72h"
+              },
+              {
+                "markers": [
+                  "morphology_notes=fixture",
+                  "notes=fixture",
+                  "operator_or_agent=fixture",
+                  "run_id=fixture"
+                ],
+                "row_number": 7,
+                "run_id": "fixture-D1-bio_lead_zrc_nd_3p5m_guard-R1-72h"
+              },
+              {
+                "markers": [
+                  "morphology_notes=fixture",
+                  "notes=fixture",
+                  "operator_or_agent=fixture",
+                  "run_id=fixture"
+                ],
+                "row_number": 8,
+                "run_id": "fixture-D1-bio_baseline_rc_3p5m_guard-R1-72h"
+              }
+            ],
+            "synthetic_row_count": 54
+          },
+          "non_cell": {
+            "claimable_measurement_source": false,
+            "exists": true,
+            "measured_row_count": 0,
+            "path": "data/fixtures/zrc_nd_validation_runs_full_pass_fixture.csv",
+            "path_fixture_marker": true,
+            "placeholder_examples": [
+              {
+                "markers": [
+                  "date=missing",
+                  "source_file=missing"
+                ],
+                "row_number": 1,
+                "run_id": "fixture-A-no_module_static_control-R1-0h"
+              },
+              {
+                "markers": [
+                  "date=missing",
+                  "source_file=missing"
+                ],
+                "row_number": 2,
+                "run_id": "fixture-A-lead_zrc_nd_3p5m_guard-R1-0h"
+              },
+              {
+                "markers": [
+                  "date=missing",
+                  "source_file=missing"
+                ],
+                "row_number": 3,
+                "run_id": "fixture-A-baseline_rc_3p5m_guard-R1-0h"
+              },
+              {
+                "markers": [
+                  "date=missing",
+                  "source_file=missing"
+                ],
+                "row_number": 4,
+                "run_id": "fixture-A-challenge_zrc_nd_10m_guard-R1-0h"
+              },
+              {
+                "markers": [
+                  "date=missing",
+                  "source_file=missing"
+                ],
+                "row_number": 5,
+                "run_id": "fixture-A-no_module_static_control-R1-24h"
+              },
+              {
+                "markers": [
+                  "date=missing",
+                  "source_file=missing"
+                ],
+                "row_number": 6,
+                "run_id": "fixture-A-lead_zrc_nd_3p5m_guard-R1-24h"
+              },
+              {
+                "markers": [
+                  "date=missing",
+                  "source_file=missing"
+                ],
+                "row_number": 7,
+                "run_id": "fixture-A-baseline_rc_3p5m_guard-R1-24h"
+              },
+              {
+                "markers": [
+                  "date=missing",
+                  "source_file=missing"
+                ],
+                "row_number": 8,
+                "run_id": "fixture-A-challenge_zrc_nd_10m_guard-R1-24h"
+              }
+            ],
+            "placeholder_row_count": 72,
+            "row_count": 72,
+            "source_file_issue_count": 0,
+            "source_file_issue_examples": [],
+            "synthetic_examples": [
+              {
+                "markers": [
+                  "medium_lot=fixture",
+                  "notes=fixture",
+                  "operator_or_agent=fixture",
+                  "run_id=fixture"
+                ],
+                "row_number": 1,
+                "run_id": "fixture-A-no_module_static_control-R1-0h"
+              },
+              {
+                "markers": [
+                  "medium_lot=fixture",
+                  "notes=fixture",
+                  "operator_or_agent=fixture",
+                  "run_id=fixture"
+                ],
+                "row_number": 2,
+                "run_id": "fixture-A-lead_zrc_nd_3p5m_guard-R1-0h"
+              },
+              {
+                "markers": [
+                  "medium_lot=fixture",
+                  "notes=fixture",
+                  "operator_or_agent=fixture",
+                  "run_id=fixture"
+                ],
+                "row_number": 3,
+                "run_id": "fixture-A-baseline_rc_3p5m_guard-R1-0h"
+              },
+              {
+                "markers": [
+                  "medium_lot=fixture",
+                  "notes=fixture",
+                  "operator_or_agent=fixture",
+                  "run_id=fixture"
+                ],
+                "row_number": 4,
+                "run_id": "fixture-A-challenge_zrc_nd_10m_guard-R1-0h"
+              },
+              {
+                "markers": [
+                  "medium_lot=fixture",
+                  "notes=fixture",
+                  "operator_or_agent=fixture",
+                  "run_id=fixture"
+                ],
+                "row_number": 5,
+                "run_id": "fixture-A-no_module_static_control-R1-24h"
+              },
+              {
+                "markers": [
+                  "medium_lot=fixture",
+                  "notes=fixture",
+                  "operator_or_agent=fixture",
+                  "run_id=fixture"
+                ],
+                "row_number": 6,
+                "run_id": "fixture-A-lead_zrc_nd_3p5m_guard-R1-24h"
+              },
+              {
+                "markers": [
+                  "medium_lot=fixture",
+                  "notes=fixture",
+                  "operator_or_agent=fixture",
+                  "run_id=fixture"
+                ],
+                "row_number": 7,
+                "run_id": "fixture-A-baseline_rc_3p5m_guard-R1-24h"
+              },
+              {
+                "markers": [
+                  "medium_lot=fixture",
+                  "notes=fixture",
+                  "operator_or_agent=fixture",
+                  "run_id=fixture"
+                ],
+                "row_number": 8,
+                "run_id": "fixture-A-challenge_zrc_nd_10m_guard-R1-24h"
+              }
+            ],
+            "synthetic_row_count": 72
+          }
+        },
+        "technology_id": "limina_zrc_nd_v0_1"
+      }
+    },
+    "coupon": {
+      "rows": 168,
+      "status": "nhi_pedot_passes_gates"
+    },
+    "forward": {
+      "rows": 28,
+      "status": "preregistered_waiting_for_h_a"
+    },
+    "h_a": {
+      "intake_ready": false,
+      "provenance": {
+        "claimable_measurement_source": false,
+        "exists": true,
+        "measured_row_count": 0,
+        "path": "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/h_a_active.csv",
+        "path_fixture_marker": false,
+        "placeholder_examples": [
+          {
+            "markers": [
+              "notes=pending_real_measurement"
+            ],
+            "row_number": 1,
+            "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-0h"
+          },
+          {
+            "markers": [
+              "notes=pending_real_measurement"
+            ],
+            "row_number": 2,
+            "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-24h"
+          },
+          {
+            "markers": [
+              "notes=pending_real_measurement"
+            ],
+            "row_number": 3,
+            "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-72h"
+          },
+          {
+            "markers": [
+              "notes=pending_real_measurement"
+            ],
+            "row_number": 4,
+            "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-0h"
+          },
+          {
+            "markers": [
+              "notes=pending_real_measurement"
+            ],
+            "row_number": 5,
+            "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-24h"
+          },
+          {
+            "markers": [
+              "notes=pending_real_measurement"
+            ],
+            "row_number": 6,
+            "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-72h"
+          },
+          {
+            "markers": [
+              "notes=pending_real_measurement"
+            ],
+            "row_number": 7,
+            "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-0h"
+          },
+          {
+            "markers": [
+              "notes=pending_real_measurement"
+            ],
+            "row_number": 8,
+            "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h"
+          }
+        ],
+        "placeholder_row_count": 12,
+        "row_count": 12,
+        "source_file_issue_count": 12,
+        "source_file_issue_examples": [
+          {
+            "issues": [
+              "synthetic_fixture_not_material_evidence.csv: rejected source marker"
+            ],
+            "row_number": 1,
+            "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-0h"
+          },
+          {
+            "issues": [
+              "synthetic_fixture_not_material_evidence.csv: rejected source marker"
+            ],
+            "row_number": 2,
+            "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-24h"
+          },
+          {
+            "issues": [
+              "synthetic_fixture_not_material_evidence.csv: rejected source marker"
+            ],
+            "row_number": 3,
+            "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-72h"
+          },
+          {
+            "issues": [
+              "synthetic_fixture_not_material_evidence.csv: rejected source marker"
+            ],
+            "row_number": 4,
+            "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-0h"
+          },
+          {
+            "issues": [
+              "synthetic_fixture_not_material_evidence.csv: rejected source marker"
+            ],
+            "row_number": 5,
+            "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-24h"
+          },
+          {
+            "issues": [
+              "synthetic_fixture_not_material_evidence.csv: rejected source marker"
+            ],
+            "row_number": 6,
+            "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-72h"
+          },
+          {
+            "issues": [
+              "synthetic_fixture_not_material_evidence.csv: rejected source marker"
+            ],
+            "row_number": 7,
+            "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-0h"
+          },
+          {
+            "issues": [
+              "synthetic_fixture_not_material_evidence.csv: rejected source marker"
+            ],
+            "row_number": 8,
+            "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h"
+          }
+        ],
+        "synthetic_examples": [
+          {
+            "markers": [
+              "notes=fixture",
+              "notes=not_evidence",
+              "notes=synthetic_fixture",
+              "operator_or_agent=fixture",
+              "operator_or_agent=synthetic_fixture",
+              "source_file=fixture",
+              "source_file=fixture_not_material",
+              "source_file=synthetic_fixture"
+            ],
+            "row_number": 1,
+            "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-0h"
+          },
+          {
+            "markers": [
+              "notes=fixture",
+              "notes=not_evidence",
+              "notes=synthetic_fixture",
+              "operator_or_agent=fixture",
+              "operator_or_agent=synthetic_fixture",
+              "source_file=fixture",
+              "source_file=fixture_not_material",
+              "source_file=synthetic_fixture"
+            ],
+            "row_number": 2,
+            "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-24h"
+          },
+          {
+            "markers": [
+              "notes=fixture",
+              "notes=not_evidence",
+              "notes=synthetic_fixture",
+              "operator_or_agent=fixture",
+              "operator_or_agent=synthetic_fixture",
+              "source_file=fixture",
+              "source_file=fixture_not_material",
+              "source_file=synthetic_fixture"
+            ],
+            "row_number": 3,
+            "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-72h"
+          },
+          {
+            "markers": [
+              "notes=fixture",
+              "notes=not_evidence",
+              "notes=synthetic_fixture",
+              "operator_or_agent=fixture",
+              "operator_or_agent=synthetic_fixture",
+              "source_file=fixture",
+              "source_file=fixture_not_material",
+              "source_file=synthetic_fixture"
+            ],
+            "row_number": 4,
+            "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-0h"
+          },
+          {
+            "markers": [
+              "notes=fixture",
+              "notes=not_evidence",
+              "notes=synthetic_fixture",
+              "operator_or_agent=fixture",
+              "operator_or_agent=synthetic_fixture",
+              "source_file=fixture",
+              "source_file=fixture_not_material",
+              "source_file=synthetic_fixture"
+            ],
+            "row_number": 5,
+            "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-24h"
+          },
+          {
+            "markers": [
+              "notes=fixture",
+              "notes=not_evidence",
+              "notes=synthetic_fixture",
+              "operator_or_agent=fixture",
+              "operator_or_agent=synthetic_fixture",
+              "source_file=fixture",
+              "source_file=fixture_not_material",
+              "source_file=synthetic_fixture"
+            ],
+            "row_number": 6,
+            "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-72h"
+          },
+          {
+            "markers": [
+              "notes=fixture",
+              "notes=not_evidence",
+              "notes=synthetic_fixture",
+              "operator_or_agent=fixture",
+              "operator_or_agent=synthetic_fixture",
+              "source_file=fixture",
+              "source_file=fixture_not_material",
+              "source_file=synthetic_fixture"
+            ],
+            "row_number": 7,
+            "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-0h"
+          },
+          {
+            "markers": [
+              "notes=fixture",
+              "notes=not_evidence",
+              "notes=synthetic_fixture",
+              "operator_or_agent=fixture",
+              "operator_or_agent=synthetic_fixture",
+              "source_file=fixture",
+              "source_file=fixture_not_material",
+              "source_file=synthetic_fixture"
+            ],
+            "row_number": 8,
+            "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h"
+          }
+        ],
+        "synthetic_row_count": 12
+      },
+      "status": "h_a_invalid_provenance"
+    },
+    "long": {
+      "rows": 156,
+      "status": "nhi_pedot_long_passes_gates"
+    },
+    "zrc": {
+      "rows": 72,
+      "status": "lead_passes_non_cell_gates"
+    },
+    "zrc_bio": {
+      "rows": 54,
+      "status": "bio_followup_passes_gates"
+    },
+    "zrc_readiness": {
+      "readiness": "suitable",
+      "suitable": true
+    }
+  },
+  "temporary_outputs": {
+    "audit_json": "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/claim_audit.json",
+    "audit_report": "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/claim_audit.md",
+    "coupon_json": "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/coupon_results.json",
+    "coupon_report": "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/coupon_results.md",
+    "forward_csv": "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/forward.csv",
+    "forward_json": "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/forward.json",
+    "forward_report": "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/forward.md",
+    "h_a_active": "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/h_a_active.csv",
+    "h_a_json": "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/h_a_interpretation.json",
+    "h_a_merge_json": "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/h_a_merge.json",
+    "h_a_merge_report": "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/h_a_merge.md",
+    "h_a_qc_json": "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/h_a_qc.json",
+    "h_a_qc_report": "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/h_a_qc.md",
+    "h_a_report": "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/h_a_interpretation.md",
+    "long_json": "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/long_results.json",
+    "long_report": "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/long_results.md",
+    "zrc_bio_json": "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/zrc_bio_results.json",
+    "zrc_bio_report": "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/zrc_bio_results.md",
+    "zrc_json": "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/zrc_results.json",
+    "zrc_readiness_json": "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/zrc_readiness.json",
+    "zrc_readiness_report": "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/zrc_readiness.md",
+    "zrc_report": "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20/zrc_results.md"
+  },
+  "tmp_dir": "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_claim_guard_regression_jer61x20"
+}

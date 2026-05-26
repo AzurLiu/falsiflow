@@ -1,0 +1,48 @@
+{
+  "accepted_import_schema": [
+    "queue_id",
+    "run_id",
+    "sample_event",
+    "target_field",
+    "value",
+    "measured_at",
+    "operator_or_agent",
+    "instrument_id",
+    "source_file",
+    "notes",
+    "apply"
+  ],
+  "boundary": "This review-values sheet is a fillable sidecar for manually extracted values from existing PDF/image/other unstructured source files. It is not measured evidence and cannot support a claim unless the cited raw source file and filled values pass the importer, preflight, merge/QC, gate evaluation, and claim audit.",
+  "generated_artifacts": {
+    "csv": "data/limina_smoke_unstructured_review_values.csv",
+    "json": "data/limina_smoke_unstructured_review_values.json",
+    "report": "reports/limina_smoke_unstructured_review_values.md"
+  },
+  "inputs": {
+    "execution_pack": "data/limina_smoke_starter_execution_pack.csv",
+    "intake": "data/limina_smoke_unstructured_source_intake.csv",
+    "source_manifest": "data/limina_source_file_manifest.json"
+  },
+  "status": "smoke_unstructured_review_values_waiting_for_source_files",
+  "summary": {
+    "filled_value_rows": 0,
+    "import_ready_rows": 0,
+    "invalid_source_rows": 0,
+    "missing_item_counts": {
+      "instrument_id": 6,
+      "measured_at": 10,
+      "operator_or_agent": 10,
+      "source_missing_source_file": 10,
+      "value": 10
+    },
+    "missing_source_rows": 10,
+    "ready_source_rows": 0,
+    "review_rows": 10,
+    "review_status_counts": {
+      "awaiting_source_file": 10
+    },
+    "source_status_counts": {
+      "missing_source_file": 10
+    }
+  }
+}

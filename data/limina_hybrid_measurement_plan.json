@@ -1,0 +1,441 @@
+{
+  "execution_notes": [
+    "Local capture can reduce vendor scope, but every local value still needs measured_at, operator_or_agent, instrument_id, and source_file provenance.",
+    "Osmolality is kept as outsourced_preferred because it commonly requires a dedicated osmometer; use a local instrument only if it is calibrated and produces traceable output.",
+    "Supplier/build records do not prove compatibility by themselves; they only remove provenance blockers.",
+    "Never enter phone photos, emails, or vendor capability replies as material evidence unless they contain real run-level measured values."
+  ],
+  "h_a_active_candidate": "limina_alg_lam_pedot_lowdose_v0_2",
+  "non_claim_boundary": "This plan only routes work. Suitability remains false until real, non-synthetic rows pass gate evaluators and the final claim audit.",
+  "purpose": "Reduce time-to-real-evidence by separating locally capturable fields from vendor-preferred fields.",
+  "rows": [
+    {
+      "branch": "NHI-PEDOT H-A",
+      "evidence_requirement": "Calibrated conductivity for the specified H-A sample event.",
+      "field": "conductivity",
+      "notes": "",
+      "operator_hint": "local_bench_or_vendor",
+      "route": "inhouse_ready",
+      "route_label": "Can be captured locally or by a simple bench operator if calibrated instruments/images are available.",
+      "rows": 24,
+      "source_file_requirement": "Conductivity meter export, calibration log, or display photo reconciled to run_id."
+    },
+    {
+      "branch": "NHI-PEDOT H-A",
+      "evidence_requirement": "0 to 1 delamination score using the preregistered H-A rubric.",
+      "field": "delamination_score",
+      "notes": "0 to 1 delamination score",
+      "operator_hint": "local_bench_or_materials_lab",
+      "route": "inhouse_ready",
+      "route_label": "Can be captured locally or by a simple bench operator if calibrated instruments/images are available.",
+      "rows": 12,
+      "source_file_requirement": "Image plus scoring worksheet or vendor image-analysis report."
+    },
+    {
+      "branch": "NHI-PEDOT H-A",
+      "evidence_requirement": "0 to 1 transparency estimate from a consistent imaging/lightbox method.",
+      "field": "optical_transparency_fraction",
+      "notes": "0 to 1 optical transparency fraction",
+      "operator_hint": "local_bench_or_materials_lab",
+      "route": "inhouse_ready",
+      "route_label": "Can be captured locally or by a simple bench operator if calibrated instruments/images are available.",
+      "rows": 12,
+      "source_file_requirement": "Image-analysis export or vendor microscopy report."
+    },
+    {
+      "branch": "NHI-PEDOT H-A",
+      "evidence_requirement": "Calibrated pH measurement for the specified H-A sample event.",
+      "field": "pH",
+      "notes": "",
+      "operator_hint": "local_bench_or_vendor",
+      "route": "inhouse_ready",
+      "route_label": "Can be captured locally or by a simple bench operator if calibrated instruments/images are available.",
+      "rows": 24,
+      "source_file_requirement": "Meter export, calibration log, or time-stamped display photo reconciled to run_id."
+    },
+    {
+      "branch": "NHI-PEDOT H-A",
+      "evidence_requirement": "Fractional swelling from pre/post dimensions or mass using the same method across rows.",
+      "field": "swelling_fraction",
+      "notes": "fractional swelling",
+      "operator_hint": "local_bench_or_materials_lab",
+      "route": "inhouse_ready",
+      "route_label": "Can be captured locally or by a simple bench operator if calibrated instruments/images are available.",
+      "rows": 12,
+      "source_file_requirement": "Image analysis export, caliper log, or mass/dimension worksheet."
+    },
+    {
+      "branch": "NHI-PEDOT H-A",
+      "evidence_requirement": "Actual incubation or measurement temperature in C.",
+      "field": "temperature_c",
+      "notes": "measurement/incubation temperature in C",
+      "operator_hint": "local_bench",
+      "route": "inhouse_ready",
+      "route_label": "Can be captured locally or by a simple bench operator if calibrated instruments/images are available.",
+      "rows": 12,
+      "source_file_requirement": "Incubator log, probe export, or time-stamped photo."
+    },
+    {
+      "branch": "NHI-PEDOT H-A",
+      "evidence_requirement": "Boolean precipitate/turbidity/extractables concern scored from inspection.",
+      "field": "visible_precipitate",
+      "notes": "visible precipitate, true or false",
+      "operator_hint": "local_bench_or_vendor",
+      "route": "inhouse_ready",
+      "route_label": "Can be captured locally or by a simple bench operator if calibrated instruments/images are available.",
+      "rows": 12,
+      "source_file_requirement": "Time-stamped image or vendor inspection report."
+    },
+    {
+      "branch": "NHI-PEDOT H-A",
+      "evidence_requirement": "Boolean visible material shedding score.",
+      "field": "visible_shedding",
+      "notes": "visible material shedding, true or false",
+      "operator_hint": "local_bench_or_vendor",
+      "route": "inhouse_ready",
+      "route_label": "Can be captured locally or by a simple bench operator if calibrated instruments/images are available.",
+      "rows": 12,
+      "source_file_requirement": "Time-stamped image or microscopy/stereoscope export."
+    },
+    {
+      "branch": "NHI-PEDOT H-A",
+      "evidence_requirement": "Measured osmolality for the specified H-A sample event.",
+      "field": "osmolality",
+      "notes": "",
+      "operator_hint": "vendor_or_equipped_lab",
+      "route": "outsourced_preferred",
+      "route_label": "Prefer external lab unless a calibrated instrument is already available locally.",
+      "rows": 24,
+      "source_file_requirement": "Osmometer report/export reconciled to run_id."
+    },
+    {
+      "branch": "NHI-PEDOT H-A",
+      "evidence_requirement": "ISO date for the actual measurement or sample-handling event.",
+      "field": "date",
+      "notes": "calendar date of the measurement event",
+      "operator_hint": "bench_or_vendor",
+      "route": "supplier_or_build_record",
+      "route_label": "Record from supplier, fabrication batch, or chain-of-custody rather than analytical testing.",
+      "rows": 12,
+      "source_file_requirement": "Bench sheet, vendor report, or chain-of-custody CSV."
+    },
+    {
+      "branch": "NHI-PEDOT H-A",
+      "evidence_requirement": "Actual electrode/coupon substrate material used for the row.",
+      "field": "electrode_material",
+      "notes": "",
+      "operator_hint": "fabrication_or_supplier_record",
+      "route": "supplier_or_build_record",
+      "route_label": "Record from supplier, fabrication batch, or chain-of-custody rather than analytical testing.",
+      "rows": 12,
+      "source_file_requirement": "Supplier documentation, build sheet, or sample label record."
+    },
+    {
+      "branch": "NHI-PEDOT H-A",
+      "evidence_requirement": "Applied laminin or adhesion-peptide target density or documented formulation value.",
+      "field": "laminin_or_peptide_density",
+      "notes": "",
+      "operator_hint": "fabrication_or_supplier_record",
+      "route": "supplier_or_build_record",
+      "route_label": "Record from supplier, fabrication batch, or chain-of-custody rather than analytical testing.",
+      "rows": 12,
+      "source_file_requirement": "Recipe record, supplier CoA, coating log, or build sheet."
+    },
+    {
+      "branch": "NHI-PEDOT H-A",
+      "evidence_requirement": "Traceable MEA or coupon identifier for the exposed article.",
+      "field": "mea_coupon_id",
+      "notes": "",
+      "operator_hint": "fabrication_or_supplier_record",
+      "route": "supplier_or_build_record",
+      "route_label": "Record from supplier, fabrication batch, or chain-of-custody rather than analytical testing.",
+      "rows": 12,
+      "source_file_requirement": "Build sheet, sample label, or chain-of-custody record."
+    },
+    {
+      "branch": "NHI-PEDOT H-A",
+      "evidence_requirement": "Exact medium lot used for matched article/control rows.",
+      "field": "medium_lot",
+      "notes": "actual medium lot",
+      "operator_hint": "bench_or_vendor",
+      "route": "supplier_or_build_record",
+      "route_label": "Record from supplier, fabrication batch, or chain-of-custody rather than analytical testing.",
+      "rows": 12,
+      "source_file_requirement": "Lot CoA, bottle label image, or chain-of-custody record."
+    },
+    {
+      "branch": "NHI-PEDOT H-A",
+      "evidence_requirement": "Exact medium or CL1-proxy medium name.",
+      "field": "medium_name",
+      "notes": "actual medium or CL1-proxy medium name",
+      "operator_hint": "bench_or_vendor",
+      "route": "supplier_or_build_record",
+      "route_label": "Record from supplier, fabrication batch, or chain-of-custody rather than analytical testing.",
+      "rows": 12,
+      "source_file_requirement": "Medium bottle photo, lot CoA, or chain-of-custody record."
+    },
+    {
+      "branch": "NHI-PEDOT H-A",
+      "evidence_requirement": "Actual sterilization or aseptic-handling protocol applied to the article.",
+      "field": "sterilization_or_aseptic_protocol",
+      "notes": "",
+      "operator_hint": "fabrication_or_supplier_record",
+      "route": "supplier_or_build_record",
+      "route_label": "Record from supplier, fabrication batch, or chain-of-custody rather than analytical testing.",
+      "rows": 12,
+      "source_file_requirement": "SOP identifier, batch record, or chain-of-custody record."
+    },
+    {
+      "branch": "ZRC-ND Phase A",
+      "evidence_requirement": "Calibrated conductivity after the row timepoint.",
+      "field": "conductivity_final_mS_cm",
+      "notes": "Final conductivity at the run timepoint.",
+      "operator_hint": "local_bench_or_vendor",
+      "route": "inhouse_ready",
+      "route_label": "Can be captured locally or by a simple bench operator if calibrated instruments/images are available.",
+      "rows": 8,
+      "source_file_requirement": "Conductivity meter export, calibration log, or display photo."
+    },
+    {
+      "branch": "ZRC-ND Phase A",
+      "evidence_requirement": "Calibrated conductivity before exposure or matched start measurement.",
+      "field": "conductivity_initial_mS_cm",
+      "notes": "Initial conductivity in matched medium.",
+      "operator_hint": "local_bench_or_vendor",
+      "route": "inhouse_ready",
+      "route_label": "Can be captured locally or by a simple bench operator if calibrated instruments/images are available.",
+      "rows": 8,
+      "source_file_requirement": "Conductivity meter export, calibration log, or display photo."
+    },
+    {
+      "branch": "ZRC-ND Phase A",
+      "evidence_requirement": "Actual elapsed exposure time for the row.",
+      "field": "exposure_time_h",
+      "notes": "Actual exposure duration; must match the run timepoint within deviation-log tolerance.",
+      "operator_hint": "local_bench",
+      "route": "inhouse_ready",
+      "route_label": "Can be captured locally or by a simple bench operator if calibrated instruments/images are available.",
+      "rows": 8,
+      "source_file_requirement": "Incubation start/stop log or vendor report."
+    },
+    {
+      "branch": "ZRC-ND Phase A",
+      "evidence_requirement": "Starting medium volume per row.",
+      "field": "initial_volume_ml",
+      "notes": "Starting medium volume for normalization and drift interpretation.",
+      "operator_hint": "local_bench",
+      "route": "inhouse_ready",
+      "route_label": "Can be captured locally or by a simple bench operator if calibrated instruments/images are available.",
+      "rows": 8,
+      "source_file_requirement": "Pipetting worksheet or balance/volume log."
+    },
+    {
+      "branch": "ZRC-ND Phase A",
+      "evidence_requirement": "Calibrated pH measurement after the row timepoint.",
+      "field": "pH_final",
+      "notes": "Final pH at the run timepoint.",
+      "operator_hint": "local_bench_or_vendor",
+      "route": "inhouse_ready",
+      "route_label": "Can be captured locally or by a simple bench operator if calibrated instruments/images are available.",
+      "rows": 8,
+      "source_file_requirement": "Meter export, calibration log, or time-stamped display photo."
+    },
+    {
+      "branch": "ZRC-ND Phase A",
+      "evidence_requirement": "Calibrated pH measurement before exposure or matched start measurement.",
+      "field": "pH_initial",
+      "notes": "Initial pH before exposure or matched start measurement.",
+      "operator_hint": "local_bench_or_vendor",
+      "route": "inhouse_ready",
+      "route_label": "Can be captured locally or by a simple bench operator if calibrated instruments/images are available.",
+      "rows": 8,
+      "source_file_requirement": "Meter export, calibration log, or time-stamped display photo."
+    },
+    {
+      "branch": "ZRC-ND Phase A",
+      "evidence_requirement": "Actual incubation or measurement temperature in C.",
+      "field": "temperature_c",
+      "notes": "Actual incubation or measurement temperature.",
+      "operator_hint": "local_bench",
+      "route": "inhouse_ready",
+      "route_label": "Can be captured locally or by a simple bench operator if calibrated instruments/images are available.",
+      "rows": 8,
+      "source_file_requirement": "Incubator log, probe export, or time-stamped photo."
+    },
+    {
+      "branch": "ZRC-ND Phase A",
+      "evidence_requirement": "Boolean precipitate/turbidity/extractables concern scored from inspection.",
+      "field": "visible_precipitate",
+      "notes": "yes/no visible precipitate, turbidity, bubble, or extractables concern.",
+      "operator_hint": "local_bench_or_vendor",
+      "route": "inhouse_ready",
+      "route_label": "Can be captured locally or by a simple bench operator if calibrated instruments/images are available.",
+      "rows": 8,
+      "source_file_requirement": "Time-stamped image or vendor inspection report."
+    },
+    {
+      "branch": "ZRC-ND Phase A",
+      "evidence_requirement": "Measured osmolality after the row timepoint.",
+      "field": "osmolality_final_mOsm_kg",
+      "notes": "Final osmolality at the run timepoint.",
+      "operator_hint": "vendor_or_equipped_lab",
+      "route": "outsourced_preferred",
+      "route_label": "Prefer external lab unless a calibrated instrument is already available locally.",
+      "rows": 8,
+      "source_file_requirement": "Osmometer report/export reconciled to run_id."
+    },
+    {
+      "branch": "ZRC-ND Phase A",
+      "evidence_requirement": "Measured osmolality before exposure or matched start measurement.",
+      "field": "osmolality_initial_mOsm_kg",
+      "notes": "Initial osmolality in matched medium.",
+      "operator_hint": "vendor_or_equipped_lab",
+      "route": "outsourced_preferred",
+      "route_label": "Prefer external lab unless a calibrated instrument is already available locally.",
+      "rows": 8,
+      "source_file_requirement": "Osmometer report/export reconciled to run_id."
+    },
+    {
+      "branch": "ZRC-ND Phase A",
+      "evidence_requirement": "ISO date for the actual measurement or sample-handling event.",
+      "field": "date",
+      "notes": "Measurement date for each Phase A sentinel row.",
+      "operator_hint": "bench_or_vendor",
+      "route": "supplier_or_build_record",
+      "route_label": "Record from supplier, fabrication batch, or chain-of-custody rather than analytical testing.",
+      "rows": 8,
+      "source_file_requirement": "Bench sheet, vendor report, or chain-of-custody CSV."
+    },
+    {
+      "branch": "ZRC-ND Phase A",
+      "evidence_requirement": "Exact medium lot used for matched article/control rows.",
+      "field": "medium_lot",
+      "notes": "Actual medium lot shared with control rows where possible.",
+      "operator_hint": "bench_or_vendor",
+      "route": "supplier_or_build_record",
+      "route_label": "Record from supplier, fabrication batch, or chain-of-custody rather than analytical testing.",
+      "rows": 8,
+      "source_file_requirement": "Lot CoA, bottle label image, or chain-of-custody record."
+    },
+    {
+      "branch": "ZRC-ND Phase A",
+      "evidence_requirement": "Exact medium or CL1-proxy medium name.",
+      "field": "medium_name",
+      "notes": "Fresh complete neuronal medium or closest CL1-like medium proxy.",
+      "operator_hint": "bench_or_vendor",
+      "route": "supplier_or_build_record",
+      "route_label": "Record from supplier, fabrication batch, or chain-of-custody rather than analytical testing.",
+      "rows": 8,
+      "source_file_requirement": "Medium bottle photo, lot CoA, or chain-of-custody record."
+    },
+    {
+      "branch": "ZRC-ND Phase A",
+      "evidence_requirement": "Exposed membrane area used for normalization.",
+      "field": "membrane_area_cm2",
+      "notes": "Exposed membrane area for baseline, lead, and 10 kDa challenge articles.",
+      "operator_hint": "fabrication_or_supplier_record",
+      "route": "supplier_or_build_record",
+      "route_label": "Record from supplier, fabrication batch, or chain-of-custody rather than analytical testing.",
+      "rows": 6,
+      "source_file_requirement": "Build drawing, measurement worksheet, or supplier documentation."
+    },
+    {
+      "branch": "ZRC-ND Phase A",
+      "evidence_requirement": "Actual membrane/module lot for exposed ZRC-ND articles.",
+      "field": "membrane_lot",
+      "notes": "Actual lot for every membrane or module-exposed article; leave blank only for no-module controls.",
+      "operator_hint": "fabrication_or_supplier_record",
+      "route": "supplier_or_build_record",
+      "route_label": "Record from supplier, fabrication batch, or chain-of-custody rather than analytical testing.",
+      "rows": 6,
+      "source_file_requirement": "Supplier label, CoA, build sheet, or chain-of-custody record."
+    },
+    {
+      "branch": "ZRC-ND Phase A",
+      "evidence_requirement": "Guard prefilter lot or explicit none/not_applicable.",
+      "field": "prefilter_lot",
+      "notes": "Guard prefilter lot if present, or explicit none/not_applicable when omitted.",
+      "operator_hint": "fabrication_or_supplier_record",
+      "route": "supplier_or_build_record",
+      "route_label": "Record from supplier, fabrication batch, or chain-of-custody rather than analytical testing.",
+      "rows": 6,
+      "source_file_requirement": "Supplier label, build sheet, or chain-of-custody record."
+    }
+  ],
+  "source_artifacts": {
+    "h_a_raw_template": "data/nhi_pedot_h_a_raw_measurements_template.csv",
+    "h_a_service_request": "data/nhi_pedot_h_a_service_request.json",
+    "zrc_phase_a_service_request": "data/zrc_nd_phase_a_service_request.json"
+  },
+  "status": "hybrid_measurement_plan_ready",
+  "summary": {
+    "branch_count": 2,
+    "by_branch": {
+      "NHI-PEDOT H-A": {
+        "field_count": 16,
+        "route_counts": {
+          "inhouse_ready": {
+            "field_count": 8,
+            "row_count": 120
+          },
+          "outsourced_preferred": {
+            "field_count": 1,
+            "row_count": 24
+          },
+          "supplier_or_build_record": {
+            "field_count": 7,
+            "row_count": 84
+          },
+          "vendor_or_future_gate": {
+            "field_count": 0,
+            "row_count": 0
+          }
+        },
+        "row_count": 228
+      },
+      "ZRC-ND Phase A": {
+        "field_count": 16,
+        "route_counts": {
+          "inhouse_ready": {
+            "field_count": 8,
+            "row_count": 64
+          },
+          "outsourced_preferred": {
+            "field_count": 2,
+            "row_count": 16
+          },
+          "supplier_or_build_record": {
+            "field_count": 6,
+            "row_count": 42
+          },
+          "vendor_or_future_gate": {
+            "field_count": 0,
+            "row_count": 0
+          }
+        },
+        "row_count": 122
+      }
+    },
+    "field_count": 32,
+    "route_totals": {
+      "inhouse_ready": {
+        "field_count": 16,
+        "row_count": 184
+      },
+      "outsourced_preferred": {
+        "field_count": 3,
+        "row_count": 40
+      },
+      "supplier_or_build_record": {
+        "field_count": 13,
+        "row_count": 126
+      },
+      "vendor_or_future_gate": {
+        "field_count": 0,
+        "row_count": 0
+      }
+    },
+    "row_count": 350
+  },
+  "zrc_active_candidate": "limina_zrc_nd_v0_1"
+}

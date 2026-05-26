@@ -1,0 +1,364 @@
+{
+  "active_candidate": "limina_zrc_nd_v0_1",
+  "hard_required_fields": [
+    "run_id_level_raw_data",
+    "csv_schema_acceptance",
+    "sample_handling_fit",
+    "source_file_provenance",
+    "non_glp_scope_control"
+  ],
+  "non_evidence_boundary": "Quote replies and vendor selection can authorize measurement execution only; they do not count as Phase A data or material suitability evidence.",
+  "purpose": "Score RFQ replies for ZRC-ND Phase A execution selection without treating quotes as material evidence.",
+  "reply_count": 0,
+  "reply_log_errors": 0,
+  "reply_log_status": "zrc_nd_phase_a_rfq_reply_log_waiting_for_reply_files",
+  "reply_log_valid_rows": 0,
+  "row_count": 4,
+  "scored_rows": [
+    {
+      "candidate_id": "pacific_biolabs_physicochemical",
+      "contact_date": "",
+      "field_scores": [
+        {
+          "field": "run_id_level_raw_data",
+          "score": 0.0,
+          "value": "",
+          "verdict": "unknown",
+          "weight": 5
+        },
+        {
+          "field": "phase_a_media_panel_coverage",
+          "score": 0.0,
+          "value": "",
+          "verdict": "unknown",
+          "weight": 5
+        },
+        {
+          "field": "csv_schema_acceptance",
+          "score": 0.0,
+          "value": "",
+          "verdict": "unknown",
+          "weight": 4
+        },
+        {
+          "field": "sample_handling_fit",
+          "score": 0.0,
+          "value": "",
+          "verdict": "unknown",
+          "weight": 3
+        },
+        {
+          "field": "source_file_provenance",
+          "score": 0.0,
+          "value": "",
+          "verdict": "unknown",
+          "weight": 3
+        },
+        {
+          "field": "turnaround_and_cost",
+          "score": 0.0,
+          "value": "",
+          "verdict": "unknown",
+          "weight": 2
+        },
+        {
+          "field": "non_glp_scope_control",
+          "score": 0.0,
+          "value": "",
+          "verdict": "unknown",
+          "weight": 2
+        }
+      ],
+      "hard_failures": [],
+      "missing_review_fields": [
+        "can_cover_full_phase_a",
+        "needs_split_scope",
+        "run_id_level_raw_data",
+        "phase_a_media_panel_coverage",
+        "csv_schema_acceptance",
+        "sample_handling_fit",
+        "source_file_provenance",
+        "non_glp_scope_control"
+      ],
+      "notes": "",
+      "possible_score": 24.0,
+      "quoted_cost": "",
+      "reply_date": "",
+      "score": 0.0,
+      "score_fraction": 0.0,
+      "selection_decision": "pending_outreach",
+      "source_backed_reply": false,
+      "source_backing_status": "not_applicable",
+      "tracker_decision": "pending_outreach",
+      "turnaround_days": "",
+      "unknown_required_fields": [
+        "run_id_level_raw_data",
+        "csv_schema_acceptance",
+        "sample_handling_fit",
+        "source_file_provenance",
+        "non_glp_scope_control"
+      ],
+      "vendor_name": "Pacific BioLabs Physicochemical Properties Testing"
+    },
+    {
+      "candidate_id": "sigmaaldrich_media_testing",
+      "contact_date": "",
+      "field_scores": [
+        {
+          "field": "run_id_level_raw_data",
+          "score": 0.0,
+          "value": "",
+          "verdict": "unknown",
+          "weight": 5
+        },
+        {
+          "field": "phase_a_media_panel_coverage",
+          "score": 0.0,
+          "value": "",
+          "verdict": "unknown",
+          "weight": 5
+        },
+        {
+          "field": "csv_schema_acceptance",
+          "score": 0.0,
+          "value": "",
+          "verdict": "unknown",
+          "weight": 4
+        },
+        {
+          "field": "sample_handling_fit",
+          "score": 0.0,
+          "value": "",
+          "verdict": "unknown",
+          "weight": 3
+        },
+        {
+          "field": "source_file_provenance",
+          "score": 0.0,
+          "value": "",
+          "verdict": "unknown",
+          "weight": 3
+        },
+        {
+          "field": "turnaround_and_cost",
+          "score": 0.0,
+          "value": "",
+          "verdict": "unknown",
+          "weight": 2
+        },
+        {
+          "field": "non_glp_scope_control",
+          "score": 0.0,
+          "value": "",
+          "verdict": "unknown",
+          "weight": 2
+        }
+      ],
+      "hard_failures": [],
+      "missing_review_fields": [
+        "can_cover_full_phase_a",
+        "needs_split_scope",
+        "run_id_level_raw_data",
+        "phase_a_media_panel_coverage",
+        "csv_schema_acceptance",
+        "sample_handling_fit",
+        "source_file_provenance",
+        "non_glp_scope_control"
+      ],
+      "notes": "",
+      "possible_score": 24.0,
+      "quoted_cost": "",
+      "reply_date": "",
+      "score": 0.0,
+      "score_fraction": 0.0,
+      "selection_decision": "pending_outreach",
+      "source_backed_reply": false,
+      "source_backing_status": "not_applicable",
+      "tracker_decision": "pending_outreach",
+      "turnaround_days": "",
+      "unknown_required_fields": [
+        "run_id_level_raw_data",
+        "csv_schema_acceptance",
+        "sample_handling_fit",
+        "source_file_provenance",
+        "non_glp_scope_control"
+      ],
+      "vendor_name": "MilliporeSigma Cell Culture Media Stability and Testing Services"
+    },
+    {
+      "candidate_id": "the_osmolality_lab",
+      "contact_date": "",
+      "field_scores": [
+        {
+          "field": "run_id_level_raw_data",
+          "score": 0.0,
+          "value": "",
+          "verdict": "unknown",
+          "weight": 5
+        },
+        {
+          "field": "phase_a_media_panel_coverage",
+          "score": 0.0,
+          "value": "",
+          "verdict": "unknown",
+          "weight": 5
+        },
+        {
+          "field": "csv_schema_acceptance",
+          "score": 0.0,
+          "value": "",
+          "verdict": "unknown",
+          "weight": 4
+        },
+        {
+          "field": "sample_handling_fit",
+          "score": 0.0,
+          "value": "",
+          "verdict": "unknown",
+          "weight": 3
+        },
+        {
+          "field": "source_file_provenance",
+          "score": 0.0,
+          "value": "",
+          "verdict": "unknown",
+          "weight": 3
+        },
+        {
+          "field": "turnaround_and_cost",
+          "score": 0.0,
+          "value": "",
+          "verdict": "unknown",
+          "weight": 2
+        },
+        {
+          "field": "non_glp_scope_control",
+          "score": 0.0,
+          "value": "",
+          "verdict": "unknown",
+          "weight": 2
+        }
+      ],
+      "hard_failures": [],
+      "missing_review_fields": [
+        "can_cover_full_phase_a",
+        "needs_split_scope",
+        "run_id_level_raw_data",
+        "phase_a_media_panel_coverage",
+        "csv_schema_acceptance",
+        "sample_handling_fit",
+        "source_file_provenance",
+        "non_glp_scope_control"
+      ],
+      "notes": "",
+      "possible_score": 24.0,
+      "quoted_cost": "",
+      "reply_date": "",
+      "score": 0.0,
+      "score_fraction": 0.0,
+      "selection_decision": "pending_outreach",
+      "source_backed_reply": false,
+      "source_backing_status": "not_applicable",
+      "tracker_decision": "pending_outreach",
+      "turnaround_days": "",
+      "unknown_required_fields": [
+        "run_id_level_raw_data",
+        "csv_schema_acceptance",
+        "sample_handling_fit",
+        "source_file_provenance",
+        "non_glp_scope_control"
+      ],
+      "vendor_name": "The Osmolality Lab"
+    },
+    {
+      "candidate_id": "jordi_labs_el_polymer",
+      "contact_date": "",
+      "field_scores": [
+        {
+          "field": "run_id_level_raw_data",
+          "score": 0.0,
+          "value": "",
+          "verdict": "unknown",
+          "weight": 5
+        },
+        {
+          "field": "phase_a_media_panel_coverage",
+          "score": 0.0,
+          "value": "",
+          "verdict": "unknown",
+          "weight": 5
+        },
+        {
+          "field": "csv_schema_acceptance",
+          "score": 0.0,
+          "value": "",
+          "verdict": "unknown",
+          "weight": 4
+        },
+        {
+          "field": "sample_handling_fit",
+          "score": 0.0,
+          "value": "",
+          "verdict": "unknown",
+          "weight": 3
+        },
+        {
+          "field": "source_file_provenance",
+          "score": 0.0,
+          "value": "",
+          "verdict": "unknown",
+          "weight": 3
+        },
+        {
+          "field": "turnaround_and_cost",
+          "score": 0.0,
+          "value": "",
+          "verdict": "unknown",
+          "weight": 2
+        },
+        {
+          "field": "non_glp_scope_control",
+          "score": 0.0,
+          "value": "",
+          "verdict": "unknown",
+          "weight": 2
+        }
+      ],
+      "hard_failures": [],
+      "missing_review_fields": [
+        "can_cover_full_phase_a",
+        "needs_split_scope",
+        "run_id_level_raw_data",
+        "phase_a_media_panel_coverage",
+        "csv_schema_acceptance",
+        "sample_handling_fit",
+        "source_file_provenance",
+        "non_glp_scope_control"
+      ],
+      "notes": "",
+      "possible_score": 24.0,
+      "quoted_cost": "",
+      "reply_date": "",
+      "score": 0.0,
+      "score_fraction": 0.0,
+      "selection_decision": "pending_outreach",
+      "source_backed_reply": false,
+      "source_backing_status": "not_applicable",
+      "tracker_decision": "pending_outreach",
+      "turnaround_days": "",
+      "unknown_required_fields": [
+        "run_id_level_raw_data",
+        "csv_schema_acceptance",
+        "sample_handling_fit",
+        "source_file_provenance",
+        "non_glp_scope_control"
+      ],
+      "vendor_name": "Jordi Labs Analytical Testing"
+    }
+  ],
+  "selected_count": 0,
+  "sent_count": 0,
+  "shortlist_count": 0,
+  "source_backed_reply_count": 0,
+  "status": "pending_outreach"
+}

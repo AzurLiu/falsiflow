@@ -1,0 +1,47 @@
+{
+  "active_candidate": "limina_alg_lam_pedot_lowdose_v0_2",
+  "article_ids": [
+    "challenge_nhi_pedot_high_loading",
+    "hydrogel_laminin_control",
+    "lead_nhi_pedot_low_loading",
+    "no_coating_mea_control"
+  ],
+  "blank_fields_to_complete": [
+    "prepared_by",
+    "prepared_at",
+    "preparation_batch_id",
+    "medium_name",
+    "medium_lot",
+    "coupon_or_well_id",
+    "released_by",
+    "released_at",
+    "carrier_or_transfer_method",
+    "received_by",
+    "received_at",
+    "condition_on_receipt",
+    "storage_location",
+    "source_file_returned",
+    "deviation_notes"
+  ],
+  "chain_of_custody_row_count": 36,
+  "non_evidence_boundary": "Pending or blank transfer logs are not evidence. Only returned raw measurement rows with real values, provenance, and source files can count toward H-A.",
+  "outputs": {
+    "chain_of_custody_csv": "data/nhi_pedot_h_a_chain_of_custody.csv",
+    "json": "data/nhi_pedot_h_a_chain_of_custody.json",
+    "report": "reports/nhi_pedot_h_a_chain_of_custody.md",
+    "sample_labels_csv": "data/nhi_pedot_h_a_sample_labels.csv"
+  },
+  "pending_transfer_rows": 36,
+  "purpose": "Sample labels and blank chain-of-custody rows for the real NHI-PEDOT H-A measurement handoff.",
+  "rejection_rules": [
+    "Do not treat a label row, planned container ID, or blank custody row as measured evidence.",
+    "Do not pool samples or collapse initial/final/physical-inspection events before raw data entry.",
+    "Do not replace missing transfer fields with pending, TBD, unknown, synthetic, or fixture markers.",
+    "Do not accept returned measurement rows unless source_file links back to instrument export or image files."
+  ],
+  "sample_label_count": 36,
+  "sample_manifest_rows": 36,
+  "service_request_status": "ready_to_request_real_measurements",
+  "status": "ready_for_sample_handoff",
+  "unique_run_count": 12
+}

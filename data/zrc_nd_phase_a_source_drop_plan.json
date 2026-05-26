@@ -1,0 +1,38 @@
+{
+  "boundary": "This creates allowed source-file directories and a missing-file plan only. It does not create raw measurement files or measured evidence.",
+  "generated_artifacts": {
+    "csv": "data/zrc_nd_phase_a_source_drop_plan.csv",
+    "json": "data/zrc_nd_phase_a_source_drop_plan.json",
+    "report": "reports/zrc_nd_phase_a_source_drop_plan.md"
+  },
+  "inputs": {
+    "source_manifest": "data/limina_source_file_manifest.json",
+    "source_values": "data/zrc_nd_phase_a_source_values.csv"
+  },
+  "label": "ZRC-ND Phase A",
+  "profile": "zrc_phase_a",
+  "status": "zrc_nd_phase_a_source_drop_plan_ready",
+  "summary": {
+    "allowed_source_file_count": 304,
+    "created_source_dir_count": 0,
+    "existing_source_file_count": 0,
+    "filled_value_rows": 0,
+    "import_ready_rows": 0,
+    "missing_source_file_count": 304,
+    "planned_source_file_count": 304,
+    "source_class_counts": {
+      "bench_or_chain_of_custody_record": 104,
+      "biochemical_or_plate_reader_export": 112,
+      "conductivity_meter_export_or_photo": 16,
+      "image_or_scoring_worksheet": 8,
+      "osmometer_report_or_export": 16,
+      "pH_meter_export_or_photo": 16,
+      "pressure_flow_or_resistance_export": 24,
+      "temperature_or_incubator_log": 8
+    },
+    "source_dir_count": 8,
+    "source_dir_status_counts": {
+      "already_exists": 304
+    }
+  }
+}

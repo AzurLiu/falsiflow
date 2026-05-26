@@ -1,0 +1,127 @@
+[
+  {
+    "id": "zrc_nd_3p5k_mpc_guard",
+    "name": "ZRC-ND-3.5M Guard",
+    "parent_technology": "limina_zrc_nd_v0_1",
+    "mwco_kda": 3.5,
+    "primary_membrane": "regenerated cellulose",
+    "surface_modification": "mpc_like_zwitterionic",
+    "surface_scope": "membrane_and_housing",
+    "prefilter": "low_binding_pes_sfca",
+    "housing": "coc_cop",
+    "monitoring": ["pH", "conductivity", "flow_resistance", "bubble_observation"],
+    "design_intent": "Conservative lead variant prioritizing trophic-factor retention and fouling resistance while preserving useful lactate/ammonium exchange.",
+    "evidence_refs": [
+      "dialysis_medium_partitioning_2020",
+      "low_binding_membrane_media_technical",
+      "zwitterionic_membrane_antifouling_2016",
+      "zwitterionic_cellulose_acetate_hfm_2026",
+      "bdnf_uniprot_p23560",
+      "ngf_uniprot_p01138",
+      "dialysis_mwco_principle_thermo"
+    ]
+  },
+  {
+    "id": "zrc_nd_10k_mpc_guard",
+    "name": "ZRC-ND-10M Guard",
+    "parent_technology": "limina_zrc_nd_v0_1",
+    "mwco_kda": 10.0,
+    "primary_membrane": "regenerated cellulose",
+    "surface_modification": "mpc_like_zwitterionic",
+    "surface_scope": "membrane_and_housing",
+    "prefilter": "low_binding_pes_sfca",
+    "housing": "coc_cop",
+    "monitoring": ["pH", "conductivity", "flow_resistance", "bubble_observation"],
+    "design_intent": "Higher-clearance variant that tests whether improved small-waste exchange justifies increased trophic-factor leakage risk.",
+    "evidence_refs": [
+      "dialysis_medium_partitioning_2020",
+      "zwitterionic_membrane_antifouling_2016",
+      "zwitterionic_cellulose_acetate_hfm_2026",
+      "bdnf_uniprot_p23560",
+      "ngf_uniprot_p01138",
+      "dialysis_mwco_principle_thermo"
+    ]
+  },
+  {
+    "id": "zrc_nd_3p5k_unmodified_guard",
+    "name": "RC-3.5K Guard Baseline",
+    "parent_technology": "limina_zrc_nd_v0_1",
+    "mwco_kda": 3.5,
+    "primary_membrane": "regenerated cellulose",
+    "surface_modification": "none",
+    "surface_scope": "none",
+    "prefilter": "low_binding_pes_sfca",
+    "housing": "coc_cop",
+    "monitoring": ["pH", "conductivity", "flow_resistance", "bubble_observation"],
+    "design_intent": "Baseline material stack to quantify whether zwitterionic modification is actually needed.",
+    "evidence_refs": [
+      "dialysis_medium_partitioning_2020",
+      "low_binding_membrane_media_technical",
+      "low_binding_rc_membrane_vendor",
+      "bdnf_uniprot_p23560",
+      "ngf_uniprot_p01138",
+      "dialysis_mwco_principle_thermo"
+    ]
+  },
+  {
+    "id": "zrc_nd_10k_unmodified_no_guard",
+    "name": "RC-10K No-Guard High-Clearance Baseline",
+    "parent_technology": "limina_zrc_nd_v0_1",
+    "mwco_kda": 10.0,
+    "primary_membrane": "regenerated cellulose",
+    "surface_modification": "none",
+    "surface_scope": "none",
+    "prefilter": "none",
+    "housing": "coc_cop",
+    "monitoring": ["pH", "conductivity", "flow_resistance"],
+    "design_intent": "High-clearance low-complexity baseline, expected to expose protein-retention and fouling penalties.",
+    "evidence_refs": [
+      "dialysis_medium_partitioning_2020",
+      "low_binding_rc_membrane_vendor",
+      "bdnf_uniprot_p23560",
+      "ngf_uniprot_p01138",
+      "dialysis_mwco_principle_thermo"
+    ]
+  },
+  {
+    "id": "zrc_nd_1k_mpc_guard",
+    "name": "ZRC-ND-1M Guard",
+    "parent_technology": "limina_zrc_nd_v0_1",
+    "mwco_kda": 1.0,
+    "primary_membrane": "regenerated cellulose",
+    "surface_modification": "mpc_like_zwitterionic",
+    "surface_scope": "membrane_and_housing",
+    "prefilter": "low_binding_pes_sfca",
+    "housing": "coc_cop",
+    "monitoring": ["pH", "conductivity", "flow_resistance", "bubble_observation"],
+    "design_intent": "Maximum-retention variant, expected to be too slow unless membrane area or exposure is increased.",
+    "evidence_refs": [
+      "dialysis_medium_partitioning_2020",
+      "zwitterionic_membrane_antifouling_2016",
+      "bdnf_uniprot_p23560",
+      "ngf_uniprot_p01138",
+      "dialysis_mwco_principle_thermo"
+    ]
+  },
+  {
+    "id": "zrc_nd_20k_mpc_guard",
+    "name": "ZRC-ND-20M Guard",
+    "parent_technology": "limina_zrc_nd_v0_1",
+    "mwco_kda": 20.0,
+    "primary_membrane": "regenerated cellulose",
+    "surface_modification": "mpc_like_zwitterionic",
+    "surface_scope": "membrane_and_housing",
+    "prefilter": "low_binding_pes_sfca",
+    "housing": "coc_cop",
+    "monitoring": ["pH", "conductivity", "flow_resistance", "bubble_observation"],
+    "design_intent": "Stress-test variant for maximum clearance and unacceptable trophic-factor leakage boundary.",
+    "evidence_refs": [
+      "dialysis_medium_partitioning_2020",
+      "zwitterionic_membrane_antifouling_2016",
+      "bdnf_uniprot_p23560",
+      "ngf_uniprot_p01138",
+      "dialysis_mwco_principle_thermo"
+    ]
+  }
+]
+

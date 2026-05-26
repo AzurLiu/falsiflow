@@ -1,0 +1,124 @@
+{
+  "authorization_blocker_count": 0,
+  "authorization_blockers": [],
+  "authorization_checks": [
+    {
+      "blocking": true,
+      "code": "execution_authorization_log_has_no_errors",
+      "detail": "errors=0; status=nhi_pedot_h_a_execution_authorization_waiting_for_selected_provider",
+      "passed": true
+    },
+    {
+      "blocking": false,
+      "code": "selected_provider_has_valid_execution_authorization",
+      "detail": "waiting for a source-backed selected provider before authorization matching is meaningful",
+      "passed": false
+    }
+  ],
+  "blocker_count": 1,
+  "blockers": [
+    {
+      "blocking": true,
+      "code": "source_backed_provider_selected",
+      "detail": "selected=0; source_backed_selected=0; selected_ids=-",
+      "passed": false
+    }
+  ],
+  "checklist": [
+    {
+      "blocking": true,
+      "code": "delivery_package_ready",
+      "detail": "status=ready_to_send; missing_required_files=0",
+      "passed": true
+    },
+    {
+      "blocking": true,
+      "code": "quote_selection_has_no_reply_log_errors",
+      "detail": "reply_log_errors=0; status=pending_outreach",
+      "passed": true
+    },
+    {
+      "blocking": true,
+      "code": "rfq_send_log_has_no_errors",
+      "detail": "errors=0; status=nhi_pedot_h_a_rfq_send_log_waiting_for_sent_entries",
+      "passed": true
+    },
+    {
+      "blocking": true,
+      "code": "rfq_reply_log_has_no_errors",
+      "detail": "errors=0; status=nhi_pedot_h_a_rfq_reply_log_waiting_for_reply_files",
+      "passed": true
+    },
+    {
+      "blocking": true,
+      "code": "source_backed_provider_selected",
+      "detail": "selected=0; source_backed_selected=0; selected_ids=-",
+      "passed": false
+    },
+    {
+      "blocking": false,
+      "code": "selected_provider_has_verified_send_log",
+      "detail": "waiting for a source-backed selected provider before send-log matching is meaningful",
+      "passed": false
+    },
+    {
+      "blocking": false,
+      "code": "selected_provider_has_source_backed_reply_file",
+      "detail": "waiting for a source-backed selected provider before reply-file matching is meaningful",
+      "passed": false
+    },
+    {
+      "blocking": true,
+      "code": "chain_of_custody_template_ready",
+      "detail": "status=ready_for_sample_handoff; labels=36; custody_rows=36",
+      "passed": true
+    },
+    {
+      "blocking": true,
+      "code": "sample_submission_precheck_present",
+      "detail": "status=sample_submission_precheck_ready; shipping_status=do_not_ship_until_vendor_confirms_quote_sample_acceptance_sds_and_custody",
+      "passed": true
+    },
+    {
+      "blocking": false,
+      "code": "sample_submission_shipping_not_self_released",
+      "detail": "shipping_status=do_not_ship_until_vendor_confirms_quote_sample_acceptance_sds_and_custody; this static precheck remains a human shipment stop until provider acceptance, SDS, custody, and authorization are recorded",
+      "passed": false
+    },
+    {
+      "blocking": false,
+      "code": "vendor_return_files_not_required_for_execution_release",
+      "detail": "status=awaiting_vendor_return_files; returned measurement files are checked after execution, not before authorization",
+      "passed": true
+    }
+  ],
+  "gate_label": "H-A",
+  "inputs": {
+    "chain_of_custody": "data/nhi_pedot_h_a_chain_of_custody.json",
+    "delivery_package": "data/nhi_pedot_h_a_delivery_package_manifest.json",
+    "execution_authorization_log": "data/nhi_pedot_h_a_execution_authorization_log.json",
+    "quote_selection": "data/nhi_pedot_h_a_quote_selection.json",
+    "rfq_reply_log": "data/nhi_pedot_h_a_rfq_reply_log.json",
+    "rfq_send_log": "data/nhi_pedot_h_a_rfq_send_log.json",
+    "sample_submission": "data/nhi_pedot_h_a_sample_submission_pack.json",
+    "vendor_return": "data/nhi_pedot_h_a_vendor_return_intake.json"
+  },
+  "label": "NHI-PEDOT H-A",
+  "manual_authorization_required": true,
+  "next_action": "Send RFQs, preserve original replies, fill the reply log, and select a source-backed provider.",
+  "non_evidence_boundary": "Execution release status is logistics control only. It is not measured material evidence, does not release samples by itself, and cannot advance suitability gates without returned real measurement rows and source files.",
+  "physical_shipment_allowed": false,
+  "profile": "h_a",
+  "purpose": "Audit sourcing and package readiness before any sample shipment or outsourced execution authorization.",
+  "ready_for_execution_authorization": false,
+  "released_for_execution": false,
+  "selected_candidate_ids": [],
+  "selected_decision": "selected_for_h_a",
+  "selected_provider_count": 0,
+  "source_backed_selected_candidate_ids": [],
+  "source_backed_selected_provider_count": 0,
+  "status": "nhi_pedot_h_a_execution_release_blocked_no_source_backed_provider_selection",
+  "valid_authorized_candidate_ids": [],
+  "valid_reply_candidate_ids": [],
+  "valid_sent_candidate_ids": []
+}

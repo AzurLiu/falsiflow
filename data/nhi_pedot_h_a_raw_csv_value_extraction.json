@@ -1,0 +1,26 @@
+{
+  "boundary": "This extractor reads only existing raw CSV/TSV files in allowed source-file roots. It writes a non-evidence value sidecar for the H-A importer; missing files produce no synthetic rows.",
+  "generated_artifacts": {
+    "json": "data/nhi_pedot_h_a_raw_csv_value_extraction.json",
+    "report": "reports/nhi_pedot_h_a_raw_csv_value_extraction.md",
+    "values_out": "data/nhi_pedot_h_a_raw_csv_extracted_values.csv"
+  },
+  "inputs": {
+    "source_manifest": "data/limina_source_file_manifest.json",
+    "source_values": "data/nhi_pedot_h_a_source_values.csv"
+  },
+  "issues": [],
+  "source_files": [],
+  "status": "h_a_raw_csv_value_extraction_no_raw_csv",
+  "summary": {
+    "ambiguous_rows": 0,
+    "error_count": 0,
+    "extracted_rows": 0,
+    "plan_rows": 228,
+    "raw_csv_found": 0,
+    "raw_csv_missing": 108,
+    "raw_csv_source_files": 0,
+    "raw_csv_unsupported": 120,
+    "warning_count": 0
+  }
+}

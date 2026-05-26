@@ -1,0 +1,32 @@
+{
+  "boundary": "This is a fillable sidecar for formal H-A raw rows. It is not measured evidence; rows count only after import, merge, source-file validation, H-A QC, gate interpretation, and claim audit.",
+  "generated_artifacts": {
+    "csv": "data/nhi_pedot_h_a_source_values.csv",
+    "json": "data/nhi_pedot_h_a_source_values_sheet.json",
+    "report": "reports/nhi_pedot_h_a_source_values_sheet.md"
+  },
+  "inputs": {
+    "raw": "data/nhi_pedot_h_a_raw_measurements_template.csv",
+    "tasks": "data/limina_local_capture_tasks.csv"
+  },
+  "status": "h_a_source_values_sheet_ready",
+  "summary": {
+    "filled_value_rows": 0,
+    "import_ready_rows": 0,
+    "review_status_counts": {
+      "awaiting_value_entry": 228
+    },
+    "source_class_counts": {
+      "bench_or_chain_of_custody_record": 36,
+      "conductivity_meter_export_or_photo": 24,
+      "image_or_scoring_worksheet": 48,
+      "osmometer_report_or_export": 24,
+      "pH_meter_export_or_photo": 24,
+      "supplier_or_build_record": 48,
+      "swelling_dimension_or_mass_worksheet": 12,
+      "temperature_or_incubator_log": 12
+    },
+    "source_file_exists_rows": 0,
+    "source_value_rows": 228
+  }
+}

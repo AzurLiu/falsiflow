@@ -1,0 +1,179 @@
+#!/usr/bin/env python3
+"""Generate a compact Phase A sentinel data-entry packet."""
+
+from __future__ import annotations
+
+import argparse
+import csv
+import json
+from pathlib import Path
+from typing import Any
+
+
+ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_PACKAGE = ROOT / "data" / "zrc_nd_3p5k_guard_validation_package.json"
+DEFAULT_PLANNED = ROOT / "data" / "zrc_nd_planned_runs.csv"
+DEFAULT_NEXT = ROOT / "data" / "zrc_nd_next_measurements.csv"
+DEFAULT_TEMPLATE = ROOT / "data" / "zrc_nd_phase_a_sentinel_template.csv"
+DEFAULT_MANIFEST = ROOT / "data" / "zrc_nd_phase_a_sentinel_sample_manifest.csv"
+DEFAULT_REPORT = ROOT / "reports" / "zrc_nd_phase_a_sentinel_packet.md"
+
+SAMPLE_EVENTS = ["initial", "final"]
+MEDIUM_INTEGRITY_READOUTS = [
+    "pH",
+    "osmolality",
+    "conductivity",
+    "visible_precipitate",
+]
+
+
+def load_json(path: Path) -> Any:
+    with path.open("r", encoding="utf-8") as handle:
+        return json.load(handle)
+
+
+def load_csv(path: Path) -> list[dict[str, str]]:
+    if not path.exists():
+        return []
+    with path.open("r", newline="", encoding="utf-8") as handle:
+        return [dict(row) for row in csv.DictReader(handle)]
+
+
+def write_csv(rows: list[dict[str, str]], fields: list[str], path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fields)
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def planned_by_id(rows: list[dict[str, str]]) -> dict[str, dict[str, str]]:
+    return {row["run_id"]: row for row in rows if row.get("run_id")}
+
+
+def template_rows(package: dict[str, Any], planned: dict[str, dict[str, str]], next_rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    fields = package["data_capture_fields"]
+    rows: list[dict[str, str]] = []
+    for next_row in next_rows:
+        run_id = next_row["run_id"]
+        planned_row = planned.get(run_id, {})
+        row = {field: "" for field in fields}
+        for field in fields:
+            if field in planned_row and planned_row[field] != "":
+                row[field] = planned_row[field]
+        row.update({
+            "run_id": run_id,
+            "operator_or_agent": "limina",
+            "phase": next_row.get("phase", planned_row.get("phase", "")),
+            "timepoint": next_row.get("timepoint", planned_row.get("timepoint", "")),
+            "replicate": next_row.get("replicate", planned_row.get("replicate", "")),
+            "article_id": next_row.get("article_id", planned_row.get("article_id", "")),
+            "variant_id": next_row.get("variant_id", planned_row.get("variant_id", "")),
+            "control_article_id": "no_module_static_control",
+            "notes": "phase_a_sentinel_pending_real_measurement",
+        })
+        rows.append(row)
+    return rows
+
+
+def sample_manifest_rows(next_rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    rows: list[dict[str, str]] = []
+    for next_row in next_rows:
+        for event in SAMPLE_EVENTS:
+            rows.append({
+                "sample_id": f"{next_row['run_id']}-{event}",
+                "run_id": next_row["run_id"],
+                "sample_event": event,
+                "phase": next_row["phase"],
+                "timepoint": next_row["timepoint"],
+                "replicate": next_row["replicate"],
+                "article_id": next_row["article_id"],
+                "readouts": ";".join(MEDIUM_INTEGRITY_READOUTS),
+                "handoff_notes": "record local tube/well id before measuring medium integrity",
+            })
+    return rows
+
+
+def render_report(next_rows: list[dict[str, str]], template_path: Path, manifest_path: Path) -> str:
+    lines = [
+        "# ZRC-ND Phase A Sentinel Packet",
+        "",
+        f"**Data-entry template:** `{template_path}`",
+        f"**Sample manifest:** `{manifest_path}`",
+        f"**Rows:** {len(next_rows)}",
+        "",
+        "This packet is for the first non-cell material-blank sentinel measurement. It is not evidence until real measurements are entered.",
+        "",
+        "## Measurement Rows",
+        "",
+        "| Run | Timepoint | Article | Role | Required readouts |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for row in next_rows:
+        lines.append(
+            f"| `{row['run_id']}` | {row['timepoint']} | `{row['article_id']}` | "
+            f"`{row['gate_role']}` | {row['readout_groups']} |"
+        )
+
+    lines.extend([
+        "",
+        "## Phase A Gate",
+        "",
+        "- Compare each material-exposed row to the matched `no_module_static_control` row with the same timepoint and replicate.",
+        "- Pass requires material-driven pH drift <= 0.10 pH units versus control.",
+        "- Pass requires osmolality and conductivity drift <= 5 percent versus control.",
+        "- Pass requires no visible precipitate or unresolved turbidity/extractables concern.",
+        "",
+        "## After Measurement",
+        "",
+        "1. Fill the data-entry template with real values.",
+        "2. Merge the measured CSV into an active runs file.",
+        "3. Run the validation evaluator and the next-measurement recommender.",
+        "",
+    ])
+    return "\n".join(lines)
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description="Generate ZRC-ND Phase A sentinel packet.")
+    parser.add_argument("--package", type=Path, default=DEFAULT_PACKAGE)
+    parser.add_argument("--planned", type=Path, default=DEFAULT_PLANNED)
+    parser.add_argument("--next", type=Path, default=DEFAULT_NEXT)
+    parser.add_argument("--template", type=Path, default=DEFAULT_TEMPLATE)
+    parser.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST)
+    parser.add_argument("--report", type=Path, default=DEFAULT_REPORT)
+    return parser
+
+
+def main() -> int:
+    args = build_parser().parse_args()
+    package = load_json(args.package)
+    planned = planned_by_id(load_csv(args.planned))
+    next_rows = load_csv(args.next)
+    rows = template_rows(package, planned, next_rows)
+    manifest = sample_manifest_rows(next_rows)
+    write_csv(rows, package["data_capture_fields"], args.template)
+    manifest_fields = list(manifest[0]) if manifest else [
+        "sample_id",
+        "run_id",
+        "sample_event",
+        "phase",
+        "timepoint",
+        "replicate",
+        "article_id",
+        "readouts",
+        "handoff_notes",
+    ]
+    write_csv(manifest, manifest_fields, args.manifest)
+    args.report.parent.mkdir(parents=True, exist_ok=True)
+    args.report.write_text(render_report(next_rows, args.template, args.manifest), encoding="utf-8")
+    print(f"Generated {len(rows)} Phase A sentinel template rows")
+    print(f"Generated {len(manifest)} sample manifest rows")
+    print(f"Wrote {args.template}")
+    print(f"Wrote {args.manifest}")
+    print(f"Wrote {args.report}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

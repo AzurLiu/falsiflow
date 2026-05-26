@@ -1,0 +1,164 @@
+[
+  {
+    "id": "layered_neuronal_media_waste_cartridge",
+    "priority_lane": "LIMINA-External-1",
+    "name": "Layered neuronal-media waste cartridge",
+    "class": "hybrid_selective_cartridge",
+    "hypothesis": "A staged cartridge can combine low-binding prefiltration, dialysis-like small-molecule exchange, and selective ammonium/lactate polishing while preserving growth factors.",
+    "target_waste": ["lactate", "ammonium", "small inhibitory metabolites", "cell debris"],
+    "retain_targets": ["BDNF", "NGF", "FGF", "EGF", "albumin", "transferrin", "secretome factors"],
+    "materials_or_modules": ["low-binding PES or SFCA prefilter", "regenerated-cellulose dialysis membrane", "weak ion-exchange hydrogel zone", "inline pH/conductivity sample port"],
+    "assay_plan": ["lactate removal", "ammonium removal", "BDNF retention", "albumin retention", "pH drift", "osmolality drift", "neuronal conditioned-media viability"],
+    "known_risks": ["module complexity", "sterilization validation", "unintended adsorption in ion-exchange zone"],
+    "evidence_refs": ["dialysis_medium_partitioning_2020", "icp_spent_media_regeneration_2024", "low_binding_membrane_media_technical", "ammonia_importance_review_1996"],
+    "scores": {
+      "target_selectivity": 4,
+      "growth_factor_retention": 4,
+      "low_leachables": 3,
+      "culture_stability": 3,
+      "integration_complexity": 3,
+      "monitorability": 4,
+      "novelty_upside": 5,
+      "risk_control": 3
+    }
+  },
+  {
+    "id": "regenerated_cellulose_dialysis_exchange",
+    "priority_lane": "LIMINA-External-1",
+    "name": "Regenerated-cellulose dialysis exchange module",
+    "class": "size_selective_membrane",
+    "hypothesis": "A dialysis membrane with carefully chosen MWCO can let low-MW wastes leave while retaining high-MW growth factors and proteins in the culture loop.",
+    "target_waste": ["lactate", "ammonium", "small metabolites"],
+    "retain_targets": ["growth factors", "serum proteins", "large secretome proteins"],
+    "materials_or_modules": ["regenerated cellulose hollow fiber or flat membrane", "counter-flow fresh medium or buffer", "low-dead-volume cartridge"],
+    "assay_plan": ["small molecule clearance", "growth factor retention", "medium osmolarity drift", "protein adsorption", "long-duration membrane fouling"],
+    "known_risks": ["MWCO may also remove helpful small signaling molecules", "diffusion-limited clearance", "biofouling over time"],
+    "evidence_refs": ["dialysis_medium_partitioning_2020", "low_binding_rc_membrane_vendor", "organ_chip_perfusion_review_2022"],
+    "scores": {
+      "target_selectivity": 4,
+      "growth_factor_retention": 5,
+      "low_leachables": 4,
+      "culture_stability": 4,
+      "integration_complexity": 4,
+      "monitorability": 3,
+      "novelty_upside": 3,
+      "risk_control": 4
+    }
+  },
+  {
+    "id": "zwitterionic_antifouling_membrane",
+    "priority_lane": "LIMINA-External-1",
+    "name": "Zwitterionic antifouling membrane coating",
+    "class": "antifouling_surface_modification",
+    "hypothesis": "Zwitterionic hydration layers can reduce protein fouling and preserve cartridge performance in protein-rich neuronal medium.",
+    "target_waste": ["fouling-driven performance drift", "nonspecific protein adsorption"],
+    "retain_targets": ["growth factors", "serum proteins", "secretome proteins"],
+    "materials_or_modules": ["zwitterionic grafted PES/PVDF/RC", "sulfobetaine or carboxybetaine surfaces", "adhesion-promoting primer layer"],
+    "assay_plan": ["BSA adsorption", "BDNF recovery", "7-day medium aging", "flow resistance drift", "extractables"],
+    "known_risks": ["coating adhesion", "scale-up chemistry", "possible change in membrane permeability"],
+    "evidence_refs": ["zwitterionic_membrane_antifouling_2016", "zwitterionic_peptide_membrane_2025", "low_binding_membrane_media_technical"],
+    "scores": {
+      "target_selectivity": 3,
+      "growth_factor_retention": 4,
+      "low_leachables": 3,
+      "culture_stability": 3,
+      "integration_complexity": 3,
+      "monitorability": 3,
+      "novelty_upside": 5,
+      "risk_control": 3
+    }
+  },
+  {
+    "id": "icp_electromembrane_media_regenerator",
+    "priority_lane": "LIMINA-External-1",
+    "name": "Ion-concentration-polarization media regenerator",
+    "class": "electromembrane_separator",
+    "hypothesis": "An external ICP/electromembrane module could remove charged waste metabolites from discarded or side-stream medium without modifying the cell chamber.",
+    "target_waste": ["ammonium", "lactate", "charged inhibitory metabolites"],
+    "retain_targets": ["proteins", "growth factors", "cells"],
+    "materials_or_modules": ["ion exchange membranes", "microfluidic separator", "waste-stream placement", "conductivity monitoring"],
+    "assay_plan": ["charged waste removal", "growth-factor recovery", "conductivity drift", "pH drift", "electrolysis byproducts", "heat generation"],
+    "known_risks": ["electrochemical byproducts", "pH and conductivity perturbation", "device complexity", "neural medium validation gap"],
+    "evidence_refs": ["icp_spent_media_regeneration_2024", "ammonia_importance_review_1996"],
+    "scores": {
+      "target_selectivity": 4,
+      "growth_factor_retention": 4,
+      "low_leachables": 3,
+      "culture_stability": 3,
+      "integration_complexity": 2,
+      "monitorability": 5,
+      "novelty_upside": 5,
+      "risk_control": 2
+    }
+  },
+  {
+    "id": "ammonium_selective_ion_exchange_hydrogel",
+    "priority_lane": "LIMINA-External-1",
+    "name": "Ammonium-selective ion-exchange hydrogel insert",
+    "class": "selective_sorbent",
+    "hypothesis": "A confined ion-exchange hydrogel can scavenge ammonium from a side stream while reducing direct exposure of cells to resin particles.",
+    "target_waste": ["ammonium"],
+    "retain_targets": ["growth factors", "serum proteins", "lactate as metabolic signal if desired"],
+    "materials_or_modules": ["weak acid cation exchanger", "hydrogel confinement", "diffusion barrier", "replaceable insert"],
+    "assay_plan": ["ammonium capacity", "selectivity versus sodium/potassium/calcium", "pH drift", "osmolality drift", "protein adsorption", "extractables"],
+    "known_risks": ["competes with essential cations", "pH/osmolality shift", "resin leachables", "limited lactate handling"],
+    "evidence_refs": ["ammonia_importance_review_1996", "medium_cycling_review_2023"],
+    "scores": {
+      "target_selectivity": 3,
+      "growth_factor_retention": 4,
+      "low_leachables": 2,
+      "culture_stability": 3,
+      "integration_complexity": 4,
+      "monitorability": 4,
+      "novelty_upside": 4,
+      "risk_control": 2
+    }
+  },
+  {
+    "id": "enzyme_assisted_lactate_polishing",
+    "priority_lane": "LIMINA-External-1",
+    "name": "Enzyme-assisted lactate polishing module",
+    "class": "biocatalytic_cartridge",
+    "hypothesis": "Immobilized lactate-processing enzymes may reduce lactate load, but byproduct management is the main design constraint.",
+    "target_waste": ["lactate"],
+    "retain_targets": ["growth factors", "serum proteins"],
+    "materials_or_modules": ["immobilized lactate oxidase or dehydrogenase concept", "byproduct scavenger layer", "oxygen/pH monitoring"],
+    "assay_plan": ["lactate conversion", "H2O2 or byproduct formation", "pH drift", "enzyme leaching", "neuronal conditioned-media viability"],
+    "known_risks": ["reactive byproducts", "enzyme instability", "oxygen dependence", "new toxicity mode"],
+    "evidence_refs": ["medium_cycling_review_2023", "inhibitory_metabolites_2021"],
+    "scores": {
+      "target_selectivity": 4,
+      "growth_factor_retention": 4,
+      "low_leachables": 2,
+      "culture_stability": 2,
+      "integration_complexity": 2,
+      "monitorability": 5,
+      "novelty_upside": 4,
+      "risk_control": 2
+    }
+  },
+  {
+    "id": "broad_adsorbent_carbon_resin_bed",
+    "priority_lane": "LIMINA-External-1",
+    "name": "Broad adsorbent carbon/resin bed",
+    "class": "nonselective_adsorber",
+    "hypothesis": "A broad adsorbent could remove diverse small inhibitory molecules, but it is likely to strip useful hydrophobic factors and medium supplements unless heavily constrained.",
+    "target_waste": ["hydrophobic inhibitory metabolites", "unknown small molecule inhibitors"],
+    "retain_targets": ["growth factors", "hormones", "lipids", "vitamins"],
+    "materials_or_modules": ["activated carbon", "polymeric adsorbent resin", "guard membrane"],
+    "assay_plan": ["metabolomics before/after", "BDNF/NGF retention", "vitamin retention", "cell viability", "extractables"],
+    "known_risks": ["nonselective stripping", "growth-factor and hormone loss", "batch variability", "difficult mechanistic control"],
+    "evidence_refs": ["medium_cycling_review_2023", "inhibitory_metabolites_2021"],
+    "scores": {
+      "target_selectivity": 2,
+      "growth_factor_retention": 1,
+      "low_leachables": 2,
+      "culture_stability": 3,
+      "integration_complexity": 3,
+      "monitorability": 3,
+      "novelty_upside": 3,
+      "risk_control": 1
+    }
+  }
+]
+

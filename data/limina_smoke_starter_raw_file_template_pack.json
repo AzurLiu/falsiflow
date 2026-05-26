@@ -1,0 +1,34 @@
+{
+  "boundary": "Templates are outside allowed source-file roots and are never measured evidence. Only real files placed at the target source_file paths can support a measured row.",
+  "generated_artifacts": {
+    "csv": "data/limina_smoke_starter_raw_file_template_manifest.csv",
+    "json": "data/limina_smoke_starter_raw_file_template_pack.json",
+    "report": "reports/limina_smoke_starter_raw_file_template_pack.md",
+    "template_dir": "data/limina_smoke_starter_raw_file_templates"
+  },
+  "inputs": {
+    "execution_pack": "data/limina_smoke_starter_execution_pack.csv"
+  },
+  "status": "smoke_starter_raw_file_template_pack_ready",
+  "summary": {
+    "generated_template_files": 8,
+    "source_class_template_count": 8,
+    "starter_rows": 19,
+    "target_extension_counts": {
+      ".csv": 9,
+      ".pdf": 6,
+      ".png": 4
+    },
+    "template_manifest_rows": 8
+  },
+  "templates": [
+    "data/limina_smoke_starter_raw_file_templates/source_class_templates/bench_or_chain_of_custody_record.csv",
+    "data/limina_smoke_starter_raw_file_templates/source_class_templates/conductivity_meter_export_or_photo.csv",
+    "data/limina_smoke_starter_raw_file_templates/source_class_templates/image_or_scoring_worksheet.csv",
+    "data/limina_smoke_starter_raw_file_templates/source_class_templates/osmometer_report_or_export.csv",
+    "data/limina_smoke_starter_raw_file_templates/source_class_templates/pH_meter_export_or_photo.csv",
+    "data/limina_smoke_starter_raw_file_templates/source_class_templates/supplier_or_build_record.csv",
+    "data/limina_smoke_starter_raw_file_templates/source_class_templates/swelling_dimension_or_mass_worksheet.csv",
+    "data/limina_smoke_starter_raw_file_templates/source_class_templates/temperature_or_incubator_log.csv"
+  ]
+}

@@ -1,0 +1,475 @@
+{
+  "active_candidate": "limina_alg_lam_pedot_lowdose_v0_2",
+  "delivery_package_status": "ready_to_send",
+  "first_wave": [
+    {
+      "evidence_from_source": "Company page describes analytical testing, materials characterization, microscopy, spectroscopy, chemical analysis, biocompatibility, tissue engineering, and custom method development.",
+      "fit_for_h_a": "integrated_custom_candidate",
+      "id": "materials_metric",
+      "likely_covers": [
+        "custom study design",
+        "microscopy",
+        "materials characterization",
+        "biomaterials evaluation"
+      ],
+      "name": "Materials Metric",
+      "risk": "Custom scope must be tightly controlled so it returns the exact LIMINA fields rather than a broad narrative report.",
+      "service_type": "custom_biomaterials_characterization",
+      "source_url": "https://materialsmetric.com/",
+      "unknowns_to_ask": [
+        "Can they execute the entire 12-run H-A service request as a custom R&D study?",
+        "Can they include pH, osmolality, and conductivity, or should media tests be subcontracted?",
+        "Can they return raw exports plus chain-of-custody by run_id?"
+      ]
+    },
+    {
+      "evidence_from_source": "Public service page lists osmolality testing plus conductivity and pH testing.",
+      "fit_for_h_a": "strong_media_panel_candidate",
+      "id": "the_osmolality_lab",
+      "likely_covers": [
+        "osmolality",
+        "conductivity",
+        "pH"
+      ],
+      "name": "The Osmolality Lab",
+      "risk": "May not cover hydrogel swelling, delamination, or imaging; likely needs pairing with a materials lab.",
+      "service_type": "media_physicochemical_testing",
+      "source_url": "https://theosmolalitylab.com/",
+      "unknowns_to_ask": [
+        "Can they run matched pre/post aliquots from 37 C acellular neural-medium soaks?",
+        "Can they preserve one result per LIMINA run_id rather than batch averages?",
+        "Can they accept PEDOT:PSS/alginate/laminin soak media as nonclinical R&D samples?"
+      ]
+    },
+    {
+      "evidence_from_source": "Hydrogel characterization page describes swell ratio testing and advanced techniques including DSC, TGA, GPC, AFM, and SEM.",
+      "fit_for_h_a": "strong_coupon_physical_candidate",
+      "id": "cambridge_polymer_group_hydrogel",
+      "likely_covers": [
+        "swelling ratio",
+        "hydrogel physical characterization",
+        "microscopy or surface characterization"
+      ],
+      "name": "Cambridge Polymer Group",
+      "risk": "May be stronger for material characterization than cell-culture medium physicochemical testing.",
+      "service_type": "hydrogel_characterization",
+      "source_url": "https://www.campoly.com/services/analytical-testing/material-characterization-techniques/hydrogel-characterization/",
+      "unknowns_to_ask": [
+        "Can they do simple optical transparency and delamination scoring on MEA witness coupons?",
+        "Can they handle hydrated alginate-laminin-PEDOT:PSS coupons under culture-medium timing?",
+        "Can they pair physical scoring with pH/osmolality/conductivity or only coupon characterization?"
+      ]
+    },
+    {
+      "evidence_from_source": "Service page lists cell culture media stability/testing and standard release specification tests including appearance, pH, osmolality, endotoxin, bioburden, and solubility.",
+      "fit_for_h_a": "strong_media_release_candidate",
+      "id": "sigmaaldrich_media_testing",
+      "likely_covers": [
+        "appearance",
+        "pH",
+        "osmolality"
+      ],
+      "name": "MilliporeSigma Cell Culture Media Stability and Testing Services",
+      "risk": "May be optimized for media products and release specifications, not custom hydrogel coupon extraction workflows.",
+      "service_type": "cell_culture_media_testing",
+      "source_url": "https://www.sigmaaldrich.com/US/en/services/testing/cell-culture-media-stability-and-testing-services",
+      "unknowns_to_ask": [
+        "Can conductivity be added to the report?",
+        "Can the service handle customer-prepared hydrogel coupon soak media rather than only standard media lots?",
+        "Can they return raw sample-level values in the LIMINA CSV schema?"
+      ]
+    }
+  ],
+  "last_checked": "2026-05-24",
+  "non_claim_boundary": "Vendor capability claims do not count as material evidence. Only returned real run-level measurements that pass LIMINA QC and claim audit can advance the material.",
+  "outreach_strategy": [
+    "Ask first for non-GLP R&D feasibility and exact raw CSV return; only escalate to GLP/ISO if H-A passes and H-B/H-C need regulated-style support.",
+    "Prefer vendors that will preserve sample-level run_id mapping rather than pooled averages.",
+    "Split the work if one vendor can do media physicochemical tests but not hydrogel/coupon imaging.",
+    "Reject any quote that substitutes broad pass/fail certificates for raw pH, osmolality, conductivity, and image-derived values."
+  ],
+  "purpose": "Shortlist external service options for returning real H-A measurement rows.",
+  "question_bank": [
+    "Can you accept nonclinical R&D hydrogel-coated MEA witness coupons and matched soak media?",
+    "Can you preserve one result per LIMINA run_id instead of returning pooled averages?",
+    "Can you run 37 C acellular soak timepoints at 0 h, 24 h, and 72 h, or should we perform the soak and send aliquots/coupons?",
+    "Can you report pH, osmolality, conductivity, visible precipitate, shedding, swelling fraction, delamination score, and optical transparency fraction?",
+    "Can you return raw exports and image files with stable filenames that we can enter in the source_file column?",
+    "Can you fill or accept the provided raw-measurement CSV schema without changing column names?",
+    "What minimum sample volume, coupon size, and sample count are required?",
+    "What handling constraints apply to alginate, laminin, PEDOT:PSS, neural medium, and sterile or aseptic samples?",
+    "What turnaround time and chain-of-custody documentation can you support?",
+    "Can you separate exploratory R&D testing from GLP/ISO 10993 testing in the quote?"
+  ],
+  "ranked_candidates": [
+    {
+      "evidence_from_source": "Company page describes analytical testing, materials characterization, microscopy, spectroscopy, chemical analysis, biocompatibility, tissue engineering, and custom method development.",
+      "fit_for_h_a": "integrated_custom_candidate",
+      "id": "materials_metric",
+      "likely_covers": [
+        "custom study design",
+        "microscopy",
+        "materials characterization",
+        "biomaterials evaluation"
+      ],
+      "name": "Materials Metric",
+      "risk": "Custom scope must be tightly controlled so it returns the exact LIMINA fields rather than a broad narrative report.",
+      "service_type": "custom_biomaterials_characterization",
+      "source_url": "https://materialsmetric.com/",
+      "unknowns_to_ask": [
+        "Can they execute the entire 12-run H-A service request as a custom R&D study?",
+        "Can they include pH, osmolality, and conductivity, or should media tests be subcontracted?",
+        "Can they return raw exports plus chain-of-custody by run_id?"
+      ]
+    },
+    {
+      "evidence_from_source": "Public service page lists osmolality testing plus conductivity and pH testing.",
+      "fit_for_h_a": "strong_media_panel_candidate",
+      "id": "the_osmolality_lab",
+      "likely_covers": [
+        "osmolality",
+        "conductivity",
+        "pH"
+      ],
+      "name": "The Osmolality Lab",
+      "risk": "May not cover hydrogel swelling, delamination, or imaging; likely needs pairing with a materials lab.",
+      "service_type": "media_physicochemical_testing",
+      "source_url": "https://theosmolalitylab.com/",
+      "unknowns_to_ask": [
+        "Can they run matched pre/post aliquots from 37 C acellular neural-medium soaks?",
+        "Can they preserve one result per LIMINA run_id rather than batch averages?",
+        "Can they accept PEDOT:PSS/alginate/laminin soak media as nonclinical R&D samples?"
+      ]
+    },
+    {
+      "evidence_from_source": "Hydrogel characterization page describes swell ratio testing and advanced techniques including DSC, TGA, GPC, AFM, and SEM.",
+      "fit_for_h_a": "strong_coupon_physical_candidate",
+      "id": "cambridge_polymer_group_hydrogel",
+      "likely_covers": [
+        "swelling ratio",
+        "hydrogel physical characterization",
+        "microscopy or surface characterization"
+      ],
+      "name": "Cambridge Polymer Group",
+      "risk": "May be stronger for material characterization than cell-culture medium physicochemical testing.",
+      "service_type": "hydrogel_characterization",
+      "source_url": "https://www.campoly.com/services/analytical-testing/material-characterization-techniques/hydrogel-characterization/",
+      "unknowns_to_ask": [
+        "Can they do simple optical transparency and delamination scoring on MEA witness coupons?",
+        "Can they handle hydrated alginate-laminin-PEDOT:PSS coupons under culture-medium timing?",
+        "Can they pair physical scoring with pH/osmolality/conductivity or only coupon characterization?"
+      ]
+    },
+    {
+      "evidence_from_source": "Service page lists cell culture media stability/testing and standard release specification tests including appearance, pH, osmolality, endotoxin, bioburden, and solubility.",
+      "fit_for_h_a": "strong_media_release_candidate",
+      "id": "sigmaaldrich_media_testing",
+      "likely_covers": [
+        "appearance",
+        "pH",
+        "osmolality"
+      ],
+      "name": "MilliporeSigma Cell Culture Media Stability and Testing Services",
+      "risk": "May be optimized for media products and release specifications, not custom hydrogel coupon extraction workflows.",
+      "service_type": "cell_culture_media_testing",
+      "source_url": "https://www.sigmaaldrich.com/US/en/services/testing/cell-culture-media-stability-and-testing-services",
+      "unknowns_to_ask": [
+        "Can conductivity be added to the report?",
+        "Can the service handle customer-prepared hydrogel coupon soak media rather than only standard media lots?",
+        "Can they return raw sample-level values in the LIMINA CSV schema?"
+      ]
+    },
+    {
+      "evidence_from_source": "Service page describes contract microscope-based imaging and analysis for biotech/pharma/research, including 2D/3D samples, organoids, spheroids, and microphysiological systems.",
+      "fit_for_h_a": "imaging_add_on_candidate",
+      "id": "nikon_bioimaging_lab",
+      "likely_covers": [
+        "imaging",
+        "image analysis",
+        "experimental design consultation"
+      ],
+      "name": "Nikon BioImaging Lab USA",
+      "risk": "Does not cover pH/osmolality/conductivity and may be overpowered for simple H-A coupon inspection.",
+      "service_type": "microscopy_and_image_analysis",
+      "source_url": "https://www.microscope.healthcare.nikon.com/bioimaging-centers/nikon-bioimaging-labs/boston-usa",
+      "unknowns_to_ask": [
+        "Can they image hydrated coupons without disturbing swelling state?",
+        "Can they provide delamination/transparency measurements from coupon images?",
+        "Can they coordinate with a media testing lab?"
+      ]
+    },
+    {
+      "evidence_from_source": "Service page describes ISO 10993-18 chemical characterization and extractables/leachables testing for medical devices and related products.",
+      "fit_for_h_a": "future_e_l_escalation_candidate",
+      "id": "sgs_extractables_leachables",
+      "likely_covers": [
+        "extractables",
+        "leachables",
+        "chemical characterization",
+        "toxicological assessment support"
+      ],
+      "name": "SGS USA Extractables and Leachables in Medical Devices",
+      "risk": "Too heavy for first H-A unless the project wants early E&L escalation; useful after H-A if leachables are a key decision.",
+      "service_type": "iso_10993_chemical_characterization",
+      "source_url": "https://www.sgs.com/en-us/services/extractables-and-leachables-in-medical-devices",
+      "unknowns_to_ask": [
+        "Can they run a non-GLP exploratory aqueous neural-medium soak before a full ISO 10993-18 program?",
+        "Can they avoid consuming all limited H-A coupon material?",
+        "What sample mass or surface area is required?"
+      ]
+    },
+    {
+      "evidence_from_source": "Service page describes ISO 10993-18 extractables/leachables, sample preparation, VOC/SVOC/NVOC and elemental impurity screening, and GLP/ISO support.",
+      "fit_for_h_a": "future_e_l_escalation_candidate",
+      "id": "hohenstein_medical_el",
+      "likely_covers": [
+        "ISO 10993-18 chemical characterization",
+        "aqueous extract screening",
+        "elemental impurity screening",
+        "toxicological risk assessment support"
+      ],
+      "name": "Hohenstein Medical Extractables and Leachables",
+      "risk": "Regulatory E&L scope may be more expensive and slower than the minimal H-A decision package.",
+      "service_type": "iso_10993_chemical_characterization",
+      "source_url": "https://www.hohenstein.us/en-us/medical-device-testing-lab/medical-device-extractables-leachables",
+      "unknowns_to_ask": [
+        "Can they adapt extraction to neural culture medium or compatible aqueous soak conditions?",
+        "Can they support an exploratory H-A screen before regulated-style chemistry?",
+        "What sample number and surface-area requirements apply to hydrogel-coated MEA coupons?"
+      ]
+    },
+    {
+      "evidence_from_source": "Official China site describes testing, inspection, certification, and healthcare/medical-device related services; exact pH/osmolality/conductivity coverage must be confirmed by RFQ.",
+      "fit_for_h_a": "second_wave_apac_split_scope_candidate",
+      "id": "intertek_china_healthcare_testing",
+      "likely_covers": [
+        "China/APAC local intake",
+        "materials or medical-device testing routing",
+        "possible chemical/physical analysis"
+      ],
+      "name": "Intertek China Healthcare and Medical Device Testing",
+      "risk": "Service fit is broader and must be routed by RFQ; do not assume exact H-A field coverage until a technical reply confirms it.",
+      "service_type": "apac_materials_and_healthcare_testing",
+      "source_url": "https://www.intertek.com.cn/",
+      "unknowns_to_ask": [
+        "Can the China lab route a non-GLP R&D hydrogel-coupon soak-media study to pH, osmolality, conductivity, and appearance testing?",
+        "Can coupon physical scoring or microscopy be paired with media measurements while preserving run_id labels?",
+        "Can they accept and return the exact LIMINA raw-measurement CSV plus source-file provenance?"
+      ]
+    },
+    {
+      "evidence_from_source": "Official company site lists global testing services; use RFQ to route specifically to medical-device chemistry, biocompatibility, or extractables/leachables feasibility.",
+      "fit_for_h_a": "second_wave_apac_e_l_escalation_candidate",
+      "id": "wuxi_apptec_medical_device_testing",
+      "likely_covers": [
+        "medical-device testing routing",
+        "biocompatibility or chemistry escalation",
+        "China/APAC logistics"
+      ],
+      "name": "WuXi AppTec Medical Device Testing",
+      "risk": "Likely better for regulated-style chemistry/biocompatibility escalation than the fastest minimal H-A panel.",
+      "service_type": "medical_device_biocompatibility_and_chemistry",
+      "source_url": "https://www.wuxiapptec.com/",
+      "unknowns_to_ask": [
+        "Can they run a small exploratory aqueous/neural-medium extract screen before full ISO 10993 work?",
+        "Can they add basic pH, osmolality, conductivity, and appearance fields, or should they only be used after H-A flags chemical risk?",
+        "What surface area, coupon count, sample volume, SDS, and chain-of-custody requirements apply?"
+      ]
+    },
+    {
+      "evidence_from_source": "Official China site covers medical-device testing and certification services; use RFQ to confirm whether exploratory material-blank measurements can be scoped separately from full regulatory testing.",
+      "fit_for_h_a": "second_wave_apac_regulatory_escalation_candidate",
+      "id": "tuv_sud_china_medical_device_testing",
+      "likely_covers": [
+        "medical-device testing routing",
+        "biocompatibility or chemical characterization escalation",
+        "China/APAC contact path"
+      ],
+      "name": "TUV SUD China Medical Device Testing",
+      "risk": "May be too regulatory and too slow for the minimal first H-A decision unless chemistry/biocompatibility escalation is required.",
+      "service_type": "medical_device_testing_and_biocompatibility",
+      "source_url": "https://www.tuvsud.cn/",
+      "unknowns_to_ask": [
+        "Can they scope the first H-A pass as non-GLP R&D instead of a full regulatory submission package?",
+        "Can they return run_id-level raw pH/osmolality/conductivity and coupon inspection values in the LIMINA schema?",
+        "If not, can they quote only the later ISO 10993 chemical characterization path after H-A passes?"
+      ]
+    },
+    {
+      "evidence_from_source": "Official site describes third-party testing services across health, safety, and product categories; exact medical-device, media chemistry, and custom R&D coverage must be confirmed.",
+      "fit_for_h_a": "second_wave_china_screening_candidate",
+      "id": "pony_testing_medical_device",
+      "likely_covers": [
+        "China local third-party testing intake",
+        "possible physicochemical or product-safety routing",
+        "possible medical-device test routing"
+      ],
+      "name": "PONY Testing Medical Device and Life-Science Services",
+      "risk": "Broad testing company; H-A fit depends entirely on technical routing and must be confirmed before sample shipment.",
+      "service_type": "china_third_party_testing",
+      "source_url": "https://www.ponytest.com/",
+      "unknowns_to_ask": [
+        "Can they route a nonclinical hydrogel-coupon neural-medium soak study to pH, osmolality, conductivity, appearance, and coupon inspection outputs?",
+        "Can they preserve one row per run_id and return raw exports/source files?",
+        "Can they keep the scope exploratory rather than certificate-only or pooled product-release testing?"
+      ]
+    }
+  ],
+  "requested_matrix": {
+    "articles": [
+      "no_coating_mea_control",
+      "hydrogel_laminin_control",
+      "lead_nhi_pedot_low_loading",
+      "challenge_nhi_pedot_high_loading"
+    ],
+    "raw_entries": 228,
+    "replicates": [
+      "1"
+    ],
+    "runs": 12,
+    "timepoints": [
+      "0 h",
+      "24 h",
+      "72 h"
+    ]
+  },
+  "secondary_wave": [
+    {
+      "evidence_from_source": "Service page describes contract microscope-based imaging and analysis for biotech/pharma/research, including 2D/3D samples, organoids, spheroids, and microphysiological systems.",
+      "fit_for_h_a": "imaging_add_on_candidate",
+      "id": "nikon_bioimaging_lab",
+      "likely_covers": [
+        "imaging",
+        "image analysis",
+        "experimental design consultation"
+      ],
+      "name": "Nikon BioImaging Lab USA",
+      "risk": "Does not cover pH/osmolality/conductivity and may be overpowered for simple H-A coupon inspection.",
+      "service_type": "microscopy_and_image_analysis",
+      "source_url": "https://www.microscope.healthcare.nikon.com/bioimaging-centers/nikon-bioimaging-labs/boston-usa",
+      "unknowns_to_ask": [
+        "Can they image hydrated coupons without disturbing swelling state?",
+        "Can they provide delamination/transparency measurements from coupon images?",
+        "Can they coordinate with a media testing lab?"
+      ]
+    },
+    {
+      "evidence_from_source": "Service page describes ISO 10993-18 chemical characterization and extractables/leachables testing for medical devices and related products.",
+      "fit_for_h_a": "future_e_l_escalation_candidate",
+      "id": "sgs_extractables_leachables",
+      "likely_covers": [
+        "extractables",
+        "leachables",
+        "chemical characterization",
+        "toxicological assessment support"
+      ],
+      "name": "SGS USA Extractables and Leachables in Medical Devices",
+      "risk": "Too heavy for first H-A unless the project wants early E&L escalation; useful after H-A if leachables are a key decision.",
+      "service_type": "iso_10993_chemical_characterization",
+      "source_url": "https://www.sgs.com/en-us/services/extractables-and-leachables-in-medical-devices",
+      "unknowns_to_ask": [
+        "Can they run a non-GLP exploratory aqueous neural-medium soak before a full ISO 10993-18 program?",
+        "Can they avoid consuming all limited H-A coupon material?",
+        "What sample mass or surface area is required?"
+      ]
+    },
+    {
+      "evidence_from_source": "Service page describes ISO 10993-18 extractables/leachables, sample preparation, VOC/SVOC/NVOC and elemental impurity screening, and GLP/ISO support.",
+      "fit_for_h_a": "future_e_l_escalation_candidate",
+      "id": "hohenstein_medical_el",
+      "likely_covers": [
+        "ISO 10993-18 chemical characterization",
+        "aqueous extract screening",
+        "elemental impurity screening",
+        "toxicological risk assessment support"
+      ],
+      "name": "Hohenstein Medical Extractables and Leachables",
+      "risk": "Regulatory E&L scope may be more expensive and slower than the minimal H-A decision package.",
+      "service_type": "iso_10993_chemical_characterization",
+      "source_url": "https://www.hohenstein.us/en-us/medical-device-testing-lab/medical-device-extractables-leachables",
+      "unknowns_to_ask": [
+        "Can they adapt extraction to neural culture medium or compatible aqueous soak conditions?",
+        "Can they support an exploratory H-A screen before regulated-style chemistry?",
+        "What sample number and surface-area requirements apply to hydrogel-coated MEA coupons?"
+      ]
+    },
+    {
+      "evidence_from_source": "Official China site describes testing, inspection, certification, and healthcare/medical-device related services; exact pH/osmolality/conductivity coverage must be confirmed by RFQ.",
+      "fit_for_h_a": "second_wave_apac_split_scope_candidate",
+      "id": "intertek_china_healthcare_testing",
+      "likely_covers": [
+        "China/APAC local intake",
+        "materials or medical-device testing routing",
+        "possible chemical/physical analysis"
+      ],
+      "name": "Intertek China Healthcare and Medical Device Testing",
+      "risk": "Service fit is broader and must be routed by RFQ; do not assume exact H-A field coverage until a technical reply confirms it.",
+      "service_type": "apac_materials_and_healthcare_testing",
+      "source_url": "https://www.intertek.com.cn/",
+      "unknowns_to_ask": [
+        "Can the China lab route a non-GLP R&D hydrogel-coupon soak-media study to pH, osmolality, conductivity, and appearance testing?",
+        "Can coupon physical scoring or microscopy be paired with media measurements while preserving run_id labels?",
+        "Can they accept and return the exact LIMINA raw-measurement CSV plus source-file provenance?"
+      ]
+    },
+    {
+      "evidence_from_source": "Official company site lists global testing services; use RFQ to route specifically to medical-device chemistry, biocompatibility, or extractables/leachables feasibility.",
+      "fit_for_h_a": "second_wave_apac_e_l_escalation_candidate",
+      "id": "wuxi_apptec_medical_device_testing",
+      "likely_covers": [
+        "medical-device testing routing",
+        "biocompatibility or chemistry escalation",
+        "China/APAC logistics"
+      ],
+      "name": "WuXi AppTec Medical Device Testing",
+      "risk": "Likely better for regulated-style chemistry/biocompatibility escalation than the fastest minimal H-A panel.",
+      "service_type": "medical_device_biocompatibility_and_chemistry",
+      "source_url": "https://www.wuxiapptec.com/",
+      "unknowns_to_ask": [
+        "Can they run a small exploratory aqueous/neural-medium extract screen before full ISO 10993 work?",
+        "Can they add basic pH, osmolality, conductivity, and appearance fields, or should they only be used after H-A flags chemical risk?",
+        "What surface area, coupon count, sample volume, SDS, and chain-of-custody requirements apply?"
+      ]
+    },
+    {
+      "evidence_from_source": "Official China site covers medical-device testing and certification services; use RFQ to confirm whether exploratory material-blank measurements can be scoped separately from full regulatory testing.",
+      "fit_for_h_a": "second_wave_apac_regulatory_escalation_candidate",
+      "id": "tuv_sud_china_medical_device_testing",
+      "likely_covers": [
+        "medical-device testing routing",
+        "biocompatibility or chemical characterization escalation",
+        "China/APAC contact path"
+      ],
+      "name": "TUV SUD China Medical Device Testing",
+      "risk": "May be too regulatory and too slow for the minimal first H-A decision unless chemistry/biocompatibility escalation is required.",
+      "service_type": "medical_device_testing_and_biocompatibility",
+      "source_url": "https://www.tuvsud.cn/",
+      "unknowns_to_ask": [
+        "Can they scope the first H-A pass as non-GLP R&D instead of a full regulatory submission package?",
+        "Can they return run_id-level raw pH/osmolality/conductivity and coupon inspection values in the LIMINA schema?",
+        "If not, can they quote only the later ISO 10993 chemical characterization path after H-A passes?"
+      ]
+    },
+    {
+      "evidence_from_source": "Official site describes third-party testing services across health, safety, and product categories; exact medical-device, media chemistry, and custom R&D coverage must be confirmed.",
+      "fit_for_h_a": "second_wave_china_screening_candidate",
+      "id": "pony_testing_medical_device",
+      "likely_covers": [
+        "China local third-party testing intake",
+        "possible physicochemical or product-safety routing",
+        "possible medical-device test routing"
+      ],
+      "name": "PONY Testing Medical Device and Life-Science Services",
+      "risk": "Broad testing company; H-A fit depends entirely on technical routing and must be confirmed before sample shipment.",
+      "service_type": "china_third_party_testing",
+      "source_url": "https://www.ponytest.com/",
+      "unknowns_to_ask": [
+        "Can they route a nonclinical hydrogel-coupon neural-medium soak study to pH, osmolality, conductivity, appearance, and coupon inspection outputs?",
+        "Can they preserve one row per run_id and return raw exports/source files?",
+        "Can they keep the scope exploratory rather than certificate-only or pooled product-release testing?"
+      ]
+    }
+  ],
+  "service_request_status": "ready_to_request_real_measurements",
+  "status": "ready_for_vendor_screening"
+}

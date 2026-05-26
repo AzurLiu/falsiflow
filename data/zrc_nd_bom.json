@@ -1,0 +1,156 @@
+{
+  "id": "zrc_nd_3p5m_guard_bom_v0_1",
+  "parent_validation_package": "zrc_nd_3p5k_guard_validation_v0_1",
+  "title": "ZRC-ND-3.5M Guard minimum validation BOM",
+  "objective": "Define a procurement-ready minimum bill of materials for non-cell validation of the ZRC-ND-3.5M Guard lead without implying that any item is already proven compatible with CL1-like neural wetware.",
+  "items": [
+    {
+      "id": "rc_3p5k_primary_membrane",
+      "category": "membrane",
+      "role": "lead primary exchange membrane",
+      "required_spec": "Regenerated cellulose dialysis membrane or tubing, nominal 3.5 kDa MWCO, low protein binding, aqueous medium compatible, enough area for coupon replicates.",
+      "anchor_product": "Repligen Spectra/Por 3 Standard Grade RC, 3.5 kD MWCO trial kit or equivalent RC membrane.",
+      "anchor_source_url": "https://store.repligen.com/products/spectra-por-3-dialysis-trial-kit",
+      "accept_equivalents": true,
+      "reject_if": "Cellulose ester only, unknown MWCO, unknown preservative, high protein binding, or format cannot support replicated coupon testing.",
+      "evidence_refs": ["rc_3p5k_repligen_vendor_spec", "dialysis_mwco_principle_thermo", "low_binding_rc_membrane_vendor"]
+    },
+    {
+      "id": "rc_10k_challenge_membrane",
+      "category": "membrane",
+      "role": "high-clearance challenge comparator",
+      "required_spec": "Regenerated cellulose dialysis membrane or tubing, nominal 10 kDa MWCO, same general geometry class as the 3.5 kDa membrane when possible.",
+      "anchor_product": "Repligen Spectra/Por 7 pre-treated Standard Grade RC, 10 kD MWCO or equivalent matched RC membrane.",
+      "anchor_source_url": "https://www.repligen.com/products/dialysis/spectrapor-dialysis-tubing-and-membranes/spectrapor-pre-treated-standard-grade-rc-dialysis-tubing-and-trial-kits",
+      "accept_equivalents": true,
+      "reject_if": "Cannot be compared by membrane area/exposure to the 3.5 kDa lead.",
+      "evidence_refs": ["dialysis_mwco_principle_thermo", "bdnf_uniprot_p23560", "ngf_uniprot_p01138"]
+    },
+    {
+      "id": "sfca_guard_filter",
+      "category": "prefilter",
+      "role": "low-binding debris guard",
+      "required_spec": "Sterile 0.22 um SFCA syringe or inline filter with low protein binding, low extractables/leachables, and low hold-up volume.",
+      "anchor_product": "CELLTREAT 0.22 um sterile SFCA syringe filter or equivalent low-binding SFCA guard.",
+      "anchor_source_url": "https://www.celltreat.com/product/229765/",
+      "accept_equivalents": true,
+      "reject_if": "High protein binding, surfactant leaching concern, large hold-up volume, or unknown membrane material.",
+      "evidence_refs": ["low_binding_membrane_media_technical"]
+    },
+    {
+      "id": "pes_guard_filter_backup",
+      "category": "prefilter",
+      "role": "low-binding debris guard backup",
+      "required_spec": "Sterile 0.22 um PES syringe or inline filter with low protein binding and cell-culture media compatibility.",
+      "anchor_product": "Sterile Millex or equivalent PES 0.22 um low-binding syringe filter.",
+      "anchor_source_url": "https://www.fishersci.com/content/dam/fishersci/en_US/documents/programs/scientific/technical-documents/data-sheets/emd-millipore-sterile-millex-syringe-filters-data-sheet.pdf",
+      "accept_equivalents": true,
+      "reject_if": "Binding/hold-up is not characterized enough for trophic-factor recovery testing.",
+      "evidence_refs": ["low_binding_membrane_media_technical"]
+    },
+    {
+      "id": "coc_observation_housing",
+      "category": "housing",
+      "role": "observed side-stream coupon cartridge or screening chip",
+      "required_spec": "COC/COP wetted housing or chip with optical access, mini-Luer/Luer-style ports, low dead volume, and no PDMS in the primary wetted path.",
+      "anchor_product": "COC microfluidic chip with Mini Luer ports, such as a ChipShop/Darwin or Sigma COC screening chip.",
+      "anchor_source_url": "https://darwin-microfluidics.com/products/open-4-straight-channels-chip-mini-luer",
+      "accept_equivalents": true,
+      "reject_if": "PDMS primary wetted path, opaque housing, unknown adhesive exposure, or no way to observe bubbles/precipitate.",
+      "evidence_refs": ["organ_chip_perfusion_review_2022", "coc_cop_ooc_material_review_2026", "coc_pdms_sorption_2025"]
+    },
+    {
+      "id": "dopamine_hcl_pda_primer",
+      "category": "coating_reagent",
+      "role": "PDA primer precursor for controlled surface-only route",
+      "required_spec": "Dopamine hydrochloride or equivalent PDA precursor suitable for research coating trials, with lot documentation and no direct cell exposure before blank testing.",
+      "anchor_product": "Sigma-Aldrich dopamine hydrochloride or equivalent research-grade dopamine hydrochloride.",
+      "anchor_source_url": "https://www.sigmaaldrich.com/US/en/product/sigma/h8502-",
+      "accept_equivalents": true,
+      "reject_if": "No lot/COA documentation, unknown purity, or incompatible contaminants for media blank testing.",
+      "evidence_refs": ["polympc_polyprev_retained_pore_2019", "pda_click_pmpc_membrane_2025"]
+    },
+    {
+      "id": "mpc_monomer_or_polympc",
+      "category": "coating_reagent",
+      "role": "zwitterionic MPC chemistry source",
+      "required_spec": "MPC monomer or preformed polyMPC/PMPC compatible with surface-only coating development; document inhibitor, purity, polymerization or immobilization route.",
+      "anchor_product": "Sigma-Aldrich 2-Methacryloyloxyethyl phosphorylcholine, 97%, or equivalent MPC source.",
+      "anchor_source_url": "https://www.sigmaaldrich.com/US/en/product/aldrich/730114",
+      "accept_equivalents": true,
+      "reject_if": "Unknown inhibitor/purity, no route to remove soluble residuals, or no way to check extractables after coating.",
+      "evidence_refs": ["polympc_polyprev_retained_pore_2019", "pda_click_pmpc_membrane_2025", "zwitterionic_membrane_antifouling_2016"]
+    },
+    {
+      "id": "lactate_assay",
+      "category": "assay",
+      "role": "waste-clearance readout",
+      "required_spec": "Quantitative lactate assay compatible with cell culture supernatant or matched medium, with medium-matched standards/spike recovery.",
+      "anchor_product": "Abcam L-Lactate Assay Kit ab65331 or equivalent enzymatic/colorimetric lactate assay.",
+      "anchor_source_url": "https://www.abcam.com/en-us/products/assay-kits/l-lactate-assay-kit-colorimetric-ab65331",
+      "accept_equivalents": true,
+      "reject_if": "No demonstrated compatibility with culture media or no workable spike/recovery controls.",
+      "evidence_refs": ["lactate_assay_cell_culture_vendor"]
+    },
+    {
+      "id": "ammonia_assay",
+      "category": "assay",
+      "role": "waste-clearance readout",
+      "required_spec": "Quantitative ammonia/ammonium assay compatible with cell culture media or matched medium standards.",
+      "anchor_product": "Abcam Ammonia Assay Kit ab83360 or equivalent ammonia/ammonium assay.",
+      "anchor_source_url": "https://www.abcam.com/en-us/products/assay-kits/ammonia-assay-kit-ab83360",
+      "accept_equivalents": true,
+      "reject_if": "Cannot run pH/matrix-matched standards or cannot distinguish matrix interference.",
+      "evidence_refs": ["ammonia_assay_cell_culture_vendor", "ammonia_importance_review_1996"]
+    },
+    {
+      "id": "bdnf_elisa",
+      "category": "assay",
+      "role": "trophic-factor retention readout",
+      "required_spec": "BDNF ELISA or validated immunoassay compatible with the selected species/proxy and cell culture supernatant matrix.",
+      "anchor_product": "Abcam Human BDNF ELISA Kit ab212166 or species-matched equivalent.",
+      "anchor_source_url": "https://www.abcam.com/en-us/products/elisa-kits/human-bdnf-elisa-kit-ab212166",
+      "accept_equivalents": true,
+      "reject_if": "Wrong species/form specificity or no matrix recovery plan.",
+      "evidence_refs": ["bdnf_uniprot_p23560", "bdnf_elisa_cell_culture_vendor"]
+    },
+    {
+      "id": "ngf_elisa",
+      "category": "assay",
+      "role": "trophic-factor retention readout",
+      "required_spec": "NGF ELISA or validated immunoassay compatible with the selected species/proxy and cell culture supernatant matrix.",
+      "anchor_product": "R&D Systems Human beta-NGF DuoSet ELISA DY256 or species-matched equivalent.",
+      "anchor_source_url": "https://www.rndsystems.com/products/human-beta-ngf-duoset-elisa_dy256",
+      "accept_equivalents": true,
+      "reject_if": "Wrong species/form specificity or no matrix recovery plan.",
+      "evidence_refs": ["ngf_uniprot_p01138", "ngf_elisa_cell_culture_vendor"]
+    },
+    {
+      "id": "media_integrity_readouts",
+      "category": "instrumentation",
+      "role": "blank-integrity and silent-failure readouts",
+      "required_spec": "pH, conductivity, osmolality, turbidity/visual inspection, and flow/pressure proxy readouts sufficient to evaluate gate thresholds.",
+      "anchor_product": "Lab pH meter, conductivity meter, osmometer access, plate reader or turbidity/visual log, and simple flow/pressure monitoring.",
+      "anchor_source_url": "",
+      "accept_equivalents": true,
+      "reject_if": "Cannot measure pH/osmolality/conductivity drift relative to no-module control.",
+      "evidence_refs": ["organ_chip_perfusion_review_2022", "neural_microfluidic_systems_2023"]
+    }
+  ],
+  "source_refs": [
+    "rc_3p5k_repligen_vendor_spec",
+    "dialysis_mwco_principle_thermo",
+    "low_binding_membrane_media_technical",
+    "polympc_polyprev_retained_pore_2019",
+    "pda_click_pmpc_membrane_2025",
+    "zwitterionic_membrane_antifouling_2016",
+    "organ_chip_perfusion_review_2022",
+    "coc_cop_ooc_material_review_2026",
+    "coc_pdms_sorption_2025",
+    "lactate_assay_cell_culture_vendor",
+    "ammonia_assay_cell_culture_vendor",
+    "bdnf_elisa_cell_culture_vendor",
+    "ngf_elisa_cell_culture_vendor",
+    "neural_microfluidic_systems_2023"
+  ]
+}

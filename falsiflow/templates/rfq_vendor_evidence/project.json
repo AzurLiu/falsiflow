@@ -1,0 +1,142 @@
+{
+  "project": {
+    "id": "falsiflow_rfq_vendor_evidence_demo",
+    "name": "Falsiflow RFQ vendor evidence demo",
+    "domain": "external-lab-and-vendor-evidence",
+    "version": "0.1.0"
+  },
+  "claim": {
+    "id": "vendor_ready_for_measured_evidence_work_package",
+    "statement": "A vendor or external lab interaction is ready to proceed only when contact provenance, scope confirmation, and measured-data return requirements are source-backed.",
+    "requires_gates": [
+      "contact_provenance",
+      "scope_confirmation",
+      "return_package_requirements"
+    ]
+  },
+  "evidence_policy": {
+    "require_source_files": true,
+    "reject_placeholder_values": true,
+    "allowed_source_roots": [
+      "source_files"
+    ],
+    "required_metadata_fields": [
+      "source_file",
+      "measured_at",
+      "operator_or_agent"
+    ],
+    "placeholder_markers": [
+      "waiting_reply",
+      "verbal_only",
+      "quote_pending",
+      "not_confirmed"
+    ]
+  },
+  "gates": [
+    {
+      "id": "contact_provenance",
+      "title": "Contact provenance",
+      "samples": [
+        {
+          "candidate_id": "external_lab_demo",
+          "sample_id": "vendor_demo_001"
+        }
+      ],
+      "required_fields": [
+        "named_contact_recorded",
+        "organization_recorded",
+        "communication_source_archived"
+      ],
+      "acceptance_rules": [
+        {
+          "field": "named_contact_recorded",
+          "operator": "==",
+          "value": true,
+          "reason": "A named accountable contact is required."
+        },
+        {
+          "field": "organization_recorded",
+          "operator": "==",
+          "value": true,
+          "reason": "The organization or lab identity must be recorded."
+        },
+        {
+          "field": "communication_source_archived",
+          "operator": "==",
+          "value": true,
+          "reason": "The original communication source must be archived."
+        }
+      ]
+    },
+    {
+      "id": "scope_confirmation",
+      "title": "Scope confirmation",
+      "samples": [
+        {
+          "candidate_id": "external_lab_demo",
+          "sample_id": "vendor_demo_001"
+        }
+      ],
+      "required_fields": [
+        "can_measure_requested_fields",
+        "sample_handling_confirmed",
+        "claim_support_language_absent"
+      ],
+      "acceptance_rules": [
+        {
+          "field": "can_measure_requested_fields",
+          "operator": "==",
+          "value": true,
+          "reason": "Vendor must confirm the requested measured fields."
+        },
+        {
+          "field": "sample_handling_confirmed",
+          "operator": "==",
+          "value": true,
+          "reason": "Sample handling constraints must be confirmed before dispatch."
+        },
+        {
+          "field": "claim_support_language_absent",
+          "operator": "==",
+          "value": true,
+          "reason": "A vendor quote or capability reply is not a scientific claim endorsement."
+        }
+      ]
+    },
+    {
+      "id": "return_package_requirements",
+      "title": "Measured-data return package",
+      "samples": [
+        {
+          "candidate_id": "external_lab_demo",
+          "sample_id": "vendor_demo_001"
+        }
+      ],
+      "required_fields": [
+        "raw_export_required",
+        "sample_id_mapping_required",
+        "method_metadata_required"
+      ],
+      "acceptance_rules": [
+        {
+          "field": "raw_export_required",
+          "operator": "==",
+          "value": true,
+          "reason": "Raw exports or original reports must be required."
+        },
+        {
+          "field": "sample_id_mapping_required",
+          "operator": "==",
+          "value": true,
+          "reason": "Returned results must map to submitted sample ids."
+        },
+        {
+          "field": "method_metadata_required",
+          "operator": "==",
+          "value": true,
+          "reason": "Method, instrument, or analyst metadata must be required."
+        }
+      ]
+    }
+  ]
+}

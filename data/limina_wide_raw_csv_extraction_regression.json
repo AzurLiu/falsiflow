@@ -1,0 +1,11 @@
+{
+  "checks": {
+    "missing_raw_csv_is_not_synthetic": true,
+    "placeholder_value_rejected": true,
+    "valid_raw_csv_extracts_one_row": true
+  },
+  "extracted_status": "zrc_nd_phase_a_raw_csv_value_extraction_ready",
+  "no_raw_status": "zrc_nd_phase_a_raw_csv_value_extraction_no_raw_csv",
+  "rejected_status": "zrc_nd_phase_a_raw_csv_value_extraction_blocked",
+  "status": "pass"
+}

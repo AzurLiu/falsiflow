@@ -1,0 +1,30 @@
+{
+  "aggregate_gates": [
+    {
+      "gate": "bio_superiority_gate",
+      "lead_vs_baseline": "not_evaluable",
+      "lead_vs_challenge": "not_evaluable",
+      "metrics": {
+        "baseline_morphology_min_mean": null,
+        "baseline_viability_mean": null,
+        "challenge_function_stability_mean": null,
+        "challenge_morphology_min_mean": null,
+        "challenge_viability_mean": null,
+        "lead_function_stability_mean": null,
+        "lead_morphology_min_mean": null,
+        "lead_viability_mean": null
+      },
+      "status": "not_evaluable"
+    }
+  ],
+  "evaluations": [],
+  "summary": {
+    "aggregate_bio_superiority": "not_evaluable",
+    "failed_rows": 0,
+    "lead_rows": 0,
+    "passed_lead_replicates_by_phase": {},
+    "phase_coverage": [],
+    "rows": 0,
+    "status": "no_data"
+  }
+}

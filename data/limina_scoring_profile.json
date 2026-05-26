@@ -1,0 +1,26 @@
+{
+  "version": "0.1",
+  "scale": "1_to_5",
+  "weights": {
+    "cell_compatibility": 0.22,
+    "electrical_coupling": 0.18,
+    "mechanical_match": 0.16,
+    "culture_stability": 0.12,
+    "mea_integration": 0.12,
+    "novelty_upside": 0.1,
+    "risk_control": 0.1
+  },
+  "gates": [
+    {
+      "field": "cell_compatibility",
+      "minimum": 3,
+      "reason": "A material that cannot plausibly support neural cell viability should not be prioritized."
+    },
+    {
+      "field": "culture_stability",
+      "minimum": 3,
+      "reason": "The interface must remain stable in warm aqueous culture medium."
+    }
+  ]
+}
+

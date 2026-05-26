@@ -1,0 +1,21 @@
+path,exists,bytes,sha256,role
+reports/nhi_pedot_h_a_service_request.md,true,6071,14d7277ad1e8dd613c02fbfaad69e6f26722c482d4af1be9b562c498db79b539,"Primary lab/cooperator request: matrix, deliverables, capabilities, stop rules, and rejection rules."
+data/nhi_pedot_h_a_raw_measurements_template.csv,true,19363,461bc7c75b03a261844d06078bf3cbd867ad58cead4c1145f9beb244a8c7eb3c,The long-form CSV to fill with real instrument and inspection values.
+data/nhi_pedot_h_a_bundle_entry_sheet.csv,true,78006,900bf5c472a6ae2abb0b4fd5a3e9a4ed950a78b05aaf0bd42dadc853d8b0b328,Preferred compact CSV for returning one row per raw-file bundle; it expands into the source-values sheet after validation.
+reports/nhi_pedot_h_a_bundle_entry_sheet.md,true,14450,9461cd24b403ac176a3893d03257bee0daa9520dcbbbf6f788c4300bd863c0b4,Human-readable instructions for filling the compact H-A bundle entry sheet.
+data/nhi_pedot_h_a_source_unlock_bundle_manifest.csv,true,55071,afbe99df61e730fdc27cd0a66bd0c9da352002227ec0a02265097f87e2c2361c,Machine-readable manifest mapping run_id/source_class bundles to consolidated source-file paths and target fields.
+reports/nhi_pedot_h_a_source_unlock_pack.md,true,12281,0ee3c70dbfc6b2216ef2007a8454685bc648931d7dea83bdb98ac9b92ebc278f,Human-readable overview of required H-A raw-file bundles and source classes.
+reports/nhi_pedot_h_a_sentinel_packet.md,true,3391,614e63ace4f0c46031ee8a257b76a6986afd4a29fd6b5f56e35d80058626155a,Recipe-locked H-A sentinel packet and sample handling context.
+data/nhi_pedot_h_a_sentinel_sample_manifest.csv,true,13687,f9ef2f6783f34bfb840da22b79586890a7ff93b02c3ccd89f23a731c310dd6cb,"Sample-level manifest tying run_id to sample_event, article, timepoint, and readouts."
+data/nhi_pedot_h_a_sample_labels.csv,true,19897,06fafd2460820f073e9947506e9981295b7f168145633857f23ee302be84a69e,"Printable/transferable label rows with sample IDs, planned container IDs, article IDs, and handling notes."
+data/nhi_pedot_h_a_chain_of_custody.csv,true,9320,250f8486ecca4206273ba608706f7820cffb2b482537e4b722006dd5456fca5c,"Blank chain-of-custody transfer rows to complete during preparation, release, receipt, and return."
+reports/nhi_pedot_h_a_chain_of_custody.md,true,3959,caae2d348bdcf5036bfff16762d7334ddc11f2d791e41f00388a0c5532901535,"Human-readable sample handoff instructions, blank fields, and rejection rules."
+reports/nhi_pedot_h_a_sample_submission_pack.md,true,5872,c5d6ce3d89cfa7e1c338aa6864440396ab546340570e157a37553670384fc255,"Vendor-facing nonclinical sample-submission precheck, material disclosure, pre-ship questions, and shipping boundary."
+reports/nhi_pedot_h_a_split_scope_plan.md,true,3145,5ab79c352248c1dc8b11903a7b6dc72c813523a11d244a15e3fcd49d78282db9,Fallback execution plan for splitting media chemistry and coupon physical/imaging readouts across vendors.
+data/nhi_pedot_h_a_split_scope_plan.csv,true,6892,1d0bd6ca8844067b28bf769afb268bc0acc437616bdd76e125fbea26529b613b,"Machine-readable split-scope vendor pairings, field assignments, shared requirements, and decisions."
+data/nhi_pedot_h_a_material_disclosure.csv,true,1858,9d2be57f0822e11693a02ab6a4c240c56fad5ac9379494fde7728e4f70bacb46,Machine-readable component disclosure checklist for sample submission and SDS readiness.
+reports/nhi_pedot_h_a_bench_sheet.md,true,7103,4273e8690d386bbd23f800da3fe53e93b3d9bdd947a2da7b8699b9d5ac219a16,Operator-facing bench sheet with task order and stop criteria.
+reports/nhi_pedot_h_a_minimum_measurement_checklist.md,true,3105,c2868593b7cea471469f85eb1d46970c6da75085177d16d8b21eb05d1f34efdf,Compact checklist of claim-critical fields and current QC hotspots.
+reports/nhi_pedot_alg_lam_protocol.md,true,4980,c3b05c0991bbfe1076112c89181d32111d1564687aafa0547a39d66aa12db54f,Recipe-specific ALG-LAM-PEDOT protocol handoff.
+data/nhi_pedot_recipe_lock_v0_2.json,true,3671,2cba9abebc5126ba262497584cffa8111ae72c210d509c01699bd7170f5b49bc,Machine-readable recipe lock that defines the active lead and controls.
+reports/nhi_pedot_next_measurements.md,true,2586,3cb57c4162cabf07db76163ae30f0b55093d5f7fa442811ccd896c863f3b5214,Current recommended H-A measurement rows.

@@ -1,0 +1,25 @@
+name: limina
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - rdkit
+  - ase
+  - openmm
+  - openff-toolkit
+  - pymatgen
+  - xtb
+  - xtb-python
+  - duckdb
+  - pandas
+  - numpy
+  - scipy
+  - matplotlib
+  - optuna
+  - scikit-learn
+  - requests
+  - beautifulsoup4
+  - lxml
+  - biopython
+  - pyzotero
+  - pip

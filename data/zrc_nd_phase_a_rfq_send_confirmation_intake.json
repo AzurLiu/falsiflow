@@ -1,0 +1,19 @@
+{
+  "applied_rows": 0,
+  "boundary": "RFQ send confirmations only document outreach logistics. They are not material measurement evidence and cannot advance suitability gates without returned raw measurements.",
+  "bundle_hash_matched_rows": 0,
+  "intake_csv": "data/zrc_nd_phase_a_rfq_send_confirmation_intake.csv",
+  "label": "ZRC-ND Phase A",
+  "needs_review_rows": 0,
+  "profile": "zrc_phase_a",
+  "purpose": "Scan original RFQ send confirmations and conservatively auto-fill send-log rows only when a sent .eml proves the expected bundle attachment.",
+  "ready_to_apply_rows": 0,
+  "row_count": 0,
+  "rows": [],
+  "send_confirmation_dir": "data/rfq_send_confirmation_files/zrc_phase_a",
+  "send_log_csv": "data/zrc_nd_phase_a_rfq_send_log.csv",
+  "status": "zrc_nd_phase_a_rfq_send_confirmation_intake_waiting_for_confirmation_files",
+  "tracker_field_count": 16,
+  "unknown_existing_rows": [],
+  "unmatched_rows": 0
+}

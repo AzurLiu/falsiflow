@@ -1,0 +1,8 @@
+[
+  {
+    "action_id": "review_claim_for_release",
+    "rank": 1,
+    "success_criterion": "Human review confirms raw sources and claim wording before release.",
+    "why": "All required gates passed with source-backed evidence."
+  }
+]

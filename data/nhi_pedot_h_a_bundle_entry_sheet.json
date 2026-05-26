@@ -1,0 +1,35 @@
+{
+  "boundary": "This sheet only consolidates source-value entry across H-A bundles. It is not measured evidence; the apply step, source-value importer, merge, QC, gates, and claim audit still control evidence status.",
+  "generated_artifacts": {
+    "json": "data/nhi_pedot_h_a_bundle_entry_sheet.json",
+    "report": "reports/nhi_pedot_h_a_bundle_entry_sheet.md",
+    "sheet": "data/nhi_pedot_h_a_bundle_entry_sheet.csv"
+  },
+  "inputs": {
+    "bundle_manifest": "data/nhi_pedot_h_a_source_unlock_bundle_manifest.csv",
+    "source_values": "data/nhi_pedot_h_a_source_values.csv"
+  },
+  "post_fill_command": "python3 scripts/apply_nhi_pedot_h_a_bundle_entry_sheet.py",
+  "status": "h_a_bundle_entry_sheet_ready",
+  "summary": {
+    "blocked_rows": 0,
+    "bundle_rows": 96,
+    "entry_status_counts": {
+      "awaiting_bundle_entry": 96
+    },
+    "filled_bundle_rows": 0,
+    "missing_required_columns": [],
+    "ready_to_apply_rows": 0,
+    "source_class_counts": {
+      "bench_or_chain_of_custody_record": 12,
+      "conductivity_meter_export_or_photo": 12,
+      "image_or_scoring_worksheet": 12,
+      "osmometer_report_or_export": 12,
+      "pH_meter_export_or_photo": 12,
+      "supplier_or_build_record": 12,
+      "swelling_dimension_or_mass_worksheet": 12,
+      "temperature_or_incubator_log": 12
+    },
+    "source_file_exists_rows": 0
+  }
+}

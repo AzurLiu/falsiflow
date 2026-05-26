@@ -1,0 +1,15 @@
+{
+  "checks": {
+    "h_a_selected_without_source_is_not_selected": true,
+    "h_a_source_backed_reply_can_shortlist": true,
+    "h_a_unbacked_reply_needs_source_files": true,
+    "zrc_selected_without_source_is_not_selected": true,
+    "zrc_source_backed_reply_can_shortlist": true,
+    "zrc_unbacked_reply_needs_source_files": true
+  },
+  "h_a_backed_status": "ready_to_select_provider",
+  "h_a_unbacked_status": "quote_replies_need_source_files",
+  "status": "pass",
+  "zrc_backed_status": "ready_to_select_provider",
+  "zrc_unbacked_status": "quote_replies_need_source_files"
+}

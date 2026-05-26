@@ -1,0 +1,25 @@
+{
+  "boundary": "This importer only moves source-file-backed values into evaluator CSVs; it does not create measured evidence.",
+  "imported_rows": [],
+  "inputs": {
+    "plan": "data/nhi_pedot_planned_runs.csv",
+    "source_manifest": "data/limina_source_file_manifest.json",
+    "target": "data/nhi_pedot_runs_template.csv"
+  },
+  "issues": [],
+  "profile": "nhi_forward",
+  "status": "nhi_pedot_forward_source_value_import_no_importable_rows",
+  "summary": {
+    "blank_rows": 592,
+    "error_count": 0,
+    "imported_rows": 0,
+    "source_value_files": 2,
+    "source_value_rows": 592,
+    "unchanged_rows": 0,
+    "warning_count": 0
+  },
+  "value_files": [
+    "data/nhi_pedot_forward_raw_csv_extracted_values.csv",
+    "data/nhi_pedot_forward_source_values.csv"
+  ]
+}

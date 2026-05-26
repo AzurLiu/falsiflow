@@ -1,0 +1,36 @@
+{
+  "boundary": "This creates allowed source-file directories and a missing-file plan only. It does not create raw measurement files or measured evidence.",
+  "generated_artifacts": {
+    "csv": "data/nhi_pedot_forward_source_drop_plan.csv",
+    "json": "data/nhi_pedot_forward_source_drop_plan.json",
+    "report": "reports/nhi_pedot_forward_source_drop_plan.md"
+  },
+  "inputs": {
+    "source_manifest": "data/limina_source_file_manifest.json",
+    "source_values": "data/nhi_pedot_forward_source_values.csv"
+  },
+  "label": "NHI-PEDOT H-B/H-C",
+  "profile": "nhi_forward",
+  "status": "nhi_pedot_forward_source_drop_plan_ready",
+  "summary": {
+    "allowed_source_file_count": 592,
+    "created_source_dir_count": 0,
+    "existing_source_file_count": 0,
+    "filled_value_rows": 0,
+    "import_ready_rows": 0,
+    "missing_source_file_count": 592,
+    "planned_source_file_count": 592,
+    "source_class_counts": {
+      "bench_or_chain_of_custody_record": 368,
+      "biological_assay_or_imaging_export": 64,
+      "electrochemical_or_mea_export": 96,
+      "image_or_scoring_worksheet": 24,
+      "swelling_dimension_or_mass_worksheet": 12,
+      "temperature_or_incubator_log": 28
+    },
+    "source_dir_count": 28,
+    "source_dir_status_counts": {
+      "already_exists": 592
+    }
+  }
+}

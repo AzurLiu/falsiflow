@@ -1,0 +1,5 @@
+candidate_id,vendor_name,contact_date,reply_date,can_cover_full_phase_a,needs_split_scope,run_id_level_raw_data,phase_a_media_panel_coverage,csv_schema_acceptance,sample_handling_fit,source_file_provenance,non_glp_scope_control,turnaround_days,quoted_cost,decision,notes
+pacific_biolabs_physicochemical,Pacific BioLabs Physicochemical Properties Testing,,,,,,,,,,,,,pending_outreach,
+sigmaaldrich_media_testing,MilliporeSigma Cell Culture Media Stability and Testing Services,,,,,,,,,,,,,pending_outreach,
+the_osmolality_lab,The Osmolality Lab,,,,,,,,,,,,,pending_outreach,
+jordi_labs_el_polymer,Jordi Labs Analytical Testing,,,,,,,,,,,,,pending_outreach,

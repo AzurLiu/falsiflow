@@ -1,0 +1,123 @@
+[
+  {
+    "id": "pedot_pss_ecm_hydrogel",
+    "name": "PEDOT:PSS hydrogel with ECM-mimetic top layer",
+    "class": "conductive_polymer_hydrogel",
+    "hypothesis": "A soft PEDOT:PSS-rich hydrogel can lower electrode impedance while an ECM-mimetic or laminin-like top layer improves neuronal adhesion and maturation.",
+    "cell_adaptation_mechanism": "Mixed ionic/electronic transport plus hydrated softness and adhesive biochemical cues.",
+    "computational_handles": ["polymer_fragment_screening", "swelling_risk", "surface_ligand_density"],
+    "wet_lab_readouts": ["neuronal_viability", "neurite_outgrowth", "spike_rate", "electrode_impedance", "charge_storage_capacity", "28_day_stability"],
+    "known_risks": ["PSS acidity or leachables", "delamination", "over-swelling", "batch variability"],
+    "evidence_refs": ["pedot_brain_monitoring_2025", "pedot_bio_sei_2026", "conductive_hydrogels_2025"],
+    "scores": {
+      "cell_compatibility": 4,
+      "electrical_coupling": 5,
+      "mechanical_match": 4,
+      "culture_stability": 3,
+      "mea_integration": 5,
+      "novelty_upside": 4,
+      "risk_control": 3
+    }
+  },
+  {
+    "id": "zwitterionic_pedot_gradient",
+    "name": "Zwitterionic PEDOT or PEDOT:PSS gradient interphase",
+    "class": "mixed_conducting_antifouling_polymer",
+    "hypothesis": "A zwitterionic or PEG-like gradient can reduce nonspecific fouling while maintaining mixed conduction; patterned ECM domains can prevent the surface from becoming too cell-repellent.",
+    "cell_adaptation_mechanism": "Hydrated antifouling chemistry reduces unwanted protein adsorption and inflammatory-like responses while adhesive islands guide neurons.",
+    "computational_handles": ["monomer_property_screening", "hydration_shell_proxy", "charge_balance"],
+    "wet_lab_readouts": ["protein_adsorption", "neuronal_adhesion_patterning", "impedance_drift", "cell_viability", "glia_marker_expression"],
+    "known_risks": ["too little neuronal adhesion", "complex synthesis", "uncertain long-term electrochemistry"],
+    "evidence_refs": ["zwitterionic_cp_2023", "zwitterionic_hydrogel_2022", "pedot_bio_sei_2026"],
+    "scores": {
+      "cell_compatibility": 4,
+      "electrical_coupling": 4,
+      "mechanical_match": 4,
+      "culture_stability": 4,
+      "mea_integration": 4,
+      "novelty_upside": 5,
+      "risk_control": 3
+    }
+  },
+  {
+    "id": "graphene_ecm_coating",
+    "name": "CVD graphene or rGO coating with ECM functionalization",
+    "class": "carbon_neural_interface",
+    "hypothesis": "Graphene-family coatings may provide conductive, transparent, flexible neural interfaces when combined with cell-adhesive chemistry.",
+    "cell_adaptation_mechanism": "High conductivity and nanoscale morphology support recording/stimulation; ECM chemistry tunes neuron attachment.",
+    "computational_handles": ["surface_functional_group_screening", "oxidation_defect_tradeoff"],
+    "wet_lab_readouts": ["neuronal_viability", "neurite_alignment", "impedance", "optical_imaging_compatibility", "long_term_safety"],
+    "known_risks": ["manufacturing variability", "long-term biodegradation uncertainty", "defect chemistry changes cell response"],
+    "evidence_refs": ["graphene_neural_interfaces_2024", "graphene_activity_detection_2021"],
+    "scores": {
+      "cell_compatibility": 4,
+      "electrical_coupling": 4,
+      "mechanical_match": 3,
+      "culture_stability": 4,
+      "mea_integration": 4,
+      "novelty_upside": 4,
+      "risk_control": 3
+    }
+  },
+  {
+    "id": "gelma_pedot_composite",
+    "name": "GelMA or hyaluronic-acid hydrogel with dispersed PEDOT:PSS domains",
+    "class": "bioactive_conductive_hydrogel",
+    "hypothesis": "A bioactive hydrogel matrix can provide cell-friendly mechanics while sparse PEDOT:PSS domains improve electrical coupling without making the whole surface polymer-dominated.",
+    "cell_adaptation_mechanism": "ECM-like hydrogel chemistry supports cell attachment; conductive domains create local transduction paths.",
+    "computational_handles": ["hydrogel_mesh_size_proxy", "conductive_domain_fraction", "diffusion_proxy"],
+    "wet_lab_readouts": ["cell_viability", "neurite_outgrowth", "network_bursting", "conductivity", "swelling", "sterilization_response"],
+    "known_risks": ["conductive percolation may be insufficient", "photocrosslinking toxicity", "composition drift"],
+    "evidence_refs": ["conductive_hydrogels_2025", "hydrogel_neural_tissue_2020", "stiffness_sensing_2020"],
+    "scores": {
+      "cell_compatibility": 5,
+      "electrical_coupling": 3,
+      "mechanical_match": 5,
+      "culture_stability": 3,
+      "mea_integration": 4,
+      "novelty_upside": 4,
+      "risk_control": 4
+    }
+  },
+  {
+    "id": "polydopamine_laminin_bridge",
+    "name": "Polydopamine adhesion layer with laminin/peptide presentation",
+    "class": "surface_biofunctionalization",
+    "hypothesis": "A thin polydopamine primer can make otherwise inert electrode or polymer surfaces easier to functionalize with neuron-friendly ligands.",
+    "cell_adaptation_mechanism": "Improves biochemical presentation rather than bulk conductivity; useful as a modular top layer.",
+    "computational_handles": ["ligand_selection", "surface_density_tracking"],
+    "wet_lab_readouts": ["coating_uniformity", "neuronal_adhesion", "neurite_outgrowth", "impedance_change", "medium_stability"],
+    "known_risks": ["thin layer may not solve mechanics", "ligand degradation", "possible impedance penalty if too thick"],
+    "evidence_refs": ["dopamine_zwitterion_surface_2021", "hydrogel_neural_tissue_2020"],
+    "scores": {
+      "cell_compatibility": 5,
+      "electrical_coupling": 2,
+      "mechanical_match": 2,
+      "culture_stability": 4,
+      "mea_integration": 5,
+      "novelty_upside": 3,
+      "risk_control": 4
+    }
+  },
+  {
+    "id": "mxene_hydrogel_exploratory",
+    "name": "MXene-loaded soft hydrogel, exploratory only",
+    "class": "2d_conductive_nanocomposite",
+    "hypothesis": "MXenes offer high conductivity and hydrophilicity, but their oxidation and biological risk profile make them a lower-priority exploratory branch for neural culture interfaces.",
+    "cell_adaptation_mechanism": "Potential high-conductivity hydrated composite; biological compatibility must be proven for the exact formulation.",
+    "computational_handles": ["oxidation_risk", "ion_release_risk", "filler_loading"],
+    "wet_lab_readouts": ["cytotoxicity", "ROS_markers", "conductivity_drift", "impedance", "cell_viability"],
+    "known_risks": ["oxidation", "ion or flake toxicity", "poor long-term culture evidence"],
+    "evidence_refs": ["conductive_hydrogels_2025"],
+    "scores": {
+      "cell_compatibility": 2,
+      "electrical_coupling": 5,
+      "mechanical_match": 4,
+      "culture_stability": 2,
+      "mea_integration": 3,
+      "novelty_upside": 5,
+      "risk_control": 2
+    }
+  }
+]
+

@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LIMINA First-Wave RFQ Dispatch Cockpit</title>
+  <style>
+    :root { color-scheme: light; --ink:#17211d; --muted:#64706b; --line:#d8ded9; --paper:#fbfcfb; --ready:#0f6b4f; --warn:#9a4d00; --wait:#716100; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--ink); background: var(--paper); }
+    header { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 24px; border-bottom: 1px solid var(--line); background: rgba(251,252,251,.96); }
+    h1 { margin: 0; font-size: 20px; letter-spacing: 0; }
+    h2 { margin: 2px 0 0; font-size: 17px; letter-spacing: 0; }
+    main { max-width: 1240px; margin: 0 auto; padding: 18px 18px 36px; }
+    .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; border-bottom: 1px solid var(--line); background: var(--line); }
+    .metric { background: white; padding: 14px 18px; min-width: 0; }
+    .metric span, .grid span, .track, small { display: block; color: var(--muted); font-size: 12px; overflow-wrap: anywhere; }
+    .metric strong { font-size: 22px; }
+    .vendor { background: white; border: 1px solid var(--line); border-radius: 8px; margin: 14px 0; overflow: hidden; }
+    .vendor-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--line); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px; background: var(--line); }
+    .grid > div { background: white; padding: 13px 16px; min-width: 0; }
+    code { display: block; margin: 5px 0; padding: 7px 8px; border: 1px solid var(--line); border-radius: 6px; white-space: normal; overflow-wrap: anywhere; background: #f6f8f6; }
+    button { border: 1px solid var(--line); background: #fff; border-radius: 6px; padding: 6px 8px; cursor: pointer; }
+    a { color: #174f7a; display: inline-block; margin-right: 8px; }
+    .badge { display: inline-block; max-width: 100%; margin-left: 6px; padding: 4px 8px; border-radius: 999px; border: 1px solid var(--line); overflow-wrap: anywhere; }
+    .badge.ready { color: var(--ready); border-color: #9fcab7; background: #eef8f3; }
+    .badge.warn { color: var(--warn); border-color: #e1b47c; background: #fff7eb; }
+    .badge.wait { color: var(--wait); border-color: #d8cc7c; background: #fffbe5; }
+    .commands { border-top: 1px solid var(--line); margin-top: 24px; padding-top: 16px; }
+    .muted { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>LIMINA First-Wave RFQ Dispatch Cockpit</h1>
+    <span class="badge ready">first_wave_rfq_dispatch_cockpit_ready_for_manual_send</span>
+  </header>
+  <section class="summary" aria-label="Summary">
+    <div class="metric"><span>Tracks</span><strong>2</strong></div>
+    <div class="metric"><span>Vendors</span><strong>8</strong></div>
+    <div class="metric"><span>Ready to send</span><strong>8</strong></div>
+    <div class="metric"><span>Confirmations</span><strong>0</strong></div>
+    <div class="metric"><span>Replies</span><strong>0</strong></div>
+    <div class="metric"><span>Missing messages</span><strong>0</strong></div>
+    <div class="metric"><span>Missing bundles</span><strong>0</strong></div>
+  </section>
+  <main>
+    
+        <section class="vendor">
+          <div class="vendor-head">
+            <div>
+              <div class="track">NHI-PEDOT H-A #1</div>
+              <h2>Materials Metric</h2>
+            </div>
+            <div><span class="badge ready">ready_to_send</span> <span class="badge ready">ready_for_manual_dispatch</span></div>
+          </div>
+          <div class="grid">
+            <div><span>Recipient/Form</span><strong>info@materialsmetric.com</strong><div class="links"><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/https%3A/materialsmetric.com/contact-us">Contact</a> </div></div>
+            <div><span>EML draft</span><code>data/nhi_pedot_h_a_rfq_outbox/eml_drafts/materials_metric_rfq_draft.eml</code><button type="button" data-copy="data/nhi_pedot_h_a_rfq_outbox/eml_drafts/materials_metric_rfq_draft.eml">Copy</button><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_outbox/eml_drafts/materials_metric_rfq_draft.eml">Open</a></div>
+            <div><span>Bundle</span><code>data/nhi_pedot_h_a_rfq_outbox/vendor_packages/materials_metric_nhi_pedot_h_a_rfq_bundle.zip</code><button type="button" data-copy="data/nhi_pedot_h_a_rfq_outbox/vendor_packages/materials_metric_nhi_pedot_h_a_rfq_bundle.zip">Copy</button><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_outbox/vendor_packages/materials_metric_nhi_pedot_h_a_rfq_bundle.zip">Open</a><small>6799fdef01396d5ed999a13a4de131bf1d490719369c0e4b90f81c7c73cd9d35</small></div>
+            <div><span>Confirmation Save Path</span><code>data/rfq_send_confirmation_files/h_a/materials_metric_send_confirmation.txt</code><button type="button" data-copy="data/rfq_send_confirmation_files/h_a/materials_metric_send_confirmation.txt">Copy</button></div>
+            <div><span>Reply Save Path</span><code>data/rfq_reply_files/h_a/materials_metric_reply.txt</code><button type="button" data-copy="data/rfq_reply_files/h_a/materials_metric_reply.txt">Copy</button></div>
+            <div><span>Archive</span><code>data/nhi_pedot_h_a_rfq_dispatch_archive/nhi_pedot_h_a_rfq_dispatch_archive.zip</code><button type="button" data-copy="data/nhi_pedot_h_a_rfq_dispatch_archive/nhi_pedot_h_a_rfq_dispatch_archive.zip">Copy</button><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_dispatch_archive/nhi_pedot_h_a_rfq_dispatch_archive.zip">Open</a><small>b739036ff6d618bec4b57e1c028676338ef58599a11fb7a6822a6df9b725368b</small></div>
+          </div>
+        </section>
+        
+        <section class="vendor">
+          <div class="vendor-head">
+            <div>
+              <div class="track">NHI-PEDOT H-A #2</div>
+              <h2>The Osmolality Lab</h2>
+            </div>
+            <div><span class="badge ready">ready_to_send</span> <span class="badge ready">ready_for_manual_dispatch</span></div>
+          </div>
+          <div class="grid">
+            <div><span>Recipient/Form</span><strong>info@osmolab.com</strong><div class="links"><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/https%3A/theosmolalitylab.com/contact-us">Contact</a> </div></div>
+            <div><span>EML draft</span><code>data/nhi_pedot_h_a_rfq_outbox/eml_drafts/the_osmolality_lab_rfq_draft.eml</code><button type="button" data-copy="data/nhi_pedot_h_a_rfq_outbox/eml_drafts/the_osmolality_lab_rfq_draft.eml">Copy</button><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_outbox/eml_drafts/the_osmolality_lab_rfq_draft.eml">Open</a></div>
+            <div><span>Bundle</span><code>data/nhi_pedot_h_a_rfq_outbox/vendor_packages/the_osmolality_lab_nhi_pedot_h_a_rfq_bundle.zip</code><button type="button" data-copy="data/nhi_pedot_h_a_rfq_outbox/vendor_packages/the_osmolality_lab_nhi_pedot_h_a_rfq_bundle.zip">Copy</button><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_outbox/vendor_packages/the_osmolality_lab_nhi_pedot_h_a_rfq_bundle.zip">Open</a><small>b89d68822a7e42b1d387d3b239b6cee86140d3b188e1a3ae14e92792094c023a</small></div>
+            <div><span>Confirmation Save Path</span><code>data/rfq_send_confirmation_files/h_a/the_osmolality_lab_send_confirmation.txt</code><button type="button" data-copy="data/rfq_send_confirmation_files/h_a/the_osmolality_lab_send_confirmation.txt">Copy</button></div>
+            <div><span>Reply Save Path</span><code>data/rfq_reply_files/h_a/the_osmolality_lab_reply.txt</code><button type="button" data-copy="data/rfq_reply_files/h_a/the_osmolality_lab_reply.txt">Copy</button></div>
+            <div><span>Archive</span><code>data/nhi_pedot_h_a_rfq_dispatch_archive/nhi_pedot_h_a_rfq_dispatch_archive.zip</code><button type="button" data-copy="data/nhi_pedot_h_a_rfq_dispatch_archive/nhi_pedot_h_a_rfq_dispatch_archive.zip">Copy</button><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_dispatch_archive/nhi_pedot_h_a_rfq_dispatch_archive.zip">Open</a><small>b739036ff6d618bec4b57e1c028676338ef58599a11fb7a6822a6df9b725368b</small></div>
+          </div>
+        </section>
+        
+        <section class="vendor">
+          <div class="vendor-head">
+            <div>
+              <div class="track">NHI-PEDOT H-A #3</div>
+              <h2>Cambridge Polymer Group</h2>
+            </div>
+            <div><span class="badge ready">ready_to_send</span> <span class="badge ready">ready_for_manual_dispatch</span></div>
+          </div>
+          <div class="grid">
+            <div><span>Recipient/Form</span><strong>info@campoly.com</strong><div class="links"><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/https%3A/www.campoly.com/contact-us">Contact</a> <a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/https%3A/quote.campoly.com/material-testing">Quote</a></div></div>
+            <div><span>EML draft</span><code>data/nhi_pedot_h_a_rfq_outbox/eml_drafts/cambridge_polymer_group_hydrogel_rfq_draft.eml</code><button type="button" data-copy="data/nhi_pedot_h_a_rfq_outbox/eml_drafts/cambridge_polymer_group_hydrogel_rfq_draft.eml">Copy</button><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_outbox/eml_drafts/cambridge_polymer_group_hydrogel_rfq_draft.eml">Open</a></div>
+            <div><span>Bundle</span><code>data/nhi_pedot_h_a_rfq_outbox/vendor_packages/cambridge_polymer_group_hydrogel_nhi_pedot_h_a_rfq_bundle.zip</code><button type="button" data-copy="data/nhi_pedot_h_a_rfq_outbox/vendor_packages/cambridge_polymer_group_hydrogel_nhi_pedot_h_a_rfq_bundle.zip">Copy</button><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_outbox/vendor_packages/cambridge_polymer_group_hydrogel_nhi_pedot_h_a_rfq_bundle.zip">Open</a><small>bad885c9487cfc4e33c6abda168421232f8da5b1fc2a6698b4d129453d7811a1</small></div>
+            <div><span>Confirmation Save Path</span><code>data/rfq_send_confirmation_files/h_a/cambridge_polymer_group_hydrogel_send_confirmation.txt</code><button type="button" data-copy="data/rfq_send_confirmation_files/h_a/cambridge_polymer_group_hydrogel_send_confirmation.txt">Copy</button></div>
+            <div><span>Reply Save Path</span><code>data/rfq_reply_files/h_a/cambridge_polymer_group_hydrogel_reply.txt</code><button type="button" data-copy="data/rfq_reply_files/h_a/cambridge_polymer_group_hydrogel_reply.txt">Copy</button></div>
+            <div><span>Archive</span><code>data/nhi_pedot_h_a_rfq_dispatch_archive/nhi_pedot_h_a_rfq_dispatch_archive.zip</code><button type="button" data-copy="data/nhi_pedot_h_a_rfq_dispatch_archive/nhi_pedot_h_a_rfq_dispatch_archive.zip">Copy</button><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_dispatch_archive/nhi_pedot_h_a_rfq_dispatch_archive.zip">Open</a><small>b739036ff6d618bec4b57e1c028676338ef58599a11fb7a6822a6df9b725368b</small></div>
+          </div>
+        </section>
+        
+        <section class="vendor">
+          <div class="vendor-head">
+            <div>
+              <div class="track">NHI-PEDOT H-A #4</div>
+              <h2>MilliporeSigma Cell Culture Media Stability and Testing Services</h2>
+            </div>
+            <div><span class="badge ready">ready_to_send</span> <span class="badge ready">ready_for_manual_dispatch</span></div>
+          </div>
+          <div class="grid">
+            <div><span>Recipient/Form</span><strong>PSTechService@milliporesigma.com</strong><div class="links"><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/https%3A/www.sigmaaldrich.com/US/en/collections/offices">Contact</a> <a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/https%3A/www.sigmaaldrich.com/US/en/services/testing/cell-culture-media-stability-and-testing-services">Quote</a></div></div>
+            <div><span>EML draft</span><code>data/nhi_pedot_h_a_rfq_outbox/eml_drafts/sigmaaldrich_media_testing_rfq_draft.eml</code><button type="button" data-copy="data/nhi_pedot_h_a_rfq_outbox/eml_drafts/sigmaaldrich_media_testing_rfq_draft.eml">Copy</button><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_outbox/eml_drafts/sigmaaldrich_media_testing_rfq_draft.eml">Open</a></div>
+            <div><span>Bundle</span><code>data/nhi_pedot_h_a_rfq_outbox/vendor_packages/sigmaaldrich_media_testing_nhi_pedot_h_a_rfq_bundle.zip</code><button type="button" data-copy="data/nhi_pedot_h_a_rfq_outbox/vendor_packages/sigmaaldrich_media_testing_nhi_pedot_h_a_rfq_bundle.zip">Copy</button><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_outbox/vendor_packages/sigmaaldrich_media_testing_nhi_pedot_h_a_rfq_bundle.zip">Open</a><small>6950279d9e72509ba62950b8ad0ea46f1f9d4c4b3e54960054d5967bc66ea8cd</small></div>
+            <div><span>Confirmation Save Path</span><code>data/rfq_send_confirmation_files/h_a/sigmaaldrich_media_testing_send_confirmation.txt</code><button type="button" data-copy="data/rfq_send_confirmation_files/h_a/sigmaaldrich_media_testing_send_confirmation.txt">Copy</button></div>
+            <div><span>Reply Save Path</span><code>data/rfq_reply_files/h_a/sigmaaldrich_media_testing_reply.txt</code><button type="button" data-copy="data/rfq_reply_files/h_a/sigmaaldrich_media_testing_reply.txt">Copy</button></div>
+            <div><span>Archive</span><code>data/nhi_pedot_h_a_rfq_dispatch_archive/nhi_pedot_h_a_rfq_dispatch_archive.zip</code><button type="button" data-copy="data/nhi_pedot_h_a_rfq_dispatch_archive/nhi_pedot_h_a_rfq_dispatch_archive.zip">Copy</button><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_dispatch_archive/nhi_pedot_h_a_rfq_dispatch_archive.zip">Open</a><small>b739036ff6d618bec4b57e1c028676338ef58599a11fb7a6822a6df9b725368b</small></div>
+          </div>
+        </section>
+        
+        <section class="vendor">
+          <div class="vendor-head">
+            <div>
+              <div class="track">ZRC-ND Phase A #1</div>
+              <h2>Pacific BioLabs Physicochemical Properties Testing</h2>
+            </div>
+            <div><span class="badge ready">ready_for_manual_dispatch</span> <span class="badge ready">ready_for_manual_dispatch</span></div>
+          </div>
+          <div class="grid">
+            <div><span>Recipient/Form</span><strong>https://pacificbiolabs.com/contact/</strong><div class="links"><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/https%3A/pacificbiolabs.com/contact">Contact</a> </div></div>
+            <div><span>Email text</span><code>data/zrc_nd_phase_a_rfq_outbox/emails/pacific_biolabs_physicochemical_rfq_email.txt</code><button type="button" data-copy="data/zrc_nd_phase_a_rfq_outbox/emails/pacific_biolabs_physicochemical_rfq_email.txt">Copy</button><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_outbox/emails/pacific_biolabs_physicochemical_rfq_email.txt">Open</a></div>
+            <div><span>Bundle</span><code>data/zrc_nd_phase_a_rfq_outbox/vendor_packages/pacific_biolabs_physicochemical_zrc_nd_phase_a_rfq_bundle.zip</code><button type="button" data-copy="data/zrc_nd_phase_a_rfq_outbox/vendor_packages/pacific_biolabs_physicochemical_zrc_nd_phase_a_rfq_bundle.zip">Copy</button><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_outbox/vendor_packages/pacific_biolabs_physicochemical_zrc_nd_phase_a_rfq_bundle.zip">Open</a><small>b00499c1a70ec472a11eb8d894c2a463d6cdd3bc3819011aeee203de8980ec3d</small></div>
+            <div><span>Confirmation Save Path</span><code>data/rfq_send_confirmation_files/zrc_phase_a/pacific_biolabs_physicochemical_send_confirmation.txt</code><button type="button" data-copy="data/rfq_send_confirmation_files/zrc_phase_a/pacific_biolabs_physicochemical_send_confirmation.txt">Copy</button></div>
+            <div><span>Reply Save Path</span><code>data/rfq_reply_files/zrc_phase_a/pacific_biolabs_physicochemical_reply.txt</code><button type="button" data-copy="data/rfq_reply_files/zrc_phase_a/pacific_biolabs_physicochemical_reply.txt">Copy</button></div>
+            <div><span>Archive</span><code>data/zrc_nd_phase_a_rfq_dispatch_archive/zrc_nd_phase_a_rfq_dispatch_archive.zip</code><button type="button" data-copy="data/zrc_nd_phase_a_rfq_dispatch_archive/zrc_nd_phase_a_rfq_dispatch_archive.zip">Copy</button><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_dispatch_archive/zrc_nd_phase_a_rfq_dispatch_archive.zip">Open</a><small>2a2ca661089a7d5ae0a91205968a383b98d7fbd90cea45c46fd4f6c8eab917d7</small></div>
+          </div>
+        </section>
+        
+        <section class="vendor">
+          <div class="vendor-head">
+            <div>
+              <div class="track">ZRC-ND Phase A #2</div>
+              <h2>MilliporeSigma Cell Culture Media Stability and Testing Services</h2>
+            </div>
+            <div><span class="badge ready">ready_for_manual_dispatch</span> <span class="badge ready">ready_for_manual_dispatch</span></div>
+          </div>
+          <div class="grid">
+            <div><span>Recipient/Form</span><strong>PSTechService@milliporesigma.com</strong><div class="links"><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/https%3A/www.sigmaaldrich.com/US/en/collections/offices">Contact</a> <a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/https%3A/www.sigmaaldrich.com/US/en/services/testing/cell-culture-media-stability-and-testing-services">Quote</a></div></div>
+            <div><span>Email text</span><code>data/zrc_nd_phase_a_rfq_outbox/emails/sigmaaldrich_media_testing_rfq_email.txt</code><button type="button" data-copy="data/zrc_nd_phase_a_rfq_outbox/emails/sigmaaldrich_media_testing_rfq_email.txt">Copy</button><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_outbox/emails/sigmaaldrich_media_testing_rfq_email.txt">Open</a></div>
+            <div><span>Bundle</span><code>data/zrc_nd_phase_a_rfq_outbox/vendor_packages/sigmaaldrich_media_testing_zrc_nd_phase_a_rfq_bundle.zip</code><button type="button" data-copy="data/zrc_nd_phase_a_rfq_outbox/vendor_packages/sigmaaldrich_media_testing_zrc_nd_phase_a_rfq_bundle.zip">Copy</button><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_outbox/vendor_packages/sigmaaldrich_media_testing_zrc_nd_phase_a_rfq_bundle.zip">Open</a><small>020855375daaa1e6afde37c0d84b3ecffe2ddaadb5ca88e44a02ed842ac3b8d2</small></div>
+            <div><span>Confirmation Save Path</span><code>data/rfq_send_confirmation_files/zrc_phase_a/sigmaaldrich_media_testing_send_confirmation.txt</code><button type="button" data-copy="data/rfq_send_confirmation_files/zrc_phase_a/sigmaaldrich_media_testing_send_confirmation.txt">Copy</button></div>
+            <div><span>Reply Save Path</span><code>data/rfq_reply_files/zrc_phase_a/sigmaaldrich_media_testing_reply.txt</code><button type="button" data-copy="data/rfq_reply_files/zrc_phase_a/sigmaaldrich_media_testing_reply.txt">Copy</button></div>
+            <div><span>Archive</span><code>data/zrc_nd_phase_a_rfq_dispatch_archive/zrc_nd_phase_a_rfq_dispatch_archive.zip</code><button type="button" data-copy="data/zrc_nd_phase_a_rfq_dispatch_archive/zrc_nd_phase_a_rfq_dispatch_archive.zip">Copy</button><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_dispatch_archive/zrc_nd_phase_a_rfq_dispatch_archive.zip">Open</a><small>2a2ca661089a7d5ae0a91205968a383b98d7fbd90cea45c46fd4f6c8eab917d7</small></div>
+          </div>
+        </section>
+        
+        <section class="vendor">
+          <div class="vendor-head">
+            <div>
+              <div class="track">ZRC-ND Phase A #3</div>
+              <h2>The Osmolality Lab</h2>
+            </div>
+            <div><span class="badge ready">ready_for_manual_dispatch</span> <span class="badge ready">ready_for_manual_dispatch</span></div>
+          </div>
+          <div class="grid">
+            <div><span>Recipient/Form</span><strong>info@osmolab.com</strong><div class="links"><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/https%3A/theosmolalitylab.com/contact-us">Contact</a> </div></div>
+            <div><span>Email text</span><code>data/zrc_nd_phase_a_rfq_outbox/emails/the_osmolality_lab_rfq_email.txt</code><button type="button" data-copy="data/zrc_nd_phase_a_rfq_outbox/emails/the_osmolality_lab_rfq_email.txt">Copy</button><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_outbox/emails/the_osmolality_lab_rfq_email.txt">Open</a></div>
+            <div><span>Bundle</span><code>data/zrc_nd_phase_a_rfq_outbox/vendor_packages/the_osmolality_lab_zrc_nd_phase_a_rfq_bundle.zip</code><button type="button" data-copy="data/zrc_nd_phase_a_rfq_outbox/vendor_packages/the_osmolality_lab_zrc_nd_phase_a_rfq_bundle.zip">Copy</button><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_outbox/vendor_packages/the_osmolality_lab_zrc_nd_phase_a_rfq_bundle.zip">Open</a><small>29125cb54ad2a21b1b161a4ecf22ec430b6c4109d8c208c4bd931a607373406f</small></div>
+            <div><span>Confirmation Save Path</span><code>data/rfq_send_confirmation_files/zrc_phase_a/the_osmolality_lab_send_confirmation.txt</code><button type="button" data-copy="data/rfq_send_confirmation_files/zrc_phase_a/the_osmolality_lab_send_confirmation.txt">Copy</button></div>
+            <div><span>Reply Save Path</span><code>data/rfq_reply_files/zrc_phase_a/the_osmolality_lab_reply.txt</code><button type="button" data-copy="data/rfq_reply_files/zrc_phase_a/the_osmolality_lab_reply.txt">Copy</button></div>
+            <div><span>Archive</span><code>data/zrc_nd_phase_a_rfq_dispatch_archive/zrc_nd_phase_a_rfq_dispatch_archive.zip</code><button type="button" data-copy="data/zrc_nd_phase_a_rfq_dispatch_archive/zrc_nd_phase_a_rfq_dispatch_archive.zip">Copy</button><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_dispatch_archive/zrc_nd_phase_a_rfq_dispatch_archive.zip">Open</a><small>2a2ca661089a7d5ae0a91205968a383b98d7fbd90cea45c46fd4f6c8eab917d7</small></div>
+          </div>
+        </section>
+        
+        <section class="vendor">
+          <div class="vendor-head">
+            <div>
+              <div class="track">ZRC-ND Phase A #4</div>
+              <h2>Jordi Labs Analytical Testing</h2>
+            </div>
+            <div><span class="badge ready">ready_for_manual_dispatch</span> <span class="badge ready">ready_for_manual_dispatch</span></div>
+          </div>
+          <div class="grid">
+            <div><span>Recipient/Form</span><strong>info@jordilabs.com</strong><div class="links"><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/https%3A/jordilabs.com/contact">Contact</a> </div></div>
+            <div><span>Email text</span><code>data/zrc_nd_phase_a_rfq_outbox/emails/jordi_labs_el_polymer_rfq_email.txt</code><button type="button" data-copy="data/zrc_nd_phase_a_rfq_outbox/emails/jordi_labs_el_polymer_rfq_email.txt">Copy</button><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_outbox/emails/jordi_labs_el_polymer_rfq_email.txt">Open</a></div>
+            <div><span>Bundle</span><code>data/zrc_nd_phase_a_rfq_outbox/vendor_packages/jordi_labs_el_polymer_zrc_nd_phase_a_rfq_bundle.zip</code><button type="button" data-copy="data/zrc_nd_phase_a_rfq_outbox/vendor_packages/jordi_labs_el_polymer_zrc_nd_phase_a_rfq_bundle.zip">Copy</button><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_outbox/vendor_packages/jordi_labs_el_polymer_zrc_nd_phase_a_rfq_bundle.zip">Open</a><small>9c91fd2364629fa9c84d200d10a6ef041e479bcac16a50dc70082a3bb31750c3</small></div>
+            <div><span>Confirmation Save Path</span><code>data/rfq_send_confirmation_files/zrc_phase_a/jordi_labs_el_polymer_send_confirmation.txt</code><button type="button" data-copy="data/rfq_send_confirmation_files/zrc_phase_a/jordi_labs_el_polymer_send_confirmation.txt">Copy</button></div>
+            <div><span>Reply Save Path</span><code>data/rfq_reply_files/zrc_phase_a/jordi_labs_el_polymer_reply.txt</code><button type="button" data-copy="data/rfq_reply_files/zrc_phase_a/jordi_labs_el_polymer_reply.txt">Copy</button></div>
+            <div><span>Archive</span><code>data/zrc_nd_phase_a_rfq_dispatch_archive/zrc_nd_phase_a_rfq_dispatch_archive.zip</code><button type="button" data-copy="data/zrc_nd_phase_a_rfq_dispatch_archive/zrc_nd_phase_a_rfq_dispatch_archive.zip">Copy</button><a href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_rfq_dispatch_archive/zrc_nd_phase_a_rfq_dispatch_archive.zip">Open</a><small>2a2ca661089a7d5ae0a91205968a383b98d7fbd90cea45c46fd4f6c8eab917d7</small></div>
+          </div>
+        </section>
+        
+    <section class="commands">
+      <h2>Commands After Real Files Are Saved</h2>
+      <ol><li><code>python3 scripts/process_limina_first_wave_post_dispatch.py</code></li><li><code>python3 scripts/run_limina_iteration.py</code></li></ol>
+    </section>
+    <p class="muted">This cockpit is dispatch scaffolding only. It does not send RFQs, create send confirmations, create measurements, select providers, authorize execution, or support any material suitability claim.</p>
+  </main>
+  <script>
+    document.addEventListener('click', async (event) => {
+      const button = event.target.closest('[data-copy]');
+      if (!button) return;
+      try {
+        await navigator.clipboard.writeText(button.dataset.copy);
+        const previous = button.textContent;
+        button.textContent = 'Copied';
+        setTimeout(() => { button.textContent = previous; }, 900);
+      } catch (error) {
+        button.textContent = 'Copy failed';
+      }
+    });
+  </script>
+</body>
+</html>

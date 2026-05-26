@@ -1,0 +1,9 @@
+{
+  "id": "wetware_support_hardware",
+  "name": "Wetware support hardware readiness",
+  "domain": "wetware-support-hardware",
+  "description": "Evidence-gated workflow for support hardware such as cartridges, manifolds, tubing, and windows before they are allowed to support living wetware experiments.",
+  "project_config": "project.json",
+  "demo_evidence": "evidence_pass_demo.csv",
+  "placeholder_evidence": "evidence_placeholder_demo.csv"
+}

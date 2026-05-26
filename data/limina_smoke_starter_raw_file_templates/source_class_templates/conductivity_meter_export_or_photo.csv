@@ -1,0 +1,3 @@
+queue_id,run_id,sample_event,target_field,measured_at,operator_or_agent,instrument_id,value,unit,source_file_to_save_as,method_or_record_id,notes,conductivity_mS_cm,conductivity_meter_id,standard_check_record_id,temperature_c
+SQ-0106,NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h,initial,conductivity,,,,,mS/cm,data/source_files/smoke/h_a/NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h/initial_conductivity_initial_mS_cm_conductivity_meter_export_or_photo.csv,,,,,,
+SQ-0109,NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h,final,conductivity,,,,,mS/cm,data/source_files/smoke/h_a/NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h/final_conductivity_final_mS_cm_conductivity_meter_export_or_photo.csv,,,,,,

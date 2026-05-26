@@ -1,0 +1,11 @@
+{
+  "applied_status": "h_a_bundle_entry_apply_applied",
+  "checks": {
+    "no_apply_does_not_mutate_source_values": true,
+    "rendered_initial_and_final_value_columns": true,
+    "rendered_one_bundle_row": true,
+    "valid_bundle_updates_two_source_rows": true
+  },
+  "no_apply_status": "h_a_bundle_entry_apply_no_apply_rows",
+  "status": "pass"
+}

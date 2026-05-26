@@ -1,0 +1,14 @@
+{
+  "boundary": "No smoke merge rehearsal was run because the smoke capture preflight is not ready.",
+  "commands": [],
+  "filled_task_count": 0,
+  "generated_artifacts": {},
+  "issue_counts": {
+    "error": 0,
+    "warning": 0
+  },
+  "pending_task_count": 172,
+  "preflight_ready": false,
+  "preflight_status": "local_capture_preflight_awaiting_entries",
+  "status": "smoke_rehearsal_waiting_for_preflight"
+}

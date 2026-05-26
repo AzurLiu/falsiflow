@@ -1,0 +1,69 @@
+{
+  "assertions": [
+    {
+      "detail": "claimable=False",
+      "name": "missing_source_not_claimable",
+      "passed": true
+    },
+    {
+      "detail": "placeholder_markers=['source_file=missing']",
+      "name": "blank_source_file_is_placeholder",
+      "passed": true
+    },
+    {
+      "detail": "source_file_issue_count=1",
+      "name": "missing_source_file_is_issue",
+      "passed": true
+    },
+    {
+      "detail": "claimable=True; measured=1",
+      "name": "existing_allowed_source_can_be_claimable",
+      "passed": true
+    }
+  ],
+  "missing_source": {
+    "claimable_measurement_source": false,
+    "exists": true,
+    "measured_row_count": 0,
+    "path": "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_source_file_guard_6lj7vtcu/missing_source.csv",
+    "path_fixture_marker": false,
+    "placeholder_examples": [
+      {
+        "markers": [
+          "source_file=missing"
+        ],
+        "row_number": 1,
+        "run_id": "measured_like_missing_source"
+      }
+    ],
+    "placeholder_row_count": 1,
+    "row_count": 2,
+    "source_file_issue_count": 1,
+    "source_file_issue_examples": [
+      {
+        "issues": [
+          "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_source_file_guard_6lj7vtcu/allowed_sources/missing_export.csv: source file does not exist"
+        ],
+        "row_number": 2,
+        "run_id": "measured_like_missing_file"
+      }
+    ],
+    "synthetic_examples": [],
+    "synthetic_row_count": 0
+  },
+  "positive_source": {
+    "claimable_measurement_source": true,
+    "exists": true,
+    "measured_row_count": 1,
+    "path": "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_source_file_guard_6lj7vtcu/positive_source.csv",
+    "path_fixture_marker": false,
+    "placeholder_examples": [],
+    "placeholder_row_count": 0,
+    "row_count": 1,
+    "source_file_issue_count": 0,
+    "source_file_issue_examples": [],
+    "synthetic_examples": [],
+    "synthetic_row_count": 0
+  },
+  "status": "pass"
+}

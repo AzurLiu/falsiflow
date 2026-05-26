@@ -1,0 +1,40 @@
+{
+  "accepted_sidecar_schema": [
+    "run_id",
+    "sample_event",
+    "target_field",
+    "value",
+    "unit",
+    "measured_at",
+    "operator_or_agent",
+    "instrument_id",
+    "source_file",
+    "notes"
+  ],
+  "boundary": "This importer only copies source-file-backed H-A values into the formal raw template. It does not create evidence; merge, source-file validation, H-A QC, interpretation, and claim audit still control the gate.",
+  "imported_rows": [],
+  "inputs": {
+    "raw": "data/nhi_pedot_h_a_raw_measurements_template.csv",
+    "source_manifest": "data/limina_source_file_manifest.json",
+    "value_globs": [
+      "data/nhi_pedot_h_a_raw_csv_extracted_values.csv",
+      "data/nhi_pedot_h_a_vendor_return_inbox/completed_raw_measurements.csv"
+    ]
+  },
+  "issues": [],
+  "source_value_files": [
+    "data/nhi_pedot_h_a_raw_csv_extracted_values.csv",
+    "data/nhi_pedot_h_a_source_values.csv"
+  ],
+  "status": "h_a_source_value_import_no_importable_rows",
+  "summary": {
+    "changed_rows": 0,
+    "error_count": 0,
+    "imported_rows": 0,
+    "skipped_blank_rows": 228,
+    "source_value_files": 2,
+    "source_value_rows": 228,
+    "unchanged_rows": 0,
+    "warning_count": 0
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "boundary": "This is a fillable intake sheet for source-backed values only. It is not a raw source file and does not count as measured evidence.",
+  "generated_artifacts": {
+    "json": "data/limina_smoke_source_values_sheet.json",
+    "report": "reports/limina_smoke_source_values_sheet.md",
+    "sheet": "data/limina_smoke_source_values.csv",
+    "starter_batch": "data/limina_smoke_source_values_starter_batch.csv"
+  },
+  "inputs": {
+    "entry_sheet": "data/limina_smoke_entry_sheet.csv",
+    "source_drop_plan": "data/limina_smoke_source_drop_plan.csv"
+  },
+  "status": "smoke_source_values_sheet_ready",
+  "summary": {
+    "batch_counts": {
+      "B0_HA_setup_records": 42,
+      "B1_HA_local_measurements": 60,
+      "B2_HA_osmolality_external": 12,
+      "B3_ZRC_parallel_local": 50,
+      "B4_ZRC_external_osmolality": 8
+    },
+    "filled_value_rows": 0,
+    "import_ready_rows": 0,
+    "recommended_round_counts": {
+      "R0_pipeline_debug_single_h_a_lead_24h": 19,
+      "R1_h_a_local_and_records": 85,
+      "R2_h_a_osmolality_external": 10,
+      "R3_zrc_local_and_records": 50,
+      "R4_zrc_osmolality_external": 8
+    },
+    "source_file_exists_rows": 0,
+    "source_value_rows": 172,
+    "starter_batch_rows": 19
+  }
+}

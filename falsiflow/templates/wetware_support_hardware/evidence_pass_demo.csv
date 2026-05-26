@@ -1,0 +1,14 @@
+gate_id,candidate_id,sample_id,field,value,source_file,measured_at,operator_or_agent,instrument_id,notes
+hardware_provenance,support_cartridge_demo,hardware_demo_001,material_lot_recorded,true,source_files/hardware_raw_export.csv,2026-05-25T08:00:00Z,falsiflow_demo_operator,,Material provenance pass example.
+hardware_provenance,support_cartridge_demo,hardware_demo_001,fluid_path_materials_recorded,true,source_files/hardware_raw_export.csv,2026-05-25T08:00:00Z,falsiflow_demo_operator,,Fluid path provenance pass example.
+hardware_provenance,support_cartridge_demo,hardware_demo_001,cleaning_or_sterilization_recorded,true,source_files/hardware_raw_export.csv,2026-05-25T08:00:00Z,falsiflow_demo_operator,,Handling provenance pass example.
+medium_contact_stability,support_cartridge_demo,hardware_demo_001,ph_initial,7.20,source_files/hardware_raw_export.csv,2026-05-25T09:00:00Z,falsiflow_demo_operator,meter_demo_001,Medium stability pass example.
+medium_contact_stability,support_cartridge_demo,hardware_demo_001,ph_final,7.26,source_files/hardware_raw_export.csv,2026-05-25T09:00:00Z,falsiflow_demo_operator,meter_demo_001,Medium stability pass example.
+medium_contact_stability,support_cartridge_demo,hardware_demo_001,osmolality_initial_mosm,300,source_files/hardware_raw_export.csv,2026-05-25T09:00:00Z,falsiflow_demo_operator,osmometer_demo_001,Medium stability pass example.
+medium_contact_stability,support_cartridge_demo,hardware_demo_001,osmolality_final_mosm,307,source_files/hardware_raw_export.csv,2026-05-25T09:00:00Z,falsiflow_demo_operator,osmometer_demo_001,Medium stability pass example.
+medium_contact_stability,support_cartridge_demo,hardware_demo_001,protein_retention_fraction,0.96,source_files/hardware_raw_export.csv,2026-05-25T09:00:00Z,falsiflow_demo_operator,plate_reader_demo_001,Medium stability pass example.
+medium_contact_stability,support_cartridge_demo,hardware_demo_001,visible_particles_present,false,source_files/hardware_raw_export.csv,2026-05-25T09:00:00Z,falsiflow_demo_operator,visual_qc_demo_001,Medium stability pass example.
+operational_safety,support_cartridge_demo,hardware_demo_001,leak_present,false,source_files/hardware_raw_export.csv,2026-05-25T11:00:00Z,falsiflow_demo_operator,pressure_rig_demo_001,Operational safety pass example.
+operational_safety,support_cartridge_demo,hardware_demo_001,bubble_event_count,0,source_files/hardware_raw_export.csv,2026-05-25T11:00:00Z,falsiflow_demo_operator,flow_camera_demo_001,Operational safety pass example.
+operational_safety,support_cartridge_demo,hardware_demo_001,flow_resistance_increase_pct,4.5,source_files/hardware_raw_export.csv,2026-05-25T11:00:00Z,falsiflow_demo_operator,pressure_rig_demo_001,Operational safety pass example.
+operational_safety,support_cartridge_demo,hardware_demo_001,sensor_noise_increase_pct,3.0,source_files/hardware_raw_export.csv,2026-05-25T11:00:00Z,falsiflow_demo_operator,noise_meter_demo_001,Operational safety pass example.

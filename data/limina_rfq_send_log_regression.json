@@ -1,0 +1,17 @@
+{
+  "applied_status": "regression_rfq_send_log_applied",
+  "checks": {
+    "bad_hash_does_not_apply_tracker_date": true,
+    "bad_hash_rejected": true,
+    "initial_tracker_unchanged": true,
+    "initial_waits_without_sent_rows": true,
+    "missing_confirmation_does_not_apply_tracker_date": true,
+    "missing_confirmation_source_rejected": true,
+    "valid_send_applies_one_tracker_date": true,
+    "valid_send_is_source_backed": true
+  },
+  "initial_status": "regression_rfq_send_log_waiting_for_sent_entries",
+  "missing_confirmation_status": "regression_rfq_send_log_has_errors",
+  "rejected_status": "regression_rfq_send_log_has_errors",
+  "status": "pass"
+}

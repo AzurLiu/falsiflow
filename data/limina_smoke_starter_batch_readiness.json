@@ -1,0 +1,29 @@
+{
+  "boundary": "Starter readiness only checks whether rows can be imported. It is not measured evidence and cannot satisfy any material suitability claim.",
+  "generated_artifacts": {
+    "csv": "data/limina_smoke_starter_batch_readiness.csv",
+    "json": "data/limina_smoke_starter_batch_readiness.json",
+    "report": "reports/limina_smoke_starter_batch_readiness.md"
+  },
+  "inputs": {
+    "source_manifest": "data/limina_source_file_manifest.json",
+    "source_values": "data/limina_smoke_source_values.csv",
+    "starter_round": "R0_pipeline_debug_single_h_a_lead_24h"
+  },
+  "post_ready_command": "python3 scripts/run_limina_iteration.py",
+  "status": "smoke_starter_batch_awaiting_values",
+  "summary": {
+    "blocked_rows": 19,
+    "filled_value_rows": 0,
+    "missing_item_counts": {
+      "instrument_id": 12,
+      "measured_at": 19,
+      "operator_or_agent": 19,
+      "source_file_missing": 19,
+      "value": 19
+    },
+    "ready_for_import_rows": 0,
+    "source_file_exists_rows": 0,
+    "starter_rows": 19
+  }
+}

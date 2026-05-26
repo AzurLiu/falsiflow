@@ -1,0 +1,51 @@
+name: Falsiflow Publish
+
+on:
+  workflow_dispatch:
+  release:
+    types:
+      - published
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  build-dist:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Build and check distributions
+        run: |
+          python -m pip install --upgrade build twine
+          python -m build
+          python -m twine check dist/*
+      - name: Release check
+        run: |
+          python scripts/falsiflow.py release-check \
+            --out-dir /tmp/falsiflow_release_check \
+            --json > /tmp/falsiflow_release_check.json
+      - name: Upload distribution artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: falsiflow-dist
+          path: dist/*
+
+  publish-pypi:
+    if: github.event_name == 'release'
+    needs: build-dist
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/falsiflow/
+    steps:
+      - name: Download distribution artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: falsiflow-dist
+          path: dist
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1

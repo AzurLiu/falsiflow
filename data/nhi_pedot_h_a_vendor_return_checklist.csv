@@ -1,0 +1,6 @@
+item_id,expected_path,required,exists,status,acceptance
+completed_raw_measurements,data/nhi_pedot_h_a_vendor_return_inbox/completed_raw_measurements.csv,true,false,missing_or_incomplete,"CSV has RAW_FIELDS schema, real value rows, provenance fields, and source_file references."
+completed_bundle_entry_sheet,data/nhi_pedot_h_a_vendor_return_inbox/completed_bundle_entry_sheet.csv,false,true,missing_or_incomplete,"Optional compact CSV has bundle-entry schema, ready apply=yes rows, and source_file references."
+completed_chain_of_custody,data/nhi_pedot_h_a_vendor_return_inbox/completed_chain_of_custody.csv,true,false,missing_or_incomplete,CSV uses the chain-of-custody schema with transfer fields filled for returned samples.
+instrument_exports,data/nhi_pedot_h_a_vendor_return_inbox/external_lab_exports,true,true,missing_or_empty,Directory contains original instrument exports/images referenced by source_file.
+deviation_log,data/nhi_pedot_h_a_vendor_return_inbox/deviation_log.md,true,false,missing,Markdown or text log states no deviations or lists every protocol/sample/instrument deviation.

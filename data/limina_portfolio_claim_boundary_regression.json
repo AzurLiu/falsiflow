@@ -1,0 +1,94 @@
+{
+  "assertions": [
+    {
+      "detail": "returncode=0; stderr=",
+      "name": "selector_command_succeeded",
+      "passed": true
+    },
+    {
+      "detail": "portfolio status=claim_audit_required",
+      "name": "portfolio_does_not_claim_suitable_material_present",
+      "passed": true
+    },
+    {
+      "detail": "portfolio status=claim_audit_required",
+      "name": "portfolio_requires_claim_audit",
+      "passed": true
+    },
+    {
+      "detail": "zrc status=readiness_gates_passed_claim_audit_required",
+      "name": "zrc_suitable_readiness_still_requires_claim_audit",
+      "passed": true
+    },
+    {
+      "detail": "nhi status=long_gates_passed_claim_audit_required",
+      "name": "nhi_long_pass_still_requires_claim_audit",
+      "passed": true
+    }
+  ],
+  "command": {
+    "returncode": 0,
+    "stderr": "",
+    "stdout": "Portfolio: claim_audit_required\nPrimary next branch: limina_nhi_pedot_laminin_v0_1\nWrote /var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_portfolio_claim_boundary_z5gn8vay/portfolio.json\nWrote /var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_portfolio_claim_boundary_z5gn8vay/portfolio.md"
+  },
+  "portfolio": {
+    "active_discovery_candidate": "limina_alg_lam_pedot_lowdose_v0_2",
+    "active_discovery_priority": "promote_now",
+    "branches": [
+      {
+        "name": "NHI-PEDOT",
+        "next_action": "Run the final suitability claim audit for the active ALG-LAM-PEDOT candidate; long-duration gates report pass, but source-file provenance still controls the claim.",
+        "portfolio_priority": 0,
+        "portfolio_status": "long_gates_passed_claim_audit_required",
+        "priority_lane": "LIMINA-Cell-1",
+        "proof_boundary": "Not suitable until final claim audit verifies H-A/H-B/H-C and long-duration source-file provenance.",
+        "readiness_status": "h_a=h_a_lead_passes_continue_h_b;h_a_service=ready_to_request_real_measurements;coupon=nhi_pedot_passes_gates;long=nhi_pedot_long_passes_gates",
+        "sentinel_status": "not_applicable",
+        "technology_id": "limina_nhi_pedot_laminin_v0_1",
+        "technology_status": "nominated",
+        "validation_packages": {
+          "all_present": true,
+          "expected": [
+            "data/nhi_pedot_validation_package.json",
+            "data/nhi_pedot_long_followup_package.json"
+          ],
+          "present": [
+            "data/nhi_pedot_validation_package.json",
+            "data/nhi_pedot_long_followup_package.json"
+          ]
+        },
+        "weighted_internal_score": 4.08
+      },
+      {
+        "name": "ZRC-ND",
+        "next_action": "Run the final suitability claim audit; readiness gates report suitable, but portfolio cannot declare suitability without claimable source-file provenance.",
+        "portfolio_priority": 0,
+        "portfolio_status": "readiness_gates_passed_claim_audit_required",
+        "priority_lane": "LIMINA-External-1",
+        "proof_boundary": "Not suitable until the final claim audit verifies measured non-cell and biological provenance.",
+        "readiness_status": "suitable",
+        "sentinel_status": "sentinel_passes_continue",
+        "technology_id": "limina_zrc_nd_v0_1",
+        "technology_status": "nominated",
+        "validation_packages": {
+          "all_present": true,
+          "expected": [
+            "data/zrc_nd_3p5k_guard_validation_package.json",
+            "data/zrc_nd_biological_followup_package.json"
+          ],
+          "present": [
+            "data/zrc_nd_3p5k_guard_validation_package.json",
+            "data/zrc_nd_biological_followup_package.json"
+          ]
+        },
+        "weighted_internal_score": 4.02
+      }
+    ],
+    "primary_next_branch": "limina_nhi_pedot_laminin_v0_1",
+    "status": "claim_audit_required"
+  },
+  "portfolio_status": "claim_audit_required",
+  "primary_next_branch": "limina_nhi_pedot_laminin_v0_1",
+  "status": "pass",
+  "tmp_dir": "/var/folders/z5/yhrnv1l15ng04x9hykysm46w0000gn/T/limina_portfolio_claim_boundary_z5gn8vay"
+}

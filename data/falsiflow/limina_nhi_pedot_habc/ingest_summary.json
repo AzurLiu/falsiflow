@@ -1,0 +1,25 @@
+{
+  "evidence_out": "data/falsiflow/limina_nhi_pedot_habc/evidence_from_source_values.csv",
+  "evidence_rows": 820,
+  "gates": [
+    "h_a_medium_stability",
+    "h_b_electrical_interface",
+    "h_c_network_response"
+  ],
+  "inputs": [
+    {
+      "evidence_rows": 228,
+      "input_rows": 228,
+      "path": "data/nhi_pedot_h_a_source_values.csv"
+    },
+    {
+      "evidence_rows": 592,
+      "input_rows": 592,
+      "path": "data/nhi_pedot_forward_source_values.csv"
+    }
+  ],
+  "project_gate_count": 3,
+  "project_out": "configs/falsiflow/limina_nhi_pedot_habc/project.json",
+  "skipped_rows": 0,
+  "status": "converted"
+}

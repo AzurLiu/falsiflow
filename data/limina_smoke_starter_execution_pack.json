@@ -1,0 +1,35 @@
+{
+  "boundary": "This execution pack is an operational checklist only. It does not create raw files, measured rows, or material-suitability evidence.",
+  "generated_artifacts": {
+    "csv": "data/limina_smoke_starter_execution_pack.csv",
+    "json": "data/limina_smoke_starter_execution_pack.json",
+    "report": "reports/limina_smoke_starter_execution_pack.md"
+  },
+  "inputs": {
+    "source_manifest": "data/limina_source_file_manifest.json",
+    "source_values": "data/limina_smoke_source_values.csv",
+    "starter_readiness": "data/limina_smoke_starter_batch_readiness.csv"
+  },
+  "post_fill_commands": [
+    "python3 scripts/audit_limina_smoke_starter_batch_readiness.py",
+    "python3 scripts/run_limina_iteration.py"
+  ],
+  "status": "smoke_starter_execution_pack_ready",
+  "summary": {
+    "blocked_rows": 19,
+    "ready_for_import_rows": 0,
+    "source_class_counts": {
+      "bench_or_chain_of_custody_record": 3,
+      "conductivity_meter_export_or_photo": 2,
+      "image_or_scoring_worksheet": 4,
+      "osmometer_report_or_export": 2,
+      "pH_meter_export_or_photo": 2,
+      "supplier_or_build_record": 4,
+      "swelling_dimension_or_mass_worksheet": 1,
+      "temperature_or_incubator_log": 1
+    },
+    "source_dir_count": 1,
+    "source_file_exists_rows": 0,
+    "starter_rows": 19
+  }
+}

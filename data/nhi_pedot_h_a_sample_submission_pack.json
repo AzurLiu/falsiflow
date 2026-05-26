@@ -1,0 +1,157 @@
+{
+  "active_candidate": "limina_alg_lam_pedot_lowdose_v0_2",
+  "boundary": "This pack is a nonclinical R&D material disclosure and shipping-readiness checklist. It is not a certified SDS, toxicology opinion, biological safety approval, or material evidence.",
+  "chain_of_custody_rows": 36,
+  "component_rows": [
+    {
+      "actual_lot_required": "yes",
+      "component": "MEA witness coupon or equivalent electrode-window coupon",
+      "hazard_or_handling_note": "No electronics need to be powered; disclose substrate material and any cleaning/sterilization residues.",
+      "planned_description": "Actual coupon material, geometry, and surface treatment must be recorded before shipment.",
+      "role": "device-contact substrate/control surface",
+      "sds_required_before_shipping": "vendor_dependent"
+    },
+    {
+      "actual_lot_required": "yes",
+      "component": "Sodium alginate",
+      "hazard_or_handling_note": "Provide supplier SDS and lot; keep dry powder handling separate from hydrated coupon shipment notes.",
+      "planned_description": "alginate_laminin_2pct_wv_caso4_dmem",
+      "role": "hydrogel matrix",
+      "sds_required_before_shipping": "yes"
+    },
+    {
+      "actual_lot_required": "yes",
+      "component": "Calcium sulfate dihydrate",
+      "hazard_or_handling_note": "Provide supplier SDS and final preparation batch ID.",
+      "planned_description": "183 mM calcium sulfate dihydrate dispersed in 1x DMEM for gelation.",
+      "role": "ionic crosslinker",
+      "sds_required_before_shipping": "yes"
+    },
+    {
+      "actual_lot_required": "yes",
+      "component": "DMEM or DMEM/F12 / CL1-proxy medium",
+      "hazard_or_handling_note": "Disclose all supplements if used; do not send biohazardous or cell-containing material.",
+      "planned_description": "Actual medium name and lot must be entered in H-A rows; no live cells are included.",
+      "role": "crosslinking and soak medium",
+      "sds_required_before_shipping": "yes"
+    },
+    {
+      "actual_lot_required": "yes",
+      "component": "PEDOT:PSS dispersion",
+      "hazard_or_handling_note": "Provide supplier SDS, loading fraction, pre-rinse/conditioning record, and whether free dispersion is present in shipped aliquots.",
+      "planned_description": "0.6 wt percent PEDOT:PSS lead, selected from the published neural-culture loading",
+      "role": "conductive phase",
+      "sds_required_before_shipping": "yes"
+    },
+    {
+      "actual_lot_required": "yes",
+      "component": "Laminin or equivalent cell-adhesion cue",
+      "hazard_or_handling_note": "Disclose biological source if applicable; no live cells or human subject material should be included.",
+      "planned_description": "EHS laminin or equivalent laminin cue retained above or within the hydrogel",
+      "role": "neural cell-contact cue retained above or within hydrogel",
+      "sds_required_before_shipping": "yes"
+    },
+    {
+      "actual_lot_required": "yes",
+      "component": "Acellular soak aliquots",
+      "hazard_or_handling_note": "Confirm volume, container, temperature, and no-biohazard acceptance with vendor before shipment.",
+      "planned_description": "Pre/post aliquots for pH, osmolality, conductivity, and appearance after 0 h, 24 h, and 72 h H-A soaks.",
+      "role": "media physicochemical test article",
+      "sds_required_before_shipping": "vendor_dependent"
+    }
+  ],
+  "nonclinical_statement": "Planned H-A samples are nonclinical R&D, acellular medium/coupon samples with no live cells and no intended human or animal use.",
+  "outputs": {
+    "component_csv": "data/nhi_pedot_h_a_material_disclosure.csv",
+    "json": "data/nhi_pedot_h_a_sample_submission_pack.json",
+    "report": "reports/nhi_pedot_h_a_sample_submission_pack.md"
+  },
+  "pre_ship_questions": [
+    "Will you accept acellular neural-medium soak aliquots and hydrated hydrogel/MEA witness coupons as nonclinical R&D samples?",
+    "What minimum aliquot volume and coupon count are required for pH, osmolality, conductivity, and imaging/inspection?",
+    "Which supplier SDS files, lot numbers, and preparation-batch records are required before shipment?",
+    "Do you require a quote number, sample submission form, purchase order, or project ID before samples are sent?",
+    "What container, temperature, timing, and chain-of-custody requirements apply to 0 h, 24 h, and 72 h samples?",
+    "Can returned files preserve run_id, sample_event, target_field, source_file, and instrument export provenance?"
+  ],
+  "protocol_id": "nhi_pedot_alg_lam_protocol_v0_2",
+  "purpose": "Prepare vendor-facing sample composition, nonclinical status, and pre-shipment questions for the NHI-PEDOT H-A RFQ.",
+  "rejection_rules": [
+    "Do not ship any live cells, human subject material, animal tissue, or unknown biological material.",
+    "Do not ship hydrated PEDOT:PSS/alginate/laminin samples until the vendor confirms SDS and sample acceptance requirements.",
+    "Do not treat vendor acceptance, quote numbers, or sample-submission forms as measured evidence.",
+    "Do not substitute vendor-proposed pooled reporting for LIMINA run_id-level raw data without a documented rejection or split-scope decision."
+  ],
+  "requested_raw_entries": 228,
+  "requested_runs": 12,
+  "sample_event_count": 36,
+  "sample_label_count": 36,
+  "shipping_status": "do_not_ship_until_vendor_confirms_quote_sample_acceptance_sds_and_custody",
+  "status": "sample_submission_precheck_ready",
+  "vendor_pre_ship_rows": [
+    {
+      "candidate_id": "materials_metric",
+      "pre_ship_action": "Use the service/quote request path first if a file upload is available; otherwise email the RFQ text and attach the vendor zip bundle.",
+      "pre_ship_status": "do_not_ship_until_vendor_confirms",
+      "quote_or_contact_url": "https://materialsmetric.com/contact-us/",
+      "sample_submission_url": "",
+      "vendor_name": "Materials Metric"
+    },
+    {
+      "candidate_id": "the_osmolality_lab",
+      "pre_ship_action": "Ask explicitly whether acellular neural-medium aliquots with PEDOT:PSS/alginate/laminin exposure fit their non-blood/non-urine and no-biohazard sample policy.",
+      "pre_ship_status": "do_not_ship_until_vendor_confirms",
+      "quote_or_contact_url": "https://theosmolalitylab.com/contact-us/",
+      "sample_submission_url": "https://theosmolalitylab.com/submit-samples/",
+      "vendor_name": "The Osmolality Lab"
+    },
+    {
+      "candidate_id": "cambridge_polymer_group_hydrogel",
+      "pre_ship_action": "Use the quote form for initial feasibility; do not ship samples until a quote number, sample submission form, SDS expectations, and custody requirements are confirmed.",
+      "pre_ship_status": "do_not_ship_until_vendor_confirms",
+      "quote_or_contact_url": "https://quote.campoly.com/material-testing/",
+      "sample_submission_url": "https://www.campoly.com/contact-us/submit-sample/",
+      "vendor_name": "Cambridge Polymer Group"
+    },
+    {
+      "candidate_id": "sigmaaldrich_media_testing",
+      "pre_ship_action": "Use the service page/contact path first; if routed through support, ask them to assign the RFQ to cell culture media stability/testing or Process Solutions custom testing.",
+      "pre_ship_status": "do_not_ship_until_vendor_confirms",
+      "quote_or_contact_url": "https://www.sigmaaldrich.com/US/en/services/testing/cell-culture-media-stability-and-testing-services",
+      "sample_submission_url": "",
+      "vendor_name": "MilliporeSigma Cell Culture Media Stability and Testing Services"
+    },
+    {
+      "candidate_id": "intertek_china_healthcare_testing",
+      "pre_ship_action": "Use only after first-wave stalls or if China/APAC logistics are preferred; ask for non-GLP R&D routing and raw CSV return.",
+      "pre_ship_status": "do_not_ship_until_vendor_confirms",
+      "quote_or_contact_url": "https://www.intertek.com.cn/contact/",
+      "sample_submission_url": "",
+      "vendor_name": "Intertek China Healthcare and Medical Device Testing"
+    },
+    {
+      "candidate_id": "wuxi_apptec_medical_device_testing",
+      "pre_ship_action": "Best as chemistry/E&L or biocompatibility escalation after H-A or if local China execution is required.",
+      "pre_ship_status": "do_not_ship_until_vendor_confirms",
+      "quote_or_contact_url": "https://www.wuxiapptec.com/contact",
+      "sample_submission_url": "",
+      "vendor_name": "WuXi AppTec Medical Device Testing"
+    },
+    {
+      "candidate_id": "tuv_sud_china_medical_device_testing",
+      "pre_ship_action": "Use as second-wave regulatory/ISO route; ask whether non-GLP raw run_id-level testing can be scoped separately.",
+      "pre_ship_status": "do_not_ship_until_vendor_confirms",
+      "quote_or_contact_url": "https://www.tuvsud.cn/zh-cn/contact-us",
+      "sample_submission_url": "",
+      "vendor_name": "TUV SUD China Medical Device Testing"
+    },
+    {
+      "candidate_id": "pony_testing_medical_device",
+      "pre_ship_action": "Use as China-local broad screening fallback only if the response commits to raw sample-level values and source-file provenance.",
+      "pre_ship_status": "do_not_ship_until_vendor_confirms",
+      "quote_or_contact_url": "https://www.ponytest.com/",
+      "sample_submission_url": "",
+      "vendor_name": "PONY Testing Medical Device and Life-Science Services"
+    }
+  ]
+}

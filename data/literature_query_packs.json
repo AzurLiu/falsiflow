@@ -1,0 +1,52 @@
+{
+  "version": "0.1",
+  "packs": [
+    {
+      "id": "limina_external_1_waste_cartridge",
+      "priority": "LIMINA-External-1",
+      "goal": "Find materials and modules that remove neuronal culture waste while preserving trophic factors and secretome signals.",
+      "queries": [
+        "neuronal culture perfusion waste removal lactate ammonium growth factor retention membrane",
+        "cell culture medium dialysis growth factor retention lactate ammonia removal",
+        "regenerated cellulose dialysis membrane cell culture media protein retention",
+        "zwitterionic antifouling membrane protein adsorption cell culture media",
+        "ion exchange membrane ammonium removal mammalian cell culture medium",
+        "lactate removal mammalian cell culture medium enzyme cartridge hydrogen peroxide risk",
+        "microfluidic neural culture perfusion waste exchange secretome retention",
+        "spent media regeneration ion concentration polarization ammonium lactate removal"
+      ]
+    },
+    {
+      "id": "limina_external_2_tubeset_manifold",
+      "priority": "LIMINA-External-2",
+      "goal": "Find low-adsorption, low-leachable tubing/manifold materials for neuronal media perfusion.",
+      "queries": [
+        "cell culture tubing material adsorption growth factors silicone FEP PTFE PEEK",
+        "microfluidic cell culture PDMS absorption hydrophobic molecules alternatives COC COP",
+        "organ on chip thermoplastic material leachables COC PMMA cell culture",
+        "platinum cured silicone tubing extractables cell culture medium"
+      ]
+    },
+    {
+      "id": "limina_external_3_gas_exchange",
+      "priority": "LIMINA-External-3",
+      "goal": "Find gas-exchange membranes that control O2/CO2/pH without excessive evaporation or medium adsorption.",
+      "queries": [
+        "cell culture gas exchange membrane silicone fluoropolymer evaporation oxygen carbon dioxide",
+        "hollow fiber membrane oxygenation cell culture medium bioreactor material",
+        "organ on chip gas permeable membrane PDMS fluoropolymer oxygenation"
+      ]
+    },
+    {
+      "id": "limina_external_4_bubble_control",
+      "priority": "LIMINA-External-4",
+      "goal": "Find materials and surface geometries that reduce bubble nucleation and trapping in perfused cell culture systems.",
+      "queries": [
+        "microfluidic cell culture bubble trap surface material hydrophilic hydrophobic",
+        "organ on chip bubble control degassing membrane cell culture",
+        "microfluidic perfusion bubble nucleation surface energy coating"
+      ]
+    }
+  ]
+}
+

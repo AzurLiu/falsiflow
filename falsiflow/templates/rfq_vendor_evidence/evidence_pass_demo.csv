@@ -1,0 +1,10 @@
+gate_id,candidate_id,sample_id,field,value,source_file,measured_at,operator_or_agent,instrument_id,notes
+contact_provenance,external_lab_demo,vendor_demo_001,named_contact_recorded,true,source_files/vendor_reply_record.csv,2026-05-25T08:00:00Z,falsiflow_demo_operator,,Named contact appears in archived reply.
+contact_provenance,external_lab_demo,vendor_demo_001,organization_recorded,true,source_files/vendor_reply_record.csv,2026-05-25T08:00:00Z,falsiflow_demo_operator,,Organization identity appears in archived reply.
+contact_provenance,external_lab_demo,vendor_demo_001,communication_source_archived,true,source_files/vendor_reply_record.csv,2026-05-25T08:00:00Z,falsiflow_demo_operator,,Original reply source is archived.
+scope_confirmation,external_lab_demo,vendor_demo_001,can_measure_requested_fields,true,source_files/vendor_reply_record.csv,2026-05-25T08:00:00Z,falsiflow_demo_operator,,Requested fields are in scope.
+scope_confirmation,external_lab_demo,vendor_demo_001,sample_handling_confirmed,true,source_files/vendor_reply_record.csv,2026-05-25T08:00:00Z,falsiflow_demo_operator,,Sample handling constraints are acknowledged.
+scope_confirmation,external_lab_demo,vendor_demo_001,claim_support_language_absent,true,source_files/vendor_reply_record.csv,2026-05-25T08:00:00Z,falsiflow_demo_operator,,Reply does not endorse the final scientific claim.
+return_package_requirements,external_lab_demo,vendor_demo_001,raw_export_required,true,source_files/vendor_reply_record.csv,2026-05-25T08:00:00Z,falsiflow_demo_operator,,Raw export is required in the return package.
+return_package_requirements,external_lab_demo,vendor_demo_001,sample_id_mapping_required,true,source_files/vendor_reply_record.csv,2026-05-25T08:00:00Z,falsiflow_demo_operator,,Return package must map results to submitted sample ids.
+return_package_requirements,external_lab_demo,vendor_demo_001,method_metadata_required,true,source_files/vendor_reply_record.csv,2026-05-25T08:00:00Z,falsiflow_demo_operator,,Return package must include method metadata.

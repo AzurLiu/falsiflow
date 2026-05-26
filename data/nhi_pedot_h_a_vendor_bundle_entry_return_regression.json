@@ -1,0 +1,11 @@
+{
+  "applied_issues": [],
+  "applied_status": "h_a_vendor_bundle_entry_return_applied",
+  "checks": {
+    "missing_sheet_waits_without_mutation": true,
+    "valid_return_sheet_applies": true,
+    "valid_return_sheet_marks_source_values_import_ready": true
+  },
+  "no_sheet_status": "h_a_vendor_bundle_entry_return_waiting_for_sheet",
+  "status": "pass"
+}

@@ -1,0 +1,38 @@
+{
+  "boundary": "This inventory records files and hashes only. A file becomes measured evidence only when a filled row passes preflight, merge/QC, gate evaluation, and claim audit.",
+  "inputs": {
+    "capture_files": [
+      "data/nhi_pedot_h_a_local_capture_template.csv",
+      "data/nhi_pedot_h_a_osmolality_outsource_template.csv",
+      "data/zrc_nd_phase_a_local_capture_template.csv",
+      "data/zrc_nd_phase_a_osmolality_outsource_template.csv",
+      "data/nhi_pedot_h_a_smoke_local_capture_template.csv",
+      "data/nhi_pedot_h_a_smoke_osmolality_outsource_template.csv",
+      "data/zrc_nd_phase_a_smoke_local_capture_template.csv",
+      "data/zrc_nd_phase_a_smoke_osmolality_outsource_template.csv"
+    ],
+    "manifest": "data/limina_source_file_manifest.json",
+    "source_value_files": [
+      "data/nhi_pedot_h_a_source_values.csv",
+      "data/nhi_pedot_forward_source_values.csv",
+      "data/nhi_pedot_long_source_values.csv",
+      "data/zrc_nd_phase_a_source_values.csv",
+      "data/limina_smoke_source_values.csv",
+      "data/limina_smoke_unstructured_review_values.csv"
+    ]
+  },
+  "manifest_status": "source_file_manifest_ready",
+  "missing_references": [],
+  "source_files": [],
+  "status": "source_file_inventory_empty",
+  "summary": {
+    "allowed_root_count": 12,
+    "capture_template_reference_count": 0,
+    "file_count": 0,
+    "filled_source_value_reference_count": 0,
+    "missing_reference_count": 0,
+    "source_reference_count": 0,
+    "unreferenced_file_count": 0
+  },
+  "unreferenced_files": []
+}

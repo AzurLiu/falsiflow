@@ -1,0 +1,50 @@
+{
+  "boundary": "Passing this smoke tranche only proves the data pipeline and may reveal early red flags. It cannot satisfy the final material-discovery objective.",
+  "generated_artifacts": {
+    "h_a_local_capture_template": "data/nhi_pedot_h_a_smoke_local_capture_template.csv",
+    "h_a_osmolality_outsource_template": "data/nhi_pedot_h_a_smoke_osmolality_outsource_template.csv",
+    "tasks": "data/limina_smoke_capture_tasks.csv",
+    "zrc_local_capture_template": "data/zrc_nd_phase_a_smoke_local_capture_template.csv",
+    "zrc_osmolality_outsource_template": "data/zrc_nd_phase_a_smoke_osmolality_outsource_template.csv"
+  },
+  "preflight_command": "python3 scripts/preflight_limina_local_capture.py --tasks data/limina_smoke_capture_tasks.csv --h-a-local data/nhi_pedot_h_a_smoke_local_capture_template.csv --h-a-outsource data/nhi_pedot_h_a_smoke_osmolality_outsource_template.csv --zrc-local data/zrc_nd_phase_a_smoke_local_capture_template.csv --zrc-outsource data/zrc_nd_phase_a_smoke_osmolality_outsource_template.csv --json-out data/limina_smoke_capture_preflight.json --report reports/limina_smoke_capture_preflight.md",
+  "purpose": "Create the smallest useful real-measurement tranche for validating capture, preflight, merge, and early red-flag detection.",
+  "smoke_scope": {
+    "claim_boundary": "This tranche is intentionally incomplete for H-A/ZRC suitability claims.",
+    "h_a_run_ids": [
+      "NHIPEDOT-H-A-hydrogel_laminin_control-R1-0h",
+      "NHIPEDOT-H-A-hydrogel_laminin_control-R1-24h",
+      "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-0h",
+      "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h",
+      "NHIPEDOT-H-A-no_coating_mea_control-R1-0h",
+      "NHIPEDOT-H-A-no_coating_mea_control-R1-24h"
+    ],
+    "zrc_run_ids": [
+      "ZRCND-A-lead_zrc_nd_3p5m_guard-R1-0h",
+      "ZRCND-A-lead_zrc_nd_3p5m_guard-R1-24h",
+      "ZRCND-A-no_module_static_control-R1-0h",
+      "ZRCND-A-no_module_static_control-R1-24h"
+    ]
+  },
+  "status": "smoke_capture_tranche_ready",
+  "summary": {
+    "branch_counts": {
+      "NHI-PEDOT H-A": 114,
+      "ZRC-ND Phase A": 58
+    },
+    "h_a_local_entry_rows": 102,
+    "h_a_outsource_entry_rows": 12,
+    "h_a_smoke_run_count": 6,
+    "local_or_record_tasks": 152,
+    "outsourced_preferred_tasks": 20,
+    "route_counts": {
+      "inhouse_ready": 92,
+      "outsourced_preferred": 20,
+      "supplier_or_build_record": 60
+    },
+    "task_count": 172,
+    "zrc_local_template_rows": 4,
+    "zrc_outsource_template_rows": 4,
+    "zrc_smoke_run_count": 4
+  }
+}

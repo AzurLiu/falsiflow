@@ -1,0 +1,13 @@
+{
+  "authorized_status": "regression_execution_authorization_authorized",
+  "bad_hash_status": "regression_execution_authorization_has_errors",
+  "checks": {
+    "bad_hash_rejected": true,
+    "initial_waits_for_authorization": true,
+    "unbacked_selected_provider_rejected": true,
+    "valid_authorization_is_accepted": true
+  },
+  "initial_status": "regression_execution_authorization_waiting_for_human_authorization",
+  "status": "pass",
+  "unbacked_status": "regression_execution_authorization_has_errors"
+}

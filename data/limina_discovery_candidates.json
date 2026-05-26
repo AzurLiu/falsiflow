@@ -1,0 +1,432 @@
+[
+  {
+    "id": "limina_alg_lam_pedot_lowdose_v0_2",
+    "name": "ALG-LAM-PEDOT Low-Dose Neural Hydrogel Interphase",
+    "lane": "LIMINA-Cell-1",
+    "status": "promote_to_recipe_specific_validation",
+    "one_line": "A recipe-specific evolution of NHI-PEDOT that anchors the lead around alginate-laminin PEDOT:PSS hydrogel evidence instead of keeping the matrix choice broad.",
+    "material_stack": [
+      "MEA witness coupon with masked electrode windows",
+      "alginate-rich soft hydrogel matrix tuned near brain-like low-kPa mechanics",
+      "laminin or laminin-derived adhesive presentation",
+      "lowest PEDOT:PSS loading that gives a measurable impedance or charge-storage gain after medium soak"
+    ],
+    "why_it_matters": "This is the shortest path to a real suitability claim because it has direct 28-day human iPSC cortical neuron culture evidence and can reuse the existing H-A/H-B/H-C plus long-duration NHI-PEDOT gates.",
+    "near_term_test": "Lock the H-A sentinel to alginate-laminin low-dose PEDOT:PSS and fill acellular medium, physical stability, and electrochemical fields before any live-cell expansion.",
+    "evidence_refs": [
+      "pedot_neural_culture_hydrogel_2025",
+      "pedot_brain_monitoring_2025",
+      "hydrogel_neural_tissue_2020",
+      "dnt_nam_viability_neurite_mea_2022"
+    ],
+    "known_risks": [
+      "PEDOT:PSS or PSS-related extractables could still harm long-lived cultures.",
+      "Hydrogel swelling or delamination can erase electrochemical benefits.",
+      "Published neural culture format must be adapted to the actual MEA geometry."
+    ],
+    "scores": {
+      "direct_neural_cell_evidence": 5,
+      "time_to_first_gate": 5,
+      "measurement_accessibility": 4,
+      "optimization_space": 4,
+      "novelty_upside": 3.5,
+      "integration_risk_control": 3.5,
+      "manufacturability": 3.5,
+      "proof_gap_clarity": 5
+    }
+  },
+  {
+    "id": "limina_pda_anchor_alg_lam_pedot_window_v0_1",
+    "name": "PDA-Anchored ALG-LAM-PEDOT Electrode-Window Interphase",
+    "lane": "LIMINA-Cell-1",
+    "status": "parallel_design_variant",
+    "one_line": "A mechanically safer version of the low-dose alginate-laminin PEDOT:PSS lead that treats electrode-window adhesion and insulation boundaries as first-class material variables.",
+    "material_stack": [
+      "polydopamine or oxygen-plasma primer on MEA witness coupons",
+      "alginate-laminin hydrogel matrix",
+      "localized low-dose PEDOT:PSS microdomains near electrode windows",
+      "hydrogel-only and laminin-only matched controls"
+    ],
+    "why_it_matters": "If the current NHI-PEDOT lead fails by delamination or window occlusion rather than biology, this variant gives a fast rescue path without changing the main biological presentation concept.",
+    "near_term_test": "Add one anchored lead article to H-B electrochemical/physical stability only after the acellular H-A blank passes for the unanchored low-dose lead.",
+    "evidence_refs": [
+      "pedot_neural_culture_hydrogel_2025",
+      "pedot_brain_monitoring_2025",
+      "gelma_pedot_micropatterning_2026",
+      "neuronal_network_material_biocompatibility_mea_2013"
+    ],
+    "known_risks": [
+      "Primer chemistry may add its own extractables.",
+      "Localized conductive domains may be harder to fabricate reproducibly.",
+      "Anchoring can improve stability while reducing softness at the cell interface."
+    ],
+    "scores": {
+      "direct_neural_cell_evidence": 4,
+      "time_to_first_gate": 3.5,
+      "measurement_accessibility": 3.5,
+      "optimization_space": 4,
+      "novelty_upside": 4,
+      "integration_risk_control": 3,
+      "manufacturability": 3,
+      "proof_gap_clarity": 4
+    }
+  },
+  {
+    "id": "limina_all_dry_zwitterionic_external_v0_1",
+    "name": "All-Dry Zwitterionic Gradient External-Fluidic Coating",
+    "lane": "LIMINA-External-1",
+    "status": "external_surface_rescue_candidate",
+    "one_line": "A substrate-independent zwitterionic gradient coating for cartridge housings, tubing inserts, or non-MWCO surfaces to reduce protein adsorption and biofouling.",
+    "material_stack": [
+      "COC, COP, PEEK, glass, or non-critical cartridge surface",
+      "all-dry zwitterionic gradient coating",
+      "regenerated-cellulose MWCO membrane kept as the transport-selective element",
+      "BDNF, NGF, albumin, transferrin, lactate, and ammonium recovery panel"
+    ],
+    "why_it_matters": "This can improve the ZRC-ND external branch without risking direct cell-contact exposure, and it is especially useful if the Phase A sentinel shows protein adsorption or fouling rather than MWCO failure.",
+    "near_term_test": "Run as a coating-on-housing comparator after ZRC-ND Phase A sentinel defines whether adsorption/fouling is the limiting failure mode.",
+    "evidence_refs": [
+      "all_dry_zwitterionic_gradient_2024",
+      "zwitterionic_membrane_antifouling_2016",
+      "zwitterionic_cellulose_acetate_hfm_2026",
+      "organ_chip_perfusion_review_2022"
+    ],
+    "known_risks": [
+      "Coating could change extractables or optical inspection properties.",
+      "It may not solve protein loss if the MWCO membrane itself dominates adsorption.",
+      "Not yet validated in CL1-like neuronal medium."
+    ],
+    "scores": {
+      "direct_neural_cell_evidence": 2,
+      "time_to_first_gate": 4,
+      "measurement_accessibility": 4,
+      "optimization_space": 4,
+      "novelty_upside": 4,
+      "integration_risk_control": 4,
+      "manufacturability": 3,
+      "proof_gap_clarity": 4
+    }
+  },
+  {
+    "id": "limina_zwitterionic_pedot_hydrogel_v0_1",
+    "name": "Zwitterionic PEDOT:PSS Hydrated Electrode Hydrogel",
+    "lane": "LIMINA-Cell-1",
+    "status": "watch_for_second_wave",
+    "one_line": "A hydrated conductive hydrogel direction that combines zwitterionic antifouling chemistry with PEDOT:PSS mixed conduction.",
+    "material_stack": [
+      "zwitterionic hydrogel network",
+      "PEDOT:PSS mixed-conducting phase",
+      "MEA electrode-window pattern",
+      "laminin or ECM-mimetic top presentation if direct neural culture is attempted"
+    ],
+    "why_it_matters": "It may solve the core NHI-PEDOT tension between hydrated cell compatibility and electrical coupling, but the current evidence is more implant/electrode oriented than CL1-like culture oriented.",
+    "near_term_test": "Do not displace ALG-LAM-PEDOT yet; use as a later comparator if acellular extract and impedance data look better than the alginate-laminin lead.",
+    "evidence_refs": [
+      "zwitterionic_pedot_eeg_hydrogel_2025",
+      "pedot_brain_monitoring_2025",
+      "pedot_bio_sei_2026",
+      "conductive_hydrogels_2025"
+    ],
+    "known_risks": [
+      "In vivo electrode evidence does not prove in vitro neuronal network compatibility.",
+      "Zwitterionic monomers and crosslinkers can create new leachable risks.",
+      "Fabrication complexity may slow the first suitability claim."
+    ],
+    "scores": {
+      "direct_neural_cell_evidence": 3,
+      "time_to_first_gate": 2.5,
+      "measurement_accessibility": 3,
+      "optimization_space": 4,
+      "novelty_upside": 4.5,
+      "integration_risk_control": 2.8,
+      "manufacturability": 2.5,
+      "proof_gap_clarity": 3
+    }
+  },
+  {
+    "id": "limina_anisotropic_spedot_psbma_hydrogel_v0_1",
+    "name": "Anisotropic S-PEDOT/PSBMA Antifouling Hydrogel Electrode",
+    "lane": "LIMINA-Cell-1",
+    "status": "high_novelty_antifouling_conductive_hydrogel",
+    "one_line": "A 2026 conductive antifouling hydrogel direction that aligns PEDOT-family conductive networks inside a zwitterionic hydrated matrix.",
+    "material_stack": [
+      "S-PEDOT or PEDOT-family aligned conductive phase",
+      "PSBMA-like zwitterionic hydrated network",
+      "MEA witness coupon or electrode-window hydrogel comparator",
+      "laminin-compatible top presentation to be proven before any live neural exposure"
+    ],
+    "why_it_matters": "It targets the same core tension as the first LIMINA cell-contact route: retain a wet, low-fouling biological interface while improving electrical coupling. The latest evidence makes it a useful second-wave comparator, but not a first-claim replacement until extract and neural gates are available.",
+    "near_term_test": "Do not displace ALG-LAM-PEDOT. If formulation access is practical, run a tiny acellular witness coupon for pH, osmolality, conductivity, protein adsorption, swelling, delamination, transparency, and 1 kHz impedance before any neural work.",
+    "evidence_refs": [
+      "anisotropic_spedot_psbma_hydrogel_2026",
+      "zwitterionic_pedot_eeg_hydrogel_2025",
+      "topologically_entangled_psbma_hydrogel_2026",
+      "conductive_hydrogels_2025"
+    ],
+    "known_risks": [
+      "Physiological monitoring evidence is not direct neuronal-network compatibility evidence.",
+      "Zwitterionic antifouling chemistry may interfere with laminin presentation unless a cell-adhesion layer is engineered.",
+      "Synthesis and alignment may be harder to reproduce than the current alginate-laminin PEDOT:PSS route."
+    ],
+    "scores": {
+      "direct_neural_cell_evidence": 2.2,
+      "time_to_first_gate": 2.5,
+      "measurement_accessibility": 2.5,
+      "optimization_space": 5,
+      "novelty_upside": 4.7,
+      "integration_risk_control": 2.7,
+      "manufacturability": 2.2,
+      "proof_gap_clarity": 3.2
+    }
+  },
+  {
+    "id": "limina_pedot_sgagh_ecm_signal_hydrogel_v0_1",
+    "name": "PEDOT:sGAGh Electronic ECM Signal Hydrogel",
+    "lane": "LIMINA-Cell-1",
+    "status": "high_novelty_horizon_scan",
+    "one_line": "A 2026 electronic-ECM direction that uses sulfated glycosaminoglycan chemistry to couple soft PEDOT hydrogel conduction with growth-factor sequestration and release.",
+    "material_stack": [
+      "soft PEDOT:sGAGh hydrogel or coating",
+      "MEA witness coupon or OECT-style electrode witness coupon",
+      "laminin or ECM-mimetic top presentation if neural culture is attempted",
+      "blank extract and growth-factor recovery panel before live-cell work"
+    ],
+    "why_it_matters": "This is one of the most interesting new design spaces because it may move beyond passive biocompatibility into controllable biochemical cue presentation, but it has not yet earned first-claim status for CL1-like neuronal networks.",
+    "near_term_test": "Keep behind ALG-LAM-PEDOT until a small H-A/H-B witness coupon can show clean extract behavior, stable pH/osmolality/conductivity, retained BDNF/laminin signal, and no delamination.",
+    "evidence_refs": [
+      "pedot_sgagh_electronic_ecm_2026",
+      "pedot_bio_sei_2026",
+      "conductive_hydrogels_2025",
+      "hydrogel_neural_tissue_2020"
+    ],
+    "known_risks": [
+      "High novelty comes with synthesis, procurement, and reproducibility uncertainty.",
+      "Growth-factor binding is attractive but could perturb neuronal differentiation or maturation in unwanted directions.",
+      "No direct long-duration human neuronal-network compatibility evidence yet."
+    ],
+    "scores": {
+      "direct_neural_cell_evidence": 2.8,
+      "time_to_first_gate": 2.5,
+      "measurement_accessibility": 2.5,
+      "optimization_space": 5,
+      "novelty_upside": 5,
+      "integration_risk_control": 2.6,
+      "manufacturability": 2,
+      "proof_gap_clarity": 3
+    }
+  },
+  {
+    "id": "limina_alg_gel_pedot_ppy_lowoxidant_v0_1",
+    "name": "Alg-Gel PEDOT/PPy Low-Oxidant Biointerface Comparator",
+    "lane": "LIMINA-Cell-1",
+    "status": "electrochemical_comparator_candidate",
+    "one_line": "A tunable alginate-gelatin conductive hydrogel family that can benchmark conductivity and stability gains against the safer ALG-LAM-PEDOT lead.",
+    "material_stack": [
+      "alginate-gelatin hydrogel",
+      "PEDOT:PSS-only low-loading arm",
+      "PPy/PSS or PEDOT-plus-PPy challenge arm",
+      "extractables-first witness coupon before neural exposure"
+    ],
+    "why_it_matters": "It has a large optimization surface for conductivity, impedance, and wet stability, but the PPy route adds residue and leachable risk that makes it a comparator rather than the first living-network claim path.",
+    "near_term_test": "Use only after ALG-LAM-PEDOT H-A/H-B establishes a baseline; run as an acellular H-B conductivity/stability comparator with strict extract and shedding fields.",
+    "evidence_refs": [
+      "alg_gel_pedot_ppy_biointerface_2026",
+      "gelma_pedot_composite_2018",
+      "conductive_hydrogels_2025",
+      "iso_10993_5_cytotoxicity_extract_fda"
+    ],
+    "known_risks": [
+      "Fibroblast cytocompatibility is not a neuronal-network compatibility claim.",
+      "PPy oxidation chemistry can leave residues that matter in long-lived neural cultures.",
+      "High conductivity may trade off with optical transparency or softness."
+    ],
+    "scores": {
+      "direct_neural_cell_evidence": 2.3,
+      "time_to_first_gate": 3,
+      "measurement_accessibility": 3.5,
+      "optimization_space": 4.5,
+      "novelty_upside": 3.7,
+      "integration_risk_control": 2.7,
+      "manufacturability": 3,
+      "proof_gap_clarity": 3.5
+    }
+  },
+  {
+    "id": "limina_cameo_cnt_organoid_frame_v0_1",
+    "name": "CNT Organoid MEA Recording Frame",
+    "lane": "LIMINA-Cell-1",
+    "status": "device_side_horizon_scan",
+    "one_line": "A carbon-nanotube organoid recording platform that informs future organoid-scale CL1 interfaces but is not a first direct-contact material lead.",
+    "material_stack": [
+      "carbon nanotube microelectrode array",
+      "organoid or neural aggregate culture interface",
+      "particle-shedding and extractables witness coupon",
+      "matched non-CNT electrode control"
+    ],
+    "why_it_matters": "It points toward higher-surface-area, scalable electrophysiology for organoid formats, which may matter if CL1 moves from 2D cultures toward 3D aggregates.",
+    "near_term_test": "Do not place in first-claim path; use as a literature/device benchmark until CNT exposure, particle release, and long-duration neural health risks are bounded.",
+    "evidence_refs": [
+      "cameo_cnt_organoid_mea_2026",
+      "shape_conformal_organoid_framework_2026",
+      "neuronal_network_material_biocompatibility_mea_2013",
+      "iso_10993_5_cytotoxicity_extract_fda"
+    ],
+    "known_risks": [
+      "CNT exposure is a major long-duration neural culture uncertainty.",
+      "The value may be device geometry rather than material chemistry.",
+      "Fabrication may not be accessible on the current local project timeline."
+    ],
+    "scores": {
+      "direct_neural_cell_evidence": 3.2,
+      "time_to_first_gate": 2,
+      "measurement_accessibility": 2,
+      "optimization_space": 3.5,
+      "novelty_upside": 4.2,
+      "integration_risk_control": 2.4,
+      "manufacturability": 1.8,
+      "proof_gap_clarity": 3
+    }
+  },
+  {
+    "id": "limina_op_apa_fillerfree_hydrogel_v0_1",
+    "name": "OP-APA Filler-Free Adaptive Bioelectronic Hydrogel",
+    "lane": "LIMINA-Cell-1",
+    "status": "watch_high_novelty",
+    "one_line": "A high-novelty filler-free polysaccharide/peptide-amphiphile hydrogel concept that may avoid conductive-particle shedding if independently reproduced.",
+    "material_stack": [
+      "okra mucilage polysaccharide backbone",
+      "alpha-helical peptide amphiphile network",
+      "no conductive-particle filler in the baseline concept",
+      "MEA coupling layer to be defined only after replication"
+    ],
+    "why_it_matters": "It points toward a material class that could be biologically gentle and mechanically adaptive, but the proof path is less immediate than the alginate-laminin PEDOT:PSS route.",
+    "near_term_test": "Keep as literature-watch until formulation access, independent replication, extract chemistry, and neural culture compatibility are clearer.",
+    "evidence_refs": [
+      "op_apa_self_adaptive_hydrogel_2026",
+      "hydrogel_neural_tissue_2020",
+      "conductive_hydrogels_2025"
+    ],
+    "known_risks": [
+      "Preprint-level evidence.",
+      "Reproducibility and sourcing are uncertain.",
+      "First proof requires more materials work before coupon validation."
+    ],
+    "scores": {
+      "direct_neural_cell_evidence": 2,
+      "time_to_first_gate": 2,
+      "measurement_accessibility": 2,
+      "optimization_space": 5,
+      "novelty_upside": 5,
+      "integration_risk_control": 2.2,
+      "manufacturability": 2,
+      "proof_gap_clarity": 2.5
+    }
+  },
+  {
+    "id": "limina_mxene_gel_oha_sensing_hydrogel_v0_1",
+    "name": "MXene-Gel/OHA Conductive Adhesive Hydrogel Comparator",
+    "lane": "LIMINA-Cell-1",
+    "status": "hold_direct_cell_contact",
+    "one_line": "A high-conductivity adhesive hydrogel comparator for signal coupling, held back from first-claim status because MXene exposure is a major neural-culture risk.",
+    "material_stack": [
+      "gelatin or oxidized hyaluronic-acid adhesive hydrogel",
+      "MXene conductive filler",
+      "soft bioelectronic sensor geometry",
+      "extract and particle-shedding assays before any neural culture"
+    ],
+    "why_it_matters": "It can benchmark the maximum conductivity/adhesion upside, but it is unlikely to be the first safe CL1-like cell-contact material without a large toxicity and leachability proof package.",
+    "near_term_test": "Use only as an acellular extract and impedance comparator after safer PEDOT:PSS and hydrogel-only leads establish a baseline.",
+    "evidence_refs": [
+      "mxene_adhesive_hydrogel_bmi_2025",
+      "conductive_hydrogels_2025",
+      "iso_10993_5_cytotoxicity_extract_fda"
+    ],
+    "known_risks": [
+      "Nanomaterial leaching or particle shedding could dominate neural toxicity.",
+      "Adhesive performance may not translate to transparent MEA culture.",
+      "The proof gap is larger than for PEDOT:PSS hydrogel routes."
+    ],
+    "scores": {
+      "direct_neural_cell_evidence": 1.8,
+      "time_to_first_gate": 2,
+      "measurement_accessibility": 2.5,
+      "optimization_space": 4.5,
+      "novelty_upside": 4,
+      "integration_risk_control": 1.8,
+      "manufacturability": 2,
+      "proof_gap_clarity": 2.5
+    }
+  },
+  {
+    "id": "limina_hydrogel_actuated_multilayer_3d_mea_v0_1",
+    "name": "Hydrogel-Actuated Multilayer 3D Organoid MEA Interface",
+    "lane": "LIMINA-Cell-1",
+    "status": "3d_organoid_horizon_scan",
+    "one_line": "A future CL1-like 3D neural-computing interface direction that combines hydrogel-actuated geometry with multilayer mesh MEA depth recording.",
+    "material_stack": [
+      "hydrogel-actuated or shape-conformal 3D support frame",
+      "flexible mesh MEA layers separated by compliant spacers",
+      "Pt-black or other low-impedance electrode finish",
+      "organoid or neural aggregate witness model before any CL1-like adoption"
+    ],
+    "why_it_matters": "If the project shifts from planar neuronal cultures toward organoids or neural aggregates, depth-resolved and mechanically adaptive electrode geometries may matter as much as hydrogel chemistry.",
+    "near_term_test": "Keep as a device-architecture horizon scan; extract a simplified witness-coupon plan only after the planar ALG-LAM-PEDOT H-A/H-B route has real data.",
+    "evidence_refs": [
+      "mlmea_organoid_depth_interface_2026",
+      "eflower_hydrogel_actuated_3d_mea_2024",
+      "shape_conformal_organoid_framework_2026",
+      "neuronal_network_material_biocompatibility_mea_2013"
+    ],
+    "known_risks": [
+      "Fabrication is much harder than a planar witness coupon.",
+      "Pt-black, PDMS, and actuator hydrogels each need extractables, adsorption, and stability checks.",
+      "Organoid electrophysiology evidence does not directly prove compatibility with the current CL1-like planar path."
+    ],
+    "scores": {
+      "direct_neural_cell_evidence": 4.1,
+      "time_to_first_gate": 2,
+      "measurement_accessibility": 2,
+      "optimization_space": 4.2,
+      "novelty_upside": 4.3,
+      "integration_risk_control": 2.8,
+      "manufacturability": 1.6,
+      "proof_gap_clarity": 3.5
+    }
+  },
+  {
+    "id": "limina_entangled_zwitterionic_mechanoadaptive_matrix_v0_1",
+    "name": "Entangled Zwitterionic Mechanoadaptive Hydrogel Matrix",
+    "lane": "LIMINA-Cell-1",
+    "status": "mechanics_low_fouling_horizon_scan",
+    "one_line": "A low-fouling zwitterionic hydrogel mechanics module that may later tune softness and protein adsorption without conductive filler exposure.",
+    "material_stack": [
+      "PSBMA or related zwitterionic hydrogel network",
+      "laminin or ECM-mimetic functionalization layer still to be defined",
+      "hydrogel-only witness coupon before any conductive phase",
+      "matched alginate-laminin and no-coating controls"
+    ],
+    "why_it_matters": "It expands the non-conductive matrix design space: if ALG-LAM-PEDOT fails because of swelling, fouling, or softness mismatch, a zwitterionic mechanoadaptive matrix could become a later rescue substrate.",
+    "near_term_test": "Do not promote yet; first require extract chemistry, laminin presentation, neural adhesion, and medium-stability witness coupons.",
+    "evidence_refs": [
+      "topologically_entangled_psbma_hydrogel_2026",
+      "zwitterionic_membrane_antifouling_2016",
+      "hydrogel_neural_tissue_2020",
+      "iso_10993_5_cytotoxicity_extract_fda"
+    ],
+    "known_risks": [
+      "No direct neural-network or MEA evidence yet.",
+      "Zwitterionic non-fouling behavior may resist the very protein adhesion needed for neurons.",
+      "Synthesis and functionalization need a clearer near-term recipe before coupon testing."
+    ],
+    "scores": {
+      "direct_neural_cell_evidence": 1.5,
+      "time_to_first_gate": 2,
+      "measurement_accessibility": 2.5,
+      "optimization_space": 4.8,
+      "novelty_upside": 4.7,
+      "integration_risk_control": 2.6,
+      "manufacturability": 2,
+      "proof_gap_clarity": 2.8
+    }
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "checks": {
+    "no_source_backed_selected_provider_blocks": true,
+    "selected_provider_must_have_verified_send_log": true,
+    "selected_without_source_backing_blocks": true,
+    "source_backed_selected_provider_can_reach_authorization_ready": true,
+    "valid_authorization_releases_execution": true
+  },
+  "no_selection_status": "regression_execution_release_blocked_no_source_backed_provider_selection",
+  "ready_status": "regression_execution_release_ready_for_human_authorization",
+  "released_status": "regression_execution_release_released_for_execution",
+  "status": "pass",
+  "unbacked_selection_status": "regression_execution_release_blocked_no_source_backed_provider_selection",
+  "unsent_selection_status": "regression_execution_release_blocked"
+}

@@ -1,0 +1,44 @@
+{
+  "boundary": "This pack is logistics and data-entry scaffolding only; it is not measured evidence until filled with real values and passed through QC, gate evaluators, and the final claim audit.",
+  "generated_artifacts": {
+    "h_a_local_capture_template": "data/nhi_pedot_h_a_local_capture_template.csv",
+    "h_a_osmolality_outsource_template": "data/nhi_pedot_h_a_osmolality_outsource_template.csv",
+    "instrument_register_template": "data/limina_local_instrument_register_template.csv",
+    "qc_checklist": "data/limina_local_capture_qc_checklist.csv",
+    "task_table": "data/limina_local_capture_tasks.csv",
+    "zrc_local_capture_template": "data/zrc_nd_phase_a_local_capture_template.csv",
+    "zrc_osmolality_outsource_template": "data/zrc_nd_phase_a_osmolality_outsource_template.csv"
+  },
+  "merge_commands": [
+    "python3 scripts/merge_nhi_pedot_h_a_raw_measurements.py --raw data/nhi_pedot_h_a_local_capture_template.csv",
+    "python3 scripts/merge_nhi_pedot_h_a_raw_measurements.py --base data/nhi_pedot_h_a_runs_active.csv --raw data/nhi_pedot_h_a_osmolality_outsource_template.csv --out data/nhi_pedot_h_a_runs_active.csv",
+    "python3 scripts/merge_zrc_nd_measurements.py --measurements data/zrc_nd_phase_a_local_capture_template.csv",
+    "python3 scripts/merge_zrc_nd_measurements.py --base data/zrc_nd_validation_runs_active.csv --measurements data/zrc_nd_phase_a_osmolality_outsource_template.csv --out data/zrc_nd_validation_runs_active.csv"
+  ],
+  "purpose": "Turn the hybrid measurement routing plan into fillable local/outsource templates without claiming material suitability.",
+  "source_artifacts": {
+    "h_a_raw_template": "data/nhi_pedot_h_a_raw_measurements_template.csv",
+    "hybrid_plan": "data/limina_hybrid_measurement_plan.json",
+    "zrc_phase_a_template": "data/zrc_nd_phase_a_sentinel_template.csv"
+  },
+  "status": "local_capture_pack_ready",
+  "summary": {
+    "branch_counts": {
+      "NHI-PEDOT H-A": 228,
+      "ZRC-ND Phase A": 122
+    },
+    "h_a_local_entry_rows": 204,
+    "h_a_outsource_entry_rows": 24,
+    "outsourced_preferred_rows": 40,
+    "ready_to_collect_local_rows": 184,
+    "ready_to_record_provenance_rows": 126,
+    "route_counts": {
+      "inhouse_ready": 184,
+      "outsourced_preferred": 40,
+      "supplier_or_build_record": 126
+    },
+    "task_count": 350,
+    "zrc_local_template_rows": 8,
+    "zrc_outsource_template_rows": 8
+  }
+}

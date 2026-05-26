@@ -1,0 +1,10 @@
+record_id,field,value,observed_at
+vendor_001,named_contact_recorded,true,2026-05-25T08:00:00Z
+vendor_002,organization_recorded,true,2026-05-25T08:00:00Z
+vendor_003,communication_source_archived,true,2026-05-25T08:00:00Z
+vendor_004,can_measure_requested_fields,true,2026-05-25T08:00:00Z
+vendor_005,sample_handling_confirmed,true,2026-05-25T08:00:00Z
+vendor_006,claim_support_language_absent,true,2026-05-25T08:00:00Z
+vendor_007,raw_export_required,true,2026-05-25T08:00:00Z
+vendor_008,sample_id_mapping_required,true,2026-05-25T08:00:00Z
+vendor_009,method_metadata_required,true,2026-05-25T08:00:00Z

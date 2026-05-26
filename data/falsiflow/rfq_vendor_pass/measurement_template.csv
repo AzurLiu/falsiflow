@@ -1,0 +1,10 @@
+gate_id,gate_title,candidate_id,sample_id,field,value,source_file,measured_at,operator_or_agent,instrument_id,notes
+contact_provenance,Contact provenance,external_lab_demo,vendor_demo_001,named_contact_recorded,,,,,,
+contact_provenance,Contact provenance,external_lab_demo,vendor_demo_001,organization_recorded,,,,,,
+contact_provenance,Contact provenance,external_lab_demo,vendor_demo_001,communication_source_archived,,,,,,
+scope_confirmation,Scope confirmation,external_lab_demo,vendor_demo_001,can_measure_requested_fields,,,,,,
+scope_confirmation,Scope confirmation,external_lab_demo,vendor_demo_001,sample_handling_confirmed,,,,,,
+scope_confirmation,Scope confirmation,external_lab_demo,vendor_demo_001,claim_support_language_absent,,,,,,
+return_package_requirements,Measured-data return package,external_lab_demo,vendor_demo_001,raw_export_required,,,,,,
+return_package_requirements,Measured-data return package,external_lab_demo,vendor_demo_001,sample_id_mapping_required,,,,,,
+return_package_requirements,Measured-data return package,external_lab_demo,vendor_demo_001,method_metadata_required,,,,,,

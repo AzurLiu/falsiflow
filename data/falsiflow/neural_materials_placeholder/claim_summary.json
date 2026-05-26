@@ -1,0 +1,54 @@
+{
+  "blocker_count": 39,
+  "claim_id": "alg_lam_pedot_lowdose_interface_claim",
+  "claim_ready": false,
+  "completion_pct": 5.3,
+  "derived_field_count": 0,
+  "evidence_error_count": 0,
+  "evidence_issue_count": 0,
+  "evidence_warning_count": 0,
+  "gate_count": 3,
+  "gates": [
+    {
+      "blocker_count": 14,
+      "completion_pct": 0.0,
+      "derived_field_count": 0,
+      "gate_id": "h_a_medium_stability",
+      "required_evidence_rows": 7,
+      "status": "blocked_missing_evidence",
+      "title": "H-A cell-free medium stability",
+      "valid_required_evidence_rows": 0
+    },
+    {
+      "blocker_count": 11,
+      "completion_pct": 16.7,
+      "derived_field_count": 0,
+      "gate_id": "h_b_electrical_interface",
+      "required_evidence_rows": 6,
+      "status": "blocked_missing_evidence",
+      "title": "H-B electrical interface benefit",
+      "valid_required_evidence_rows": 1
+    },
+    {
+      "blocker_count": 14,
+      "completion_pct": 0.0,
+      "derived_field_count": 0,
+      "gate_id": "h_c_network_response",
+      "required_evidence_rows": 6,
+      "status": "blocked_missing_evidence",
+      "title": "H-C cell and network response",
+      "valid_required_evidence_rows": 0
+    }
+  ],
+  "next_action_count": 3,
+  "project_config_valid": true,
+  "project_id": "falsiflow_neural_materials_demo",
+  "project_validation_error_count": 0,
+  "project_validation_warning_count": 0,
+  "required_evidence_rows": 19,
+  "status": "claim_blocked",
+  "status_counts": {
+    "blocked_missing_evidence": 3
+  },
+  "valid_required_evidence_rows": 1
+}

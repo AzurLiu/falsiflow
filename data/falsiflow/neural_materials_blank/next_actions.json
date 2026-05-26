@@ -1,0 +1,20 @@
+[
+  {
+    "action_id": "fill_h_a_medium_stability_evidence",
+    "rank": 1,
+    "success_criterion": "All required rows have non-placeholder values, required metadata, and allowed source files; acceptance rules pass.",
+    "why": "Gate `h_a_medium_stability` is `blocked_missing_evidence` with 14 blocker(s)."
+  },
+  {
+    "action_id": "fill_h_b_electrical_interface_evidence",
+    "rank": 2,
+    "success_criterion": "All required rows have non-placeholder values, required metadata, and allowed source files; acceptance rules pass.",
+    "why": "Gate `h_b_electrical_interface` is `blocked_missing_evidence` with 12 blocker(s)."
+  },
+  {
+    "action_id": "fill_h_c_network_response_evidence",
+    "rank": 3,
+    "success_criterion": "All required rows have non-placeholder values, required metadata, and allowed source files; acceptance rules pass.",
+    "why": "Gate `h_c_network_response` is `blocked_missing_evidence` with 14 blocker(s)."
+  }
+]

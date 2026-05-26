@@ -1,0 +1,9 @@
+{
+  "id": "biointerface_coatings",
+  "name": "Biointerface coating readiness",
+  "domain": "cell-contact-coatings-and-surfaces",
+  "description": "Evidence-gated workflow for deciding whether a coating or surface modification is ready for early cell-contact screening.",
+  "project_config": "project.json",
+  "demo_evidence": "evidence_pass_demo.csv",
+  "placeholder_evidence": "evidence_placeholder_demo.csv"
+}

@@ -1,0 +1,29 @@
+{
+  "version": "0.1",
+  "record_type": "limina_experiment_design",
+  "required_fields": [
+    "id",
+    "priority_lane",
+    "title",
+    "objective",
+    "hypothesis",
+    "scope",
+    "test_articles",
+    "controls",
+    "readouts",
+    "decision_gates",
+    "risk_controls",
+    "next_decisions",
+    "source_refs"
+  ],
+  "field_notes": {
+    "test_articles": "Candidate modules/material variants to compare.",
+    "controls": "Negative, positive, baseline, and process controls.",
+    "readouts": "Measurements grouped by category.",
+    "decision_gates": "Pass/fail or ranking criteria.",
+    "risk_controls": "Experimental risks and how to detect them.",
+    "next_decisions": "What to do depending on results.",
+    "source_refs": "Evidence ids or source URLs that motivate the design."
+  }
+}
+

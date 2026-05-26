@@ -1,0 +1,16 @@
+{
+  "applied_status": "regression_rfq_reply_intake_registered_for_review",
+  "checks": {
+    "no_files_reply_log_stays_pending": true,
+    "no_files_waits": true,
+    "text_reply_does_not_mark_received": true,
+    "text_reply_needs_manual_review": true,
+    "unverified_send_does_not_apply": true,
+    "valid_eml_apply_updates_tracker_but_not_selection_fields": true,
+    "valid_eml_marks_clarification_for_review": true,
+    "valid_eml_registers_one_row": true
+  },
+  "status": "pass",
+  "text_review_status": "regression_rfq_reply_intake_needs_review",
+  "unverified_status": "regression_rfq_reply_intake_needs_review"
+}

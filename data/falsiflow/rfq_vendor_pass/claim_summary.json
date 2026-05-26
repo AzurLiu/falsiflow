@@ -1,0 +1,48 @@
+{
+  "blocker_count": 0,
+  "claim_id": "vendor_ready_for_measured_evidence_work_package",
+  "claim_ready": true,
+  "completion_pct": 100.0,
+  "derived_field_count": 0,
+  "gate_count": 3,
+  "gates": [
+    {
+      "blocker_count": 0,
+      "completion_pct": 100.0,
+      "derived_field_count": 0,
+      "gate_id": "contact_provenance",
+      "required_evidence_rows": 3,
+      "status": "passed",
+      "title": "Contact provenance",
+      "valid_required_evidence_rows": 3
+    },
+    {
+      "blocker_count": 0,
+      "completion_pct": 100.0,
+      "derived_field_count": 0,
+      "gate_id": "scope_confirmation",
+      "required_evidence_rows": 3,
+      "status": "passed",
+      "title": "Scope confirmation",
+      "valid_required_evidence_rows": 3
+    },
+    {
+      "blocker_count": 0,
+      "completion_pct": 100.0,
+      "derived_field_count": 0,
+      "gate_id": "return_package_requirements",
+      "required_evidence_rows": 3,
+      "status": "passed",
+      "title": "Measured-data return package",
+      "valid_required_evidence_rows": 3
+    }
+  ],
+  "next_action_count": 1,
+  "project_id": "falsiflow_rfq_vendor_evidence_demo",
+  "required_evidence_rows": 9,
+  "status": "claim_ready",
+  "status_counts": {
+    "passed": 3
+  },
+  "valid_required_evidence_rows": 9
+}

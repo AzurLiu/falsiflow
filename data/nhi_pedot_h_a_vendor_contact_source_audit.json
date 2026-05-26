@@ -1,0 +1,96 @@
+{
+  "boundary": "Vendor contact-source audits are sourcing controls only. They are not send confirmations, quote replies, measurements, or material suitability evidence.",
+  "generated_artifacts": {
+    "csv": "data/nhi_pedot_h_a_vendor_contact_source_audit.csv",
+    "json": "data/nhi_pedot_h_a_vendor_contact_source_audit.json",
+    "report": "reports/nhi_pedot_h_a_vendor_contact_source_audit.md"
+  },
+  "inputs": {
+    "contact_plan": "data/nhi_pedot_h_a_vendor_contact_plan.json",
+    "proofs": "data/nhi_pedot_h_a_vendor_contact_source_proofs.csv"
+  },
+  "purpose": "Audit first-wave NHI-PEDOT H-A RFQ contact channels against official-source proof rows before manual dispatch.",
+  "rows": [
+    {
+      "audit_status": "pass",
+      "candidate_id": "materials_metric",
+      "contact_plan_status": "ready_to_send",
+      "contact_url_match": "true",
+      "errors": "",
+      "phone_match": "true",
+      "primary_email_match": "true",
+      "proof_age_days": 0,
+      "proof_status": "proof_ok",
+      "quote_url_match": "true",
+      "sample_submission_url_match": "true",
+      "source_domain": "materialsmetric.com",
+      "source_supports_quote_route": "true",
+      "source_url": "https://materialsmetric.com/contact-us/",
+      "vendor_name": "Materials Metric",
+      "verified_at": "2026-05-24"
+    },
+    {
+      "audit_status": "pass",
+      "candidate_id": "the_osmolality_lab",
+      "contact_plan_status": "ready_to_send",
+      "contact_url_match": "true",
+      "errors": "",
+      "phone_match": "true",
+      "primary_email_match": "true",
+      "proof_age_days": 0,
+      "proof_status": "proof_ok",
+      "quote_url_match": "true",
+      "sample_submission_url_match": "true",
+      "source_domain": "theosmolalitylab.com",
+      "source_supports_quote_route": "true",
+      "source_url": "https://theosmolalitylab.com/contact-us/",
+      "vendor_name": "The Osmolality Lab",
+      "verified_at": "2026-05-24"
+    },
+    {
+      "audit_status": "pass",
+      "candidate_id": "cambridge_polymer_group_hydrogel",
+      "contact_plan_status": "ready_to_send",
+      "contact_url_match": "true",
+      "errors": "",
+      "phone_match": "true",
+      "primary_email_match": "true",
+      "proof_age_days": 0,
+      "proof_status": "proof_ok",
+      "quote_url_match": "true",
+      "sample_submission_url_match": "true",
+      "source_domain": "campoly.com",
+      "source_supports_quote_route": "true",
+      "source_url": "https://www.campoly.com/contact-us/",
+      "vendor_name": "Cambridge Polymer Group",
+      "verified_at": "2026-05-24"
+    },
+    {
+      "audit_status": "pass",
+      "candidate_id": "sigmaaldrich_media_testing",
+      "contact_plan_status": "ready_to_send",
+      "contact_url_match": "true",
+      "errors": "",
+      "phone_match": "true",
+      "primary_email_match": "true",
+      "proof_age_days": 0,
+      "proof_status": "proof_ok",
+      "quote_url_match": "true",
+      "sample_submission_url_match": "true",
+      "source_domain": "sigmaaldrich.com",
+      "source_supports_quote_route": "true",
+      "source_url": "https://www.sigmaaldrich.com/US/en/collections/offices",
+      "vendor_name": "MilliporeSigma Cell Culture Media Stability and Testing Services",
+      "verified_at": "2026-05-24"
+    }
+  ],
+  "status": "h_a_vendor_contact_source_audit_ready",
+  "summary": {
+    "audit_rows": 4,
+    "fail_rows": 0,
+    "max_proof_age_days": 60,
+    "missing_proof_rows": 0,
+    "pass_rows": 4,
+    "stale_proof_rows": 0
+  }
+}

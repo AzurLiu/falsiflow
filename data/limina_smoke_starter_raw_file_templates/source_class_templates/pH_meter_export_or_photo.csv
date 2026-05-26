@@ -1,0 +1,3 @@
+queue_id,run_id,sample_event,target_field,measured_at,operator_or_agent,instrument_id,value,unit,source_file_to_save_as,method_or_record_id,notes,pH_value,pH_meter_id,calibration_record_id,temperature_c
+SQ-0104,NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h,initial,pH,,,,,pH,data/source_files/smoke/h_a/NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h/initial_pH_initial_pH_meter_export_or_photo.csv,,,,,,
+SQ-0107,NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h,final,pH,,,,,pH,data/source_files/smoke/h_a/NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h/final_pH_final_pH_meter_export_or_photo.csv,,,,,,

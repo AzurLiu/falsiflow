@@ -1,0 +1,56 @@
+{
+  "active_discovery_candidate": "limina_alg_lam_pedot_lowdose_v0_2",
+  "active_discovery_priority": "promote_now",
+  "branches": [
+    {
+      "name": "NHI-PEDOT: Laminin-Anchored PEDOT:PSS Neural Hydrogel Interphase",
+      "next_action": "Use the H-A service request to obtain real acellular medium/physical rows for the promoted ALG-LAM-PEDOT route before advancing H-B/H-C.",
+      "portfolio_priority": 1,
+      "portfolio_status": "active_needs_h_a_real_measurements",
+      "priority_lane": "LIMINA-Cell-1",
+      "proof_boundary": "Not suitable until final claim audit verifies H-A/H-B/H-C and long-duration source-file provenance.",
+      "readiness_status": "h_a=h_a_invalid_provenance;h_a_service=ready_to_request_real_measurements;coupon=no_data;long=no_data",
+      "sentinel_status": "not_applicable",
+      "technology_id": "limina_nhi_pedot_laminin_v0_1",
+      "technology_status": "nominated",
+      "validation_packages": {
+        "all_present": true,
+        "expected": [
+          "data/nhi_pedot_validation_package.json",
+          "data/nhi_pedot_long_followup_package.json"
+        ],
+        "present": [
+          "data/nhi_pedot_validation_package.json",
+          "data/nhi_pedot_long_followup_package.json"
+        ]
+      },
+      "weighted_internal_score": 4.08
+    },
+    {
+      "name": "ZRC-ND: Zwitterionic Regenerated-Cellulose Neurodialysis Cartridge",
+      "next_action": "Fill the 8-row Phase A sentinel packet and re-run sentinel interpretation before more non-cell work.",
+      "portfolio_priority": 1,
+      "portfolio_status": "active_needs_phase_a_sentinel",
+      "priority_lane": "LIMINA-External-1",
+      "proof_boundary": "Not suitable until the final claim audit verifies measured non-cell and biological provenance.",
+      "readiness_status": "not_suitable_yet_no_measured_data",
+      "sentinel_status": "no_sentinel_rows",
+      "technology_id": "limina_zrc_nd_v0_1",
+      "technology_status": "nominated",
+      "validation_packages": {
+        "all_present": true,
+        "expected": [
+          "data/zrc_nd_3p5k_guard_validation_package.json",
+          "data/zrc_nd_biological_followup_package.json"
+        ],
+        "present": [
+          "data/zrc_nd_3p5k_guard_validation_package.json",
+          "data/zrc_nd_biological_followup_package.json"
+        ]
+      },
+      "weighted_internal_score": 4.02
+    }
+  ],
+  "primary_next_branch": "limina_nhi_pedot_laminin_v0_1",
+  "status": "no_suitable_material_yet"
+}

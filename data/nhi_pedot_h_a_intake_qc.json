@@ -1,0 +1,1359 @@
+{
+  "expected_row_count": 12,
+  "intake_ready": false,
+  "issue_counts": {
+    "error": 183,
+    "warning": 24
+  },
+  "issues": [
+    {
+      "field": "date",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "medium_name",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "medium_lot",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "temperature_c",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "pH_initial",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "pH_final",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "osmolality_initial_mOsm_kg",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "osmolality_final_mOsm_kg",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "conductivity_initial_mS_cm",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "conductivity_final_mS_cm",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "visible_precipitate",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "visible_shedding",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "swelling_fraction",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "delamination_score",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "optical_transparency_fraction",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "source_file",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "mea_coupon_id",
+      "message": "recommended provenance field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-0h",
+      "severity": "warning"
+    },
+    {
+      "field": "electrode_material",
+      "message": "recommended provenance field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-0h",
+      "severity": "warning"
+    },
+    {
+      "field": "date",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "medium_name",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "medium_lot",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "temperature_c",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "pH_initial",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "pH_final",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "osmolality_initial_mOsm_kg",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "osmolality_final_mOsm_kg",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "conductivity_initial_mS_cm",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "conductivity_final_mS_cm",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "visible_precipitate",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "visible_shedding",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "swelling_fraction",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "delamination_score",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "optical_transparency_fraction",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "source_file",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "mea_coupon_id",
+      "message": "recommended provenance field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-24h",
+      "severity": "warning"
+    },
+    {
+      "field": "electrode_material",
+      "message": "recommended provenance field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-24h",
+      "severity": "warning"
+    },
+    {
+      "field": "date",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "medium_name",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "medium_lot",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "temperature_c",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "pH_initial",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "pH_final",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "osmolality_initial_mOsm_kg",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "osmolality_final_mOsm_kg",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "conductivity_initial_mS_cm",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "conductivity_final_mS_cm",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "visible_precipitate",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "visible_shedding",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "swelling_fraction",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "delamination_score",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "optical_transparency_fraction",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "source_file",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "mea_coupon_id",
+      "message": "recommended provenance field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-72h",
+      "severity": "warning"
+    },
+    {
+      "field": "electrode_material",
+      "message": "recommended provenance field is blank",
+      "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-72h",
+      "severity": "warning"
+    },
+    {
+      "field": "date",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "medium_name",
+      "message": "field still contains a placeholder marker",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "medium_lot",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "pH_initial",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "pH_final",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "osmolality_initial_mOsm_kg",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "osmolality_final_mOsm_kg",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "conductivity_initial_mS_cm",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "conductivity_final_mS_cm",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "visible_precipitate",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "visible_shedding",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "swelling_fraction",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "delamination_score",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "optical_transparency_fraction",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "source_file",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "mea_coupon_id",
+      "message": "recommended provenance field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-0h",
+      "severity": "warning"
+    },
+    {
+      "field": "electrode_material",
+      "message": "recommended provenance field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-0h",
+      "severity": "warning"
+    },
+    {
+      "field": "date",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "medium_name",
+      "message": "field still contains a placeholder marker",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "medium_lot",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "pH_initial",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "pH_final",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "osmolality_initial_mOsm_kg",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "osmolality_final_mOsm_kg",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "conductivity_initial_mS_cm",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "conductivity_final_mS_cm",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "visible_precipitate",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "visible_shedding",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "swelling_fraction",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "delamination_score",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "optical_transparency_fraction",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "source_file",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "mea_coupon_id",
+      "message": "recommended provenance field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-24h",
+      "severity": "warning"
+    },
+    {
+      "field": "electrode_material",
+      "message": "recommended provenance field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-24h",
+      "severity": "warning"
+    },
+    {
+      "field": "date",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "medium_name",
+      "message": "field still contains a placeholder marker",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "medium_lot",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "pH_initial",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "pH_final",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "osmolality_initial_mOsm_kg",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "osmolality_final_mOsm_kg",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "conductivity_initial_mS_cm",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "conductivity_final_mS_cm",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "visible_precipitate",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "visible_shedding",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "swelling_fraction",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "delamination_score",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "optical_transparency_fraction",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "source_file",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "mea_coupon_id",
+      "message": "recommended provenance field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-72h",
+      "severity": "warning"
+    },
+    {
+      "field": "electrode_material",
+      "message": "recommended provenance field is blank",
+      "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-72h",
+      "severity": "warning"
+    },
+    {
+      "field": "date",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "medium_name",
+      "message": "field still contains a placeholder marker",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "medium_lot",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "pH_initial",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "pH_final",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "osmolality_initial_mOsm_kg",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "osmolality_final_mOsm_kg",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "conductivity_initial_mS_cm",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "conductivity_final_mS_cm",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "visible_precipitate",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "visible_shedding",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "swelling_fraction",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "delamination_score",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "optical_transparency_fraction",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "source_file",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "mea_coupon_id",
+      "message": "recommended provenance field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-0h",
+      "severity": "warning"
+    },
+    {
+      "field": "electrode_material",
+      "message": "recommended provenance field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-0h",
+      "severity": "warning"
+    },
+    {
+      "field": "date",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "medium_name",
+      "message": "field still contains a placeholder marker",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "medium_lot",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "pH_initial",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "pH_final",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "osmolality_initial_mOsm_kg",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "osmolality_final_mOsm_kg",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "conductivity_initial_mS_cm",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "conductivity_final_mS_cm",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "visible_precipitate",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "visible_shedding",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "swelling_fraction",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "delamination_score",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "optical_transparency_fraction",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "source_file",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "mea_coupon_id",
+      "message": "recommended provenance field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h",
+      "severity": "warning"
+    },
+    {
+      "field": "electrode_material",
+      "message": "recommended provenance field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h",
+      "severity": "warning"
+    },
+    {
+      "field": "date",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "medium_name",
+      "message": "field still contains a placeholder marker",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "medium_lot",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "pH_initial",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "pH_final",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "osmolality_initial_mOsm_kg",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "osmolality_final_mOsm_kg",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "conductivity_initial_mS_cm",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "conductivity_final_mS_cm",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "visible_precipitate",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "visible_shedding",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "swelling_fraction",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "delamination_score",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "optical_transparency_fraction",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "source_file",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "mea_coupon_id",
+      "message": "recommended provenance field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-72h",
+      "severity": "warning"
+    },
+    {
+      "field": "electrode_material",
+      "message": "recommended provenance field is blank",
+      "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-72h",
+      "severity": "warning"
+    },
+    {
+      "field": "date",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "medium_name",
+      "message": "field still contains a placeholder marker",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "medium_lot",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "pH_initial",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "pH_final",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "osmolality_initial_mOsm_kg",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "osmolality_final_mOsm_kg",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "conductivity_initial_mS_cm",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "conductivity_final_mS_cm",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "visible_precipitate",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "visible_shedding",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "swelling_fraction",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "delamination_score",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "optical_transparency_fraction",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "source_file",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-0h",
+      "severity": "error"
+    },
+    {
+      "field": "mea_coupon_id",
+      "message": "recommended provenance field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-0h",
+      "severity": "warning"
+    },
+    {
+      "field": "electrode_material",
+      "message": "recommended provenance field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-0h",
+      "severity": "warning"
+    },
+    {
+      "field": "date",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "medium_name",
+      "message": "field still contains a placeholder marker",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "medium_lot",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "pH_initial",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "pH_final",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "osmolality_initial_mOsm_kg",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "osmolality_final_mOsm_kg",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "conductivity_initial_mS_cm",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "conductivity_final_mS_cm",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "visible_precipitate",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "visible_shedding",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "swelling_fraction",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "delamination_score",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "optical_transparency_fraction",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "source_file",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-24h",
+      "severity": "error"
+    },
+    {
+      "field": "mea_coupon_id",
+      "message": "recommended provenance field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-24h",
+      "severity": "warning"
+    },
+    {
+      "field": "electrode_material",
+      "message": "recommended provenance field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-24h",
+      "severity": "warning"
+    },
+    {
+      "field": "date",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "medium_name",
+      "message": "field still contains a placeholder marker",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "medium_lot",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "pH_initial",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "pH_final",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "osmolality_initial_mOsm_kg",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "osmolality_final_mOsm_kg",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "conductivity_initial_mS_cm",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "conductivity_final_mS_cm",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "visible_precipitate",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "visible_shedding",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "swelling_fraction",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "delamination_score",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "optical_transparency_fraction",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "source_file",
+      "message": "required field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-72h",
+      "severity": "error"
+    },
+    {
+      "field": "mea_coupon_id",
+      "message": "recommended provenance field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-72h",
+      "severity": "warning"
+    },
+    {
+      "field": "electrode_material",
+      "message": "recommended provenance field is blank",
+      "run_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-72h",
+      "severity": "warning"
+    }
+  ],
+  "next_action": "Resolve QC errors, remove placeholders, and enter real measured provenance before interpretation.",
+  "provenance": {
+    "claimable_measurement_source": false,
+    "exists": true,
+    "measured_row_count": 0,
+    "path": "data/nhi_pedot_h_a_sentinel_template.csv",
+    "path_fixture_marker": false,
+    "placeholder_examples": [
+      {
+        "markers": [
+          "date=missing",
+          "notes=pending_real_measurement",
+          "source_file=missing"
+        ],
+        "row_number": 1,
+        "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-0h"
+      },
+      {
+        "markers": [
+          "date=missing",
+          "notes=pending_real_measurement",
+          "source_file=missing"
+        ],
+        "row_number": 2,
+        "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-24h"
+      },
+      {
+        "markers": [
+          "date=missing",
+          "notes=pending_real_measurement",
+          "source_file=missing"
+        ],
+        "row_number": 3,
+        "run_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-72h"
+      },
+      {
+        "markers": [
+          "date=missing",
+          "laminin_or_peptide_density=record_lot",
+          "medium_name=record_actual",
+          "notes=pending_real_measurement",
+          "source_file=missing",
+          "sterilization_or_aseptic_protocol=record_lot"
+        ],
+        "row_number": 4,
+        "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-0h"
+      },
+      {
+        "markers": [
+          "date=missing",
+          "laminin_or_peptide_density=record_lot",
+          "medium_name=record_actual",
+          "notes=pending_real_measurement",
+          "source_file=missing",
+          "sterilization_or_aseptic_protocol=record_lot"
+        ],
+        "row_number": 5,
+        "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-24h"
+      },
+      {
+        "markers": [
+          "date=missing",
+          "laminin_or_peptide_density=record_lot",
+          "medium_name=record_actual",
+          "notes=pending_real_measurement",
+          "source_file=missing",
+          "sterilization_or_aseptic_protocol=record_lot"
+        ],
+        "row_number": 6,
+        "run_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-72h"
+      },
+      {
+        "markers": [
+          "date=missing",
+          "laminin_or_peptide_density=record_lot",
+          "medium_name=record_actual",
+          "notes=pending_real_measurement",
+          "source_file=missing",
+          "sterilization_or_aseptic_protocol=record_lot"
+        ],
+        "row_number": 7,
+        "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-0h"
+      },
+      {
+        "markers": [
+          "date=missing",
+          "laminin_or_peptide_density=record_lot",
+          "medium_name=record_actual",
+          "notes=pending_real_measurement",
+          "source_file=missing",
+          "sterilization_or_aseptic_protocol=record_lot"
+        ],
+        "row_number": 8,
+        "run_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h"
+      }
+    ],
+    "placeholder_row_count": 12,
+    "row_count": 12,
+    "source_file_issue_count": 0,
+    "source_file_issue_examples": [],
+    "synthetic_examples": [],
+    "synthetic_row_count": 0
+  },
+  "row_count": 12,
+  "runs_path": "/Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_sentinel_template.csv",
+  "source_manifest": "/Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/limina_source_file_manifest.json",
+  "status": "h_a_intake_not_ready"
+}

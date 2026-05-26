@@ -1,0 +1,6 @@
+item_id,expected_path,required,exists,status,acceptance
+completed_phase_a_measurements,data/zrc_nd_phase_a_vendor_return_inbox/completed_phase_a_measurements.csv,true,false,missing_or_incomplete,"CSV has template schema, all 8 expected run_ids, real required values, and no placeholder markers."
+completed_bundle_entry_sheet,data/zrc_nd_phase_a_vendor_return_inbox/completed_bundle_entry_sheet.csv,false,true,missing_or_incomplete,"Optional compact sheet has apply=yes rows, real source_file references, and is ready for source-value expansion."
+completed_chain_of_custody,data/zrc_nd_phase_a_vendor_return_inbox/completed_chain_of_custody.csv,true,false,missing_or_incomplete,CSV uses the chain-of-custody schema with transfer fields filled for returned samples.
+instrument_exports,data/zrc_nd_phase_a_vendor_return_inbox/external_lab_exports,true,true,missing_or_unresolved,Directory contains original instrument exports/reports referenced by instrument_export_returned.
+deviation_log,data/zrc_nd_phase_a_vendor_return_inbox/deviation_log.md,true,false,missing,Markdown or text log states no deviations or lists every protocol/sample/instrument deviation.

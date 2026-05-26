@@ -1,0 +1,2 @@
+queue_id,run_id,sample_event,target_field,measured_at,operator_or_agent,instrument_id,value,unit,source_file_to_save_as,method_or_record_id,notes,temperature_c,temperature_source,covered_window_start,covered_window_end,probe_or_incubator_id
+SQ-0099,NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h,metadata,temperature_c,,,,,C,data/source_files/smoke/h_a/NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h/metadata_temperature_c_temperature_or_incubator_log.csv,,,,,,,

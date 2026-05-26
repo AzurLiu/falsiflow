@@ -1,0 +1,30 @@
+{
+  "version": "0.1",
+  "record_type": "limina_material_technology",
+  "required_fields": [
+    "id",
+    "name",
+    "priority_lane",
+    "status",
+    "one_line",
+    "technology_type",
+    "core_material_stack",
+    "design_claim",
+    "why_it_is_new_for_limina",
+    "fit_to_requirements",
+    "evidence_refs",
+    "validation_plan",
+    "kill_criteria",
+    "open_questions",
+    "score"
+  ],
+  "field_notes": {
+    "status": "candidate, nominated, validated, rejected",
+    "core_material_stack": "Layered material/module architecture.",
+    "fit_to_requirements": "Requirement-by-requirement mapping.",
+    "validation_plan": "Measurements needed before claiming experimental suitability.",
+    "kill_criteria": "Conditions that should stop investment.",
+    "score": "Internal LIMINA score, not a proof of experimental success."
+  }
+}
+

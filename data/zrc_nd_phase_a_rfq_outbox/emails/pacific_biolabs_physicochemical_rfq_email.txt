@@ -1,0 +1,46 @@
+To: Pacific BioLabs Physicochemical Properties Testing team
+Source URL: https://pacificbiolabs.com/physicochemical-properties
+Contact URL: https://pacificbiolabs.com/contact/
+Subject: RFQ: non-GLP acellular ZRC-ND Phase A medium-integrity measurements (Pacific BioLabs Physicochemical Properties Testing)
+
+Hello Pacific BioLabs Physicochemical Properties Testing team,
+
+I am requesting a feasibility review and non-GLP R&D quote for a small acellular medium-integrity measurement package.
+
+Study summary:
+- Active material route: limina_zrc_nd_v0_1
+- Lead variant: zrc_nd_3p5k_mpc_guard
+- Runs: 8
+- Sample events: 16
+- Articles: unmodified 3.5 kDa RC baseline, MPC-like 3.5 kDa lead, 10 kDa challenge, and no-module static control
+- Timepoints: 0 h and 24 h
+- Required outputs: pH, osmolality, conductivity, appearance/turbidity/visible precipitate, raw exports or instrument reports, and chain-of-custody by run_id
+
+Important constraint: we need one result per provided run_id/sample_event/test field. Pooled averages or narrative certificates alone will not satisfy the study.
+
+Could you please confirm:
+- Can conductivity be added to the pH/osmolality/appearance panel or routed to another internal analytical service?
+- Can they accept nonclinical neural-medium aliquots exposed to regenerated-cellulose membrane/module articles?
+- Can they preserve one report row per LIMINA run_id and return raw values in the provided CSV schema?
+- Whether you can fill or accept the provided Phase A CSV schema without changing column names
+- Minimum aliquot volume, sample container, and sample count requirements
+- Expected turnaround time, quote range, sample acceptance constraints, and whether SDS/lot documentation is required before shipping
+
+Attached/package files to review:
+- reports/zrc_nd_phase_a_service_request.md
+- data/zrc_nd_phase_a_sentinel_template.csv
+- reports/zrc_nd_phase_a_sentinel_packet.md
+- data/zrc_nd_phase_a_sentinel_sample_manifest.csv
+- data/zrc_nd_phase_a_sample_labels.csv
+- data/zrc_nd_phase_a_chain_of_custody.csv
+- reports/zrc_nd_phase_a_chain_of_custody.md
+- reports/zrc_nd_next_measurements.md
+- data/zrc_nd_3p5k_guard_validation_package.json
+- reports/zrc_nd_run_plan.md
+
+This is exploratory R&D screening. We are not requesting a material suitability claim from the vendor; we only need traceable raw measurements to feed our internal Phase A gate.
+
+Thank you.
+
+Boundary:
+RFQ emails, vendor capability replies, supplier guidance, and quote packages are sourcing artifacts only. They do not count as material evidence until real returned measurements pass LIMINA QC.

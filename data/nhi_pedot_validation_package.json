@@ -1,0 +1,280 @@
+{
+  "id": "nhi_pedot_laminin_validation_v0_1",
+  "lead_variant_id": "nhi_pedot_low_loading_laminin",
+  "parent_technology": "limina_nhi_pedot_laminin_v0_1",
+  "title": "NHI-PEDOT laminin hydrogel interphase validation package",
+  "objective": "Determine whether a laminin-anchored, low-loading PEDOT:PSS neural hydrogel interphase is suitable to enter CL1-like MEA neural culture follow-up by proving acellular material stability, electrochemical benefit, and early neural compatibility without medium drift or material shedding.",
+  "scope": {
+    "stage": "cell-contact coupon and MEA validation",
+    "claim_after_success": "Ready for longer CL1-like neural network pilot on MEA coupons, not yet proven as a final CL1 material.",
+    "lead_design": "Brain-soft hydrogel matrix with laminin or laminin-like adhesive presentation and low-loading PEDOT:PSS conductive microdomains on a defined MEA coupon.",
+    "design_boundary": "Direct cell-contact interface; no closed CL1 deployment until extract, soak, electrochemical, and biological pilot gates pass.",
+    "not_in_scope": "Implantable claims, GMP manufacturing, final sterilization validation, and irreversible modification of production CL1 hardware."
+  },
+  "procurement_specs": [
+    {
+      "id": "neural_hydrogel_matrix",
+      "component": "Soft hydrogel matrix",
+      "required_spec": "GelMA, hyaluronic-acid, or alginate-based matrix that can be tuned near brain-like low-kPa mechanics, prepared aseptically, and measured for swelling and extractables.",
+      "preferred_format": "Small-batch coupon casting or micropatterned format compatible with MEA witness coupons.",
+      "reject_if": "Unknown crosslinking chemistry, persistent photoinitiator toxicity, opacity that blocks inspection, or uncontrolled swelling over 24-72 h.",
+      "evidence_refs": ["hydrogel_neural_tissue_2020", "stiffness_sensing_2020", "gelma_pedot_composite_2018"]
+    },
+    {
+      "id": "pedot_pss_conductive_phase",
+      "component": "Conductive PEDOT:PSS phase",
+      "required_spec": "Low-loading PEDOT:PSS dispersion or preformed microdomain route with neutralized/rinsed formulation, recorded solids fraction, and no unqualified conductivity enhancer in the cell-contact path.",
+      "preferred_format": "Dose ladder with hydrogel-only control, low PEDOT:PSS lead, and high PEDOT:PSS challenge article.",
+      "reject_if": "Acidic pH drift, visible particle shedding, uncontrolled PSS/leachable release, or impedance benefit only at cell-toxic loading.",
+      "evidence_refs": ["pedot_brain_monitoring_2025", "pedot_bio_sei_2026", "conductive_hydrogels_2025", "pedot_neural_culture_hydrogel_2025"]
+    },
+    {
+      "id": "laminin_presentation",
+      "component": "Cell-instructive adhesive layer",
+      "required_spec": "Laminin, laminin-derived peptide, or ECM-mimetic adhesive motif compatible with the selected hydrogel chemistry and neural culture model.",
+      "preferred_format": "Matched hydrogel-plus-laminin control without PEDOT:PSS to isolate electrical versus biochemical effects.",
+      "reject_if": "Adhesive cue rapidly desorbs, blocks electrodes, causes unstable coating thickness, or fails to support neurite outgrowth in controls.",
+      "evidence_refs": ["hydrogel_neural_tissue_2020", "pedot_neural_culture_hydrogel_2025"]
+    },
+    {
+      "id": "mea_coupon_substrate",
+      "component": "MEA witness coupon",
+      "required_spec": "MEA-like electrode coupon or disposable MEA with known electrode geometry, insulation material, optical access, and stable baseline impedance.",
+      "preferred_format": "Dedicated test coupon, not a production CL1 consumable, with uncoated, laminin-only, and hydrogel-only controls.",
+      "reject_if": "Unknown electrode material, poor baseline impedance stability, opaque layout, or bonding chemistry that cannot be replicated.",
+      "evidence_refs": ["neuronal_network_material_biocompatibility_mea_2013", "pedot_brain_monitoring_2025"]
+    }
+  ],
+  "test_articles": [
+    {
+      "id": "no_coating_mea_control",
+      "variant_id": null,
+      "description": "MEA coupon with standard cell-culture coating or uncoated material-control state.",
+      "role": "baseline device control"
+    },
+    {
+      "id": "laminin_only_control",
+      "variant_id": "laminin_only_mea",
+      "description": "MEA coupon with laminin or laminin-like adhesive cue but no hydrogel or PEDOT:PSS phase.",
+      "role": "biochemical adhesion control"
+    },
+    {
+      "id": "hydrogel_laminin_control",
+      "variant_id": "hydrogel_laminin_no_pedot",
+      "description": "Soft hydrogel plus laminin presentation without conductive PEDOT:PSS.",
+      "role": "soft matrix control"
+    },
+    {
+      "id": "lead_nhi_pedot_low_loading",
+      "variant_id": "nhi_pedot_low_loading_laminin",
+      "description": "Soft laminin-presenting hydrogel with low-loading PEDOT:PSS microdomains.",
+      "role": "lead candidate"
+    },
+    {
+      "id": "challenge_nhi_pedot_high_loading",
+      "variant_id": "nhi_pedot_high_loading_laminin",
+      "description": "Same hydrogel and laminin presentation with higher PEDOT:PSS loading for conductivity-versus-toxicity boundary testing.",
+      "role": "high-conductivity challenge"
+    }
+  ],
+  "run_matrix": [
+    {
+      "phase": "H-A",
+      "name": "Acellular material blank and extract",
+      "purpose": "Detect medium drift, leachables, swelling, shedding, opacity, and delamination before live-cell exposure.",
+      "inputs": ["fresh complete neuronal medium or closest CL1-like medium proxy", "MEA witness coupons", "hydrogel test articles"],
+      "articles": ["no_coating_mea_control", "laminin_only_control", "hydrogel_laminin_control", "lead_nhi_pedot_low_loading", "challenge_nhi_pedot_high_loading"],
+      "minimum_replicates": 3,
+      "timepoints": ["0 h", "4 h", "24 h", "72 h"],
+      "must_pass_before": "H-B and H-C"
+    },
+    {
+      "phase": "H-B",
+      "name": "Electrochemical and physical stability",
+      "purpose": "Measure whether PEDOT:PSS loading improves interface metrics without thickness, transparency, swelling, or adhesion failure.",
+      "inputs": ["MEA witness coupons", "culture-medium-soaked articles"],
+      "articles": ["no_coating_mea_control", "laminin_only_control", "hydrogel_laminin_control", "lead_nhi_pedot_low_loading", "challenge_nhi_pedot_high_loading"],
+      "minimum_replicates": 3,
+      "timepoints": ["pre-soak", "24 h soak", "72 h soak", "post-cycling"],
+      "must_pass_before": "H-C"
+    },
+    {
+      "phase": "H-C",
+      "name": "Neural compatibility pilot",
+      "purpose": "Test whether the lead improves or preserves neural survival, neurites, morphology, and early network activity compared with laminin and hydrogel controls.",
+      "inputs": ["primary cortical neurons or human iPSC-derived cortical neurons", "matched MEA coupons", "validated medium"],
+      "articles": ["laminin_only_control", "hydrogel_laminin_control", "lead_nhi_pedot_low_loading", "challenge_nhi_pedot_high_loading"],
+      "minimum_replicates": 3,
+      "timepoints": ["24 h", "7 d", "14 d", "28 d if early gates pass"],
+      "must_pass_before": "long-duration CL1-like pilot"
+    }
+  ],
+  "assay_panel": [
+    {
+      "id": "medium_integrity",
+      "readout": "pH, osmolality, conductivity, visible particulates, color/opacity, and precipitate",
+      "method_class": "standard media chemistry, visual inspection, and microscopy",
+      "sample_matrix": "fresh medium soak and extract samples",
+      "control_requirement": "same timepoints for no-coating, laminin-only, and hydrogel-only controls",
+      "evidence_refs": ["iso_10993_5_cytotoxicity_extract_fda"]
+    },
+    {
+      "id": "physical_stability",
+      "readout": "Hydrogel thickness, swelling, delamination, cracking, electrode-window occlusion, and optical transparency",
+      "method_class": "profilometry or calibrated microscopy plus image log",
+      "sample_matrix": "MEA witness coupons",
+      "control_requirement": "pre-soak baseline and hydrogel-only comparator",
+      "evidence_refs": ["gelma_pedot_micropatterning_2026", "gelma_pedot_composite_2018"]
+    },
+    {
+      "id": "electrochemical_interface",
+      "readout": "Electrochemical impedance spectroscopy, charge-storage capacity, cyclic-voltammetry drift, and stimulation-safe voltage excursion where available",
+      "method_class": "MEA/electrochemical workstation measurement",
+      "sample_matrix": "coated MEA coupons before and after medium soak",
+      "control_requirement": "uncoated, laminin-only, and hydrogel-only coupon baselines",
+      "evidence_refs": ["pedot_brain_monitoring_2025", "pedot_neural_culture_hydrogel_2025"]
+    },
+    {
+      "id": "neural_viability",
+      "readout": "Metabolic viability, LDH release or equivalent cytotoxicity, live/dead imaging",
+      "method_class": "in vitro cytotoxicity and neural culture viability assay",
+      "sample_matrix": "neural culture on coated coupons and material extracts",
+      "control_requirement": "negative material control and positive cytotoxicity control",
+      "evidence_refs": ["iso_10993_5_cytotoxicity_extract_fda", "dnt_nam_viability_neurite_mea_2022"]
+    },
+    {
+      "id": "neurite_and_morphology",
+      "readout": "Neurite length/density, network coverage, cell clustering, and morphology stress flags",
+      "method_class": "immunostaining or high-content imaging",
+      "sample_matrix": "neural culture on coated MEA coupons",
+      "control_requirement": "laminin-only and hydrogel-only controls",
+      "evidence_refs": ["hydrogel_neural_tissue_2020", "dnt_nam_viability_neurite_mea_2022"]
+    },
+    {
+      "id": "network_activity",
+      "readout": "Spike rate, burst metrics, electrode yield, impedance drift during culture, and network synchrony where available",
+      "method_class": "MEA recording and analysis",
+      "sample_matrix": "neural culture on MEA coupons",
+      "control_requirement": "same culture batch across laminin-only, hydrogel-only, lead, and high-loading challenge articles",
+      "evidence_refs": ["neuronal_network_material_biocompatibility_mea_2013", "pedot_neural_culture_hydrogel_2025"]
+    }
+  ],
+  "acceptance_gates": [
+    {
+      "id": "blank_integrity_gate",
+      "criterion": "Acellular soak or extract shows no material-driven pH drift greater than 0.10 pH units, no osmolality or conductivity drift greater than 5 percent versus hydrogel-free controls, no visible shedding/precipitate, and no unresolved color/opacity issue.",
+      "rationale": "A direct cell-contact material cannot advance if it changes base neural medium chemistry or sheds material.",
+      "failure_response": "Reduce PEDOT:PSS loading, change matrix/pre-rinse/crosslinking, or reject the formulation before cell exposure."
+    },
+    {
+      "id": "physical_stability_gate",
+      "criterion": "Hydrogel thickness changes less than 20 percent, no delamination/cracking, electrode windows remain inspectable, and transparency remains sufficient for cell monitoring after 72 h soak.",
+      "rationale": "MEA culture needs stable geometry and optical access; swelling or delamination can dominate biological outcomes.",
+      "failure_response": "Change matrix concentration, anchoring chemistry, pattern geometry, or crosslinking route."
+    },
+    {
+      "id": "electrochemical_benefit_gate",
+      "criterion": "The low-loading lead improves impedance or charge-storage metrics by at least 25 percent versus hydrogel-laminin control after soak, without unstable cyclic-voltammetry drift.",
+      "rationale": "PEDOT:PSS must add measurable electrical value beyond a soft biochemical coating.",
+      "failure_response": "Rerank loading, domain geometry, or drop PEDOT:PSS if the hydrogel-only control is equivalent."
+    },
+    {
+      "id": "neural_health_gate",
+      "criterion": "Lead viability, LDH or equivalent cytotoxicity, neurite coverage, and morphology are non-inferior to laminin-only and hydrogel-laminin controls at early timepoints.",
+      "rationale": "The lead is only useful if its electrical benefit does not degrade basic neural health.",
+      "failure_response": "Lower PEDOT:PSS loading, improve rinse/neutralization, change ECM presentation, or reject the conductive phase."
+    },
+    {
+      "id": "network_activity_gate",
+      "criterion": "Lead MEA cultures maintain electrode yield and network activity at least non-inferior to hydrogel-laminin controls, with lower impedance drift, through the pilot window.",
+      "rationale": "For CL1-like use, material suitability must be functional, not only cytocompatible.",
+      "failure_response": "If cells survive but network activity falls, change stiffness, ligand density, thickness, or conductive-domain geometry before longer tests."
+    }
+  ],
+  "data_capture_fields": [
+    "run_id",
+    "date",
+    "operator_or_agent",
+    "phase",
+    "timepoint",
+    "replicate",
+    "article_id",
+    "variant_id",
+    "control_article_id",
+    "mea_coupon_id",
+    "electrode_material",
+    "hydrogel_matrix",
+    "hydrogel_modulus_kpa",
+    "hydrogel_thickness_um",
+    "pedot_pss_loading_fraction",
+    "pedot_pss_pre_rinse_protocol",
+    "laminin_or_peptide_density",
+    "crosslinking_protocol",
+    "sterilization_or_aseptic_protocol",
+    "medium_name",
+    "medium_lot",
+    "temperature_c",
+    "pH_initial",
+    "pH_final",
+    "osmolality_initial_mOsm_kg",
+    "osmolality_final_mOsm_kg",
+    "conductivity_initial_mS_cm",
+    "conductivity_final_mS_cm",
+    "visible_precipitate",
+    "visible_shedding",
+    "swelling_fraction",
+    "delamination_score",
+    "optical_transparency_fraction",
+    "eis_1khz_initial_ohm",
+    "eis_1khz_final_ohm",
+    "charge_storage_capacity_initial",
+    "charge_storage_capacity_final",
+    "cell_model",
+    "seeding_density",
+    "viability_fraction",
+    "ldh_fold_control",
+    "neurite_coverage_fraction",
+    "mean_neurite_length_um",
+    "electrode_yield_fraction",
+    "spike_rate_hz",
+    "burst_rate_hz",
+    "gate_results",
+    "source_file",
+    "notes"
+  ],
+  "decision_rules": [
+    {
+      "condition": "All H-A/H-B/H-C gates pass for low-loading NHI-PEDOT",
+      "action": "Promote to cell-contact biological pilot candidate and design a longer MEA network stability study."
+    },
+    {
+      "condition": "Blank and neural health pass but electrochemical benefit fails",
+      "action": "Demote PEDOT:PSS to optional and compare hydrogel-laminin-only coating against simpler PDA-laminin controls."
+    },
+    {
+      "condition": "Electrochemical benefit passes but neural health fails",
+      "action": "Reduce PEDOT:PSS loading, strengthen rinse/neutralization, or reject the conductive phase before live-cell continuation."
+    },
+    {
+      "condition": "High-loading challenge outperforms lead electrically but harms cells",
+      "action": "Use the high-loading result only as an upper toxicity/electrical boundary; do not promote it."
+    },
+    {
+      "condition": "Hydrogel swells, delaminates, or blocks optical/MEA access",
+      "action": "Change matrix, anchoring chemistry, or geometry before any biological interpretation."
+    }
+  ],
+  "source_refs": [
+    "pedot_brain_monitoring_2025",
+    "pedot_bio_sei_2026",
+    "conductive_hydrogels_2025",
+    "hydrogel_neural_tissue_2020",
+    "stiffness_sensing_2020",
+    "gelma_pedot_composite_2018",
+    "pedot_neural_culture_hydrogel_2025",
+    "gelma_pedot_micropatterning_2026",
+    "iso_10993_5_cytotoxicity_extract_fda",
+    "dnt_nam_viability_neurite_mea_2022",
+    "neuronal_network_material_biocompatibility_mea_2013"
+  ]
+}

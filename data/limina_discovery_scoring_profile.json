@@ -1,0 +1,38 @@
+{
+  "version": "0.1",
+  "purpose": "Rank material-technology prospects by how quickly they can produce defensible evidence for the first LIMINA suitability claim.",
+  "weights": {
+    "direct_neural_cell_evidence": 0.22,
+    "time_to_first_gate": 0.16,
+    "measurement_accessibility": 0.14,
+    "optimization_space": 0.14,
+    "novelty_upside": 0.11,
+    "integration_risk_control": 0.12,
+    "manufacturability": 0.06,
+    "proof_gap_clarity": 0.05
+  },
+  "gates": [
+    {
+      "field": "measurement_accessibility",
+      "minimum": 3,
+      "reason": "The next claim candidate must be testable with near-term coupon, medium, or simple material measurements."
+    },
+    {
+      "field": "proof_gap_clarity",
+      "minimum": 3,
+      "reason": "The next experiments must have clear pass/fail criteria, not only a broad research direction."
+    },
+    {
+      "field": "integration_risk_control",
+      "minimum": 2.5,
+      "reason": "Direct cell-contact candidates with uncontrolled leachables or fabrication risk should not be first-claim leads."
+    }
+  ],
+  "score_scale": {
+    "1": "weak or unclear",
+    "2": "early and risky",
+    "3": "plausible but still incomplete",
+    "4": "strong near-term candidate",
+    "5": "best available for first-claim progress"
+  }
+}

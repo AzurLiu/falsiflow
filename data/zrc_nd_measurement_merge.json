@@ -1,0 +1,14 @@
+{
+  "base": "/Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_validation_runs_template.csv",
+  "measurement_file_exists": false,
+  "measurement_rows": 0,
+  "measurements": "/Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_phase_a_vendor_return_inbox/completed_phase_a_measurements.csv",
+  "output": "/Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/zrc_nd_validation_runs_active.csv",
+  "stats": {
+    "inserted": 0,
+    "skipped": 0,
+    "total": 0,
+    "updated": 0
+  },
+  "status": "awaiting_measurement_file"
+}

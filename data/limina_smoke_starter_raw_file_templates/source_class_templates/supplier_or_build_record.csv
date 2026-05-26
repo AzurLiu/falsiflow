@@ -1,0 +1,5 @@
+queue_id,run_id,sample_event,target_field,measured_at,operator_or_agent,instrument_id,value,unit,source_file_to_save_as,method_or_record_id,notes,supplier_or_builder,lot,recipe_or_coa_id,batch_id,label_or_build_record_id
+SQ-0100,NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h,metadata,mea_coupon_id,,,,,,data/source_files/smoke/h_a/NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h/metadata_mea_coupon_id_supplier_or_build_record.pdf,,,,,,,
+SQ-0101,NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h,metadata,electrode_material,,,,,,data/source_files/smoke/h_a/NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h/metadata_electrode_material_supplier_or_build_record.pdf,,,,,,,
+SQ-0102,NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h,metadata,laminin_or_peptide_density,,,,,,data/source_files/smoke/h_a/NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h/metadata_laminin_or_peptide_density_supplier_or_build_record.pdf,,,,,,,
+SQ-0103,NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h,metadata,sterilization_or_aseptic_protocol,,,,,,data/source_files/smoke/h_a/NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h/metadata_sterilization_or_aseptic_protocol_supplier_or_build_record.pdf,,,,,,,

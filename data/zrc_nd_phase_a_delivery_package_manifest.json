@@ -1,0 +1,129 @@
+{
+  "active_candidate": "limina_zrc_nd_v0_1",
+  "expected_return_files": [
+    {
+      "acceptance": "Same schema as the package template, with all requested real values and provenance fields filled.",
+      "id": "completed_phase_a_csv",
+      "path": "data/zrc_nd_phase_a_sentinel_template.csv"
+    },
+    {
+      "acceptance": "Original pH, osmolality, conductivity, and inspection files reconciled to run_id or sample_id.",
+      "id": "instrument_exports",
+      "path": "external_lab_exports/zrc_nd_phase_a/"
+    },
+    {
+      "acceptance": "Prepared/released/received fields, actual lot IDs, module/tube IDs, condition on receipt, and deviations filled.",
+      "id": "completed_chain_of_custody",
+      "path": "data/zrc_nd_phase_a_chain_of_custody.csv"
+    },
+    {
+      "acceptance": "Lists every deviation from membrane, module, guard, medium, timing, temperature, rinse, or instrument assumptions.",
+      "id": "deviation_log",
+      "path": "reports/zrc_nd_phase_a_deviation_log.md"
+    }
+  ],
+  "missing_required_file_ids": [],
+  "non_claim_boundary": "This manifest only packages the Phase A measurement request. ZRC-ND suitability still requires real Phase A/B/C rows, biological follow-up, readiness audit pass, and final claim audit.",
+  "package_files": [
+    {
+      "bytes": 5958,
+      "exists": true,
+      "id": "service_request",
+      "path": "reports/zrc_nd_phase_a_service_request.md",
+      "required": true,
+      "role": "Primary Phase A lab/cooperator request: matrix, deliverables, acceptance gate, and rejection rules.",
+      "sha256": "b238fae53a65e6d622ffc7f374844e734db75af1e991a0ff9004c980a889ae36"
+    },
+    {
+      "bytes": 2577,
+      "exists": true,
+      "id": "phase_a_template",
+      "path": "data/zrc_nd_phase_a_sentinel_template.csv",
+      "required": true,
+      "role": "The 8-row Phase A CSV to fill with real medium-integrity measurements.",
+      "sha256": "e818351e23fb1ddafdd308567b26c4e51460197a84e563e81e21697f476081dc"
+    },
+    {
+      "bytes": 2121,
+      "exists": true,
+      "id": "sentinel_packet",
+      "path": "reports/zrc_nd_phase_a_sentinel_packet.md",
+      "required": true,
+      "role": "Human-readable Phase A sentinel packet and gate description.",
+      "sha256": "3909825a725dda647e267f3ec7001b5dcf0cf1575aaebdf02a043120d6c837c4"
+    },
+    {
+      "bytes": 3819,
+      "exists": true,
+      "id": "sample_manifest",
+      "path": "data/zrc_nd_phase_a_sentinel_sample_manifest.csv",
+      "required": true,
+      "role": "Sample-level manifest tying run_id to sample_event, article, timepoint, and readouts.",
+      "sha256": "9c6b4f82658ea78b1e5986d0291c4bb37d6f8197919eb31bef452d644717c23a"
+    },
+    {
+      "bytes": 7214,
+      "exists": true,
+      "id": "sample_labels",
+      "path": "data/zrc_nd_phase_a_sample_labels.csv",
+      "required": true,
+      "role": "Printable/transferable labels with sample IDs, planned container IDs, article IDs, and handling notes.",
+      "sha256": "916a6fbd8f037631907db75127ca970f9afa75307d37b42d23a9ed09993e7269"
+    },
+    {
+      "bytes": 4185,
+      "exists": true,
+      "id": "chain_of_custody_csv",
+      "path": "data/zrc_nd_phase_a_chain_of_custody.csv",
+      "required": true,
+      "role": "Blank chain-of-custody transfer rows to complete during preparation, release, receipt, and return.",
+      "sha256": "d78e28317e5a2573a97e63b5923f5e06139537eceb8defeac569ae4947bb4adb"
+    },
+    {
+      "bytes": 3921,
+      "exists": true,
+      "id": "chain_of_custody_report",
+      "path": "reports/zrc_nd_phase_a_chain_of_custody.md",
+      "required": true,
+      "role": "Human-readable sample handoff instructions, blank fields, and rejection rules.",
+      "sha256": "956241196106ba96d35ebbaa0f69cbf6f39c9f5b1924712813f7f5ab73ef2bd8"
+    },
+    {
+      "bytes": 2320,
+      "exists": true,
+      "id": "next_measurements",
+      "path": "reports/zrc_nd_next_measurements.md",
+      "required": true,
+      "role": "Current adaptive selector output showing why Phase A is the next ZRC-ND batch.",
+      "sha256": "401abb7ac6fc1049ee22eddd8df8d96ae79e051d9db310086f0d463749c150b8"
+    },
+    {
+      "bytes": 16446,
+      "exists": true,
+      "id": "validation_package",
+      "path": "data/zrc_nd_3p5k_guard_validation_package.json",
+      "required": true,
+      "role": "Machine-readable validation package defining articles, assays, fields, and gates.",
+      "sha256": "24d8c12bf6184352f9f8f34f2acb1300c5614bdfa76fdaebb76870c9a16f66e2"
+    },
+    {
+      "bytes": 910,
+      "exists": true,
+      "id": "run_plan",
+      "path": "reports/zrc_nd_run_plan.md",
+      "required": true,
+      "role": "Full non-cell run plan context; Phase A is the current first sentinel subset.",
+      "sha256": "97fae50d5aef7e2d50baf8ff13d9c202b8cc5e2e0e21f449c1402f16e688b1db"
+    }
+  ],
+  "post_return_verification": [
+    "python3 scripts/merge_zrc_nd_measurements.py",
+    "python3 scripts/interpret_zrc_nd_sentinel.py",
+    "python3 scripts/evaluate_zrc_nd_validation_runs.py --runs data/zrc_nd_validation_runs_active.csv",
+    "python3 scripts/suggest_zrc_nd_next_measurements.py --runs data/zrc_nd_validation_runs_active.csv",
+    "python3 scripts/audit_zrc_nd_readiness.py",
+    "python3 scripts/run_limina_iteration.py"
+  ],
+  "purpose": "Manifest for the real-measurement package needed to unblock the ZRC-ND external-material Phase A sentinel.",
+  "status": "ready_to_send"
+}

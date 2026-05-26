@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NHI-PEDOT H-A RFQ Send Cockpit</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f8fa;
+      --panel: #ffffff;
+      --ink: #18202b;
+      --muted: #667085;
+      --line: #d9dee7;
+      --accent: #126f7a;
+      --good: #16724a;
+      --wait: #7a5a10;
+      --warn: #a43f2f;
+      --shadow: 0 1px 2px rgba(16, 24, 40, 0.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    header {
+      padding: 24px 28px 14px;
+      background: var(--panel);
+      border-bottom: 1px solid var(--line);
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 26px;
+      line-height: 1.15;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+      gap: 10px;
+      padding: 14px 28px;
+      border-bottom: 1px solid var(--line);
+      background: #eef3f4;
+    }
+    .metric {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 12px;
+      box-shadow: var(--shadow);
+      min-height: 68px;
+    }
+    .metric span, .field span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .metric strong {
+      font-size: 22px;
+      line-height: 1.1;
+    }
+    main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 18px 20px 36px;
+    }
+    .vendor {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+    .vendor-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+    }
+    .order {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+    h2 {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+    .status-stack {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 6px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      border-radius: 6px;
+      padding: 3px 8px;
+      border: 1px solid var(--line);
+      background: #f2f4f7;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .badge.ready { background: #e7f5f2; border-color: #b6ded5; color: var(--accent); }
+    .badge.wait { background: #fff7df; border-color: #ecd68b; color: var(--wait); }
+    .badge.warn { background: #fff0ed; border-color: #f1b3a8; color: var(--warn); }
+    .badge.done { background: #e9f6ef; border-color: #b8dfca; color: var(--good); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .field {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      background: #fbfcfd;
+    }
+    .field strong {
+      display: block;
+      min-height: 24px;
+      font-size: 14px;
+      overflow-wrap: anywhere;
+    }
+    .field small {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    code {
+      display: block;
+      max-width: 100%;
+      margin: 6px 0 0;
+      color: #263343;
+      background: #eef1f5;
+      border: 1px solid #dde3ea;
+      border-radius: 6px;
+      padding: 6px;
+      font: 12px/1.35 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      overflow-wrap: anywhere;
+    }
+    .link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .link:hover { text-decoration: underline; }
+    button.copy {
+      margin-top: 7px;
+      min-height: 28px;
+      border: 1px solid #b9c2cf;
+      border-radius: 6px;
+      background: #ffffff;
+      color: #2a3545;
+      font: 12px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-weight: 700;
+      padding: 0 9px;
+      cursor: pointer;
+    }
+    button.copy:hover { border-color: var(--accent); color: var(--accent); }
+    .next {
+      margin: 12px 0 0;
+      color: #334155;
+      font-weight: 600;
+    }
+    .commands {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 14px 16px;
+      margin-top: 18px;
+    }
+    .commands h2 { margin-bottom: 8px; }
+    .commands ol {
+      margin: 0;
+      padding-left: 22px;
+    }
+    .commands li { margin: 8px 0; }
+    .muted { color: var(--muted); }
+    @media (max-width: 1000px) {
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 650px) {
+      header { padding: 20px 16px 12px; }
+      .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 12px 16px; }
+      main { padding: 14px 12px 28px; }
+      .vendor-head { display: block; }
+      .status-stack { justify-content: flex-start; margin-top: 10px; }
+      .grid { grid-template-columns: 1fr; }
+      h1 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>NHI-PEDOT H-A RFQ Send Cockpit</h1>
+    <span class="badge ready">h_a_rfq_send_cockpit_ready_for_manual_send</span>
+  </header>
+  <section class="summary" aria-label="Summary">
+    <div class="metric"><span>Vendors</span><strong>4</strong></div>
+    <div class="metric"><span>Ready to use</span><strong>4</strong></div>
+    <div class="metric"><span>Confirmations</span><strong>0</strong></div>
+    <div class="metric"><span>Replies</span><strong>0</strong></div>
+    <div class="metric"><span>EML audit pass</span><strong>4</strong></div>
+    <div class="metric"><span>Dispatch ready</span><strong>4</strong></div>
+    <div class="metric"><span>Missing EML</span><strong>0</strong></div>
+    <div class="metric"><span>Missing bundles</span><strong>0</strong></div>
+  </section>
+  <main>
+    
+        <section class="vendor">
+          <div class="vendor-head">
+            <div>
+              <div class="order">#1</div>
+              <h2>Materials Metric</h2>
+            </div>
+            <div class="status-stack">
+              <span class="badge ready">ready_to_send</span>
+              <span class="badge ready">ready_for_manual_dispatch</span>
+              <span class="badge wait">waiting_for_rfq_send</span>
+            </div>
+          </div>
+          <div class="grid">
+            <div class="field"><span>Recipient/Form</span><strong>info@materialsmetric.com</strong><button type="button" class="copy" data-copy="info@materialsmetric.com">Copy</button></div>
+            <div class="field"><span>Contact</span><strong><a class="link" href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/https%3A/materialsmetric.com/contact-us">Contact</a> </strong></div>
+            <div class="field"><span>EML Draft</span><strong><a class="link" href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_outbox/eml_drafts/materials_metric_rfq_draft.eml">Open .eml</a></strong><code>data/nhi_pedot_h_a_rfq_outbox/eml_drafts/materials_metric_rfq_draft.eml</code><button type="button" class="copy" data-copy="data/nhi_pedot_h_a_rfq_outbox/eml_drafts/materials_metric_rfq_draft.eml">Copy path</button><small>exists</small></div>
+            <div class="field"><span>EML Integrity</span><strong><span class="badge done">pass</span></strong><small>attached bundle verified</small></div>
+            <div class="field"><span>Dispatch Manifest</span><strong><span class="badge ready">ready_for_manual_dispatch</span></strong><small>bundle match: true</small></div>
+            <div class="field"><span>Bundle</span><strong><a class="link" href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_outbox/vendor_packages/materials_metric_nhi_pedot_h_a_rfq_bundle.zip">Open bundle</a></strong><code>data/nhi_pedot_h_a_rfq_outbox/vendor_packages/materials_metric_nhi_pedot_h_a_rfq_bundle.zip</code><button type="button" class="copy" data-copy="data/nhi_pedot_h_a_rfq_outbox/vendor_packages/materials_metric_nhi_pedot_h_a_rfq_bundle.zip">Copy path</button><small>exists</small></div>
+            <div class="field"><span>Bundle SHA-256</span><code>6799fdef01396d5ed999a13a4de131bf1d490719369c0e4b90f81c7c73cd9d35</code><button type="button" class="copy" data-copy="6799fdef01396d5ed999a13a4de131bf1d490719369c0e4b90f81c7c73cd9d35">Copy path</button></div>
+            <div class="field"><span>Save Confirmation To</span><code>data/rfq_send_confirmation_files/h_a/materials_metric_send_confirmation.txt</code><button type="button" class="copy" data-copy="data/rfq_send_confirmation_files/h_a/materials_metric_send_confirmation.txt">Copy path</button><small>awaiting real file</small></div>
+            <div class="field"><span>Confirmation Template</span><strong><a class="link" href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/rfq_send_confirmation_templates/h_a/materials_metric_send_confirmation_template.md">Open template</a></strong><code>data/rfq_send_confirmation_templates/h_a/materials_metric_send_confirmation_template.md</code><button type="button" class="copy" data-copy="data/rfq_send_confirmation_templates/h_a/materials_metric_send_confirmation_template.md">Copy path</button></div>
+            <div class="field"><span>Save Reply To</span><code>data/rfq_reply_files/h_a/materials_metric_reply.txt</code><button type="button" class="copy" data-copy="data/rfq_reply_files/h_a/materials_metric_reply.txt">Copy path</button><small>awaiting reply</small></div>
+          </div>
+          <p class="next">Open the prepared .eml draft, review recipient/body/attached bundle, send manually, save the original confirmation, then run send-confirmation intake.</p>
+        </section>
+        
+        <section class="vendor">
+          <div class="vendor-head">
+            <div>
+              <div class="order">#2</div>
+              <h2>The Osmolality Lab</h2>
+            </div>
+            <div class="status-stack">
+              <span class="badge ready">ready_to_send</span>
+              <span class="badge ready">ready_for_manual_dispatch</span>
+              <span class="badge wait">waiting_for_rfq_send</span>
+            </div>
+          </div>
+          <div class="grid">
+            <div class="field"><span>Recipient/Form</span><strong>info@osmolab.com</strong><button type="button" class="copy" data-copy="info@osmolab.com">Copy</button></div>
+            <div class="field"><span>Contact</span><strong><a class="link" href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/https%3A/theosmolalitylab.com/contact-us">Contact</a> </strong></div>
+            <div class="field"><span>EML Draft</span><strong><a class="link" href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_outbox/eml_drafts/the_osmolality_lab_rfq_draft.eml">Open .eml</a></strong><code>data/nhi_pedot_h_a_rfq_outbox/eml_drafts/the_osmolality_lab_rfq_draft.eml</code><button type="button" class="copy" data-copy="data/nhi_pedot_h_a_rfq_outbox/eml_drafts/the_osmolality_lab_rfq_draft.eml">Copy path</button><small>exists</small></div>
+            <div class="field"><span>EML Integrity</span><strong><span class="badge done">pass</span></strong><small>attached bundle verified</small></div>
+            <div class="field"><span>Dispatch Manifest</span><strong><span class="badge ready">ready_for_manual_dispatch</span></strong><small>bundle match: true</small></div>
+            <div class="field"><span>Bundle</span><strong><a class="link" href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_outbox/vendor_packages/the_osmolality_lab_nhi_pedot_h_a_rfq_bundle.zip">Open bundle</a></strong><code>data/nhi_pedot_h_a_rfq_outbox/vendor_packages/the_osmolality_lab_nhi_pedot_h_a_rfq_bundle.zip</code><button type="button" class="copy" data-copy="data/nhi_pedot_h_a_rfq_outbox/vendor_packages/the_osmolality_lab_nhi_pedot_h_a_rfq_bundle.zip">Copy path</button><small>exists</small></div>
+            <div class="field"><span>Bundle SHA-256</span><code>b89d68822a7e42b1d387d3b239b6cee86140d3b188e1a3ae14e92792094c023a</code><button type="button" class="copy" data-copy="b89d68822a7e42b1d387d3b239b6cee86140d3b188e1a3ae14e92792094c023a">Copy path</button></div>
+            <div class="field"><span>Save Confirmation To</span><code>data/rfq_send_confirmation_files/h_a/the_osmolality_lab_send_confirmation.txt</code><button type="button" class="copy" data-copy="data/rfq_send_confirmation_files/h_a/the_osmolality_lab_send_confirmation.txt">Copy path</button><small>awaiting real file</small></div>
+            <div class="field"><span>Confirmation Template</span><strong><a class="link" href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/rfq_send_confirmation_templates/h_a/the_osmolality_lab_send_confirmation_template.md">Open template</a></strong><code>data/rfq_send_confirmation_templates/h_a/the_osmolality_lab_send_confirmation_template.md</code><button type="button" class="copy" data-copy="data/rfq_send_confirmation_templates/h_a/the_osmolality_lab_send_confirmation_template.md">Copy path</button></div>
+            <div class="field"><span>Save Reply To</span><code>data/rfq_reply_files/h_a/the_osmolality_lab_reply.txt</code><button type="button" class="copy" data-copy="data/rfq_reply_files/h_a/the_osmolality_lab_reply.txt">Copy path</button><small>awaiting reply</small></div>
+          </div>
+          <p class="next">Open the prepared .eml draft, review recipient/body/attached bundle, send manually, save the original confirmation, then run send-confirmation intake.</p>
+        </section>
+        
+        <section class="vendor">
+          <div class="vendor-head">
+            <div>
+              <div class="order">#3</div>
+              <h2>Cambridge Polymer Group</h2>
+            </div>
+            <div class="status-stack">
+              <span class="badge ready">ready_to_send</span>
+              <span class="badge ready">ready_for_manual_dispatch</span>
+              <span class="badge wait">waiting_for_rfq_send</span>
+            </div>
+          </div>
+          <div class="grid">
+            <div class="field"><span>Recipient/Form</span><strong>info@campoly.com</strong><button type="button" class="copy" data-copy="info@campoly.com">Copy</button></div>
+            <div class="field"><span>Contact</span><strong><a class="link" href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/https%3A/www.campoly.com/contact-us">Contact</a> <a class="link" href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/https%3A/quote.campoly.com/material-testing">Quote</a></strong></div>
+            <div class="field"><span>EML Draft</span><strong><a class="link" href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_outbox/eml_drafts/cambridge_polymer_group_hydrogel_rfq_draft.eml">Open .eml</a></strong><code>data/nhi_pedot_h_a_rfq_outbox/eml_drafts/cambridge_polymer_group_hydrogel_rfq_draft.eml</code><button type="button" class="copy" data-copy="data/nhi_pedot_h_a_rfq_outbox/eml_drafts/cambridge_polymer_group_hydrogel_rfq_draft.eml">Copy path</button><small>exists</small></div>
+            <div class="field"><span>EML Integrity</span><strong><span class="badge done">pass</span></strong><small>attached bundle verified</small></div>
+            <div class="field"><span>Dispatch Manifest</span><strong><span class="badge ready">ready_for_manual_dispatch</span></strong><small>bundle match: true</small></div>
+            <div class="field"><span>Bundle</span><strong><a class="link" href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_outbox/vendor_packages/cambridge_polymer_group_hydrogel_nhi_pedot_h_a_rfq_bundle.zip">Open bundle</a></strong><code>data/nhi_pedot_h_a_rfq_outbox/vendor_packages/cambridge_polymer_group_hydrogel_nhi_pedot_h_a_rfq_bundle.zip</code><button type="button" class="copy" data-copy="data/nhi_pedot_h_a_rfq_outbox/vendor_packages/cambridge_polymer_group_hydrogel_nhi_pedot_h_a_rfq_bundle.zip">Copy path</button><small>exists</small></div>
+            <div class="field"><span>Bundle SHA-256</span><code>bad885c9487cfc4e33c6abda168421232f8da5b1fc2a6698b4d129453d7811a1</code><button type="button" class="copy" data-copy="bad885c9487cfc4e33c6abda168421232f8da5b1fc2a6698b4d129453d7811a1">Copy path</button></div>
+            <div class="field"><span>Save Confirmation To</span><code>data/rfq_send_confirmation_files/h_a/cambridge_polymer_group_hydrogel_send_confirmation.txt</code><button type="button" class="copy" data-copy="data/rfq_send_confirmation_files/h_a/cambridge_polymer_group_hydrogel_send_confirmation.txt">Copy path</button><small>awaiting real file</small></div>
+            <div class="field"><span>Confirmation Template</span><strong><a class="link" href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/rfq_send_confirmation_templates/h_a/cambridge_polymer_group_hydrogel_send_confirmation_template.md">Open template</a></strong><code>data/rfq_send_confirmation_templates/h_a/cambridge_polymer_group_hydrogel_send_confirmation_template.md</code><button type="button" class="copy" data-copy="data/rfq_send_confirmation_templates/h_a/cambridge_polymer_group_hydrogel_send_confirmation_template.md">Copy path</button></div>
+            <div class="field"><span>Save Reply To</span><code>data/rfq_reply_files/h_a/cambridge_polymer_group_hydrogel_reply.txt</code><button type="button" class="copy" data-copy="data/rfq_reply_files/h_a/cambridge_polymer_group_hydrogel_reply.txt">Copy path</button><small>awaiting reply</small></div>
+          </div>
+          <p class="next">Open the prepared .eml draft, review recipient/body/attached bundle, send manually, save the original confirmation, then run send-confirmation intake.</p>
+        </section>
+        
+        <section class="vendor">
+          <div class="vendor-head">
+            <div>
+              <div class="order">#4</div>
+              <h2>MilliporeSigma Cell Culture Media Stability and Testing Services</h2>
+            </div>
+            <div class="status-stack">
+              <span class="badge ready">ready_to_send</span>
+              <span class="badge ready">ready_for_manual_dispatch</span>
+              <span class="badge wait">waiting_for_rfq_send</span>
+            </div>
+          </div>
+          <div class="grid">
+            <div class="field"><span>Recipient/Form</span><strong>PSTechService@milliporesigma.com</strong><button type="button" class="copy" data-copy="PSTechService@milliporesigma.com">Copy</button></div>
+            <div class="field"><span>Contact</span><strong><a class="link" href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/https%3A/www.sigmaaldrich.com/US/en/collections/offices">Contact</a> <a class="link" href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/https%3A/www.sigmaaldrich.com/US/en/services/testing/cell-culture-media-stability-and-testing-services">Quote</a></strong></div>
+            <div class="field"><span>EML Draft</span><strong><a class="link" href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_outbox/eml_drafts/sigmaaldrich_media_testing_rfq_draft.eml">Open .eml</a></strong><code>data/nhi_pedot_h_a_rfq_outbox/eml_drafts/sigmaaldrich_media_testing_rfq_draft.eml</code><button type="button" class="copy" data-copy="data/nhi_pedot_h_a_rfq_outbox/eml_drafts/sigmaaldrich_media_testing_rfq_draft.eml">Copy path</button><small>exists</small></div>
+            <div class="field"><span>EML Integrity</span><strong><span class="badge done">pass</span></strong><small>attached bundle verified</small></div>
+            <div class="field"><span>Dispatch Manifest</span><strong><span class="badge ready">ready_for_manual_dispatch</span></strong><small>bundle match: true</small></div>
+            <div class="field"><span>Bundle</span><strong><a class="link" href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_rfq_outbox/vendor_packages/sigmaaldrich_media_testing_nhi_pedot_h_a_rfq_bundle.zip">Open bundle</a></strong><code>data/nhi_pedot_h_a_rfq_outbox/vendor_packages/sigmaaldrich_media_testing_nhi_pedot_h_a_rfq_bundle.zip</code><button type="button" class="copy" data-copy="data/nhi_pedot_h_a_rfq_outbox/vendor_packages/sigmaaldrich_media_testing_nhi_pedot_h_a_rfq_bundle.zip">Copy path</button><small>exists</small></div>
+            <div class="field"><span>Bundle SHA-256</span><code>6950279d9e72509ba62950b8ad0ea46f1f9d4c4b3e54960054d5967bc66ea8cd</code><button type="button" class="copy" data-copy="6950279d9e72509ba62950b8ad0ea46f1f9d4c4b3e54960054d5967bc66ea8cd">Copy path</button></div>
+            <div class="field"><span>Save Confirmation To</span><code>data/rfq_send_confirmation_files/h_a/sigmaaldrich_media_testing_send_confirmation.txt</code><button type="button" class="copy" data-copy="data/rfq_send_confirmation_files/h_a/sigmaaldrich_media_testing_send_confirmation.txt">Copy path</button><small>awaiting real file</small></div>
+            <div class="field"><span>Confirmation Template</span><strong><a class="link" href="file:///Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/rfq_send_confirmation_templates/h_a/sigmaaldrich_media_testing_send_confirmation_template.md">Open template</a></strong><code>data/rfq_send_confirmation_templates/h_a/sigmaaldrich_media_testing_send_confirmation_template.md</code><button type="button" class="copy" data-copy="data/rfq_send_confirmation_templates/h_a/sigmaaldrich_media_testing_send_confirmation_template.md">Copy path</button></div>
+            <div class="field"><span>Save Reply To</span><code>data/rfq_reply_files/h_a/sigmaaldrich_media_testing_reply.txt</code><button type="button" class="copy" data-copy="data/rfq_reply_files/h_a/sigmaaldrich_media_testing_reply.txt">Copy path</button><small>awaiting reply</small></div>
+          </div>
+          <p class="next">Open the prepared .eml draft, review recipient/body/attached bundle, send manually, save the original confirmation, then run send-confirmation intake.</p>
+        </section>
+        
+    <section class="commands">
+      <h2>Commands After Saving Real Files</h2>
+      <ol><li><code>python3 scripts/intake_limina_rfq_send_confirmations.py --profile h_a</code><button type="button" class="copy" data-copy="python3 scripts/intake_limina_rfq_send_confirmations.py --profile h_a">Copy</button></li>
+<li><code>python3 scripts/apply_limina_rfq_send_log.py --profile h_a</code><button type="button" class="copy" data-copy="python3 scripts/apply_limina_rfq_send_log.py --profile h_a">Copy</button></li>
+<li><code>python3 scripts/intake_limina_rfq_replies.py --profile h_a</code><button type="button" class="copy" data-copy="python3 scripts/intake_limina_rfq_replies.py --profile h_a">Copy</button></li>
+<li><code>python3 scripts/apply_limina_rfq_reply_log.py --profile h_a</code><button type="button" class="copy" data-copy="python3 scripts/apply_limina_rfq_reply_log.py --profile h_a">Copy</button></li>
+<li><code>python3 scripts/run_limina_iteration.py</code><button type="button" class="copy" data-copy="python3 scripts/run_limina_iteration.py">Copy</button></li></ol>
+    </section>
+    <p class="muted">This cockpit is logistics scaffolding only. It does not send email, create measurement evidence, select a provider, authorize execution, or advance material suitability gates.</p>
+  </main>
+  <script>
+    document.addEventListener('click', async (event) => {
+      const button = event.target.closest('[data-copy]');
+      if (!button) return;
+      try {
+        await navigator.clipboard.writeText(button.dataset.copy);
+        const oldText = button.textContent;
+        button.textContent = 'Copied';
+        setTimeout(() => { button.textContent = oldText; }, 900);
+      } catch (error) {
+        button.textContent = 'Copy failed';
+      }
+    });
+  </script>
+</body>
+</html>

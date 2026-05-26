@@ -1,0 +1,75 @@
+{
+  "active_candidate": "limina_zrc_nd_v0_1",
+  "attachment_count": 10,
+  "attachment_manifest": "data/zrc_nd_phase_a_rfq_outbox/attachment_manifest.csv",
+  "delivery_missing_required_file_ids": [],
+  "missing_attachment_paths": [],
+  "non_evidence_boundary": "RFQ emails, vendor capability replies, supplier guidance, and quote packages are sourcing artifacts only. They do not count as material evidence until real returned measurements pass LIMINA QC.",
+  "outbox_csv": "data/zrc_nd_phase_a_rfq_outbox/rfq_outbox.csv",
+  "outbox_dir": "data/zrc_nd_phase_a_rfq_outbox",
+  "purpose": "Vendor-specific RFQ emails and zip bundles for sending the real ZRC-ND Phase A measurement request.",
+  "quote_request_count": 4,
+  "ready_to_send_count": 4,
+  "rows": [
+    {
+      "attachment_count": 10,
+      "bundle_bytes": 17424,
+      "bundle_sha256": "b00499c1a70ec472a11eb8d894c2a463d6cdd3bc3819011aeee203de8980ec3d",
+      "bundle_zip": "data/zrc_nd_phase_a_rfq_outbox/vendor_packages/pacific_biolabs_physicochemical_zrc_nd_phase_a_rfq_bundle.zip",
+      "candidate_id": "pacific_biolabs_physicochemical",
+      "contact_url": "https://pacificbiolabs.com/contact/",
+      "email_file": "data/zrc_nd_phase_a_rfq_outbox/emails/pacific_biolabs_physicochemical_rfq_email.txt",
+      "send_status": "ready_to_send",
+      "source_url": "https://pacificbiolabs.com/physicochemical-properties",
+      "subject": "RFQ: non-GLP acellular ZRC-ND Phase A medium-integrity measurements (Pacific BioLabs Physicochemical Properties Testing)",
+      "vendor_name": "Pacific BioLabs Physicochemical Properties Testing"
+    },
+    {
+      "attachment_count": 10,
+      "bundle_bytes": 17423,
+      "bundle_sha256": "020855375daaa1e6afde37c0d84b3ecffe2ddaadb5ca88e44a02ed842ac3b8d2",
+      "bundle_zip": "data/zrc_nd_phase_a_rfq_outbox/vendor_packages/sigmaaldrich_media_testing_zrc_nd_phase_a_rfq_bundle.zip",
+      "candidate_id": "sigmaaldrich_media_testing",
+      "contact_url": "https://www.sigmaaldrich.com/US/en/collections/offices",
+      "email_file": "data/zrc_nd_phase_a_rfq_outbox/emails/sigmaaldrich_media_testing_rfq_email.txt",
+      "send_status": "ready_to_send",
+      "source_url": "https://www.sigmaaldrich.com/US/en/services/testing/cell-culture-media-stability-and-testing-services",
+      "subject": "RFQ: non-GLP acellular ZRC-ND Phase A medium-integrity measurements (MilliporeSigma Cell Culture Media Stability and Testing Services)",
+      "vendor_name": "MilliporeSigma Cell Culture Media Stability and Testing Services"
+    },
+    {
+      "attachment_count": 10,
+      "bundle_bytes": 17359,
+      "bundle_sha256": "29125cb54ad2a21b1b161a4ecf22ec430b6c4109d8c208c4bd931a607373406f",
+      "bundle_zip": "data/zrc_nd_phase_a_rfq_outbox/vendor_packages/the_osmolality_lab_zrc_nd_phase_a_rfq_bundle.zip",
+      "candidate_id": "the_osmolality_lab",
+      "contact_url": "https://theosmolalitylab.com/contact-us/",
+      "email_file": "data/zrc_nd_phase_a_rfq_outbox/emails/the_osmolality_lab_rfq_email.txt",
+      "send_status": "ready_to_send",
+      "source_url": "https://theosmolalitylab.com/services/",
+      "subject": "RFQ: non-GLP acellular ZRC-ND Phase A medium-integrity measurements (The Osmolality Lab)",
+      "vendor_name": "The Osmolality Lab"
+    },
+    {
+      "attachment_count": 10,
+      "bundle_bytes": 17391,
+      "bundle_sha256": "9c91fd2364629fa9c84d200d10a6ef041e479bcac16a50dc70082a3bb31750c3",
+      "bundle_zip": "data/zrc_nd_phase_a_rfq_outbox/vendor_packages/jordi_labs_el_polymer_zrc_nd_phase_a_rfq_bundle.zip",
+      "candidate_id": "jordi_labs_el_polymer",
+      "contact_url": "https://jordilabs.com/contact/",
+      "email_file": "data/zrc_nd_phase_a_rfq_outbox/emails/jordi_labs_el_polymer_rfq_email.txt",
+      "send_status": "ready_to_send",
+      "source_url": "https://jordilabs.com/lab-testing/",
+      "subject": "RFQ: non-GLP acellular ZRC-ND Phase A medium-integrity measurements (Jordi Labs Analytical Testing)",
+      "vendor_name": "Jordi Labs Analytical Testing"
+    }
+  ],
+  "send_steps": [
+    "Open the vendor-specific email text file.",
+    "Attach the matching vendor zip bundle when emailing or upload the bundle through the vendor form if available.",
+    "Send through the user's email account or official vendor contact form.",
+    "Record contact_date in data/zrc_nd_phase_a_quote_tracker.csv.",
+    "Paste any reply into the quote tracker before selecting an execution path."
+  ],
+  "status": "ready_to_send_outbox"
+}

@@ -1,0 +1,18 @@
+{
+  "applied_rows": 0,
+  "boundary": "RFQ replies and quotes document sourcing and execution selection only. They are not material measurement evidence and cannot advance suitability gates without returned measured rows.",
+  "intake_csv": "data/nhi_pedot_h_a_rfq_reply_intake.csv",
+  "label": "NHI-PEDOT H-A",
+  "needs_manual_review_rows": 0,
+  "needs_verified_send_rows": 0,
+  "profile": "h_a",
+  "purpose": "Scan original RFQ reply files and conservatively register sent EML replies for human review without scoring or selecting providers.",
+  "ready_to_register_rows": 0,
+  "reply_file_dir": "data/rfq_reply_files/h_a",
+  "reply_log_csv": "data/nhi_pedot_h_a_rfq_reply_log.csv",
+  "row_count": 0,
+  "rows": [],
+  "status": "nhi_pedot_h_a_rfq_reply_intake_waiting_for_reply_files",
+  "tracker_field_count": 17,
+  "unmatched_rows": 0
+}

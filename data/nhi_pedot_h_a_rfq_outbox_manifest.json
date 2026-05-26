@@ -1,0 +1,71 @@
+{
+  "active_candidate": "limina_alg_lam_pedot_lowdose_v0_2",
+  "attachment_count": 20,
+  "attachment_manifest": "data/nhi_pedot_h_a_rfq_outbox/attachment_manifest.csv",
+  "delivery_missing_required_file_ids": [],
+  "missing_attachment_paths": [],
+  "non_evidence_boundary": "RFQ emails, vendor capability replies, and quote packages are sourcing artifacts only. They do not count as material evidence until real returned measurements pass LIMINA QC.",
+  "outbox_csv": "data/nhi_pedot_h_a_rfq_outbox/rfq_outbox.csv",
+  "outbox_dir": "data/nhi_pedot_h_a_rfq_outbox",
+  "purpose": "Vendor-specific RFQ emails and zip bundles for sending the real NHI-PEDOT H-A measurement request.",
+  "quote_request_count": 4,
+  "ready_to_send_count": 4,
+  "rows": [
+    {
+      "attachment_count": 20,
+      "bundle_bytes": 36253,
+      "bundle_sha256": "6799fdef01396d5ed999a13a4de131bf1d490719369c0e4b90f81c7c73cd9d35",
+      "bundle_zip": "data/nhi_pedot_h_a_rfq_outbox/vendor_packages/materials_metric_nhi_pedot_h_a_rfq_bundle.zip",
+      "candidate_id": "materials_metric",
+      "email_file": "data/nhi_pedot_h_a_rfq_outbox/emails/materials_metric_rfq_email.txt",
+      "send_status": "ready_to_send",
+      "source_url": "https://materialsmetric.com/",
+      "subject": "RFQ: non-GLP acellular hydrogel-coupon H-A measurements (Materials Metric)",
+      "vendor_name": "Materials Metric"
+    },
+    {
+      "attachment_count": 20,
+      "bundle_bytes": 36279,
+      "bundle_sha256": "b89d68822a7e42b1d387d3b239b6cee86140d3b188e1a3ae14e92792094c023a",
+      "bundle_zip": "data/nhi_pedot_h_a_rfq_outbox/vendor_packages/the_osmolality_lab_nhi_pedot_h_a_rfq_bundle.zip",
+      "candidate_id": "the_osmolality_lab",
+      "email_file": "data/nhi_pedot_h_a_rfq_outbox/emails/the_osmolality_lab_rfq_email.txt",
+      "send_status": "ready_to_send",
+      "source_url": "https://theosmolalitylab.com/",
+      "subject": "RFQ: non-GLP acellular hydrogel-coupon H-A measurements (The Osmolality Lab)",
+      "vendor_name": "The Osmolality Lab"
+    },
+    {
+      "attachment_count": 20,
+      "bundle_bytes": 36349,
+      "bundle_sha256": "bad885c9487cfc4e33c6abda168421232f8da5b1fc2a6698b4d129453d7811a1",
+      "bundle_zip": "data/nhi_pedot_h_a_rfq_outbox/vendor_packages/cambridge_polymer_group_hydrogel_nhi_pedot_h_a_rfq_bundle.zip",
+      "candidate_id": "cambridge_polymer_group_hydrogel",
+      "email_file": "data/nhi_pedot_h_a_rfq_outbox/emails/cambridge_polymer_group_hydrogel_rfq_email.txt",
+      "send_status": "ready_to_send",
+      "source_url": "https://www.campoly.com/services/analytical-testing/material-characterization-techniques/hydrogel-characterization/",
+      "subject": "RFQ: non-GLP acellular hydrogel-coupon H-A measurements (Cambridge Polymer Group)",
+      "vendor_name": "Cambridge Polymer Group"
+    },
+    {
+      "attachment_count": 20,
+      "bundle_bytes": 36340,
+      "bundle_sha256": "6950279d9e72509ba62950b8ad0ea46f1f9d4c4b3e54960054d5967bc66ea8cd",
+      "bundle_zip": "data/nhi_pedot_h_a_rfq_outbox/vendor_packages/sigmaaldrich_media_testing_nhi_pedot_h_a_rfq_bundle.zip",
+      "candidate_id": "sigmaaldrich_media_testing",
+      "email_file": "data/nhi_pedot_h_a_rfq_outbox/emails/sigmaaldrich_media_testing_rfq_email.txt",
+      "send_status": "ready_to_send",
+      "source_url": "https://www.sigmaaldrich.com/US/en/services/testing/cell-culture-media-stability-and-testing-services",
+      "subject": "RFQ: non-GLP acellular hydrogel-coupon H-A measurements (MilliporeSigma Cell Culture Media Stability and Testing Services)",
+      "vendor_name": "MilliporeSigma Cell Culture Media Stability and Testing Services"
+    }
+  ],
+  "send_steps": [
+    "Open the vendor-specific email text file.",
+    "Attach the matching vendor zip bundle.",
+    "Send to the vendor or collaborator through the user's email account.",
+    "Record contact_date in data/nhi_pedot_h_a_quote_tracker.csv.",
+    "Paste any reply into the quote tracker before selecting an execution path."
+  ],
+  "status": "ready_to_send_outbox"
+}

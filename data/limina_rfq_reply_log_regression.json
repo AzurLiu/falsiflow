@@ -1,0 +1,13 @@
+{
+  "applied_status": "regression_rfq_reply_log_applied",
+  "checks": {
+    "initial_tracker_unchanged": true,
+    "initial_waits_without_reply_files": true,
+    "missing_source_does_not_apply_tracker": true,
+    "missing_source_rejected": true,
+    "valid_reply_applies_tracker_fields": true
+  },
+  "initial_status": "regression_rfq_reply_log_waiting_for_reply_files",
+  "rejected_status": "regression_rfq_reply_log_has_errors",
+  "status": "pass"
+}

@@ -1,0 +1,22 @@
+{
+  "applied_bundles": [],
+  "apply_result_status": "h_a_bundle_entry_apply_no_apply_rows",
+  "boundary": "This step only applies a returned compact bundle-entry sheet into source-value rows. The source-value importer, merge, QC, H-A interpretation, and claim audit still decide whether the rows are real evidence.",
+  "inputs": {
+    "bundle_manifest": "data/nhi_pedot_h_a_source_unlock_bundle_manifest.csv",
+    "sheet": "data/nhi_pedot_h_a_vendor_return_inbox/completed_bundle_entry_sheet.csv",
+    "source_manifest": "data/limina_source_file_manifest.json",
+    "source_values": "data/nhi_pedot_h_a_source_values.csv"
+  },
+  "issues": [],
+  "status": "h_a_vendor_bundle_entry_return_no_apply_rows",
+  "summary": {
+    "applied_bundles": 0,
+    "applied_source_value_rows": 0,
+    "error_count": 0,
+    "sheet_exists": true,
+    "skipped_apply_no_rows": 96,
+    "warning_count": 0
+  },
+  "updated_source_values": ""
+}

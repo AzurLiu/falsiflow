@@ -1,0 +1,160 @@
+{
+  "claim": {
+    "id": "alg_lam_pedot_lowdose_interface_claim",
+    "requires_gates": [
+      "h_a_medium_stability",
+      "h_b_electrical_interface",
+      "h_c_network_response"
+    ],
+    "statement": "ALG-LAM-PEDOT low-dose neural hydrogel interface is stable in cell-free medium, improves electrical interface readouts, and is not worse than control in basic cell/network response."
+  },
+  "claim_ready": true,
+  "evidence_error_count": 0,
+  "evidence_issue_count": 0,
+  "evidence_issues": [],
+  "evidence_warning_count": 0,
+  "gates": [
+    {
+      "blocker_count": 0,
+      "blockers": [],
+      "derived_field_count": 3,
+      "derived_fields": [
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "ph_drift_24h_abs",
+          "gate_id": "h_a_medium_stability",
+          "operation": "abs_delta",
+          "sample_id": "ha_demo_001",
+          "value": 0.08000000000000007
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "osmolality_drift_24h_mosm",
+          "gate_id": "h_a_medium_stability",
+          "operation": "abs_delta",
+          "sample_id": "ha_demo_001",
+          "value": 9.0
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "conductivity_drift_24h_pct",
+          "gate_id": "h_a_medium_stability",
+          "operation": "abs_pct_change",
+          "sample_id": "ha_demo_001",
+          "value": 3.571428571428571
+        }
+      ],
+      "gate_id": "h_a_medium_stability",
+      "required_evidence_rows": 7,
+      "status": "passed",
+      "title": "H-A cell-free medium stability",
+      "valid_required_evidence_rows": 7
+    },
+    {
+      "blocker_count": 0,
+      "blockers": [],
+      "derived_field_count": 3,
+      "derived_fields": [
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "impedance_reduction_1khz_pct",
+          "gate_id": "h_b_electrical_interface",
+          "operation": "reduction_pct",
+          "sample_id": "hb_demo_001",
+          "value": 31.0
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "charge_storage_gain_pct",
+          "gate_id": "h_b_electrical_interface",
+          "operation": "gain_pct",
+          "sample_id": "hb_demo_001",
+          "value": 21.999999999999996
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "noise_increase_uvrms",
+          "gate_id": "h_b_electrical_interface",
+          "operation": "subtract",
+          "sample_id": "hb_demo_001",
+          "value": 0.9000000000000004
+        }
+      ],
+      "gate_id": "h_b_electrical_interface",
+      "required_evidence_rows": 6,
+      "status": "passed",
+      "title": "H-B electrical interface benefit",
+      "valid_required_evidence_rows": 6
+    },
+    {
+      "blocker_count": 0,
+      "blockers": [],
+      "derived_field_count": 4,
+      "derived_fields": [
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "burst_rate_ratio_vs_control",
+          "gate_id": "h_c_network_response",
+          "operation": "ratio",
+          "sample_id": "hc_demo_candidate",
+          "value": 0.96
+        },
+        {
+          "candidate_id": "hydrogel_laminin_control",
+          "field": "burst_rate_ratio_vs_control",
+          "gate_id": "h_c_network_response",
+          "operation": "ratio",
+          "sample_id": "hc_demo_control",
+          "value": 1.0
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "inflammation_marker_ratio_vs_control",
+          "gate_id": "h_c_network_response",
+          "operation": "ratio",
+          "sample_id": "hc_demo_candidate",
+          "value": 1.05
+        },
+        {
+          "candidate_id": "hydrogel_laminin_control",
+          "field": "inflammation_marker_ratio_vs_control",
+          "gate_id": "h_c_network_response",
+          "operation": "ratio",
+          "sample_id": "hc_demo_control",
+          "value": 1.0
+        }
+      ],
+      "gate_id": "h_c_network_response",
+      "required_evidence_rows": 6,
+      "status": "passed",
+      "title": "H-C cell and network response",
+      "valid_required_evidence_rows": 6
+    }
+  ],
+  "missing_required_gates": [],
+  "next_actions": [
+    {
+      "action_id": "review_claim_for_release",
+      "rank": 1,
+      "success_criterion": "Human review confirms raw sources and claim wording before release.",
+      "why": "All required gates passed with source-backed evidence."
+    }
+  ],
+  "project": {
+    "domain": "neural-wetware-material-interface",
+    "id": "falsiflow_neural_materials_demo",
+    "name": "Falsiflow neural materials demo",
+    "version": "0.1.0"
+  },
+  "project_config_valid": true,
+  "project_validation": {
+    "error_count": 0,
+    "issues": [],
+    "status": "valid",
+    "valid": true,
+    "warning_count": 0
+  },
+  "project_validation_error_count": 0,
+  "project_validation_warning_count": 0,
+  "status": "claim_ready"
+}

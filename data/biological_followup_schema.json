@@ -1,0 +1,26 @@
+{
+  "version": "0.1",
+  "record_type": "limina_biological_followup_package",
+  "required_fields": [
+    "id",
+    "parent_validation_package",
+    "lead_variant_id",
+    "title",
+    "objective",
+    "scope",
+    "test_articles",
+    "run_matrix",
+    "assay_panel",
+    "acceptance_gates",
+    "data_capture_fields",
+    "source_refs"
+  ],
+  "field_notes": {
+    "test_articles": "Biological follow-up conditions after non-cell gates pass.",
+    "run_matrix": "Design-level biological follow-up phases, not a wet-lab SOP.",
+    "assay_panel": "Biological readouts required to move from non-cell compatibility toward suitability.",
+    "acceptance_gates": "Initial biological pass/fail gates for neural wetware suitability claims.",
+    "data_capture_fields": "CSV fields used by the biological follow-up evaluator.",
+    "source_refs": "Evidence ids that motivate the package."
+  }
+}

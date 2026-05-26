@@ -1,0 +1,38 @@
+{
+  "boundary": "This creates allowed source-file directories and a missing-file plan only. It does not create raw measurement files or measured evidence.",
+  "generated_artifacts": {
+    "csv": "data/nhi_pedot_h_a_source_drop_plan.csv",
+    "json": "data/nhi_pedot_h_a_source_drop_plan.json",
+    "report": "reports/nhi_pedot_h_a_source_drop_plan.md"
+  },
+  "inputs": {
+    "source_manifest": "data/limina_source_file_manifest.json",
+    "source_values": "data/nhi_pedot_h_a_source_values.csv"
+  },
+  "label": "NHI-PEDOT H-A",
+  "profile": "h_a",
+  "status": "nhi_pedot_h_a_source_drop_plan_ready",
+  "summary": {
+    "allowed_source_file_count": 228,
+    "created_source_dir_count": 0,
+    "existing_source_file_count": 0,
+    "filled_value_rows": 0,
+    "import_ready_rows": 0,
+    "missing_source_file_count": 228,
+    "planned_source_file_count": 228,
+    "source_class_counts": {
+      "bench_or_chain_of_custody_record": 36,
+      "conductivity_meter_export_or_photo": 24,
+      "image_or_scoring_worksheet": 48,
+      "osmometer_report_or_export": 24,
+      "pH_meter_export_or_photo": 24,
+      "supplier_or_build_record": 48,
+      "swelling_dimension_or_mass_worksheet": 12,
+      "temperature_or_incubator_log": 12
+    },
+    "source_dir_count": 48,
+    "source_dir_status_counts": {
+      "already_exists": 228
+    }
+  }
+}

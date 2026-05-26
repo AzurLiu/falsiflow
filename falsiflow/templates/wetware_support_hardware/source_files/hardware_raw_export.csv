@@ -1,0 +1,14 @@
+record_id,gate_id,sample_id,field,value,unit,observed_at
+hw_001,hardware_provenance,hardware_demo_001,material_lot_recorded,true,boolean,2026-05-25T08:00:00Z
+hw_002,hardware_provenance,hardware_demo_001,fluid_path_materials_recorded,true,boolean,2026-05-25T08:00:00Z
+hw_003,hardware_provenance,hardware_demo_001,cleaning_or_sterilization_recorded,true,boolean,2026-05-25T08:00:00Z
+hw_004,medium_contact_stability,hardware_demo_001,ph_initial,7.20,pH,2026-05-25T09:00:00Z
+hw_005,medium_contact_stability,hardware_demo_001,ph_final,7.26,pH,2026-05-25T09:00:00Z
+hw_006,medium_contact_stability,hardware_demo_001,osmolality_initial_mosm,300,mOsm,2026-05-25T09:00:00Z
+hw_007,medium_contact_stability,hardware_demo_001,osmolality_final_mosm,307,mOsm,2026-05-25T09:00:00Z
+hw_008,medium_contact_stability,hardware_demo_001,protein_retention_fraction,0.96,fraction,2026-05-25T09:00:00Z
+hw_009,medium_contact_stability,hardware_demo_001,visible_particles_present,false,boolean,2026-05-25T09:00:00Z
+hw_010,operational_safety,hardware_demo_001,leak_present,false,boolean,2026-05-25T11:00:00Z
+hw_011,operational_safety,hardware_demo_001,bubble_event_count,0,count,2026-05-25T11:00:00Z
+hw_012,operational_safety,hardware_demo_001,flow_resistance_increase_pct,4.5,percent,2026-05-25T11:00:00Z
+hw_013,operational_safety,hardware_demo_001,sensor_noise_increase_pct,3.0,percent,2026-05-25T11:00:00Z

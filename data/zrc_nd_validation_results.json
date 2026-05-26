@@ -1,0 +1,29 @@
+{
+  "aggregate_gates": [
+    {
+      "gate": "lead_superiority_gate",
+      "lead_vs_baseline": "not_evaluable",
+      "lead_vs_challenge": "not_evaluable",
+      "metrics": {
+        "baseline_abs_flow_change_mean": null,
+        "baseline_min_retention_mean": null,
+        "challenge_min_retention_mean": null,
+        "lead_abs_flow_change_mean": null,
+        "lead_min_retention_mean": null,
+        "matched_groups": 0
+      },
+      "status": "not_evaluable"
+    }
+  ],
+  "evaluations": [],
+  "summary": {
+    "aggregate_lead_superiority": "not_evaluable",
+    "failed_rows": 0,
+    "fully_or_partially_passing_rows": 0,
+    "lead_rows": 0,
+    "passed_lead_replicates_by_phase": {},
+    "phase_coverage": [],
+    "rows": 0,
+    "status": "no_data"
+  }
+}

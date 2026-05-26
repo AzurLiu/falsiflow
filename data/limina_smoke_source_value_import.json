@@ -1,0 +1,44 @@
+{
+  "accepted_sidecar_schema": [
+    "queue_id",
+    "run_id",
+    "sample_event",
+    "target_field",
+    "value",
+    "measured_at",
+    "operator_or_agent",
+    "instrument_id",
+    "source_file",
+    "notes",
+    "apply"
+  ],
+  "boundary": "This importer only copies real, source-file-backed values into the smoke entry sheet. It does not create measured evidence; apply, preflight, merge, QC, and claim audit still control the gate.",
+  "imported_rows": [],
+  "inputs": {
+    "entry_sheet": "data/limina_smoke_entry_sheet.csv",
+    "source_drop_plan": "data/limina_smoke_source_drop_plan.csv",
+    "source_manifest": "data/limina_source_file_manifest.json",
+    "value_globs": [
+      "data/source_files/smoke/h_a/**/limina_values.csv",
+      "data/source_files/smoke/zrc_nd_phase_a/**/limina_values.csv"
+    ]
+  },
+  "issues": [],
+  "source_value_files": [
+    "data/limina_smoke_raw_csv_extracted_values.csv",
+    "data/limina_smoke_source_values.csv",
+    "data/limina_smoke_unstructured_review_values.csv"
+  ],
+  "status": "smoke_source_value_import_no_importable_rows",
+  "summary": {
+    "changed_rows": 0,
+    "error_count": 0,
+    "imported_rows": 0,
+    "invalid_rows": 0,
+    "skipped_blank_rows": 182,
+    "source_value_files": 3,
+    "source_value_rows": 182,
+    "unchanged_rows": 0,
+    "warning_count": 0
+  }
+}

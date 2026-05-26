@@ -1,0 +1,5 @@
+candidate_id,vendor_name,reply_status,reply_at,responder_name,quote_id_or_reference,reply_source_file,reply_source_sha256,computed_reply_source_sha256,can_cover_full_phase_a,needs_split_scope,run_id_level_raw_data,phase_a_media_panel_coverage,csv_schema_acceptance,sample_handling_fit,source_file_provenance,non_glp_scope_control,turnaround_days,quoted_cost,decision,notes,tracker_contact_date,tracker_reply_date,tracker_decision
+pacific_biolabs_physicochemical,Pacific BioLabs Physicochemical Properties Testing,not_sent_yet,,,,data/rfq_reply_files/zrc_phase_a/pacific_biolabs_physicochemical_reply.txt,,,,,,,,,,,,,,,,,pending_outreach
+sigmaaldrich_media_testing,MilliporeSigma Cell Culture Media Stability and Testing Services,not_sent_yet,,,,data/rfq_reply_files/zrc_phase_a/sigmaaldrich_media_testing_reply.txt,,,,,,,,,,,,,,,,,pending_outreach
+the_osmolality_lab,The Osmolality Lab,not_sent_yet,,,,data/rfq_reply_files/zrc_phase_a/the_osmolality_lab_reply.txt,,,,,,,,,,,,,,,,,pending_outreach
+jordi_labs_el_polymer,Jordi Labs Analytical Testing,not_sent_yet,,,,data/rfq_reply_files/zrc_phase_a/jordi_labs_el_polymer_reply.txt,,,,,,,,,,,,,,,,,pending_outreach

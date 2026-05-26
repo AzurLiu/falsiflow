@@ -1,0 +1,129 @@
+{
+  "status": "official_contact_channels_checked",
+  "last_checked": "2026-05-24",
+  "purpose": "Official first-wave contact channels for sending ZRC-ND Phase A RFQ outbox bundles.",
+  "active_candidate": "limina_zrc_nd_v0_1",
+  "contacts": [
+    {
+      "candidate_id": "pacific_biolabs_physicochemical",
+      "vendor_name": "Pacific BioLabs Physicochemical Properties Testing",
+      "primary_send_method": "contact_form_or_quote_phone",
+      "primary_email": "",
+      "secondary_emails": [],
+      "phone": "510-964-9000",
+      "contact_url": "https://pacificbiolabs.com/contact/",
+      "quote_url": "https://pacificbiolabs.com/contact/",
+      "sample_submission_url": "",
+      "source_url": "https://pacificbiolabs.com/contact/",
+      "source_note": "Official contact page lists contact form and 510-964-9000 for quotes and testing requests.",
+      "send_note": "Use the contact form first; ask whether the Phase A package can be handled as non-GLP exploratory physicochemical testing."
+    },
+    {
+      "candidate_id": "sigmaaldrich_media_testing",
+      "vendor_name": "MilliporeSigma Cell Culture Media Stability and Testing Services",
+      "primary_send_method": "service_page_or_technical_service",
+      "primary_email": "PSTechService@milliporesigma.com",
+      "secondary_emails": [
+        "PSClientCare@milliporesigma.com"
+      ],
+      "phone": "1-800-325-3010; 1-800-221-1975; 1-866-CARE-811",
+      "contact_url": "https://www.sigmaaldrich.com/US/en/collections/offices",
+      "quote_url": "https://www.sigmaaldrich.com/US/en/services/testing/cell-culture-media-stability-and-testing-services",
+      "sample_submission_url": "",
+      "source_url": "https://www.sigmaaldrich.com/US/en/collections/offices",
+      "source_note": "Official offices/contact page lists U.S. customer service, technical service, and Process Solutions technical/commercial service contacts.",
+      "send_note": "Use the service page/contact path first; ask to route the RFQ to cell culture media stability/testing or Process Solutions custom testing."
+    },
+    {
+      "candidate_id": "the_osmolality_lab",
+      "vendor_name": "The Osmolality Lab",
+      "primary_send_method": "email_or_contact_form",
+      "primary_email": "info@osmolab.com",
+      "secondary_emails": [
+        "billing@osmolab.com"
+      ],
+      "phone": "385-323-5141",
+      "contact_url": "https://theosmolalitylab.com/contact-us/",
+      "quote_url": "https://theosmolalitylab.com/contact-us/",
+      "sample_submission_url": "https://theosmolalitylab.com/submit-samples/",
+      "source_url": "https://theosmolalitylab.com/contact-us/",
+      "source_note": "Official contact page lists info@osmolab.com and 385.323.5141; submission page says to request a quote before sending samples.",
+      "send_note": "Ask explicitly whether acellular neural-medium aliquots from regenerated-cellulose module exposures fit their sample policy and whether conductivity is available."
+    },
+    {
+      "candidate_id": "jordi_labs_el_polymer",
+      "vendor_name": "Jordi Labs Analytical Testing",
+      "primary_send_method": "contact_form_or_email",
+      "primary_email": "info@jordilabs.com",
+      "secondary_emails": [],
+      "phone": "508-966-1301",
+      "contact_url": "https://jordilabs.com/contact/",
+      "quote_url": "https://jordilabs.com/contact/",
+      "sample_submission_url": "",
+      "source_url": "https://jordilabs.com/contact/",
+      "source_note": "Official contact page lists info@jordilabs.com, 508-966-1301, and contact form.",
+      "send_note": "Use as chemistry/E&L escalation or custom analytical feasibility; do not over-scope before Phase A identifies a chemical drift concern."
+    },
+    {
+      "wave": "second_wave",
+      "candidate_id": "intertek_china_healthcare_testing",
+      "vendor_name": "Intertek China Healthcare and Medical Device Testing",
+      "primary_send_method": "contact_form_or_china_service_email",
+      "primary_email": "service.china@intertek.com",
+      "secondary_emails": [],
+      "phone": "",
+      "contact_url": "https://www.intertek.com.cn/contact/",
+      "quote_url": "https://www.intertek.com.cn/contact/",
+      "sample_submission_url": "",
+      "source_url": "https://www.intertek.com.cn/contact/",
+      "source_note": "Official China contact path should be used to route the RFQ to healthcare, materials, or medical-device testing; exact pH/osmolality/conductivity coverage must be confirmed.",
+      "send_note": "Use as APAC split-scope fallback; require run_id-level raw values and non-GLP exploratory scope."
+    },
+    {
+      "wave": "second_wave",
+      "candidate_id": "wuxi_apptec_medical_device_testing",
+      "vendor_name": "WuXi AppTec Medical Device Testing",
+      "primary_send_method": "contact_form",
+      "primary_email": "",
+      "secondary_emails": [],
+      "phone": "",
+      "contact_url": "https://www.wuxiapptec.com/contact",
+      "quote_url": "https://www.wuxiapptec.com/contact",
+      "sample_submission_url": "",
+      "source_url": "https://www.wuxiapptec.com/contact",
+      "source_note": "Use official contact routing for medical-device testing or chemistry/biocompatibility feasibility; do not assume Phase A media-panel coverage until technical review.",
+      "send_note": "Best as chemistry/E&L or biological escalation path after Phase A identifies material-blank risk."
+    },
+    {
+      "wave": "second_wave",
+      "candidate_id": "tuv_sud_china_medical_device_testing",
+      "vendor_name": "TUV SUD China Medical Device Testing",
+      "primary_send_method": "contact_form",
+      "primary_email": "",
+      "secondary_emails": [],
+      "phone": "",
+      "contact_url": "https://www.tuvsud.cn/zh-cn/contact-us",
+      "quote_url": "https://www.tuvsud.cn/zh-cn/contact-us",
+      "sample_submission_url": "",
+      "source_url": "https://www.tuvsud.cn/zh-cn/contact-us",
+      "source_note": "Use official China contact routing for medical-device testing or biocompatibility; exploratory Phase A scope requires confirmation.",
+      "send_note": "Use as second-wave regulatory/ISO route; ask whether non-GLP raw run_id-level testing can be scoped separately."
+    },
+    {
+      "wave": "second_wave",
+      "candidate_id": "pony_testing_medical_device",
+      "vendor_name": "PONY Testing Medical Device and Life-Science Services",
+      "primary_send_method": "contact_form_or_service_inquiry",
+      "primary_email": "",
+      "secondary_emails": [],
+      "phone": "",
+      "contact_url": "https://www.ponytest.com/",
+      "quote_url": "https://www.ponytest.com/",
+      "sample_submission_url": "",
+      "source_url": "https://www.ponytest.com/",
+      "source_note": "Use official site inquiry path to route custom medical-device or physicochemical testing; exact Phase A fit must be confirmed.",
+      "send_note": "Use as China-local broad screening fallback only if the response commits to raw sample-level values and source-file provenance."
+    }
+  ],
+  "non_evidence_boundary": "Contact details and vendor responses are sourcing artifacts only. They do not count as material evidence until real returned measurements pass LIMINA QC."
+}

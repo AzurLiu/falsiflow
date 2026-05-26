@@ -1,0 +1,195 @@
+{
+  "next_commands": [
+    "python3 scripts/render_limina_second_wave_candidate_queue.py",
+    "python3 scripts/run_limina_iteration.py"
+  ],
+  "rows": [
+    {
+      "candidate_id": "limina_pda_anchor_alg_lam_pedot_window_v0_1",
+      "evidence_refs": [
+        "pedot_neural_culture_hydrogel_2025",
+        "pedot_brain_monitoring_2025",
+        "gelma_pedot_micropatterning_2026",
+        "neuronal_network_material_biocompatibility_mea_2013"
+      ],
+      "gate_failure_count": 0,
+      "gate_failures": [],
+      "known_risks": [
+        "Primer chemistry may add its own extractables.",
+        "Localized conductive domains may be harder to fabricate reproducibly.",
+        "Anchoring can improve stability while reducing softness at the cell interface."
+      ],
+      "lane": "LIMINA-Cell-1",
+      "measurement_dependency": "requires_primary_h_a_blank_pass",
+      "measurement_lane": "cell_contact_anchor_rescue_coupon",
+      "name": "PDA-Anchored ALG-LAM-PEDOT Electrode-Window Interphase",
+      "near_term_test": "Add one anchored lead article to H-B electrochemical/physical stability only after the acellular H-A blank passes for the unanchored low-dose lead.",
+      "non_claim_boundary": "Second-wave queue rows are planning artifacts only; they do not create measured source-file evidence or material suitability.",
+      "queue_decision": "ready_for_second_wave_scope_lock_measurement_dependency",
+      "queue_rank": 1,
+      "ranking_priority": "parallel_screen",
+      "risk_count": 3,
+      "scope_lock_action": "Lock the PDA/primer chemistry, electrode-window mask, extract-blank fields, and single-coupon H-A/H-B rescue trigger before any live-cell work.",
+      "weighted_score": 3.67
+    },
+    {
+      "candidate_id": "limina_all_dry_zwitterionic_external_v0_1",
+      "evidence_refs": [
+        "all_dry_zwitterionic_gradient_2024",
+        "zwitterionic_membrane_antifouling_2016",
+        "zwitterionic_cellulose_acetate_hfm_2026",
+        "organ_chip_perfusion_review_2022"
+      ],
+      "gate_failure_count": 0,
+      "gate_failures": [],
+      "known_risks": [
+        "Coating could change extractables or optical inspection properties.",
+        "It may not solve protein loss if the MWCO membrane itself dominates adsorption.",
+        "Not yet validated in CL1-like neuronal medium."
+      ],
+      "lane": "LIMINA-External-1",
+      "measurement_dependency": "requires_zrc_phase_a_failure_mode",
+      "measurement_lane": "external_material_phase_a_comparator",
+      "name": "All-Dry Zwitterionic Gradient External-Fluidic Coating",
+      "near_term_test": "Run as a coating-on-housing comparator after ZRC-ND Phase A sentinel defines whether adsorption/fouling is the limiting failure mode.",
+      "non_claim_boundary": "Second-wave queue rows are planning artifacts only; they do not create measured source-file evidence or material suitability.",
+      "queue_decision": "ready_for_second_wave_scope_lock_measurement_dependency",
+      "queue_rank": 2,
+      "ranking_priority": "parallel_screen",
+      "risk_count": 3,
+      "scope_lock_action": "Lock coated-surface placement, fouling/adsorption readouts, extract-blank fields, and ZRC Phase A trigger before procurement or coating outreach.",
+      "weighted_score": 3.5
+    },
+    {
+      "candidate_id": "limina_alg_gel_pedot_ppy_lowoxidant_v0_1",
+      "evidence_refs": [
+        "alg_gel_pedot_ppy_biointerface_2026",
+        "gelma_pedot_composite_2018",
+        "conductive_hydrogels_2025",
+        "iso_10993_5_cytotoxicity_extract_fda"
+      ],
+      "gate_failure_count": 0,
+      "gate_failures": [],
+      "known_risks": [
+        "Fibroblast cytocompatibility is not a neuronal-network compatibility claim.",
+        "PPy oxidation chemistry can leave residues that matter in long-lived neural cultures.",
+        "High conductivity may trade off with optical transparency or softness."
+      ],
+      "lane": "LIMINA-Cell-1",
+      "measurement_dependency": "requires_primary_h_a_blank_pass",
+      "measurement_lane": "cell_contact_acellular_witness_coupon",
+      "name": "Alg-Gel PEDOT/PPy Low-Oxidant Biointerface Comparator",
+      "near_term_test": "Use only after ALG-LAM-PEDOT H-A/H-B establishes a baseline; run as an acellular H-B conductivity/stability comparator with strict extract and shedding fields.",
+      "non_claim_boundary": "Second-wave queue rows are planning artifacts only; they do not create measured source-file evidence or material suitability.",
+      "queue_decision": "watch_after_primary_gate_data",
+      "queue_rank": 3,
+      "ranking_priority": "watch",
+      "risk_count": 3,
+      "scope_lock_action": "Lock material identity, procurement route, source-file classes, and a tiny acellular witness-coupon acceptance table.",
+      "weighted_score": 3.192
+    },
+    {
+      "candidate_id": "limina_zwitterionic_pedot_hydrogel_v0_1",
+      "evidence_refs": [
+        "zwitterionic_pedot_eeg_hydrogel_2025",
+        "pedot_brain_monitoring_2025",
+        "pedot_bio_sei_2026",
+        "conductive_hydrogels_2025"
+      ],
+      "gate_failure_count": 0,
+      "gate_failures": [],
+      "known_risks": [
+        "In vivo electrode evidence does not prove in vitro neuronal network compatibility.",
+        "Zwitterionic monomers and crosslinkers can create new leachable risks.",
+        "Fabrication complexity may slow the first suitability claim."
+      ],
+      "lane": "LIMINA-Cell-1",
+      "measurement_dependency": "scope_lock_can_start_now",
+      "measurement_lane": "cell_contact_acellular_witness_coupon",
+      "name": "Zwitterionic PEDOT:PSS Hydrated Electrode Hydrogel",
+      "near_term_test": "Do not displace ALG-LAM-PEDOT yet; use as a later comparator if acellular extract and impedance data look better than the alginate-laminin lead.",
+      "non_claim_boundary": "Second-wave queue rows are planning artifacts only; they do not create measured source-file evidence or material suitability.",
+      "queue_decision": "watch_after_primary_gate_data",
+      "queue_rank": 4,
+      "ranking_priority": "watch",
+      "risk_count": 3,
+      "scope_lock_action": "Lock material identity, procurement route, source-file classes, and a tiny acellular witness-coupon acceptance table.",
+      "weighted_score": 3.171
+    },
+    {
+      "candidate_id": "limina_pedot_sgagh_ecm_signal_hydrogel_v0_1",
+      "evidence_refs": [
+        "pedot_sgagh_electronic_ecm_2026",
+        "pedot_bio_sei_2026",
+        "conductive_hydrogels_2025",
+        "hydrogel_neural_tissue_2020"
+      ],
+      "gate_failure_count": 1,
+      "gate_failures": [
+        "measurement_accessibility below 3: The next claim candidate must be testable with near-term coupon, medium, or simple material measurements."
+      ],
+      "known_risks": [
+        "High novelty comes with synthesis, procurement, and reproducibility uncertainty.",
+        "Growth-factor binding is attractive but could perturb neuronal differentiation or maturation in unwanted directions.",
+        "No direct long-duration human neuronal-network compatibility evidence yet."
+      ],
+      "lane": "LIMINA-Cell-1",
+      "measurement_dependency": "scope_lock_can_start_now",
+      "measurement_lane": "cell_contact_acellular_witness_coupon",
+      "name": "PEDOT:sGAGh Electronic ECM Signal Hydrogel",
+      "near_term_test": "Keep behind ALG-LAM-PEDOT until a small H-A/H-B witness coupon can show clean extract behavior, stable pH/osmolality/conductivity, retained BDNF/laminin signal, and no delamination.",
+      "non_claim_boundary": "Second-wave queue rows are planning artifacts only; they do not create measured source-file evidence or material suitability.",
+      "queue_decision": "hold_until_discovery_gate_failure_resolved",
+      "queue_rank": 5,
+      "ranking_priority": "hold",
+      "risk_count": 3,
+      "scope_lock_action": "Lock material identity, procurement route, source-file classes, and a tiny acellular witness-coupon acceptance table.",
+      "weighted_score": 3.198
+    },
+    {
+      "candidate_id": "limina_hydrogel_actuated_multilayer_3d_mea_v0_1",
+      "evidence_refs": [
+        "mlmea_organoid_depth_interface_2026",
+        "eflower_hydrogel_actuated_3d_mea_2024",
+        "shape_conformal_organoid_framework_2026",
+        "neuronal_network_material_biocompatibility_mea_2013"
+      ],
+      "gate_failure_count": 1,
+      "gate_failures": [
+        "measurement_accessibility below 3: The next claim candidate must be testable with near-term coupon, medium, or simple material measurements."
+      ],
+      "known_risks": [
+        "Fabrication is much harder than a planar witness coupon.",
+        "Pt-black, PDMS, and actuator hydrogels each need extractables, adsorption, and stability checks.",
+        "Organoid electrophysiology evidence does not directly prove compatibility with the current CL1-like planar path."
+      ],
+      "lane": "LIMINA-Cell-1",
+      "measurement_dependency": "scope_lock_can_start_now",
+      "measurement_lane": "cell_contact_acellular_witness_coupon",
+      "name": "Hydrogel-Actuated Multilayer 3D Organoid MEA Interface",
+      "near_term_test": "Keep as a device-architecture horizon scan; extract a simplified witness-coupon plan only after the planar ALG-LAM-PEDOT H-A/H-B route has real data.",
+      "non_claim_boundary": "Second-wave queue rows are planning artifacts only; they do not create measured source-file evidence or material suitability.",
+      "queue_decision": "hold_until_discovery_gate_failure_resolved",
+      "queue_rank": 6,
+      "ranking_priority": "hold",
+      "risk_count": 3,
+      "scope_lock_action": "Lock material identity, procurement route, source-file classes, and a tiny acellular witness-coupon acceptance table.",
+      "weighted_score": 3.17
+    }
+  ],
+  "status": "second_wave_candidate_queue_ready_while_first_wave_waits",
+  "summary": {
+    "active_discovery_ids_excluded": [
+      "limina_alg_lam_pedot_lowdose_v0_2",
+      "limina_nhi_pedot_laminin_v0_1",
+      "limina_zrc_nd_v0_1"
+    ],
+    "first_wave_confirmations": 0,
+    "first_wave_failed_commands": 0,
+    "first_wave_replies": 0,
+    "hold_rows": 2,
+    "queue_rows": 6,
+    "ready_scope_lock_rows": 2,
+    "watch_rows": 2
+  }
+}

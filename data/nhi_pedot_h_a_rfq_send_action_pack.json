@@ -1,0 +1,30 @@
+{
+  "active_candidate": "limina_alg_lam_pedot_lowdose_v0_2",
+  "boundary": "This send action pack is logistics scaffolding only. It must not be used as evidence; only real returned measurement files can advance H-A gates.",
+  "generated_artifacts": {
+    "csv": "data/nhi_pedot_h_a_rfq_send_action_queue.csv",
+    "json": "data/nhi_pedot_h_a_rfq_send_action_pack.json",
+    "report": "reports/nhi_pedot_h_a_rfq_send_action_pack.md",
+    "template_dir": "data/rfq_send_confirmation_templates/h_a"
+  },
+  "inputs": {
+    "contact_plan": "data/nhi_pedot_h_a_vendor_contact_plan.json",
+    "eml_drafts": "data/nhi_pedot_h_a_rfq_eml_drafts.json",
+    "outbox": "data/nhi_pedot_h_a_rfq_outbox_manifest.json",
+    "send_log": "data/nhi_pedot_h_a_rfq_send_log.csv"
+  },
+  "purpose": "One actionable checklist for sending first-wave NHI-PEDOT H-A RFQ bundles and recording real send confirmations.",
+  "status": "h_a_rfq_send_action_pack_ready",
+  "summary": {
+    "action_rows": 4,
+    "eml_draft_missing_rows": 0,
+    "eml_draft_ready_rows": 4,
+    "missing_outbox_file_rows": 0,
+    "ready_to_send_rows": 4,
+    "sent_confirmation_verified_rows": 0,
+    "sent_needs_confirmation_rows": 0,
+    "status_counts": {
+      "ready_to_send": 4
+    }
+  }
+}

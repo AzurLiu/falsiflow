@@ -1,0 +1,2 @@
+queue_id,run_id,sample_event,target_field,measured_at,operator_or_agent,instrument_id,value,unit,source_file_to_save_as,method_or_record_id,notes,pre_measurement,post_measurement,measurement_basis,calculation,swelling_fraction
+SQ-0112,NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h,physical_inspection,swelling_fraction,,,,,fraction,data/source_files/smoke/h_a/NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h/physical_inspection_swelling_fraction_swelling_dimension_or_mass_worksheet.csv,,,,,,,

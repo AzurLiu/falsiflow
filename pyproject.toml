@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "falsiflow"
+version = "0.1.0"
+description = "Evidence-gated R&D workflow engine for high-risk technical claims."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [
+  { name = "Falsiflow contributors" }
+]
+keywords = [
+  "evidence",
+  "research",
+  "workflow",
+  "biomaterials",
+  "audit"
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "License :: OSI Approved :: MIT License",
+  "Topic :: Scientific/Engineering",
+  "Topic :: Software Development :: Quality Assurance"
+]
+
+[project.scripts]
+falsiflow = "falsiflow.cli:main"
+
+[tool.setuptools]
+packages = ["falsiflow"]
+
+[tool.setuptools.package-data]
+falsiflow = [
+  "templates/*/*.json",
+  "templates/*/*.csv",
+  "templates/*/source_files/*.csv"
+]

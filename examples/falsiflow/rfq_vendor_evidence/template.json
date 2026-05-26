@@ -1,0 +1,9 @@
+{
+  "id": "rfq_vendor_evidence",
+  "name": "RFQ vendor evidence readiness",
+  "domain": "external-lab-and-vendor-evidence",
+  "description": "Evidence-gated workflow for deciding whether a vendor or external lab reply is ready to support a measured-data work package.",
+  "project_config": "project.json",
+  "demo_evidence": "evidence_pass_demo.csv",
+  "placeholder_evidence": "evidence_placeholder_demo.csv"
+}

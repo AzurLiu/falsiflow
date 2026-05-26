@@ -1,0 +1,5 @@
+candidate_id,vendor_name,audit_status,proof_status,contact_plan_status,source_url,source_domain,verified_at,proof_age_days,primary_email_match,contact_url_match,quote_url_match,sample_submission_url_match,phone_match,source_supports_quote_route,errors
+materials_metric,Materials Metric,pass,proof_ok,ready_to_send,https://materialsmetric.com/contact-us/,materialsmetric.com,2026-05-24,0,true,true,true,true,true,true,
+the_osmolality_lab,The Osmolality Lab,pass,proof_ok,ready_to_send,https://theosmolalitylab.com/contact-us/,theosmolalitylab.com,2026-05-24,0,true,true,true,true,true,true,
+cambridge_polymer_group_hydrogel,Cambridge Polymer Group,pass,proof_ok,ready_to_send,https://www.campoly.com/contact-us/,campoly.com,2026-05-24,0,true,true,true,true,true,true,
+sigmaaldrich_media_testing,MilliporeSigma Cell Culture Media Stability and Testing Services,pass,proof_ok,ready_to_send,https://www.sigmaaldrich.com/US/en/collections/offices,sigmaaldrich.com,2026-05-24,0,true,true,true,true,true,true,

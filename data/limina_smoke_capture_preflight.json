@@ -1,0 +1,51 @@
+{
+  "boundary": "Preflight checks local capture entry quality and source-file existence only. It does not create measured evidence or a material suitability claim.",
+  "filled_task_count": 0,
+  "inputs": {
+    "h_a_local": "data/nhi_pedot_h_a_smoke_local_capture_template.csv",
+    "h_a_outsource": "data/nhi_pedot_h_a_smoke_osmolality_outsource_template.csv",
+    "instrument_register": "data/limina_local_instrument_register_template.csv",
+    "source_manifest": "data/limina_source_file_manifest.json",
+    "tasks": "data/limina_smoke_capture_tasks.csv",
+    "zrc_local": "data/zrc_nd_phase_a_smoke_local_capture_template.csv",
+    "zrc_outsource": "data/zrc_nd_phase_a_smoke_osmolality_outsource_template.csv"
+  },
+  "issue_counts": {
+    "error": 0,
+    "warning": 0
+  },
+  "issues": [],
+  "pending_task_count": 172,
+  "preflight_ready": false,
+  "source_file_policy": {
+    "allowed_root_count": 12,
+    "expected_source_class_count": 12,
+    "manifest": "data/limina_source_file_manifest.json",
+    "must_exist": true,
+    "status": "source_file_manifest_ready"
+  },
+  "status": "local_capture_preflight_awaiting_entries",
+  "task_count": 172,
+  "template_summaries": {
+    "h_a_local": {
+      "filled": 0,
+      "pending": 102,
+      "tasks": 102
+    },
+    "h_a_outsource": {
+      "filled": 0,
+      "pending": 12,
+      "tasks": 12
+    },
+    "zrc_local": {
+      "filled": 0,
+      "pending": 50,
+      "tasks": 50
+    },
+    "zrc_outsource": {
+      "filled": 0,
+      "pending": 8,
+      "tasks": 8
+    }
+  }
+}

@@ -1,0 +1,1 @@
+candidate_id,vendor_name,confirmation_file,confirmation_sha256,detected_by,file_type,from_address,to_address,subject,sent_at,message_id_or_confirmation,attachment_bundle_sha256,expected_bundle_sha256,bundle_hash_match,intake_status,applied_to_send_log,boundary

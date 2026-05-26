@@ -1,0 +1,200 @@
+{
+  "allowed_roots": [
+    {
+      "path": "data/source_files/full/h_a",
+      "purpose": "Local instrument exports, photos, worksheets, calibration logs, and bench records for the full H-A matrix.",
+      "root_id": "local_h_a_full",
+      "scope": "NHI-PEDOT H-A full local capture"
+    },
+    {
+      "path": "data/source_files/full/zrc_nd_phase_a",
+      "purpose": "Local records and instrument outputs for the full ZRC-ND Phase A matrix.",
+      "root_id": "local_zrc_full",
+      "scope": "ZRC-ND Phase A full local capture"
+    },
+    {
+      "path": "data/source_files/full/nhi_pedot_forward",
+      "purpose": "Local instrument exports, images, worksheets, and biological assay records for NHI-PEDOT H-B/H-C coupon gates.",
+      "root_id": "local_nhi_forward_full",
+      "scope": "NHI-PEDOT H-B/H-C full local capture"
+    },
+    {
+      "path": "data/source_files/full/nhi_pedot_long",
+      "purpose": "Long-duration MEA, neural health, stimulus-recovery, imaging, and material-integrity records for NHI-PEDOT.",
+      "root_id": "local_nhi_long_full",
+      "scope": "NHI-PEDOT long-duration full local capture"
+    },
+    {
+      "path": "data/source_files/full/zrc_nd_bio",
+      "purpose": "Biological assay records, imaging, MEA outputs, and worksheets for ZRC-ND conditioned-medium follow-up gates.",
+      "root_id": "local_zrc_bio_full",
+      "scope": "ZRC-ND biological follow-up full local capture"
+    },
+    {
+      "path": "data/source_files/smoke/h_a",
+      "purpose": "Minimal source files for the smoke-tranche H-A pipeline rehearsal.",
+      "root_id": "smoke_h_a",
+      "scope": "NHI-PEDOT H-A smoke capture"
+    },
+    {
+      "path": "data/source_files/smoke/zrc_nd_phase_a",
+      "purpose": "Minimal source files for the smoke-tranche ZRC-ND pipeline rehearsal.",
+      "root_id": "smoke_zrc",
+      "scope": "ZRC-ND Phase A smoke capture"
+    },
+    {
+      "path": "data/source_files/calibration_logs",
+      "purpose": "Calibration or standard-check files referenced by pH, conductivity, temperature, osmometer, image, mass, or dimension records.",
+      "root_id": "calibration_logs",
+      "scope": "shared measurement provenance"
+    },
+    {
+      "path": "data/source_files/bench_records",
+      "purpose": "Bench logs, pipetting worksheets, chain-of-custody exports, and operator worksheets.",
+      "root_id": "bench_records",
+      "scope": "shared local capture"
+    },
+    {
+      "path": "data/source_files/build_records",
+      "purpose": "Recipe records, supplier CoAs, sample labels, coating logs, and build sheets.",
+      "root_id": "build_records",
+      "scope": "supplier/build provenance"
+    },
+    {
+      "path": "data/nhi_pedot_h_a_vendor_return_inbox/external_lab_exports",
+      "purpose": "Original external lab exports, reports, images, and worksheets referenced by returned H-A rows.",
+      "root_id": "h_a_vendor_exports",
+      "scope": "NHI-PEDOT H-A vendor/cooperator returns"
+    },
+    {
+      "path": "data/zrc_nd_phase_a_vendor_return_inbox/external_lab_exports",
+      "purpose": "Original external lab exports, reports, images, and worksheets referenced by returned ZRC-ND rows.",
+      "root_id": "zrc_vendor_exports",
+      "scope": "ZRC-ND Phase A vendor/cooperator returns"
+    }
+  ],
+  "boundary": "This manifest is a provenance guardrail. It creates drop locations and policy only; it does not create measured evidence.",
+  "expected_source_classes": [
+    {
+      "accepted_extensions": ".csv;.tsv;.xlsx;.pdf;.png;.jpg;.jpeg;.heic",
+      "notes": "Raw meter export is preferred; display photo must be time-stamped or paired with a worksheet.",
+      "recommended_roots": "local_h_a_full;local_nhi_forward_full;local_nhi_long_full;smoke_h_a;calibration_logs;h_a_vendor_exports;zrc_vendor_exports",
+      "required_metadata": "run_id, measurement date, instrument_id or calibration record",
+      "source_class": "pH_meter_export_or_photo",
+      "task_signals": "pH,pH_initial,pH_final"
+    },
+    {
+      "accepted_extensions": ".csv;.tsv;.xlsx;.pdf;.png;.jpg;.jpeg;.heic",
+      "notes": "Include calibration or standard-check evidence for media-range measurements.",
+      "recommended_roots": "local_h_a_full;local_nhi_forward_full;local_nhi_long_full;smoke_h_a;calibration_logs;h_a_vendor_exports;zrc_vendor_exports",
+      "required_metadata": "run_id, measurement date, instrument_id or standard-check record",
+      "source_class": "conductivity_meter_export_or_photo",
+      "task_signals": "conductivity,conductivity_initial_mS_cm,conductivity_final_mS_cm"
+    },
+    {
+      "accepted_extensions": ".csv;.tsv;.xlsx;.pdf;.png;.jpg;.jpeg",
+      "notes": "External lab report/export must reconcile each returned value to a run_id.",
+      "recommended_roots": "h_a_vendor_exports;zrc_vendor_exports;local_h_a_full;local_nhi_forward_full;local_nhi_long_full;smoke_h_a;smoke_zrc;calibration_logs",
+      "required_metadata": "run_id, mOsm/kg value, vendor or osmometer identifier",
+      "source_class": "osmometer_report_or_export",
+      "task_signals": "osmolality,osmolality_initial_mOsm_kg,osmolality_final_mOsm_kg"
+    },
+    {
+      "accepted_extensions": ".csv;.tsv;.xlsx;.pdf;.png;.jpg;.jpeg;.heic",
+      "notes": "A single incubator log can support multiple run_ids if the covered time window is explicit.",
+      "recommended_roots": "local_h_a_full;local_nhi_forward_full;local_nhi_long_full;local_zrc_bio_full;smoke_h_a;bench_records;h_a_vendor_exports;zrc_vendor_exports",
+      "required_metadata": "run_id or batch window, date/time, temperature source",
+      "source_class": "temperature_or_incubator_log",
+      "task_signals": "temperature_c"
+    },
+    {
+      "accepted_extensions": ".csv;.tsv;.xlsx;.pdf;.png;.jpg;.jpeg;.heic;.tif;.tiff",
+      "notes": "Keep raw images plus the scoring worksheet or vendor image-analysis report.",
+      "recommended_roots": "local_h_a_full;local_nhi_forward_full;local_nhi_long_full;local_zrc_bio_full;smoke_h_a;smoke_zrc;bench_records;h_a_vendor_exports;zrc_vendor_exports",
+      "required_metadata": "run_id, imaging/scoring method, operator or vendor",
+      "source_class": "image_or_scoring_worksheet",
+      "task_signals": "visible_precipitate,visible_shedding,delamination_score,optical_transparency_fraction"
+    },
+    {
+      "accepted_extensions": ".csv;.tsv;.xlsx;.pdf;.png;.jpg;.jpeg",
+      "notes": "Worksheet must show enough raw dimensions, area, volume, or mass to reproduce the reported value.",
+      "recommended_roots": "local_h_a_full;local_nhi_forward_full;local_nhi_long_full;smoke_h_a;smoke_zrc;bench_records;h_a_vendor_exports;zrc_vendor_exports",
+      "required_metadata": "run_id, pre/post measurement basis, method, operator",
+      "source_class": "swelling_dimension_or_mass_worksheet",
+      "task_signals": "swelling_fraction,membrane_area_cm2,initial_volume_ml"
+    },
+    {
+      "accepted_extensions": ".csv;.tsv;.xlsx;.pdf;.md;.png;.jpg;.jpeg",
+      "notes": "Used for setup metadata and transfer provenance; not a substitute for instrument output when a measured value is present.",
+      "recommended_roots": "bench_records;build_records;local_h_a_full;local_nhi_forward_full;local_nhi_long_full;local_zrc_bio_full;smoke_h_a;smoke_zrc;h_a_vendor_exports;zrc_vendor_exports",
+      "required_metadata": "run_id or sample_id, operator, date, transfer or exposure event",
+      "source_class": "bench_or_chain_of_custody_record",
+      "task_signals": "date,medium_name,medium_lot,operator_or_agent,exposure_time_h"
+    },
+    {
+      "accepted_extensions": ".csv;.tsv;.xlsx;.pdf;.md;.png;.jpg;.jpeg",
+      "notes": "Supplier/build records are provenance only; they do not become performance evidence by themselves.",
+      "recommended_roots": "build_records;bench_records;local_zrc_full;local_nhi_forward_full;local_nhi_long_full;local_zrc_bio_full;smoke_zrc;h_a_vendor_exports;zrc_vendor_exports",
+      "required_metadata": "lot, recipe, CoA, label, or build identifier",
+      "source_class": "supplier_or_build_record",
+      "task_signals": "membrane_lot,prefilter_lot,electrode_material,laminin_or_peptide_density,sterilization_or_aseptic_protocol"
+    },
+    {
+      "accepted_extensions": ".csv;.tsv;.xlsx;.pdf;.png;.jpg;.jpeg",
+      "notes": "Keep raw MEA/electrochemical export plus the analysis worksheet when values are derived.",
+      "recommended_roots": "local_nhi_forward_full;local_nhi_long_full;local_zrc_bio_full;calibration_logs",
+      "required_metadata": "run_id, measurement date, instrument_id, channel/electrode mapping, and analysis method",
+      "source_class": "electrochemical_or_mea_export",
+      "task_signals": "eis_1khz,charge_storage_capacity,spike_rate,burst_rate,synchrony,electrode_yield,baseline_noise,post_stim"
+    },
+    {
+      "accepted_extensions": ".csv;.tsv;.xlsx;.pdf;.png;.jpg;.jpeg;.tif;.tiff",
+      "notes": "Assay summaries must cite raw plate-reader, imaging, or MEA-derived files, not transcribed notes alone.",
+      "recommended_roots": "local_nhi_forward_full;local_nhi_long_full;local_zrc_bio_full;bench_records",
+      "required_metadata": "run_id, culture model, assay date, operator or vendor, instrument_id or imaging/export method",
+      "source_class": "biological_assay_or_imaging_export",
+      "task_signals": "viability,ldh,neurite,morphology,cell_body_count,cell_model,seeding_density"
+    },
+    {
+      "accepted_extensions": ".csv;.tsv;.xlsx;.pdf;.png;.jpg;.jpeg",
+      "notes": "Keep raw analyzer, plate-reader, ELISA, or vendor chemistry export with enough metadata to reconcile each analyte to run_id.",
+      "recommended_roots": "local_zrc_full;local_zrc_bio_full;zrc_vendor_exports;calibration_logs",
+      "required_metadata": "run_id, analyte, assay date, instrument_id or vendor report id, calibration/standard curve record",
+      "source_class": "biochemical_or_plate_reader_export",
+      "task_signals": "lactate,ammonia,bdnf,ngf,albumin,transferrin,total_protein"
+    },
+    {
+      "accepted_extensions": ".csv;.tsv;.xlsx;.pdf;.png;.jpg;.jpeg",
+      "notes": "Flow resistance and bubble-event records must preserve raw pressure/flow or imaging/inspection evidence, not only pass/fail transcription.",
+      "recommended_roots": "local_zrc_full;zrc_vendor_exports;bench_records",
+      "required_metadata": "run_id, flow/pressure method, instrument_id, time window, calculation method",
+      "source_class": "pressure_flow_or_resistance_export",
+      "task_signals": "flow_resistance,flow_rate,bubble_events"
+    }
+  ],
+  "generated_artifacts": {
+    "csv": "data/limina_source_file_manifest.csv",
+    "json": "data/limina_source_file_manifest.json",
+    "readme": "data/source_files/README.md",
+    "report": "reports/limina_source_file_manifest.md"
+  },
+  "policy": {
+    "multi_file_separator": "semicolon, pipe, or newline",
+    "must_be_file": true,
+    "must_be_inside_allowed_root": true,
+    "must_exist": true,
+    "not_evidence": "Emails, quotes, verbal notes, vendor capability replies, fixtures, synthetic data, and placeholders are never measured evidence.",
+    "relative_paths_resolve_from": "."
+  },
+  "rejected_source_markers": [
+    "email",
+    "quote",
+    "verbal",
+    "capability",
+    "phone_call",
+    "synthetic",
+    "fixture",
+    "placeholder"
+  ],
+  "status": "source_file_manifest_ready"
+}

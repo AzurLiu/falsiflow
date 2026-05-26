@@ -1,0 +1,236 @@
+{
+  "active_runs": "/Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_runs_active.csv",
+  "article_count": 4,
+  "articles": [
+    {
+      "acceptance_focus": "baseline pH/osmolality/conductivity drift and visual/physical inspection",
+      "article_id": "no_coating_mea_control",
+      "article_role": "matched medium/device control",
+      "hydrogel_matrix": "none",
+      "pedot_pss_loading_fraction": "0",
+      "run_ids": [
+        "NHIPEDOT-H-A-no_coating_mea_control-R1-0h",
+        "NHIPEDOT-H-A-no_coating_mea_control-R1-24h",
+        "NHIPEDOT-H-A-no_coating_mea_control-R1-72h"
+      ],
+      "stop_if": "control is unstable or missing, because matched comparisons become invalid",
+      "timepoints": [
+        "0 h",
+        "24 h",
+        "72 h"
+      ]
+    },
+    {
+      "acceptance_focus": "matrix-only medium drift, swelling, delamination, and transparency versus no-coating control",
+      "article_id": "hydrogel_laminin_control",
+      "article_role": "soft matrix control",
+      "hydrogel_matrix": "alginate_laminin_2pct_wv_caso4_dmem",
+      "pedot_pss_loading_fraction": "0",
+      "run_ids": [
+        "NHIPEDOT-H-A-hydrogel_laminin_control-R1-0h",
+        "NHIPEDOT-H-A-hydrogel_laminin_control-R1-24h",
+        "NHIPEDOT-H-A-hydrogel_laminin_control-R1-72h"
+      ],
+      "stop_if": "hydrogel-only matrix fails, because PEDOT interpretation becomes confounded",
+      "timepoints": [
+        "0 h",
+        "24 h",
+        "72 h"
+      ]
+    },
+    {
+      "acceptance_focus": "lead medium drift <= controls plus no shedding, swelling <=0.20, delamination <=0.5, transparency >=0.80",
+      "article_id": "lead_nhi_pedot_low_loading",
+      "article_role": "0.6 wt percent PEDOT:PSS lead",
+      "hydrogel_matrix": "alginate_laminin_2pct_wv_caso4_dmem_pedotpss",
+      "pedot_pss_loading_fraction": "0.006",
+      "run_ids": [
+        "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-0h",
+        "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h",
+        "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-72h"
+      ],
+      "stop_if": "lead shows pH drift >0.10 vs control, osmolality/conductivity drift >5%, shedding, swelling >0.20, delamination >0.5, or transparency <0.80",
+      "timepoints": [
+        "0 h",
+        "24 h",
+        "72 h"
+      ]
+    },
+    {
+      "acceptance_focus": "upper-loading boundary; failures constrain dose-response but do not stop lead if lead passes",
+      "article_id": "challenge_nhi_pedot_high_loading",
+      "article_role": "1.2 wt percent PEDOT:PSS boundary comparator",
+      "hydrogel_matrix": "alginate_laminin_2pct_wv_caso4_dmem_pedotpss",
+      "pedot_pss_loading_fraction": "0.012",
+      "run_ids": [
+        "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-0h",
+        "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-24h",
+        "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-72h"
+      ],
+      "stop_if": "treat challenge as boundary only if it fails; do not promote to H-C",
+      "timepoints": [
+        "0 h",
+        "24 h",
+        "72 h"
+      ]
+    }
+  ],
+  "blank_raw_entries_to_fill": 228,
+  "non_claim_boundary": "This checklist prepares data entry only. The material remains a hypothesis until QC-clean real rows pass H-A, H-B, H-C, long follow-up, and the final claim audit.",
+  "provenance_fields_per_raw_row": [
+    "measured_at",
+    "operator_or_agent",
+    "instrument_id",
+    "source_file"
+  ],
+  "purpose": "Compact checklist for making the first NHI-PEDOT H-A sentinel interpretable.",
+  "qc_error_count": 183,
+  "qc_missing_hotspots": [
+    {
+      "field": "date",
+      "rows": 12
+    },
+    {
+      "field": "medium_name",
+      "rows": 12
+    },
+    {
+      "field": "medium_lot",
+      "rows": 12
+    },
+    {
+      "field": "pH_initial",
+      "rows": 12
+    },
+    {
+      "field": "pH_final",
+      "rows": 12
+    },
+    {
+      "field": "osmolality_initial_mOsm_kg",
+      "rows": 12
+    },
+    {
+      "field": "osmolality_final_mOsm_kg",
+      "rows": 12
+    },
+    {
+      "field": "conductivity_initial_mS_cm",
+      "rows": 12
+    },
+    {
+      "field": "conductivity_final_mS_cm",
+      "rows": 12
+    },
+    {
+      "field": "visible_precipitate",
+      "rows": 12
+    },
+    {
+      "field": "visible_shedding",
+      "rows": 12
+    },
+    {
+      "field": "swelling_fraction",
+      "rows": 12
+    },
+    {
+      "field": "delamination_score",
+      "rows": 12
+    },
+    {
+      "field": "optical_transparency_fraction",
+      "rows": 12
+    },
+    {
+      "field": "source_file",
+      "rows": 12
+    },
+    {
+      "field": "temperature_c",
+      "rows": 3
+    }
+  ],
+  "qc_status": "h_a_intake_not_ready",
+  "qc_warning_count": 24,
+  "raw_measurement_template": "/Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/data/nhi_pedot_h_a_raw_measurements_template.csv",
+  "required_fields": [
+    {
+      "description": "final conductivity",
+      "field": "conductivity_final_mS_cm",
+      "rows": 12
+    },
+    {
+      "description": "initial conductivity",
+      "field": "conductivity_initial_mS_cm",
+      "rows": 12
+    },
+    {
+      "description": "calendar date of the measurement event",
+      "field": "date",
+      "rows": 12
+    },
+    {
+      "description": "0 to 1 delamination score",
+      "field": "delamination_score",
+      "rows": 12
+    },
+    {
+      "description": "actual medium lot",
+      "field": "medium_lot",
+      "rows": 12
+    },
+    {
+      "description": "actual medium or CL1-proxy medium name",
+      "field": "medium_name",
+      "rows": 12
+    },
+    {
+      "description": "0 to 1 optical transparency fraction",
+      "field": "optical_transparency_fraction",
+      "rows": 12
+    },
+    {
+      "description": "final osmolality",
+      "field": "osmolality_final_mOsm_kg",
+      "rows": 12
+    },
+    {
+      "description": "initial osmolality",
+      "field": "osmolality_initial_mOsm_kg",
+      "rows": 12
+    },
+    {
+      "description": "final pH",
+      "field": "pH_final",
+      "rows": 12
+    },
+    {
+      "description": "initial pH",
+      "field": "pH_initial",
+      "rows": 12
+    },
+    {
+      "description": "fractional swelling",
+      "field": "swelling_fraction",
+      "rows": 12
+    },
+    {
+      "description": "visible precipitate, true or false",
+      "field": "visible_precipitate",
+      "rows": 12
+    },
+    {
+      "description": "visible material shedding, true or false",
+      "field": "visible_shedding",
+      "rows": 12
+    },
+    {
+      "description": "measurement/incubation temperature in C",
+      "field": "temperature_c",
+      "rows": 3
+    }
+  ],
+  "run_count": 12,
+  "status": "awaiting_real_measurements"
+}

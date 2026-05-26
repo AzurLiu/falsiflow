@@ -1,0 +1,48 @@
+{
+  "boundary": "Templates are outside allowed source-file roots and are never measured evidence. Only real files placed at target source_file paths can support measured rows.",
+  "generated_artifacts": {
+    "csv": "data/zrc_nd_phase_a_source_file_template_manifest.csv",
+    "json": "data/zrc_nd_phase_a_source_file_template_pack.json",
+    "report": "reports/zrc_nd_phase_a_source_file_template_pack.md",
+    "template_dir": "data/limina_source_file_templates/zrc_phase_a"
+  },
+  "inputs": {
+    "source_manifest": "data/limina_source_file_manifest.json",
+    "source_values": "data/zrc_nd_phase_a_source_values.csv"
+  },
+  "label": "ZRC-ND Phase A",
+  "profile": "zrc_phase_a",
+  "status": "zrc_nd_phase_a_source_file_template_pack_ready",
+  "summary": {
+    "generated_template_files": 8,
+    "source_class_counts": {
+      "bench_or_chain_of_custody_record": 104,
+      "biochemical_or_plate_reader_export": 112,
+      "conductivity_meter_export_or_photo": 16,
+      "image_or_scoring_worksheet": 8,
+      "osmometer_report_or_export": 16,
+      "pH_meter_export_or_photo": 16,
+      "pressure_flow_or_resistance_export": 24,
+      "temperature_or_incubator_log": 8
+    },
+    "source_class_template_count": 8,
+    "source_value_rows": 304,
+    "target_extension_counts": {
+      ".csv": 280,
+      ".pdf": 16,
+      ".png": 8
+    },
+    "target_source_file_count": 304,
+    "template_manifest_rows": 8
+  },
+  "templates": [
+    "data/limina_source_file_templates/zrc_phase_a/source_class_templates/bench_or_chain_of_custody_record.csv",
+    "data/limina_source_file_templates/zrc_phase_a/source_class_templates/biochemical_or_plate_reader_export.csv",
+    "data/limina_source_file_templates/zrc_phase_a/source_class_templates/conductivity_meter_export_or_photo.csv",
+    "data/limina_source_file_templates/zrc_phase_a/source_class_templates/image_or_scoring_worksheet.csv",
+    "data/limina_source_file_templates/zrc_phase_a/source_class_templates/osmometer_report_or_export.csv",
+    "data/limina_source_file_templates/zrc_phase_a/source_class_templates/pH_meter_export_or_photo.csv",
+    "data/limina_source_file_templates/zrc_phase_a/source_class_templates/pressure_flow_or_resistance_export.csv",
+    "data/limina_source_file_templates/zrc_phase_a/source_class_templates/temperature_or_incubator_log.csv"
+  ]
+}

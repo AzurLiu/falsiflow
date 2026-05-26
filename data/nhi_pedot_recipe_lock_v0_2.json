@@ -1,0 +1,63 @@
+{
+  "id": "nhi_pedot_alg_lam_lowdose_recipe_lock_v0_2",
+  "candidate_id": "limina_alg_lam_pedot_lowdose_v0_2",
+  "parent_validation_package": "nhi_pedot_laminin_validation_v0_1",
+  "protocol_id": "nhi_pedot_alg_lam_protocol_v0_2",
+  "status": "active_recipe_lock_for_h_a_sentinel",
+  "lock_reason": "The discovery queue ranks ALG-LAM-PEDOT low-dose as the fastest path toward a defensible first cell-contact suitability claim because it has direct neural-culture evidence and can reuse existing H-A/H-B/H-C gates.",
+  "evidence_refs": [
+    "pedot_neural_culture_hydrogel_2025",
+    "pedot_brain_monitoring_2025",
+    "hydrogel_neural_tissue_2020",
+    "dnt_nam_viability_neurite_mea_2022"
+  ],
+  "design_targets": {
+    "hydrogel_matrix": "alginate_laminin_2pct_wv_caso4_dmem",
+    "mechanics": "brain-soft low-kPa target; enter measured modulus as numeric data, not as a target label",
+    "conductive_phase": "0.6 wt percent PEDOT:PSS lead, selected from the published neural-culture loading",
+    "presentation": "EHS laminin or equivalent laminin cue retained above or within the hydrogel",
+    "pedot_strategy": "use 0.6 wt percent as lead and 1.2 wt percent as high-loading boundary comparator",
+    "first_claim_boundary": "no suitability claim until non-synthetic H-A/H-B/H-C and long-duration rows pass"
+  },
+  "template_defaults": {
+    "hydrogel_laminin_control": {
+      "hydrogel_matrix": "alginate_laminin_2pct_wv_caso4_dmem",
+      "hydrogel_thickness_um": "400",
+      "pedot_pss_loading_fraction": "0",
+      "pedot_pss_pre_rinse_protocol": "not_applicable_no_pedot",
+      "laminin_or_peptide_density": "ehs_laminin_same_as_lead_record_lot",
+      "crosslinking_protocol": "183mM_CaSO4_in_1x_DMEM_syringe_mix_cast_1h_gelation",
+      "sterilization_or_aseptic_protocol": "aseptic_preparation_record_lot_and_handling",
+      "medium_name": "DMEM_F12_or_CL1_proxy_record_actual",
+      "temperature_c": "37"
+    },
+    "lead_nhi_pedot_low_loading": {
+      "hydrogel_matrix": "alginate_laminin_2pct_wv_caso4_dmem_pedotpss",
+      "hydrogel_thickness_um": "400",
+      "pedot_pss_loading_fraction": "0.006",
+      "pedot_pss_pre_rinse_protocol": "overnight_medium_conditioning_before_measurement",
+      "laminin_or_peptide_density": "ehs_laminin_same_as_control_record_lot",
+      "crosslinking_protocol": "183mM_CaSO4_in_1x_DMEM_syringe_mix_cast_1h_gelation",
+      "sterilization_or_aseptic_protocol": "aseptic_preparation_record_lot_and_handling",
+      "medium_name": "DMEM_F12_or_CL1_proxy_record_actual",
+      "temperature_c": "37"
+    },
+    "challenge_nhi_pedot_high_loading": {
+      "hydrogel_matrix": "alginate_laminin_2pct_wv_caso4_dmem_pedotpss",
+      "hydrogel_thickness_um": "400",
+      "pedot_pss_loading_fraction": "0.012",
+      "pedot_pss_pre_rinse_protocol": "overnight_medium_conditioning_before_measurement",
+      "laminin_or_peptide_density": "ehs_laminin_same_as_control_record_lot",
+      "crosslinking_protocol": "183mM_CaSO4_in_1x_DMEM_syringe_mix_cast_1h_gelation",
+      "sterilization_or_aseptic_protocol": "aseptic_preparation_record_lot_and_handling",
+      "medium_name": "DMEM_F12_or_CL1_proxy_record_actual",
+      "temperature_c": "37"
+    }
+  },
+  "operator_notes": [
+    "Do not enter target ranges into numeric measurement fields.",
+    "Replace record_actual labels and all assay fields with actual formulation, lot, coupon, and measurement values before treating rows as measured evidence.",
+    "Keep hydrogel-only, low-loading lead, and high-loading challenge articles matched except for PEDOT:PSS loading.",
+    "If H-A blank integrity fails, stop before H-B electrochemistry or H-C neural culture."
+  ]
+}

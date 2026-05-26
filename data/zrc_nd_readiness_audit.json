@@ -1,0 +1,73 @@
+{
+  "biological_validated": false,
+  "checks": [
+    {
+      "detail": "Technology record exists.",
+      "id": "technology_record_present",
+      "status": "pass"
+    },
+    {
+      "detail": "Expected `lead_passes_non_cell_gates`, observed `no_data`.",
+      "id": "validation_result_status",
+      "status": "fail"
+    },
+    {
+      "detail": "Expected `pass`, observed `not_evaluable`.",
+      "id": "aggregate_lead_superiority",
+      "status": "fail"
+    },
+    {
+      "detail": "Required ['A', 'B', 'C'], observed [].",
+      "id": "phase_coverage",
+      "status": "fail"
+    },
+    {
+      "detail": "Required >= 3 passed lead replicates per phase; observed {}.",
+      "id": "lead_replicate_coverage",
+      "status": "fail"
+    },
+    {
+      "detail": "Failed lead rows: 0.",
+      "id": "failed_lead_rows",
+      "status": "pass"
+    },
+    {
+      "detail": "Expected `bio_followup_passes_gates`, observed `no_data`.",
+      "id": "bio_result_status",
+      "status": "fail"
+    },
+    {
+      "detail": "Expected `pass`, observed `not_evaluable`.",
+      "id": "aggregate_bio_superiority",
+      "status": "fail"
+    },
+    {
+      "detail": "Required ['D1', 'D2', 'D3'], observed [].",
+      "id": "bio_phase_coverage",
+      "status": "fail"
+    },
+    {
+      "detail": "Required >= 3 passed lead replicates per phase; observed {}.",
+      "id": "bio_lead_replicate_coverage",
+      "status": "fail"
+    },
+    {
+      "detail": "Failed biological lead rows: 0.",
+      "id": "failed_bio_lead_rows",
+      "status": "pass"
+    }
+  ],
+  "lead_variant_id": "zrc_nd_3p5k_mpc_guard",
+  "missing_evidence": [
+    "Measured Phase A/B/C rows that pass non-cell validation gates.",
+    "conditioned-medium viability or toxicity screen",
+    "neurite/morphology or equivalent neural-health readout",
+    "MEA/network activity or equivalent functional stability readout if available",
+    "no unresolved material blank or extractables issue"
+  ],
+  "non_cell_validated": false,
+  "readiness": "not_suitable_yet_no_measured_data",
+  "suitable": false,
+  "technology_id": "limina_zrc_nd_v0_1",
+  "technology_status": "nominated"
+}

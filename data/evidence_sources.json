@@ -1,0 +1,63 @@
+{
+  "pedot_brain_monitoring_2025": {
+    "title": "PEDOT:PSS-based bioelectronics for brain monitoring and modulation",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12075682/",
+    "note": "Review of PEDOT:PSS brain bioelectrodes, conductivity, biocompatibility, impedance, and stability strategies."
+  },
+  "pedot_bio_sei_2026": {
+    "title": "PEDOT:PSS as a Bio-Solid Electrolyte Interphase for Neural Interfaces",
+    "url": "https://www.mdpi.com/2073-4360/18/1/20",
+    "note": "Conceptual review of PEDOT:PSS as an adaptive neural bio-interphase, including fouling, hydration, and leachable risks."
+  },
+  "conductive_hydrogels_2025": {
+    "title": "Conductive Hydrogels in Biomedical Engineering: Recent Advances and a Comprehensive Review",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12840763/",
+    "note": "Broad review of conductive hydrogel mechanisms and biomedical uses including neural repair and cell regulation."
+  },
+  "graphene_neural_interfaces_2024": {
+    "title": "The potential of graphene coatings as neural interfaces",
+    "url": "https://pubs.rsc.org/en/content/articlehtml/2024/nh/d3nh00461a",
+    "note": "Review of graphene coatings for neural interfaces and required cell-interface properties."
+  },
+  "graphene_activity_detection_2021": {
+    "title": "Graphene-Based Electrode Materials for Neural Activity Detection",
+    "url": "https://www.mdpi.com/1996-1944/14/20/6170",
+    "note": "Review of graphene neural electrodes, biocompatibility, conductivity, flexibility, and recording applications."
+  },
+  "hydrogel_neural_tissue_2020": {
+    "title": "Hydrogel systems and their role in neural tissue engineering",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7014813/",
+    "note": "Review of hydrogels for neural tissue growth, stiffness, ligand functionalization, and neural progenitor support."
+  },
+  "stiffness_sensing_2020": {
+    "title": "Stiffness Sensing by Cells",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7276923/",
+    "note": "Review discussing neuronal response to soft, brain-like substrates and stiffness-dependent neurite extension."
+  },
+  "zwitterionic_cp_2023": {
+    "title": "Chemically revised conducting polymers with inflammation resistance for intimate bioelectronic electrocoupling",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9975642/",
+    "note": "Review highlighting zwitterionic conducting polymers for antifouling, aqueous stability, and neural electrocoupling."
+  },
+  "zwitterionic_hydrogel_2022": {
+    "title": "A Soft Zwitterionic Hydrogel as Potential Coating on a Polyimide Surface to Reduce Foreign Body Reaction to Intraneural Electrodes",
+    "url": "https://www.mdpi.com/1420-3049/27/10/3126",
+    "note": "Study of zwitterionic hydrogel coating for neural electrode biocompatibility and antifibrotic strategy."
+  },
+  "dopamine_zwitterion_surface_2021": {
+    "title": "Bioinspired dopamine and zwitterionic polymers for non-fouling surface engineering",
+    "url": "https://pubs.rsc.org/en/content/articlelanding/2021/cs/d1cs00658d",
+    "note": "Review of dopamine and zwitterionic surface engineering for non-fouling biological interfaces."
+  },
+  "chgnet_2023": {
+    "title": "CHGNet as a pretrained universal neural network potential for charge-informed atomistic modelling",
+    "url": "https://www.nature.com/articles/s42256-023-00716-3",
+    "note": "Universal neural network potential useful for inorganic material structure and dynamics screening."
+  },
+  "mattersim_2024": {
+    "title": "MatterSim: A deep-learning model for materials under real-world conditions",
+    "url": "https://www.microsoft.com/en-us/research/blog/mattersim-a-deep-learning-model-for-materials-under-real-world-conditions/",
+    "note": "Foundation model for efficient materials simulation across elements, temperature, and pressure."
+  }
+}
+

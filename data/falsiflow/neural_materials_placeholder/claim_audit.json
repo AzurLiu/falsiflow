@@ -1,0 +1,443 @@
+{
+  "claim": {
+    "id": "alg_lam_pedot_lowdose_interface_claim",
+    "requires_gates": [
+      "h_a_medium_stability",
+      "h_b_electrical_interface",
+      "h_c_network_response"
+    ],
+    "statement": "ALG-LAM-PEDOT low-dose neural hydrogel interface is stable in cell-free medium, improves electrical interface readouts, and is not worse than control in basic cell/network response."
+  },
+  "claim_ready": false,
+  "evidence_error_count": 0,
+  "evidence_issue_count": 0,
+  "evidence_issues": [],
+  "evidence_warning_count": 0,
+  "gates": [
+    {
+      "blocker_count": 14,
+      "blockers": [
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "ph_initial",
+          "gate_id": "h_a_medium_stability",
+          "reasons": [
+            "value is blank or placeholder"
+          ],
+          "sample_id": "ha_demo_001"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "ph_final",
+          "gate_id": "h_a_medium_stability",
+          "reasons": [
+            "missing evidence row"
+          ],
+          "sample_id": "ha_demo_001"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "osmolality_initial_mosm",
+          "gate_id": "h_a_medium_stability",
+          "reasons": [
+            "missing evidence row"
+          ],
+          "sample_id": "ha_demo_001"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "osmolality_final_mosm",
+          "gate_id": "h_a_medium_stability",
+          "reasons": [
+            "missing evidence row"
+          ],
+          "sample_id": "ha_demo_001"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "conductivity_initial_ms_cm",
+          "gate_id": "h_a_medium_stability",
+          "reasons": [
+            "missing evidence row"
+          ],
+          "sample_id": "ha_demo_001"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "conductivity_final_ms_cm",
+          "gate_id": "h_a_medium_stability",
+          "reasons": [
+            "missing evidence row"
+          ],
+          "sample_id": "ha_demo_001"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "visible_debris_present",
+          "gate_id": "h_a_medium_stability",
+          "reasons": [
+            "missing evidence row"
+          ],
+          "sample_id": "ha_demo_001"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "ph_drift_24h_abs",
+          "gate_id": "h_a_medium_stability",
+          "reasons": [
+            "derived field failed: required input field is missing: ph_final"
+          ],
+          "sample_id": "ha_demo_001"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "osmolality_drift_24h_mosm",
+          "gate_id": "h_a_medium_stability",
+          "reasons": [
+            "derived field failed: required input field is missing: osmolality_final_mosm"
+          ],
+          "sample_id": "ha_demo_001"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "conductivity_drift_24h_pct",
+          "gate_id": "h_a_medium_stability",
+          "reasons": [
+            "derived field failed: required input field is missing: conductivity_initial_ms_cm"
+          ],
+          "sample_id": "ha_demo_001"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "ph_drift_24h_abs",
+          "gate_id": "h_a_medium_stability",
+          "reasons": [
+            "acceptance field is missing or not derived"
+          ],
+          "sample_id": "ha_demo_001"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "osmolality_drift_24h_mosm",
+          "gate_id": "h_a_medium_stability",
+          "reasons": [
+            "acceptance field is missing or not derived"
+          ],
+          "sample_id": "ha_demo_001"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "conductivity_drift_24h_pct",
+          "gate_id": "h_a_medium_stability",
+          "reasons": [
+            "acceptance field is missing or not derived"
+          ],
+          "sample_id": "ha_demo_001"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "visible_debris_present",
+          "gate_id": "h_a_medium_stability",
+          "reasons": [
+            "acceptance field is missing or not derived"
+          ],
+          "sample_id": "ha_demo_001"
+        }
+      ],
+      "derived_field_count": 0,
+      "derived_fields": [],
+      "gate_id": "h_a_medium_stability",
+      "required_evidence_rows": 7,
+      "status": "blocked_missing_evidence",
+      "title": "H-A cell-free medium stability",
+      "valid_required_evidence_rows": 0
+    },
+    {
+      "blocker_count": 11,
+      "blockers": [
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "impedance_1khz_candidate_ohm",
+          "gate_id": "h_b_electrical_interface",
+          "reasons": [
+            "missing evidence row"
+          ],
+          "sample_id": "hb_demo_001"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "charge_storage_control_mC_cm2",
+          "gate_id": "h_b_electrical_interface",
+          "reasons": [
+            "missing evidence row"
+          ],
+          "sample_id": "hb_demo_001"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "charge_storage_candidate_mC_cm2",
+          "gate_id": "h_b_electrical_interface",
+          "reasons": [
+            "missing evidence row"
+          ],
+          "sample_id": "hb_demo_001"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "noise_control_uvrms",
+          "gate_id": "h_b_electrical_interface",
+          "reasons": [
+            "missing evidence row"
+          ],
+          "sample_id": "hb_demo_001"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "noise_candidate_uvrms",
+          "gate_id": "h_b_electrical_interface",
+          "reasons": [
+            "missing evidence row"
+          ],
+          "sample_id": "hb_demo_001"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "impedance_reduction_1khz_pct",
+          "gate_id": "h_b_electrical_interface",
+          "reasons": [
+            "derived field failed: required input field is missing: impedance_1khz_candidate_ohm"
+          ],
+          "sample_id": "hb_demo_001"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "charge_storage_gain_pct",
+          "gate_id": "h_b_electrical_interface",
+          "reasons": [
+            "derived field failed: required input field is missing: charge_storage_control_mC_cm2"
+          ],
+          "sample_id": "hb_demo_001"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "noise_increase_uvrms",
+          "gate_id": "h_b_electrical_interface",
+          "reasons": [
+            "derived field failed: required input field is missing: noise_candidate_uvrms"
+          ],
+          "sample_id": "hb_demo_001"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "impedance_reduction_1khz_pct",
+          "gate_id": "h_b_electrical_interface",
+          "reasons": [
+            "acceptance field is missing or not derived"
+          ],
+          "sample_id": "hb_demo_001"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "charge_storage_gain_pct",
+          "gate_id": "h_b_electrical_interface",
+          "reasons": [
+            "acceptance field is missing or not derived"
+          ],
+          "sample_id": "hb_demo_001"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "noise_increase_uvrms",
+          "gate_id": "h_b_electrical_interface",
+          "reasons": [
+            "acceptance field is missing or not derived"
+          ],
+          "sample_id": "hb_demo_001"
+        }
+      ],
+      "derived_field_count": 0,
+      "derived_fields": [],
+      "gate_id": "h_b_electrical_interface",
+      "required_evidence_rows": 6,
+      "status": "blocked_missing_evidence",
+      "title": "H-B electrical interface benefit",
+      "valid_required_evidence_rows": 1
+    },
+    {
+      "blocker_count": 14,
+      "blockers": [
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "viability_pct",
+          "gate_id": "h_c_network_response",
+          "reasons": [
+            "missing evidence row"
+          ],
+          "sample_id": "hc_demo_candidate"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "burst_rate_hz",
+          "gate_id": "h_c_network_response",
+          "reasons": [
+            "missing evidence row"
+          ],
+          "sample_id": "hc_demo_candidate"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "inflammation_marker",
+          "gate_id": "h_c_network_response",
+          "reasons": [
+            "missing evidence row"
+          ],
+          "sample_id": "hc_demo_candidate"
+        },
+        {
+          "candidate_id": "hydrogel_laminin_control",
+          "field": "viability_pct",
+          "gate_id": "h_c_network_response",
+          "reasons": [
+            "missing evidence row"
+          ],
+          "sample_id": "hc_demo_control"
+        },
+        {
+          "candidate_id": "hydrogel_laminin_control",
+          "field": "burst_rate_hz",
+          "gate_id": "h_c_network_response",
+          "reasons": [
+            "missing evidence row"
+          ],
+          "sample_id": "hc_demo_control"
+        },
+        {
+          "candidate_id": "hydrogel_laminin_control",
+          "field": "inflammation_marker",
+          "gate_id": "h_c_network_response",
+          "reasons": [
+            "missing evidence row"
+          ],
+          "sample_id": "hc_demo_control"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "burst_rate_ratio_vs_control",
+          "gate_id": "h_c_network_response",
+          "reasons": [
+            "derived field failed: required input field is missing: hydrogel_laminin_control:hc_demo_control:burst_rate_hz"
+          ],
+          "sample_id": "hc_demo_candidate"
+        },
+        {
+          "candidate_id": "hydrogel_laminin_control",
+          "field": "burst_rate_ratio_vs_control",
+          "gate_id": "h_c_network_response",
+          "reasons": [
+            "derived field failed: required input field is missing: hydrogel_laminin_control:hc_demo_control:burst_rate_hz"
+          ],
+          "sample_id": "hc_demo_control"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "inflammation_marker_ratio_vs_control",
+          "gate_id": "h_c_network_response",
+          "reasons": [
+            "derived field failed: required input field is missing: hydrogel_laminin_control:hc_demo_control:inflammation_marker"
+          ],
+          "sample_id": "hc_demo_candidate"
+        },
+        {
+          "candidate_id": "hydrogel_laminin_control",
+          "field": "inflammation_marker_ratio_vs_control",
+          "gate_id": "h_c_network_response",
+          "reasons": [
+            "derived field failed: required input field is missing: hydrogel_laminin_control:hc_demo_control:inflammation_marker"
+          ],
+          "sample_id": "hc_demo_control"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "viability_pct",
+          "gate_id": "h_c_network_response",
+          "reasons": [
+            "acceptance field is missing or not derived"
+          ],
+          "sample_id": "hc_demo_candidate"
+        },
+        {
+          "candidate_id": "hydrogel_laminin_control",
+          "field": "viability_pct",
+          "gate_id": "h_c_network_response",
+          "reasons": [
+            "acceptance field is missing or not derived"
+          ],
+          "sample_id": "hc_demo_control"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "burst_rate_ratio_vs_control",
+          "gate_id": "h_c_network_response",
+          "reasons": [
+            "acceptance field is missing or not derived"
+          ],
+          "sample_id": "hc_demo_candidate"
+        },
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "field": "inflammation_marker_ratio_vs_control",
+          "gate_id": "h_c_network_response",
+          "reasons": [
+            "acceptance field is missing or not derived"
+          ],
+          "sample_id": "hc_demo_candidate"
+        }
+      ],
+      "derived_field_count": 0,
+      "derived_fields": [],
+      "gate_id": "h_c_network_response",
+      "required_evidence_rows": 6,
+      "status": "blocked_missing_evidence",
+      "title": "H-C cell and network response",
+      "valid_required_evidence_rows": 0
+    }
+  ],
+  "missing_required_gates": [],
+  "next_actions": [
+    {
+      "action_id": "fill_h_a_medium_stability_evidence",
+      "rank": 1,
+      "success_criterion": "All required rows have non-placeholder values, required metadata, and allowed source files; acceptance rules pass.",
+      "why": "Gate `h_a_medium_stability` is `blocked_missing_evidence` with 14 blocker(s)."
+    },
+    {
+      "action_id": "fill_h_b_electrical_interface_evidence",
+      "rank": 2,
+      "success_criterion": "All required rows have non-placeholder values, required metadata, and allowed source files; acceptance rules pass.",
+      "why": "Gate `h_b_electrical_interface` is `blocked_missing_evidence` with 11 blocker(s)."
+    },
+    {
+      "action_id": "fill_h_c_network_response_evidence",
+      "rank": 3,
+      "success_criterion": "All required rows have non-placeholder values, required metadata, and allowed source files; acceptance rules pass.",
+      "why": "Gate `h_c_network_response` is `blocked_missing_evidence` with 14 blocker(s)."
+    }
+  ],
+  "project": {
+    "domain": "neural-wetware-material-interface",
+    "id": "falsiflow_neural_materials_demo",
+    "name": "Falsiflow neural materials demo",
+    "version": "0.1.0"
+  },
+  "project_config_valid": true,
+  "project_validation": {
+    "error_count": 0,
+    "issues": [],
+    "status": "valid",
+    "valid": true,
+    "warning_count": 0
+  },
+  "project_validation_error_count": 0,
+  "project_validation_warning_count": 0,
+  "status": "claim_blocked"
+}

@@ -1,0 +1,75 @@
+{
+  "applied_tracker_field_updates": 0,
+  "error_count": 0,
+  "errors": [],
+  "field_contract": {
+    "hash_rule": "If reply_source_sha256 is supplied, it must match the current SHA-256 of reply_source_file.",
+    "reply_status_values": [
+      "awaiting_reply",
+      "cannot_quote",
+      "clarification_received",
+      "declined",
+      "needs_clarification",
+      "no_reply",
+      "not_sent_yet",
+      "out_of_scope",
+      "pending_reply",
+      "quote_received",
+      "received",
+      "reply_received"
+    ],
+    "required_when_declined": [
+      "reply_at",
+      "responder_name",
+      "reply_source_file"
+    ],
+    "required_when_received": [
+      "reply_at",
+      "responder_name",
+      "reply_source_file",
+      "can_cover_full_h_a",
+      "needs_split_scope",
+      "run_id_level_raw_data",
+      "media_physicochemical_coverage",
+      "coupon_physical_coverage",
+      "csv_schema_acceptance",
+      "bundle_entry_sheet_acceptance",
+      "sample_handling_fit",
+      "non_glp_scope_control"
+    ]
+  },
+  "hard_required_fields": [
+    "run_id_level_raw_data",
+    "csv_schema_acceptance",
+    "sample_handling_fit",
+    "non_glp_scope_control"
+  ],
+  "label": "NHI-PEDOT H-A",
+  "non_evidence_boundary": "RFQ reply logs and quote trackers document sourcing and execution selection only. They are not material evidence and cannot advance suitability gates without returned measured rows.",
+  "pending_rows": 4,
+  "profile": "h_a",
+  "purpose": "Track source-backed RFQ replies and safely apply parsed reply fields to the quote tracker.",
+  "received_rows": 0,
+  "reply_file_dir": "data/rfq_reply_files/h_a",
+  "reply_file_readme": "data/rfq_reply_files/h_a/README.md",
+  "reply_log_csv": "data/nhi_pedot_h_a_rfq_reply_log.csv",
+  "review_fields": [
+    "can_cover_full_h_a",
+    "needs_split_scope",
+    "run_id_level_raw_data",
+    "media_physicochemical_coverage",
+    "coupon_physical_coverage",
+    "csv_schema_acceptance",
+    "bundle_entry_sheet_acceptance",
+    "sample_handling_fit",
+    "non_glp_scope_control"
+  ],
+  "row_count": 4,
+  "status": "nhi_pedot_h_a_rfq_reply_log_waiting_for_reply_files",
+  "tracker_csv": "data/nhi_pedot_h_a_quote_tracker.csv",
+  "valid_reply_candidate_ids": [],
+  "valid_reply_rows": 0,
+  "valid_reply_summaries": [],
+  "warning_count": 0,
+  "warnings": []
+}

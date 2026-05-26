@@ -1,0 +1,176 @@
+[
+  {
+    "advantages": [
+      "Directly addresses the low-MWCO pore-clogging risk by prioritizing surface-only deposition.",
+      "Uses MPC-like zwitterionic chemistry already aligned with the ZRC-ND lead.",
+      "Can be screened on coupons against an unmodified RC control before cartridge commitment."
+    ],
+    "chemistry": "Thin PDA primer plus polyMPC antifouling layer, deposited with pore-protection/backflow or equivalent surface-only control.",
+    "composite_score": 0.727,
+    "evidence_refs": [
+      "polympc_polyprev_retained_pore_2019",
+      "pda_click_pmpc_membrane_2025",
+      "zwitterionic_membrane_antifouling_2016"
+    ],
+    "gate_failures": [],
+    "id": "pda_polympc_polyprev_surface_only",
+    "intended_role": "first coating route for ZRC-ND-3.5M Guard coupon testing",
+    "metrics": {
+      "antifouling_evidence": 0.82,
+      "cellulose_relevance": 0.55,
+      "coating_durability": 0.6,
+      "extractables_safety": 0.62,
+      "implementation_feasibility": 0.7,
+      "novelty_upside": 0.75,
+      "pore_preservation": 0.88
+    },
+    "name": "PDA/polyMPC surface-only controlled deposition",
+    "risks": [
+      "PDA/polyMPC extractables and color/adsorption effects must be checked.",
+      "Evidence is from ultrafiltration membranes, not 3.5 kDa regenerated cellulose.",
+      "Requires process control to keep coating out of pores."
+    ],
+    "route_class": "surface_only_pda_polympc",
+    "status": "lead_route"
+  },
+  {
+    "advantages": [
+      "Separates surface primer from polymer immobilization and can tune brush density.",
+      "Recent membrane evidence includes dynamic fouling evaluation.",
+      "Thermal annealing may improve PDA stability."
+    ],
+    "chemistry": "PDA primer followed by click-mediated PMPC immobilization with controlled polymer density.",
+    "composite_score": 0.668,
+    "evidence_refs": [
+      "pda_click_pmpc_membrane_2025",
+      "zwitterionic_membrane_antifouling_2016"
+    ],
+    "gate_failures": [],
+    "id": "pda_click_pmpc_grafting_to",
+    "intended_role": "density-controlled backup route for coupon testing",
+    "metrics": {
+      "antifouling_evidence": 0.8,
+      "cellulose_relevance": 0.45,
+      "coating_durability": 0.78,
+      "extractables_safety": 0.58,
+      "implementation_feasibility": 0.55,
+      "novelty_upside": 0.82,
+      "pore_preservation": 0.72
+    },
+    "name": "PDA-click PMPC grafting-to",
+    "risks": [
+      "Click chemistry and PDA annealing add process complexity.",
+      "Substrate transfer to 3.5 kDa RC is unproven.",
+      "Pore access must be restricted during coating."
+    ],
+    "route_class": "pda_click_grafting_to",
+    "status": "screen"
+  },
+  {
+    "advantages": [
+      "Recent cellulose-family membrane evidence supports combining MPC-like chemistry with membrane transport.",
+      "Crosslinked brush architecture may improve durability relative to adsorbed coatings.",
+      "High novelty for a neural-medium side-stream cartridge."
+    ],
+    "chemistry": "Crosslinked MPC-silane copolymer brush inspired by poly(MPC-silane) modification of cellulose-family hollow-fiber membranes.",
+    "composite_score": 0.734,
+    "evidence_refs": [
+      "zwitterionic_cellulose_acetate_hfm_2026",
+      "zwitterionic_membrane_antifouling_2016"
+    ],
+    "gate_failures": [
+      "implementation_feasibility"
+    ],
+    "id": "pmmmsi_mpc_silane_crosslinked_brush",
+    "intended_role": "advanced durability backup if PDA/polyMPC passes retention but fails stability",
+    "metrics": {
+      "antifouling_evidence": 0.86,
+      "cellulose_relevance": 0.7,
+      "coating_durability": 0.82,
+      "extractables_safety": 0.6,
+      "implementation_feasibility": 0.52,
+      "novelty_upside": 0.9,
+      "pore_preservation": 0.75
+    },
+    "name": "PMMMSi MPC-silane crosslinked brush",
+    "risks": [
+      "Evidence is on cellulose acetate hollow-fiber membranes, not low-MWCO regenerated cellulose.",
+      "Polymer synthesis and thermal/process steps increase implementation burden.",
+      "Crosslinked brush can reduce permeability or shift effective MWCO."
+    ],
+    "route_class": "crosslinked_mpc_silane",
+    "status": "screen"
+  },
+  {
+    "advantages": [
+      "Direct cellulose-membrane grafting evidence.",
+      "Strong sulfobetaine hydration layer can reduce protein and cell adhesion.",
+      "Useful benchmark if MPC routes fail antifouling."
+    ],
+    "chemistry": "Surface-initiated RAFT grafting of polysulfobetaine brushes from cellulose membranes.",
+    "composite_score": 0.678,
+    "evidence_refs": [
+      "psbma_cellulose_si_raft_2013",
+      "zwitterionic_membrane_antifouling_2016"
+    ],
+    "gate_failures": [
+      "pore_preservation",
+      "implementation_feasibility",
+      "extractables_safety"
+    ],
+    "id": "psbma_si_raft_cellulose_brush",
+    "intended_role": "outsourced or later-stage high-antifouling route",
+    "metrics": {
+      "antifouling_evidence": 0.84,
+      "cellulose_relevance": 0.88,
+      "coating_durability": 0.78,
+      "extractables_safety": 0.48,
+      "implementation_feasibility": 0.4,
+      "novelty_upside": 0.7,
+      "pore_preservation": 0.6
+    },
+    "name": "PSBMA SI-RAFT cellulose brush",
+    "risks": [
+      "Controlled polymerization is more complex than first-pass coupon coating.",
+      "Initiator and chain-transfer residues add extractables risk.",
+      "Brush growth may narrow pores and alter MWCO unless tightly controlled."
+    ],
+    "route_class": "cellulose_grafted_sulfobetaine",
+    "status": "screen"
+  },
+  {
+    "advantages": [
+      "Lowest extractables and process risk.",
+      "Preserves nominal MWCO best.",
+      "Tests whether zwitterionic coating is actually necessary."
+    ],
+    "chemistry": "No active antifouling coating; use low-binding regenerated cellulose and guard prefilter only.",
+    "composite_score": 0.787,
+    "evidence_refs": [
+      "low_binding_rc_membrane_vendor",
+      "rc_3p5k_repligen_vendor_spec"
+    ],
+    "gate_failures": [
+      "antifouling_evidence"
+    ],
+    "id": "unmodified_rc_surface_control",
+    "intended_role": "mandatory control and potential simplification path",
+    "metrics": {
+      "antifouling_evidence": 0.5,
+      "cellulose_relevance": 0.9,
+      "coating_durability": 0.8,
+      "extractables_safety": 0.82,
+      "implementation_feasibility": 0.95,
+      "novelty_upside": 0.25,
+      "pore_preservation": 0.98
+    },
+    "name": "Unmodified regenerated-cellulose surface control",
+    "risks": [
+      "May foul under protein-rich conditioned medium.",
+      "Less novel and less protective against long-duration adsorption.",
+      "Could underperform once exposed to debris and secretome-rich medium."
+    ],
+    "route_class": "no_coating_control",
+    "status": "control"
+  }
+]

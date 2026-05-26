@@ -1,0 +1,181 @@
+[
+  {
+    "id": "limina_zrc_nd_v0_1",
+    "name": "ZRC-ND: Zwitterionic Regenerated-Cellulose Neurodialysis Cartridge",
+    "priority_lane": "LIMINA-External-1",
+    "status": "nominated",
+    "one_line": "A side-stream, MWCO-graded regenerated-cellulose dialysis cartridge with a low-fouling zwitterionic hydration layer to remove lactate/ammonium-class small wastes while preserving neurotrophic proteins and secretome signals.",
+    "technology_type": "selective_neuronal_media_waste_management_material",
+    "core_material_stack": [
+      {
+        "layer": "low-binding prefilter",
+        "material": "PES or SFCA membrane in a short upstream guard position",
+        "function": "Remove debris while minimizing protein/growth-factor adsorption."
+      },
+      {
+        "layer": "primary selective exchange membrane",
+        "material": "Regenerated cellulose dialysis membrane, first screened at 3.5 kDa and 10 kDa MWCO",
+        "function": "Exchange lactate, ammonium/ammonia, salts, and other low-MW waste while retaining high-MW trophic proteins."
+      },
+      {
+        "layer": "antifouling hydration layer",
+        "material": "Thin zwitterionic graft/coating such as sulfobetaine, carboxybetaine, or MPC-like chemistry on the medium-facing membrane/housing surfaces",
+        "function": "Reduce protein fouling and preserve membrane performance in protein-rich neuronal medium."
+      },
+      {
+        "layer": "monitoring and safety shell",
+        "material": "Low-leachable COC/COP or PEEK cartridge body with pH, conductivity, pressure/flow, and bubble observation points",
+        "function": "Keep the waste cartridge outside the cell chamber and make silent failure detectable."
+      }
+    ],
+    "design_claim": "A passive side-stream neurodialysis cartridge can be made more suitable for long-lived neural wetware by combining MWCO-based small-waste exchange with low-fouling zwitterionic surface chemistry, rather than relying on bulk medium exchange or broad adsorbent beds.",
+    "why_it_is_new_for_limina": [
+      "It treats culture medium as a signaling environment, not a disposable buffer.",
+      "It separates waste removal from cell exposure by using a side-stream cartridge.",
+      "It combines size-selective regenerated cellulose dialysis with antifouling zwitterionic chemistry for neural-medium preservation.",
+      "It explicitly optimizes for both waste clearance and BDNF/NGF/albumin/transferrin retention."
+    ],
+    "fit_to_requirements": {
+      "remove_lactate_ammonium": "Supported by low-MW dialysis/exchange rationale; needs quantitative clearance tests.",
+      "preserve_growth_factors": "Supported by MWCO retention logic and low-binding membrane evidence; needs BDNF/NGF recovery data.",
+      "avoid_leachables": "Material family is plausible, but cartridge body, coating, sterilization, and extractables must be tested.",
+      "avoid_protein_stripping": "Zwitterionic/low-binding surfaces are selected specifically to reduce fouling; recovery assays are mandatory.",
+      "culture_stability": "Passive side-stream design reduces direct cell exposure; long-duration 37 C fouling and drift remain open.",
+      "monitorability": "Side-stream shell includes pH, conductivity, flow/pressure, and bubble observation points."
+    },
+    "evidence_refs": [
+      "dialysis_medium_partitioning_2020",
+      "ammonia_importance_review_1996",
+      "lactate_ammonia_growth_inhibition_1991",
+      "inhibitory_metabolites_2021",
+      "low_binding_membrane_media_technical",
+      "low_binding_rc_membrane_vendor",
+      "zwitterionic_membrane_antifouling_2016",
+      "zwitterionic_cellulose_acetate_hfm_2026",
+      "bdnf_uniprot_p23560",
+      "ngf_uniprot_p01138",
+      "dialysis_mwco_principle_thermo",
+      "neural_microfluidic_systems_2023"
+    ],
+    "validation_plan": [
+      "Run fresh-medium blank through the module to detect pH, osmolality, conductivity, turbidity, and extractables shifts.",
+      "Run spiked recovery panel for lactate, ammonium, BDNF/NGF proxy, albumin, transferrin, and total protein.",
+      "Compare 3.5 kDa versus 10 kDa RC MWCO before adding active polishing.",
+      "Compare unmodified RC against zwitterionic-modified RC/housing surfaces for protein recovery and fouling drift.",
+      "Only after media-chemistry gates pass, test neuronal conditioned-media viability and morphology."
+    ],
+    "kill_criteria": [
+      "BDNF/NGF or proxy neurotrophic factor recovery is unacceptably low at useful clearance.",
+      "Fresh-medium blank shows meaningful leachables, pH drift, osmolality drift, or conductivity drift.",
+      "Flow resistance or fouling drifts rapidly under protein-rich medium.",
+      "The zwitterionic coating changes MWCO/permeability so much that waste clearance is no longer useful.",
+      "Bulk medium exchange outperforms the cartridge even after accounting for secretome dilution."
+    ],
+    "open_questions": [
+      "Which MWCO gives the best retention-clearance balance for the actual CL1-like medium?",
+      "Can zwitterionic modification be applied without clogging low-MWCO RC pores?",
+      "Is coating the cartridge housing enough, or must the membrane surface itself be modified?",
+      "Does retaining secretome signals improve neural network stability relative to bulk medium exchange?",
+      "Which low-leachable cartridge housing material is best: COC/COP, PEEK, glass, or another option?"
+    ],
+    "score": {
+      "target_selectivity": 4,
+      "growth_factor_retention": 5,
+      "low_leachables": 3,
+      "culture_stability": 3,
+      "integration_complexity": 3,
+      "monitorability": 5,
+      "novelty_upside": 5,
+      "risk_control": 3,
+      "weighted_internal_score": 4.02
+    }
+  },
+  {
+    "id": "limina_nhi_pedot_laminin_v0_1",
+    "name": "NHI-PEDOT: Laminin-Anchored PEDOT:PSS Neural Hydrogel Interphase",
+    "priority_lane": "LIMINA-Cell-1",
+    "status": "nominated",
+    "one_line": "A brain-soft, ECM-adhesive hydrogel interphase that embeds low-loading PEDOT:PSS conductive microdomains under a laminin or peptide-presenting top environment for cell-facing MEA coupling.",
+    "technology_type": "cell_contact_soft_mixed_conducting_interface",
+    "core_material_stack": [
+      {
+        "layer": "MEA anchor and insulation boundary",
+        "material": "Oxygen-plasma or dopamine-primed MEA surface with masked electrode windows and nonfouling insulation regions",
+        "function": "Keep the hydrogel attached to the recording surface while preserving defined electrode access and optical inspection."
+      },
+      {
+        "layer": "soft neural hydrogel matrix",
+        "material": "GelMA, hyaluronic-acid, or alginate-based hydrogel tuned around brain-like low-kPa mechanics",
+        "function": "Provide a hydrated, mechanically gentle environment for neuronal attachment, neurite extension, and medium diffusion."
+      },
+      {
+        "layer": "mixed-conducting microdomain phase",
+        "material": "Low-loading PEDOT:PSS domains or tracks, pre-rinsed and stabilized to reduce free PSS and acidic leachables",
+        "function": "Lower local impedance and improve ionic/electronic coupling without making the whole surface polymer-dominated."
+      },
+      {
+        "layer": "cell-instructive presentation layer",
+        "material": "Laminin, laminin-derived peptides, or ECM-mimetic adhesive motifs presented above or within the hydrogel",
+        "function": "Prevent the conductive phase from becoming a bare material challenge and guide neuronal adhesion, neurite outgrowth, and network formation."
+      }
+    ],
+    "design_claim": "A CL1-like neural culture interface should not optimize conductivity alone. A soft ECM-adhesive hydrogel can host sparse PEDOT:PSS conductive domains so that cells primarily experience a brain-like hydrated matrix while electrodes still gain a lower-impedance mixed-conducting bridge.",
+    "why_it_is_new_for_limina": [
+      "It treats the electrode surface as a cell-adaptation material rather than a passive conductor.",
+      "It separates the biological presentation layer from the conductive microdomain fraction.",
+      "It makes PEDOT:PSS loading a dose-controlled design variable with explicit leachables and network-activity gates.",
+      "It can be tested on MEA coupons before any closed CL1 hardware integration."
+    ],
+    "fit_to_requirements": {
+      "cell_adaptation": "Brain-soft hydrogel mechanics and laminin/peptide cues are selected to support neuronal adhesion, neurites, and maturation.",
+      "electrical_coupling": "PEDOT:PSS microdomains are selected to lower impedance and improve mixed ionic/electronic coupling.",
+      "avoid_leachables": "The design requires aggressive pre-rinse, extract testing, pH monitoring, and PEDOT:PSS dose control before live-cell exposure.",
+      "culture_stability": "Hydrogel swelling, delamination, photoinitiator residue, and PEDOT:PSS drift are treated as gating risks.",
+      "mea_integration": "The material is designed for coupon-level MEA testing with masked electrode windows and impedance tracking.",
+      "monitorability": "Optical transparency, thickness, swelling, EIS, and MEA network activity can all be monitored directly."
+    },
+    "evidence_refs": [
+      "pedot_brain_monitoring_2025",
+      "pedot_bio_sei_2026",
+      "conductive_hydrogels_2025",
+      "hydrogel_neural_tissue_2020",
+      "stiffness_sensing_2020",
+      "gelma_pedot_composite_2018",
+      "pedot_neural_culture_hydrogel_2025",
+      "gelma_pedot_micropatterning_2026",
+      "dnt_nam_viability_neurite_mea_2022",
+      "neuronal_network_material_biocompatibility_mea_2013"
+    ],
+    "validation_plan": [
+      "Run acellular hydrogel extract and soak tests for pH, osmolality, conductivity, visible particulates, swelling, delamination, and PEDOT:PSS-related leachables.",
+      "Measure electrochemical impedance, charge-storage capacity, optical transparency, and thickness drift before and after 37 C culture-medium soaking.",
+      "Compare hydrogel-only, hydrogel-plus-laminin, low-PEDOT:PSS, and high-PEDOT:PSS articles on the same MEA coupon geometry.",
+      "Only after material blank and electrochemical stability gates pass, run neural viability, neurite, morphology, and MEA network activity pilots.",
+      "Rerank PEDOT:PSS loading and ECM presentation using measured toxicity, impedance, and network stability rather than conductivity alone."
+    ],
+    "kill_criteria": [
+      "Extracts or soaks produce pH/osmolality/conductivity drift outside neural medium tolerance or visible particulate/shedding.",
+      "PEDOT:PSS loading reduces viability, neurite formation, or network activity relative to hydrogel-only and laminin controls.",
+      "Impedance benefits are small compared with hydrogel-only controls or disappear after medium soaking.",
+      "The hydrogel swells, delaminates, cracks, or occludes electrode windows under culture conditions.",
+      "Optical access or MEA signal quality becomes worse than a simpler PDA-laminin or hydrogel-only coating."
+    ],
+    "open_questions": [
+      "Which matrix, GelMA, hyaluronic acid, or alginate-laminin, best balances CL1-like culture compatibility with manufacturability?",
+      "What PEDOT:PSS loading gives enough impedance reduction without PSS/leachable or stiffness penalties?",
+      "Should conductive domains be continuous tracks, sparse islands, or a very low-loading bulk phase?",
+      "Can the hydrogel be sterilized or prepared aseptically without changing impedance, modulus, or ligand presentation?",
+      "Does the material improve long-duration network stability compared with plain laminin-coated MEA controls?"
+    ],
+    "score": {
+      "cell_compatibility": 5,
+      "electrical_coupling": 3,
+      "mechanical_match": 5,
+      "culture_stability": 3,
+      "mea_integration": 4,
+      "novelty_upside": 4,
+      "risk_control": 4,
+      "weighted_internal_score": 4.08
+    }
+  }
+]

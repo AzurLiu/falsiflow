@@ -1,0 +1,48 @@
+{
+  "boundary": "Templates are outside allowed source-file roots and are never measured evidence. Only real files placed at target source_file paths can support measured rows.",
+  "generated_artifacts": {
+    "csv": "data/nhi_pedot_h_a_source_file_template_manifest.csv",
+    "json": "data/nhi_pedot_h_a_source_file_template_pack.json",
+    "report": "reports/nhi_pedot_h_a_source_file_template_pack.md",
+    "template_dir": "data/limina_source_file_templates/h_a"
+  },
+  "inputs": {
+    "source_manifest": "data/limina_source_file_manifest.json",
+    "source_values": "data/nhi_pedot_h_a_source_values.csv"
+  },
+  "label": "NHI-PEDOT H-A",
+  "profile": "h_a",
+  "status": "nhi_pedot_h_a_source_file_template_pack_ready",
+  "summary": {
+    "generated_template_files": 8,
+    "source_class_counts": {
+      "bench_or_chain_of_custody_record": 36,
+      "conductivity_meter_export_or_photo": 24,
+      "image_or_scoring_worksheet": 48,
+      "osmometer_report_or_export": 24,
+      "pH_meter_export_or_photo": 24,
+      "supplier_or_build_record": 48,
+      "swelling_dimension_or_mass_worksheet": 12,
+      "temperature_or_incubator_log": 12
+    },
+    "source_class_template_count": 8,
+    "source_value_rows": 228,
+    "target_extension_counts": {
+      ".csv": 108,
+      ".pdf": 72,
+      ".png": 48
+    },
+    "target_source_file_count": 228,
+    "template_manifest_rows": 8
+  },
+  "templates": [
+    "data/limina_source_file_templates/h_a/source_class_templates/bench_or_chain_of_custody_record.csv",
+    "data/limina_source_file_templates/h_a/source_class_templates/conductivity_meter_export_or_photo.csv",
+    "data/limina_source_file_templates/h_a/source_class_templates/image_or_scoring_worksheet.csv",
+    "data/limina_source_file_templates/h_a/source_class_templates/osmometer_report_or_export.csv",
+    "data/limina_source_file_templates/h_a/source_class_templates/pH_meter_export_or_photo.csv",
+    "data/limina_source_file_templates/h_a/source_class_templates/supplier_or_build_record.csv",
+    "data/limina_source_file_templates/h_a/source_class_templates/swelling_dimension_or_mass_worksheet.csv",
+    "data/limina_source_file_templates/h_a/source_class_templates/temperature_or_incubator_log.csv"
+  ]
+}

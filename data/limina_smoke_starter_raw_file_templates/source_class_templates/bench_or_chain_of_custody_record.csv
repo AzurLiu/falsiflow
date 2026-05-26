@@ -1,0 +1,4 @@
+queue_id,run_id,sample_event,target_field,measured_at,operator_or_agent,instrument_id,value,unit,source_file_to_save_as,method_or_record_id,notes,record_type,record_id,sample_id,medium_name,medium_lot,transfer_or_exposure_event
+SQ-0096,NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h,metadata,date,,,,,,data/source_files/smoke/h_a/NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h/metadata_date_bench_or_chain_of_custody_record.csv,,,,,,,,
+SQ-0097,NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h,metadata,medium_name,,,,,,data/source_files/smoke/h_a/NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h/metadata_medium_name_bench_or_chain_of_custody_record.csv,,,,,,,,
+SQ-0098,NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h,metadata,medium_lot,,,,,,data/source_files/smoke/h_a/NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h/metadata_medium_lot_bench_or_chain_of_custody_record.csv,,,,,,,,

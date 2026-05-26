@@ -1,0 +1,505 @@
+{
+  "activation_rule": "Run H-B only after H-A has QC-clean real rows and an H-A pass/continue status.",
+  "active_candidate": "limina_alg_lam_pedot_lowdose_v0_2",
+  "h_a_status": "h_a_invalid_provenance",
+  "non_claim_boundary": "This package is a preregistered next-step plan. It is not evidence and cannot support a material suitability claim without real measured rows and the final claim audit.",
+  "parent_validation_package": "nhi_pedot_laminin_validation_v0_1",
+  "phase_packages": [
+    {
+      "activation_condition": "after_H-A_pass",
+      "articles": [
+        "hydrogel_laminin_control",
+        "lead_nhi_pedot_low_loading",
+        "challenge_nhi_pedot_high_loading"
+      ],
+      "gate_ids": [
+        "physical_stability_gate",
+        "electrochemical_benefit_gate"
+      ],
+      "gates": [
+        {
+          "criterion": "Hydrogel thickness changes less than 20 percent, no delamination/cracking, electrode windows remain inspectable, and transparency remains sufficient for cell monitoring after 72 h soak.",
+          "failure_response": "Change matrix concentration, anchoring chemistry, pattern geometry, or crosslinking route.",
+          "id": "physical_stability_gate"
+        },
+        {
+          "criterion": "The low-loading lead improves impedance or charge-storage metrics by at least 25 percent versus hydrogel-laminin control after soak, without unstable cyclic-voltammetry drift.",
+          "failure_response": "Rerank loading, domain geometry, or drop PEDOT:PSS if the hydrogel-only control is equivalent.",
+          "id": "electrochemical_benefit_gate"
+        }
+      ],
+      "name": "Electrochemical and physical stability",
+      "phase": "H-B",
+      "required_fields": [
+        "date",
+        "operator_or_agent",
+        "mea_coupon_id",
+        "electrode_material",
+        "hydrogel_matrix",
+        "pedot_pss_loading_fraction",
+        "pedot_pss_pre_rinse_protocol",
+        "laminin_or_peptide_density",
+        "crosslinking_protocol",
+        "sterilization_or_aseptic_protocol",
+        "medium_name",
+        "medium_lot",
+        "temperature_c",
+        "source_file",
+        "swelling_fraction",
+        "delamination_score",
+        "optical_transparency_fraction",
+        "eis_1khz_initial_ohm",
+        "eis_1khz_final_ohm",
+        "charge_storage_capacity_initial",
+        "charge_storage_capacity_final"
+      ],
+      "timepoints": [
+        "pre-soak",
+        "24 h soak",
+        "72 h soak",
+        "post-cycling"
+      ]
+    },
+    {
+      "activation_condition": "after_H-B_pass",
+      "articles": [
+        "laminin_only_control",
+        "hydrogel_laminin_control",
+        "lead_nhi_pedot_low_loading",
+        "challenge_nhi_pedot_high_loading"
+      ],
+      "gate_ids": [
+        "neural_health_gate",
+        "network_activity_gate"
+      ],
+      "gates": [
+        {
+          "criterion": "Lead viability, LDH or equivalent cytotoxicity, neurite coverage, and morphology are non-inferior to laminin-only and hydrogel-laminin controls at early timepoints.",
+          "failure_response": "Lower PEDOT:PSS loading, improve rinse/neutralization, change ECM presentation, or reject the conductive phase.",
+          "id": "neural_health_gate"
+        },
+        {
+          "criterion": "Lead MEA cultures maintain electrode yield and network activity at least non-inferior to hydrogel-laminin controls, with lower impedance drift, through the pilot window.",
+          "failure_response": "If cells survive but network activity falls, change stiffness, ligand density, thickness, or conductive-domain geometry before longer tests.",
+          "id": "network_activity_gate"
+        }
+      ],
+      "name": "Neural compatibility pilot",
+      "phase": "H-C",
+      "required_fields": [
+        "date",
+        "operator_or_agent",
+        "mea_coupon_id",
+        "electrode_material",
+        "hydrogel_matrix",
+        "pedot_pss_loading_fraction",
+        "pedot_pss_pre_rinse_protocol",
+        "laminin_or_peptide_density",
+        "crosslinking_protocol",
+        "sterilization_or_aseptic_protocol",
+        "medium_name",
+        "medium_lot",
+        "temperature_c",
+        "source_file",
+        "cell_model",
+        "seeding_density",
+        "viability_fraction",
+        "ldh_fold_control",
+        "neurite_coverage_fraction",
+        "mean_neurite_length_um",
+        "electrode_yield_fraction",
+        "spike_rate_hz",
+        "burst_rate_hz"
+      ],
+      "timepoints": [
+        "24 h",
+        "7 d",
+        "14 d",
+        "28 d if early gates pass"
+      ]
+    }
+  ],
+  "purpose": "Pre-register the next H-B/H-C evidence gates for the ALG-LAM-PEDOT first-claim route.",
+  "row_count": 28,
+  "rows": [
+    {
+      "activation_condition": "after_H-A_pass",
+      "article_id": "hydrogel_laminin_control",
+      "control_article_id": "hydrogel_laminin_control",
+      "gate_focus": "physical_stability_gate;electrochemical_benefit_gate",
+      "phase": "H-B",
+      "priority": "1",
+      "replicate": "1",
+      "required_fields": "date;operator_or_agent;mea_coupon_id;electrode_material;hydrogel_matrix;pedot_pss_loading_fraction;pedot_pss_pre_rinse_protocol;laminin_or_peptide_density;crosslinking_protocol;sterilization_or_aseptic_protocol;medium_name;medium_lot;temperature_c;source_file;swelling_fraction;delamination_score;optical_transparency_fraction;eis_1khz_initial_ohm;eis_1khz_final_ohm;charge_storage_capacity_initial;charge_storage_capacity_final",
+      "run_id": "NHIPEDOT-H-B-hydrogel_laminin_control-R1-pre_soak",
+      "timepoint": "pre-soak",
+      "variant_id": "hydrogel_laminin_no_pedot"
+    },
+    {
+      "activation_condition": "after_H-A_pass",
+      "article_id": "hydrogel_laminin_control",
+      "control_article_id": "hydrogel_laminin_control",
+      "gate_focus": "physical_stability_gate;electrochemical_benefit_gate",
+      "phase": "H-B",
+      "priority": "2",
+      "replicate": "1",
+      "required_fields": "date;operator_or_agent;mea_coupon_id;electrode_material;hydrogel_matrix;pedot_pss_loading_fraction;pedot_pss_pre_rinse_protocol;laminin_or_peptide_density;crosslinking_protocol;sterilization_or_aseptic_protocol;medium_name;medium_lot;temperature_c;source_file;swelling_fraction;delamination_score;optical_transparency_fraction;eis_1khz_initial_ohm;eis_1khz_final_ohm;charge_storage_capacity_initial;charge_storage_capacity_final",
+      "run_id": "NHIPEDOT-H-B-hydrogel_laminin_control-R1-24hsoak",
+      "timepoint": "24 h soak",
+      "variant_id": "hydrogel_laminin_no_pedot"
+    },
+    {
+      "activation_condition": "after_H-A_pass",
+      "article_id": "hydrogel_laminin_control",
+      "control_article_id": "hydrogel_laminin_control",
+      "gate_focus": "physical_stability_gate;electrochemical_benefit_gate",
+      "phase": "H-B",
+      "priority": "3",
+      "replicate": "1",
+      "required_fields": "date;operator_or_agent;mea_coupon_id;electrode_material;hydrogel_matrix;pedot_pss_loading_fraction;pedot_pss_pre_rinse_protocol;laminin_or_peptide_density;crosslinking_protocol;sterilization_or_aseptic_protocol;medium_name;medium_lot;temperature_c;source_file;swelling_fraction;delamination_score;optical_transparency_fraction;eis_1khz_initial_ohm;eis_1khz_final_ohm;charge_storage_capacity_initial;charge_storage_capacity_final",
+      "run_id": "NHIPEDOT-H-B-hydrogel_laminin_control-R1-72hsoak",
+      "timepoint": "72 h soak",
+      "variant_id": "hydrogel_laminin_no_pedot"
+    },
+    {
+      "activation_condition": "after_H-A_pass",
+      "article_id": "hydrogel_laminin_control",
+      "control_article_id": "hydrogel_laminin_control",
+      "gate_focus": "physical_stability_gate;electrochemical_benefit_gate",
+      "phase": "H-B",
+      "priority": "4",
+      "replicate": "1",
+      "required_fields": "date;operator_or_agent;mea_coupon_id;electrode_material;hydrogel_matrix;pedot_pss_loading_fraction;pedot_pss_pre_rinse_protocol;laminin_or_peptide_density;crosslinking_protocol;sterilization_or_aseptic_protocol;medium_name;medium_lot;temperature_c;source_file;swelling_fraction;delamination_score;optical_transparency_fraction;eis_1khz_initial_ohm;eis_1khz_final_ohm;charge_storage_capacity_initial;charge_storage_capacity_final",
+      "run_id": "NHIPEDOT-H-B-hydrogel_laminin_control-R1-post_cycling",
+      "timepoint": "post-cycling",
+      "variant_id": "hydrogel_laminin_no_pedot"
+    },
+    {
+      "activation_condition": "after_H-A_pass",
+      "article_id": "lead_nhi_pedot_low_loading",
+      "control_article_id": "hydrogel_laminin_control",
+      "gate_focus": "physical_stability_gate;electrochemical_benefit_gate",
+      "phase": "H-B",
+      "priority": "5",
+      "replicate": "1",
+      "required_fields": "date;operator_or_agent;mea_coupon_id;electrode_material;hydrogel_matrix;pedot_pss_loading_fraction;pedot_pss_pre_rinse_protocol;laminin_or_peptide_density;crosslinking_protocol;sterilization_or_aseptic_protocol;medium_name;medium_lot;temperature_c;source_file;swelling_fraction;delamination_score;optical_transparency_fraction;eis_1khz_initial_ohm;eis_1khz_final_ohm;charge_storage_capacity_initial;charge_storage_capacity_final",
+      "run_id": "NHIPEDOT-H-B-lead_nhi_pedot_low_loading-R1-pre_soak",
+      "timepoint": "pre-soak",
+      "variant_id": "nhi_pedot_low_loading_laminin"
+    },
+    {
+      "activation_condition": "after_H-A_pass",
+      "article_id": "lead_nhi_pedot_low_loading",
+      "control_article_id": "hydrogel_laminin_control",
+      "gate_focus": "physical_stability_gate;electrochemical_benefit_gate",
+      "phase": "H-B",
+      "priority": "6",
+      "replicate": "1",
+      "required_fields": "date;operator_or_agent;mea_coupon_id;electrode_material;hydrogel_matrix;pedot_pss_loading_fraction;pedot_pss_pre_rinse_protocol;laminin_or_peptide_density;crosslinking_protocol;sterilization_or_aseptic_protocol;medium_name;medium_lot;temperature_c;source_file;swelling_fraction;delamination_score;optical_transparency_fraction;eis_1khz_initial_ohm;eis_1khz_final_ohm;charge_storage_capacity_initial;charge_storage_capacity_final",
+      "run_id": "NHIPEDOT-H-B-lead_nhi_pedot_low_loading-R1-24hsoak",
+      "timepoint": "24 h soak",
+      "variant_id": "nhi_pedot_low_loading_laminin"
+    },
+    {
+      "activation_condition": "after_H-A_pass",
+      "article_id": "lead_nhi_pedot_low_loading",
+      "control_article_id": "hydrogel_laminin_control",
+      "gate_focus": "physical_stability_gate;electrochemical_benefit_gate",
+      "phase": "H-B",
+      "priority": "7",
+      "replicate": "1",
+      "required_fields": "date;operator_or_agent;mea_coupon_id;electrode_material;hydrogel_matrix;pedot_pss_loading_fraction;pedot_pss_pre_rinse_protocol;laminin_or_peptide_density;crosslinking_protocol;sterilization_or_aseptic_protocol;medium_name;medium_lot;temperature_c;source_file;swelling_fraction;delamination_score;optical_transparency_fraction;eis_1khz_initial_ohm;eis_1khz_final_ohm;charge_storage_capacity_initial;charge_storage_capacity_final",
+      "run_id": "NHIPEDOT-H-B-lead_nhi_pedot_low_loading-R1-72hsoak",
+      "timepoint": "72 h soak",
+      "variant_id": "nhi_pedot_low_loading_laminin"
+    },
+    {
+      "activation_condition": "after_H-A_pass",
+      "article_id": "lead_nhi_pedot_low_loading",
+      "control_article_id": "hydrogel_laminin_control",
+      "gate_focus": "physical_stability_gate;electrochemical_benefit_gate",
+      "phase": "H-B",
+      "priority": "8",
+      "replicate": "1",
+      "required_fields": "date;operator_or_agent;mea_coupon_id;electrode_material;hydrogel_matrix;pedot_pss_loading_fraction;pedot_pss_pre_rinse_protocol;laminin_or_peptide_density;crosslinking_protocol;sterilization_or_aseptic_protocol;medium_name;medium_lot;temperature_c;source_file;swelling_fraction;delamination_score;optical_transparency_fraction;eis_1khz_initial_ohm;eis_1khz_final_ohm;charge_storage_capacity_initial;charge_storage_capacity_final",
+      "run_id": "NHIPEDOT-H-B-lead_nhi_pedot_low_loading-R1-post_cycling",
+      "timepoint": "post-cycling",
+      "variant_id": "nhi_pedot_low_loading_laminin"
+    },
+    {
+      "activation_condition": "after_H-A_pass",
+      "article_id": "challenge_nhi_pedot_high_loading",
+      "control_article_id": "hydrogel_laminin_control",
+      "gate_focus": "physical_stability_gate;electrochemical_benefit_gate",
+      "phase": "H-B",
+      "priority": "9",
+      "replicate": "1",
+      "required_fields": "date;operator_or_agent;mea_coupon_id;electrode_material;hydrogel_matrix;pedot_pss_loading_fraction;pedot_pss_pre_rinse_protocol;laminin_or_peptide_density;crosslinking_protocol;sterilization_or_aseptic_protocol;medium_name;medium_lot;temperature_c;source_file;swelling_fraction;delamination_score;optical_transparency_fraction;eis_1khz_initial_ohm;eis_1khz_final_ohm;charge_storage_capacity_initial;charge_storage_capacity_final",
+      "run_id": "NHIPEDOT-H-B-challenge_nhi_pedot_high_loading-R1-pre_soak",
+      "timepoint": "pre-soak",
+      "variant_id": "nhi_pedot_high_loading_laminin"
+    },
+    {
+      "activation_condition": "after_H-A_pass",
+      "article_id": "challenge_nhi_pedot_high_loading",
+      "control_article_id": "hydrogel_laminin_control",
+      "gate_focus": "physical_stability_gate;electrochemical_benefit_gate",
+      "phase": "H-B",
+      "priority": "10",
+      "replicate": "1",
+      "required_fields": "date;operator_or_agent;mea_coupon_id;electrode_material;hydrogel_matrix;pedot_pss_loading_fraction;pedot_pss_pre_rinse_protocol;laminin_or_peptide_density;crosslinking_protocol;sterilization_or_aseptic_protocol;medium_name;medium_lot;temperature_c;source_file;swelling_fraction;delamination_score;optical_transparency_fraction;eis_1khz_initial_ohm;eis_1khz_final_ohm;charge_storage_capacity_initial;charge_storage_capacity_final",
+      "run_id": "NHIPEDOT-H-B-challenge_nhi_pedot_high_loading-R1-24hsoak",
+      "timepoint": "24 h soak",
+      "variant_id": "nhi_pedot_high_loading_laminin"
+    },
+    {
+      "activation_condition": "after_H-A_pass",
+      "article_id": "challenge_nhi_pedot_high_loading",
+      "control_article_id": "hydrogel_laminin_control",
+      "gate_focus": "physical_stability_gate;electrochemical_benefit_gate",
+      "phase": "H-B",
+      "priority": "11",
+      "replicate": "1",
+      "required_fields": "date;operator_or_agent;mea_coupon_id;electrode_material;hydrogel_matrix;pedot_pss_loading_fraction;pedot_pss_pre_rinse_protocol;laminin_or_peptide_density;crosslinking_protocol;sterilization_or_aseptic_protocol;medium_name;medium_lot;temperature_c;source_file;swelling_fraction;delamination_score;optical_transparency_fraction;eis_1khz_initial_ohm;eis_1khz_final_ohm;charge_storage_capacity_initial;charge_storage_capacity_final",
+      "run_id": "NHIPEDOT-H-B-challenge_nhi_pedot_high_loading-R1-72hsoak",
+      "timepoint": "72 h soak",
+      "variant_id": "nhi_pedot_high_loading_laminin"
+    },
+    {
+      "activation_condition": "after_H-A_pass",
+      "article_id": "challenge_nhi_pedot_high_loading",
+      "control_article_id": "hydrogel_laminin_control",
+      "gate_focus": "physical_stability_gate;electrochemical_benefit_gate",
+      "phase": "H-B",
+      "priority": "12",
+      "replicate": "1",
+      "required_fields": "date;operator_or_agent;mea_coupon_id;electrode_material;hydrogel_matrix;pedot_pss_loading_fraction;pedot_pss_pre_rinse_protocol;laminin_or_peptide_density;crosslinking_protocol;sterilization_or_aseptic_protocol;medium_name;medium_lot;temperature_c;source_file;swelling_fraction;delamination_score;optical_transparency_fraction;eis_1khz_initial_ohm;eis_1khz_final_ohm;charge_storage_capacity_initial;charge_storage_capacity_final",
+      "run_id": "NHIPEDOT-H-B-challenge_nhi_pedot_high_loading-R1-post_cycling",
+      "timepoint": "post-cycling",
+      "variant_id": "nhi_pedot_high_loading_laminin"
+    },
+    {
+      "activation_condition": "after_H-B_pass",
+      "article_id": "laminin_only_control",
+      "control_article_id": "no_coating_mea_control",
+      "gate_focus": "neural_health_gate;network_activity_gate",
+      "phase": "H-C",
+      "priority": "13",
+      "replicate": "1",
+      "required_fields": "date;operator_or_agent;mea_coupon_id;electrode_material;hydrogel_matrix;pedot_pss_loading_fraction;pedot_pss_pre_rinse_protocol;laminin_or_peptide_density;crosslinking_protocol;sterilization_or_aseptic_protocol;medium_name;medium_lot;temperature_c;source_file;cell_model;seeding_density;viability_fraction;ldh_fold_control;neurite_coverage_fraction;mean_neurite_length_um;electrode_yield_fraction;spike_rate_hz;burst_rate_hz",
+      "run_id": "NHIPEDOT-H-C-laminin_only_control-R1-24h",
+      "timepoint": "24 h",
+      "variant_id": "laminin_only_mea"
+    },
+    {
+      "activation_condition": "after_H-B_pass",
+      "article_id": "laminin_only_control",
+      "control_article_id": "no_coating_mea_control",
+      "gate_focus": "neural_health_gate;network_activity_gate",
+      "phase": "H-C",
+      "priority": "14",
+      "replicate": "1",
+      "required_fields": "date;operator_or_agent;mea_coupon_id;electrode_material;hydrogel_matrix;pedot_pss_loading_fraction;pedot_pss_pre_rinse_protocol;laminin_or_peptide_density;crosslinking_protocol;sterilization_or_aseptic_protocol;medium_name;medium_lot;temperature_c;source_file;cell_model;seeding_density;viability_fraction;ldh_fold_control;neurite_coverage_fraction;mean_neurite_length_um;electrode_yield_fraction;spike_rate_hz;burst_rate_hz",
+      "run_id": "NHIPEDOT-H-C-laminin_only_control-R1-7d",
+      "timepoint": "7 d",
+      "variant_id": "laminin_only_mea"
+    },
+    {
+      "activation_condition": "after_H-B_pass",
+      "article_id": "laminin_only_control",
+      "control_article_id": "no_coating_mea_control",
+      "gate_focus": "neural_health_gate;network_activity_gate",
+      "phase": "H-C",
+      "priority": "15",
+      "replicate": "1",
+      "required_fields": "date;operator_or_agent;mea_coupon_id;electrode_material;hydrogel_matrix;pedot_pss_loading_fraction;pedot_pss_pre_rinse_protocol;laminin_or_peptide_density;crosslinking_protocol;sterilization_or_aseptic_protocol;medium_name;medium_lot;temperature_c;source_file;cell_model;seeding_density;viability_fraction;ldh_fold_control;neurite_coverage_fraction;mean_neurite_length_um;electrode_yield_fraction;spike_rate_hz;burst_rate_hz",
+      "run_id": "NHIPEDOT-H-C-laminin_only_control-R1-14d",
+      "timepoint": "14 d",
+      "variant_id": "laminin_only_mea"
+    },
+    {
+      "activation_condition": "after_H-C_24h_7d_14d_early_gates_pass",
+      "article_id": "laminin_only_control",
+      "control_article_id": "no_coating_mea_control",
+      "gate_focus": "neural_health_gate;network_activity_gate",
+      "phase": "H-C",
+      "priority": "16",
+      "replicate": "1",
+      "required_fields": "date;operator_or_agent;mea_coupon_id;electrode_material;hydrogel_matrix;pedot_pss_loading_fraction;pedot_pss_pre_rinse_protocol;laminin_or_peptide_density;crosslinking_protocol;sterilization_or_aseptic_protocol;medium_name;medium_lot;temperature_c;source_file;cell_model;seeding_density;viability_fraction;ldh_fold_control;neurite_coverage_fraction;mean_neurite_length_um;electrode_yield_fraction;spike_rate_hz;burst_rate_hz",
+      "run_id": "NHIPEDOT-H-C-laminin_only_control-R1-28difearlygatespass",
+      "timepoint": "28 d if early gates pass",
+      "variant_id": "laminin_only_mea"
+    },
+    {
+      "activation_condition": "after_H-B_pass",
+      "article_id": "hydrogel_laminin_control",
+      "control_article_id": "hydrogel_laminin_control",
+      "gate_focus": "neural_health_gate;network_activity_gate",
+      "phase": "H-C",
+      "priority": "17",
+      "replicate": "1",
+      "required_fields": "date;operator_or_agent;mea_coupon_id;electrode_material;hydrogel_matrix;pedot_pss_loading_fraction;pedot_pss_pre_rinse_protocol;laminin_or_peptide_density;crosslinking_protocol;sterilization_or_aseptic_protocol;medium_name;medium_lot;temperature_c;source_file;cell_model;seeding_density;viability_fraction;ldh_fold_control;neurite_coverage_fraction;mean_neurite_length_um;electrode_yield_fraction;spike_rate_hz;burst_rate_hz",
+      "run_id": "NHIPEDOT-H-C-hydrogel_laminin_control-R1-24h",
+      "timepoint": "24 h",
+      "variant_id": "hydrogel_laminin_no_pedot"
+    },
+    {
+      "activation_condition": "after_H-B_pass",
+      "article_id": "hydrogel_laminin_control",
+      "control_article_id": "hydrogel_laminin_control",
+      "gate_focus": "neural_health_gate;network_activity_gate",
+      "phase": "H-C",
+      "priority": "18",
+      "replicate": "1",
+      "required_fields": "date;operator_or_agent;mea_coupon_id;electrode_material;hydrogel_matrix;pedot_pss_loading_fraction;pedot_pss_pre_rinse_protocol;laminin_or_peptide_density;crosslinking_protocol;sterilization_or_aseptic_protocol;medium_name;medium_lot;temperature_c;source_file;cell_model;seeding_density;viability_fraction;ldh_fold_control;neurite_coverage_fraction;mean_neurite_length_um;electrode_yield_fraction;spike_rate_hz;burst_rate_hz",
+      "run_id": "NHIPEDOT-H-C-hydrogel_laminin_control-R1-7d",
+      "timepoint": "7 d",
+      "variant_id": "hydrogel_laminin_no_pedot"
+    },
+    {
+      "activation_condition": "after_H-B_pass",
+      "article_id": "hydrogel_laminin_control",
+      "control_article_id": "hydrogel_laminin_control",
+      "gate_focus": "neural_health_gate;network_activity_gate",
+      "phase": "H-C",
+      "priority": "19",
+      "replicate": "1",
+      "required_fields": "date;operator_or_agent;mea_coupon_id;electrode_material;hydrogel_matrix;pedot_pss_loading_fraction;pedot_pss_pre_rinse_protocol;laminin_or_peptide_density;crosslinking_protocol;sterilization_or_aseptic_protocol;medium_name;medium_lot;temperature_c;source_file;cell_model;seeding_density;viability_fraction;ldh_fold_control;neurite_coverage_fraction;mean_neurite_length_um;electrode_yield_fraction;spike_rate_hz;burst_rate_hz",
+      "run_id": "NHIPEDOT-H-C-hydrogel_laminin_control-R1-14d",
+      "timepoint": "14 d",
+      "variant_id": "hydrogel_laminin_no_pedot"
+    },
+    {
+      "activation_condition": "after_H-C_24h_7d_14d_early_gates_pass",
+      "article_id": "hydrogel_laminin_control",
+      "control_article_id": "hydrogel_laminin_control",
+      "gate_focus": "neural_health_gate;network_activity_gate",
+      "phase": "H-C",
+      "priority": "20",
+      "replicate": "1",
+      "required_fields": "date;operator_or_agent;mea_coupon_id;electrode_material;hydrogel_matrix;pedot_pss_loading_fraction;pedot_pss_pre_rinse_protocol;laminin_or_peptide_density;crosslinking_protocol;sterilization_or_aseptic_protocol;medium_name;medium_lot;temperature_c;source_file;cell_model;seeding_density;viability_fraction;ldh_fold_control;neurite_coverage_fraction;mean_neurite_length_um;electrode_yield_fraction;spike_rate_hz;burst_rate_hz",
+      "run_id": "NHIPEDOT-H-C-hydrogel_laminin_control-R1-28difearlygatespass",
+      "timepoint": "28 d if early gates pass",
+      "variant_id": "hydrogel_laminin_no_pedot"
+    },
+    {
+      "activation_condition": "after_H-B_pass",
+      "article_id": "lead_nhi_pedot_low_loading",
+      "control_article_id": "hydrogel_laminin_control",
+      "gate_focus": "neural_health_gate;network_activity_gate",
+      "phase": "H-C",
+      "priority": "21",
+      "replicate": "1",
+      "required_fields": "date;operator_or_agent;mea_coupon_id;electrode_material;hydrogel_matrix;pedot_pss_loading_fraction;pedot_pss_pre_rinse_protocol;laminin_or_peptide_density;crosslinking_protocol;sterilization_or_aseptic_protocol;medium_name;medium_lot;temperature_c;source_file;cell_model;seeding_density;viability_fraction;ldh_fold_control;neurite_coverage_fraction;mean_neurite_length_um;electrode_yield_fraction;spike_rate_hz;burst_rate_hz",
+      "run_id": "NHIPEDOT-H-C-lead_nhi_pedot_low_loading-R1-24h",
+      "timepoint": "24 h",
+      "variant_id": "nhi_pedot_low_loading_laminin"
+    },
+    {
+      "activation_condition": "after_H-B_pass",
+      "article_id": "lead_nhi_pedot_low_loading",
+      "control_article_id": "hydrogel_laminin_control",
+      "gate_focus": "neural_health_gate;network_activity_gate",
+      "phase": "H-C",
+      "priority": "22",
+      "replicate": "1",
+      "required_fields": "date;operator_or_agent;mea_coupon_id;electrode_material;hydrogel_matrix;pedot_pss_loading_fraction;pedot_pss_pre_rinse_protocol;laminin_or_peptide_density;crosslinking_protocol;sterilization_or_aseptic_protocol;medium_name;medium_lot;temperature_c;source_file;cell_model;seeding_density;viability_fraction;ldh_fold_control;neurite_coverage_fraction;mean_neurite_length_um;electrode_yield_fraction;spike_rate_hz;burst_rate_hz",
+      "run_id": "NHIPEDOT-H-C-lead_nhi_pedot_low_loading-R1-7d",
+      "timepoint": "7 d",
+      "variant_id": "nhi_pedot_low_loading_laminin"
+    },
+    {
+      "activation_condition": "after_H-B_pass",
+      "article_id": "lead_nhi_pedot_low_loading",
+      "control_article_id": "hydrogel_laminin_control",
+      "gate_focus": "neural_health_gate;network_activity_gate",
+      "phase": "H-C",
+      "priority": "23",
+      "replicate": "1",
+      "required_fields": "date;operator_or_agent;mea_coupon_id;electrode_material;hydrogel_matrix;pedot_pss_loading_fraction;pedot_pss_pre_rinse_protocol;laminin_or_peptide_density;crosslinking_protocol;sterilization_or_aseptic_protocol;medium_name;medium_lot;temperature_c;source_file;cell_model;seeding_density;viability_fraction;ldh_fold_control;neurite_coverage_fraction;mean_neurite_length_um;electrode_yield_fraction;spike_rate_hz;burst_rate_hz",
+      "run_id": "NHIPEDOT-H-C-lead_nhi_pedot_low_loading-R1-14d",
+      "timepoint": "14 d",
+      "variant_id": "nhi_pedot_low_loading_laminin"
+    },
+    {
+      "activation_condition": "after_H-C_24h_7d_14d_early_gates_pass",
+      "article_id": "lead_nhi_pedot_low_loading",
+      "control_article_id": "hydrogel_laminin_control",
+      "gate_focus": "neural_health_gate;network_activity_gate",
+      "phase": "H-C",
+      "priority": "24",
+      "replicate": "1",
+      "required_fields": "date;operator_or_agent;mea_coupon_id;electrode_material;hydrogel_matrix;pedot_pss_loading_fraction;pedot_pss_pre_rinse_protocol;laminin_or_peptide_density;crosslinking_protocol;sterilization_or_aseptic_protocol;medium_name;medium_lot;temperature_c;source_file;cell_model;seeding_density;viability_fraction;ldh_fold_control;neurite_coverage_fraction;mean_neurite_length_um;electrode_yield_fraction;spike_rate_hz;burst_rate_hz",
+      "run_id": "NHIPEDOT-H-C-lead_nhi_pedot_low_loading-R1-28difearlygatespass",
+      "timepoint": "28 d if early gates pass",
+      "variant_id": "nhi_pedot_low_loading_laminin"
+    },
+    {
+      "activation_condition": "after_H-B_pass",
+      "article_id": "challenge_nhi_pedot_high_loading",
+      "control_article_id": "hydrogel_laminin_control",
+      "gate_focus": "neural_health_gate;network_activity_gate",
+      "phase": "H-C",
+      "priority": "25",
+      "replicate": "1",
+      "required_fields": "date;operator_or_agent;mea_coupon_id;electrode_material;hydrogel_matrix;pedot_pss_loading_fraction;pedot_pss_pre_rinse_protocol;laminin_or_peptide_density;crosslinking_protocol;sterilization_or_aseptic_protocol;medium_name;medium_lot;temperature_c;source_file;cell_model;seeding_density;viability_fraction;ldh_fold_control;neurite_coverage_fraction;mean_neurite_length_um;electrode_yield_fraction;spike_rate_hz;burst_rate_hz",
+      "run_id": "NHIPEDOT-H-C-challenge_nhi_pedot_high_loading-R1-24h",
+      "timepoint": "24 h",
+      "variant_id": "nhi_pedot_high_loading_laminin"
+    },
+    {
+      "activation_condition": "after_H-B_pass",
+      "article_id": "challenge_nhi_pedot_high_loading",
+      "control_article_id": "hydrogel_laminin_control",
+      "gate_focus": "neural_health_gate;network_activity_gate",
+      "phase": "H-C",
+      "priority": "26",
+      "replicate": "1",
+      "required_fields": "date;operator_or_agent;mea_coupon_id;electrode_material;hydrogel_matrix;pedot_pss_loading_fraction;pedot_pss_pre_rinse_protocol;laminin_or_peptide_density;crosslinking_protocol;sterilization_or_aseptic_protocol;medium_name;medium_lot;temperature_c;source_file;cell_model;seeding_density;viability_fraction;ldh_fold_control;neurite_coverage_fraction;mean_neurite_length_um;electrode_yield_fraction;spike_rate_hz;burst_rate_hz",
+      "run_id": "NHIPEDOT-H-C-challenge_nhi_pedot_high_loading-R1-7d",
+      "timepoint": "7 d",
+      "variant_id": "nhi_pedot_high_loading_laminin"
+    },
+    {
+      "activation_condition": "after_H-B_pass",
+      "article_id": "challenge_nhi_pedot_high_loading",
+      "control_article_id": "hydrogel_laminin_control",
+      "gate_focus": "neural_health_gate;network_activity_gate",
+      "phase": "H-C",
+      "priority": "27",
+      "replicate": "1",
+      "required_fields": "date;operator_or_agent;mea_coupon_id;electrode_material;hydrogel_matrix;pedot_pss_loading_fraction;pedot_pss_pre_rinse_protocol;laminin_or_peptide_density;crosslinking_protocol;sterilization_or_aseptic_protocol;medium_name;medium_lot;temperature_c;source_file;cell_model;seeding_density;viability_fraction;ldh_fold_control;neurite_coverage_fraction;mean_neurite_length_um;electrode_yield_fraction;spike_rate_hz;burst_rate_hz",
+      "run_id": "NHIPEDOT-H-C-challenge_nhi_pedot_high_loading-R1-14d",
+      "timepoint": "14 d",
+      "variant_id": "nhi_pedot_high_loading_laminin"
+    },
+    {
+      "activation_condition": "after_H-C_24h_7d_14d_early_gates_pass",
+      "article_id": "challenge_nhi_pedot_high_loading",
+      "control_article_id": "hydrogel_laminin_control",
+      "gate_focus": "neural_health_gate;network_activity_gate",
+      "phase": "H-C",
+      "priority": "28",
+      "replicate": "1",
+      "required_fields": "date;operator_or_agent;mea_coupon_id;electrode_material;hydrogel_matrix;pedot_pss_loading_fraction;pedot_pss_pre_rinse_protocol;laminin_or_peptide_density;crosslinking_protocol;sterilization_or_aseptic_protocol;medium_name;medium_lot;temperature_c;source_file;cell_model;seeding_density;viability_fraction;ldh_fold_control;neurite_coverage_fraction;mean_neurite_length_um;electrode_yield_fraction;spike_rate_hz;burst_rate_hz",
+      "run_id": "NHIPEDOT-H-C-challenge_nhi_pedot_high_loading-R1-28difearlygatespass",
+      "timepoint": "28 d if early gates pass",
+      "variant_id": "nhi_pedot_high_loading_laminin"
+    }
+  ],
+  "status": "preregistered_waiting_for_h_a",
+  "variant_triggers": [
+    {
+      "trigger": "use_if_0p6pct_passes_H-A_but_H-B_electrical_benefit_is_borderline",
+      "variant_id": "alg_lam_pedot_0p9pct_midpoint"
+    },
+    {
+      "trigger": "use_if_unanchored_0p6pct_passes_medium_gates_but_fails_delamination_or_window_stability",
+      "variant_id": "pda_anchor_alg_lam_pedot_0p6pct"
+    },
+    {
+      "trigger": "use_if_0p6pct_lead_has_mild_H-A_drift_or_shedding_without_hydrogel_control_failure",
+      "variant_id": "alg_lam_pedot_0p3pct_safety_rescue"
+    }
+  ]
+}

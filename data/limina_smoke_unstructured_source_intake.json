@@ -1,0 +1,26 @@
+{
+  "boundary": "This intake hashes and routes unstructured source files only. It does not extract or create measured values; value rows must still pass the source-value importer, preflight, merge/QC, gate evaluation, and claim audit.",
+  "generated_artifacts": {
+    "csv": "data/limina_smoke_unstructured_source_intake.csv",
+    "json": "data/limina_smoke_unstructured_source_intake.json",
+    "report": "reports/limina_smoke_unstructured_source_intake.md"
+  },
+  "inputs": {
+    "execution_pack": "data/limina_smoke_starter_execution_pack.csv",
+    "source_manifest": "data/limina_source_file_manifest.json"
+  },
+  "status": "smoke_unstructured_source_intake_waiting_for_files",
+  "summary": {
+    "existing_unstructured_files": 0,
+    "invalid_source_files": 0,
+    "missing_source_files": 10,
+    "ready_for_value_extraction": 0,
+    "status_counts": {
+      "missing_source_file": 10
+    },
+    "unstructured_plan_rows": 10,
+    "validation_counts": {
+      "not_run_missing_file": 10
+    }
+  }
+}

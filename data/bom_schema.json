@@ -1,0 +1,16 @@
+{
+  "version": "0.1",
+  "record_type": "limina_bom",
+  "required_fields": [
+    "id",
+    "parent_validation_package",
+    "title",
+    "objective",
+    "items",
+    "source_refs"
+  ],
+  "field_notes": {
+    "items": "Procurement or capability anchors, not endorsements or proof of suitability.",
+    "source_refs": "Evidence ids or URLs that support the BOM."
+  }
+}

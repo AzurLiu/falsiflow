@@ -1,0 +1,27 @@
+{
+  "boundary": "This reply action pack is sourcing logistics only. Vendor replies and quotes can authorize execution, but only returned measurement files can become ZRC-ND material evidence.",
+  "generated_artifacts": {
+    "csv": "data/zrc_nd_phase_a_rfq_reply_action_queue.csv",
+    "json": "data/zrc_nd_phase_a_rfq_reply_action_pack.json",
+    "report": "reports/zrc_nd_phase_a_rfq_reply_action_pack.md",
+    "template_dir": "data/rfq_reply_review_templates/zrc_phase_a"
+  },
+  "inputs": {
+    "reply_log": "data/zrc_nd_phase_a_rfq_reply_log.csv",
+    "send_log": "data/zrc_nd_phase_a_rfq_send_log.csv",
+    "tracker": "data/zrc_nd_phase_a_quote_tracker.csv"
+  },
+  "purpose": "Action queue for preserving source-backed ZRC-ND Phase A vendor replies and turning them into execution-selection inputs.",
+  "status": "zrc_phase_a_rfq_reply_action_pack_waiting_for_send",
+  "summary": {
+    "action_rows": 4,
+    "awaiting_reply_rows": 0,
+    "ready_for_reply_log_apply_rows": 0,
+    "received_needs_review_fields_rows": 0,
+    "received_needs_source_file_rows": 0,
+    "status_counts": {
+      "waiting_for_rfq_send": 4
+    },
+    "waiting_for_send_rows": 4
+  }
+}

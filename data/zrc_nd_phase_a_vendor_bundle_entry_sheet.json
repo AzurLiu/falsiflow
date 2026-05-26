@@ -1,0 +1,36 @@
+{
+  "boundary": "This sheet only consolidates ZRC-ND Phase A vendor-return value entry. It is not measured evidence; the apply step, source-value importer, merge, sentinel interpretation, readiness audit, and claim audit still control evidence status.",
+  "generated_artifacts": {
+    "json": "data/zrc_nd_phase_a_vendor_bundle_entry_sheet.json",
+    "report": "reports/zrc_nd_phase_a_vendor_bundle_entry_sheet.md",
+    "sheet": "data/zrc_nd_phase_a_vendor_return_inbox/completed_bundle_entry_sheet.csv"
+  },
+  "inputs": {
+    "export_root": "data/zrc_nd_phase_a_vendor_return_inbox/external_lab_exports",
+    "source_values": "data/zrc_nd_phase_a_source_values.csv"
+  },
+  "post_fill_command": "python3 scripts/apply_zrc_nd_phase_a_vendor_bundle_entry_sheet.py",
+  "status": "zrc_phase_a_vendor_bundle_entry_sheet_ready",
+  "summary": {
+    "blocked_rows": 0,
+    "bundle_rows": 64,
+    "entry_status_counts": {
+      "awaiting_bundle_entry": 64
+    },
+    "filled_bundle_rows": 0,
+    "missing_source_columns": [],
+    "ready_to_apply_rows": 0,
+    "source_class_counts": {
+      "bench_or_chain_of_custody_record": 8,
+      "biochemical_or_plate_reader_export": 8,
+      "conductivity_meter_export_or_photo": 8,
+      "image_or_scoring_worksheet": 8,
+      "osmometer_report_or_export": 8,
+      "pH_meter_export_or_photo": 8,
+      "pressure_flow_or_resistance_export": 8,
+      "temperature_or_incubator_log": 8
+    },
+    "source_file_exists_rows": 0,
+    "value_columns": 38
+  }
+}

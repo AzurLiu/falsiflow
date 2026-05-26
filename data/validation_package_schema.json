@@ -1,0 +1,30 @@
+{
+  "version": "0.1",
+  "record_type": "limina_validation_package",
+  "required_fields": [
+    "id",
+    "lead_variant_id",
+    "parent_technology",
+    "title",
+    "objective",
+    "scope",
+    "procurement_specs",
+    "test_articles",
+    "run_matrix",
+    "assay_panel",
+    "acceptance_gates",
+    "data_capture_fields",
+    "decision_rules",
+    "source_refs"
+  ],
+  "field_notes": {
+    "procurement_specs": "Material and assay specifications to source; avoid hard-coding one vendor unless necessary.",
+    "test_articles": "Concrete modules/coupons to run in the validation package.",
+    "run_matrix": "Phased tests and controls; design-level, not a wet-lab SOP.",
+    "assay_panel": "Analytical readouts needed to judge suitability.",
+    "acceptance_gates": "Initial pass/fail gates for advancing the candidate.",
+    "data_capture_fields": "Fields that should be logged for every run to enable agent iteration.",
+    "decision_rules": "What to do when gates pass or fail.",
+    "source_refs": "Evidence ids or source URLs that motivate the package."
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "aggregate_gates": [
+    {
+      "gate": "long_superiority_gate",
+      "high_loading_not_safer": "not_evaluable",
+      "lead_adds_electrical_value": "not_evaluable",
+      "lead_noninferior_hydrogel": "not_evaluable",
+      "metrics": {
+        "challenge_viability_pct_hydrogel_mean": null,
+        "hydrogel_viability_pct_hydrogel_mean": null,
+        "lead_burst_pct_hydrogel_mean": null,
+        "lead_eis_pct_hydrogel_mean": null,
+        "lead_post_stim_spike_recovery_mean": null,
+        "lead_spike_pct_hydrogel_mean": null,
+        "lead_viability_pct_hydrogel_mean": null
+      },
+      "status": "not_evaluable",
+      "stimulus_recovery_ok": "not_evaluable"
+    }
+  ],
+  "evaluations": [],
+  "summary": {
+    "aggregate_long_superiority": "not_evaluable",
+    "failed_lead_rows": 0,
+    "lead_rows": 0,
+    "passed_lead_replicates_by_phase": {},
+    "phase_coverage": [],
+    "rows": 0,
+    "status": "no_data"
+  }
+}

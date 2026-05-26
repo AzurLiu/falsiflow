@@ -1,0 +1,171 @@
+{
+  "project": {
+    "id": "falsiflow_wetware_support_hardware_demo",
+    "name": "Falsiflow wetware support hardware demo",
+    "domain": "wetware-support-hardware",
+    "version": "0.1.0"
+  },
+  "claim": {
+    "id": "support_hardware_ready_for_wetware_screen",
+    "statement": "A support-hardware component is ready for wetware screening only after material provenance, medium-contact stability, and operational safety gates pass with source-backed evidence.",
+    "requires_gates": [
+      "hardware_provenance",
+      "medium_contact_stability",
+      "operational_safety"
+    ]
+  },
+  "evidence_policy": {
+    "require_source_files": true,
+    "reject_placeholder_values": true,
+    "allowed_source_roots": [
+      "source_files"
+    ],
+    "required_metadata_fields": [
+      "source_file",
+      "measured_at",
+      "operator_or_agent"
+    ],
+    "placeholder_markers": [
+      "material_tbd",
+      "fixture_only",
+      "not_measured"
+    ]
+  },
+  "gates": [
+    {
+      "id": "hardware_provenance",
+      "title": "Hardware material provenance",
+      "samples": [
+        {
+          "candidate_id": "support_cartridge_demo",
+          "sample_id": "hardware_demo_001"
+        }
+      ],
+      "required_fields": [
+        "material_lot_recorded",
+        "fluid_path_materials_recorded",
+        "cleaning_or_sterilization_recorded"
+      ],
+      "acceptance_rules": [
+        {
+          "field": "material_lot_recorded",
+          "operator": "==",
+          "value": true,
+          "reason": "Material lot provenance must be recorded."
+        },
+        {
+          "field": "fluid_path_materials_recorded",
+          "operator": "==",
+          "value": true,
+          "reason": "Fluid-path materials must be recorded."
+        },
+        {
+          "field": "cleaning_or_sterilization_recorded",
+          "operator": "==",
+          "value": true,
+          "reason": "Cleaning or sterilization handling must be recorded."
+        }
+      ]
+    },
+    {
+      "id": "medium_contact_stability",
+      "title": "Medium-contact stability",
+      "samples": [
+        {
+          "candidate_id": "support_cartridge_demo",
+          "sample_id": "hardware_demo_001"
+        }
+      ],
+      "required_fields": [
+        "ph_initial",
+        "ph_final",
+        "osmolality_initial_mosm",
+        "osmolality_final_mosm",
+        "protein_retention_fraction",
+        "visible_particles_present"
+      ],
+      "derived_fields": [
+        {
+          "field": "ph_drift_abs",
+          "operation": "abs_delta",
+          "left": "ph_final",
+          "right": "ph_initial"
+        },
+        {
+          "field": "osmolality_drift_mosm",
+          "operation": "abs_delta",
+          "left": "osmolality_final_mosm",
+          "right": "osmolality_initial_mosm"
+        }
+      ],
+      "acceptance_rules": [
+        {
+          "field": "ph_drift_abs",
+          "operator": "<=",
+          "value": 0.15,
+          "reason": "Support hardware must not materially shift medium pH."
+        },
+        {
+          "field": "osmolality_drift_mosm",
+          "operator": "<=",
+          "value": 15,
+          "reason": "Support hardware must not materially shift osmolality."
+        },
+        {
+          "field": "protein_retention_fraction",
+          "operator": ">=",
+          "value": 0.9,
+          "reason": "Support hardware must not adsorb too much protein/growth factor proxy."
+        },
+        {
+          "field": "visible_particles_present",
+          "operator": "==",
+          "value": false,
+          "reason": "Support hardware must not shed visible particles."
+        }
+      ]
+    },
+    {
+      "id": "operational_safety",
+      "title": "Operational safety",
+      "samples": [
+        {
+          "candidate_id": "support_cartridge_demo",
+          "sample_id": "hardware_demo_001"
+        }
+      ],
+      "required_fields": [
+        "leak_present",
+        "bubble_event_count",
+        "flow_resistance_increase_pct",
+        "sensor_noise_increase_pct"
+      ],
+      "acceptance_rules": [
+        {
+          "field": "leak_present",
+          "operator": "==",
+          "value": false,
+          "reason": "No leak can be present during the operational screen."
+        },
+        {
+          "field": "bubble_event_count",
+          "operator": "<=",
+          "value": 0,
+          "reason": "No bubble events are allowed in the wetware support screen."
+        },
+        {
+          "field": "flow_resistance_increase_pct",
+          "operator": "<=",
+          "value": 10,
+          "reason": "Flow resistance increase must stay within the operational window."
+        },
+        {
+          "field": "sensor_noise_increase_pct",
+          "operator": "<=",
+          "value": 10,
+          "reason": "Sensor noise increase must stay within the operational window."
+        }
+      ]
+    }
+  ]
+}

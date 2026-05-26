@@ -1,0 +1,94 @@
+{
+  "claim": {
+    "id": "support_hardware_ready_for_wetware_screen",
+    "requires_gates": [
+      "hardware_provenance",
+      "medium_contact_stability",
+      "operational_safety"
+    ],
+    "statement": "A support-hardware component is ready for wetware screening only after material provenance, medium-contact stability, and operational safety gates pass with source-backed evidence."
+  },
+  "claim_ready": true,
+  "evidence_error_count": 0,
+  "evidence_issue_count": 0,
+  "evidence_issues": [],
+  "evidence_warning_count": 0,
+  "gates": [
+    {
+      "blocker_count": 0,
+      "blockers": [],
+      "derived_field_count": 0,
+      "derived_fields": [],
+      "gate_id": "hardware_provenance",
+      "required_evidence_rows": 3,
+      "status": "passed",
+      "title": "Hardware material provenance",
+      "valid_required_evidence_rows": 3
+    },
+    {
+      "blocker_count": 0,
+      "blockers": [],
+      "derived_field_count": 2,
+      "derived_fields": [
+        {
+          "candidate_id": "support_cartridge_demo",
+          "field": "ph_drift_abs",
+          "gate_id": "medium_contact_stability",
+          "operation": "abs_delta",
+          "sample_id": "hardware_demo_001",
+          "value": 0.05999999999999961
+        },
+        {
+          "candidate_id": "support_cartridge_demo",
+          "field": "osmolality_drift_mosm",
+          "gate_id": "medium_contact_stability",
+          "operation": "abs_delta",
+          "sample_id": "hardware_demo_001",
+          "value": 7.0
+        }
+      ],
+      "gate_id": "medium_contact_stability",
+      "required_evidence_rows": 6,
+      "status": "passed",
+      "title": "Medium-contact stability",
+      "valid_required_evidence_rows": 6
+    },
+    {
+      "blocker_count": 0,
+      "blockers": [],
+      "derived_field_count": 0,
+      "derived_fields": [],
+      "gate_id": "operational_safety",
+      "required_evidence_rows": 4,
+      "status": "passed",
+      "title": "Operational safety",
+      "valid_required_evidence_rows": 4
+    }
+  ],
+  "missing_required_gates": [],
+  "next_actions": [
+    {
+      "action_id": "review_claim_for_release",
+      "rank": 1,
+      "success_criterion": "Human review confirms raw sources and claim wording before release.",
+      "why": "All required gates passed with source-backed evidence."
+    }
+  ],
+  "project": {
+    "domain": "wetware-support-hardware",
+    "id": "falsiflow_wetware_support_hardware_demo",
+    "name": "Falsiflow wetware support hardware demo",
+    "version": "0.1.0"
+  },
+  "project_config_valid": true,
+  "project_validation": {
+    "error_count": 0,
+    "issues": [],
+    "status": "valid",
+    "valid": true,
+    "warning_count": 0
+  },
+  "project_validation_error_count": 0,
+  "project_validation_warning_count": 0,
+  "status": "claim_ready"
+}

@@ -1,0 +1,105 @@
+# ALG-LAM-PEDOT Protocol Handoff
+
+**Protocol:** `nhi_pedot_alg_lam_protocol_v0_2`
+**Candidate:** `limina_alg_lam_pedot_lowdose_v0_2`
+**Source evidence:** `pedot_neural_culture_hydrogel_2025`
+**Source URL:** https://pubs.rsc.org/en/content/articlehtml/2026/tc/d5tc02708j
+
+Translate the published alginate-laminin-PEDOT:PSS hydrogel method into LIMINA H-A sentinel defaults without treating literature targets as measured local data.
+
+## Literature Recipe Anchor
+
+| Field | Value |
+| --- | --- |
+| `alginate_basis` | 2 percent w/v alginate hydrogel |
+| `alginate_source` | PRONOVA UP VLVG sodium alginate, Mw < 75 kDa in source paper |
+| `crosslinker` | 183 mM calcium sulfate dihydrate dispersed in 1x DMEM |
+| `gelation` | syringe-mixed precursor/crosslinker, cast into controlled-thickness mold, 1 h gelation |
+| `conductive_phase` | commercial PEDOT:PSS Clevios PH 100 water dispersion |
+| `laminin` | Engelbreth-Holm-Swarm laminin, source paper used Sigma-Aldrich L2020 |
+| `cell_culture_loading` | 0.6 wt percent PEDOT:PSS used for all cell-culture data in the source paper |
+| `material_characterization_loadings` | 0.9 and 1.2 wt percent PEDOT:PSS characterized for optical, mechanical, and electrochemical trends |
+| `thickness_window_um` | 150 to 400 um for optical/culture-relevant thin hydrogel tests; 1 mm hydrogel pieces used beside cultures; 10 mm mold used for bulk electrochemistry in source setup |
+| `pre_measurement_conditioning` | overnight incubation in DMEM/F12 or relevant cell culture medium before electrochemical measurement |
+| `temperature_c` | 37 |
+| `published_performance_context` | 1-10 kPa mechanical range, >28 day hiPSC-derived cortical neuron cytocompatibility, stable electrochemistry over 80 cycles |
+
+## H-A Template Defaults
+
+### hydrogel_laminin_control
+
+| Field | Value |
+| --- | --- |
+| `electrode_material` | mea_coupon_material_record_actual |
+| `hydrogel_matrix` | alginate_laminin_2pct_wv_caso4_dmem |
+| `hydrogel_thickness_um` | 400 |
+| `pedot_pss_loading_fraction` | 0 |
+| `pedot_pss_pre_rinse_protocol` | not_applicable_no_pedot |
+| `laminin_or_peptide_density` | ehs_laminin_same_as_lead_record_lot |
+| `crosslinking_protocol` | 183mM_CaSO4_in_1x_DMEM_syringe_mix_cast_1h_gelation |
+| `sterilization_or_aseptic_protocol` | aseptic_preparation_record_lot_and_handling |
+| `medium_name` | DMEM_F12_or_CL1_proxy_record_actual |
+| `temperature_c` | 37 |
+
+### lead_nhi_pedot_low_loading
+
+| Field | Value |
+| --- | --- |
+| `electrode_material` | mea_coupon_material_record_actual |
+| `hydrogel_matrix` | alginate_laminin_2pct_wv_caso4_dmem_pedotpss |
+| `hydrogel_thickness_um` | 400 |
+| `pedot_pss_loading_fraction` | 0.006 |
+| `pedot_pss_pre_rinse_protocol` | overnight_medium_conditioning_before_measurement |
+| `laminin_or_peptide_density` | ehs_laminin_same_as_control_record_lot |
+| `crosslinking_protocol` | 183mM_CaSO4_in_1x_DMEM_syringe_mix_cast_1h_gelation |
+| `sterilization_or_aseptic_protocol` | aseptic_preparation_record_lot_and_handling |
+| `medium_name` | DMEM_F12_or_CL1_proxy_record_actual |
+| `temperature_c` | 37 |
+
+### challenge_nhi_pedot_high_loading
+
+| Field | Value |
+| --- | --- |
+| `electrode_material` | mea_coupon_material_record_actual |
+| `hydrogel_matrix` | alginate_laminin_2pct_wv_caso4_dmem_pedotpss |
+| `hydrogel_thickness_um` | 400 |
+| `pedot_pss_loading_fraction` | 0.012 |
+| `pedot_pss_pre_rinse_protocol` | overnight_medium_conditioning_before_measurement |
+| `laminin_or_peptide_density` | ehs_laminin_same_as_control_record_lot |
+| `crosslinking_protocol` | 183mM_CaSO4_in_1x_DMEM_syringe_mix_cast_1h_gelation |
+| `sterilization_or_aseptic_protocol` | aseptic_preparation_record_lot_and_handling |
+| `medium_name` | DMEM_F12_or_CL1_proxy_record_actual |
+| `temperature_c` | 37 |
+
+## Fields That Must Become Real Measurements
+
+- `date`
+- `mea_coupon_id`
+- `electrode_material`
+- `medium_name`
+- `medium_lot`
+- `pH_initial`
+- `pH_final`
+- `osmolality_initial_mOsm_kg`
+- `osmolality_final_mOsm_kg`
+- `conductivity_initial_mS_cm`
+- `conductivity_final_mS_cm`
+- `visible_precipitate`
+- `visible_shedding`
+- `swelling_fraction`
+- `delamination_score`
+- `optical_transparency_fraction`
+
+## H-A Interpretation
+
+| Field | Value |
+| --- | --- |
+| `lead_preference` | 0.6 wt percent PEDOT:PSS is the first LIMINA lead because it is the source paper's cell-culture loading and should preserve optical/biological margin. |
+| `challenge_role` | 1.2 wt percent is a stress comparator for conductivity-versus-transparency and toxicity, not a first-claim lead. |
+| `stop_condition` | Any H-A medium drift, visible shedding, swelling, delamination, or transparency failure stops H-B/H-C advancement. |
+
+## Boundary
+
+- These defaults are protocol scaffolding, not evidence.
+- Rows still fail claim provenance until dates, lots, coupon IDs, measured media chemistry, and physical readouts are filled with real values.
+- The low-loading lead is the first-claim path; the high-loading article is a stress comparator.

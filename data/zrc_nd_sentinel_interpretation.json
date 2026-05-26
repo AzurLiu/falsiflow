@@ -1,0 +1,10 @@
+{
+  "evaluations": [],
+  "failed_rows": 0,
+  "lead_gate_rows": 0,
+  "material_rows": 0,
+  "next_action": "Generate and fill the Phase A sentinel packet.",
+  "not_evaluable_rows": 0,
+  "rows": 0,
+  "status": "no_sentinel_rows"
+}

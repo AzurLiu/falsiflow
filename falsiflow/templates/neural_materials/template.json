@@ -1,0 +1,9 @@
+{
+  "id": "neural_materials",
+  "name": "Neural materials H-A/H-B/H-C",
+  "domain": "neural-wetware-material-interface",
+  "description": "Evidence-gated workflow for neural interface materials with acellular stability, electrical benefit, and matched-control cell/network response gates.",
+  "project_config": "project.json",
+  "demo_evidence": "evidence_pass_demo.csv",
+  "placeholder_evidence": "evidence_placeholder_demo.csv"
+}

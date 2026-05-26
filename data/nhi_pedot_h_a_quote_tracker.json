@@ -1,0 +1,160 @@
+{
+  "active_candidate": "limina_alg_lam_pedot_lowdose_v0_2",
+  "decision_rules": [
+    "Reject any response that cannot preserve run_id-level raw data.",
+    "Prefer one integrated provider only if it covers both media physicochemical and coupon physical fields.",
+    "Use a split-scope pair if media tests and coupon imaging/physical scoring are stronger separately.",
+    "Do not proceed without CSV or bundle-entry schema acceptance and a clear mapping back to LIMINA run_id-level rows.",
+    "Do not treat quote responses as material evidence; only returned measured rows can advance gates.",
+    "Rerunning this tracker preserves existing contact dates, replies, decisions, and notes by candidate_id."
+  ],
+  "disqualifiers": [
+    "Only returns pooled averages or narrative pass/fail certificates.",
+    "Will not preserve run_id, sample_event, and target_field mapping.",
+    "Cannot return source files or raw exports for provenance.",
+    "Requires replacing the requested material stack or timepoints without a documented deviation log.",
+    "Treats vendor capability claims as final material suitability evidence."
+  ],
+  "fields": [
+    "candidate_id",
+    "vendor_name",
+    "contact_date",
+    "reply_date",
+    "can_cover_full_h_a",
+    "needs_split_scope",
+    "run_id_level_raw_data",
+    "media_physicochemical_coverage",
+    "coupon_physical_coverage",
+    "csv_schema_acceptance",
+    "bundle_entry_sheet_acceptance",
+    "sample_handling_fit",
+    "non_glp_scope_control",
+    "turnaround_days",
+    "quoted_cost",
+    "decision",
+    "notes"
+  ],
+  "purpose": "Track RFQ replies and decide which vendor/cooperator can generate claimable H-A measurement rows.",
+  "row_count": 4,
+  "rows": [
+    {
+      "bundle_entry_sheet_acceptance": "",
+      "can_cover_full_h_a": "",
+      "candidate_id": "materials_metric",
+      "contact_date": "",
+      "coupon_physical_coverage": "",
+      "csv_schema_acceptance": "",
+      "decision": "pending_outreach",
+      "media_physicochemical_coverage": "",
+      "needs_split_scope": "",
+      "non_glp_scope_control": "",
+      "notes": "",
+      "quoted_cost": "",
+      "reply_date": "",
+      "run_id_level_raw_data": "",
+      "sample_handling_fit": "",
+      "turnaround_days": "",
+      "vendor_name": "Materials Metric"
+    },
+    {
+      "bundle_entry_sheet_acceptance": "",
+      "can_cover_full_h_a": "",
+      "candidate_id": "the_osmolality_lab",
+      "contact_date": "",
+      "coupon_physical_coverage": "",
+      "csv_schema_acceptance": "",
+      "decision": "pending_outreach",
+      "media_physicochemical_coverage": "",
+      "needs_split_scope": "",
+      "non_glp_scope_control": "",
+      "notes": "",
+      "quoted_cost": "",
+      "reply_date": "",
+      "run_id_level_raw_data": "",
+      "sample_handling_fit": "",
+      "turnaround_days": "",
+      "vendor_name": "The Osmolality Lab"
+    },
+    {
+      "bundle_entry_sheet_acceptance": "",
+      "can_cover_full_h_a": "",
+      "candidate_id": "cambridge_polymer_group_hydrogel",
+      "contact_date": "",
+      "coupon_physical_coverage": "",
+      "csv_schema_acceptance": "",
+      "decision": "pending_outreach",
+      "media_physicochemical_coverage": "",
+      "needs_split_scope": "",
+      "non_glp_scope_control": "",
+      "notes": "",
+      "quoted_cost": "",
+      "reply_date": "",
+      "run_id_level_raw_data": "",
+      "sample_handling_fit": "",
+      "turnaround_days": "",
+      "vendor_name": "Cambridge Polymer Group"
+    },
+    {
+      "bundle_entry_sheet_acceptance": "",
+      "can_cover_full_h_a": "",
+      "candidate_id": "sigmaaldrich_media_testing",
+      "contact_date": "",
+      "coupon_physical_coverage": "",
+      "csv_schema_acceptance": "",
+      "decision": "pending_outreach",
+      "media_physicochemical_coverage": "",
+      "needs_split_scope": "",
+      "non_glp_scope_control": "",
+      "notes": "",
+      "quoted_cost": "",
+      "reply_date": "",
+      "run_id_level_raw_data": "",
+      "sample_handling_fit": "",
+      "turnaround_days": "",
+      "vendor_name": "MilliporeSigma Cell Culture Media Stability and Testing Services"
+    }
+  ],
+  "scoring_rubric": [
+    {
+      "criterion": "run_id_level_raw_data",
+      "pass_condition": "Vendor accepts one result per run_id/sample_event/target_field and does not require pooled reporting.",
+      "weight": 5
+    },
+    {
+      "criterion": "media_physicochemical_coverage",
+      "pass_condition": "Vendor can report pH, osmolality, and conductivity before/after the requested timepoints, or clearly names a partner/subcontract path.",
+      "weight": 4
+    },
+    {
+      "criterion": "coupon_physical_coverage",
+      "pass_condition": "Vendor can report swelling fraction, visible precipitate, shedding, delamination score, optical transparency, and supporting images.",
+      "weight": 4
+    },
+    {
+      "criterion": "csv_schema_acceptance",
+      "pass_condition": "Vendor can fill or accept either the LIMINA raw-measurement CSV or the compact bundle-entry CSV without changing column names.",
+      "weight": 4
+    },
+    {
+      "criterion": "bundle_entry_sheet_acceptance",
+      "pass_condition": "Vendor can use the compact one-row-per-source-file bundle sheet when one raw export/report supports multiple values.",
+      "weight": 2
+    },
+    {
+      "criterion": "sample_handling_fit",
+      "pass_condition": "Vendor can handle neural medium, alginate/laminin/PEDOT:PSS coupons, 37 C timing, and chain-of-custody constraints.",
+      "weight": 3
+    },
+    {
+      "criterion": "turnaround_and_cost",
+      "pass_condition": "Vendor can provide a practical R&D quote and turnaround for the 12-run/228-entry package.",
+      "weight": 2
+    },
+    {
+      "criterion": "non_glp_scope_control",
+      "pass_condition": "Vendor can keep the first pass as exploratory R&D and not force a full GLP/ISO program before H-A.",
+      "weight": 2
+    }
+  ],
+  "status": "pending_outreach"
+}

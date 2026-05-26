@@ -1,0 +1,169 @@
+{
+  "id": "external1_rc_dialysis_mwco_baseline_v0_1",
+  "priority_lane": "LIMINA-External-1",
+  "title": "Regenerated-cellulose MWCO baseline for selective neuronal-media waste exchange",
+  "objective": "Identify a passive side-stream dialysis architecture that removes low-molecular-weight waste from neuronal culture medium while preserving protein/growth-factor signals.",
+  "hypothesis": "Regenerated-cellulose membranes with lower MWCO values will preserve trophic proteins better, while higher MWCO values will clear lactate/ammonium faster but may leak useful signaling molecules. A side-stream design can reveal the useful trade-off without exposing cells to unvalidated cartridge materials.",
+  "scope": {
+    "design_level": "screening experiment design, not a wet-lab SOP",
+    "system_context": "CL1-like neural wetware life-support loop",
+    "cartridge_position": "side-stream or external loop, not directly in the cell chamber",
+    "primary_material_family": "regenerated cellulose dialysis membrane",
+    "first_question": "Which MWCO range best balances small-waste clearance and trophic-factor retention?"
+  },
+  "test_articles": [
+    {
+      "id": "rc_1kda",
+      "name": "Regenerated cellulose, 1 kDa MWCO",
+      "rationale": "Most conservative retention option; expected to preserve trophic proteins but may clear waste slowly.",
+      "expected_tradeoff": "high retention, low clearance"
+    },
+    {
+      "id": "rc_3_5kda",
+      "name": "Regenerated cellulose, 3.5 kDa MWCO",
+      "rationale": "Common small-molecule dialysis cutoff; expected to retain BDNF/NGF-sized proteins while allowing lactate/ammonium exchange.",
+      "expected_tradeoff": "high retention, moderate clearance"
+    },
+    {
+      "id": "rc_10kda",
+      "name": "Regenerated cellulose, 10 kDa MWCO",
+      "rationale": "Potential clearance/retention compromise; may preserve BDNF dimer while risking partial NGF or monomeric factor loss.",
+      "expected_tradeoff": "moderate retention, higher clearance"
+    },
+    {
+      "id": "rc_20kda",
+      "name": "Regenerated cellulose, 20 kDa MWCO",
+      "rationale": "Stress-test high-clearance option; useful to quantify whether trophic-factor leakage becomes unacceptable.",
+      "expected_tradeoff": "highest clearance, highest protein-factor leakage risk"
+    },
+    {
+      "id": "low_binding_prefilter_rc_3_5kda",
+      "name": "Low-binding PES/SFCA prefilter plus 3.5 kDa RC dialysis",
+      "rationale": "Tests whether debris control can be added before dialysis without stripping proteins.",
+      "expected_tradeoff": "better debris control, added adsorption risk"
+    }
+  ],
+  "controls": [
+    {
+      "id": "static_no_cartridge",
+      "name": "Static conditioned medium, no cartridge",
+      "purpose": "Measures waste accumulation and factor stability without exchange."
+    },
+    {
+      "id": "bulk_medium_exchange",
+      "name": "Bulk medium exchange reference",
+      "purpose": "Represents conventional refresh behavior and secretome dilution risk."
+    },
+    {
+      "id": "fresh_medium_blank",
+      "name": "Fresh medium blank through each module",
+      "purpose": "Detects extractables, pH/osmolality drift, and baseline adsorption without cell-derived waste."
+    },
+    {
+      "id": "spiked_recovery_panel",
+      "name": "Medium spiked with albumin, BDNF/NGF analog panel, lactate, and ammonium",
+      "purpose": "Separates material retention/clearance behavior from biological variability."
+    }
+  ],
+  "readouts": {
+    "waste_clearance": [
+      "lactate concentration before/after cartridge exposure",
+      "ammonium/ammonia concentration before/after cartridge exposure",
+      "optional targeted metabolite panel for unknown inhibitory metabolites"
+    ],
+    "factor_retention": [
+      "BDNF recovery or proxy neurotrophic protein recovery",
+      "NGF recovery or proxy neurotrophic protein recovery",
+      "albumin recovery",
+      "transferrin recovery",
+      "total protein recovery"
+    ],
+    "medium_integrity": [
+      "pH drift",
+      "osmolality drift",
+      "conductivity drift",
+      "visible precipitation or turbidity",
+      "extractables screen if available"
+    ],
+    "module_performance": [
+      "flow resistance or pressure proxy",
+      "bubble formation events",
+      "fouling or flux decline",
+      "post-run membrane visual inspection"
+    ],
+    "biological_followup": [
+      "neuronal conditioned-media viability screen",
+      "neurite outgrowth or morphology screen",
+      "network activity/MEA readout only after media-chemistry gates pass"
+    ]
+  },
+  "decision_gates": [
+    {
+      "id": "factor_retention_gate",
+      "criterion": "Prefer variants that retain high-molecular-weight trophic proteins and albumin while avoiding broad protein loss.",
+      "failure_response": "If retention is poor, move to lower MWCO or add zwitterionic/low-fouling membrane modification."
+    },
+    {
+      "id": "clearance_gate",
+      "criterion": "Require measurable lactate and ammonium exchange relative to no-cartridge control.",
+      "failure_response": "If clearance is weak at acceptable retention, consider larger membrane area, longer side-stream exposure, or a polishing stage."
+    },
+    {
+      "id": "medium_integrity_gate",
+      "criterion": "Reject variants causing unacceptable pH, osmolality, conductivity, turbidity, or extractables shifts.",
+      "failure_response": "Change membrane handling, module housing, sterilization workflow, or material family."
+    },
+    {
+      "id": "no_silent_stripping_gate",
+      "criterion": "Reject nonselective adsorbers that reduce useful factors even if waste removal is strong.",
+      "failure_response": "Keep broad adsorbents out of the cell-facing life-support path unless tightly confined and analytically monitored."
+    }
+  ],
+  "risk_controls": [
+    {
+      "risk": "MWCO removes helpful small molecules or secretome factors",
+      "detection": "Compare targeted factor recovery and total protein before/after; add metabolomics in later rounds."
+    },
+    {
+      "risk": "Membrane or housing leachables harm neurons",
+      "detection": "Run fresh-medium blanks through each module before any biological followup."
+    },
+    {
+      "risk": "Fouling changes performance over time",
+      "detection": "Track flow resistance and clearance/retention across repeated or aged-medium exposures."
+    },
+    {
+      "risk": "Bulk exchange outperforms cartridge in short-term tests",
+      "detection": "Compare against bulk exchange, but evaluate secretome dilution as a separate cost."
+    }
+  ],
+  "next_decisions": [
+    {
+      "condition": "3.5 kDa or 10 kDa RC clears waste and preserves trophic factors",
+      "action": "Use that MWCO as the passive baseline and test membrane area/flow geometry."
+    },
+    {
+      "condition": "Retention is strong but clearance is weak",
+      "action": "Increase membrane area or exposure before adding active polishing."
+    },
+    {
+      "condition": "Clearance is strong but trophic-factor loss is high",
+      "action": "Lower MWCO and prioritize zwitterionic/low-fouling membrane surfaces."
+    },
+    {
+      "condition": "Passive dialysis cannot meet clearance targets",
+      "action": "Evaluate ICP or confined ion-exchange side-stream module as a second-stage polish."
+    }
+  ],
+  "source_refs": [
+    "dialysis_medium_partitioning_2020",
+    "ammonia_importance_review_1996",
+    "lactate_ammonia_growth_inhibition_1991",
+    "inhibitory_metabolites_2021",
+    "neural_microfluidic_systems_2023",
+    "bdnf_uniprot_p23560",
+    "ngf_uniprot_p01138",
+    "dialysis_mwco_principle_thermo"
+  ]
+}
+

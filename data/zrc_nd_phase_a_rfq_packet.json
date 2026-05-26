@@ -1,0 +1,141 @@
+{
+  "active_candidate": "limina_zrc_nd_v0_1",
+  "attachment_paths": [
+    "reports/zrc_nd_phase_a_service_request.md",
+    "data/zrc_nd_phase_a_sentinel_template.csv",
+    "reports/zrc_nd_phase_a_sentinel_packet.md",
+    "data/zrc_nd_phase_a_sentinel_sample_manifest.csv",
+    "data/zrc_nd_phase_a_sample_labels.csv",
+    "data/zrc_nd_phase_a_chain_of_custody.csv",
+    "reports/zrc_nd_phase_a_chain_of_custody.md",
+    "reports/zrc_nd_next_measurements.md",
+    "data/zrc_nd_3p5k_guard_validation_package.json",
+    "reports/zrc_nd_run_plan.md"
+  ],
+  "disqualifiers": [
+    "Only returns pooled averages, certificates, or narrative feasibility opinions.",
+    "Will not preserve run_id, sample_event, and target-field mapping.",
+    "Cannot return raw exports, instrument reports, or traceable source files.",
+    "Requires changing article identity, timepoints, membrane material, or control rows without a deviation log.",
+    "Treats quote, supplier support, or vendor capability claims as final material suitability evidence."
+  ],
+  "non_claim_boundary": "Vendor capability claims and supplier guidance do not count as material evidence. Only returned real run-level measurements that pass LIMINA QC and claim audit can advance the material.",
+  "purpose": "Per-candidate RFQ material for obtaining real ZRC-ND Phase A measurements.",
+  "quote_requests": [
+    {
+      "candidate_id": "pacific_biolabs_physicochemical",
+      "contact_url": "https://pacificbiolabs.com/contact/",
+      "email_body": "Hello Pacific BioLabs Physicochemical Properties Testing team,\n\nI am requesting a feasibility review and non-GLP R&D quote for a small acellular medium-integrity measurement package.\n\nStudy summary:\n- Active material route: limina_zrc_nd_v0_1\n- Lead variant: zrc_nd_3p5k_mpc_guard\n- Runs: 8\n- Sample events: 16\n- Articles: unmodified 3.5 kDa RC baseline, MPC-like 3.5 kDa lead, 10 kDa challenge, and no-module static control\n- Timepoints: 0 h and 24 h\n- Required outputs: pH, osmolality, conductivity, appearance/turbidity/visible precipitate, raw exports or instrument reports, and chain-of-custody by run_id\n\nImportant constraint: we need one result per provided run_id/sample_event/test field. Pooled averages or narrative certificates alone will not satisfy the study.\n\nCould you please confirm:\n- Can conductivity be added to the pH/osmolality/appearance panel or routed to another internal analytical service?\n- Can they accept nonclinical neural-medium aliquots exposed to regenerated-cellulose membrane/module articles?\n- Can they preserve one report row per LIMINA run_id and return raw values in the provided CSV schema?\n- Whether you can fill or accept the provided Phase A CSV schema without changing column names\n- Minimum aliquot volume, sample container, and sample count requirements\n- Expected turnaround time, quote range, sample acceptance constraints, and whether SDS/lot documentation is required before shipping\n\nAttached/package files to review:\n- reports/zrc_nd_phase_a_service_request.md\n- data/zrc_nd_phase_a_sentinel_template.csv\n- reports/zrc_nd_phase_a_sentinel_packet.md\n- data/zrc_nd_phase_a_sentinel_sample_manifest.csv\n- data/zrc_nd_phase_a_sample_labels.csv\n- data/zrc_nd_phase_a_chain_of_custody.csv\n- reports/zrc_nd_phase_a_chain_of_custody.md\n- reports/zrc_nd_next_measurements.md\n- data/zrc_nd_3p5k_guard_validation_package.json\n- reports/zrc_nd_run_plan.md\n\nThis is exploratory R&D screening. We are not requesting a material suitability claim from the vendor; we only need traceable raw measurements to feed our internal Phase A gate.\n\nThank you.",
+      "name": "Pacific BioLabs Physicochemical Properties Testing",
+      "scope_instruction": "Ask whether they can execute the full Phase A pH/osmolality/conductivity/appearance package or identify a split path for missing fields.",
+      "service_type": "physicochemical_testing",
+      "source_url": "https://pacificbiolabs.com/physicochemical-properties",
+      "subject": "RFQ: non-GLP acellular ZRC-ND Phase A medium-integrity measurements (Pacific BioLabs Physicochemical Properties Testing)",
+      "unknowns_to_resolve": [
+        "Can conductivity be added to the pH/osmolality/appearance panel or routed to another internal analytical service?",
+        "Can they accept nonclinical neural-medium aliquots exposed to regenerated-cellulose membrane/module articles?",
+        "Can they preserve one report row per LIMINA run_id and return raw values in the provided CSV schema?"
+      ]
+    },
+    {
+      "candidate_id": "sigmaaldrich_media_testing",
+      "contact_url": "https://www.sigmaaldrich.com/US/en/collections/offices",
+      "email_body": "Hello MilliporeSigma Cell Culture Media Stability and Testing Services team,\n\nI am requesting a feasibility review and non-GLP R&D quote for a small acellular medium-integrity measurement package.\n\nStudy summary:\n- Active material route: limina_zrc_nd_v0_1\n- Lead variant: zrc_nd_3p5k_mpc_guard\n- Runs: 8\n- Sample events: 16\n- Articles: unmodified 3.5 kDa RC baseline, MPC-like 3.5 kDa lead, 10 kDa challenge, and no-module static control\n- Timepoints: 0 h and 24 h\n- Required outputs: pH, osmolality, conductivity, appearance/turbidity/visible precipitate, raw exports or instrument reports, and chain-of-custody by run_id\n\nImportant constraint: we need one result per provided run_id/sample_event/test field. Pooled averages or narrative certificates alone will not satisfy the study.\n\nCould you please confirm:\n- Can conductivity be added for the Phase A material-blank gate?\n- Can they test customer-prepared medium aliquots exposed to dialysis membrane/module witness articles?\n- Can they return one row per run_id instead of product-lot summaries?\n- Whether you can fill or accept the provided Phase A CSV schema without changing column names\n- Minimum aliquot volume, sample container, and sample count requirements\n- Expected turnaround time, quote range, sample acceptance constraints, and whether SDS/lot documentation is required before shipping\n\nAttached/package files to review:\n- reports/zrc_nd_phase_a_service_request.md\n- data/zrc_nd_phase_a_sentinel_template.csv\n- reports/zrc_nd_phase_a_sentinel_packet.md\n- data/zrc_nd_phase_a_sentinel_sample_manifest.csv\n- data/zrc_nd_phase_a_sample_labels.csv\n- data/zrc_nd_phase_a_chain_of_custody.csv\n- reports/zrc_nd_phase_a_chain_of_custody.md\n- reports/zrc_nd_next_measurements.md\n- data/zrc_nd_3p5k_guard_validation_package.json\n- reports/zrc_nd_run_plan.md\n\nThis is exploratory R&D screening. We are not requesting a material suitability claim from the vendor; we only need traceable raw measurements to feed our internal Phase A gate.\n\nThank you.",
+      "name": "MilliporeSigma Cell Culture Media Stability and Testing Services",
+      "scope_instruction": "Ask whether they can execute the full Phase A pH/osmolality/conductivity/appearance package or identify a split path for missing fields.",
+      "service_type": "cell_culture_media_testing",
+      "source_url": "https://www.sigmaaldrich.com/US/en/services/testing/cell-culture-media-stability-and-testing-services",
+      "subject": "RFQ: non-GLP acellular ZRC-ND Phase A medium-integrity measurements (MilliporeSigma Cell Culture Media Stability and Testing Services)",
+      "unknowns_to_resolve": [
+        "Can conductivity be added for the Phase A material-blank gate?",
+        "Can they test customer-prepared medium aliquots exposed to dialysis membrane/module witness articles?",
+        "Can they return one row per run_id instead of product-lot summaries?"
+      ]
+    },
+    {
+      "candidate_id": "the_osmolality_lab",
+      "contact_url": "https://theosmolalitylab.com/contact-us/",
+      "email_body": "Hello The Osmolality Lab team,\n\nI am requesting a feasibility review and non-GLP R&D quote for a small acellular medium-integrity measurement package.\n\nStudy summary:\n- Active material route: limina_zrc_nd_v0_1\n- Lead variant: zrc_nd_3p5k_mpc_guard\n- Runs: 8\n- Sample events: 16\n- Articles: unmodified 3.5 kDa RC baseline, MPC-like 3.5 kDa lead, 10 kDa challenge, and no-module static control\n- Timepoints: 0 h and 24 h\n- Required outputs: pH, osmolality, conductivity, appearance/turbidity/visible precipitate, raw exports or instrument reports, and chain-of-custody by run_id\n\nImportant constraint: we need one result per provided run_id/sample_event/test field. Pooled averages or narrative certificates alone will not satisfy the study.\n\nCould you please confirm:\n- Can they accept acellular neural-medium aliquots that are non-biohazard and non-radioactive?\n- Can they run all 8 Phase A rows as individual run_id samples with pre/post mapping?\n- Can they support conductivity directly, or should conductivity be measured by another lab or internally?\n- Whether you can fill or accept the provided Phase A CSV schema without changing column names\n- Minimum aliquot volume, sample container, and sample count requirements\n- Expected turnaround time, quote range, sample acceptance constraints, and whether SDS/lot documentation is required before shipping\n\nAttached/package files to review:\n- reports/zrc_nd_phase_a_service_request.md\n- data/zrc_nd_phase_a_sentinel_template.csv\n- reports/zrc_nd_phase_a_sentinel_packet.md\n- data/zrc_nd_phase_a_sentinel_sample_manifest.csv\n- data/zrc_nd_phase_a_sample_labels.csv\n- data/zrc_nd_phase_a_chain_of_custody.csv\n- reports/zrc_nd_phase_a_chain_of_custody.md\n- reports/zrc_nd_next_measurements.md\n- data/zrc_nd_3p5k_guard_validation_package.json\n- reports/zrc_nd_run_plan.md\n\nThis is exploratory R&D screening. We are not requesting a material suitability claim from the vendor; we only need traceable raw measurements to feed our internal Phase A gate.\n\nThank you.",
+      "name": "The Osmolality Lab",
+      "scope_instruction": "Use as focused pH/osmolality provider and ask whether conductivity is supported or must be split.",
+      "service_type": "osmolality_and_ph_testing",
+      "source_url": "https://theosmolalitylab.com/services/",
+      "subject": "RFQ: non-GLP acellular ZRC-ND Phase A medium-integrity measurements (The Osmolality Lab)",
+      "unknowns_to_resolve": [
+        "Can they accept acellular neural-medium aliquots that are non-biohazard and non-radioactive?",
+        "Can they run all 8 Phase A rows as individual run_id samples with pre/post mapping?",
+        "Can they support conductivity directly, or should conductivity be measured by another lab or internally?"
+      ]
+    },
+    {
+      "candidate_id": "jordi_labs_el_polymer",
+      "contact_url": "https://jordilabs.com/contact/",
+      "email_body": "Hello Jordi Labs Analytical Testing team,\n\nI am requesting a feasibility review and non-GLP R&D quote for a small acellular medium-integrity measurement package.\n\nStudy summary:\n- Active material route: limina_zrc_nd_v0_1\n- Lead variant: zrc_nd_3p5k_mpc_guard\n- Runs: 8\n- Sample events: 16\n- Articles: unmodified 3.5 kDa RC baseline, MPC-like 3.5 kDa lead, 10 kDa challenge, and no-module static control\n- Timepoints: 0 h and 24 h\n- Required outputs: pH, osmolality, conductivity, appearance/turbidity/visible precipitate, raw exports or instrument reports, and chain-of-custody by run_id\n\nImportant constraint: we need one result per provided run_id/sample_event/test field. Pooled averages or narrative certificates alone will not satisfy the study.\n\nCould you please confirm:\n- Can they run a minimal aqueous neural-medium material-blank screen before a full E&L program?\n- Can they preserve run_id-level aliquot identity and source-file provenance?\n- Can they add basic pH/osmolality/conductivity, or should they only be used after Phase A shows extractables or particulate concerns?\n- Whether you can fill or accept the provided Phase A CSV schema without changing column names\n- Minimum aliquot volume, sample container, and sample count requirements\n- Expected turnaround time, quote range, sample acceptance constraints, and whether SDS/lot documentation is required before shipping\n\nAttached/package files to review:\n- reports/zrc_nd_phase_a_service_request.md\n- data/zrc_nd_phase_a_sentinel_template.csv\n- reports/zrc_nd_phase_a_sentinel_packet.md\n- data/zrc_nd_phase_a_sentinel_sample_manifest.csv\n- data/zrc_nd_phase_a_sample_labels.csv\n- data/zrc_nd_phase_a_chain_of_custody.csv\n- reports/zrc_nd_phase_a_chain_of_custody.md\n- reports/zrc_nd_next_measurements.md\n- data/zrc_nd_3p5k_guard_validation_package.json\n- reports/zrc_nd_run_plan.md\n\nThis is exploratory R&D screening. We are not requesting a material suitability claim from the vendor; we only need traceable raw measurements to feed our internal Phase A gate.\n\nThank you.",
+      "name": "Jordi Labs Analytical Testing",
+      "scope_instruction": "Use for custom chemistry or E&L escalation if Phase A shows drift, particulates, or extractables concern.",
+      "service_type": "polymer_and_extractables_testing",
+      "source_url": "https://jordilabs.com/lab-testing/",
+      "subject": "RFQ: non-GLP acellular ZRC-ND Phase A medium-integrity measurements (Jordi Labs Analytical Testing)",
+      "unknowns_to_resolve": [
+        "Can they run a minimal aqueous neural-medium material-blank screen before a full E&L program?",
+        "Can they preserve run_id-level aliquot identity and source-file provenance?",
+        "Can they add basic pH/osmolality/conductivity, or should they only be used after Phase A shows extractables or particulate concerns?"
+      ]
+    }
+  ],
+  "scorecard_columns": [
+    "candidate_id",
+    "contact_date",
+    "reply_date",
+    "can_cover_full_phase_a",
+    "needs_split_scope",
+    "run_id_level_raw_data",
+    "phase_a_media_panel_coverage",
+    "csv_schema_acceptance",
+    "sample_handling_fit",
+    "source_file_provenance",
+    "non_glp_scope_control",
+    "turnaround_days",
+    "quoted_cost",
+    "decision",
+    "notes"
+  ],
+  "scoring_rubric": [
+    {
+      "criterion": "run_id_level_raw_data",
+      "pass_condition": "Vendor accepts one result per run_id/sample_event/test field and does not require pooled reporting.",
+      "weight": 5
+    },
+    {
+      "criterion": "phase_a_media_panel_coverage",
+      "pass_condition": "Vendor can report pH, osmolality, conductivity, and appearance/turbidity/visible precipitate, or clearly defines a split path for the missing field.",
+      "weight": 5
+    },
+    {
+      "criterion": "csv_schema_acceptance",
+      "pass_condition": "Vendor can fill or accept the ZRC-ND Phase A CSV without changing column names.",
+      "weight": 4
+    },
+    {
+      "criterion": "sample_handling_fit",
+      "pass_condition": "Vendor can handle nonclinical neural-medium aliquots exposed to regenerated-cellulose/module witness articles.",
+      "weight": 3
+    },
+    {
+      "criterion": "source_file_provenance",
+      "pass_condition": "Vendor can return raw exports, instrument reports, or stable filenames that reconcile to run_id/sample_id.",
+      "weight": 3
+    },
+    {
+      "criterion": "turnaround_and_cost",
+      "pass_condition": "Vendor can provide practical R&D quote, sample requirements, and turnaround for the 8-run Phase A package.",
+      "weight": 2
+    },
+    {
+      "criterion": "non_glp_scope_control",
+      "pass_condition": "Vendor can keep the first pass exploratory and avoid forcing a full GLP/E&L program before Phase A.",
+      "weight": 2
+    }
+  ],
+  "status": "ready_to_send_rfq"
+}

@@ -1,0 +1,182 @@
+[
+  {
+    "composite_score": 0.811,
+    "design_intent": "Conservative lead variant prioritizing trophic-factor retention and fouling resistance while preserving useful lactate/ammonium exchange.",
+    "evidence_refs": [
+      "dialysis_medium_partitioning_2020",
+      "low_binding_membrane_media_technical",
+      "zwitterionic_membrane_antifouling_2016",
+      "zwitterionic_cellulose_acetate_hfm_2026",
+      "bdnf_uniprot_p23560",
+      "ngf_uniprot_p01138",
+      "dialysis_mwco_principle_thermo"
+    ],
+    "gate_failures": [],
+    "id": "zrc_nd_3p5k_mpc_guard",
+    "lead_status": "lead",
+    "metrics": {
+      "factor_retention": 0.98,
+      "fouling_control": 0.9,
+      "integration": 0.773,
+      "leachable_safety": 0.764,
+      "monitorability": 0.85,
+      "novelty": 0.848,
+      "waste_clearance": 0.565
+    },
+    "mwco_kda": 3.5,
+    "name": "ZRC-ND-3.5M Guard",
+    "parent_technology": "limina_zrc_nd_v0_1",
+    "prefilter": "low_binding_pes_sfca",
+    "surface_modification": "mpc_like_zwitterionic"
+  },
+  {
+    "composite_score": 0.761,
+    "design_intent": "Baseline material stack to quantify whether zwitterionic modification is actually needed.",
+    "evidence_refs": [
+      "dialysis_medium_partitioning_2020",
+      "low_binding_membrane_media_technical",
+      "low_binding_rc_membrane_vendor",
+      "bdnf_uniprot_p23560",
+      "ngf_uniprot_p01138",
+      "dialysis_mwco_principle_thermo"
+    ],
+    "gate_failures": [],
+    "id": "zrc_nd_3p5k_unmodified_guard",
+    "lead_status": "screen",
+    "metrics": {
+      "factor_retention": 0.94,
+      "fouling_control": 0.64,
+      "integration": 0.886,
+      "leachable_safety": 0.832,
+      "monitorability": 0.85,
+      "novelty": 0.53,
+      "waste_clearance": 0.601
+    },
+    "mwco_kda": 3.5,
+    "name": "RC-3.5K Guard Baseline",
+    "parent_technology": "limina_zrc_nd_v0_1",
+    "prefilter": "low_binding_pes_sfca",
+    "surface_modification": "none"
+  },
+  {
+    "composite_score": 0.812,
+    "design_intent": "Higher-clearance variant that tests whether improved small-waste exchange justifies increased trophic-factor leakage risk.",
+    "evidence_refs": [
+      "dialysis_medium_partitioning_2020",
+      "zwitterionic_membrane_antifouling_2016",
+      "zwitterionic_cellulose_acetate_hfm_2026",
+      "bdnf_uniprot_p23560",
+      "ngf_uniprot_p01138",
+      "dialysis_mwco_principle_thermo"
+    ],
+    "gate_failures": [
+      "factor_retention"
+    ],
+    "id": "zrc_nd_10k_mpc_guard",
+    "lead_status": "screen",
+    "metrics": {
+      "factor_retention": 0.86,
+      "fouling_control": 0.9,
+      "integration": 0.773,
+      "leachable_safety": 0.764,
+      "monitorability": 0.85,
+      "novelty": 0.848,
+      "waste_clearance": 0.711
+    },
+    "mwco_kda": 10.0,
+    "name": "ZRC-ND-10M Guard",
+    "parent_technology": "limina_zrc_nd_v0_1",
+    "prefilter": "low_binding_pes_sfca",
+    "surface_modification": "mpc_like_zwitterionic"
+  },
+  {
+    "composite_score": 0.777,
+    "design_intent": "Stress-test variant for maximum clearance and unacceptable trophic-factor leakage boundary.",
+    "evidence_refs": [
+      "dialysis_medium_partitioning_2020",
+      "zwitterionic_membrane_antifouling_2016",
+      "bdnf_uniprot_p23560",
+      "ngf_uniprot_p01138",
+      "dialysis_mwco_principle_thermo"
+    ],
+    "gate_failures": [
+      "factor_retention"
+    ],
+    "id": "zrc_nd_20k_mpc_guard",
+    "lead_status": "screen",
+    "metrics": {
+      "factor_retention": 0.64,
+      "fouling_control": 0.9,
+      "integration": 0.773,
+      "leachable_safety": 0.764,
+      "monitorability": 0.85,
+      "novelty": 0.81,
+      "waste_clearance": 0.821
+    },
+    "mwco_kda": 20.0,
+    "name": "ZRC-ND-20M Guard",
+    "parent_technology": "limina_zrc_nd_v0_1",
+    "prefilter": "low_binding_pes_sfca",
+    "surface_modification": "mpc_like_zwitterionic"
+  },
+  {
+    "composite_score": 0.763,
+    "design_intent": "Maximum-retention variant, expected to be too slow unless membrane area or exposure is increased.",
+    "evidence_refs": [
+      "dialysis_medium_partitioning_2020",
+      "zwitterionic_membrane_antifouling_2016",
+      "bdnf_uniprot_p23560",
+      "ngf_uniprot_p01138",
+      "dialysis_mwco_principle_thermo"
+    ],
+    "gate_failures": [
+      "waste_clearance"
+    ],
+    "id": "zrc_nd_1k_mpc_guard",
+    "lead_status": "screen",
+    "metrics": {
+      "factor_retention": 1.0,
+      "fouling_control": 0.9,
+      "integration": 0.773,
+      "leachable_safety": 0.764,
+      "monitorability": 0.85,
+      "novelty": 0.81,
+      "waste_clearance": 0.319
+    },
+    "mwco_kda": 1.0,
+    "name": "ZRC-ND-1M Guard",
+    "parent_technology": "limina_zrc_nd_v0_1",
+    "prefilter": "low_binding_pes_sfca",
+    "surface_modification": "mpc_like_zwitterionic"
+  },
+  {
+    "composite_score": 0.756,
+    "design_intent": "High-clearance low-complexity baseline, expected to expose protein-retention and fouling penalties.",
+    "evidence_refs": [
+      "dialysis_medium_partitioning_2020",
+      "low_binding_rc_membrane_vendor",
+      "bdnf_uniprot_p23560",
+      "ngf_uniprot_p01138",
+      "dialysis_mwco_principle_thermo"
+    ],
+    "gate_failures": [
+      "factor_retention"
+    ],
+    "id": "zrc_nd_10k_unmodified_no_guard",
+    "lead_status": "screen",
+    "metrics": {
+      "factor_retention": 0.84,
+      "fouling_control": 0.6,
+      "integration": 0.924,
+      "leachable_safety": 0.842,
+      "monitorability": 0.75,
+      "novelty": 0.443,
+      "waste_clearance": 0.78
+    },
+    "mwco_kda": 10.0,
+    "name": "RC-10K No-Guard High-Clearance Baseline",
+    "parent_technology": "limina_zrc_nd_v0_1",
+    "prefilter": "none",
+    "surface_modification": "none"
+  }
+]

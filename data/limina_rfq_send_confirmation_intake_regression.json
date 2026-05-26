@@ -1,0 +1,18 @@
+{
+  "applied_status": "regression_rfq_send_confirmation_intake_applied",
+  "checks": {
+    "no_files_send_log_stays_pending": true,
+    "no_files_waits": true,
+    "text_confirmation_does_not_mark_sent": true,
+    "text_confirmation_needs_manual_review": true,
+    "valid_eml_applies_one_row": true,
+    "valid_eml_matches_expected_bundle": true,
+    "valid_eml_records_expected_bundle_hash": true,
+    "valid_eml_send_log_applies_tracker_date": true,
+    "wrong_bundle_does_not_apply_tracker": true,
+    "wrong_bundle_needs_review": true
+  },
+  "status": "pass",
+  "text_review_status": "regression_rfq_send_confirmation_intake_needs_review",
+  "wrong_bundle_status": "regression_rfq_send_confirmation_intake_needs_review"
+}

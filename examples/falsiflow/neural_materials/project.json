@@ -1,0 +1,222 @@
+{
+  "project": {
+    "id": "falsiflow_neural_materials_demo",
+    "name": "Falsiflow neural materials demo",
+    "domain": "neural-wetware-material-interface",
+    "version": "0.1.0"
+  },
+  "claim": {
+    "id": "alg_lam_pedot_lowdose_interface_claim",
+    "statement": "ALG-LAM-PEDOT low-dose neural hydrogel interface is stable in cell-free medium, improves electrical interface readouts, and is not worse than control in basic cell/network response.",
+    "requires_gates": [
+      "h_a_medium_stability",
+      "h_b_electrical_interface",
+      "h_c_network_response"
+    ]
+  },
+  "evidence_policy": {
+    "require_source_files": true,
+    "reject_placeholder_values": true,
+    "allowed_source_roots": [
+      "source_files"
+    ],
+    "required_metadata_fields": [
+      "source_file",
+      "measured_at",
+      "operator_or_agent"
+    ],
+    "placeholder_markers": [
+      "vendor_pending",
+      "raw_file_needed",
+      "not_measured"
+    ]
+  },
+  "gates": [
+    {
+      "id": "h_a_medium_stability",
+      "title": "H-A cell-free medium stability",
+      "samples": [
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "sample_id": "ha_demo_001"
+        }
+      ],
+      "required_fields": [
+        "ph_initial",
+        "ph_final",
+        "osmolality_initial_mosm",
+        "osmolality_final_mosm",
+        "conductivity_initial_ms_cm",
+        "conductivity_final_ms_cm",
+        "visible_debris_present"
+      ],
+      "derived_fields": [
+        {
+          "field": "ph_drift_24h_abs",
+          "operation": "abs_delta",
+          "left": "ph_final",
+          "right": "ph_initial"
+        },
+        {
+          "field": "osmolality_drift_24h_mosm",
+          "operation": "abs_delta",
+          "left": "osmolality_final_mosm",
+          "right": "osmolality_initial_mosm"
+        },
+        {
+          "field": "conductivity_drift_24h_pct",
+          "operation": "abs_pct_change",
+          "before": "conductivity_initial_ms_cm",
+          "after": "conductivity_final_ms_cm"
+        }
+      ],
+      "acceptance_rules": [
+        {
+          "field": "ph_drift_24h_abs",
+          "operator": "<=",
+          "value": 0.2,
+          "reason": "pH drift must stay inside the H-A stability window."
+        },
+        {
+          "field": "osmolality_drift_24h_mosm",
+          "operator": "<=",
+          "value": 20,
+          "reason": "Osmolality drift must stay inside the H-A stability window."
+        },
+        {
+          "field": "conductivity_drift_24h_pct",
+          "operator": "<=",
+          "value": 10,
+          "reason": "Conductivity drift must stay inside the H-A stability window."
+        },
+        {
+          "field": "visible_debris_present",
+          "operator": "==",
+          "value": false,
+          "reason": "No visible debris or precipitation should be present."
+        }
+      ]
+    },
+    {
+      "id": "h_b_electrical_interface",
+      "title": "H-B electrical interface benefit",
+      "samples": [
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "sample_id": "hb_demo_001"
+        }
+      ],
+      "required_fields": [
+        "impedance_1khz_control_ohm",
+        "impedance_1khz_candidate_ohm",
+        "charge_storage_control_mC_cm2",
+        "charge_storage_candidate_mC_cm2",
+        "noise_control_uvrms",
+        "noise_candidate_uvrms"
+      ],
+      "derived_fields": [
+        {
+          "field": "impedance_reduction_1khz_pct",
+          "operation": "reduction_pct",
+          "before": "impedance_1khz_control_ohm",
+          "after": "impedance_1khz_candidate_ohm"
+        },
+        {
+          "field": "charge_storage_gain_pct",
+          "operation": "gain_pct",
+          "before": "charge_storage_control_mC_cm2",
+          "after": "charge_storage_candidate_mC_cm2"
+        },
+        {
+          "field": "noise_increase_uvrms",
+          "operation": "subtract",
+          "left": "noise_candidate_uvrms",
+          "right": "noise_control_uvrms"
+        }
+      ],
+      "acceptance_rules": [
+        {
+          "field": "impedance_reduction_1khz_pct",
+          "operator": ">=",
+          "value": 20,
+          "reason": "The material must show a measurable impedance benefit."
+        },
+        {
+          "field": "charge_storage_gain_pct",
+          "operator": ">=",
+          "value": 15,
+          "reason": "The material must improve charge-storage readouts."
+        },
+        {
+          "field": "noise_increase_uvrms",
+          "operator": "<=",
+          "value": 2,
+          "reason": "Electrical noise must not rise enough to erase the benefit."
+        }
+      ]
+    },
+    {
+      "id": "h_c_network_response",
+      "title": "H-C cell and network response",
+      "samples": [
+        {
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "sample_id": "hc_demo_candidate"
+        },
+        {
+          "candidate_id": "hydrogel_laminin_control",
+          "sample_id": "hc_demo_control"
+        }
+      ],
+      "required_fields": [
+        "viability_pct",
+        "burst_rate_hz",
+        "inflammation_marker"
+      ],
+      "derived_fields": [
+        {
+          "field": "burst_rate_ratio_vs_control",
+          "operation": "ratio",
+          "numerator": "burst_rate_hz",
+          "denominator": {
+            "candidate_id": "hydrogel_laminin_control",
+            "sample_id": "hc_demo_control",
+            "field": "burst_rate_hz"
+          }
+        },
+        {
+          "field": "inflammation_marker_ratio_vs_control",
+          "operation": "ratio",
+          "numerator": "inflammation_marker",
+          "denominator": {
+            "candidate_id": "hydrogel_laminin_control",
+            "sample_id": "hc_demo_control",
+            "field": "inflammation_marker"
+          }
+        }
+      ],
+      "acceptance_rules": [
+        {
+          "field": "viability_pct",
+          "operator": ">=",
+          "value": 85,
+          "reason": "Cell viability must remain acceptable."
+        },
+        {
+          "field": "burst_rate_ratio_vs_control",
+          "operator": ">=",
+          "value": 0.8,
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "reason": "Network activity must not be materially worse than control."
+        },
+        {
+          "field": "inflammation_marker_ratio_vs_control",
+          "operator": "<=",
+          "value": 1.2,
+          "candidate_id": "alg_lam_pedot_lowdose_v0_1",
+          "reason": "Inflammatory response must not materially exceed control."
+        }
+      ]
+    }
+  ]
+}

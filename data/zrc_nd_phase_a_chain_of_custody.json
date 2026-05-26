@@ -1,0 +1,53 @@
+{
+  "active_candidate": "limina_zrc_nd_v0_1",
+  "article_ids": [
+    "baseline_rc_3p5m_guard",
+    "challenge_zrc_nd_10m_guard",
+    "lead_zrc_nd_3p5m_guard",
+    "no_module_static_control"
+  ],
+  "blank_fields_to_complete": [
+    "prepared_by",
+    "prepared_at",
+    "module_or_tube_id",
+    "membrane_lot",
+    "prefilter_lot",
+    "housing_material",
+    "medium_name",
+    "medium_lot",
+    "initial_volume_ml",
+    "exposure_started_at",
+    "exposure_ended_at",
+    "temperature_c",
+    "released_by",
+    "released_at",
+    "carrier_or_transfer_method",
+    "received_by",
+    "received_at",
+    "condition_on_receipt",
+    "storage_location",
+    "instrument_export_returned",
+    "deviation_notes"
+  ],
+  "chain_of_custody_row_count": 16,
+  "non_evidence_boundary": "Labels and blank custody rows are logistics artifacts only. ZRC-ND Phase A remains unmeasured until real medium-integrity values and provenance are returned.",
+  "outputs": {
+    "chain_of_custody_csv": "data/zrc_nd_phase_a_chain_of_custody.csv",
+    "json": "data/zrc_nd_phase_a_chain_of_custody.json",
+    "report": "reports/zrc_nd_phase_a_chain_of_custody.md",
+    "sample_labels_csv": "data/zrc_nd_phase_a_sample_labels.csv"
+  },
+  "pending_transfer_rows": 16,
+  "purpose": "Sample labels and blank chain-of-custody rows for the real ZRC-ND Phase A measurement handoff.",
+  "rejection_rules": [
+    "Do not treat a label row, planned container ID, or blank custody row as measured evidence.",
+    "Do not pool initial and final events before pH, osmolality, or conductivity entry.",
+    "Do not replace missing transfer fields with pending, TBD, unknown, synthetic, or fixture markers.",
+    "Do not accept returned Phase A rows unless instrument exports and deviation notes can be reconciled to run_id."
+  ],
+  "sample_label_count": 16,
+  "sample_manifest_rows": 16,
+  "service_request_status": "ready_to_request_real_phase_a_measurements",
+  "status": "ready_for_phase_a_sample_handoff",
+  "unique_run_count": 8
+}

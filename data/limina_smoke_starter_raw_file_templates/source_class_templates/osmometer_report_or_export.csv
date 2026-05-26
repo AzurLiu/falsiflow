@@ -1,0 +1,3 @@
+queue_id,run_id,sample_event,target_field,measured_at,operator_or_agent,instrument_id,value,unit,source_file_to_save_as,method_or_record_id,notes,osmolality_mOsm_kg,osmometer_id,report_id,vendor_or_lab
+SQ-0105,NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h,initial,osmolality,,,,,mOsm/kg,data/source_files/smoke/h_a/NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h/initial_osmolality_initial_mOsm_kg_osmometer_report_or_export.pdf,,,,,,
+SQ-0108,NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h,final,osmolality,,,,,mOsm/kg,data/source_files/smoke/h_a/NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h/final_osmolality_final_mOsm_kg_osmometer_report_or_export.pdf,,,,,,

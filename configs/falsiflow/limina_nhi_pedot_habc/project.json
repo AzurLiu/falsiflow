@@ -1,0 +1,417 @@
+{
+  "claim": {
+    "id": "limina_nhi_pedot_habc_evidence_completeness",
+    "requires_gates": [
+      "h_a_medium_stability",
+      "h_b_electrical_interface",
+      "h_c_network_response"
+    ],
+    "statement": "LIMINA NHI-PEDOT H-A/H-B/H-C evidence pack is complete enough for Falsiflow provenance audit. This is not a material suitability claim."
+  },
+  "evidence_policy": {
+    "allowed_source_roots": [
+      "data/source_files",
+      "data/source_files",
+      "data/nhi_pedot_h_a_vendor_return_inbox/external_lab_exports"
+    ],
+    "placeholder_markers": [
+      "pending_real_measurement",
+      "record_actual",
+      "record_exact",
+      "record_lot",
+      "source_file_missing",
+      "to_be_recorded",
+      "not_measured"
+    ],
+    "reject_placeholder_values": true,
+    "require_source_files": true,
+    "required_metadata_fields": [
+      "source_file",
+      "measured_at",
+      "operator_or_agent"
+    ],
+    "source_file_base_dir": "../../.."
+  },
+  "gates": [
+    {
+      "acceptance_rules": [
+        {
+          "field": "ph_drift_abs",
+          "operator": "<=",
+          "reason": "H-A pH drift must remain within 0.10 pH units.",
+          "value": 0.1
+        },
+        {
+          "field": "osmolality_drift_pct",
+          "operator": "<=",
+          "reason": "H-A osmolality drift must remain within 5 percent.",
+          "value": 5
+        },
+        {
+          "field": "conductivity_drift_pct",
+          "operator": "<=",
+          "reason": "H-A conductivity drift must remain within 5 percent.",
+          "value": 5
+        },
+        {
+          "field": "physical_inspection.visible_precipitate",
+          "operator": "==",
+          "reason": "H-A must show no visible precipitate.",
+          "value": false
+        },
+        {
+          "field": "physical_inspection.visible_shedding",
+          "operator": "==",
+          "reason": "H-A must show no visible shedding.",
+          "value": false
+        },
+        {
+          "field": "physical_inspection.swelling_fraction",
+          "operator": "<=",
+          "reason": "H-A swelling must remain below 20 percent.",
+          "value": 0.2
+        }
+      ],
+      "derived_fields": [
+        {
+          "field": "ph_drift_abs",
+          "left": "final.pH",
+          "operation": "abs_delta",
+          "right": "initial.pH"
+        },
+        {
+          "after": "final.osmolality",
+          "before": "initial.osmolality",
+          "field": "osmolality_drift_pct",
+          "operation": "abs_pct_change"
+        },
+        {
+          "after": "final.conductivity",
+          "before": "initial.conductivity",
+          "field": "conductivity_drift_pct",
+          "operation": "abs_pct_change"
+        }
+      ],
+      "id": "h_a_medium_stability",
+      "required_fields": [
+        "final.conductivity",
+        "final.osmolality",
+        "final.pH",
+        "initial.conductivity",
+        "initial.osmolality",
+        "initial.pH",
+        "metadata.date",
+        "metadata.electrode_material",
+        "metadata.laminin_or_peptide_density",
+        "metadata.mea_coupon_id",
+        "metadata.medium_lot",
+        "metadata.medium_name",
+        "metadata.sterilization_or_aseptic_protocol",
+        "metadata.temperature_c",
+        "physical_inspection.delamination_score",
+        "physical_inspection.optical_transparency_fraction",
+        "physical_inspection.swelling_fraction",
+        "physical_inspection.visible_precipitate",
+        "physical_inspection.visible_shedding"
+      ],
+      "samples": [
+        {
+          "candidate_id": "challenge_nhi_pedot_high_loading",
+          "sample_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-0h"
+        },
+        {
+          "candidate_id": "challenge_nhi_pedot_high_loading",
+          "sample_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-24h"
+        },
+        {
+          "candidate_id": "challenge_nhi_pedot_high_loading",
+          "sample_id": "NHIPEDOT-H-A-challenge_nhi_pedot_high_loading-R1-72h"
+        },
+        {
+          "candidate_id": "hydrogel_laminin_control",
+          "sample_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-0h"
+        },
+        {
+          "candidate_id": "hydrogel_laminin_control",
+          "sample_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-24h"
+        },
+        {
+          "candidate_id": "hydrogel_laminin_control",
+          "sample_id": "NHIPEDOT-H-A-hydrogel_laminin_control-R1-72h"
+        },
+        {
+          "candidate_id": "lead_nhi_pedot_low_loading",
+          "sample_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-0h"
+        },
+        {
+          "candidate_id": "lead_nhi_pedot_low_loading",
+          "sample_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-24h"
+        },
+        {
+          "candidate_id": "lead_nhi_pedot_low_loading",
+          "sample_id": "NHIPEDOT-H-A-lead_nhi_pedot_low_loading-R1-72h"
+        },
+        {
+          "candidate_id": "no_coating_mea_control",
+          "sample_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-0h"
+        },
+        {
+          "candidate_id": "no_coating_mea_control",
+          "sample_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-24h"
+        },
+        {
+          "candidate_id": "no_coating_mea_control",
+          "sample_id": "NHIPEDOT-H-A-no_coating_mea_control-R1-72h"
+        }
+      ],
+      "title": "H-A medium stability and physical integrity"
+    },
+    {
+      "acceptance_rules": [
+        {
+          "candidate_id_contains": "lead_nhi_pedot_low_loading",
+          "field": "eis_1khz_reduction_pct",
+          "operator": ">=",
+          "reason": "Lead H-B electrical readout must improve impedance by at least 25 percent.",
+          "value": 25
+        },
+        {
+          "candidate_id_contains": "lead_nhi_pedot_low_loading",
+          "field": "charge_storage_gain_pct",
+          "operator": ">=",
+          "reason": "Lead H-B electrical readout must improve charge storage by at least 15 percent.",
+          "value": 15
+        },
+        {
+          "field": "swelling_fraction",
+          "operator": "<=",
+          "reason": "H-B swelling must remain below 20 percent.",
+          "value": 0.2
+        },
+        {
+          "field": "delamination_score",
+          "operator": "<=",
+          "reason": "H-B must show no delamination.",
+          "value": 0
+        },
+        {
+          "field": "optical_transparency_fraction",
+          "operator": ">=",
+          "reason": "H-B transparency must remain inspectable.",
+          "value": 0.8
+        }
+      ],
+      "derived_fields": [
+        {
+          "after": "eis_1khz_final_ohm",
+          "before": "eis_1khz_initial_ohm",
+          "field": "eis_1khz_reduction_pct",
+          "operation": "reduction_pct"
+        },
+        {
+          "after": "charge_storage_capacity_final",
+          "before": "charge_storage_capacity_initial",
+          "field": "charge_storage_gain_pct",
+          "operation": "gain_pct"
+        }
+      ],
+      "id": "h_b_electrical_interface",
+      "required_fields": [
+        "charge_storage_capacity_final",
+        "charge_storage_capacity_initial",
+        "crosslinking_protocol",
+        "date",
+        "delamination_score",
+        "eis_1khz_final_ohm",
+        "eis_1khz_initial_ohm",
+        "electrode_material",
+        "hydrogel_matrix",
+        "laminin_or_peptide_density",
+        "mea_coupon_id",
+        "medium_lot",
+        "medium_name",
+        "operator_or_agent",
+        "optical_transparency_fraction",
+        "pedot_pss_loading_fraction",
+        "pedot_pss_pre_rinse_protocol",
+        "sterilization_or_aseptic_protocol",
+        "swelling_fraction",
+        "temperature_c"
+      ],
+      "samples": [
+        {
+          "candidate_id": "challenge_nhi_pedot_high_loading",
+          "sample_id": "NHIPEDOT-H-B-challenge_nhi_pedot_high_loading-R1-24hsoak"
+        },
+        {
+          "candidate_id": "challenge_nhi_pedot_high_loading",
+          "sample_id": "NHIPEDOT-H-B-challenge_nhi_pedot_high_loading-R1-72hsoak"
+        },
+        {
+          "candidate_id": "challenge_nhi_pedot_high_loading",
+          "sample_id": "NHIPEDOT-H-B-challenge_nhi_pedot_high_loading-R1-post_cycling"
+        },
+        {
+          "candidate_id": "challenge_nhi_pedot_high_loading",
+          "sample_id": "NHIPEDOT-H-B-challenge_nhi_pedot_high_loading-R1-pre_soak"
+        },
+        {
+          "candidate_id": "hydrogel_laminin_control",
+          "sample_id": "NHIPEDOT-H-B-hydrogel_laminin_control-R1-24hsoak"
+        },
+        {
+          "candidate_id": "hydrogel_laminin_control",
+          "sample_id": "NHIPEDOT-H-B-hydrogel_laminin_control-R1-72hsoak"
+        },
+        {
+          "candidate_id": "hydrogel_laminin_control",
+          "sample_id": "NHIPEDOT-H-B-hydrogel_laminin_control-R1-post_cycling"
+        },
+        {
+          "candidate_id": "hydrogel_laminin_control",
+          "sample_id": "NHIPEDOT-H-B-hydrogel_laminin_control-R1-pre_soak"
+        },
+        {
+          "candidate_id": "lead_nhi_pedot_low_loading",
+          "sample_id": "NHIPEDOT-H-B-lead_nhi_pedot_low_loading-R1-24hsoak"
+        },
+        {
+          "candidate_id": "lead_nhi_pedot_low_loading",
+          "sample_id": "NHIPEDOT-H-B-lead_nhi_pedot_low_loading-R1-72hsoak"
+        },
+        {
+          "candidate_id": "lead_nhi_pedot_low_loading",
+          "sample_id": "NHIPEDOT-H-B-lead_nhi_pedot_low_loading-R1-post_cycling"
+        },
+        {
+          "candidate_id": "lead_nhi_pedot_low_loading",
+          "sample_id": "NHIPEDOT-H-B-lead_nhi_pedot_low_loading-R1-pre_soak"
+        }
+      ],
+      "title": "H-B electrical and physical interface benefit"
+    },
+    {
+      "acceptance_rules": [
+        {
+          "candidate_id_contains": "lead_nhi_pedot_low_loading",
+          "field": "viability_fraction",
+          "operator": ">=",
+          "reason": "H-C lead viability must remain non-inferior enough to continue.",
+          "value": 0.85
+        },
+        {
+          "candidate_id_contains": "lead_nhi_pedot_low_loading",
+          "field": "ldh_fold_control",
+          "operator": "<=",
+          "reason": "H-C lead cytotoxicity must not materially exceed control.",
+          "value": 1.2
+        },
+        {
+          "candidate_id_contains": "lead_nhi_pedot_low_loading",
+          "field": "electrode_yield_fraction",
+          "operator": ">=",
+          "reason": "H-C lead electrode yield must remain acceptable.",
+          "value": 0.8
+        }
+      ],
+      "id": "h_c_network_response",
+      "required_fields": [
+        "burst_rate_hz",
+        "cell_model",
+        "crosslinking_protocol",
+        "date",
+        "electrode_material",
+        "electrode_yield_fraction",
+        "hydrogel_matrix",
+        "laminin_or_peptide_density",
+        "ldh_fold_control",
+        "mea_coupon_id",
+        "mean_neurite_length_um",
+        "medium_lot",
+        "medium_name",
+        "neurite_coverage_fraction",
+        "operator_or_agent",
+        "pedot_pss_loading_fraction",
+        "pedot_pss_pre_rinse_protocol",
+        "seeding_density",
+        "spike_rate_hz",
+        "sterilization_or_aseptic_protocol",
+        "temperature_c",
+        "viability_fraction"
+      ],
+      "samples": [
+        {
+          "candidate_id": "challenge_nhi_pedot_high_loading",
+          "sample_id": "NHIPEDOT-H-C-challenge_nhi_pedot_high_loading-R1-14d"
+        },
+        {
+          "candidate_id": "challenge_nhi_pedot_high_loading",
+          "sample_id": "NHIPEDOT-H-C-challenge_nhi_pedot_high_loading-R1-24h"
+        },
+        {
+          "candidate_id": "challenge_nhi_pedot_high_loading",
+          "sample_id": "NHIPEDOT-H-C-challenge_nhi_pedot_high_loading-R1-28difearlygatespass"
+        },
+        {
+          "candidate_id": "challenge_nhi_pedot_high_loading",
+          "sample_id": "NHIPEDOT-H-C-challenge_nhi_pedot_high_loading-R1-7d"
+        },
+        {
+          "candidate_id": "hydrogel_laminin_control",
+          "sample_id": "NHIPEDOT-H-C-hydrogel_laminin_control-R1-14d"
+        },
+        {
+          "candidate_id": "hydrogel_laminin_control",
+          "sample_id": "NHIPEDOT-H-C-hydrogel_laminin_control-R1-24h"
+        },
+        {
+          "candidate_id": "hydrogel_laminin_control",
+          "sample_id": "NHIPEDOT-H-C-hydrogel_laminin_control-R1-28difearlygatespass"
+        },
+        {
+          "candidate_id": "hydrogel_laminin_control",
+          "sample_id": "NHIPEDOT-H-C-hydrogel_laminin_control-R1-7d"
+        },
+        {
+          "candidate_id": "laminin_only_control",
+          "sample_id": "NHIPEDOT-H-C-laminin_only_control-R1-14d"
+        },
+        {
+          "candidate_id": "laminin_only_control",
+          "sample_id": "NHIPEDOT-H-C-laminin_only_control-R1-24h"
+        },
+        {
+          "candidate_id": "laminin_only_control",
+          "sample_id": "NHIPEDOT-H-C-laminin_only_control-R1-28difearlygatespass"
+        },
+        {
+          "candidate_id": "laminin_only_control",
+          "sample_id": "NHIPEDOT-H-C-laminin_only_control-R1-7d"
+        },
+        {
+          "candidate_id": "lead_nhi_pedot_low_loading",
+          "sample_id": "NHIPEDOT-H-C-lead_nhi_pedot_low_loading-R1-14d"
+        },
+        {
+          "candidate_id": "lead_nhi_pedot_low_loading",
+          "sample_id": "NHIPEDOT-H-C-lead_nhi_pedot_low_loading-R1-24h"
+        },
+        {
+          "candidate_id": "lead_nhi_pedot_low_loading",
+          "sample_id": "NHIPEDOT-H-C-lead_nhi_pedot_low_loading-R1-28difearlygatespass"
+        },
+        {
+          "candidate_id": "lead_nhi_pedot_low_loading",
+          "sample_id": "NHIPEDOT-H-C-lead_nhi_pedot_low_loading-R1-7d"
+        }
+      ],
+      "title": "H-C cell and network response"
+    }
+  ],
+  "project": {
+    "domain": "limina-neural-materials",
+    "id": "limina_nhi_pedot_habc_falsiflow",
+    "name": "Limina Nhi Pedot Habc Falsiflow",
+    "version": "0.1.0"
+  }
+}

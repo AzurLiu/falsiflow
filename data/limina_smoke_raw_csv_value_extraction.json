@@ -1,0 +1,26 @@
+{
+  "boundary": "This extractor reads only existing raw CSV/TSV files in allowed source-file roots. It writes a non-evidence value sidecar for the importer; missing files produce no synthetic rows.",
+  "generated_artifacts": {
+    "json": "data/limina_smoke_raw_csv_value_extraction.json",
+    "report": "reports/limina_smoke_raw_csv_value_extraction.md",
+    "values_out": "data/limina_smoke_raw_csv_extracted_values.csv"
+  },
+  "inputs": {
+    "execution_pack": "data/limina_smoke_starter_execution_pack.csv",
+    "source_manifest": "data/limina_source_file_manifest.json"
+  },
+  "issues": [],
+  "source_files": [],
+  "status": "smoke_raw_csv_value_extraction_no_raw_csv",
+  "summary": {
+    "ambiguous_rows": 0,
+    "error_count": 0,
+    "extracted_rows": 0,
+    "plan_rows": 19,
+    "raw_csv_found": 0,
+    "raw_csv_missing": 9,
+    "raw_csv_source_files": 0,
+    "raw_csv_unsupported": 10,
+    "warning_count": 0
+  }
+}

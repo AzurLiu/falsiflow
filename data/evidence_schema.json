@@ -1,0 +1,33 @@
+{
+  "version": "0.1",
+  "record_type": "limina_evidence",
+  "required_fields": [
+    "id",
+    "related_priority",
+    "material_or_component",
+    "claim",
+    "assay_or_context",
+    "readouts",
+    "result_summary",
+    "risk_or_caveat",
+    "source_title",
+    "source_url",
+    "evidence_type",
+    "confidence"
+  ],
+  "field_notes": {
+    "id": "Stable snake_case evidence id.",
+    "related_priority": "Example: LIMINA-External-1.",
+    "material_or_component": "Material, module, membrane, device component, or method.",
+    "claim": "One concise claim supported by the source.",
+    "assay_or_context": "Experimental, review, bioprocess, neural culture, organ-on-chip, or vendor-spec context.",
+    "readouts": "Measured or proposed readouts relevant to LIMINA.",
+    "result_summary": "Short paraphrase of the relevant result.",
+    "risk_or_caveat": "Known limitation, uncertainty, or transfer-risk to CL1-like neural wetware.",
+    "source_title": "Human-readable source title.",
+    "source_url": "Source URL.",
+    "evidence_type": "review, experimental, technical_note, vendor_spec, patent, inference.",
+    "confidence": "low, medium, high."
+  }
+}
+

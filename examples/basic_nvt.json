@@ -1,0 +1,16 @@
+{
+  "atoms": {
+    "coord": [0.0, 0.0, 0.0, 0.0, 0.0, 1.5],
+    "numbers": [1, 1],
+    "cell": [10, 0, 0, 0, 10, 0, 0, 0, 10],
+    "pbc": [true, true, true]
+  },
+  "config": {
+    "temperature": 300.0,
+    "dt": 1.0,
+    "md_time_max": 0.1,
+    "nvt": true,
+    "save_interval": 10
+  },
+  "info": "basic_h2_nvt_smoke_test"
+}

@@ -1,0 +1,30 @@
+{
+  "version": "0.1",
+  "technology_id": "limina_zrc_nd_v0_1",
+  "lead_variant_id": "zrc_nd_3p5k_mpc_guard",
+  "non_cell_validation_required": {
+    "validation_result_status": "lead_passes_non_cell_gates",
+    "aggregate_lead_superiority": "pass",
+    "required_phase_coverage": ["A", "B", "C"],
+    "min_passed_lead_replicates_per_phase": 3,
+    "allowed_failed_lead_rows": 0
+  },
+  "biological_followup_required": {
+    "bio_result_status": "bio_followup_passes_gates",
+    "aggregate_bio_superiority": "pass",
+    "required_phase_coverage": ["D1", "D2", "D3"],
+    "min_passed_lead_replicates_per_phase": 3,
+    "allowed_failed_lead_rows": 0
+  },
+  "suitability_required": {
+    "minimum_claim": "first suitable material technology for CL1-like neural wetware support",
+    "requires_non_cell_validation": true,
+    "requires_biological_followup": true,
+    "required_biological_evidence": [
+      "conditioned-medium viability or toxicity screen",
+      "neurite/morphology or equivalent neural-health readout",
+      "MEA/network activity or equivalent functional stability readout if available",
+      "no unresolved material blank or extractables issue"
+    ]
+  }
+}

@@ -1,0 +1,2 @@
+gate_id,candidate_id,sample_id,field,value,source_file,measured_at,operator_or_agent,instrument_id,notes
+contact_provenance,external_lab_demo,vendor_demo_001,named_contact_recorded,waiting_reply,source_files/vendor_reply_record.csv,2026-05-25T08:00:00Z,falsiflow_demo_operator,,Placeholder should block readiness.

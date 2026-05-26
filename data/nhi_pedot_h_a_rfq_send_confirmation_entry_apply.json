@@ -1,0 +1,21 @@
+{
+  "boundary": "Applying RFQ send-confirmation entries updates outreach logistics only. It does not create measurement evidence or advance material suitability gates.",
+  "generated_artifacts": {
+    "json": "data/nhi_pedot_h_a_rfq_send_confirmation_entry_apply.json",
+    "report": "reports/nhi_pedot_h_a_rfq_send_confirmation_entry_apply.md"
+  },
+  "inputs": {
+    "send_log": "data/nhi_pedot_h_a_rfq_send_log.csv",
+    "sheet": "data/nhi_pedot_h_a_rfq_send_confirmation_entry_sheet.csv"
+  },
+  "purpose": "Apply reviewed non-EML H-A RFQ send confirmations into the send log without treating outreach as evidence.",
+  "rows": [],
+  "status": "h_a_rfq_send_confirmation_entry_apply_no_apply_rows",
+  "summary": {
+    "applied_rows": 0,
+    "apply_rows": 0,
+    "blocked_rows": 0,
+    "error_count": 0,
+    "sheet_rows": 4
+  }
+}

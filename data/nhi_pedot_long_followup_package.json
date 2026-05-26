@@ -1,0 +1,191 @@
+{
+  "id": "nhi_pedot_long_followup_v0_1",
+  "parent_validation_package": "nhi_pedot_laminin_validation_v0_1",
+  "lead_variant_id": "nhi_pedot_low_loading_laminin",
+  "title": "NHI-PEDOT long-duration MEA network follow-up package",
+  "objective": "Determine whether the low-loading NHI-PEDOT laminin hydrogel interphase preserves material integrity, electrode performance, neural health, and MEA network activity over a longer CL1-like culture window after H-A/H-B/H-C coupon gates pass.",
+  "scope": {
+    "stage": "long-duration cell-contact MEA/network validation after coupon gates",
+    "entry_condition": "Run only after NHI-PEDOT H-A/H-B/H-C gates pass for the low-loading lead.",
+    "sample_type": "MEA coupons or disposable MEA cultures coated with laminin-only, hydrogel-laminin control, low-loading NHI-PEDOT lead, and high-loading challenge articles.",
+    "claim_after_success": "Supports first suitability claim for a CL1-like cell-contact MEA interphase, pending actual CL1 hardware integration constraints.",
+    "not_in_scope": "Regulatory approval, production CL1 modification, chronic implantable safety, and irreversible deployment into unavailable CL1 hardware."
+  },
+  "test_articles": [
+    {
+      "id": "long_laminin_only_control",
+      "source_article_id": "laminin_only_control",
+      "variant_id": "laminin_only_mea",
+      "role": "standard biochemical adhesion control"
+    },
+    {
+      "id": "long_hydrogel_laminin_control",
+      "source_article_id": "hydrogel_laminin_control",
+      "variant_id": "hydrogel_laminin_no_pedot",
+      "role": "soft matrix comparator"
+    },
+    {
+      "id": "long_lead_nhi_pedot_low_loading",
+      "source_article_id": "lead_nhi_pedot_low_loading",
+      "variant_id": "nhi_pedot_low_loading_laminin",
+      "role": "lead long-duration candidate"
+    },
+    {
+      "id": "long_challenge_nhi_pedot_high_loading",
+      "source_article_id": "challenge_nhi_pedot_high_loading",
+      "variant_id": "nhi_pedot_high_loading_laminin",
+      "role": "conductivity-versus-toxicity boundary comparator"
+    },
+    {
+      "id": "long_positive_toxicity_control",
+      "source_article_id": null,
+      "variant_id": null,
+      "role": "assay sensitivity control"
+    }
+  ],
+  "run_matrix": [
+    {
+      "phase": "L1",
+      "name": "Long material and electrochemical stability",
+      "purpose": "Track hydrogel integrity, shedding, optical access, impedance drift, and charge-storage retention before claiming long-culture suitability.",
+      "articles": ["long_laminin_only_control", "long_hydrogel_laminin_control", "long_lead_nhi_pedot_low_loading", "long_challenge_nhi_pedot_high_loading"],
+      "minimum_replicates": 3,
+      "timepoints": ["0 d", "7 d", "14 d", "28 d", "42 d"],
+      "must_pass_before": "L2/L3 interpretation"
+    },
+    {
+      "phase": "L2",
+      "name": "Long neural health and spontaneous network stability",
+      "purpose": "Measure whether the lead preserves viability, morphology, electrode yield, spontaneous spiking, burst structure, and synchrony over a CL1-like culture window.",
+      "articles": ["long_laminin_only_control", "long_hydrogel_laminin_control", "long_lead_nhi_pedot_low_loading", "long_challenge_nhi_pedot_high_loading", "long_positive_toxicity_control"],
+      "minimum_replicates": 3,
+      "timepoints": ["7 d", "14 d", "28 d", "42 d"],
+      "must_pass_before": "first suitability claim"
+    },
+    {
+      "phase": "L3",
+      "name": "Stimulus-recording resilience and recovery",
+      "purpose": "Check whether the interphase maintains usable MEA signal and network recovery after controlled stimulation/recording stress.",
+      "articles": ["long_laminin_only_control", "long_hydrogel_laminin_control", "long_lead_nhi_pedot_low_loading", "long_challenge_nhi_pedot_high_loading"],
+      "minimum_replicates": 3,
+      "timepoints": ["pre-stim", "post-stim", "24 h recovery"],
+      "must_pass_before": "first suitability claim"
+    }
+  ],
+  "assay_panel": [
+    {
+      "id": "long_material_integrity",
+      "readout": "Visible shedding, delamination, swelling, optical transparency, electrode-window access, and imaging compatibility",
+      "method_class": "longitudinal microscopy, image log, and physical inspection",
+      "evidence_refs": ["hydrogel_neural_tissue_2020", "gelma_pedot_micropatterning_2026"]
+    },
+    {
+      "id": "long_electrochemical_stability",
+      "readout": "1 kHz impedance drift, charge-storage retention, baseline noise, and electrode yield",
+      "method_class": "MEA or electrochemical workstation longitudinal measurement",
+      "evidence_refs": ["pedot_brain_monitoring_2025", "pedot_neural_culture_hydrogel_2025"]
+    },
+    {
+      "id": "long_neural_health",
+      "readout": "Viability, LDH or equivalent cytotoxicity, neurite/network coverage, and morphology stress flags",
+      "method_class": "viability assay and high-content neural imaging",
+      "evidence_refs": ["iso_10993_5_cytotoxicity_extract_fda", "dnt_nam_viability_neurite_mea_2022"]
+    },
+    {
+      "id": "long_network_function",
+      "readout": "Spontaneous spike rate, burst rate, synchrony, electrode yield, and activity drift relative to hydrogel-laminin control",
+      "method_class": "MEA network recording and analysis",
+      "evidence_refs": ["neuronal_network_material_biocompatibility_mea_2013", "dnt_nam_viability_neurite_mea_2022"]
+    },
+    {
+      "id": "stimulus_recovery",
+      "readout": "Post-stimulation signal recovery, spike/burst recovery, and irreversible impedance degradation",
+      "method_class": "controlled MEA stimulation/recording stress test",
+      "evidence_refs": ["pedot_brain_monitoring_2025", "neuronal_network_material_biocompatibility_mea_2013"]
+    }
+  ],
+  "acceptance_gates": [
+    {
+      "id": "long_material_integrity_gate",
+      "criterion": "Lead shows no visible shedding, delamination score <= 0.5, swelling <= 20 percent, optical transparency >= 0.75, and electrode-window access preserved through the long window.",
+      "failure_response": "Do not claim suitability; change matrix, anchoring chemistry, thickness, or PEDOT:PSS loading."
+    },
+    {
+      "id": "long_electrochemical_stability_gate",
+      "criterion": "Lead 1 kHz impedance drift remains within 25 percent of its initial value or stays at least 20 percent better than hydrogel-laminin control, with charge-storage retention >= 80 percent.",
+      "failure_response": "Do not claim MEA suitability; change conductive-domain geometry, stabilization, or rinse protocol."
+    },
+    {
+      "id": "long_neural_health_gate",
+      "criterion": "Lead keeps viability >= 90 percent of hydrogel-laminin control, LDH/cytotoxicity <= 120 percent of control, neurite/network coverage >= 85 percent of control, and morphology stress score <= 1.",
+      "failure_response": "Treat the formulation as biologically unsafe or under-optimized; lower loading or change presentation chemistry."
+    },
+    {
+      "id": "long_network_stability_gate",
+      "criterion": "Lead keeps electrode yield >= 90 percent of hydrogel-laminin control, spike rate and burst rate within 70-130 percent of control, synchrony within 70-130 percent, and no monotonic collapse across timepoints.",
+      "failure_response": "Do not claim CL1-like functional suitability; tune stiffness, ligand density, thickness, or conductive-domain layout."
+    },
+    {
+      "id": "long_stimulus_recovery_gate",
+      "criterion": "After controlled stimulation/recording stress, lead recovers >= 85 percent of pre-stim spike/burst activity within 24 h and shows irreversible impedance degradation <= 20 percent.",
+      "failure_response": "Preserve as passive interface only; do not advance as robust recording/stimulation interphase."
+    },
+    {
+      "id": "long_superiority_gate",
+      "criterion": "Lead is non-inferior to hydrogel-laminin control on neural health and network stability while improving or stabilizing electrochemical readouts; high-loading challenge must not be safer than the lead.",
+      "failure_response": "If hydrogel-laminin control is equivalent, demote PEDOT:PSS; if high-loading is safer and stronger, rerank loading."
+    }
+  ],
+  "data_capture_fields": [
+    "run_id",
+    "date",
+    "operator_or_agent",
+    "phase",
+    "timepoint",
+    "replicate",
+    "article_id",
+    "variant_id",
+    "control_article_id",
+    "cell_model",
+    "culture_day",
+    "mea_coupon_id",
+    "hydrogel_matrix",
+    "pedot_pss_loading_fraction",
+    "laminin_or_peptide_density",
+    "visible_shedding",
+    "swelling_fraction",
+    "delamination_score",
+    "optical_transparency_fraction",
+    "electrode_window_access",
+    "eis_1khz_initial_ohm",
+    "eis_1khz_current_ohm",
+    "eis_1khz_pct_hydrogel_control",
+    "charge_storage_capacity_initial",
+    "charge_storage_capacity_current",
+    "charge_storage_capacity_retention_fraction",
+    "baseline_noise_uv",
+    "viability_pct_hydrogel_control",
+    "ldh_pct_hydrogel_control",
+    "neurite_coverage_pct_hydrogel_control",
+    "morphology_stress_score",
+    "electrode_yield_pct_hydrogel_control",
+    "spike_rate_pct_hydrogel_control",
+    "burst_rate_pct_hydrogel_control",
+    "synchrony_pct_hydrogel_control",
+    "post_stim_spike_recovery_pct_pre",
+    "post_stim_burst_recovery_pct_pre",
+    "post_stim_impedance_degradation_pct",
+    "gate_results",
+    "source_file",
+    "notes"
+  ],
+  "source_refs": [
+    "pedot_brain_monitoring_2025",
+    "pedot_neural_culture_hydrogel_2025",
+    "hydrogel_neural_tissue_2020",
+    "gelma_pedot_micropatterning_2026",
+    "iso_10993_5_cytotoxicity_extract_fda",
+    "dnt_nam_viability_neurite_mea_2022",
+    "neuronal_network_material_biocompatibility_mea_2013"
+  ]
+}
