@@ -27,6 +27,7 @@ include docs/falsiflow_security_posture.md
 include docs/falsiflow_template_authoring.md
 include docs/falsiflow_troubleshooting.md
 recursive-include docs/assets *.svg
+include docs/assets/falsiflow_30_second_demo.svg
 recursive-include .github/workflows *.yml
 recursive-include .github/ISSUE_TEMPLATE *.yml
 include .github/PULL_REQUEST_TEMPLATE.md

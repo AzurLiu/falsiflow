@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">Falsiflow 30-second demo: ready versus blocked claims</title>
+  <desc id="desc">A screenshot-style strip showing the AI claim quickstart command, a ready claim-check report, and a blocked placeholder-evidence report.</desc>
+  <rect width="1200" height="560" rx="20" fill="#f6f8fb"/>
+  <rect x="24" y="24" width="1152" height="512" rx="18" fill="#ffffff" stroke="#d9e2ef"/>
+
+  <g font-family="Inter, Segoe UI, Arial, sans-serif">
+    <text x="58" y="72" fill="#122033" font-size="31" font-weight="800">30-second AI claim demo</text>
+    <text x="58" y="104" fill="#53677f" font-size="18">One command creates a claim gate, proves the positive path, and keeps placeholder evidence blocked.</text>
+  </g>
+
+  <g transform="translate(58 132)">
+    <rect width="1084" height="92" rx="14" fill="#0f172a"/>
+    <g font-family="SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace">
+      <circle cx="28" cy="24" r="6" fill="#ff5f57"/>
+      <circle cx="48" cy="24" r="6" fill="#ffbd2e"/>
+      <circle cx="68" cy="24" r="6" fill="#28c840"/>
+      <text x="28" y="58" fill="#b7c4d6" font-size="16">$ python3 -m pip install -e .</text>
+      <text x="28" y="82" fill="#e5edf7" font-size="16">$ falsiflow quickstart --template ai_claim_evaluation --out falsiflow_ai_demo --strict</text>
+    </g>
+  </g>
+
+  <g font-family="Inter, Segoe UI, Arial, sans-serif">
+    <g transform="translate(58 252)">
+      <rect width="516" height="220" rx="14" fill="#f0fbf4" stroke="#a8d8b4"/>
+      <rect x="24" y="24" width="132" height="34" rx="17" fill="#dff5e7" stroke="#9fd4ae"/>
+      <circle cx="46" cy="41" r="9" fill="#2e9d52"/>
+      <path d="M41 41l4 4 8-10" fill="none" stroke="#ffffff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="64" y="47" fill="#205e35" font-size="15" font-weight="800">ready path</text>
+      <text x="24" y="90" fill="#122033" font-size="23" font-weight="800">quickstart_ready</text>
+      <text x="24" y="120" fill="#345045" font-size="17">Nested report: <tspan font-family="SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace">claim_check_ready</tspan></text>
+
+      <g transform="translate(24 146)" font-family="SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace" font-size="14">
+        <rect width="468" height="46" rx="10" fill="#ffffff" stroke="#cfe8d8"/>
+        <text x="18" y="28" fill="#205e35">claim_check/claim_check.md</text>
+        <text x="250" y="28" fill="#53677f">source manifest + zip bundle</text>
+      </g>
+    </g>
+
+    <g transform="translate(626 252)">
+      <rect width="516" height="220" rx="14" fill="#fff6f5" stroke="#f0b2ab"/>
+      <rect x="24" y="24" width="150" height="34" rx="17" fill="#ffe7e4" stroke="#f0b2ab"/>
+      <circle cx="46" cy="41" r="9" fill="#d84b3f"/>
+      <path d="M42 37l8 8m0-8l-8 8" stroke="#ffffff" stroke-width="2.3" stroke-linecap="round"/>
+      <text x="64" y="47" fill="#9b2d24" font-size="15" font-weight="800">blocked path</text>
+      <text x="24" y="90" fill="#122033" font-size="23" font-weight="800">claim_check_blocked</text>
+      <text x="24" y="120" fill="#6f413a" font-size="17">Placeholder evidence never becomes a launch claim.</text>
+
+      <g transform="translate(24 146)" font-family="SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace" font-size="14">
+        <rect width="468" height="46" rx="10" fill="#ffffff" stroke="#f1cbc6"/>
+        <text x="18" y="28" fill="#9b2d24">evidence_placeholder_demo.csv</text>
+        <text x="260" y="28" fill="#53677f">first repair action returned</text>
+      </g>
+    </g>
+  </g>
+
+  <g transform="translate(58 494)" font-family="Inter, Segoe UI, Arial, sans-serif">
+    <rect width="1084" height="28" rx="14" fill="#eef4fb"/>
+    <text x="22" y="19" fill="#465b72" font-size="14" font-weight="700">Output bundle: JSON status, Markdown review card, source manifest, dashboard, SHA-256 bundle, and next actions.</text>
+  </g>
+</svg>

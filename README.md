@@ -11,6 +11,8 @@ Public demo: <https://falsiflow-demo.netlify.app>
 
 ![Falsiflow evidence-gated claim workflow](docs/assets/falsiflow_proof_strip.svg)
 
+![Falsiflow 30-second ready vs blocked demo](docs/assets/falsiflow_30_second_demo.svg)
+
 Falsiflow is for the moment a team says "the model improved," "the launch
 metric passed," or "this experiment is ready." It turns that claim into explicit
 gates, required evidence rows, source-file policy, derived metrics, and
@@ -29,6 +31,9 @@ falsiflow quickstart --template ai_claim_evaluation --out falsiflow_ai_demo --st
 
 Expected result: `quickstart_ready` with a nested `claim_check_ready` report.
 Placeholder evidence remains `claim_check_blocked`, which is the point.
+The strip above shows the same 30-second demo: positive evidence produces
+reviewable JSON, Markdown, source manifest, dashboard, and bundle artifacts;
+placeholder evidence returns a blocked status and next repair action.
 
 Drop the same gate into another repository with the reusable GitHub Action. The
 action installs from its versioned checkout by default, so downstream CI does
@@ -1027,6 +1032,8 @@ with the active Falsiflow contract.
   artifact upload, and optional PyPI trusted publishing.
 - `docs/falsiflow_pypi_trusted_publishing.md`: account-bound PyPI trusted
   publishing setup and `invalid-publisher` recovery runbook.
+- `docs/assets/falsiflow_30_second_demo.svg`: README visual showing the
+  ready-vs-blocked AI claim demo path.
 - `.github/dependabot.yml`: weekly Dependabot updates for GitHub Actions and
   Python packaging inputs.
 - `scripts/install_local.sh`: one-command local installer for checkout or
