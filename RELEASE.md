@@ -115,7 +115,8 @@ The final `release-check` must report:
   smoke, or Windows validation are intentionally pending
 - if PyPI returns `invalid-publisher`, the maintainer has followed
   [docs/falsiflow_pypi_trusted_publishing.md](docs/falsiflow_pypi_trusted_publishing.md)
-  and configured owner `AzurLiu`, repository `falsiflow`, workflow
+  and configured the pending publisher or existing-project trusted publisher
+  with project `falsiflow`, owner `AzurLiu`, repository `falsiflow`, workflow
   `falsiflow-publish.yml`, and environment `pypi`
 - zero package failures
 - zero dist failures
