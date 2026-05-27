@@ -161,6 +161,7 @@ local release can be ready while external readiness waits on:
 - public repository URL
 - hosted demo URL
 - public PyPI package URL
+- PyPI JSON API response proving the package name and version
 - checkout-based pipx smoke evidence
 - public-package pipx smoke evidence
 - Windows/PowerShell smoke evidence
@@ -176,6 +177,12 @@ falsiflow external-check --out-dir falsiflow_external_check --evidence falsiflow
 
 Only call the public launch externally ready after `external-check --strict`
 reports `external_ready`.
+
+If PyPI trusted publishing fails with `invalid-publisher`, configure the PyPI
+trusted publisher with owner `AzurLiu`, repository `falsiflow`, workflow
+`falsiflow-publish.yml`, and environment `pypi`. See
+[falsiflow_pypi_trusted_publishing.md](falsiflow_pypi_trusted_publishing.md)
+for the exact claims from the failed token exchange.
 
 ## When To Open An Issue
 

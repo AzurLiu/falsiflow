@@ -21,6 +21,7 @@ include docs/falsiflow_adapter_profiles.md
 include docs/falsiflow_casebook_check.md
 include docs/falsiflow_positioning.md
 include docs/falsiflow_public_casebook.md
+include docs/falsiflow_pypi_trusted_publishing.md
 include docs/falsiflow_security_posture.md
 include docs/falsiflow_template_authoring.md
 include docs/falsiflow_troubleshooting.md

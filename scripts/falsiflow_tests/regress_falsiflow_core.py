@@ -2892,6 +2892,8 @@ def assert_cli_contract() -> None:
             "cli_reference_docs",
             "positioning_casebook",
             "public_casebook",
+            "pypi_trusted_publishing_exists",
+            "pypi_trusted_publishing_docs",
             "security_posture_exists",
             "security_posture_docs",
             "audit_review_docs",
@@ -2926,6 +2928,7 @@ def assert_cli_contract() -> None:
         assert package_check_map["github_action_entrypoint"]["status"] == "passed"
         assert package_check_map["github_action_yaml_safe"]["status"] == "passed"
         assert package_check_map["github_external_evidence_workflow"]["status"] == "passed"
+        assert package_check_map["pypi_trusted_publishing_docs"]["status"] == "passed"
         assert package_check_map["readme_github_action_docs"]["status"] == "passed"
         action_text = (ROOT / "action.yml").read_text(encoding="utf-8")
         assert "using: composite" in action_text

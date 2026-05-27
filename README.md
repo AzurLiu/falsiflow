@@ -310,6 +310,11 @@ file, or with `FALSIFLOW_PIPX_VALIDATED=1`,
 `FALSIFLOW_PIPX_PUBLIC_VALIDATED=1`, and `FALSIFLOW_WINDOWS_VALIDATED=1` for
 compatibility.
 
+If PyPI trusted publishing returns `invalid-publisher`, configure the PyPI
+publisher with owner `AzurLiu`, repository `falsiflow`, workflow
+`falsiflow-publish.yml`, and environment `pypi`. The full runbook is
+[docs/falsiflow_pypi_trusted_publishing.md](docs/falsiflow_pypi_trusted_publishing.md).
+
 If you prefer to write static files without starting a localhost server:
 
 ```bash
@@ -999,6 +1004,8 @@ with the active Falsiflow contract.
   signal upload for public repository trust review.
 - `.github/workflows/falsiflow-publish.yml`: wheel/sdist build, `twine check`,
   artifact upload, and optional PyPI trusted publishing.
+- `docs/falsiflow_pypi_trusted_publishing.md`: account-bound PyPI trusted
+  publishing setup and `invalid-publisher` recovery runbook.
 - `.github/dependabot.yml`: weekly Dependabot updates for GitHub Actions and
   Python packaging inputs.
 - `scripts/install_local.sh`: one-command local installer for checkout or

@@ -110,6 +110,10 @@ The final `release-check` must report:
 - `external_check_status` is `external_ready` for a public release, or
   `external_blocked` only while public repo/demo/PyPI URLs, pipx public-package
   smoke, or Windows validation are intentionally pending
+- if PyPI returns `invalid-publisher`, the maintainer has followed
+  [docs/falsiflow_pypi_trusted_publishing.md](docs/falsiflow_pypi_trusted_publishing.md)
+  and configured owner `AzurLiu`, repository `falsiflow`, workflow
+  `falsiflow-publish.yml`, and environment `pypi`
 - zero package failures
 - zero dist failures
 - one-command `quickstart` reports `quickstart_ready`
