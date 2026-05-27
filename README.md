@@ -309,6 +309,11 @@ last-mile publish sequence reviewable before any announcement is posted. It
 reports `launch_kit_ready` when the local launch materials and publish handoff
 are ready, while preserving `external_blocked` until hosted demo, pipx, Windows,
 PyPI, and other account-bound evidence pass `external-check --strict`.
+After a launch window, use `launch_metrics.json` as the structured source and
+`launch_metrics.md` as the weekly maintainer review checklist. The checklist
+separates traction signals from local/private validation and turns repeated
+questions, install failures, docs gaps, demo fixes, or template requests into
+concrete follow-up issues with verification commands.
 
 Before calling a public release externally ready, check the environment and
 hosted links. Start by creating the structured evidence file:

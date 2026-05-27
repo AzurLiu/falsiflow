@@ -119,3 +119,21 @@ The current track is adoption readiness:
 - Full `release-check` coverage for package metadata, distribution artifacts,
   build-cache hygiene, template supply-chain verification, and installed package
   behavior.
+
+## Post-Launch Metrics Review
+
+Run this weekly maintainer review after each launch window. Start from the
+generated `launch_metrics.json` structured source and `launch_metrics.md`
+checklist, not from memory or scattered analytics screenshots.
+
+- Record traction signals: GitHub traffic, top referrers, stars, forks, clones,
+  demo visits, public install/download signals, repeated questions, and
+  docs/demo fixes shipped.
+- Keep local/private validation separate: `release-check`, `adoption-check`,
+  `casebook-check`, private smoke runs, and placeholder external evidence prove
+  readiness work, but they are not public traction.
+- Convert repeated questions into concrete follow-up issues. Each issue should
+  name the source signal, affected artifact, proposed fix, owner, label,
+  verification command, and launch window.
+- Close the weekly review only after a docs/demo fix ships or a no-change
+  decision is recorded with evidence.

@@ -1162,6 +1162,16 @@ def launch_metrics_plan(summary: dict[str, object]) -> dict[str, object]:
         "goal": "Reach 1,000 GitHub stars with evidence-first adoption rather than vanity clicks.",
         "repo_url": repo_url,
         "public_demo_url": public_demo_url,
+        "artifacts": [
+            {
+                "path": "launch_metrics.json",
+                "use": "Structured launch-review source for scripts, issue comments, or spreadsheets.",
+            },
+            {
+                "path": "launch_metrics.md",
+                "use": "Weekly maintainer review checklist for traction, validation boundaries, and follow-up issues.",
+            },
+        ],
         "funnel": [
             {
                 "stage": "impression",
@@ -1190,6 +1200,32 @@ def launch_metrics_plan(summary: dict[str, object]) -> dict[str, object]:
                 "target": "Stars come with enough intent to produce issues, forks, templates, or feedback.",
                 "source": "GitHub stars/forks/issues, issue templates, discussion links",
                 "action": "Turn repeated questions into docs, examples, and starter templates within 24 hours.",
+            },
+        ],
+        "weekly_maintainer_review": [
+            {
+                "step": "Collect traction signals",
+                "checks": [
+                    "Record GitHub traffic, top referrers, stars, forks, and clones.",
+                    "Record demo visits and install/download signals from public channels only.",
+                    "Record repeated questions from issues, launch replies, and community threads.",
+                ],
+            },
+            {
+                "step": "Separate validation from traction",
+                "checks": [
+                    "Keep release-check, adoption-check, casebook-check, and private smoke runs under validation evidence.",
+                    "Do not count local/private validation, placeholder evidence, or maintainer-only test traffic as public traction.",
+                    "Promote traction claims only when public referrers, demo visits, installs, stars, forks, clones, issues, or template requests support them.",
+                ],
+            },
+            {
+                "step": "Open concrete follow-up issues",
+                "checks": [
+                    "Open one issue per repeated question, broken install path, confusing doc section, demo fix, or template request.",
+                    "Include the source signal, affected artifact, owner, label, and verification command in each issue.",
+                    "Close the weekly review only after at least one docs/demo fix or a documented no-change decision exists.",
+                ],
             },
         ],
         "review_windows": [
@@ -1250,6 +1286,15 @@ def launch_metrics_plan(summary: dict[str, object]) -> dict[str, object]:
                 ],
             },
         ],
+        "follow_up_issue_fields": [
+            "source_signal",
+            "affected_artifact",
+            "proposed_fix",
+            "owner",
+            "label",
+            "verification_command",
+            "launch_window",
+        ],
         "daily_fields": [
             "date",
             "stars",
@@ -1270,7 +1315,7 @@ def launch_metrics_plan(summary: dict[str, object]) -> dict[str, object]:
             "falsiflow casebook-check --out-dir data/falsiflow/casebook_check --force",
             "falsiflow claim-check --project-dir falsiflow_ai_eval --evidence falsiflow_ai_eval/evidence.csv --out-dir data/falsiflow/demo_pr_ready --strict --force",
         ],
-        "boundary": "Do not treat local validation, private traffic, or placeholder external evidence as public traction.",
+        "boundary": "Do not treat local/private validation, private traffic, or placeholder external evidence as public traction.",
     }
 
 def render_launch_metrics(summary: dict[str, object]) -> str:
@@ -1283,11 +1328,29 @@ def render_launch_metrics(summary: dict[str, object]) -> str:
         f"- Repository URL: `{metrics.get('repo_url', '')}`",
         f"- Public demo URL: `{metrics.get('public_demo_url', '')}`",
         "",
+        "## Generated Artifacts",
+        "",
+        "| Artifact | Use |",
+        "| --- | --- |",
+    ]
+    for artifact in metrics.get("artifacts", []):
+        if not isinstance(artifact, dict):
+            continue
+        lines.append(
+            "| "
+            + " | ".join([
+                markdown_cell(artifact.get("path", "")),
+                markdown_cell(artifact.get("use", "")),
+            ])
+            + " |"
+        )
+    lines.extend([
+        "",
         "## Funnel",
         "",
         "| Stage | Signal | Target | Source | Action |",
         "| --- | --- | --- | --- | --- |",
-    ]
+    ])
     for row in metrics.get("funnel", []):
         if not isinstance(row, dict):
             continue
@@ -1302,6 +1365,14 @@ def render_launch_metrics(summary: dict[str, object]) -> str:
             ])
             + " |"
         )
+    lines.extend(["", "## Weekly Maintainer Review", ""])
+    for item in metrics.get("weekly_maintainer_review", []):
+        if not isinstance(item, dict):
+            continue
+        lines.extend([f"### {item.get('step', '')}", ""])
+        for check in item.get("checks", []):
+            lines.append(f"- [ ] {check}")
+        lines.append("")
     lines.extend(["", "## Review Windows", ""])
     for window in metrics.get("review_windows", []):
         if not isinstance(window, dict):
@@ -1317,6 +1388,15 @@ def render_launch_metrics(summary: dict[str, object]) -> str:
         "",
     ])
     for field in metrics.get("daily_fields", []):
+        lines.append(f"- `{field}`")
+    lines.extend([
+        "",
+        "## Follow-Up Issue Fields",
+        "",
+        "Every repeated question, install failure, docs gap, demo fix, or template request should become a concrete follow-up issue with:",
+        "",
+    ])
+    for field in metrics.get("follow_up_issue_fields", []):
         lines.append(f"- `{field}`")
     lines.extend(["", "## Recheck Commands", ""])
     for command in metrics.get("commands", []):
@@ -1348,10 +1428,12 @@ def render_launch_maintainer_checklist(summary: dict[str, object]) -> str:
         "",
         "## Launch Metrics",
         "",
-        "- [ ] `launch_metrics.md` has the launch post URLs, GitHub traffic fields, demo traffic, and day-0/day-1/day-3/day-7/day-14 review notes.",
+        "- [ ] `launch_metrics.json` and `launch_metrics.md` are attached to the launch review issue.",
+        "- [ ] `launch_metrics.md` has the launch post URLs, GitHub traffic fields, demo traffic, weekly maintainer review notes, and day-0/day-1/day-3/day-7/day-14 review notes.",
         "- [ ] Launch replies link the demo PR playbook when users ask for proof that placeholder evidence fails.",
         "- [ ] Top referrers, popular GitHub content, stars, forks, clones, demo visits, and install/download signals are reviewed after launch.",
-        "- [ ] Repeated install, docs, or blocked-claim questions are converted into fixes before the next launch channel.",
+        "- [ ] Local/private validation is kept separate from public traction signals.",
+        "- [ ] Repeated install, docs, or blocked-claim questions are converted into concrete follow-up issues before the next launch channel.",
         "",
         "## Current External Blockers",
         "",
