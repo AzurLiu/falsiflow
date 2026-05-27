@@ -847,7 +847,7 @@ def render_social_preview_svg(summary: dict[str, object]) -> str:
   <g transform="translate(914 148)" font-family="Inter, Segoe UI, Arial, sans-serif">
     <rect width="226" height="278" rx="20" fill="#f8fafc" stroke="#d0d9e4"/>
     <text x="28" y="54" fill="#475569" font-size="18" font-weight="700">Launch proof</text>
-    <text x="28" y="98" fill="#122033" font-size="34" font-weight="800">5 templates</text>
+    <text x="28" y="98" fill="#122033" font-size="34" font-weight="800">6 templates</text>
     <text x="28" y="134" fill="#52677f" font-size="18">cross-domain starters</text>
     <text x="28" y="184" fill="#122033" font-size="34" font-weight="800">release_ready</text>
     <text x="28" y="220" fill="#52677f" font-size="18">local gates pass</text>
@@ -1070,7 +1070,7 @@ def render_launch_demo_script(summary: dict[str, object]) -> str:
         "falsiflow template-gallery --out data/falsiflow/template_gallery.md --json-out data/falsiflow/template_gallery.json",
         "```",
         "",
-        "Show that the same contract covers neural materials, biointerface coatings, wetware support hardware, vendor RFQ evidence, and AI claim evaluation.",
+        "Show that the same contract covers neural materials, biointerface coatings, wetware support hardware, vendor RFQ evidence, AI claim evaluation, and product metric launch claims.",
         "",
         "## 2:45 Release Proof",
         "",

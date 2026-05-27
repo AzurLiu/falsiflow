@@ -94,6 +94,21 @@ falsiflow quickstart --template ai_claim_evaluation --out ai_claim_review --stri
 falsiflow doctor --project-dir ai_claim_review --strict
 ```
 
+### Product Metric Launch
+
+Use Falsiflow when a product metric claim should not ship until metric
+definitions, experiment identity, activation lift, retained-user exposure,
+guardrails, rollback owner, and monitoring evidence are source-backed. The
+`product_metric_launch` template shows how a launch-readiness claim stays
+blocked until both the positive metric and the safety envelope pass.
+
+Proof path:
+
+```bash
+falsiflow quickstart --template product_metric_launch --out product_metric_review --strict
+falsiflow doctor --project-dir product_metric_review --strict
+```
+
 ### Template Authoring
 
 Use Falsiflow when another team needs to install a reusable starter template

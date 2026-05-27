@@ -623,6 +623,8 @@ Available starter templates:
   and operational safety for support hardware.
 - `ai_claim_evaluation`: versioned AI evaluation provenance, benchmark quality,
   and reproducibility-package evidence for public model comparison claims.
+- `product_metric_launch`: activation lift, guardrail safety, and rollback
+  readiness evidence for product launch claims.
 
 The repository also has Python package metadata, so local development can use a
 standard console command after installation:

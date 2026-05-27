@@ -20,6 +20,7 @@ experimental truth.
 | Biointerface coating screen | `biointerface_coatings` | Whether a coating is ready for early cell-contact screening. | Formulation provenance, extract stability, bioresponse screen, source files. |
 | Neural materials interface | `neural_materials` | Whether a low-dose neural interface material can advance past acellular and early response checks. | Medium stability, electrical interface benefit, matched-control response. |
 | AI claim evaluation | `ai_claim_evaluation` | Whether an AI model quality claim is ready for public comparison. | Dataset and model versions, benchmark deltas, raw outputs, reproducibility artifacts. |
+| Product metric launch | `product_metric_launch` | Whether a product metric improvement is ready to ship. | Metric provenance, activation lift, guardrail safety, rollback readiness. |
 | Vendor or external-lab handoff | `rfq_vendor_evidence` | Whether a vendor reply is ready to support a measured-data work package. | Contact provenance, scope confirmation, measured-data return requirements. |
 | Wetware support hardware | `wetware_support_hardware` | Whether support hardware can be used around living wetware experiments. | Material lot provenance, medium-contact stability, operational safety. |
 
@@ -112,7 +113,38 @@ provenance in `source_manifest.md`, and the portable `evidence_bundle.zip`.
 **Blocked-path proof:** Use `evidence_placeholder_demo.csv` to confirm a
 pending dataset or model version keeps the public comparison claim blocked.
 
-## 4. Vendor Or External-Lab Handoff
+## 4. Product Metric Launch
+
+**Scenario:** A product team wants to ship a change because activation improved.
+The risk is turning a dashboard screenshot into a launch claim without pinning
+metric definitions, exposure, guardrails, rollback ownership, or source files.
+
+**Evidence contract:**
+
+- `metric_provenance` requires the metric definition, experiment id, assignment
+  unit, and analysis window.
+- `launch_metric_lift` compares activation rate against a baseline and requires
+  enough retained users on both arms.
+- `guardrail_safety` checks error rate, support-ticket rate, and p95 latency.
+- `rollback_readiness` requires rollout state, rollback owner, and monitoring
+  dashboard evidence.
+
+**Try it:**
+
+```bash
+falsiflow quickstart --template product_metric_launch --out case_product_metric --strict
+falsiflow doctor --project-dir case_product_metric --strict
+falsiflow claim-check --project-dir case_product_metric --strict --force
+```
+
+**What to inspect:** activation lift in `claim_audit.md`, guardrail rows in
+`claim_check.md`, rollback source evidence in `source_manifest.md`, and the
+portable `evidence_bundle.zip`.
+
+**Blocked-path proof:** Use `evidence_placeholder_demo.csv` to show that a
+pending metric definition keeps the launch claim blocked.
+
+## 5. Vendor Or External-Lab Handoff
 
 **Scenario:** A vendor says they can run the requested work package. The team
 needs a gate that keeps contact claims, scope statements, and measured-data
@@ -140,7 +172,7 @@ reply source file, and the bundle verification report.
 vendor statement is not treated as measured evidence without the required
 source-backed rows.
 
-## 5. Wetware Support Hardware
+## 6. Wetware Support Hardware
 
 **Scenario:** A cartridge, manifold, tubing path, or optical window may look
 mechanically acceptable but still needs provenance, medium-contact stability,

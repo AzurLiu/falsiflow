@@ -111,7 +111,8 @@ For a comparison against spreadsheets, CI suites, ELN/LIMS systems, ML eval
 harnesses, materials databases, and workflow orchestrators, see
 [docs/falsiflow_positioning.md](docs/falsiflow_positioning.md).
 For concrete public case cards across Biointerface coatings, neural materials,
-AI claim evaluation, vendor handoffs, and wetware support hardware, see
+AI claim evaluation, product metric launches, vendor handoffs, and wetware
+support hardware, see
 [docs/falsiflow_public_casebook.md](docs/falsiflow_public_casebook.md).
 For machine-verifiable casebook proof across positive demos and placeholder
 blockers, run `falsiflow casebook-check` and see
@@ -552,6 +553,8 @@ Included templates:
   and operational safety workflow.
 - `ai_claim_evaluation`: versioned AI evaluation provenance, benchmark quality,
   and reproducibility-package workflow.
+- `product_metric_launch`: activation lift, guardrail safety, and rollback
+  readiness workflow for launch claims.
 
 ## Template Gallery
 
@@ -569,8 +572,8 @@ source files, and first commands. The JSON output reaches
 `template_gallery_ready` only when discovered templates have valid project
 configs, positive and placeholder demo evidence, and source-file artifacts.
 The bundled gallery currently spans neural-materials, external/vendor evidence,
-biointerface coating, wetware-support-hardware, and AI claim evaluation
-workflows.
+biointerface coating, wetware-support-hardware, AI claim evaluation, and
+product metric launch workflows.
 
 Generate the machine-verifiable public casebook proof:
 

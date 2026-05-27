@@ -1,0 +1,2 @@
+gate_id,candidate_id,sample_id,field,value,source_file,measured_at,operator_or_agent,instrument_id,notes
+metric_provenance,launch_variant,experiment_2026_05_27,metric_definition_recorded,analysis_pending,source_files/product_metric_raw_export.csv,2026-05-27T08:00:00Z,product_analytics_ci,warehouse_metric_job,Placeholder metric definition should block readiness.

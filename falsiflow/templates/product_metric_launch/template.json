@@ -1,0 +1,9 @@
+{
+  "id": "product_metric_launch",
+  "name": "Product metric launch readiness",
+  "domain": "product-metric-launch-readiness",
+  "description": "Evidence-gated workflow for deciding whether a product metric launch claim is ready to ship.",
+  "project_config": "project.json",
+  "demo_evidence": "evidence_pass_demo.csv",
+  "placeholder_evidence": "evidence_placeholder_demo.csv"
+}

@@ -86,8 +86,8 @@ The current track is adoption readiness:
 - Trusted `audit_review.json` and `audit_review.md` decision cards for fast
   human review of claim readiness, blockers, next actions, and boundaries.
 - Starter templates that demonstrate neural-materials, vendor evidence,
-  biointerface coating, wetware-support-hardware, and AI claim evaluation use
-  cases.
+  biointerface coating, wetware-support-hardware, AI claim evaluation, and
+  product metric launch use cases.
 - A release-checked `template-gallery` command that turns that breadth into
   Markdown and JSON evidence for users and CI.
 - A release-checked `casebook-check` command that proves positive demos,

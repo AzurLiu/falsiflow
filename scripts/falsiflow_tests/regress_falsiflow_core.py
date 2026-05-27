@@ -47,6 +47,7 @@ EXPECTED_TEMPLATE_IDS = {
     "biointerface_coatings",
     "wetware_support_hardware",
     "ai_claim_evaluation",
+    "product_metric_launch",
 }
 EXPECTED_TEMPLATE_COUNT = len(EXPECTED_TEMPLATE_IDS)
 EXPECTED_NON_NEURAL_TEMPLATE_COUNT = EXPECTED_TEMPLATE_COUNT - 1

@@ -1,0 +1,211 @@
+{
+  "project": {
+    "id": "falsiflow_product_metric_launch_demo",
+    "name": "Falsiflow product metric launch demo",
+    "domain": "product-metric-launch-readiness",
+    "version": "0.1.0"
+  },
+  "claim": {
+    "id": "product_metric_claim_ready_to_ship",
+    "statement": "A product metric launch claim is ready to ship only when metric provenance, lift, guardrails, and rollback readiness are source-backed.",
+    "requires_gates": [
+      "metric_provenance",
+      "launch_metric_lift",
+      "guardrail_safety",
+      "rollback_readiness"
+    ]
+  },
+  "evidence_policy": {
+    "require_source_files": true,
+    "reject_placeholder_values": true,
+    "allowed_source_roots": [
+      "source_files"
+    ],
+    "required_metadata_fields": [
+      "source_file",
+      "measured_at",
+      "operator_or_agent"
+    ],
+    "placeholder_markers": [
+      "analysis_pending",
+      "dashboard_pending",
+      "not_enough_traffic",
+      "rollback_owner_pending",
+      "todo"
+    ]
+  },
+  "gates": [
+    {
+      "id": "metric_provenance",
+      "title": "Metric provenance",
+      "samples": [
+        {
+          "candidate_id": "launch_variant",
+          "sample_id": "experiment_2026_05_27"
+        }
+      ],
+      "required_fields": [
+        "metric_definition_recorded",
+        "experiment_id_recorded",
+        "assignment_unit_recorded",
+        "analysis_window_recorded"
+      ],
+      "acceptance_rules": [
+        {
+          "field": "metric_definition_recorded",
+          "operator": "==",
+          "value": true,
+          "reason": "The product metric definition must be pinned before launch."
+        },
+        {
+          "field": "experiment_id_recorded",
+          "operator": "==",
+          "value": true,
+          "reason": "Experiment or rollout id must be recorded."
+        },
+        {
+          "field": "assignment_unit_recorded",
+          "operator": "==",
+          "value": true,
+          "reason": "Assignment unit must be recorded to interpret the metric."
+        },
+        {
+          "field": "analysis_window_recorded",
+          "operator": "==",
+          "value": true,
+          "reason": "Analysis window must be fixed before claiming lift."
+        }
+      ]
+    },
+    {
+      "id": "launch_metric_lift",
+      "title": "Launch metric lift",
+      "samples": [
+        {
+          "candidate_id": "launch_variant",
+          "sample_id": "experiment_2026_05_27"
+        },
+        {
+          "candidate_id": "baseline_control",
+          "sample_id": "experiment_2026_05_27"
+        }
+      ],
+      "required_fields": [
+        "activation_rate",
+        "retained_user_count"
+      ],
+      "derived_fields": [
+        {
+          "field": "activation_ratio_vs_baseline",
+          "operation": "ratio",
+          "numerator": "activation_rate",
+          "denominator": {
+            "candidate_id": "baseline_control",
+            "sample_id": "experiment_2026_05_27",
+            "field": "activation_rate"
+          }
+        }
+      ],
+      "acceptance_rules": [
+        {
+          "field": "activation_rate",
+          "operator": ">=",
+          "value": 0.12,
+          "candidate_id": "launch_variant",
+          "reason": "Variant must clear the absolute activation-rate floor."
+        },
+        {
+          "field": "activation_ratio_vs_baseline",
+          "operator": ">=",
+          "value": 1.05,
+          "candidate_id": "launch_variant",
+          "reason": "Variant must beat the baseline by a meaningful margin."
+        },
+        {
+          "field": "retained_user_count",
+          "operator": ">=",
+          "value": 20000,
+          "candidate_id": "launch_variant",
+          "reason": "Variant must have enough retained users for a launch-facing claim."
+        },
+        {
+          "field": "retained_user_count",
+          "operator": ">=",
+          "value": 20000,
+          "candidate_id": "baseline_control",
+          "reason": "Baseline must have enough retained users for comparison."
+        }
+      ]
+    },
+    {
+      "id": "guardrail_safety",
+      "title": "Guardrail safety",
+      "samples": [
+        {
+          "candidate_id": "launch_variant",
+          "sample_id": "experiment_2026_05_27"
+        }
+      ],
+      "required_fields": [
+        "error_rate",
+        "support_ticket_rate",
+        "latency_p95_ms"
+      ],
+      "acceptance_rules": [
+        {
+          "field": "error_rate",
+          "operator": "<=",
+          "value": 0.01,
+          "reason": "Error rate must stay inside the launch guardrail."
+        },
+        {
+          "field": "support_ticket_rate",
+          "operator": "<=",
+          "value": 0.025,
+          "reason": "Support-ticket rate must not exceed the launch guardrail."
+        },
+        {
+          "field": "latency_p95_ms",
+          "operator": "<=",
+          "value": 350,
+          "reason": "Latency must stay under the p95 launch guardrail."
+        }
+      ]
+    },
+    {
+      "id": "rollback_readiness",
+      "title": "Rollback readiness",
+      "samples": [
+        {
+          "candidate_id": "launch_variant",
+          "sample_id": "experiment_2026_05_27"
+        }
+      ],
+      "required_fields": [
+        "feature_flag_rollout_recorded",
+        "rollback_owner_recorded",
+        "monitoring_dashboard_linked"
+      ],
+      "acceptance_rules": [
+        {
+          "field": "feature_flag_rollout_recorded",
+          "operator": "==",
+          "value": true,
+          "reason": "Feature-flag or rollout state must be recorded."
+        },
+        {
+          "field": "rollback_owner_recorded",
+          "operator": "==",
+          "value": true,
+          "reason": "A rollback owner must be named before launch."
+        },
+        {
+          "field": "monitoring_dashboard_linked",
+          "operator": "==",
+          "value": true,
+          "reason": "Launch monitoring dashboard must be linked."
+        }
+      ]
+    }
+  ]
+}
