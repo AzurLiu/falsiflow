@@ -102,11 +102,14 @@ The final `release-check` must report:
   and maintainer checklist
 - `external-evidence` has produced a structured evidence file for hosted demo,
   public PyPI package URL, checkout-based pipx smoke, public-package pipx
-  smoke, Windows/PowerShell smoke results, and the PyPI JSON API response
+  smoke, Windows/PowerShell smoke results, the expected PyPI package version,
+  and the PyPI JSON API response
 - the `Falsiflow External Evidence` workflow artifact includes
   `falsiflow_external_evidence.json`, `falsiflow_pypi_project.json`,
+  `falsiflow_expected_version.txt`, `falsiflow_pypi_version.txt`,
   `external_readiness.json`, and `external_readiness.md` for the final public
-  demo URL and PyPI package
+  demo URL and PyPI package; the PyPI JSON `published_version` must match the
+  workflow `expected_version` input or the version in `pyproject.toml`
 - `external_check_status` is `external_ready` for a public release, or
   `external_blocked` only while public repo/demo/PyPI URLs, pipx public-package
   smoke, or Windows validation are intentionally pending
@@ -165,7 +168,8 @@ The final `release-check` must report:
   the template release verification report
 - GitHub Actions workflow files exist for full CI, GitHub Pages demo deploy,
   cross-platform Windows/macOS/Linux smoke tests, pipx smoke tests, external
-  evidence artifact capture with PyPI JSON verification, OpenSSF Scorecard
+  evidence artifact capture with PyPI JSON expected-version verification,
+  OpenSSF Scorecard
   reporting, and PyPI trusted-publishing release builds
 - `action.yml` exists for downstream GitHub Actions adoption and the main CI
   workflow runs a reusable-action quickstart smoke

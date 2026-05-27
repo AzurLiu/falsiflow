@@ -15,6 +15,10 @@ on:
         description: "Published PyPI project URL, for example https://pypi.org/project/falsiflow/"
         required: true
         type: string
+      expected_version:
+        description: "Expected PyPI package version, for example 0.1.2. Defaults to pyproject.toml."
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -109,6 +113,7 @@ jobs:
         shell: bash
         env:
           FALSIFLOW_PYPI_PACKAGE_URL: ${{ inputs.pypi_package_url }}
+          FALSIFLOW_EXPECTED_VERSION: ${{ inputs.expected_version }}
         run: |
           test -n "$FALSIFLOW_PYPI_PACKAGE_URL"
           python - <<'PY'
@@ -126,13 +131,28 @@ jobs:
           import json
           import os
           import pathlib
+          import tomllib
 
-          payload = json.loads(pathlib.Path(os.environ["RUNNER_TEMP"], "falsiflow_pypi_project.json").read_text(encoding="utf-8"))
+          root = pathlib.Path.cwd()
+          expected_version = os.environ.get("FALSIFLOW_EXPECTED_VERSION", "").strip()
+          if not expected_version:
+              with (root / "pyproject.toml").open("rb") as handle:
+                  expected_version = str(tomllib.load(handle).get("project", {}).get("version", "")).strip()
+          if not expected_version:
+              raise SystemExit("Expected PyPI package version was empty")
+
+          runner_temp = pathlib.Path(os.environ["RUNNER_TEMP"])
+          payload = json.loads((runner_temp / "falsiflow_pypi_project.json").read_text(encoding="utf-8"))
           info = payload.get("info", {})
           if str(info.get("name", "")).lower() != "falsiflow":
               raise SystemExit("PyPI JSON did not describe the falsiflow package")
-          if not str(info.get("version", "")).strip():
+          published_version = str(info.get("version", "")).strip()
+          if not published_version:
               raise SystemExit("PyPI JSON did not include a released version")
+          if published_version != expected_version:
+              raise SystemExit(f"Expected PyPI version {expected_version}, got {published_version}")
+          (runner_temp / "falsiflow_expected_version.txt").write_text(expected_version, encoding="utf-8")
+          (runner_temp / "falsiflow_pypi_version.txt").write_text(published_version, encoding="utf-8")
           PY
       - name: Write structured external evidence
         shell: bash
@@ -140,6 +160,7 @@ jobs:
           FALSIFLOW_REPO_URL_INPUT: ${{ inputs.repo_url }}
           FALSIFLOW_PUBLIC_DEMO_URL: ${{ inputs.public_demo_url }}
           FALSIFLOW_PYPI_PACKAGE_URL: ${{ inputs.pypi_package_url }}
+          FALSIFLOW_EXPECTED_VERSION: ${{ inputs.expected_version }}
           FALSIFLOW_WORKFLOW_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           FALSIFLOW_REPOSITORY: ${{ github.repository }}
         run: |
@@ -147,6 +168,22 @@ jobs:
           import json
           import os
           import pathlib
+          import tomllib
+
+          runner_temp = pathlib.Path(os.environ["RUNNER_TEMP"])
+
+          def text_file_or_empty(name: str) -> str:
+              path = runner_temp / name
+              return path.read_text(encoding="utf-8").strip() if path.exists() else ""
+
+          expected_version = text_file_or_empty("falsiflow_expected_version.txt") or os.environ.get("FALSIFLOW_EXPECTED_VERSION", "").strip()
+          if not expected_version:
+              with pathlib.Path("pyproject.toml").open("rb") as handle:
+                  expected_version = str(tomllib.load(handle).get("project", {}).get("version", "")).strip()
+          published_version = text_file_or_empty("falsiflow_pypi_version.txt")
+          if not published_version:
+              payload = json.loads((runner_temp / "falsiflow_pypi_project.json").read_text(encoding="utf-8"))
+              published_version = str(payload.get("info", {}).get("version", "")).strip()
 
           repo_url = os.environ.get("FALSIFLOW_REPO_URL_INPUT") or f"https://github.com/{os.environ['FALSIFLOW_REPOSITORY']}"
           demo_url = os.environ["FALSIFLOW_PUBLIC_DEMO_URL"]
@@ -176,7 +213,9 @@ jobs:
                       "evidence_url": workflow_url,
                       "artifact": "falsiflow_pypi_project.json",
                       "verification_url": "https://pypi.org/pypi/falsiflow/json",
-                      "notes": "curl fetched the PyPI JSON API and confirmed the published package name and version.",
+                      "expected_version": expected_version,
+                      "published_version": published_version,
+                      "notes": "curl fetched the PyPI JSON API and confirmed the published package name and version matched the expected release.",
                   },
                   "pipx_smoke": {
                       "status": "passed",
@@ -226,3 +265,5 @@ jobs:
             falsiflow_external_check/external_readiness.md
             ${{ runner.temp }}/falsiflow_public_demo_index.html
             ${{ runner.temp }}/falsiflow_pypi_project.json
+            ${{ runner.temp }}/falsiflow_expected_version.txt
+            ${{ runner.temp }}/falsiflow_pypi_version.txt

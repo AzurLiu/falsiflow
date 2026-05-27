@@ -329,13 +329,16 @@ present; otherwise it returns `external_blocked` with concrete next actions.
 After GitHub Pages or another static host is live, run the
 `Falsiflow External Evidence` workflow with the hosted demo URL and
 `FALSIFLOW_PYPI_PACKAGE_URL` such as `https://pypi.org/project/falsiflow/`.
+Optionally pass `expected_version`; when it is omitted, the workflow reads the
+version from `pyproject.toml`.
 It verifies the demo over HTTPS, fetches `https://pypi.org/pypi/falsiflow/json`
-to prove the PyPI package name and version, runs checkout pipx,
-public-package pipx, and Windows PowerShell smoke tests, writes
-`falsiflow_external_evidence.json`, runs `external-check --strict`, and uploads
-the evidence/readiness artifact for the final release review. CI can also
-record successful smoke tests with a structured `FALSIFLOW_EXTERNAL_EVIDENCE`
-file, or with `FALSIFLOW_PIPX_VALIDATED=1`,
+to prove the PyPI package name and confirm `published_version` matches
+`expected_version`, runs checkout pipx, public-package pipx, and Windows
+PowerShell smoke tests, writes `falsiflow_external_evidence.json`, runs
+`external-check --strict`, and uploads the evidence/readiness artifact for the
+final release review. CI can also record successful smoke tests with a
+structured `FALSIFLOW_EXTERNAL_EVIDENCE` file, or with
+`FALSIFLOW_PIPX_VALIDATED=1`,
 `FALSIFLOW_PIPX_PUBLIC_VALIDATED=1`, and `FALSIFLOW_WINDOWS_VALIDATED=1` for
 compatibility.
 

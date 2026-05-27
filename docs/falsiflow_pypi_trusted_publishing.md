@@ -46,8 +46,11 @@ The release is not externally ready until all of these are true:
 
 1. The `Falsiflow Publish` workflow has a successful `publish-pypi` job.
 2. `https://pypi.org/pypi/falsiflow/json` returns JSON whose package name is
-   `falsiflow` and whose version matches the release.
+   `falsiflow` and whose version matches the release. For current main, that
+   expected version is `0.1.2`.
 3. The `Falsiflow External Evidence` workflow uploads
-   `falsiflow_pypi_project.json`.
+   `falsiflow_pypi_project.json`, `falsiflow_expected_version.txt`, and
+   `falsiflow_pypi_version.txt`; pass `expected_version` when checking a
+   release other than the version in `pyproject.toml`.
 4. `falsiflow external-check --out-dir falsiflow_external_check --evidence falsiflow_external_evidence.json --force --strict`
    reports `external_ready`.

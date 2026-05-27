@@ -2305,6 +2305,8 @@ def external_evidence_json_schema() -> dict[str, Any]:
             "artifact": {"type": "string"},
             "artifact_sha256": {"type": "string"},
             "command": {"type": "string"},
+            "expected_version": {"type": "string"},
+            "published_version": {"type": "string"},
             "notes": {"type": "string"},
         },
         "additionalProperties": True,

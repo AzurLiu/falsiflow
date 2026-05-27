@@ -10,6 +10,7 @@ import subprocess
 import sys
 from typing import Protocol
 
+from . import __version__ as FALSIFLOW_VERSION
 from .bundle import markdown_cell
 from .quickstart import prepare_output_directory
 
@@ -158,6 +159,10 @@ def default_pypi_package_url() -> str:
     return "https://pypi.org/project/falsiflow/"
 
 
+def default_expected_version() -> str:
+    return FALSIFLOW_VERSION
+
+
 def external_evidence_template(repo_url: str = "", public_demo_url: str = "", pypi_package_url: str = "") -> dict[str, object]:
     return {
         "status": "external_evidence_draft",
@@ -182,7 +187,9 @@ def external_evidence_template(repo_url: str = "", public_demo_url: str = "", py
                 "evidence_url": "",
                 "verification_url": "https://pypi.org/pypi/falsiflow/json",
                 "artifact": "falsiflow_pypi_project.json",
-                "notes": "Public PyPI package page plus PyPI JSON API evidence after trusted publishing succeeds.",
+                "expected_version": default_expected_version(),
+                "published_version": "",
+                "notes": "Public PyPI package page plus PyPI JSON API evidence whose published version matches the expected release after trusted publishing succeeds.",
             },
             "pipx_smoke": {
                 "status": "pending",
@@ -222,7 +229,7 @@ def render_external_evidence_report(summary: dict[str, object]) -> str:
         "| --- | --- |",
         "| `public_repo_url` | Public HTTPS GitHub repository URL. |",
         "| `public_demo_url` | Hosted HTTPS static demo URL. |",
-        "| `pypi_package_url` | Public PyPI project URL plus `https://pypi.org/pypi/falsiflow/json` evidence after trusted publishing succeeds. |",
+        "| `pypi_package_url` | Public PyPI project URL plus `https://pypi.org/pypi/falsiflow/json` evidence whose `published_version` matches `expected_version` after trusted publishing succeeds. |",
         "| `pipx_smoke` | Public CI run or artifact proving checkout-based pipx install and `falsiflow start --check --json` passed. |",
         "| `pipx_public_package` | Public CI run or artifact proving `pipx run --spec falsiflow falsiflow start --check --json` passed from the published package. |",
         "| `windows_powershell` | Public Windows workflow run or artifact proving `install_local.ps1 -Check` passed. |",
@@ -272,6 +279,8 @@ def render_publish_env_example(repo_url: str, public_demo_url: str) -> str:
         f"FALSIFLOW_PUBLIC_DEMO_URL={public_demo_url}",
         "# Set this to the real PyPI project URL after trusted publishing succeeds.",
         f"FALSIFLOW_PYPI_PACKAGE_URL={default_pypi_package_url()}",
+        "# Expected PyPI JSON version for the external-evidence workflow.",
+        f"FALSIFLOW_EXPECTED_VERSION={default_expected_version()}",
         "# Optional structured evidence file consumed by `falsiflow external-check --evidence`.",
         "FALSIFLOW_EXTERNAL_EVIDENCE=falsiflow_external_evidence.json",
         "# Set to 1 only after the pipx smoke workflow or local pipx smoke passes.",
@@ -296,12 +305,17 @@ def render_github_publish_commands(repo_slug: str, tag: str, public_demo_url: st
         f"gh repo create {repo_arg} --public --source=. --remote=origin --push",
         "gh workflow run \"Falsiflow Cross Platform\"",
         "gh workflow run \"Falsiflow Pages Demo\"",
-        "gh workflow run \"Falsiflow External Evidence\" --field public_demo_url=\"${FALSIFLOW_PUBLIC_DEMO_URL:-https://OWNER.github.io/falsiflow/}\" --field pypi_package_url=\"${FALSIFLOW_PYPI_PACKAGE_URL:-https://pypi.org/project/falsiflow/}\"",
         f"gh release create {tag} --generate-notes --title \"Falsiflow {tag}\"",
+        "sleep 10",
+        "publish_run_id=\"$(gh run list --workflow falsiflow-publish.yml --event release --limit 1 --json databaseId --jq '.[0].databaseId')\"",
+        "test -n \"$publish_run_id\"",
+        "gh run watch \"$publish_run_id\" --exit-status",
+        f"gh workflow run \"Falsiflow External Evidence\" --field public_demo_url=\"${{FALSIFLOW_PUBLIC_DEMO_URL:-https://OWNER.github.io/falsiflow/}}\" --field pypi_package_url=\"${{FALSIFLOW_PYPI_PACKAGE_URL:-https://pypi.org/project/falsiflow/}}\" --field expected_version=\"${{FALSIFLOW_EXPECTED_VERSION:-{default_expected_version()}}}\"",
         "",
         f"FALSIFLOW_REPO_URL={repo_url} \\",
         f"FALSIFLOW_PUBLIC_DEMO_URL={public_demo_url or 'https://OWNER.github.io/falsiflow/'} \\",
         f"FALSIFLOW_PYPI_PACKAGE_URL={default_pypi_package_url()} \\",
+        f"FALSIFLOW_EXPECTED_VERSION={default_expected_version()} \\",
         "FALSIFLOW_EXTERNAL_EVIDENCE=falsiflow_external_evidence.json \\",
         "FALSIFLOW_PIPX_VALIDATED=1 \\",
         "FALSIFLOW_PIPX_PUBLIC_VALIDATED=1 \\",
@@ -345,8 +359,9 @@ def render_publish_handoff(summary: dict[str, object]) -> str:
         "4. Enable GitHub Pages for the Pages workflow, or deploy the generated `public_demo/` directory to another static host.",
         "5. Let the cross-platform workflow pass on Linux, macOS, and Windows.",
         "6. Publish the package through trusted publishing and confirm the public PyPI project URL.",
-        "7. Run the `Falsiflow External Evidence` workflow with the hosted demo URL and PyPI package URL, then download its evidence artifact.",
-        "8. Publish a GitHub release only after `release-check` and `external-check --strict` pass.",
+        "7. Publish the GitHub release only after trusted publishing is configured, then wait for the `Falsiflow Publish` `publish-pypi` job to pass.",
+        "8. Run the `Falsiflow External Evidence` workflow with the hosted demo URL, PyPI package URL, and expected package version, then download its evidence artifact.",
+        "9. Announce only after `release-check` and `external-check --strict` pass.",
         "",
     ])
     if isinstance(blockers, list) and blockers:
@@ -371,6 +386,7 @@ def public_release_rehearsal(summary: dict[str, object]) -> dict[str, object]:
         "repo_url": repo_url,
         "public_demo_url": public_demo_url,
         "pypi_package_url": default_pypi_package_url(),
+        "expected_version": default_expected_version(),
         "decision_boundary": "This is a public-release rehearsal plan. It proves the local sequence is documented and reviewable, not that GitHub, hosting, PyPI, pipx, Windows, or Scorecard evidence has passed.",
         "success_condition": "Publish externally only after release-check is release_ready and external-check --strict is external_ready with real public evidence.",
         "steps": [
@@ -425,16 +441,34 @@ def public_release_rehearsal(summary: dict[str, object]) -> dict[str, object]:
                 "owner": "Maintainer",
                 "command": "falsiflow external-evidence --out falsiflow_external_evidence.json --force",
                 "expected_artifact": "falsiflow_external_evidence.json",
-                "success_signal": "Template contains public repo, hosted demo, PyPI JSON, checkout-pipx, public-package-pipx, and Windows checks.",
+                "success_signal": "Template contains public repo, hosted demo, expected PyPI version, PyPI JSON, checkout-pipx, public-package-pipx, and Windows checks.",
                 "status": "manual_rehearsal",
+            },
+            {
+                "id": "github_release",
+                "phase": "publish",
+                "owner": "Maintainer",
+                "command": f"gh release create {tag} --generate-notes --title \"Falsiflow {tag}\"",
+                "expected_artifact": "Public GitHub release page and release-triggered Falsiflow Publish workflow run",
+                "success_signal": "Release is public and the publish workflow started from the release event.",
+                "status": "pending_external",
+            },
+            {
+                "id": "pypi_publish",
+                "phase": "publish",
+                "owner": "GitHub Actions",
+                "command": "gh run watch <Falsiflow Publish release run id> --exit-status",
+                "expected_artifact": "Successful Falsiflow Publish workflow with publish-pypi job",
+                "success_signal": "publish-pypi succeeds and the PyPI JSON API serves the expected version.",
+                "status": "pending_external",
             },
             {
                 "id": "external_workflow",
                 "phase": "external-evidence",
                 "owner": "GitHub Actions",
-                "command": "gh workflow run \"Falsiflow External Evidence\" --field public_demo_url=\"$FALSIFLOW_PUBLIC_DEMO_URL\" --field pypi_package_url=\"$FALSIFLOW_PYPI_PACKAGE_URL\"",
+                "command": "gh workflow run \"Falsiflow External Evidence\" --field public_demo_url=\"$FALSIFLOW_PUBLIC_DEMO_URL\" --field pypi_package_url=\"$FALSIFLOW_PYPI_PACKAGE_URL\" --field expected_version=\"$FALSIFLOW_EXPECTED_VERSION\"",
                 "expected_artifact": "falsiflow_external_evidence.json and falsiflow_pypi_project.json workflow artifacts",
-                "success_signal": "Hosted demo fetch, PyPI JSON fetch, checkout pipx, public-package pipx, and Windows smoke jobs pass.",
+                "success_signal": "Hosted demo fetch, PyPI JSON fetch with expected-version match, checkout pipx, public-package pipx, and Windows smoke jobs pass.",
                 "status": "pending_external",
             },
             {
@@ -444,15 +478,6 @@ def public_release_rehearsal(summary: dict[str, object]) -> dict[str, object]:
                 "command": "falsiflow external-check --out-dir falsiflow_external_check --evidence falsiflow_external_evidence.json --force --strict",
                 "expected_artifact": "falsiflow_external_check/external_readiness.md",
                 "success_signal": "external_readiness.json reports external_ready.",
-                "status": "pending_external",
-            },
-            {
-                "id": "github_release",
-                "phase": "publish",
-                "owner": "Maintainer",
-                "command": f"gh release create {tag} --generate-notes --title \"Falsiflow {tag}\"",
-                "expected_artifact": "Public GitHub release page",
-                "success_signal": "Release links README, public demo, PyPI package, and external readiness evidence.",
                 "status": "pending_external",
             },
             {
@@ -547,6 +572,7 @@ def public_release_evidence_ledger(summary: dict[str, object]) -> dict[str, obje
         "repo_url": repo_url,
         "public_demo_url": public_demo_url,
         "pypi_package_url": pypi_url,
+        "expected_version": default_expected_version(),
         "decision_boundary": "This ledger is a release-review checklist. It does not mark the public release externally ready until external-check --strict passes with real public evidence.",
         "evidence": [
             {
@@ -562,14 +588,14 @@ def public_release_evidence_ledger(summary: dict[str, object]) -> dict[str, obje
                 "status": "pending_external",
                 "owner": "Static hosting",
                 "proof": "HTTPS demo URL fetched by the Falsiflow External Evidence workflow.",
-                "command": "gh workflow run \"Falsiflow External Evidence\" --field public_demo_url=\"$FALSIFLOW_PUBLIC_DEMO_URL\" --field pypi_package_url=\"$FALSIFLOW_PYPI_PACKAGE_URL\"",
+                "command": "gh workflow run \"Falsiflow External Evidence\" --field public_demo_url=\"$FALSIFLOW_PUBLIC_DEMO_URL\" --field pypi_package_url=\"$FALSIFLOW_PYPI_PACKAGE_URL\" --field expected_version=\"$FALSIFLOW_EXPECTED_VERSION\"",
                 "artifact": "falsiflow_public_demo_index.html",
             },
             {
                 "id": "pypi_package_url",
                 "status": "pending_external",
                 "owner": "PyPI trusted publishing",
-                "proof": "Public PyPI project page plus PyPI JSON API response after trusted publishing.",
+                "proof": "Public PyPI project page plus PyPI JSON API response whose published version matches the expected release.",
                 "command": "gh workflow run \"Falsiflow Publish\"",
                 "artifact": "falsiflow_pypi_project.json",
             },
@@ -740,7 +766,7 @@ def run_publish_kit(
         "outputs": outputs,
         "next_commands": [
             f"bash {out_dir / 'github_publish_commands.sh'}",
-            f"FALSIFLOW_REPO_URL={repo_url} FALSIFLOW_PUBLIC_DEMO_URL={demo_url} FALSIFLOW_PYPI_PACKAGE_URL={default_pypi_package_url()} FALSIFLOW_EXTERNAL_EVIDENCE={out_dir / 'external_evidence_template.json'} FALSIFLOW_PIPX_VALIDATED=1 FALSIFLOW_PIPX_PUBLIC_VALIDATED=1 FALSIFLOW_WINDOWS_VALIDATED=1 falsiflow external-check --out-dir {out_dir / 'external_readiness_final'} --evidence {out_dir / 'external_evidence_template.json'} --force --strict",
+            f"FALSIFLOW_REPO_URL={repo_url} FALSIFLOW_PUBLIC_DEMO_URL={demo_url} FALSIFLOW_PYPI_PACKAGE_URL={default_pypi_package_url()} FALSIFLOW_EXPECTED_VERSION={default_expected_version()} FALSIFLOW_EXTERNAL_EVIDENCE={out_dir / 'external_evidence_template.json'} FALSIFLOW_PIPX_VALIDATED=1 FALSIFLOW_PIPX_PUBLIC_VALIDATED=1 FALSIFLOW_WINDOWS_VALIDATED=1 falsiflow external-check --out-dir {out_dir / 'external_readiness_final'} --evidence {out_dir / 'external_evidence_template.json'} --force --strict",
         ],
     }
     (out_dir / "external_evidence_template.json").write_text(
@@ -1454,7 +1480,7 @@ def run_launch_kit(
         "outputs": outputs,
         "next_commands": [
             f"falsiflow launch-kit --out-dir {out_dir} --force",
-            f"FALSIFLOW_REPO_URL={repo_url} FALSIFLOW_PUBLIC_DEMO_URL={demo_url} FALSIFLOW_PYPI_PACKAGE_URL={default_pypi_package_url()} FALSIFLOW_PIPX_VALIDATED=1 FALSIFLOW_PIPX_PUBLIC_VALIDATED=1 FALSIFLOW_WINDOWS_VALIDATED=1 falsiflow external-check --out-dir {out_dir / 'external_readiness_final'} --force --strict",
+            f"FALSIFLOW_REPO_URL={repo_url} FALSIFLOW_PUBLIC_DEMO_URL={demo_url} FALSIFLOW_PYPI_PACKAGE_URL={default_pypi_package_url()} FALSIFLOW_EXPECTED_VERSION={default_expected_version()} FALSIFLOW_PIPX_VALIDATED=1 FALSIFLOW_PIPX_PUBLIC_VALIDATED=1 FALSIFLOW_WINDOWS_VALIDATED=1 falsiflow external-check --out-dir {out_dir / 'external_readiness_final'} --force --strict",
         ],
         "boundary": "Local launch materials are ready; external hosting, GitHub workflows, pipx, Windows, and PyPI evidence remain account-bound until external-check passes strictly.",
     }
@@ -1622,6 +1648,9 @@ def run_external_check(
     public_demo_ready = public_https_url(public_demo_url) and (not evidence_loaded or demo_evidence_ready or bool(os.environ.get("FALSIFLOW_PUBLIC_DEMO_URL", "").strip()))
     pypi_evidence_ready, pypi_evidence_value = external_evidence_ready(external_evidence, "pypi_package_url")
     pypi_package_ready = public_https_url(pypi_package_url) and (not evidence_loaded or pypi_evidence_ready or bool(os.environ.get("FALSIFLOW_PYPI_PACKAGE_URL", "").strip()))
+    pypi_expected_version = str(pypi_record.get("expected_version", "")).strip() or os.environ.get("FALSIFLOW_EXPECTED_VERSION", "").strip()
+    pypi_published_version = str(pypi_record.get("published_version", "") or pypi_record.get("pypi_version", "")).strip()
+    pypi_version_matches = pypi_evidence_ready and bool(pypi_expected_version) and pypi_published_version == pypi_expected_version
     pages_workflow = repo_root / ".github" / "workflows" / "falsiflow-pages.yml"
     cross_platform_workflow = repo_root / ".github" / "workflows" / "falsiflow-cross-platform.yml"
     publish_workflow = repo_root / ".github" / "workflows" / "falsiflow-publish.yml"
@@ -1633,6 +1662,18 @@ def run_external_check(
         external_check_item("public_repo_url", public_https_url(repo_url), "FALSIFLOW_REPO_URL or git remote is a public HTTPS repository URL.", repo_url),
         external_check_item("public_demo_url", public_demo_ready, "FALSIFLOW_PUBLIC_DEMO_URL or external evidence points to a hosted public static demo.", public_demo_url, demo_evidence_value),
         external_check_item("pypi_package_url", pypi_package_ready, "FALSIFLOW_PYPI_PACKAGE_URL or external evidence points to a public PyPI package page.", pypi_package_url, pypi_evidence_value),
+    ])
+    if evidence_loaded:
+        checks.append(
+            external_check_item(
+                "pypi_version_match",
+                pypi_version_matches,
+                "Structured PyPI evidence records expected_version matching published_version from the PyPI JSON API.",
+                pypi_published_version,
+                f"expected={pypi_expected_version}",
+            )
+        )
+    checks.extend([
         external_check_item("pipx_available", pipx_validated, "pipx is available, FALSIFLOW_PIPX_VALIDATED is set, or external evidence records a passing checkout-based pipx smoke test.", pipx_path or os.environ.get("FALSIFLOW_PIPX_VALIDATED", "") or pipx_evidence_value, pipx_evidence_value),
         external_check_item("pipx_public_package", pipx_public_validated, "FALSIFLOW_PIPX_PUBLIC_VALIDATED is set, or external evidence records a passing pipx smoke test from the published package.", os.environ.get("FALSIFLOW_PIPX_PUBLIC_VALIDATED", "") or pipx_public_evidence_value, pipx_public_evidence_value),
         external_check_item("powershell_available", bool(powershell_path) or windows_validated, "PowerShell is available here, FALSIFLOW_WINDOWS_VALIDATED is set, or external evidence records a passing Windows smoke test.", powershell_path or os.environ.get("FALSIFLOW_WINDOWS_VALIDATED", "") or windows_evidence_value, windows_evidence_value),
@@ -1660,7 +1701,7 @@ def run_external_check(
         "next_commands": [
             "falsiflow external-evidence --out falsiflow_external_evidence.json --force",
             "falsiflow demo-package --out-dir falsiflow_public_demo --force",
-            "FALSIFLOW_REPO_URL=https://github.com/<owner>/<repo> FALSIFLOW_PUBLIC_DEMO_URL=https://<host>/<demo> FALSIFLOW_PYPI_PACKAGE_URL=https://pypi.org/project/falsiflow/ falsiflow external-check --out-dir falsiflow_external_check --evidence falsiflow_external_evidence.json --force --strict",
+            f"FALSIFLOW_REPO_URL=https://github.com/<owner>/<repo> FALSIFLOW_PUBLIC_DEMO_URL=https://<host>/<demo> FALSIFLOW_PYPI_PACKAGE_URL=https://pypi.org/project/falsiflow/ FALSIFLOW_EXPECTED_VERSION={default_expected_version()} falsiflow external-check --out-dir falsiflow_external_check --evidence falsiflow_external_evidence.json --force --strict",
         ],
     }
     (out_dir / "external_readiness.json").write_text(json.dumps(summary, indent=2, sort_keys=True), encoding="utf-8")

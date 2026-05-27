@@ -401,6 +401,9 @@ def assert_schema_contract() -> None:
     assert "pypi_package_url" in external_evidence_schema["properties"]["checks"]["required"]
     assert "pipx_smoke" in external_evidence_schema["properties"]["checks"]["required"]
     assert "pipx_public_package" in external_evidence_schema["properties"]["checks"]["required"]
+    pypi_evidence_properties = external_evidence_schema["properties"]["checks"]["properties"]["pypi_package_url"]["properties"]
+    assert "expected_version" in pypi_evidence_properties
+    assert "published_version" in pypi_evidence_properties
     external_readiness_schema = falsiflow_schema("external-readiness")
     assert external_readiness_schema["title"] == "Falsiflow external readiness"
     assert "external_ready" in external_readiness_schema["properties"]["status"]["enum"]
@@ -1483,7 +1486,11 @@ def assert_cli_contract() -> None:
         assert (publish_kit_dir / "publish_handoff.md").exists()
         assert (publish_kit_dir / "publish.env.example").exists()
         assert (publish_kit_dir / "github_publish_commands.sh").exists()
-        assert "Falsiflow External Evidence" in (publish_kit_dir / "github_publish_commands.sh").read_text(encoding="utf-8")
+        publish_commands = (publish_kit_dir / "github_publish_commands.sh").read_text(encoding="utf-8")
+        assert "Falsiflow External Evidence" in publish_commands
+        assert "FALSIFLOW_EXPECTED_VERSION" in publish_commands
+        assert "gh run watch" in publish_commands
+        assert publish_commands.index("gh release create") < publish_commands.index("Falsiflow External Evidence")
         assert (publish_kit_dir / "external_evidence_template.json").exists()
         assert (publish_kit_dir / "public_release_evidence.json").exists()
         assert (publish_kit_dir / "public_release_evidence.md").exists()
@@ -1497,7 +1504,9 @@ def assert_cli_contract() -> None:
         assert (publish_kit_dir / "release_rehearsal.md").exists()
         release_rehearsal = json.loads((publish_kit_dir / "release_rehearsal.json").read_text(encoding="utf-8"))
         assert release_rehearsal["status"] == "release_rehearsal_ready"
-        assert {"external_check_strict", "public_announcement"} <= {step["id"] for step in release_rehearsal["steps"]}
+        rehearsal_step_ids = [step["id"] for step in release_rehearsal["steps"]]
+        assert {"github_release", "pypi_publish", "external_workflow", "external_check_strict", "public_announcement"} <= set(rehearsal_step_ids)
+        assert rehearsal_step_ids.index("github_release") < rehearsal_step_ids.index("pypi_publish") < rehearsal_step_ids.index("external_workflow") < rehearsal_step_ids.index("external_check_strict")
         release_rehearsal_report = (publish_kit_dir / "release_rehearsal.md").read_text(encoding="utf-8")
         assert "Falsiflow Public Release Rehearsal" in release_rehearsal_report
         assert "external-check --strict" in release_rehearsal_report
@@ -1629,12 +1638,15 @@ def assert_cli_contract() -> None:
         assert "pipx_public_package" in evidence_doc["checks"]
         assert evidence_doc["checks"]["pypi_package_url"]["verification_url"] == "https://pypi.org/pypi/falsiflow/json"
         assert evidence_doc["checks"]["pypi_package_url"]["artifact"] == "falsiflow_pypi_project.json"
+        assert evidence_doc["checks"]["pypi_package_url"]["expected_version"] == "0.1.2"
+        assert evidence_doc["checks"]["pypi_package_url"]["published_version"] == ""
         evidence_doc["checks"]["public_repo_url"]["status"] = "passed"
         evidence_doc["checks"]["public_repo_url"]["evidence_url"] = "https://github.com/AzurLiu/falsiflow"
         evidence_doc["checks"]["public_demo_url"]["status"] = "passed"
         evidence_doc["checks"]["public_demo_url"]["evidence_url"] = "https://falsiflow-demo.netlify.app"
         evidence_doc["checks"]["pypi_package_url"]["status"] = "passed"
         evidence_doc["checks"]["pypi_package_url"]["evidence_url"] = "https://pypi.org/project/falsiflow/"
+        evidence_doc["checks"]["pypi_package_url"]["published_version"] = evidence_doc["checks"]["pypi_package_url"]["expected_version"]
         evidence_doc["checks"]["pipx_smoke"]["status"] = "passed"
         evidence_doc["checks"]["pipx_smoke"]["workflow_url"] = "https://github.com/AzurLiu/falsiflow/actions/runs/1"
         evidence_doc["checks"]["pipx_public_package"]["status"] = "passed"
@@ -1667,6 +1679,7 @@ def assert_cli_contract() -> None:
         assert external_ready_summary["external_evidence_status"] == "loaded"
         ready_checks = {check["check"]: check for check in external_ready_summary["checks"]}
         assert ready_checks["pypi_package_url"]["status"] == "passed"
+        assert ready_checks["pypi_version_match"]["status"] == "passed"
         assert ready_checks["pipx_public_package"]["status"] == "passed"
 
         cli_reference_md = Path(tmp) / "cli_reference.md"
