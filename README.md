@@ -304,10 +304,13 @@ falsiflow launch-kit --out-dir falsiflow_launch_kit --force
 `public_release_evidence.md` and `release_rehearsal.md`. The launch metrics
 tracker turns the 1k-star path into review windows for GitHub traffic,
 referrers, stars, forks, clones, demo visits, install/download signals, repeated
-questions, and docs or demo fixes. The nested public release rehearsal keeps the
-last-mile publish sequence reviewable before any announcement is posted. It
-reports `launch_kit_ready` when the local launch materials and publish handoff
-are ready, while preserving `external_blocked` until hosted demo, pipx, Windows,
+questions, and docs or demo fixes. `launch_posts.md` includes a Channel Checklist
+for Hacker News, Reddit or community threads, LinkedIn, X, and awesome lists so
+public posting waits for the demo URL, PyPI status, release evidence, and
+responsible-use boundary. The nested public release rehearsal keeps the last-mile
+publish sequence reviewable before any announcement is posted. It reports
+`launch_kit_ready` when the local launch materials and publish handoff are
+ready, while preserving `external_blocked` until hosted demo, pipx, Windows,
 PyPI, and other account-bound evidence pass `external-check --strict`.
 After a launch window, use `launch_metrics.json` as the structured source and
 `launch_metrics.md` as the weekly maintainer review checklist. The checklist
