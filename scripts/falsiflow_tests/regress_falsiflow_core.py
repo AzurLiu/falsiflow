@@ -2933,6 +2933,7 @@ def assert_cli_contract() -> None:
         action_text = (ROOT / "action.yml").read_text(encoding="utf-8")
         assert "using: composite" in action_text
         assert "actions/setup-python@v5" in action_text
+        assert "GITHUB_ACTION_PATH" in action_text
         assert 'description: "Gate to run:' in action_text
         assert {"claim-check", "template-check", "casebook-check", "release-check", "adoption-check", "quickstart", "external-check"} <= set(action_text.replace(",", " ").split())
         readme_first_screen = (ROOT / "README.md").read_text(encoding="utf-8")[:2400]

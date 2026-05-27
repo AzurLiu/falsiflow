@@ -1,36 +1,51 @@
 # Falsiflow
 
-Evidence-gated CLI and CI action for AI eval, product-metric, and R&D
-claims.
+CI gates for claims: prove AI eval, product metric, and R&D results before
+they ship.
 
 [![Falsiflow](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow.yml)
 [![Falsiflow Cross Platform](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-cross-platform.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-cross-platform.yml)
+[![Falsiflow Scorecard](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-scorecard.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-scorecard.yml)
 
 Public demo: <https://falsiflow-demo.netlify.app>
 
 ![Falsiflow evidence-gated claim workflow](docs/assets/falsiflow_proof_strip.svg)
 
-Falsiflow turns a claim like "this model improved," "this vendor batch passed,"
-or "this experiment is ready" into explicit gates, required evidence rows,
-source-file policy, derived metrics, and acceptance rules. A claim only becomes
-ready when the project config is valid, the evidence CSV is structurally sound,
-required metadata and raw-source files are present, and all configured gates
-pass.
+Falsiflow is for the moment a team says "the model improved," "the launch
+metric passed," or "this experiment is ready." It turns that claim into explicit
+gates, required evidence rows, source-file policy, derived metrics, and
+acceptance rules. A claim only becomes ready when the project config is valid,
+the evidence CSV is structurally sound, required metadata and raw-source files
+are present, and every configured gate passes.
 
-It grew out of the LIMINA neural-materials work, but the useful part is general:
-prevent expensive AI eval, product metric, research, or vendor claims from
-advancing on placeholders, missing provenance, malformed files, or ambiguous
-configuration.
-
-Run the AI-claim demo locally:
+Run the AI-claim gate from source:
 
 ```bash
+git clone https://github.com/AzurLiu/falsiflow.git
+cd falsiflow
+python3 -m pip install -e .
 falsiflow quickstart --template ai_claim_evaluation --out falsiflow_ai_demo --strict
 ```
 
 Expected result: `quickstart_ready` with a nested `claim_check_ready` report.
-Placeholder evidence remains `claim_check_blocked`, which is the point. Use the
-same gate from another repository with the reusable GitHub Action below.
+Placeholder evidence remains `claim_check_blocked`, which is the point.
+
+Drop the same gate into another repository with the reusable GitHub Action. The
+action installs from its versioned checkout by default, so downstream CI does
+not depend on PyPI availability:
+
+```yaml
+- uses: AzurLiu/falsiflow@main
+  with:
+    mode: claim-check
+    project-dir: my_falsiflow_project
+    strict: "true"
+```
+
+Current public status: hosted demo, CI, cross-platform smoke tests, Scorecard,
+and source installs are live. PyPI trusted publishing is tracked in
+[#6](https://github.com/AzurLiu/falsiflow/issues/6); until that issue is closed,
+use source installs or the action's default self-install path.
 
 ## Fast Paths
 
@@ -189,8 +204,7 @@ falsiflow static-demo --out-dir falsiflow_static_demo --force
 The static demo directory includes `static_demo_summary.json` and can be served
 by GitHub Pages, Netlify, or any static file server.
 
-To add Falsiflow to another repository after the package is published, use the
-reusable GitHub Action:
+To add Falsiflow to another repository, use the reusable GitHub Action:
 
 ```yaml
 name: Falsiflow Evidence Gate
@@ -205,7 +219,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: AzurLiu/falsiflow@v0.1.1
+      - uses: AzurLiu/falsiflow@main
         with:
           mode: claim-check
           project-dir: my_falsiflow_project
@@ -215,9 +229,10 @@ jobs:
 
 The same `action.yml` supports `template-check`, `casebook-check`,
 `release-check`, `adoption-check`, `quickstart`, and `external-check` modes.
-While developing from this checkout, override `install-command` with
-`python -m pip install -e .`; public downstream repositories should use the
-default PyPI install after the package is published.
+The default `install-command` installs from the versioned action checkout via
+`GITHUB_ACTION_PATH`, which makes the action usable before PyPI publication.
+Override `install-command` only when you want to install from PyPI, a fork, or a
+repository-local editable checkout.
 
 This repository also includes a prebuilt public demo at `docs/public_demo` and a
 root `netlify.toml`, so Netlify publishes `docs` and opens the demo without

@@ -107,7 +107,6 @@ jobs:
       - name: Reusable action smoke
         uses: ./
         with:
-          install-command: python -m pip install -e .
           mode: quickstart
           template: ai_claim_evaluation
           out-dir: /tmp/falsiflow_action_quickstart

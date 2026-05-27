@@ -167,10 +167,11 @@ public-package pipx, and Windows smoke tests, writes
 The root `action.yml` is the downstream CI entry point. It installs Falsiflow and
 can run `claim-check`, `template-check`, `casebook-check`, `release-check`,
 `adoption-check`, `quickstart`, or `external-check`, writing the same JSON and
-Markdown artifacts that local commands produce. Public downstream repositories
-use the default PyPI install; this repository's own CI overrides
-`install-command` with `python -m pip install -e .` for local action smoke
-coverage before publishing.
+Markdown artifacts that local commands produce. The default `install-command`
+installs from `GITHUB_ACTION_PATH`, so a versioned action tag can run before
+PyPI publication is complete. Downstream repositories can still override
+`install-command` when they want to install from PyPI, a fork, or a
+repository-local editable checkout.
 
 For repository-local CI checks:
 

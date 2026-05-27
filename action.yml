@@ -16,9 +16,9 @@ inputs:
     required: false
     default: "3.11"
   install-command:
-    description: "Command that installs Falsiflow before running the gate."
+    description: "Command that installs Falsiflow before running the gate. Defaults to the versioned action checkout."
     required: false
-    default: "python -m pip install falsiflow"
+    default: 'python -m pip install "$GITHUB_ACTION_PATH"'
   working-directory:
     description: "Directory where the Falsiflow command should run."
     required: false
