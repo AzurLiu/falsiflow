@@ -59,6 +59,26 @@ configured evidence package is complete.
 | MLflow | Experiment tracking, run metadata, model artifacts, and registry workflows. | The tracked run is evidence, but the release or announcement should stay blocked until the full claim package is reviewable in CI. |
 | Plain GitHub Actions | Running scripts, tests, and deployment jobs. | The repository needs a portable evidence contract, consistent `claim_check_ready` or `claim_check_blocked` status, and human-readable repair actions. |
 
+## Plain GitHub Actions Boundary
+
+Plain GitHub Actions is enough when the repository only needs to run a script,
+unit test, linter, benchmark, or deployment job and the pass/fail result is the
+decision. Keep that path when reviewers do not need a reusable evidence
+contract, source-file inventory, or ready/blocked audit report.
+
+Falsiflow adds value when the CI job is trying to answer a claim-readiness
+question rather than only "did this script exit 0?" In that case, the important
+inputs are not hidden in shell flags or job logs. They live in `project.json`,
+the evidence CSV, source files, derived metrics, and template policy. The output
+is a stable `claim_check_ready` or `claim_check_blocked` status with JSON for
+automation, Markdown/HTML for reviewers, source manifests, evidence bundles,
+and a repair checklist.
+
+Use plain GitHub Actions for direct build, test, deploy, or benchmark commands.
+Use Falsiflow inside GitHub Actions when a model, product metric, lab result, or
+vendor handoff should remain blocked until the evidence package is complete and
+reviewable outside the workflow log.
+
 ## Casebook
 
 For a public-facing casebook with reviewer scripts and blocked-path proofs
