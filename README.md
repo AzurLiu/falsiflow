@@ -114,7 +114,9 @@ verified template release flow, see
 [docs/falsiflow_template_authoring.md](docs/falsiflow_template_authoring.md).
 For a comparison against spreadsheets, CI suites, ELN/LIMS systems, ML eval
 harnesses, materials databases, and workflow orchestrators, see
-[docs/falsiflow_positioning.md](docs/falsiflow_positioning.md).
+[docs/falsiflow_positioning.md](docs/falsiflow_positioning.md). It also names
+the boundary with Great Expectations, Evidently, Deepchecks, MLflow, and plain
+GitHub Actions.
 For concrete public case cards across Biointerface coatings, neural materials,
 AI claim evaluation, product metric launches, vendor handoffs, and wetware
 support hardware, see

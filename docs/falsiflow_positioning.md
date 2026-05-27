@@ -45,6 +45,20 @@ handoffs, or public release notes."
 | Materials database | Searching known properties | Project-specific thresholds, measured evidence rows, and source-backed acceptance decisions | Databases inform candidates; Falsiflow gates your claim about them. |
 | Workflow orchestrator | Running multi-step jobs | Conservative ready/blocked decisions and portable review bundles | Orchestrators run work; Falsiflow decides whether evidence is ready. |
 
+## Named Tool Boundaries
+
+These boundaries are intentionally cooperative. Falsiflow should sit after the
+systems that generate or validate evidence, then block the claim until the
+configured evidence package is complete.
+
+| Neighbor | Use It For | Use Falsiflow When |
+| --- | --- | --- |
+| Great Expectations | Data quality expectations, validation results, and data documentation for tables and pipelines. | A release claim spans evidence rows, raw-source files, operators, timestamps, and a ready/blocked decision, not just table validity. |
+| Evidently | ML, LLM, and data evaluations or monitoring metrics. | The team wants to promote a headline such as "model quality improved" only after dataset versions, model versions, raw outputs, benchmark deltas, and provenance pass. |
+| Deepchecks | Testing, CI, and monitoring checks for ML data and models. | The model check is one input to a broader claim gate that also needs source manifests, review artifacts, and bundle verification. |
+| MLflow | Experiment tracking, run metadata, model artifacts, and registry workflows. | The tracked run is evidence, but the release or announcement should stay blocked until the full claim package is reviewable in CI. |
+| Plain GitHub Actions | Running scripts, tests, and deployment jobs. | The repository needs a portable evidence contract, consistent `claim_check_ready` or `claim_check_blocked` status, and human-readable repair actions. |
+
 ## Casebook
 
 For a public-facing casebook with reviewer scripts and blocked-path proofs
