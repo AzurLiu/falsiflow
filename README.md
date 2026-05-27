@@ -121,6 +121,10 @@ For concrete public case cards across Biointerface coatings, neural materials,
 AI claim evaluation, product metric launches, vendor handoffs, and wetware
 support hardware, see
 [docs/falsiflow_public_casebook.md](docs/falsiflow_public_casebook.md).
+For a proposed RAG quality gate starter template with evaluation-set
+provenance, retrieval quality, answer faithfulness, source coverage, and
+placeholder-blocked evidence rows, see
+[docs/falsiflow_rag_quality_gate_proposal.md](docs/falsiflow_rag_quality_gate_proposal.md).
 For machine-verifiable casebook proof across positive demos and placeholder
 blockers, run `falsiflow casebook-check` and see
 [docs/falsiflow_casebook_check.md](docs/falsiflow_casebook_check.md).
@@ -1042,6 +1046,9 @@ with the active Falsiflow contract.
   publishing setup and `invalid-publisher` recovery runbook.
 - `docs/falsiflow_demo_pr_playbook.md`: public demo PR script for blocked and
   ready AI-eval claim gates.
+- `docs/falsiflow_rag_quality_gate_proposal.md`: proposal for a future RAG
+  quality gate starter template with placeholder-blocked and source-backed
+  evidence rows.
 - `docs/assets/falsiflow_30_second_demo.svg`: README visual showing the
   ready-vs-blocked AI claim demo path.
 - `.github/dependabot.yml`: weekly Dependabot updates for GitHub Actions and
