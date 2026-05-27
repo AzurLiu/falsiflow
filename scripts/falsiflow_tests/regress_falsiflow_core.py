@@ -1528,27 +1528,50 @@ def assert_cli_contract() -> None:
         assert (launch_kit_dir / "launch_summary.json").exists()
         assert (launch_kit_dir / "proof_card.md").exists()
         assert (launch_kit_dir / "announcement.md").exists()
+        announcement = (launch_kit_dir / "announcement.md").read_text(encoding="utf-8")
+        assert "Falsiflow is a CI gate for claims" in announcement
+        assert "falsiflow_demo_pr_playbook.md" in announcement
+        assert "claim_check_blocked" in announcement
+        assert "claim_check_ready" in announcement
+        assert announcement.count("```") % 2 == 0
         assert (launch_kit_dir / "demo_script.md").exists()
+        demo_script = (launch_kit_dir / "demo_script.md").read_text(encoding="utf-8")
+        assert "## 2:15 Demo PR" in demo_script
+        assert "evidence_placeholder_demo.csv" in demo_script
+        assert "evidence_pass_demo.csv" in demo_script
+        assert demo_script.count("```") % 2 == 0
         assert (launch_kit_dir / "readme_proof_strip.svg").exists()
         assert "claim_ready after proof" in (launch_kit_dir / "readme_proof_strip.svg").read_text(encoding="utf-8")
         assert (launch_kit_dir / "social_preview.svg").exists()
         assert "Falsiflow GitHub social preview" in (launch_kit_dir / "social_preview.svg").read_text(encoding="utf-8")
         assert (launch_kit_dir / "github_repo_profile.md").exists()
-        assert "## Topics" in (launch_kit_dir / "github_repo_profile.md").read_text(encoding="utf-8")
+        github_repo_profile = (launch_kit_dir / "github_repo_profile.md").read_text(encoding="utf-8")
+        assert "## Topics" in github_repo_profile
+        assert "Demo PR playbook" in github_repo_profile
         assert (launch_kit_dir / "launch_posts.md").exists()
-        assert "Show HN" in (launch_kit_dir / "launch_posts.md").read_text(encoding="utf-8")
+        launch_posts = (launch_kit_dir / "launch_posts.md").read_text(encoding="utf-8")
+        assert "Show HN" in launch_posts
+        assert "unsupported AI eval claims" in launch_posts
+        assert "Demo PR playbook" in launch_posts
+        assert "Reply Bank" in launch_posts
+        assert "Great Expectations" in launch_posts
+        assert "GITHUB_ACTION_PATH" in launch_posts
+        assert launch_posts.count("```") % 2 == 0
         assert (launch_kit_dir / "launch_metrics.json").exists()
         assert (launch_kit_dir / "launch_metrics.md").exists()
         launch_metrics = json.loads((launch_kit_dir / "launch_metrics.json").read_text(encoding="utf-8"))
         assert launch_metrics["status"] == "launch_metrics_ready"
         assert any(row["stage"] == "verification" for row in launch_metrics["funnel"])
+        assert "demo PR replay" in json.dumps(launch_metrics)
         launch_metrics_report = (launch_kit_dir / "launch_metrics.md").read_text(encoding="utf-8")
         assert "Falsiflow 1k-Star Launch Tracker" in launch_metrics_report
         assert "GitHub traffic" in launch_metrics_report
         assert "day-14" in launch_metrics_report
         assert "quality-gates" in launch_kit_summary["github_topics"]
         assert (launch_kit_dir / "maintainer_checklist.md").exists()
-        assert "Launch Metrics" in (launch_kit_dir / "maintainer_checklist.md").read_text(encoding="utf-8")
+        maintainer_checklist = (launch_kit_dir / "maintainer_checklist.md").read_text(encoding="utf-8")
+        assert "Launch Metrics" in maintainer_checklist
+        assert "falsiflow_demo_pr_playbook.md" in maintainer_checklist
         assert (launch_kit_dir / "publish_kit" / "publish_handoff.json").exists()
         assert (launch_kit_dir / "publish_kit" / "public_release_evidence.md").exists()
         assert (launch_kit_dir / "publish_kit" / "release_rehearsal.md").exists()

@@ -1210,6 +1210,37 @@ def run_release_check(
         launch_kit_summary = launch_kit_runner(artifact_root / "launch_kit", "biointerface_coatings", [], force=True)
         if launch_kit_summary.get("status") != "launch_kit_ready":
             failures.append(failure_record("launch_kit", "handoff", f"Launch kit ended as {launch_kit_summary.get('status', '')}."))
+        else:
+            launch_kit_dir = artifact_root / "launch_kit"
+            launch_content_checks = {
+                "launch_posts": (
+                    launch_kit_dir / "launch_posts.md",
+                    ["Show HN", "unsupported AI eval claims", "Demo PR playbook", "Reply Bank", "Great Expectations", "GITHUB_ACTION_PATH", "claim_check_blocked", "claim_check_ready"],
+                ),
+                "launch_announcement": (
+                    launch_kit_dir / "announcement.md",
+                    ["Falsiflow is a CI gate for claims", "falsiflow_demo_pr_playbook.md", "claim_check_blocked", "claim_check_ready", "Public Release Boundary"],
+                ),
+                "launch_demo_script": (
+                    launch_kit_dir / "demo_script.md",
+                    ["## 2:15 Demo PR", "evidence_placeholder_demo.csv", "evidence_pass_demo.csv", "claim_check_blocked", "claim_check_ready"],
+                ),
+                "launch_maintainer_checklist": (
+                    launch_kit_dir / "maintainer_checklist.md",
+                    ["falsiflow_demo_pr_playbook.md", "claim_check_blocked", "claim_check_ready", "Launch Metrics"],
+                ),
+                "launch_metrics": (
+                    launch_kit_dir / "launch_metrics.md",
+                    ["demo PR playbook", "demo PR replay", "day-14", "Falsiflow 1k-Star Launch Tracker"],
+                ),
+            }
+            for check_id, (path, tokens) in launch_content_checks.items():
+                text = path.read_text(encoding="utf-8") if path.exists() else ""
+                missing_tokens = [token for token in tokens if token not in text]
+                if missing_tokens:
+                    failures.append(failure_record("launch_kit_content", check_id, f"Missing launch-kit content tokens: {', '.join(missing_tokens)}"))
+                if check_id in {"launch_announcement", "launch_demo_script", "launch_posts"} and text.count("```") % 2:
+                    failures.append(failure_record("launch_kit_content", check_id, "Markdown code fences are not balanced."))
     except Exception as exc:  # pragma: no cover - defensive CLI boundary.
         launch_kit_summary = {"status": "launch_kit_failed", "message": str(exc)}
         failures.append(failure_record("launch_kit", "handoff", str(exc)))
