@@ -218,7 +218,7 @@ jobs:
   falsiflow:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: AzurLiu/falsiflow@main
         with:
           mode: claim-check
@@ -233,6 +233,9 @@ The default `install-command` installs from the versioned action checkout via
 `GITHUB_ACTION_PATH`, which makes the action usable before PyPI publication.
 Override `install-command` only when you want to install from PyPI, a fork, or a
 repository-local editable checkout.
+For copy-paste AI eval workflows, artifact uploads, and install override
+examples, see
+[docs/falsiflow_github_action_examples.md](docs/falsiflow_github_action_examples.md).
 
 This repository also includes a prebuilt public demo at `docs/public_demo` and a
 root `netlify.toml`, so Netlify publishes `docs` and opens the demo without

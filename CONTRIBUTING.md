@@ -12,6 +12,20 @@ falsiflow selftest
 falsiflow release-check --out-dir data/falsiflow/release_check
 ```
 
+## First Contributions
+
+Good first issues should be small, externally useful, and release-checkable.
+The best starter contributions are usually one of these:
+
+- Improve a first-run doc, screenshot, demo script, or troubleshooting path.
+- Add a narrow evidence-gate fixture to an existing starter template.
+- Add or refine an adapter-profile example with sanitized CSV input.
+- Improve GitHub Action examples, issue templates, or launch-readiness copy.
+
+For any first contribution, name the command that proves the change. Prefer
+`falsiflow quickstart`, `falsiflow doctor`, `falsiflow casebook-check`,
+`falsiflow adoption-check`, or `falsiflow release-check`.
+
 For a faster local loop while editing docs or small CLI behavior, use:
 
 ```bash

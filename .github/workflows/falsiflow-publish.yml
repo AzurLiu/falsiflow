@@ -21,7 +21,7 @@ jobs:
           git remote add origin "https://github.com/${GITHUB_REPOSITORY}.git"
           git fetch --no-tags --depth=1 origin "+${GITHUB_REF}:${GITHUB_REF}"
           git checkout --detach "${GITHUB_SHA}"
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
       - name: Build and check distributions
@@ -35,7 +35,7 @@ jobs:
             --out-dir /tmp/falsiflow_release_check \
             --json > /tmp/falsiflow_release_check.json
       - name: Upload distribution artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: falsiflow-dist
           path: dist/*
@@ -49,7 +49,7 @@ jobs:
       url: https://pypi.org/project/falsiflow/
     steps:
       - name: Download distribution artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: falsiflow-dist
           path: dist

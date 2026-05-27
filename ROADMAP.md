@@ -36,6 +36,9 @@ to try, hard to misuse, and straightforward to verify before publication.
 - Use the `Falsiflow External Evidence` workflow to collect hosted demo, PyPI
   package URL, checkout-based pipx, public-package pipx, and Windows smoke
   evidence after public launch.
+- Keep a small public queue of `good first issue`, `help wanted`, template, and
+  launch-readiness issues so new contributors can improve docs, demo proof,
+  examples, and starter gates without changing the core claim contract.
 
 ## Next
 
@@ -43,6 +46,8 @@ to try, hard to misuse, and straightforward to verify before publication.
   behavior, and coverage checks can be documented and tested.
 - Expand release evidence around PyPI, GitHub Pages, and cross-platform smoke
   artifacts once the public repository is live.
+- Add a product-metric launch gate and a more opinionated AI-eval GitHub Action
+  example once the initial PyPI and external-evidence loop is closed.
 
 ## Later
 

@@ -2932,7 +2932,7 @@ def assert_cli_contract() -> None:
         assert package_check_map["readme_github_action_docs"]["status"] == "passed"
         action_text = (ROOT / "action.yml").read_text(encoding="utf-8")
         assert "using: composite" in action_text
-        assert "actions/setup-python@v5" in action_text
+        assert "actions/setup-python@v6" in action_text
         assert "GITHUB_ACTION_PATH" in action_text
         assert 'description: "Gate to run:' in action_text
         assert {"claim-check", "template-check", "casebook-check", "release-check", "adoption-check", "quickstart", "external-check"} <= set(action_text.replace(",", " ").split())

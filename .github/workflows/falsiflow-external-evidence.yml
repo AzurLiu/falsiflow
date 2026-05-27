@@ -30,7 +30,7 @@ jobs:
           git remote add origin "https://github.com/${GITHUB_REPOSITORY}.git"
           git fetch --no-tags --depth=1 origin "+${GITHUB_REF}:${GITHUB_REF}"
           git checkout --detach "${GITHUB_SHA}"
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
       - name: pipx install and browser-entry smoke
@@ -40,7 +40,7 @@ jobs:
           python -m pipx install --force .
           python -m pipx run --spec . falsiflow start --out-dir "$RUNNER_TEMP/falsiflow_start" --check --json > "$RUNNER_TEMP/falsiflow_pipx_start.json"
       - name: Upload pipx smoke artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: falsiflow-pipx-smoke
           path: ${{ runner.temp }}/falsiflow_pipx_start.json
@@ -48,7 +48,7 @@ jobs:
   pipx-public-package:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
       - name: pipx public package smoke
@@ -57,7 +57,7 @@ jobs:
           python -m pip install --user pipx
           python -m pipx run --spec falsiflow falsiflow start --out-dir "$RUNNER_TEMP/falsiflow_public_package_start" --check --json > "$RUNNER_TEMP/falsiflow_public_package_start.json"
       - name: Upload public package pipx smoke artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: falsiflow-pipx-public-package-smoke
           path: ${{ runner.temp }}/falsiflow_public_package_start.json
@@ -72,7 +72,7 @@ jobs:
           git remote add origin "https://github.com/${GITHUB_REPOSITORY}.git"
           git fetch --no-tags --depth=1 origin "+${GITHUB_REF}:${GITHUB_REF}"
           git checkout --detach "${GITHUB_SHA}"
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
       - name: PowerShell installer smoke
@@ -94,7 +94,7 @@ jobs:
           git remote add origin "https://github.com/${GITHUB_REPOSITORY}.git"
           git fetch --no-tags --depth=1 origin "+${GITHUB_REF}:${GITHUB_REF}"
           git checkout --detach "${GITHUB_SHA}"
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
       - name: Verify hosted demo URL
@@ -216,7 +216,7 @@ jobs:
             --strict \
             --json > falsiflow_external_readiness.stdout.json
       - name: Upload external evidence artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: falsiflow-external-evidence
           path: |
