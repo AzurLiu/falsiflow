@@ -134,3 +134,11 @@ falsiflow claim-check --project-dir falsiflow_ai_demo --strict --force
 falsiflow release-check --out-dir data/falsiflow/release_check --force
 ```
 
+## Demo PR Playbook
+
+For a public-ready PR demonstration, use
+[falsiflow_demo_pr_playbook.md](falsiflow_demo_pr_playbook.md). It shows the
+same AI eval gate moving from `claim_check_blocked` with
+`evidence_placeholder_demo.csv` to `claim_check_ready` with
+`evidence_pass_demo.csv`, including the copyable workflow and artifact upload
+paths.

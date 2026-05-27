@@ -244,6 +244,9 @@ repository-local editable checkout.
 For copy-paste AI eval workflows, artifact uploads, and install override
 examples, see
 [docs/falsiflow_github_action_examples.md](docs/falsiflow_github_action_examples.md).
+For a public demo PR script that first blocks placeholder evidence and then
+turns green with source-backed evidence, see
+[docs/falsiflow_demo_pr_playbook.md](docs/falsiflow_demo_pr_playbook.md).
 
 This repository also includes a prebuilt public demo at `docs/public_demo` and a
 root `netlify.toml`, so Netlify publishes `docs` and opens the demo without
@@ -1034,6 +1037,8 @@ with the active Falsiflow contract.
   artifact upload, and optional PyPI trusted publishing.
 - `docs/falsiflow_pypi_trusted_publishing.md`: account-bound PyPI trusted
   publishing setup and `invalid-publisher` recovery runbook.
+- `docs/falsiflow_demo_pr_playbook.md`: public demo PR script for blocked and
+  ready AI-eval claim gates.
 - `docs/assets/falsiflow_30_second_demo.svg`: README visual showing the
   ready-vs-blocked AI claim demo path.
 - `.github/dependabot.yml`: weekly Dependabot updates for GitHub Actions and
