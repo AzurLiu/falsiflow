@@ -9,6 +9,42 @@ The goal is not to prove a real model is good. The goal is to show that
 Falsiflow keeps the sentence "the model improved" out of release notes until
 the claim package is reviewable by CI and humans.
 
+## Tiny LLM Eval Fixture
+
+For an AI-tool audience, frame the demo as a small LLM eval regression gate:
+
+```text
+Claim: candidate_model is ready to claim better answer quality than the pinned
+baseline on claims_eval_v2026_05_26.
+```
+
+The blocked version can be this single placeholder row in
+`falsiflow_ai_eval/evidence.csv`:
+
+```csv
+gate_id,candidate_id,sample_id,field,value,source_file,measured_at,operator_or_agent,instrument_id,notes
+eval_provenance,candidate_model,eval_run_001,dataset_version_recorded,dataset_pending,source_files/ai_eval_raw_export.csv,2026-05-26T08:00:00Z,falsiflow_eval_operator,eval_harness_001,Placeholder dataset version should block readiness.
+```
+
+Expected result: `claim_check_blocked`. The blocker is intentional: the dataset
+version is not pinned, and the placeholder marker keeps the claim out of release
+notes.
+
+The ready version should use the full bundled `evidence_pass_demo.csv`, because
+the gate requires provenance, benchmark quality, baseline comparison, and
+reproducibility rows. This is the representative LLM eval row reviewers should
+recognize in the ready diff:
+
+```csv
+gate_id,candidate_id,sample_id,field,value,source_file,measured_at,operator_or_agent,instrument_id,notes
+benchmark_quality,candidate_model,eval_run_001,exact_match_rate,0.86,source_files/ai_eval_raw_export.csv,2026-05-26T09:00:00Z,falsiflow_eval_operator,eval_harness_001,Candidate exact-match metric.
+```
+
+Expected result after copying the complete `evidence_pass_demo.csv`:
+`claim_check_ready`. The ready state still does not prove the model is truly
+better; it only proves the repository supplied the evidence package required by
+its own LLM eval claim gate.
+
 ## Demo Shape
 
 | Step | Branch State | Expected CI Status | Reviewer Takeaway |
