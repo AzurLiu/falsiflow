@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.1.2
+
+- Added the `product_metric_launch` starter template and public casebook
+  coverage so Falsiflow now demonstrates AI eval, product-metric, vendor,
+  wetware, biointerface, and neural-materials claim gates.
+- Made the reusable GitHub Action install from its checked-out action path by
+  default, keeping downstream claim gates usable before PyPI publication.
+- Updated GitHub Actions dependencies and added copy-paste AI eval action
+  examples for downstream repositories.
+- Added a README 30-second ready-vs-blocked demo strip and release-checked it
+  as a first-screen visual asset.
+- Added named neighboring-tool boundaries for Great Expectations, Evidently,
+  Deepchecks, MLflow, and plain GitHub Actions.
+- Added a public demo PR playbook that rehearses an AI-eval claim moving from
+  `claim_check_blocked` with placeholder evidence to `claim_check_ready` with
+  source-backed evidence.
+- Sharpened launch-kit posts, announcement copy, demo script, launch metrics,
+  and maintainer checklist around the demo PR path, PyPI status, and
+  responsible-use reply bank.
+- Extended release-check and regression coverage so launch copy, demo PR
+  references, sdist docs, README assets, and Markdown code fences remain
+  checked before tagging.
+
 ## 0.1.1
 
 - Introduced the Falsiflow evidence-gated R&D workflow engine.

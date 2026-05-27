@@ -30,6 +30,16 @@ GitHub trusted publisher with:
 After saving the publisher, rerun the failed `Falsiflow Publish` workflow or
 publish a new release tag whose package version matches `pyproject.toml`.
 
+Current main is prepared for `0.1.2`. Prefer publishing a new `v0.1.2` GitHub
+release after the trusted publisher is configured, rather than rerunning the old
+`v0.1.1` release, so the PyPI package includes the product-metric template,
+README 30-second demo, demo PR playbook, named neighboring-tool boundaries, and
+sharpened launch kit.
+
+Do not publish the `v0.1.2` release tag until the PyPI project or pending
+publisher has the exact trusted-publisher settings above; otherwise the release
+workflow will build successfully and fail again at the PyPI token exchange.
+
 ## Verification
 
 The release is not externally ready until all of these are true:
