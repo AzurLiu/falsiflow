@@ -1,4 +1,4 @@
-name: Falsiflow Downstream AI Eval Smoke
+name: Falsiflow Downstream RAG Eval Smoke
 
 on:
   pull_request:
@@ -12,23 +12,23 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Run Falsiflow claim gate
+      - name: Run Falsiflow RAG eval claim gate
         id: falsiflow
         uses: AzurLiu/falsiflow@v0.1.30
         with:
           mode: claim-check
-          project-dir: falsiflow_ai_eval
-          evidence: falsiflow_ai_eval/evidence.csv
-          out-dir: data/falsiflow/downstream_smoke
+          project-dir: falsiflow_rag_eval
+          evidence: falsiflow_rag_eval/evidence.csv
+          out-dir: data/falsiflow/rag_eval_smoke
           strict: "true"
 
-      - name: Upload Falsiflow reports
+      - name: Upload Falsiflow RAG eval reports
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: falsiflow-downstream-ai-eval-smoke
+          name: falsiflow-downstream-rag-eval-smoke
           path: |
             ${{ steps.falsiflow.outputs.summary-json }}
             ${{ steps.falsiflow.outputs.summary-md }}
-            data/falsiflow/downstream_smoke/evidence_bundle.zip
-            data/falsiflow/downstream_smoke/evidence_bundle_verify.md
+            data/falsiflow/rag_eval_smoke/evidence_bundle.zip
+            data/falsiflow/rag_eval_smoke/evidence_bundle_verify.md

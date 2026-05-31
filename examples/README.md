@@ -97,6 +97,22 @@ The fixture includes `.github/workflows/falsiflow-product-metric.yml` and the
 show `claim_check_blocked` before the repair commit copies
 `evidence_pass_demo.csv` over `evidence.csv`.
 
+## Downstream RAG Eval Smoke
+
+For a copy-paste repository fixture that starts blocked on placeholder RAG eval
+evidence and turns ready after retrieval, faithfulness, citation, source
+coverage, and reproducibility rows are added, use:
+
+```bash
+cp -R examples/downstream_rag_eval_smoke/. /tmp/falsiflow_rag_eval_downstream_repo/
+```
+
+The fixture includes `.github/workflows/falsiflow-rag-eval.yml` and the
+`falsiflow_rag_eval/` project files expected by the workflow. Its initial
+`evidence.csv` is intentionally the placeholder demo, so a downstream PR should
+show `claim_check_blocked` before the repair commit copies
+`evidence_pass_demo.csv` over `evidence.csv`.
+
 ## Local LLM Eval Import
 
 For a copy-paste fixture that starts blocked on placeholder AI eval evidence,

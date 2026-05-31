@@ -1,0 +1,2 @@
+gate_id,candidate_id,sample_id,field,value,source_file,measured_at,operator_or_agent,instrument_id,notes
+evaluation_provenance,candidate_rag,rag_eval_001,eval_set_version_recorded,eval_set_pending,source_files/rag_eval_raw_export.csv,2026-05-26T08:00:00Z,falsiflow_rag_eval_operator,rag_eval_harness_001,Placeholder eval-set version should block readiness.

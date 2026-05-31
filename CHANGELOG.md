@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.30
+
+- Added `examples/downstream_rag_eval_smoke`, a copy-paste downstream repo
+  fixture that blocks placeholder RAG eval claims in CI and turns ready after
+  source-backed retrieval, faithfulness, citation, and reproducibility evidence
+  is added.
+- Linked the maintained RAG downstream fixture from the README, examples
+  walkthrough, GitHub Action examples, and launch plan.
+- Added release-check and source-distribution coverage so future releases keep
+  the RAG fixture packaged and version-pinned with the reusable GitHub Action.
+
 ## 0.1.29
 
 - Updated the public launchpad and downstream proof strip so the first visible

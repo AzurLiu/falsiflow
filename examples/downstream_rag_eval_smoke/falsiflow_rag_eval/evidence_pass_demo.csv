@@ -1,0 +1,23 @@
+gate_id,candidate_id,sample_id,field,value,source_file,measured_at,operator_or_agent,instrument_id,notes
+evaluation_provenance,candidate_rag,rag_eval_001,eval_set_version_recorded,true,source_files/rag_eval_raw_export.csv,2026-05-26T08:00:00Z,falsiflow_rag_eval_operator,rag_eval_harness_001,Evaluation set version pinned in manifest.
+evaluation_provenance,candidate_rag,rag_eval_001,query_set_hash_recorded,true,source_files/rag_eval_raw_export.csv,2026-05-26T08:00:00Z,falsiflow_rag_eval_operator,rag_eval_harness_001,Query set hash pinned in manifest.
+evaluation_provenance,candidate_rag,rag_eval_001,candidate_rag_version_recorded,true,source_files/rag_eval_raw_export.csv,2026-05-26T08:00:00Z,falsiflow_rag_eval_operator,rag_eval_harness_001,Candidate RAG pipeline revision recorded.
+evaluation_provenance,candidate_rag,rag_eval_001,baseline_rag_version_recorded,true,source_files/rag_eval_raw_export.csv,2026-05-26T08:00:00Z,falsiflow_rag_eval_operator,rag_eval_harness_001,Baseline RAG pipeline revision recorded.
+evaluation_provenance,candidate_rag,rag_eval_001,judge_version_recorded,true,source_files/rag_eval_raw_export.csv,2026-05-26T08:00:00Z,falsiflow_rag_eval_operator,rag_eval_harness_001,Judge version recorded.
+retrieval_quality,candidate_rag,rag_eval_001,recall_at_5,0.86,source_files/rag_eval_raw_export.csv,2026-05-26T09:00:00Z,falsiflow_rag_eval_operator,rag_eval_harness_001,Candidate recall at five over pinned query set.
+retrieval_quality,candidate_rag,rag_eval_001,mrr_at_10,0.74,source_files/rag_eval_raw_export.csv,2026-05-26T09:00:00Z,falsiflow_rag_eval_operator,rag_eval_harness_001,Candidate MRR at ten over pinned query set.
+retrieval_quality,candidate_rag,rag_eval_001,retrieval_coverage_rate,0.98,source_files/rag_eval_raw_export.csv,2026-05-26T09:00:00Z,falsiflow_rag_eval_operator,rag_eval_harness_001,Candidate retrieval coverage.
+retrieval_quality,baseline_rag,rag_eval_001,recall_at_5,0.80,source_files/rag_eval_raw_export.csv,2026-05-26T09:00:00Z,falsiflow_rag_eval_operator,rag_eval_harness_001,Baseline recall at five.
+retrieval_quality,baseline_rag,rag_eval_001,mrr_at_10,0.68,source_files/rag_eval_raw_export.csv,2026-05-26T09:00:00Z,falsiflow_rag_eval_operator,rag_eval_harness_001,Baseline MRR at ten.
+retrieval_quality,baseline_rag,rag_eval_001,retrieval_coverage_rate,0.95,source_files/rag_eval_raw_export.csv,2026-05-26T09:00:00Z,falsiflow_rag_eval_operator,rag_eval_harness_001,Baseline retrieval coverage.
+answer_faithfulness,candidate_rag,rag_eval_001,faithfulness_rate,0.94,source_files/rag_eval_raw_export.csv,2026-05-26T10:00:00Z,falsiflow_rag_eval_operator,rag_eval_harness_001,Candidate answer faithfulness.
+answer_faithfulness,candidate_rag,rag_eval_001,unsupported_answer_rate,0.025,source_files/rag_eval_raw_export.csv,2026-05-26T10:00:00Z,falsiflow_rag_eval_operator,rag_eval_harness_001,Candidate unsupported answer rate.
+answer_faithfulness,candidate_rag,rag_eval_001,answer_correctness_rate,0.87,source_files/rag_eval_raw_export.csv,2026-05-26T10:00:00Z,falsiflow_rag_eval_operator,rag_eval_harness_001,Candidate answer correctness.
+answer_faithfulness,candidate_rag,rag_eval_001,judged_item_count,420,source_files/rag_eval_raw_export.csv,2026-05-26T10:00:00Z,falsiflow_rag_eval_operator,rag_eval_harness_001,Judged answer count.
+source_coverage,candidate_rag,rag_eval_001,citation_precision,0.93,source_files/rag_eval_raw_export.csv,2026-05-26T10:30:00Z,falsiflow_rag_eval_operator,rag_eval_harness_001,Citation precision.
+source_coverage,candidate_rag,rag_eval_001,source_coverage_rate,0.97,source_files/rag_eval_raw_export.csv,2026-05-26T10:30:00Z,falsiflow_rag_eval_operator,rag_eval_harness_001,Source coverage rate.
+source_coverage,candidate_rag,rag_eval_001,missing_source_rate,0.01,source_files/rag_eval_raw_export.csv,2026-05-26T10:30:00Z,falsiflow_rag_eval_operator,rag_eval_harness_001,Missing source rate.
+reproducibility_package,candidate_rag,rag_eval_001,retrieval_run_archived,true,source_files/rag_eval_raw_export.csv,2026-05-26T11:00:00Z,falsiflow_rag_eval_operator,rag_eval_harness_001,Retrieval run archived.
+reproducibility_package,candidate_rag,rag_eval_001,raw_answers_archived,true,source_files/rag_eval_raw_export.csv,2026-05-26T11:00:00Z,falsiflow_rag_eval_operator,rag_eval_harness_001,Raw RAG answers archived.
+reproducibility_package,candidate_rag,rag_eval_001,eval_script_hash_recorded,true,source_files/rag_eval_raw_export.csv,2026-05-26T11:00:00Z,falsiflow_rag_eval_operator,rag_eval_harness_001,Evaluation script hash recorded.
+reproducibility_package,candidate_rag,rag_eval_001,regression_ci_run_recorded,true,source_files/rag_eval_raw_export.csv,2026-05-26T11:00:00Z,falsiflow_rag_eval_operator,rag_eval_harness_001,Regression CI run recorded.

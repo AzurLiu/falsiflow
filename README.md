@@ -21,7 +21,7 @@ source-backed evidence -> claim_check_ready
 GitHub Action:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.29
+- uses: AzurLiu/falsiflow@v0.1.30
   with:
     mode: claim-check
     project-dir: falsiflow_ai_eval
@@ -67,6 +67,7 @@ For copy-paste downstream smoke repos that intentionally fail on placeholder
 evidence, then pass after source-backed rows are added, use
 [examples/downstream_ai_eval_smoke](examples/downstream_ai_eval_smoke),
 [examples/downstream_product_metric_smoke](examples/downstream_product_metric_smoke),
+[examples/downstream_rag_eval_smoke](examples/downstream_rag_eval_smoke),
 or the walkthrough in
 [docs/falsiflow_github_action_examples.md](docs/falsiflow_github_action_examples.md).
 
@@ -302,7 +303,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: AzurLiu/falsiflow@v0.1.29
+      - uses: AzurLiu/falsiflow@v0.1.30
         with:
           mode: claim-check
           project-dir: my_falsiflow_project

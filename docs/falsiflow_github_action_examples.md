@@ -74,7 +74,7 @@ jobs:
 
       - name: Run claim gate
         id: falsiflow
-        uses: AzurLiu/falsiflow@v0.1.29
+        uses: AzurLiu/falsiflow@v0.1.30
         with:
           mode: claim-check
           project-dir: falsiflow_ai_eval
@@ -214,7 +214,7 @@ change caused the metric movement or should ship.
 The default `install-command` is intentionally omitted. The action installs
 from the checked-out action directory via `GITHUB_ACTION_PATH`, which keeps this
 downstream smoke usable before PyPI exists. After a stable release is published,
-pin the action to a tag such as `AzurLiu/falsiflow@v0.1.29`; override
+pin the action to a tag such as `AzurLiu/falsiflow@v0.1.30`; override
 `install-command` only when installing from PyPI, a fork, or a local checkout is
 part of the thing you are testing.
 
@@ -245,7 +245,7 @@ jobs:
 
       - name: Import local LLM eval artifacts
         id: falsiflow_import
-        uses: AzurLiu/falsiflow@v0.1.29
+        uses: AzurLiu/falsiflow@v0.1.30
         with:
           mode: evidence-import
           profile: local-llm-eval
@@ -259,7 +259,7 @@ jobs:
 
       - name: Run Falsiflow claim gate
         id: falsiflow
-        uses: AzurLiu/falsiflow@v0.1.29
+        uses: AzurLiu/falsiflow@v0.1.30
         with:
           mode: claim-check
           project-dir: falsiflow_local_llm_eval
@@ -285,6 +285,13 @@ until the evidence rows are source-backed. The bundled
 [RAG quality gate proposal](falsiflow_rag_quality_gate_proposal.md) define the
 small demo contract: evaluation-set provenance, retrieval quality, answer
 faithfulness, source coverage, and reproducibility rows.
+
+For a copy-paste downstream repository fixture, use
+[`examples/downstream_rag_eval_smoke`](../examples/downstream_rag_eval_smoke):
+
+```bash
+cp -R examples/downstream_rag_eval_smoke/. /path/to/downstream-repo/
+```
 
 Live proof:
 [`AzurLiu/falsiflow-downstream-rag-eval-demo` PR #1](https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/pull/1)
@@ -322,7 +329,7 @@ jobs:
 
       - name: Run Falsiflow RAG claim gate
         id: falsiflow
-        uses: AzurLiu/falsiflow@v0.1.29
+        uses: AzurLiu/falsiflow@v0.1.30
         with:
           mode: claim-check
           project-dir: falsiflow_rag_eval
@@ -345,8 +352,8 @@ jobs:
 Expected blocked run:
 
 ```bash
-falsiflow quickstart --template rag_quality_gate --out falsiflow_rag_eval --strict
-cp falsiflow_rag_eval/evidence_placeholder_demo.csv falsiflow_rag_eval/evidence.csv
+cp -R examples/downstream_rag_eval_smoke/. /path/to/downstream-repo/
+cd /path/to/downstream-repo
 git add .github/workflows/falsiflow-rag-eval.yml falsiflow_rag_eval
 git commit -m "Add blocked Falsiflow RAG eval gate"
 ```
@@ -407,7 +414,7 @@ jobs:
 
       - name: Run Falsiflow claim gate
         id: falsiflow
-        uses: AzurLiu/falsiflow@v0.1.29
+        uses: AzurLiu/falsiflow@v0.1.30
         with:
           mode: claim-check
           project-dir: falsiflow_ai_eval
@@ -454,7 +461,7 @@ jobs:
 
       - name: Run AI claim quickstart
         id: falsiflow
-        uses: AzurLiu/falsiflow@v0.1.29
+        uses: AzurLiu/falsiflow@v0.1.30
         with:
           mode: quickstart
           template: ai_claim_evaluation
@@ -479,7 +486,7 @@ Expected result: `quickstart_ready` with a nested `claim_check_ready` report.
 The default install path is best for tagged action use:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.29
+- uses: AzurLiu/falsiflow@v0.1.30
   with:
     mode: claim-check
     project-dir: falsiflow_ai_eval
@@ -488,7 +495,7 @@ The default install path is best for tagged action use:
 Install from PyPI after publication:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.29
+- uses: AzurLiu/falsiflow@v0.1.30
   with:
     install-command: python -m pip install falsiflow
     mode: claim-check
