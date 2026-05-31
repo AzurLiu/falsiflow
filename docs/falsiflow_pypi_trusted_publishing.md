@@ -21,6 +21,43 @@ The original v0.1.2 failure was resolved by adding a PyPI account-level
 pending publisher for project `falsiflow`. On first successful publish, PyPI
 converted that pending publisher into the project's trusted publisher.
 
+## v0.1.16 README Rendering Check
+
+The v0.1.16 launch-hardening release moved README image embeds to absolute
+HTTPS URLs so PyPI long descriptions and other external renderers can show the
+downstream PR proof strip without relying on repository-relative Markdown image targets.
+
+Public evidence:
+
+- PyPI project page: <https://pypi.org/project/falsiflow/>
+- PyPI JSON API: <https://pypi.org/pypi/falsiflow/json>
+- Expected proof image URL:
+  <https://raw.githubusercontent.com/AzurLiu/falsiflow/main/docs/assets/falsiflow_downstream_pr_proof_strip.png>
+- Expected downstream PR link:
+  <https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1>
+- Release workflow:
+  <https://github.com/AzurLiu/falsiflow/actions/runs/26716164341>
+- External evidence workflow:
+  <https://github.com/AzurLiu/falsiflow/actions/runs/26716210700>
+
+Use this public check when reviewing a PyPI rendering regression:
+
+```bash
+python3 - <<'PY'
+import json, re, urllib.request
+
+url = "https://pypi.org/pypi/falsiflow/json"
+data = json.load(urllib.request.urlopen(url, timeout=30))
+desc = data["info"].get("description") or ""
+
+assert data["info"]["version"] >= "0.1.16"
+assert "https://raw.githubusercontent.com/AzurLiu/falsiflow/main/docs/assets/falsiflow_downstream_pr_proof_strip.png" in desc
+assert "https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1" in desc
+assert not re.search(r"!\[[^\]]*\]\(docs/assets/", desc)
+print("pypi_description_rendering_inputs_ready")
+PY
+```
+
 ## Historical Blocker
 
 Before the publisher was registered, the `Falsiflow Publish` workflow built and
