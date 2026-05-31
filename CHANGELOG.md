@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.24
+
+- Moved the public proof contract into the README/PyPI first screen so visitors
+  see that each release links an exact External Evidence run proving
+  `quickstart_ready`, `doctor_ready`, `claim_check_ready`, `bundle_verified`,
+  `external_ready`, and `pypi_version_match`.
+- Added release-check coverage so the first-screen proof contract cannot be
+  removed without breaking the release gate.
+
 ## 0.1.23
 
 - Required the public external-evidence workflow to prove the published PyPI

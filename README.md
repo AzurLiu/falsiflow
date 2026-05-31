@@ -21,7 +21,7 @@ source-backed evidence -> claim_check_ready
 GitHub Action:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.23
+- uses: AzurLiu/falsiflow@v0.1.24
   with:
     mode: claim-check
     project-dir: falsiflow_ai_eval
@@ -31,8 +31,10 @@ GitHub Action:
 
 Public demo: <https://azurliu.github.io/falsiflow/>. PyPI package:
 <https://pypi.org/project/falsiflow/>. PyPI trusted publishing: completed.
-External evidence:
-<https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-external-evidence.yml>.
+Public proof contract: each release links an exact
+`Falsiflow External Evidence` run proving the published PyPI package reaches
+`quickstart_ready`, `doctor_ready`, `claim_check_ready`, `bundle_verified`, and
+`external_ready` with a matching `pypi_version_match`.
 
 Live downstream proof:
 [repo](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo),
@@ -280,7 +282,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: AzurLiu/falsiflow@v0.1.23
+      - uses: AzurLiu/falsiflow@v0.1.24
         with:
           mode: claim-check
           project-dir: my_falsiflow_project
