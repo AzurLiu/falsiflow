@@ -11,10 +11,9 @@ package is reviewable by CI and humans.
 
 ## Public Demo Evidence
 
-The cleanest live demo is the downstream
-[PR #1](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1).
-It shows Falsiflow running as a reusable GitHub Action in another repository,
-not only inside the Falsiflow repo.
+The cleanest live demos are downstream PRs that show Falsiflow running as a
+reusable GitHub Action in another repository, not only inside the Falsiflow
+repo.
 For social posts or docs where a full screen recording is too heavy, use the
 shareable downstream proof strip at
 [`docs/assets/falsiflow_downstream_pr_proof_strip.svg`](assets/falsiflow_downstream_pr_proof_strip.svg).
@@ -24,6 +23,12 @@ shareable downstream proof strip at
 | Downstream demo PR | [#1](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1) | The claim-gate story is a real downstream GitHub PR, not a static screenshot. |
 | Downstream blocked CI run | [26711652990](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711652990) | `falsiflow_ai_eval/evidence.csv` used placeholder/missing eval evidence and strict CI failed with `claim_check_blocked`. |
 | Downstream ready CI run | [26711669112](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711669112) | The same PR passed after `evidence.csv` was replaced with source-backed eval evidence. |
+
+| RAG Evidence | Link | What it proves |
+| --- | --- | --- |
+| Downstream RAG demo PR | [#1](https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/pull/1) | The bundled `rag_quality_gate` starter has a real downstream blocked-to-ready PR story. |
+| Downstream RAG blocked CI run | [26721829145](https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721829145) | Placeholder/missing RAG evidence failed strict CI with `claim_check_blocked`, `sources_blocked`, and `bundle_blocked`. |
+| Downstream RAG ready CI run | [26721856616](https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721856616) | The same PR passed with `claim_check_ready`, `sources_ready`, and `bundle_verified` after raw RAG eval evidence was added. |
 
 An internal repo version is also available in
 [PR #17](https://github.com/AzurLiu/falsiflow/pull/17), with blocked run
@@ -142,7 +147,7 @@ jobs:
 
       - name: Run Falsiflow claim gate
         id: falsiflow
-        uses: AzurLiu/falsiflow@v0.1.27
+        uses: AzurLiu/falsiflow@v0.1.28
         with:
           mode: claim-check
           project-dir: falsiflow_ai_eval

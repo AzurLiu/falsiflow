@@ -25,6 +25,16 @@ then passed in
 [run 26711669112](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711669112)
 after source-backed eval evidence replaced the placeholder row.
 
+RAG downstream proof is available in
+[`AzurLiu/falsiflow-downstream-rag-eval-demo`](https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo):
+[PR #1](https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/pull/1)
+first failed in
+[run 26721829145](https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721829145)
+with `claim_check_blocked`, then passed in
+[run 26721856616](https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721856616)
+with `claim_check_ready` after source-backed RAG evidence and the raw eval
+export were added.
+
 Target layout:
 
 ```text
@@ -64,7 +74,7 @@ jobs:
 
       - name: Run claim gate
         id: falsiflow
-        uses: AzurLiu/falsiflow@v0.1.27
+        uses: AzurLiu/falsiflow@v0.1.28
         with:
           mode: claim-check
           project-dir: falsiflow_ai_eval
@@ -204,7 +214,7 @@ change caused the metric movement or should ship.
 The default `install-command` is intentionally omitted. The action installs
 from the checked-out action directory via `GITHUB_ACTION_PATH`, which keeps this
 downstream smoke usable before PyPI exists. After a stable release is published,
-pin the action to a tag such as `AzurLiu/falsiflow@v0.1.27`; override
+pin the action to a tag such as `AzurLiu/falsiflow@v0.1.28`; override
 `install-command` only when installing from PyPI, a fork, or a local checkout is
 part of the thing you are testing.
 
@@ -235,7 +245,7 @@ jobs:
 
       - name: Import local LLM eval artifacts
         id: falsiflow_import
-        uses: AzurLiu/falsiflow@v0.1.27
+        uses: AzurLiu/falsiflow@v0.1.28
         with:
           mode: evidence-import
           profile: local-llm-eval
@@ -249,7 +259,7 @@ jobs:
 
       - name: Run Falsiflow claim gate
         id: falsiflow
-        uses: AzurLiu/falsiflow@v0.1.27
+        uses: AzurLiu/falsiflow@v0.1.28
         with:
           mode: claim-check
           project-dir: falsiflow_local_llm_eval
@@ -275,6 +285,13 @@ until the evidence rows are source-backed. The bundled
 [RAG quality gate proposal](falsiflow_rag_quality_gate_proposal.md) define the
 small demo contract: evaluation-set provenance, retrieval quality, answer
 faithfulness, source coverage, and reproducibility rows.
+
+Live proof:
+[`AzurLiu/falsiflow-downstream-rag-eval-demo` PR #1](https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/pull/1)
+shows the first commit blocked by strict CI in
+[run 26721829145](https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721829145),
+then the repair commit passing in
+[run 26721856616](https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721856616).
 
 Target layout:
 
@@ -305,7 +322,7 @@ jobs:
 
       - name: Run Falsiflow RAG claim gate
         id: falsiflow
-        uses: AzurLiu/falsiflow@v0.1.27
+        uses: AzurLiu/falsiflow@v0.1.28
         with:
           mode: claim-check
           project-dir: falsiflow_rag_eval
@@ -341,7 +358,7 @@ Expected ready run:
 
 ```bash
 cp falsiflow_rag_eval/evidence_pass_demo.csv falsiflow_rag_eval/evidence.csv
-git add falsiflow_rag_eval/evidence.csv
+git add falsiflow_rag_eval/evidence.csv falsiflow_rag_eval/source_files/rag_eval_raw_export.csv
 git commit -m "Add source-backed RAG eval evidence"
 ```
 
@@ -390,7 +407,7 @@ jobs:
 
       - name: Run Falsiflow claim gate
         id: falsiflow
-        uses: AzurLiu/falsiflow@v0.1.27
+        uses: AzurLiu/falsiflow@v0.1.28
         with:
           mode: claim-check
           project-dir: falsiflow_ai_eval
@@ -437,7 +454,7 @@ jobs:
 
       - name: Run AI claim quickstart
         id: falsiflow
-        uses: AzurLiu/falsiflow@v0.1.27
+        uses: AzurLiu/falsiflow@v0.1.28
         with:
           mode: quickstart
           template: ai_claim_evaluation
@@ -462,7 +479,7 @@ Expected result: `quickstart_ready` with a nested `claim_check_ready` report.
 The default install path is best for tagged action use:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.27
+- uses: AzurLiu/falsiflow@v0.1.28
   with:
     mode: claim-check
     project-dir: falsiflow_ai_eval
@@ -471,7 +488,7 @@ The default install path is best for tagged action use:
 Install from PyPI after publication:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.27
+- uses: AzurLiu/falsiflow@v0.1.28
   with:
     install-command: python -m pip install falsiflow
     mode: claim-check

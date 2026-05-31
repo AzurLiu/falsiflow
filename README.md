@@ -21,7 +21,7 @@ source-backed evidence -> claim_check_ready
 GitHub Action:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.27
+- uses: AzurLiu/falsiflow@v0.1.28
   with:
     mode: claim-check
     project-dir: falsiflow_ai_eval
@@ -37,12 +37,16 @@ Public proof contract: each release links an exact
 `external_ready` with a matching `pypi_version_match`.
 
 Live downstream proof:
-[repo](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo),
-[PR #1](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1),
-[blocked run](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711652990),
-[ready run](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711669112).
-The public demo PR blocks placeholder evidence, then turns ready only after
-source-backed evidence is added.
+[AI eval PR #1](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1)
+blocks placeholder evidence in
+[run 26711652990](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711652990),
+then passes after source-backed rows in
+[run 26711669112](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711669112).
+[RAG eval PR #1](https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/pull/1)
+blocks placeholder/missing RAG evidence in
+[run 26721829145](https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721829145),
+then passes after raw RAG eval evidence is added in
+[run 26721856616](https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721856616).
 The shareable proof strip above is stored at
 [docs/assets/falsiflow_downstream_pr_proof_strip.svg](docs/assets/falsiflow_downstream_pr_proof_strip.svg).
 
@@ -76,10 +80,11 @@ falsiflow quickstart --template ai_claim_evaluation --out falsiflow_ai_demo --st
 ```
 
 Current public status: hosted demo, PyPI, CI, cross-platform smoke tests,
-Scorecard, checkout pipx, public-package pipx, public-package first-run
-quickstart/doctor, public-package claim-check, public-package MCP selftest,
-Windows PowerShell smoke, and source installs are live. `Falsiflow External
-Evidence` reports `external_ready` for the current public release.
+Scorecard, live downstream AI/RAG demo PRs, checkout pipx, public-package pipx,
+public-package first-run quickstart/doctor, public-package claim-check,
+public-package MCP selftest, Windows PowerShell smoke, and source installs are
+live. `Falsiflow External Evidence` reports `external_ready` for the current
+public release.
 
 [![Falsiflow](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow.yml)
 [![Falsiflow Cross Platform](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-cross-platform.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-cross-platform.yml)
@@ -297,7 +302,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: AzurLiu/falsiflow@v0.1.27
+      - uses: AzurLiu/falsiflow@v0.1.28
         with:
           mode: claim-check
           project-dir: my_falsiflow_project

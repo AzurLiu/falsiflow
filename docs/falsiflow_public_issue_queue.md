@@ -31,19 +31,7 @@ seed contributor-friendly work.
 Use this short queue as the public contribution entry point while the first
 launch feedback is still small:
 
-1. [Create a live downstream RAG eval claim-gate demo PR](https://github.com/AzurLiu/falsiflow/issues/27)
-
-   Labels: `help wanted`, `template`, `evidence-gate`, `launch`
-
-   Goal: mirror the live AI eval downstream proof with the bundled
-   `rag_quality_gate` starter, including one blocked placeholder CI run and one
-   ready source-backed CI run.
-
-   Evidence: link the downstream PR, blocked run, ready run, and docs update;
-   `template-check` for `falsiflow/templates/rag_quality_gate` and
-   `release-check` still pass.
-
-2. [Run the first launch metrics review](https://github.com/AzurLiu/falsiflow/issues/22)
+1. [Run the first launch metrics review](https://github.com/AzurLiu/falsiflow/issues/22)
 
    Labels: `help wanted`, `launch`
 
@@ -59,7 +47,25 @@ launch feedback is still small:
 
 Create these as public issues before broad launch distribution:
 
-1. Generate a release proof snippet from External Evidence artifacts
+1. Create a live downstream RAG eval claim-gate demo PR
+
+   Labels: `help wanted`, `template`, `evidence-gate`, `launch`
+
+   Status: completed by
+   [AzurLiu/falsiflow-downstream-rag-eval-demo PR #1](https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/pull/1),
+   tracked in [issue #27](https://github.com/AzurLiu/falsiflow/issues/27).
+
+   Goal: mirror the live AI eval downstream proof with the bundled
+   `rag_quality_gate` starter, including one blocked placeholder CI run and one
+   ready source-backed CI run.
+
+   Evidence: the PR failed with `claim_check_blocked` in
+   [run 26721829145](https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721829145)
+   and passed with `claim_check_ready` in
+   [run 26721856616](https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721856616)
+   after source-backed rows and the raw RAG eval export were added.
+
+2. Generate a release proof snippet from External Evidence artifacts
 
    Labels: `good first issue`, `documentation`, `release`
 
@@ -75,7 +81,7 @@ Create these as public issues before broad launch distribution:
    `claim_check_ready`, `bundle_verified`, and `external_ready`; then
    `release-check` still reports `release_ready`.
 
-2. Add copy-paste MCP client configuration examples
+3. Add copy-paste MCP client configuration examples
 
    Labels: `good first issue`, `documentation`, `evidence-gate`
 
@@ -89,7 +95,7 @@ Create these as public issues before broad launch distribution:
    local checkout snippets; `falsiflow mcp --selftest --json` reports
    `mcp_selftest_ready`; and `release-check` still reports `release_ready`.
 
-3. Capture a short downstream PR proof clip
+4. Capture a short downstream PR proof clip
 
    Labels: `launch`, `documentation`, `good first issue`
 
@@ -103,7 +109,7 @@ Create these as public issues before broad launch distribution:
    Evidence: link the downstream PR, blocked run, ready run, and generated
    asset path.
 
-4. Add a local LLM eval quickstart note
+5. Add a local LLM eval quickstart note
 
    Labels: `documentation`, `help wanted`, `evidence-gate`
 
@@ -120,7 +126,7 @@ Create these as public issues before broad launch distribution:
    `falsiflow evidence import --profile local-llm-eval`, and
    `falsiflow doctor --strict` still pass.
 
-5. Promote the RAG quality gate proposal toward a starter template
+6. Promote the RAG quality gate proposal toward a starter template
 
    Labels: `template`, `evidence-gate`, `help wanted`
 
@@ -133,7 +139,7 @@ Create these as public issues before broad launch distribution:
 
    Evidence: `template-check`, `casebook-check`, and `release-check` pass.
 
-4. Add a product-metric downstream smoke example
+7. Add a product-metric downstream smoke example
 
    Labels: `template`, `launch`, `good first issue`
 
@@ -147,7 +153,7 @@ Create these as public issues before broad launch distribution:
    Evidence: the example has one blocked placeholder run and one ready
    source-backed run.
 
-5. Run the first launch metrics review
+8. Run the first launch metrics review
 
    Labels: `launch`, `help wanted`
 

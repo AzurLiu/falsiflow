@@ -98,6 +98,15 @@ verification_status: bundle_verified
 That transition is the whole story: the same downstream PR goes from blocked to
 ready only when the claim becomes reviewable.
 
+The RAG version tells the same story with retrieval-specific evidence:
+[AzurLiu/falsiflow-downstream-rag-eval-demo PR #1](https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/pull/1)
+first fails strict CI in
+[run 26721829145](https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721829145)
+with `claim_check_blocked`; after the PR adds source-backed retrieval,
+faithfulness, citation coverage, reproducibility rows, and the raw RAG eval
+export, [run 26721856616](https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721856616)
+passes with `claim_check_ready`.
+
 ## What Falsiflow Adds
 
 Falsiflow is a small CLI and GitHub Action for this specific boundary. It turns
@@ -125,7 +134,7 @@ falsiflow doctor --project-dir ai_claim_review --strict
 The GitHub Action path is the part that matters for teams:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.27
+- uses: AzurLiu/falsiflow@v0.1.28
   with:
     mode: claim-check
     project-dir: falsiflow_ai_eval

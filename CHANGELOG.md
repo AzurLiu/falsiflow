@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.28
+
+- Added a live downstream RAG eval demo repository and PR that moves from
+  `claim_check_blocked` on placeholder/missing RAG evidence to
+  `claim_check_ready` after source-backed rows and the raw RAG eval export are
+  added.
+- Linked the RAG blocked and ready GitHub Actions runs from the README, GitHub
+  Action examples, demo PR playbook, launch execution notes, and public issue
+  queue.
+- Updated release metadata and `release-check` coverage so future releases
+  keep the public RAG downstream proof visible and verifiable.
+
 ## 0.1.27
 
 - Added `falsiflow release-proof` to generate a copy-paste release-note proof
