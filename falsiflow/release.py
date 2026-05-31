@@ -708,6 +708,7 @@ def package_release_checks(root: Path) -> dict[str, object]:
     launch_execution_path = root / "docs" / "falsiflow_launch_execution.md"
     launch_article_path = root / "docs" / "launch_articles" / "stop_shipping_unverifiable_ai_eval_claims.md"
     product_metric_article_path = root / "docs" / "launch_articles" / "evidence_gates_for_product_metrics.md"
+    benchmark_article_path = root / "docs" / "launch_articles" / "benchmarks_should_fail_builds.md"
     architecture_path = root / "docs" / "falsiflow_architecture.md"
     cli_reference_path = root / "docs" / "falsiflow_cli_reference.md"
     data_contract_path = root / "docs" / "falsiflow_data_contract.md"
@@ -813,6 +814,7 @@ def package_release_checks(root: Path) -> dict[str, object]:
         add("launch_execution_exists", launch_execution_path.exists() and launch_execution_path.stat().st_size > 0, "Launch execution doc exists and is non-empty.", launch_execution_path)
         add("launch_article_exists", launch_article_path.exists() and launch_article_path.stat().st_size > 0, "Primary launch article exists and is non-empty.", launch_article_path)
         add("product_metric_article_exists", product_metric_article_path.exists() and product_metric_article_path.stat().st_size > 0, "Product metric launch article exists and is non-empty.", product_metric_article_path)
+        add("benchmark_article_exists", benchmark_article_path.exists() and benchmark_article_path.stat().st_size > 0, "Benchmark launch article exists and is non-empty.", benchmark_article_path)
         add("architecture_exists", architecture_path.exists() and architecture_path.stat().st_size > 0, "Architecture doc exists and is non-empty.", architecture_path)
         add("cli_reference_exists", cli_reference_path.exists() and cli_reference_path.stat().st_size > 0, "Generated CLI reference exists and is non-empty.", cli_reference_path)
         add("data_contract_exists", data_contract_path.exists() and data_contract_path.stat().st_size > 0, "Data contract doc exists and is non-empty.", data_contract_path)
@@ -887,6 +889,7 @@ def package_release_checks(root: Path) -> dict[str, object]:
         launch_execution_text = launch_execution_path.read_text(encoding="utf-8") if launch_execution_path.exists() else ""
         launch_article_text = launch_article_path.read_text(encoding="utf-8") if launch_article_path.exists() else ""
         product_metric_article_text = product_metric_article_path.read_text(encoding="utf-8") if product_metric_article_path.exists() else ""
+        benchmark_article_text = benchmark_article_path.read_text(encoding="utf-8") if benchmark_article_path.exists() else ""
         architecture_text = architecture_path.read_text(encoding="utf-8") if architecture_path.exists() else ""
         cli_reference_text = cli_reference_path.read_text(encoding="utf-8") if cli_reference_path.exists() else ""
         data_contract_text = data_contract_path.read_text(encoding="utf-8") if data_contract_path.exists() else ""
@@ -1064,7 +1067,7 @@ def package_release_checks(root: Path) -> dict[str, object]:
         add("publish_kit_docs", all(token in readme_text for token in ["falsiflow publish-kit", "publish_handoff.json", "github_publish_commands.sh", "account_action_required", "external_evidence_template.json", "public_release_evidence.json", "public_release_evidence.md", "release_rehearsal.json", "release_rehearsal.md", "public release rehearsal", "Scorecard", "casebook-replay"]), "README documents the public release handoff kit, evidence ledger, and release rehearsal for account-bound steps.", readme_path)
         add("launch_kit_docs", all(token in readme_text for token in ["falsiflow launch-kit", "launch_summary.json", "proof_card.md", "announcement.md", "demo_script.md", "readme_proof_strip.svg", "social_preview.png", "social_preview.svg", "github_repo_profile.md", "launch_posts.md", "Channel Checklist", "Hacker News", "Reddit", "LinkedIn", "awesome lists", "AI/RAG/product-metric downstream PR proof", "launch_metrics.json", "launch_metrics.md", "public_release_evidence.md", "release_rehearsal.md", "maintainer_checklist.md"]), "README documents public launch materials, proof-card generation, upload-ready social preview PNG plus SVG source, repo profile, channel-aware AI/RAG/product-metric launch posts, launch metrics, publish evidence ledger, release rehearsal, and README proof-strip asset.", readme_path)
         add("launch_metrics_docs", all(token in readme_text + adoption_priorities_text + roadmap_text for token in ["launch metrics tracker", "GitHub traffic", "referrers", "stars", "forks", "clones", "demo visits", "install/download signals", "Post-Launch Metrics Review", "launch_metrics.json", "launch_metrics.md", "weekly maintainer review", "traction signals", "local/private validation", "concrete follow-up issues", "verification command"]), "README, adoption priorities, and roadmap document post-launch metrics tracking, weekly review, validation boundaries, and concrete follow-up issues for the 1k-star path.", readme_path)
-        add("public_issue_queue_docs", all(token in public_issue_queue_text for token in ["Active Public Issues", "issues/22", "launch metrics review", "issues/32", "benchmarks launch article", "good first issue", "docs/launch_articles/benchmarks_should_fail_builds.md", "issues/31", "product metrics launch article", "docs/launch_articles/evidence_gates_for_product_metrics.md", "issues/29", "launch-article visual", "docs/assets/falsiflow_downstream_pr_proof_strip.svg", "docs/launch_articles/stop_shipping_unverifiable_ai_eval_claims.md", "issues/30", "live product-metric downstream PR proof", "help wanted", "product-metric", "claim_check_blocked", "claim_check_ready", "falsiflow-downstream-product-metric-demo", "26726360229", "26726392921", "issues/26", "Generate a release proof snippet", "issues/27", "live downstream RAG eval claim-gate demo", "falsiflow-downstream-rag-eval-demo", "26721829145", "26721856616", "issues/28", "MCP client configuration examples", "Completed Seed Issues", "falsiflow release-proof", "release-check", "mcp_selftest_ready"]), "Public issue queue doc links current launch metrics and good-first issues plus completed seed issues with labels, goals, verification commands, and live RAG/product-metric downstream proof links.", public_issue_queue_path)
+        add("public_issue_queue_docs", all(token in public_issue_queue_text for token in ["Active Public Issues", "issues/22", "launch metrics review", "issues/33", "README proof section", "good first issue", "README.md", "issues/32", "benchmarks launch article", "docs/launch_articles/benchmarks_should_fail_builds.md", "26711652990", "26711669112", "benchmark correctness/model-quality", "issues/31", "product metrics launch article", "docs/launch_articles/evidence_gates_for_product_metrics.md", "issues/29", "launch-article visual", "docs/assets/falsiflow_downstream_pr_proof_strip.svg", "docs/launch_articles/stop_shipping_unverifiable_ai_eval_claims.md", "issues/30", "live product-metric downstream PR proof", "help wanted", "product-metric", "claim_check_blocked", "claim_check_ready", "falsiflow-downstream-product-metric-demo", "26726360229", "26726392921", "issues/26", "Generate a release proof snippet", "issues/27", "live downstream RAG eval claim-gate demo", "falsiflow-downstream-rag-eval-demo", "26721829145", "26721856616", "issues/28", "MCP client configuration examples", "Completed Seed Issues", "falsiflow release-proof", "release-check", "mcp_selftest_ready"]), "Public issue queue doc links current launch metrics and good-first issues plus completed seed issues with labels, goals, verification commands, and live RAG/product-metric/benchmark downstream proof links.", public_issue_queue_path)
         launch_article_visual_intro = launch_article_text.split("The fastest way to show", 1)[0]
         add(
             "launch_article_visual_docs",
@@ -1121,6 +1124,30 @@ def package_release_checks(root: Path) -> dict[str, object]:
             "Product metric launch article links the live downstream product-metric PR, blocked and ready runs, and the evidence-package rather than product-impact boundary.",
             product_metric_article_path,
         )
+        add(
+            "benchmark_article_live_proof_docs",
+            all(
+                token in benchmark_article_text
+                for token in [
+                    "## Live Proof",
+                    "falsiflow-downstream-ai-eval-demo PR #1",
+                    "falsiflow-downstream-ai-eval-demo/pull/1",
+                    "dataset_pending",
+                    "26711652990",
+                    "claim_check_blocked",
+                    "source-backed benchmark-quality rows",
+                    "raw eval export",
+                    "26711669112",
+                    "claim_check_ready",
+                    "reviewable evidence package",
+                    "does not decide benchmark correctness, model",
+                    "trusted eval harness",
+                    "incomplete benchmark",
+                ]
+            ),
+            "Benchmark launch article links the live downstream AI-eval PR, blocked and ready runs, and the evidence-package rather than benchmark-correctness/model-quality boundary.",
+            benchmark_article_path,
+        )
         launch_execution_has_current_copy = all(
             token in launch_execution_text
             for token in [
@@ -1130,9 +1157,11 @@ def package_release_checks(root: Path) -> dict[str, object]:
                 "social_preview.png",
                 "0 stars",
                 "2 forks",
-                "open issues #22 and #32",
-                "completed seed issues #26, #27, #28, #29, #30, and #31",
+                "open issues #22 and #33",
+                "completed seed issues #26, #27, #28, #29, #30, #31, and #32",
                 "open PR #17",
+                "issue #33",
+                "README benchmark proof links",
                 "issue #32",
                 "benchmark launch-article proof links",
                 "issue #31",

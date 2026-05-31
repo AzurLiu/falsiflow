@@ -3026,6 +3026,8 @@ def assert_cli_contract() -> None:
             "launch_article_visual_docs",
             "product_metric_article_exists",
             "product_metric_article_live_proof_docs",
+            "benchmark_article_exists",
+            "benchmark_article_live_proof_docs",
             "external_check_docs",
             "readme_github_action_docs",
             "github_action_examples_rag_eval_snippet",

@@ -6,6 +6,24 @@ into a pull request. By then the benchmark has become prose, not evidence.
 
 If a benchmark can justify shipping, it should also be able to fail the build.
 
+## Live Proof
+
+The benchmark-shaped version of the blocked-to-ready story is live in
+[AzurLiu/falsiflow-downstream-ai-eval-demo PR #1](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1).
+The first PR state kept eval provenance at `dataset_pending`, so strict CI
+failed in
+[run 26711652990](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711652990)
+with `claim_check_blocked`. After source-backed benchmark-quality rows and the
+raw eval export were added, the same PR passed in
+[run 26711669112](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711669112)
+with `claim_check_ready`.
+
+That boundary matters: Falsiflow validates that the benchmark claim has a
+reviewable evidence package. It does not decide benchmark correctness, model
+quality, or whether the claimed improvement should ship. Keep using your
+trusted eval harness for scoring; use Falsiflow to stop incomplete benchmark
+evidence from becoming release copy.
+
 ## What Should Fail
 
 The build should fail when:
