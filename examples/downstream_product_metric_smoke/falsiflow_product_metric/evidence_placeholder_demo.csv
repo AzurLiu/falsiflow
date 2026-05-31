@@ -1,0 +1,4 @@
+gate_id,candidate_id,sample_id,field,value,source_file,measured_at,operator_or_agent,instrument_id,notes
+activation_gate,feature_launch,activation_cohort,activation_rate,pending,source_files/product_metric_raw_export.csv,2026-05-25T08:00:00Z,falsiflow_demo_operator,,Placeholder should block readiness.
+activation_gate,feature_launch,activation_cohort,activation_n,pending,source_files/product_metric_raw_export.csv,2026-05-25T08:00:00Z,falsiflow_demo_operator,,Placeholder should block readiness.
+activation_gate,feature_launch,activation_cohort,activation_window_days,pending,source_files/product_metric_raw_export.csv,2026-05-25T08:00:00Z,falsiflow_demo_operator,,Placeholder should block readiness.

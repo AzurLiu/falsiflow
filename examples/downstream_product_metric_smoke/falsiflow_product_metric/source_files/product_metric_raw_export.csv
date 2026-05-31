@@ -1,0 +1,10 @@
+metric_id,cohort_id,value,measured_at,source,notes
+activation_rate,activation_cohort,0.45,2026-05-25T08:00:00Z,analytics_export,Activation rate from analytics platform.
+activation_n,activation_cohort,1200,2026-05-25T08:00:00Z,analytics_export,Activation cohort size.
+activation_window_days,activation_cohort,14,2026-05-25T08:00:00Z,analytics_export,Activation measurement window.
+conversion_rate,conversion_cohort,0.08,2026-05-25T09:00:00Z,analytics_export,Conversion rate from analytics platform.
+conversion_n,conversion_cohort,450,2026-05-25T09:00:00Z,analytics_export,Conversion cohort size.
+conversion_window_days,conversion_cohort,30,2026-05-25T09:00:00Z,analytics_export,Conversion measurement window.
+retention_rate_day7,retention_cohort,0.38,2026-05-25T10:00:00Z,analytics_export,Day-7 retention rate.
+retention_rate_day30,retention_cohort,0.22,2026-05-25T10:00:00Z,analytics_export,Day-30 retention rate.
+retention_n,retention_cohort,800,2026-05-25T10:00:00Z,analytics_export,Retention cohort size.

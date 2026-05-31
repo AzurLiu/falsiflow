@@ -1,0 +1,10 @@
+gate_id,candidate_id,sample_id,field,value,source_file,measured_at,operator_or_agent,instrument_id,notes
+activation_gate,feature_launch,activation_cohort,activation_rate,0.45,source_files/product_metric_raw_export.csv,2026-05-25T08:00:00Z,falsiflow_demo_operator,analytics_demo_001,Activation pass example.
+activation_gate,feature_launch,activation_cohort,activation_n,1200,source_files/product_metric_raw_export.csv,2026-05-25T08:00:00Z,falsiflow_demo_operator,analytics_demo_001,Activation pass example.
+activation_gate,feature_launch,activation_cohort,activation_window_days,14,source_files/product_metric_raw_export.csv,2026-05-25T08:00:00Z,falsiflow_demo_operator,analytics_demo_001,Activation pass example.
+conversion_gate,feature_launch,conversion_cohort,conversion_rate,0.08,source_files/product_metric_raw_export.csv,2026-05-25T09:00:00Z,falsiflow_demo_operator,analytics_demo_001,Conversion pass example.
+conversion_gate,feature_launch,conversion_cohort,conversion_n,450,source_files/product_metric_raw_export.csv,2026-05-25T09:00:00Z,falsiflow_demo_operator,analytics_demo_001,Conversion pass example.
+conversion_gate,feature_launch,conversion_cohort,conversion_window_days,30,source_files/product_metric_raw_export.csv,2026-05-25T09:00:00Z,falsiflow_demo_operator,analytics_demo_001,Conversion pass example.
+retention_gate,feature_launch,retention_cohort,retention_rate_day7,0.38,source_files/product_metric_raw_export.csv,2026-05-25T10:00:00Z,falsiflow_demo_operator,analytics_demo_001,Retention pass example.
+retention_gate,feature_launch,retention_cohort,retention_rate_day30,0.22,source_files/product_metric_raw_export.csv,2026-05-25T10:00:00Z,falsiflow_demo_operator,analytics_demo_001,Retention pass example.
+retention_gate,feature_launch,retention_cohort,retention_n,800,source_files/product_metric_raw_export.csv,2026-05-25T10:00:00Z,falsiflow_demo_operator,analytics_demo_001,Retention pass example.

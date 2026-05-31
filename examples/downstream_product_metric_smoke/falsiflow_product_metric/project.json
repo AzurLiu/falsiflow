@@ -1,0 +1,129 @@
+{
+  "project": {
+    "id": "falsiflow_product_metric_demo",
+    "name": "Falsiflow product metric demo",
+    "domain": "product-metrics",
+    "version": "0.1.0"
+  },
+  "claim": {
+    "id": "product_metric_launch_ready",
+    "statement": "A product feature is ready for launch only after source-backed evidence confirms activation, conversion, and retention gates pass.",
+    "requires_gates": [
+      "activation_gate",
+      "conversion_gate",
+      "retention_gate"
+    ]
+  },
+  "evidence_policy": {
+    "require_source_files": true,
+    "reject_placeholder_values": true,
+    "allowed_source_roots": [
+      "source_files"
+    ],
+    "required_metadata_fields": [
+      "source_file",
+      "measured_at",
+      "operator_or_agent"
+    ],
+    "placeholder_markers": [
+      "pending",
+      "not_measured",
+      "placeholder"
+    ]
+  },
+  "gates": [
+    {
+      "id": "activation_gate",
+      "title": "Activation rate",
+      "samples": [
+        {
+          "candidate_id": "feature_launch",
+          "sample_id": "activation_cohort"
+        }
+      ],
+      "required_fields": [
+        "activation_rate",
+        "activation_n",
+        "activation_window_days"
+      ],
+      "acceptance_rules": [
+        {
+          "field": "activation_rate",
+          "operator": ">=",
+          "value": 0.40,
+          "reason": "Activation rate must meet the launch threshold."
+        },
+        {
+          "field": "activation_n",
+          "operator": ">=",
+          "value": 500,
+          "reason": "Activation cohort must be large enough for statistical confidence."
+        }
+      ]
+    },
+    {
+      "id": "conversion_gate",
+      "title": "Conversion rate",
+      "samples": [
+        {
+          "candidate_id": "feature_launch",
+          "sample_id": "conversion_cohort"
+        }
+      ],
+      "required_fields": [
+        "conversion_rate",
+        "conversion_n",
+        "conversion_window_days"
+      ],
+      "acceptance_rules": [
+        {
+          "field": "conversion_rate",
+          "operator": ">=",
+          "value": 0.05,
+          "reason": "Conversion rate must meet the launch threshold."
+        },
+        {
+          "field": "conversion_n",
+          "operator": ">=",
+          "value": 200,
+          "reason": "Conversion cohort must be large enough for statistical confidence."
+        }
+      ]
+    },
+    {
+      "id": "retention_gate",
+      "title": "Retention rate",
+      "samples": [
+        {
+          "candidate_id": "feature_launch",
+          "sample_id": "retention_cohort"
+        }
+      ],
+      "required_fields": [
+        "retention_rate_day7",
+        "retention_rate_day30",
+        "retention_n"
+      ],
+      "acceptance_rules": [
+        {
+          "field": "retention_rate_day7",
+          "operator": ">=",
+          "value": 0.30,
+          "reason": "Day-7 retention must meet the launch threshold."
+        },
+        {
+          "field": "retention_rate_day30",
+          "operator": ">=",
+          "value": 0.15,
+          "reason": "Day-30 retention must meet the launch threshold."
+        },
+        {
+          "field": "retention_n",
+          "operator": ">=",
+          "value": 300,
+          "reason": "Retention cohort must be large enough for statistical confidence."
+        }
+      ]
+    }
+  ]
+}

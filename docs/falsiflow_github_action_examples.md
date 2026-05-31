@@ -139,6 +139,62 @@ pin the action to a tag such as `AzurLiu/falsiflow@v0.1.13`; override
 `install-command` only when installing from PyPI, a fork, or a local checkout is
 part of the thing you are testing.
 
+
+## Product Metric Smoke
+
+Use this when you want a copy-paste smoke test for product-metric claims
+(activation, conversion, retention). Mirrors the AI eval smoke but targets
+product metric gates instead of model eval gates.
+
+The maintained fixture lives in
+[`examples/downstream_product_metric_smoke`](../examples/downstream_product_metric_smoke).
+
+Target layout:
+
+```text
+.github/workflows/falsiflow-product-metric.yml
+falsiflow_product_metric/project.json
+falsiflow_product_metric/evidence.csv
+falsiflow_product_metric/evidence_pass_demo.csv
+falsiflow_product_metric/evidence_placeholder_demo.csv
+falsiflow_product_metric/source_files/product_metric_raw_export.csv
+```
+
+Bootstrap the fixture from a Falsiflow checkout:
+
+```bash
+git clone https://github.com/AzurLiu/falsiflow /tmp/falsiflow
+mkdir -p falsiflow_product_metric
+cp -R /tmp/falsiflow/examples/downstream_product_metric_smoke/falsiflow_product_metric/. falsiflow_product_metric/
+cp falsiflow_product_metric/evidence_placeholder_demo.csv falsiflow_product_metric/evidence.csv
+```
+
+Commit that layout plus the workflow from the example directory.
+
+Expected blocked run:
+
+```bash
+cp falsiflow_product_metric/evidence_placeholder_demo.csv falsiflow_product_metric/evidence.csv
+git add falsiflow_product_metric/evidence.csv .github/workflows/falsiflow-product-metric.yml
+git commit -m "Add blocked Falsiflow product metric smoke"
+```
+
+Expected ready run:
+
+```bash
+cp falsiflow_product_metric/evidence_pass_demo.csv falsiflow_product_metric/evidence.csv
+git add falsiflow_product_metric/evidence.csv
+git commit -m "Use source-backed Falsiflow product metric evidence"
+```
+
+The product metric example covers three gates:
+
+| Gate | Metric | Threshold |
+|------|--------|-----------|
+| `activation_gate` | Activation rate | ≥ 40% |
+| `conversion_gate` | Conversion rate | ≥ 5% |
+| `retention_gate` | Day-7 / Day-30 retention | ≥ 30% / ≥ 15% |
+
 ## AI Eval Claim Gate
 
 Use this when the repository already contains a Falsiflow project directory with
