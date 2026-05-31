@@ -12,7 +12,8 @@ bundle.
 
 Public demo: <https://azurliu.github.io/falsiflow/>. PyPI package:
 <https://pypi.org/project/falsiflow/>. PyPI trusted publishing: completed.
-External evidence: <https://github.com/AzurLiu/falsiflow/actions/runs/26708718559>.
+External evidence workflow:
+<https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-external-evidence.yml>.
 
 ![Falsiflow evidence-gated claim workflow](docs/assets/falsiflow_proof_strip.svg)
 

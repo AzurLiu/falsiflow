@@ -5,16 +5,17 @@ and the original successful v0.1.2 trusted-publishing recovery for Falsiflow.
 
 ## Current Status
 
-Completed on 2026-05-31:
+Current release evidence:
 
 - PyPI project: <https://pypi.org/project/falsiflow/>
 - PyPI JSON API: <https://pypi.org/pypi/falsiflow/json>
-- Published version: `0.1.4`
-- Successful release-triggered publish run:
-  <https://github.com/AzurLiu/falsiflow/actions/runs/26708643927>
-- Successful external evidence run:
-  <https://github.com/AzurLiu/falsiflow/actions/runs/26708718559>
-- `external-check --strict` status: `external_ready`
+- Latest release: <https://github.com/AzurLiu/falsiflow/releases/latest>
+- Release publish workflow:
+  <https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-publish.yml>
+- `Falsiflow External Evidence` workflow:
+  <https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-external-evidence.yml>
+- Required status after each release: PyPI JSON reports the release version and
+  `external-check --strict` reports `external_ready`.
 
 The original v0.1.2 failure was resolved by adding a PyPI account-level
 pending publisher for project `falsiflow`. On first successful publish, PyPI
@@ -86,7 +87,7 @@ References:
 - PyPI trusted publishing workflow requirements:
   <https://docs.pypi.org/trusted-publishers/using-a-publisher/>
 
-The `v0.1.2` GitHub release is already published and points at commit
+The original `v0.1.2` GitHub release is already published and points at commit
 `c7efa3301e32e04df86e1828bcbec7158e2b65ba`. The recovery used this rerun path:
 
 ```bash
@@ -99,17 +100,16 @@ instead of replacing the already-published `v0.1.2` artifacts.
 
 ## Verification
 
-The v0.1.2 verification is complete. For future releases, do not call the
-release externally ready until all of these are true:
+The original v0.1.2 verification is complete. For current and future releases,
+do not call the release externally ready until all of these are true:
 
 1. The PyPI pending publisher or existing-project publisher exists with the
    exact fields above.
-2. The release-triggered `Falsiflow Publish` workflow for `v0.1.2` has a successful
+2. The release-triggered `Falsiflow Publish` workflow for the release tag has a successful
    `publish-pypi` job. A workflow_dispatch rehearsal is not enough because that
    path intentionally skips `publish-pypi`.
 3. `https://pypi.org/pypi/falsiflow/json` returns JSON whose package name is
-   `falsiflow` and whose version matches the release. For current main, that
-   expected version is `0.1.2`.
+   `falsiflow` and whose version matches the release.
 4. The `Falsiflow External Evidence` workflow uploads
    `falsiflow_pypi_project.json`, `falsiflow_expected_version.txt`, and
    `falsiflow_pypi_version.txt`; pass `expected_version` when checking a
@@ -120,12 +120,13 @@ release externally ready until all of these are true:
 Useful post-publish commands:
 
 ```bash
+expected_version="$(python -c "import tomllib; print(tomllib.load(open('pyproject.toml', 'rb'))['project']['version'])")"
 curl -fsS https://pypi.org/pypi/falsiflow/json | python -m json.tool | head -40
 gh run list --workflow falsiflow-publish.yml --event release --limit 5
 gh workflow run "Falsiflow External Evidence" \
   --field public_demo_url="$FALSIFLOW_PUBLIC_DEMO_URL" \
   --field pypi_package_url="https://pypi.org/project/falsiflow/" \
-  --field expected_version="0.1.2"
+  --field expected_version="$expected_version"
 ```
 
 If a release-triggered publish fails again with `invalid-publisher`, compare the

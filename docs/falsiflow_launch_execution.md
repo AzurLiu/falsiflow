@@ -1,15 +1,19 @@
 # Falsiflow Launch Execution
 
 This page turns the 1k-star launch plan into concrete copy, channels, and
-follow-up checks. Use it after the v0.1.2 public release evidence is green.
+follow-up checks. Use it after the current public release evidence is green.
 
 ## Launch State
 
 - Repository: <https://github.com/AzurLiu/falsiflow>
 - Public demo: <https://azurliu.github.io/falsiflow/>
 - PyPI: <https://pypi.org/project/falsiflow/>
-- Release: <https://github.com/AzurLiu/falsiflow/releases/tag/v0.1.2>
-- External evidence: <https://github.com/AzurLiu/falsiflow/actions/runs/26705116249>
+- Release: <https://github.com/AzurLiu/falsiflow/releases/latest>
+- External evidence workflow:
+  <https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-external-evidence.yml>
+- Live PR demo: <https://github.com/AzurLiu/falsiflow/pull/17>
+- Blocked PR run: <https://github.com/AzurLiu/falsiflow/actions/runs/26708459093>
+- Ready PR run: <https://github.com/AzurLiu/falsiflow/actions/runs/26708472653>
 - Launch baseline on 2026-05-31: 0 stars, 0 forks, 0 open issues.
 
 ## One-Line Positioning
@@ -43,14 +47,16 @@ claim_check_blocked. A source-backed claim can become claim_check_ready only
 when required rows, metadata, source files, audit reports, and bundle
 verification line up.
 
-The v0.1.2 release is intentionally small and boring:
+The current release is intentionally small and boring:
 
 - pipx install falsiflow
 - GitHub Action support for downstream repos
+- real PR demo where placeholder AI eval evidence fails CI, then source-backed
+  evidence passes: https://github.com/AzurLiu/falsiflow/pull/17
 - public demo: https://azurliu.github.io/falsiflow/
 - PyPI: https://pypi.org/project/falsiflow/
 - external evidence workflow proving demo, PyPI, pipx, and Windows smoke:
-  https://github.com/AzurLiu/falsiflow/actions/runs/26705116249
+  https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-external-evidence.yml
 
 Boundary: claim_ready does not mean the model is safe, the product should ship,
 or the science is true. It means the configured evidence package passed and is
@@ -71,7 +77,7 @@ Falsiflow: fail CI when AI eval or product metric claims lack evidence
 Body:
 
 ```text
-I released Falsiflow 0.1.2, a Python CLI and GitHub Action for evidence-gating
+I released Falsiflow 0.1.5, a Python CLI and GitHub Action for evidence-gating
 claims before they ship.
 
 The problem it targets is not scoring itself. Teams already have benchmark
@@ -92,6 +98,7 @@ pipx install falsiflow
 falsiflow quickstart --template ai_claim_evaluation --out ai_claim_review --strict
 
 Demo: https://azurliu.github.io/falsiflow/
+Real PR demo: https://github.com/AzurLiu/falsiflow/pull/17
 Repo: https://github.com/AzurLiu/falsiflow
 PyPI: https://pypi.org/project/falsiflow/
 
@@ -106,7 +113,7 @@ becomes a claim that should fail a build if its evidence package is incomplete.
 LinkedIn:
 
 ```text
-I released Falsiflow 0.1.2.
+I released Falsiflow 0.1.5.
 
 It is a Python CLI and GitHub Action for one specific problem: claims like "the
 model improved", "activation lifted", or "the experiment is ready" should not
@@ -117,6 +124,7 @@ claims become claim_check_ready only after required rows, metadata, source
 files, audit reports, and bundle verification line up.
 
 Demo: https://azurliu.github.io/falsiflow/
+Real PR demo: https://github.com/AzurLiu/falsiflow/pull/17
 Repo: https://github.com/AzurLiu/falsiflow
 PyPI: https://pypi.org/project/falsiflow/
 ```
@@ -124,7 +132,7 @@ PyPI: https://pypi.org/project/falsiflow/
 X / short post:
 
 ```text
-Released Falsiflow 0.1.2.
+Released Falsiflow 0.1.5.
 
 It fails CI when AI eval, product metric, R&D, or vendor handoff claims do not
 have enough evidence to review.
@@ -132,6 +140,7 @@ have enough evidence to review.
 pipx install falsiflow
 
 Demo: https://azurliu.github.io/falsiflow/
+PR demo: https://github.com/AzurLiu/falsiflow/pull/17
 Repo: https://github.com/AzurLiu/falsiflow
 ```
 

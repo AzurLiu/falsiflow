@@ -48,9 +48,11 @@ The public demo and launch posts should repeat the same compact story:
 
 Day 0:
 
-- Use the v0.1.2 PyPI and external-evidence proof as the launch trust baseline.
-- Update the release body with the demo URL, PyPI URL, CI runs, publish run,
-  external-evidence run, and responsible-use boundary.
+- Use the current PyPI release, live PR demo, and external-evidence workflow as
+  the launch trust baseline.
+- Update the release body with the demo URL, PR #17, blocked/ready PR runs,
+  PyPI URL, CI runs, publish run, external-evidence workflow, and
+  responsible-use boundary.
 - Post a concise Show HN or equivalent launch thread.
 - Post the longer launch note in one MLOps or evaluation community.
 - Share the GitHub Action snippet with a copy-paste downstream smoke example.

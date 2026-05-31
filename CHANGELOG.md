@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.5
+
+- Updated launch execution copy from the older v0.1.2 trust baseline to the
+  live AI/RAG eval PR story, PyPI release path, and external-evidence workflow.
+- Switched the README/PyPI long description to a stable external-evidence
+  workflow link so package metadata does not point at an outdated single run.
+- Refreshed PyPI trusted-publishing verification guidance so future releases
+  check the current release version instead of carrying the original v0.1.2
+  recovery wording into launch copy.
+
 ## 0.1.4
 
 - Added a live public AI/RAG eval PR demo:
