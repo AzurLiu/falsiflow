@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.12
+
+- Tightened the README/PyPI first screen around the one-sentence value
+  proposition, three-command install path, blocked-vs-ready output, reusable
+  GitHub Action snippet, and live downstream proof links.
+- Reworked the launch article demo section to lead with the clean downstream
+  PR that fails on placeholder AI eval provenance before passing with
+  source-backed evidence.
+
 ## 0.1.11
 
 - Added a maintained `examples/downstream_ai_eval_smoke` fixture that can be

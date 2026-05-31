@@ -50,12 +50,17 @@ claim has a machine-checkable contract.
 
 ## The Demo That Explains It
 
-The fastest way to show the idea is a deliberately failing PR. The public
-version is [Falsiflow PR #17](https://github.com/AzurLiu/falsiflow/pull/17):
-the [blocked run](https://github.com/AzurLiu/falsiflow/actions/runs/26708459093)
-fails strict CI on placeholder eval evidence, and the
-[ready run](https://github.com/AzurLiu/falsiflow/actions/runs/26708472653)
-passes after the PR adds source-backed evidence.
+The fastest way to show the idea is a deliberately failing PR in a clean
+downstream repository, not a screenshot of a tool UI.
+
+The public version is
+[AzurLiu/falsiflow-downstream-ai-eval-demo PR #1](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1).
+Its first commit adds a confident AI eval claim with placeholder provenance.
+The [blocked run](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711652990)
+fails strict CI. The second commit adds source-backed rows and raw export
+evidence. The
+[ready run](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711669112)
+passes.
 
 First commit:
 
@@ -90,8 +95,8 @@ claim_check_ready
 verification_status: bundle_verified
 ```
 
-That transition is the whole story: the same claim goes from blocked to ready
-only when it becomes reviewable.
+That transition is the whole story: the same downstream PR goes from blocked to
+ready only when the claim becomes reviewable.
 
 ## What Falsiflow Adds
 
@@ -120,7 +125,7 @@ falsiflow doctor --project-dir ai_claim_review --strict
 The GitHub Action path is the part that matters for teams:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.11
+- uses: AzurLiu/falsiflow@v0.1.12
   with:
     mode: claim-check
     project-dir: falsiflow_ai_eval
@@ -148,6 +153,10 @@ not trying to replace any of that. It is trying to stop unsupported claims from
 quietly becoming release facts.
 
 ## Try The PR Story
+
+Start with the downstream PR:
+
+<https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1>
 
 The public demo PR playbook walks through the blocked commit, the evidence
 repair commit, the GitHub Action, the uploaded reports, and the 30-second

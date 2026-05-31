@@ -2,19 +2,6 @@
 
 Stop unverifiable AI eval, product metric, and R&D claims from passing CI.
 
-Falsiflow blocks "the model improved" until the repo provides pinned eval
-provenance, source-backed evidence rows, raw files, thresholds, and a review
-bundle.
-
-[![Falsiflow](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow.yml)
-[![Falsiflow Cross Platform](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-cross-platform.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-cross-platform.yml)
-[![Falsiflow Scorecard](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-scorecard.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-scorecard.yml)
-
-Public demo with the Live PR Story: <https://azurliu.github.io/falsiflow/>. PyPI package:
-<https://pypi.org/project/falsiflow/>. PyPI trusted publishing: completed.
-External evidence workflow:
-<https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-external-evidence.yml>.
-
 ![Falsiflow Live PR Story reel](docs/assets/falsiflow_live_pr_story_reel.svg)
 
 ## 30 Seconds
@@ -25,28 +12,16 @@ falsiflow quickstart --template ai_claim_evaluation --out falsiflow_ai_demo --st
 falsiflow doctor --project-dir falsiflow_ai_demo --strict
 ```
 
-Expected status:
-
 ```text
-quickstart        -> quickstart_ready
-placeholder evidence  -> claim_check_blocked
+quickstart             -> quickstart_ready
+placeholder evidence   -> claim_check_blocked
 source-backed evidence -> claim_check_ready
 ```
 
-30-second demo (CLI):
-
-![Falsiflow 30-second ready vs blocked demo](docs/assets/falsiflow_30_second_demo.svg)
-
-Live PR Story: [PR #17](https://github.com/AzurLiu/falsiflow/pull/17)
-shows placeholder AI/RAG eval evidence failing CI in the
-[blocked run](https://github.com/AzurLiu/falsiflow/actions/runs/26708459093),
-then source-backed evidence passing in the
-[ready run](https://github.com/AzurLiu/falsiflow/actions/runs/26708472653).
-
-Drop the same gate into another repository with the GitHub Action:
+GitHub Action:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.11
+- uses: AzurLiu/falsiflow@v0.1.12
   with:
     mode: claim-check
     project-dir: falsiflow_ai_eval
@@ -54,16 +29,37 @@ Drop the same gate into another repository with the GitHub Action:
     strict: "true"
 ```
 
-For a six-file downstream smoke repo that intentionally fails on placeholder
-AI eval evidence, then passes after source-backed rows are added, use
-[examples/downstream_ai_eval_smoke](examples/downstream_ai_eval_smoke) or the
-walkthrough in
-[docs/falsiflow_github_action_examples.md](docs/falsiflow_github_action_examples.md).
+Public demo: <https://azurliu.github.io/falsiflow/>. PyPI package:
+<https://pypi.org/project/falsiflow/>. PyPI trusted publishing: completed.
+External evidence:
+<https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-external-evidence.yml>.
+
 Live downstream proof:
 [repo](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo),
 [PR #1](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1),
 [blocked run](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711652990),
 [ready run](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711669112).
+The public demo PR blocks placeholder evidence, then turns ready only after
+source-backed evidence is added.
+
+30-second demo (CLI):
+
+![Falsiflow 30-second ready vs blocked demo](docs/assets/falsiflow_30_second_demo.svg)
+
+Falsiflow blocks "the model improved" until the repo provides pinned eval
+provenance, source-backed evidence rows, raw files, thresholds, and a review
+bundle.
+
+Live PR Story: [PR #17](https://github.com/AzurLiu/falsiflow/pull/17)
+shows the same AI/RAG eval gate inside this repository:
+[blocked run](https://github.com/AzurLiu/falsiflow/actions/runs/26708459093),
+then [ready run](https://github.com/AzurLiu/falsiflow/actions/runs/26708472653).
+
+For a six-file downstream smoke repo that intentionally fails on placeholder
+AI eval evidence, then passes after source-backed rows are added, use
+[examples/downstream_ai_eval_smoke](examples/downstream_ai_eval_smoke) or the
+walkthrough in
+[docs/falsiflow_github_action_examples.md](docs/falsiflow_github_action_examples.md).
 
 Or run from source while contributing:
 
@@ -78,6 +74,10 @@ Current public status: hosted demo, PyPI, CI, cross-platform smoke tests,
 Scorecard, checkout pipx, public-package pipx, Windows PowerShell smoke, and
 source installs are live. `Falsiflow External Evidence` reports
 `external_ready` for the current public release.
+
+[![Falsiflow](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow.yml)
+[![Falsiflow Cross Platform](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-cross-platform.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-cross-platform.yml)
+[![Falsiflow Scorecard](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-scorecard.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-scorecard.yml)
 
 Evidence gate flow:
 
@@ -271,7 +271,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: AzurLiu/falsiflow@v0.1.11
+      - uses: AzurLiu/falsiflow@v0.1.12
         with:
           mode: claim-check
           project-dir: my_falsiflow_project
