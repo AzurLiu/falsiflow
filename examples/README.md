@@ -81,6 +81,22 @@ show `claim_check_blocked` before the repair commit copies
 
 The sections below show the same flow step by step.
 
+## Downstream Product Metric Smoke
+
+For a copy-paste repository fixture that starts blocked on placeholder product
+analytics evidence and turns ready after source-backed activation, guardrail,
+and rollback rows are added, use:
+
+```bash
+cp -R examples/downstream_product_metric_smoke/. /tmp/falsiflow_product_metric_downstream_repo/
+```
+
+The fixture includes `.github/workflows/falsiflow-product-metric.yml` and the
+`falsiflow_product_metric/` project files expected by the workflow. Its initial
+`evidence.csv` is intentionally the placeholder demo, so a downstream PR should
+show `claim_check_blocked` before the repair commit copies
+`evidence_pass_demo.csv` over `evidence.csv`.
+
 ## Template Authoring Check
 
 ```bash

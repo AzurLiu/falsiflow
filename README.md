@@ -57,10 +57,11 @@ shows the same AI/RAG eval gate inside this repository:
 [blocked run](https://github.com/AzurLiu/falsiflow/actions/runs/26708459093),
 then [ready run](https://github.com/AzurLiu/falsiflow/actions/runs/26708472653).
 
-For a six-file downstream smoke repo that intentionally fails on placeholder
-AI eval evidence, then passes after source-backed rows are added, use
-[examples/downstream_ai_eval_smoke](examples/downstream_ai_eval_smoke) or the
-walkthrough in
+For copy-paste downstream smoke repos that intentionally fail on placeholder
+evidence, then pass after source-backed rows are added, use
+[examples/downstream_ai_eval_smoke](examples/downstream_ai_eval_smoke),
+[examples/downstream_product_metric_smoke](examples/downstream_product_metric_smoke),
+or the walkthrough in
 [docs/falsiflow_github_action_examples.md](docs/falsiflow_github_action_examples.md).
 
 Or run from source while contributing:

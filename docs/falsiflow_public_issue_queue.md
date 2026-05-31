@@ -73,6 +73,10 @@ Create these as public issues before broad launch distribution:
 
    Labels: `template`, `launch`, `good first issue`
 
+   Status: completed by
+   `examples/downstream_product_metric_smoke` and tracked in
+   [issue #21](https://github.com/AzurLiu/falsiflow/issues/21).
+
    Goal: mirror the AI eval downstream story for a product metric claim such as
    activation lift, retention change, or conversion improvement.
 

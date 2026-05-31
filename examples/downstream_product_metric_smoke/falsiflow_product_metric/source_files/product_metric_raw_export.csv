@@ -1,0 +1,15 @@
+record_type,experiment_id,arm,metric,value,artifact_uri,observed_at,notes
+metadata,experiment_2026_05_27,launch_variant,metric_definition_recorded,true,artifacts/metric_spec.md,2026-05-27T08:00:00Z,Metric definition pinned before review.
+metadata,experiment_2026_05_27,launch_variant,experiment_id_recorded,true,artifacts/experiment_registry.json,2026-05-27T08:00:00Z,Experiment id recorded in registry.
+metadata,experiment_2026_05_27,launch_variant,assignment_unit_recorded,true,artifacts/experiment_registry.json,2026-05-27T08:00:00Z,Assignment unit is account_id.
+metadata,experiment_2026_05_27,launch_variant,analysis_window_recorded,true,artifacts/analysis_window.json,2026-05-27T08:00:00Z,Window fixed before launch decision.
+metric,experiment_2026_05_27,launch_variant,activation_rate,0.128,artifacts/activation_metrics.parquet,2026-05-27T09:00:00Z,Variant activation.
+metric,experiment_2026_05_27,launch_variant,retained_user_count,24850,artifacts/activation_metrics.parquet,2026-05-27T09:00:00Z,Variant retained users.
+metric,experiment_2026_05_27,baseline_control,activation_rate,0.118,artifacts/activation_metrics.parquet,2026-05-27T09:00:00Z,Baseline activation.
+metric,experiment_2026_05_27,baseline_control,retained_user_count,25120,artifacts/activation_metrics.parquet,2026-05-27T09:00:00Z,Baseline retained users.
+guardrail,experiment_2026_05_27,launch_variant,error_rate,0.006,artifacts/guardrail_metrics.parquet,2026-05-27T09:30:00Z,Error-rate guardrail.
+guardrail,experiment_2026_05_27,launch_variant,support_ticket_rate,0.018,artifacts/support_metrics.parquet,2026-05-27T09:30:00Z,Support-ticket guardrail.
+guardrail,experiment_2026_05_27,launch_variant,latency_p95_ms,312,artifacts/latency_metrics.parquet,2026-05-27T09:30:00Z,Latency guardrail.
+rollback,experiment_2026_05_27,launch_variant,feature_flag_rollout_recorded,true,artifacts/rollout_state.json,2026-05-27T10:00:00Z,Feature flag state archived.
+rollback,experiment_2026_05_27,launch_variant,rollback_owner_recorded,true,artifacts/launch_review.md,2026-05-27T10:00:00Z,Rollback owner recorded.
+rollback,experiment_2026_05_27,launch_variant,monitoring_dashboard_linked,true,artifacts/dashboard_link.txt,2026-05-27T10:00:00Z,Dashboard link archived.

@@ -32,6 +32,8 @@ should say what is still pending instead of implying full external readiness.
 - Reusable GitHub Action snippet for downstream repositories.
 - Maintained downstream smoke fixture:
   `examples/downstream_ai_eval_smoke`.
+- Product-metric downstream smoke fixture:
+  `examples/downstream_product_metric_smoke`.
 - Live downstream proof repo:
   <https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo>.
 - Shareable downstream proof strip:
@@ -67,6 +69,9 @@ Day 0:
   <https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1>.
   Use `docs/assets/falsiflow_downstream_pr_proof_strip.svg` when a full screen
   recording is too heavy.
+- Share `examples/downstream_product_metric_smoke` with product or growth
+  engineering readers who care more about activation, conversion, retention,
+  guardrail, or rollback-readiness claims than model evals.
 
 Day 1:
 

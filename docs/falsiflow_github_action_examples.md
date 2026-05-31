@@ -132,6 +132,75 @@ python -m falsiflow.cli claim-check \
 The first command sequence should produce `claim_check_blocked`; the second
 should produce `claim_check_ready` and exit successfully in strict mode.
 
+## Product Metric Downstream Smoke
+
+Use this when the downstream claim is "activation improved", "conversion
+lifted", or "this launch metric is ready to ship." The maintained fixture lives
+in
+[`examples/downstream_product_metric_smoke`](../examples/downstream_product_metric_smoke).
+It mirrors the AI eval smoke: default placeholder evidence blocks CI, and
+`evidence_pass_demo.csv` provides source-backed metric, guardrail, and rollback
+rows.
+
+Target layout:
+
+```text
+.github/workflows/falsiflow-product-metric.yml
+falsiflow_product_metric/project.json
+falsiflow_product_metric/evidence.csv
+falsiflow_product_metric/evidence_pass_demo.csv
+falsiflow_product_metric/evidence_placeholder_demo.csv
+falsiflow_product_metric/source_files/product_metric_raw_export.csv
+```
+
+Expected blocked run:
+
+```bash
+cp -R examples/downstream_product_metric_smoke/. /path/to/downstream-repo/
+cd /path/to/downstream-repo
+git add .github/workflows/falsiflow-product-metric.yml falsiflow_product_metric
+git commit -m "Add blocked Falsiflow product metric claim gate"
+```
+
+The strict job should fail with `claim_check_blocked` because
+`metric_definition_recorded` is still `analysis_pending`.
+
+Expected ready run:
+
+```bash
+cp falsiflow_product_metric/evidence_pass_demo.csv falsiflow_product_metric/evidence.csv
+git add falsiflow_product_metric/evidence.csv
+git commit -m "Add source-backed product metric evidence"
+```
+
+The same workflow should pass with `claim_check_ready`, upload JSON and
+Markdown summaries, and include `evidence_bundle.zip` plus
+`evidence_bundle_verify.md`.
+
+Local reproduction before pushing:
+
+```bash
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install falsiflow
+falsiflow claim-check \
+  --project-dir falsiflow_product_metric \
+  --evidence falsiflow_product_metric/evidence.csv \
+  --out-dir data/falsiflow/product_metric_blocked \
+  --force
+cp falsiflow_product_metric/evidence_pass_demo.csv falsiflow_product_metric/evidence.csv
+falsiflow claim-check \
+  --project-dir falsiflow_product_metric \
+  --evidence falsiflow_product_metric/evidence.csv \
+  --out-dir data/falsiflow/product_metric_ready \
+  --strict \
+  --force
+```
+
+`claim_check_ready` means the activation-rate, retained-user-count, guardrail,
+and rollback evidence package is reviewable. It does not prove the product
+change caused the metric movement or should ship.
+
 The default `install-command` is intentionally omitted. The action installs
 from the checked-out action directory via `GITHUB_ACTION_PATH`, which keeps this
 downstream smoke usable before PyPI exists. After a stable release is published,
