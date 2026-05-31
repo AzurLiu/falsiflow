@@ -21,7 +21,7 @@ source-backed evidence -> claim_check_ready
 GitHub Action:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.30
+- uses: AzurLiu/falsiflow@v0.1.31
   with:
     mode: claim-check
     project-dir: falsiflow_ai_eval
@@ -303,7 +303,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: AzurLiu/falsiflow@v0.1.30
+      - uses: AzurLiu/falsiflow@v0.1.31
         with:
           mode: claim-check
           project-dir: my_falsiflow_project
@@ -628,6 +628,10 @@ top-level `release_validation_status`. A full distribution run reports
 `release_validation_ready`; a `--skip-dist` run can still be useful as a fast
 local smoke test, but reports `release_validation_skipped` until wheel, sdist,
 isolated install, and installed-package release checks complete.
+It also replays the maintained downstream AI eval, product metric, and RAG eval
+smoke fixtures through both paths: placeholder evidence must stay
+`claim_check_blocked`, and source-backed evidence must reach
+`claim_check_ready` with `bundle_verified`.
 
 The adoption gate writes `adoption_check.json` and `adoption_check.md`. The
 Markdown report is titled `Falsiflow Adoption Check`. `adoption_ready` means all
@@ -1338,3 +1342,7 @@ verification reports, generated wheel/sdist artifacts, an isolated wheel
 install, and the portfolio generated from ready starter bundles. Use
 `--skip-dist` only when you want a faster local check without wheel/sdist
 validation.
+It also replays `examples/downstream_ai_eval_smoke`,
+`examples/downstream_product_metric_smoke`, and
+`examples/downstream_rag_eval_smoke` so fixture drift blocks releases before a
+visitor copies a broken downstream story.

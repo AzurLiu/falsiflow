@@ -2885,6 +2885,22 @@ def assert_cli_contract() -> None:
         assert release_summary["doctor_summary"]["repair_checklist"][0]["expected_artifact"].endswith("claim_check.md")
         assert release_summary["claim_check_status"] == "claim_check_ready"
         assert release_summary["claim_check_summary"]["verification_status"] == "bundle_verified"
+        assert release_summary["downstream_smoke_replay_status"] == "downstream_smoke_replay_ready"
+        downstream_smoke = release_summary["downstream_smoke_replay_summary"]
+        assert downstream_smoke["fixture_count"] == 3
+        downstream_replay_checks = {check["check"]: check for check in downstream_smoke["checks"]}
+        assert {
+            "downstream_ai_eval_smoke_blocked_replay",
+            "downstream_ai_eval_smoke_ready_replay",
+            "downstream_product_metric_smoke_blocked_replay",
+            "downstream_product_metric_smoke_ready_replay",
+            "downstream_rag_eval_smoke_blocked_replay",
+            "downstream_rag_eval_smoke_ready_replay",
+        } <= set(downstream_replay_checks)
+        assert all(check["status"] == "passed" for check in downstream_replay_checks.values())
+        assert all(fixture["blocked_status"] == "claim_check_blocked" for fixture in downstream_smoke["fixtures"])
+        assert all(fixture["ready_status"] == "claim_check_ready" for fixture in downstream_smoke["fixtures"])
+        assert all(fixture["ready_verification_status"] == "bundle_verified" for fixture in downstream_smoke["fixtures"])
         assert release_summary["adoption_check_status"] == "adoption_ready"
         assert release_summary["adoption_check_summary"]["release_validation_status"] == "release_validation_ready"
         assert release_summary["adoption_check_summary"]["ready_priority_count"] == 5
@@ -2986,6 +3002,8 @@ def assert_cli_contract() -> None:
             "downstream_ai_eval_smoke_fixture",
             "downstream_product_metric_smoke_fixture_exists",
             "downstream_product_metric_smoke_fixture",
+            "downstream_rag_eval_smoke_fixture_exists",
+            "downstream_rag_eval_smoke_fixture",
             "downstream_ai_eval_live_proof_links",
             "workbench_docs",
             "discover_docs",
@@ -3078,6 +3096,7 @@ def assert_cli_contract() -> None:
         assert package_check_map["github_action_examples_rag_eval_snippet"]["status"] == "passed"
         assert package_check_map["downstream_ai_eval_smoke_fixture"]["status"] == "passed"
         assert package_check_map["downstream_product_metric_smoke_fixture"]["status"] == "passed"
+        assert package_check_map["downstream_rag_eval_smoke_fixture"]["status"] == "passed"
         assert package_check_map["local_llm_eval_import_fixture"]["status"] == "passed"
         assert package_check_map["github_action_evidence_import_mode"]["status"] == "passed"
         assert package_check_map["downstream_ai_eval_live_proof_links"]["status"] == "passed"
@@ -3136,6 +3155,16 @@ def assert_cli_contract() -> None:
         assert "Launch metrics tracker" in release_report
         assert "Public release evidence ledger" in release_report
         assert "Public release rehearsal" in release_report
+        assert "Downstream Smoke Replay" in release_report
+        assert "Downstream AI Eval Smoke" in release_report
+        assert "Downstream Product Metric Smoke" in release_report
+        assert "Downstream RAG Eval Smoke" in release_report
+        assert (release_check_out / "downstream_smoke_replay" / "downstream_ai_eval_smoke" / "blocked" / "claim_check.json").exists()
+        assert (release_check_out / "downstream_smoke_replay" / "downstream_ai_eval_smoke" / "ready" / "claim_check.json").exists()
+        assert (release_check_out / "downstream_smoke_replay" / "downstream_product_metric_smoke" / "blocked" / "claim_check.json").exists()
+        assert (release_check_out / "downstream_smoke_replay" / "downstream_product_metric_smoke" / "ready" / "claim_check.json").exists()
+        assert (release_check_out / "downstream_smoke_replay" / "downstream_rag_eval_smoke" / "blocked" / "claim_check.json").exists()
+        assert (release_check_out / "downstream_smoke_replay" / "downstream_rag_eval_smoke" / "ready" / "claim_check.json").exists()
         assert "claim_check/claim_check.md" in release_report
         assert "launch_kit/launch_metrics.md" in release_report
         assert "publish_kit/public_release_evidence.md" in release_report
@@ -5165,6 +5194,8 @@ def assert_packaged_template_contract() -> None:
         assert release_check_summary["doctor_summary"]["repair_checklist"][0]["command"].startswith("falsiflow claim-check")
         assert release_check_summary["claim_check_status"] == "claim_check_ready"
         assert release_check_summary["claim_check_summary"]["verification_status"] == "bundle_verified"
+        assert release_check_summary["downstream_smoke_replay_status"] == "downstream_smoke_replay_skipped"
+        assert release_check_summary["downstream_smoke_replay_summary"]["checks"][0]["check"] == "downstream_smoke_replay_skipped"
         assert release_check_summary["adoption_check_status"] == "adoption_ready"
         assert release_check_summary["adoption_check_summary"]["release_validation_status"] == "release_validation_skipped"
         assert release_check_summary["adoption_check_summary"]["ready_priority_count"] == 5

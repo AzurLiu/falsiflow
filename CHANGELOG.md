@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.31
+
+- Added a release-check downstream smoke replay gate that runs the maintained
+  AI eval, product metric, and RAG eval fixtures through both blocked
+  placeholder evidence and source-backed ready evidence.
+- Added release reports and JSON summary fields for downstream replay status,
+  making fixture drift visible before a release can be tagged.
+- Updated tests and release docs so source checkouts must report
+  `downstream_smoke_replay_ready` while installed-package release checks skip
+  the replay cleanly outside a source tree.
+
 ## 0.1.30
 
 - Added `examples/downstream_rag_eval_smoke`, a copy-paste downstream repo

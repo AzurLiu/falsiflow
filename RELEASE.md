@@ -107,6 +107,12 @@ The final `release-check` must report:
 - `publish_kit_ready` for the generated release handoff kit
 - `launch_kit_ready` for public copy, proof card, demo script, launch metrics,
   and maintainer checklist
+- `downstream_smoke_replay_ready`, proving the maintained downstream AI eval,
+  product metric, and RAG eval fixtures replay as placeholder
+  `claim_check_blocked` and source-backed `claim_check_ready` with
+  `bundle_verified` from `examples/downstream_ai_eval_smoke`,
+  `examples/downstream_product_metric_smoke`, and
+  `examples/downstream_rag_eval_smoke`
 - reusable `action.yml` supports `evidence-import`, and
   `examples/local_llm_eval_import` proves a local/private model JSONL plus
   `local_model_manifest.json` can move from `claim_check_blocked` to

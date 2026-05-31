@@ -139,6 +139,12 @@ def release_review_artifact_index(summary: dict[str, object]) -> list[dict[str, 
             "purpose": "Portable claim-review package produced during release-check.",
         },
         {
+            "artifact": "Downstream smoke replay",
+            "status": str(summary.get("downstream_smoke_replay_status", "")),
+            "path": str(artifact_root / "downstream_smoke_replay"),
+            "purpose": "Maintained downstream AI, product metric, and RAG fixtures replayed through blocked and ready claim-check paths.",
+        },
+        {
             "artifact": "Template release zip",
             "status": str(summary.get("template_release_status", "")),
             "path": str(release_artifacts.get("release_zip_path", "") or artifact_root / "template_release.zip"),
@@ -230,6 +236,7 @@ def render_release_check_report(summary: dict[str, object]) -> str:
         f"- Quickstart: `{summary.get('quickstart_status', '')}`",
         f"- Doctor: `{summary.get('doctor_status', '')}`",
         f"- Claim check: `{summary.get('claim_check_status', '')}`",
+        f"- Downstream smoke replay: `{summary.get('downstream_smoke_replay_status', '')}`",
         f"- Adoption check: `{summary.get('adoption_check_status', '')}` priorities={ready_priority_count}/{priority_count}",
         f"- Adoption release validation: `{adoption_summary.get('release_validation_status', '') if isinstance(adoption_summary, dict) else ''}`",
         f"- Ready audits: {summary.get('audit_ready_count', 0)}",
@@ -346,6 +353,31 @@ def render_release_check_report(summary: dict[str, object]) -> str:
                 + " |"
         )
 
+    downstream_smoke = summary.get("downstream_smoke_replay_summary", {})
+    downstream_fixtures = downstream_smoke.get("fixtures", []) if isinstance(downstream_smoke, dict) else []
+    lines.extend([
+        "",
+        "## Downstream Smoke Replay",
+        "",
+    ])
+    if not downstream_fixtures:
+        lines.append("No downstream smoke fixtures were replayed.")
+    else:
+        lines.extend(["| Fixture | Blocked Replay | Ready Replay | Bundle Verification |", "| --- | --- | --- | --- |"])
+        for fixture in downstream_fixtures:
+            if not isinstance(fixture, dict):
+                continue
+            lines.append(
+                "| "
+                + " | ".join([
+                    markdown_cell(fixture.get("label", fixture.get("fixture", ""))),
+                    f"`{markdown_cell(fixture.get('blocked_status', ''))}`",
+                    f"`{markdown_cell(fixture.get('ready_status', ''))}`",
+                    f"`{markdown_cell(fixture.get('ready_verification_status', ''))}`",
+                ])
+                + " |"
+            )
+
     package_checks = summary.get("package_checks", [])
     lines.extend(["", "## Package Checks", ""])
     if not package_checks:
@@ -417,6 +449,104 @@ def remove_generated_path(path: Path) -> None:
 def command_excerpt(completed: subprocess.CompletedProcess[str]) -> str:
     output = "\n".join(part for part in [completed.stdout.strip(), completed.stderr.strip()] if part)
     return output[-1000:] if output else f"exit code {completed.returncode}"
+
+
+def downstream_smoke_fixture_replay(
+    root: Path,
+    artifact_root: Path,
+    claim_check_runner: Callable[..., Any],
+) -> dict[str, object]:
+    """Replay maintained downstream fixtures through their blocked and ready paths."""
+    root = root.resolve()
+    artifact_root = artifact_root.resolve()
+    checks: list[dict[str, str]] = []
+    failures: list[dict[str, str]] = []
+    fixtures: list[dict[str, object]] = []
+
+    def add(check_id: str, ok: bool, message: str, path: Path | str = "") -> None:
+        checks.append(release_check_item(check_id, ok, message, path))
+        if not ok:
+            failures.append(failure_record("downstream_smoke", check_id, message))
+
+    specs = [
+        {
+            "id": "downstream_ai_eval_smoke",
+            "label": "Downstream AI Eval Smoke",
+            "project_dir": root / "examples" / "downstream_ai_eval_smoke" / "falsiflow_ai_eval",
+        },
+        {
+            "id": "downstream_product_metric_smoke",
+            "label": "Downstream Product Metric Smoke",
+            "project_dir": root / "examples" / "downstream_product_metric_smoke" / "falsiflow_product_metric",
+        },
+        {
+            "id": "downstream_rag_eval_smoke",
+            "label": "Downstream RAG Eval Smoke",
+            "project_dir": root / "examples" / "downstream_rag_eval_smoke" / "falsiflow_rag_eval",
+        },
+    ]
+    if not (root / "examples").exists():
+        add("downstream_smoke_replay_skipped", True, "Downstream fixture replay skipped outside a source checkout.", root)
+        return {
+            "status": "downstream_smoke_replay_skipped",
+            "fixture_count": 0,
+            "check_count": len(checks),
+            "failure_count": 0,
+            "checks": checks,
+            "failures": [],
+            "fixtures": [],
+        }
+    for spec in specs:
+        fixture_id = str(spec["id"])
+        label = str(spec["label"])
+        project_dir = Path(spec["project_dir"])
+        config = project_dir / "project.json"
+        placeholder_evidence = project_dir / "evidence.csv"
+        pass_evidence = project_dir / "evidence_pass_demo.csv"
+        fixture_summary: dict[str, object] = {
+            "fixture": fixture_id,
+            "label": label,
+            "project_dir": str(project_dir),
+            "blocked_out_dir": str(artifact_root / fixture_id / "blocked"),
+            "ready_out_dir": str(artifact_root / fixture_id / "ready"),
+        }
+        try:
+            blocked = claim_check_runner(config, placeholder_evidence, artifact_root / fixture_id / "blocked", force=True)
+        except Exception as exc:  # pragma: no cover - defensive release boundary.
+            blocked = {"status": "claim_check_failed", "message": str(exc)}
+        fixture_summary["blocked_status"] = str(blocked.get("status", ""))
+        fixture_summary["blocked_summary"] = blocked
+        add(
+            f"{fixture_id}_blocked_replay",
+            blocked.get("status") == "claim_check_blocked",
+            f"{label} placeholder evidence replays as claim_check_blocked.",
+            placeholder_evidence,
+        )
+
+        try:
+            ready = claim_check_runner(config, pass_evidence, artifact_root / fixture_id / "ready", force=True)
+        except Exception as exc:  # pragma: no cover - defensive release boundary.
+            ready = {"status": "claim_check_failed", "verification_status": "", "message": str(exc)}
+        fixture_summary["ready_status"] = str(ready.get("status", ""))
+        fixture_summary["ready_verification_status"] = str(ready.get("verification_status", ""))
+        fixture_summary["ready_summary"] = ready
+        add(
+            f"{fixture_id}_ready_replay",
+            ready.get("status") == "claim_check_ready" and ready.get("verification_status") == "bundle_verified",
+            f"{label} source-backed evidence replays as claim_check_ready with bundle_verified.",
+            pass_evidence,
+        )
+        fixtures.append(fixture_summary)
+
+    return {
+        "status": "downstream_smoke_replay_ready" if not failures else "downstream_smoke_replay_blocked",
+        "fixture_count": len(fixtures),
+        "check_count": len(checks),
+        "failure_count": len(failures),
+        "checks": checks,
+        "failures": failures,
+        "fixtures": fixtures,
+    }
 
 
 def pyproject_build_requires(pyproject_path: Path) -> list[str]:
@@ -1062,7 +1192,7 @@ def package_release_checks(root: Path) -> dict[str, object]:
         add("license_mit", "MIT License" in license_text, "LICENSE declares MIT License.", license_path)
         add("changelog_current_version", bool(current_version) and current_version in changelog_text, "CHANGELOG includes the current version.", changelog_path)
         add("contributing_gates", all(token in contributing_text for token in ["release-check", "casebook-check", "claim_ready", "CHANGELOG.md", "CODE_OF_CONDUCT.md", "SUPPORT.md", "GOVERNANCE.md", "CITATION.cff", "ROADMAP.md", "falsiflow_architecture.md", "falsiflow_data_contract.md", "falsiflow_adapter_profiles.md", "falsiflow_casebook_check.md", "falsiflow_template_authoring.md", "falsiflow_troubleshooting.md"]), "CONTRIBUTING.md documents gates, tests, changelog, and community, citation, governance, architecture, data-contract, adapter-profile, casebook-check, template authoring, and troubleshooting expectations.", contributing_path)
-        add("release_checklist", all(token in release_text for token in ["release_ready", "package_ready", "dist_ready", "release_validation_ready", "demo_package_ready", "publish_kit_ready", "launch_kit_ready", "launch_metrics.json", "launch_metrics.md", "public_release_evidence.json", "public_release_evidence.md", "release_rehearsal.json", "release_rehearsal.md", "public release rehearsal", "casebook_check_ready", "mcp --selftest --json", "mcp_selftest_ready", "external-evidence", "external_check_status", "falsiflow release-proof", "release_proof.md", "pypi_version_match=passed", "public_package_claim_check=passed", "public PyPI package URL", "PyPI JSON API", "expected_version", "published_version", "falsiflow_pypi_project.json", "falsiflow_expected_version.txt", "falsiflow_pypi_version.txt", "falsiflow_public_package_first_run_quickstart.json", "falsiflow_public_package_first_run_doctor.json", "falsiflow_public_package_claim_check.json", "falsiflow_public_package_mcp_selftest.json", "invalid-publisher", "falsiflow-publish.yml", "public-package pipx", "public-package first-run quickstart/doctor", "public-package claim-check", "public-package MCP selftest", "Falsiflow External Evidence", "falsiflow_external_evidence.json", "release-check", "casebook-check", "Release Review Artifact Index", "Review Artifact Index", "PyPI package metadata", "requires-python", "classifiers", "project URLs", "action.yml", "GitHub Action", "evidence-import", "examples/local_llm_eval_import", "reusable-action quickstart smoke", "CODE_OF_CONDUCT.md", "SUPPORT.md", "ROADMAP.md", "CITATION.cff", "GOVERNANCE.md", "falsiflow_architecture.md", "falsiflow_data_contract.md", "falsiflow_adapter_profiles.md", "falsiflow_mcp.md", "falsiflow_casebook_check.md", "falsiflow_security_posture.md", "falsiflow_template_authoring.md", "falsiflow_troubleshooting.md", "falsiflow_1k_launch_plan.md", "Dependabot", "Falsiflow Scorecard"]), "RELEASE.md documents required release gates, MCP selftest, review artifact indexes, launch metrics, 1k launch plan, public release evidence ledger, release rehearsal, release-proof snippets, reusable GitHub Action evidence import, local LLM fixture, public package, public-package first-run, claim-check, and MCP selftest, and PyPI JSON expected-version evidence, PyPI trusted-publisher recovery, casebook proof artifacts, external evidence workflow artifacts, package metadata checks, community trust files, citation/governance files, architecture docs, data-contract docs, adapter-profile docs, MCP docs, template authoring docs, troubleshooting docs, and security automation.", release_path)
+        add("release_checklist", all(token in release_text for token in ["release_ready", "package_ready", "dist_ready", "release_validation_ready", "demo_package_ready", "publish_kit_ready", "launch_kit_ready", "downstream_smoke_replay_ready", "launch_metrics.json", "launch_metrics.md", "public_release_evidence.json", "public_release_evidence.md", "release_rehearsal.json", "release_rehearsal.md", "public release rehearsal", "casebook_check_ready", "mcp --selftest --json", "mcp_selftest_ready", "external-evidence", "external_check_status", "falsiflow release-proof", "release_proof.md", "pypi_version_match=passed", "public_package_claim_check=passed", "public PyPI package URL", "PyPI JSON API", "expected_version", "published_version", "falsiflow_pypi_project.json", "falsiflow_expected_version.txt", "falsiflow_pypi_version.txt", "falsiflow_public_package_first_run_quickstart.json", "falsiflow_public_package_first_run_doctor.json", "falsiflow_public_package_claim_check.json", "falsiflow_public_package_mcp_selftest.json", "invalid-publisher", "falsiflow-publish.yml", "public-package pipx", "public-package first-run quickstart/doctor", "public-package claim-check", "public-package MCP selftest", "Falsiflow External Evidence", "falsiflow_external_evidence.json", "release-check", "casebook-check", "Release Review Artifact Index", "Review Artifact Index", "PyPI package metadata", "requires-python", "classifiers", "project URLs", "action.yml", "GitHub Action", "evidence-import", "examples/downstream_ai_eval_smoke", "examples/downstream_product_metric_smoke", "examples/downstream_rag_eval_smoke", "examples/local_llm_eval_import", "reusable-action quickstart smoke", "CODE_OF_CONDUCT.md", "SUPPORT.md", "ROADMAP.md", "CITATION.cff", "GOVERNANCE.md", "falsiflow_architecture.md", "falsiflow_data_contract.md", "falsiflow_adapter_profiles.md", "falsiflow_mcp.md", "falsiflow_casebook_check.md", "falsiflow_security_posture.md", "falsiflow_template_authoring.md", "falsiflow_troubleshooting.md", "falsiflow_1k_launch_plan.md", "Dependabot", "Falsiflow Scorecard"]), "RELEASE.md documents required release gates, MCP selftest, review artifact indexes, launch metrics, 1k launch plan, public release evidence ledger, release rehearsal, release-proof snippets, reusable GitHub Action evidence import, downstream fixture replay, local LLM fixture, public package, public-package first-run, claim-check, and MCP selftest, and PyPI JSON expected-version evidence, PyPI trusted-publisher recovery, casebook proof artifacts, external evidence workflow artifacts, package metadata checks, community trust files, citation/governance files, architecture docs, data-contract docs, adapter-profile docs, MCP docs, template authoring docs, troubleshooting docs, and security automation.", release_path)
         add("architecture_docs", all(token in architecture_text for token in ["Core Data Model", "Command Flow", "Module Map", "Release Invariants", "Extension Points", "falsiflow_data_contract.md", "claim_ready", "release-check"]), "Architecture doc explains data model, command flow, module map, release invariants, extension points, data contract, and release-check coverage.", architecture_path)
         add("data_contract_docs", all(token in data_contract_text for token in ["Stable Inputs", "Evidence CSV", "JSON Status Contract", "Report Artifacts", "Source Provenance", "JSON Schemas", "Integration Guidance", "claim_check_ready", "external_ready", "source_file"]), "Data contract doc explains stable inputs, evidence CSV fields, JSON status, report artifacts, source provenance, schemas, integration guidance, and ready statuses.", data_contract_path)
         add("adapter_profiles_docs", all(token in adapter_profiles_text for token in ["Falsiflow Adapter Profiles", "generic-wide", "vendor-measurement", "instrument-export", "plate-reader", "local-llm-eval", "falsiflow_local_llm_eval.md", "examples/local_llm_eval_import", "mode: evidence-import", "adapter_profile", "adapter_settings"]), "Adapter profile doc explains built-in CSV import profiles, local LLM eval handoff, maintained fixture, action import mode, summary fields, overrides, and coverage checks.", adapter_profiles_path)
@@ -1479,6 +1609,8 @@ def run_release_check(
     failures.extend(package["failures"])
     dist = dist_release_checks(source_root, artifact_root, run_dist)
     failures.extend(dist["failures"])
+    downstream_smoke_replay = downstream_smoke_fixture_replay(source_root, artifact_root / "downstream_smoke_replay", claim_check_runner)
+    failures.extend(downstream_smoke_replay["failures"])
     demo_summary: dict[str, object]
     try:
         demo_summary = demo_runner("neural_materials", artifact_root / "demo", force=True)
@@ -2056,6 +2188,8 @@ def run_release_check(
         "doctor_summary": doctor_summary,
         "claim_check_status": claim_check_summary.get("status", ""),
         "claim_check_summary": claim_check_summary,
+        "downstream_smoke_replay_status": downstream_smoke_replay.get("status", ""),
+        "downstream_smoke_replay_summary": downstream_smoke_replay,
         "schema_count": len(schemas),
         "schemas": schemas,
         "template_gallery_status": template_gallery.get("status", ""),
