@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.29
+
+- Updated the public launchpad and downstream proof strip so the first visible
+  demo now shows both live downstream stories: AI eval and RAG eval PRs moving
+  from `claim_check_blocked` to `claim_check_ready`.
+- Regenerated the public demo package and social preview PNG with the RAG
+  blocked/ready run links.
+- Added release-check coverage so the prebuilt public demo and generated demo
+  package keep the live AI/RAG downstream proof links.
+
 ## 0.1.28
 
 - Added a live downstream RAG eval demo repository and PR that moves from

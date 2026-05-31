@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Falsiflow Launchpad</title>
-  <meta name="description" content="A live downstream PR story: Falsiflow blocks unverifiable AI eval evidence in CI, then passes the same claim after source-backed evidence is added.">
-  <meta property="og:title" content="Falsiflow: AI eval claims should fail CI without evidence">
-  <meta property="og:description" content="See a downstream PR move from claim_check_blocked to claim_check_ready after source-backed eval evidence is added.">
+  <meta name="description" content="Live downstream PR stories: Falsiflow blocks unverifiable AI and RAG eval evidence in CI, then passes the same claims after source-backed evidence is added.">
+  <meta property="og:title" content="Falsiflow: AI and RAG eval claims should fail CI without evidence">
+  <meta property="og:description" content="See downstream AI and RAG PRs move from claim_check_blocked to claim_check_ready after source-backed eval evidence is added.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://azurliu.github.io/falsiflow/">
   <meta property="og:image" content="https://raw.githubusercontent.com/AzurLiu/falsiflow/main/docs/assets/falsiflow_downstream_pr_proof_strip.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Falsiflow: AI eval claims should fail CI without evidence">
-  <meta name="twitter:description" content="A real PR story: placeholder AI eval evidence is blocked, then source-backed evidence passes.">
+  <meta name="twitter:title" content="Falsiflow: AI and RAG eval claims should fail CI without evidence">
+  <meta name="twitter:description" content="Real PR stories: placeholder AI and RAG eval evidence is blocked, then source-backed evidence passes.">
   <meta name="twitter:image" content="https://raw.githubusercontent.com/AzurLiu/falsiflow/main/docs/assets/falsiflow_downstream_pr_proof_strip.png">
   <style>
     :root {
@@ -77,7 +77,7 @@
     <header>
       <div>
         <h1>Falsiflow Launchpad</h1>
-        <p>CI gates for claims before they ship. See a real AI eval PR fail on placeholder evidence, then pass after the evidence is source-backed.</p>
+        <p>CI gates for claims before they ship. Real AI and RAG eval PRs fail on placeholder evidence, then pass after the evidence is source-backed.</p>
       </div>
       <div class="status ready">
         <span>Status</span>
@@ -88,22 +88,40 @@
       <h2>Live Downstream PR Story</h2>
       <div class="story-grid">
         <article class="story-card neutral">
-          <span>1. Downstream PR</span>
+          <span>1. AI eval PR</span>
           <h2>AI eval improved</h2>
           <p>A separate repo tries to ship an eval claim before the dataset, raw outputs, baseline, and metadata are reviewable.</p>
-          <a href="https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1">Open downstream PR #1</a>
+          <a href="https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1">Open AI PR #1</a>
         </article>
         <article class="story-card blocked">
-          <span>2. CI blocks it</span>
+          <span>2. AI CI blocks it</span>
           <h2>claim_check_blocked</h2>
           <p>Strict CI refuses placeholder evidence and keeps the claim out of release notes.</p>
-          <a href="https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711652990">Blocked run</a>
+          <a href="https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711652990">AI blocked run</a>
         </article>
         <article class="story-card ready">
-          <span>3. Evidence passes</span>
+          <span>3. AI evidence passes</span>
           <h2>claim_check_ready</h2>
           <p>The same PR passes after source-backed eval rows, pinned versions, raw artifacts, and a review bundle are added.</p>
-          <a href="https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711669112">Ready run</a>
+          <a href="https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711669112">AI ready run</a>
+        </article>
+        <article class="story-card neutral">
+          <span>4. RAG eval PR</span>
+          <h2>RAG quality improved</h2>
+          <p>A RAG repo tries to ship a grounded-answer claim before retrieval, faithfulness, citation, and reproducibility evidence are complete.</p>
+          <a href="https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/pull/1">Open RAG PR #1</a>
+        </article>
+        <article class="story-card blocked">
+          <span>5. RAG CI blocks it</span>
+          <h2>claim_check_blocked</h2>
+          <p>Strict CI rejects the placeholder eval-set row and missing raw RAG export.</p>
+          <a href="https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721829145">RAG blocked run</a>
+        </article>
+        <article class="story-card ready">
+          <span>6. RAG evidence passes</span>
+          <h2>claim_check_ready</h2>
+          <p>The same PR passes after source-backed retrieval, faithfulness, citation, reproducibility rows, and the raw export are added.</p>
+          <a href="https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721856616">RAG ready run</a>
         </article>
       </div>
       <div class="story-reel">
@@ -146,6 +164,11 @@
           <span>AI eval claim</span>
           <h2>Model beats baseline</h2>
           <p>Blocks public comparison until dataset, model, raw-output, and reproducibility evidence are pinned.</p>
+        </article>
+        <article class="case">
+          <span>RAG eval claim</span>
+          <h2>Grounded answers improved</h2>
+          <p>Blocks release notes until retrieval, faithfulness, citation, raw export, and reproducibility evidence are source-backed.</p>
         </article>
         <article class="case">
           <span>Product metric</span>

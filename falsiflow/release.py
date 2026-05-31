@@ -588,6 +588,8 @@ def package_release_checks(root: Path) -> dict[str, object]:
     readme_pr_story_reel_path = root / "docs" / "assets" / "falsiflow_live_pr_story_reel.svg"
     readme_proof_strip_path = root / "docs" / "assets" / "falsiflow_proof_strip.svg"
     readme_demo_strip_path = root / "docs" / "assets" / "falsiflow_30_second_demo.svg"
+    public_demo_index_path = root / "docs" / "public_demo" / "index.html"
+    public_demo_downstream_pr_proof_strip_path = root / "docs" / "public_demo" / "assets" / "falsiflow_downstream_pr_proof_strip.svg"
     walkthrough_path = root / "examples" / "README.md"
     downstream_smoke_path = root / "examples" / "downstream_ai_eval_smoke"
     downstream_smoke_readme_path = downstream_smoke_path / "README.md"
@@ -680,6 +682,7 @@ def package_release_checks(root: Path) -> dict[str, object]:
         add("readme_pr_story_reel_exists", readme_pr_story_reel_path.exists() and readme_pr_story_reel_path.stat().st_size > 0, "README live PR story reel SVG exists and is non-empty.", readme_pr_story_reel_path)
         add("readme_proof_strip_exists", readme_proof_strip_path.exists() and readme_proof_strip_path.stat().st_size > 0, "README proof-strip SVG exists and is non-empty.", readme_proof_strip_path)
         add("readme_demo_strip_exists", readme_demo_strip_path.exists() and readme_demo_strip_path.stat().st_size > 0, "README 30-second demo SVG exists and is non-empty.", readme_demo_strip_path)
+        add("public_demo_index_exists", public_demo_index_path.exists() and public_demo_index_path.stat().st_size > 0, "Prebuilt public demo index exists and is non-empty.", public_demo_index_path)
         add("walkthrough_exists", walkthrough_path.exists() and walkthrough_path.stat().st_size > 0, "examples/README.md exists and is non-empty.", walkthrough_path)
         downstream_smoke_files = [
             downstream_smoke_readme_path,
@@ -741,6 +744,8 @@ def package_release_checks(root: Path) -> dict[str, object]:
         readme_pr_story_reel_text = readme_pr_story_reel_path.read_text(encoding="utf-8") if readme_pr_story_reel_path.exists() else ""
         readme_proof_strip_text = readme_proof_strip_path.read_text(encoding="utf-8") if readme_proof_strip_path.exists() else ""
         readme_demo_strip_text = readme_demo_strip_path.read_text(encoding="utf-8") if readme_demo_strip_path.exists() else ""
+        public_demo_index_text = public_demo_index_path.read_text(encoding="utf-8") if public_demo_index_path.exists() else ""
+        public_demo_downstream_pr_proof_strip_text = public_demo_downstream_pr_proof_strip_path.read_text(encoding="utf-8") if public_demo_downstream_pr_proof_strip_path.exists() else ""
         walkthrough_text = walkthrough_path.read_text(encoding="utf-8") if walkthrough_path.exists() else ""
         downstream_smoke_readme_text = downstream_smoke_readme_path.read_text(encoding="utf-8") if downstream_smoke_readme_path.exists() else ""
         downstream_smoke_workflow_text = downstream_smoke_workflow_path.read_text(encoding="utf-8") if downstream_smoke_workflow_path.exists() else ""
@@ -864,8 +869,9 @@ def package_release_checks(root: Path) -> dict[str, object]:
         add("readme_rag_quality_gate_proposal_entry", all(token in readme_text for token in ["falsiflow_rag_quality_gate_proposal.md", "RAG quality gate", "evaluation-set", "provenance", "retrieval quality", "answer faithfulness", "placeholder-blocked evidence rows"]), "README links the proposed RAG quality gate starter template and names its evidence dimensions.", readme_path)
         add("readme_casebook_check_entry", all(token in readme_text for token in ["falsiflow_casebook_check.md", "casebook-check", "positive demos", "placeholder blockers"]), "README links the casebook check and documents machine-verifiable public proof paths.", readme_path)
         add("readme_demo_pr_entry", all(token in readme_text for token in ["falsiflow_demo_pr_playbook.md", "public demo PR", "placeholder evidence", "source-backed evidence"]), "README links the public demo PR playbook for blocked and ready claim-gate demonstrations.", readme_path)
-        add("readme_downstream_pr_proof_strip_asset", all(token in readme_text + demo_pr_playbook_text + launch_plan_text for token in ["docs/assets/falsiflow_downstream_pr_proof_strip.svg", "falsiflow-downstream-ai-eval-demo", "26711652990", "26711669112"]) and all(token in downstream_pr_proof_strip_text for token in ["Downstream PR #1", "claim_check_blocked", "claim_check_ready", "26711652990", "26711669112", "does not prove the model is good, safe, or shippable"]), "README and launch docs embed or link the shareable downstream PR proof strip with blocked and ready CI proof links.", downstream_pr_proof_strip_path)
+        add("readme_downstream_pr_proof_strip_asset", all(token in readme_text + demo_pr_playbook_text + launch_plan_text for token in ["docs/assets/falsiflow_downstream_pr_proof_strip.svg", "falsiflow-downstream-ai-eval-demo", "26711652990", "26711669112", "falsiflow-downstream-rag-eval-demo", "26721829145", "26721856616"]) and all(token in downstream_pr_proof_strip_text for token in ["AI Eval Downstream PR #1", "RAG Eval Downstream PR #1", "claim_check_blocked", "claim_check_ready", "26711652990", "26711669112", "26721829145", "26721856616", "does not prove the model is good, safe, or shippable"]), "README and launch docs embed or link the shareable downstream PR proof strip with AI/RAG blocked and ready CI proof links.", downstream_pr_proof_strip_path)
         add("package_downstream_pr_proof_strip_matches_docs", package_downstream_pr_proof_strip_path.read_text(encoding="utf-8") == downstream_pr_proof_strip_text if package_downstream_pr_proof_strip_path.exists() and downstream_pr_proof_strip_text else False, "Packaged downstream PR proof strip matches the README/docs asset.", package_downstream_pr_proof_strip_path)
+        add("public_demo_downstream_rag_proof", all(token in public_demo_index_text + public_demo_downstream_pr_proof_strip_text for token in ["Live Downstream PR Story", "AI eval PR", "RAG eval PR", "falsiflow-downstream-ai-eval-demo", "falsiflow-downstream-rag-eval-demo", "26711652990", "26711669112", "26721829145", "26721856616", "claim_check_blocked", "claim_check_ready"]), "Prebuilt public demo launchpad and proof-strip asset show both the live AI and RAG downstream blocked-to-ready PR stories.", public_demo_index_path)
         add("readme_live_pr_story_reel_asset", "docs/assets/falsiflow_live_pr_story_reel.svg" in readme_text and all(token in readme_pr_story_reel_text for token in ["Live PR Story", "PR #17", "claim_check_blocked", "claim_check_ready", "26708459093", "26708472653"]), "README documents the packaged live PR story reel with blocked and ready CI proof links.", readme_pr_story_reel_path)
         add("package_pr_story_reel_matches_docs", package_pr_story_reel_path.read_text(encoding="utf-8") == readme_pr_story_reel_text if package_pr_story_reel_path.exists() and readme_pr_story_reel_text else False, "Packaged live PR story reel matches the README/docs asset.", package_pr_story_reel_path)
         add("readme_visual_asset", all(token in readme_text for token in ["docs/assets/falsiflow_proof_strip.svg", "Falsiflow evidence-gated claim workflow"]) and all(token in readme_proof_strip_text for token in ["claim_ready after proof", "claim_blocked on gaps", "Source files", "Review + release checks"]), "README embeds a first-screen proof-strip visual that explains the evidence gate flow.", readme_proof_strip_path)
@@ -1430,6 +1436,21 @@ def run_release_check(
         demo_package_summary = demo_package_runner("biointerface_coatings", artifact_root / "public_demo", [], force=True)
         if demo_package_summary.get("status") != "demo_package_ready":
             failures.append(failure_record("demo_package", "public_demo", f"Demo package ended as {demo_package_summary.get('status', '')}."))
+        else:
+            demo_index_text = (artifact_root / "public_demo" / "index.html").read_text(encoding="utf-8")
+            demo_strip_text = (artifact_root / "public_demo" / "assets" / "falsiflow_downstream_pr_proof_strip.svg").read_text(encoding="utf-8")
+            demo_tokens = [
+                "falsiflow-downstream-ai-eval-demo",
+                "falsiflow-downstream-rag-eval-demo",
+                "26711652990",
+                "26711669112",
+                "26721829145",
+                "26721856616",
+                "claim_check_blocked",
+                "claim_check_ready",
+            ]
+            if not all(token in demo_index_text + demo_strip_text for token in demo_tokens):
+                failures.append(failure_record("demo_package", "live_downstream_proof", "Generated public demo package is missing AI/RAG downstream blocked-to-ready proof links."))
     except Exception as exc:  # pragma: no cover - defensive CLI boundary.
         demo_package_summary = {"status": "demo_package_failed", "template": "biointerface_coatings", "message": str(exc)}
         failures.append(failure_record("demo_package", "public_demo", str(exc)))

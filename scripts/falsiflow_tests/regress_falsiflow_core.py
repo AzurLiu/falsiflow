@@ -1278,10 +1278,13 @@ def assert_cli_contract() -> None:
         assert 'name="twitter:card"' in launchpad
         assert "falsiflow_downstream_pr_proof_strip.svg" in launchpad
         assert "falsiflow_live_pr_story_reel.svg" in launchpad
-        assert "Falsiflow: AI eval claims should fail CI without evidence" in launchpad
+        assert "Falsiflow: AI and RAG eval claims should fail CI without evidence" in launchpad
         assert "https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1" in launchpad
         assert "https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711652990" in launchpad
         assert "https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711669112" in launchpad
+        assert "https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/pull/1" in launchpad
+        assert "https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721829145" in launchpad
+        assert "https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721856616" in launchpad
         assert "https://github.com/AzurLiu/falsiflow/pull/17" in launchpad
         assert "https://github.com/AzurLiu/falsiflow/actions/runs/26708459093" in launchpad
         assert "https://github.com/AzurLiu/falsiflow/actions/runs/26708472653" in launchpad
