@@ -14,12 +14,14 @@ fetches it successfully and `external-check --strict` reports `external_ready`.
 
 Use GitHub Pages through the included `Falsiflow Pages Demo` workflow. The
 workflow builds a fresh static demo package and deploys it to
-`https://azurliu.github.io/falsiflow/`.
+`https://azurliu.github.io/falsiflow/`. It runs on manual dispatch and on
+`main` pushes that affect the demo generator, packaged public demo, or Pages
+workflow.
 
 Verify it after each deployment:
 
 ```bash
-curl -fsS https://azurliu.github.io/falsiflow/ | grep -E "Falsiflow|Launchpad|Try"
+curl -fsS https://azurliu.github.io/falsiflow/ | grep -E "Falsiflow|Live PR Story|pull/17|claim_check_ready"
 ```
 
 ## Netlify
@@ -50,14 +52,16 @@ Vercel:
 ## GitHub Pages
 
 The `Falsiflow Pages Demo` workflow builds the static demo package and deploys
-it through GitHub Actions. Its `actions/configure-pages` step uses
-`enablement: true` so a repository without an existing Pages site can be enabled
-by the workflow before deployment when repository permissions allow it.
+it through GitHub Actions. It can be run manually, and it also runs on `main`
+pushes that affect the demo generator, packaged public demo, or Pages workflow.
+Its `actions/configure-pages` step uses `enablement: true` so a repository
+without an existing Pages site can be enabled by the workflow before deployment
+when repository permissions allow it.
 
 If the Pages workflow succeeds, verify:
 
 ```bash
-curl -fsS https://azurliu.github.io/falsiflow/ | grep -E "Falsiflow|Launchpad|Try"
+curl -fsS https://azurliu.github.io/falsiflow/ | grep -E "Falsiflow|Live PR Story|pull/17|claim_check_ready"
 ```
 
 If the workflow fails with `Resource not accessible by integration`, enable

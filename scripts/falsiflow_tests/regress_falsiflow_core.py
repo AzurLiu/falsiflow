@@ -1270,6 +1270,9 @@ def assert_cli_contract() -> None:
         assert "Falsiflow Launchpad" in launchpad
         assert "CI gates for claims before they ship" in launchpad
         assert "Live PR Story" in launchpad
+        assert 'property="og:title"' in launchpad
+        assert 'name="twitter:card"' in launchpad
+        assert "Falsiflow: AI eval claims should fail CI without evidence" in launchpad
         assert "https://github.com/AzurLiu/falsiflow/pull/17" in launchpad
         assert "https://github.com/AzurLiu/falsiflow/actions/runs/26708459093" in launchpad
         assert "https://github.com/AzurLiu/falsiflow/actions/runs/26708472653" in launchpad
@@ -1470,6 +1473,7 @@ def assert_cli_contract() -> None:
         assert (demo_package_dir / ".nojekyll").exists()
         assert (demo_package_dir / "netlify.toml").exists()
         assert (demo_package_dir / "publish_checklist.md").exists()
+        assert "Live PR Story" in (demo_package_dir / "README.md").read_text(encoding="utf-8")
 
         publish_kit_dir = Path(tmp) / "publish_kit"
         publish_kit = subprocess.run(
@@ -4101,6 +4105,8 @@ def assert_packaged_template_contract() -> None:
         packaged_launchpad = (packaged_try_dir / "index.html").read_text(encoding="utf-8")
         assert "Falsiflow Launchpad" in packaged_launchpad
         assert "Live PR Story" in packaged_launchpad
+        assert 'property="og:title"' in packaged_launchpad
+        assert 'name="twitter:card"' in packaged_launchpad
         assert "https://github.com/AzurLiu/falsiflow/pull/17" in packaged_launchpad
         assert "Falsiflow Try" in (packaged_try_dir / "try_report.html").read_text(encoding="utf-8")
         assert "Falsiflow Browser Wizard" in (packaged_try_dir / "falsiflow_wizard.html").read_text(encoding="utf-8")
@@ -4220,6 +4226,7 @@ def assert_packaged_template_contract() -> None:
         assert packaged_demo_package_summary["status"] == "demo_package_ready"
         assert (packaged_demo_package_dir / "demo_package_summary.json").exists()
         assert (packaged_demo_package_dir / ".nojekyll").exists()
+        assert "Live PR Story" in (packaged_demo_package_dir / "README.md").read_text(encoding="utf-8")
         packaged_publish_kit_dir = work_dir / "publish_kit"
         packaged_publish_kit = subprocess.run(
             [

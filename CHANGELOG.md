@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.8
+
+- Added description, Open Graph, and Twitter card metadata to the public demo
+  launchpad so shared links preview the live PR story.
+- Enabled automatic GitHub Pages deploys on `main` pushes that affect the demo
+  generator, packaged public demo, or Pages workflow.
+- Sharpened README/PyPI first-screen copy around the Live PR Story proof path.
+
 ## 0.1.7
 
 - Put the live AI eval PR story on the public demo launchpad: PR #17 now appears

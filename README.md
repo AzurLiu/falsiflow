@@ -10,7 +10,7 @@ bundle.
 [![Falsiflow Cross Platform](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-cross-platform.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-cross-platform.yml)
 [![Falsiflow Scorecard](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-scorecard.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-scorecard.yml)
 
-Public demo with the real PR story: <https://azurliu.github.io/falsiflow/>. PyPI package:
+Public demo with the Live PR Story: <https://azurliu.github.io/falsiflow/>. PyPI package:
 <https://pypi.org/project/falsiflow/>. PyPI trusted publishing: completed.
 External evidence workflow:
 <https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-external-evidence.yml>.
@@ -37,7 +37,7 @@ placeholder evidence  -> claim_check_blocked
 source-backed evidence -> claim_check_ready
 ```
 
-Real PR demo: [PR #17](https://github.com/AzurLiu/falsiflow/pull/17)
+Live PR Story: [PR #17](https://github.com/AzurLiu/falsiflow/pull/17)
 shows placeholder AI/RAG eval evidence failing CI in the
 [blocked run](https://github.com/AzurLiu/falsiflow/actions/runs/26708459093),
 then source-backed evidence passing in the

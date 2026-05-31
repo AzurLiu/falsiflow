@@ -64,6 +64,7 @@ def render_demo_package_readme(summary: dict[str, object]) -> str:
         "## Preview",
         "",
         "- Open `index.html` locally, or publish this directory with GitHub Pages, Netlify, or any static file server.",
+        "- The launchpad starts with the Live PR Story: PR #17 blocks placeholder AI/RAG eval evidence in CI, then passes after source-backed evidence is added.",
         f"- Workbench shell: `{outputs.get('workbench', 'workbench.html')}`",
         f"- Try report: `{outputs.get('try_report', 'try_report.html')}`",
         f"- Wizard: `{outputs.get('wizard', 'falsiflow_wizard.html')}`",
@@ -1775,7 +1776,7 @@ def run_external_check(
         external_check_item("powershell_available", bool(powershell_path) or windows_validated, "PowerShell is available here, FALSIFLOW_WINDOWS_VALIDATED is set, or external evidence records a passing Windows smoke test.", powershell_path or os.environ.get("FALSIFLOW_WINDOWS_VALIDATED", "") or windows_evidence_value, windows_evidence_value),
         external_check_item("python_available", bool(sys.executable), "Python executable is available for local install and release checks.", sys.executable),
         external_check_item("demo_package_command", True, "`falsiflow demo-package` can prepare hostable static demo artifacts.", "falsiflow demo-package"),
-        external_check_item("github_pages_workflow", workflow_contains(pages_workflow, ["demo-package", "upload-pages-artifact", "deploy-pages", "pages: write", "enablement: true"]), "GitHub Pages workflow can enable Pages, build, and deploy the static demo package.", str(pages_workflow)),
+        external_check_item("github_pages_workflow", workflow_contains(pages_workflow, ["workflow_dispatch", "push:", "branches: [main]", "docs/public_demo/**", "demo-package", "upload-pages-artifact", "deploy-pages", "pages: write", "enablement: true"]), "GitHub Pages workflow can enable Pages, auto-refresh, build, and deploy the static demo package.", str(pages_workflow)),
         external_check_item("cross_platform_workflow", workflow_contains(cross_platform_workflow, ["ubuntu-latest", "macos-latest", "windows-latest", "pipx", "install_local.ps1"]), "Cross-platform workflow covers Linux, macOS, Windows, pipx, and installers.", str(cross_platform_workflow)),
         external_check_item("pypi_publish_workflow", workflow_contains(publish_workflow, ["pypa/gh-action-pypi-publish", "twine check", "dist/*", "id-token: write"]), "PyPI publish workflow builds, checks, and can publish distributions with trusted publishing.", str(publish_workflow)),
     ])

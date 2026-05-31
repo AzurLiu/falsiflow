@@ -40,7 +40,6 @@ EXPECTED_PYPROJECT_CLASSIFIERS = {
     "Environment :: Console",
     "Intended Audience :: Developers",
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
@@ -410,14 +409,14 @@ def command_excerpt(completed: subprocess.CompletedProcess[str]) -> str:
 
 def pyproject_build_requires(pyproject_path: Path) -> list[str]:
     if tomllib is None:
-        return ["setuptools>=68"]
+        return ["setuptools>=77"]
     try:
         data = tomllib.loads(pyproject_path.read_text(encoding="utf-8"))
     except (OSError, tomllib.TOMLDecodeError):
-        return ["setuptools>=68"]
+        return ["setuptools>=77"]
     raw_requires = data.get("build-system", {}).get("requires", [])
     requires = [str(item) for item in raw_requires if isinstance(item, str)]
-    return requires or ["setuptools>=68"]
+    return requires or ["setuptools>=77"]
 
 
 def isolated_python_path(venv_dir: Path) -> Path:
@@ -722,7 +721,7 @@ def package_release_checks(root: Path) -> dict[str, object]:
         add(
             "pyproject_classifiers",
             EXPECTED_PYPROJECT_CLASSIFIERS <= string_values(classifiers) if data else all(f'"{classifier}"' in pyproject_text for classifier in EXPECTED_PYPROJECT_CLASSIFIERS),
-            "Project metadata includes audience, status, Python-version, license, OS, and topic classifiers.",
+            "Project metadata includes audience, status, Python-version, OS, and topic classifiers.",
             pyproject_path,
         )
         add(
@@ -732,7 +731,8 @@ def package_release_checks(root: Path) -> dict[str, object]:
             pyproject_path,
         )
         add("readme_declared", readme_value == "README.md" if data else 'readme = "README.md"' in pyproject_text, "pyproject readme points to README.md.", pyproject_path)
-        add("license_declared", isinstance(license_value, dict) and license_value.get("file") == "LICENSE" if data else 'file = "LICENSE"' in pyproject_text, "pyproject license points to LICENSE.", pyproject_path)
+        license_files = get_nested(data, "project", "license-files") if data else []
+        add("license_declared", license_value == "MIT" and "LICENSE" in (license_files if isinstance(license_files, list) else []) if data else 'license = "MIT"' in pyproject_text and 'license-files = ["LICENSE"]' in pyproject_text, "pyproject declares the MIT SPDX license and includes the LICENSE file.", pyproject_path)
         add("console_script", isinstance(scripts, dict) and scripts.get("falsiflow") == "falsiflow.cli:main" if data else 'falsiflow = "falsiflow.cli:main"' in pyproject_text, "Console script points to falsiflow.cli:main.", pyproject_path)
         add("setuptools_package", isinstance(packages, list) and "falsiflow" in packages if data else 'packages = ["falsiflow"]' in pyproject_text, "setuptools includes the falsiflow package.", pyproject_path)
         expected_data_patterns = {"templates/*/*.json", "templates/*/*.csv", "templates/*/source_files/*.csv"}
@@ -783,7 +783,7 @@ def package_release_checks(root: Path) -> dict[str, object]:
         add("github_ci_workflow", all(token in github_ci_text for token in ["regress_falsiflow_core.py", "release-check", "template-pack", "template-release", "demo-package", "agent discover", "evidence import", "evidence-record", "Reusable action smoke", "uses: ./", "ai_claim_evaluation"]), "GitHub Actions CI workflow covers regression, release-check, public interfaces, template supply-chain gates, and reusable-action smoke.", github_ci_path)
         add("github_action_entrypoint", all(token in action_text for token in ["using: composite", "actions/setup-python@v6", "install-command", "GITHUB_ACTION_PATH", "mode", "claim-check", "template-check", "casebook-check", "release-check", "adoption-check", "quickstart", "external-check", "summary-json", "GITHUB_OUTPUT"]), "Reusable GitHub Action exposes supported Falsiflow gates, current Python setup action, default action-checkout install, install override, and output metadata.", action_path)
         add("github_action_yaml_safe", not action_description_colon_conflicts and 'description: "Gate to run:' in action_text, "Reusable GitHub Action metadata quotes colon-bearing descriptions for YAML safety.", action_path)
-        add("github_pages_workflow", all(token in github_pages_text for token in ["demo-package", "upload-pages-artifact", "deploy-pages", "pages: write", "actions/configure-pages@v6", "enablement: true"]), "GitHub Pages workflow can enable Pages, build, and deploy the static demo package.", github_pages_path)
+        add("github_pages_workflow", all(token in github_pages_text for token in ["workflow_dispatch", "push:", "branches: [main]", "docs/public_demo/**", "demo-package", "upload-pages-artifact", "deploy-pages", "pages: write", "actions/configure-pages@v6", "enablement: true"]), "GitHub Pages workflow can enable Pages, build, auto-refresh, and deploy the static demo package.", github_pages_path)
         add("github_cross_platform_workflow", all(token in github_cross_platform_text for token in ["ubuntu-latest", "macos-latest", "windows-latest", "pipx", "install_local.ps1", "external-check"]), "GitHub Actions cross-platform workflow covers Linux, macOS, Windows, pipx, installers, and external-check smoke.", github_cross_platform_path)
         add("github_external_evidence_workflow", all(token in github_external_evidence_text for token in ["Falsiflow External Evidence", "public_demo_url", "pypi_package_url", "expected_version", "Expected PyPI package version", "Verify PyPI project URL", "https://pypi.org/pypi/falsiflow/json", "falsiflow_pypi_project.json", "falsiflow_expected_version.txt", "falsiflow_pypi_version.txt", "published_version", "tomllib", "pipx-smoke", "pipx-public-package", "windows-powershell", "pypi_package_url", "pipx_public_package", "falsiflow_external_evidence.json", "external-check", "upload-artifact"]), "GitHub Actions external-evidence workflow captures hosted demo, PyPI JSON expected-version package proof, checkout pipx, public-package pipx, Windows, and external-check artifacts for public readiness proof.", github_external_evidence_path)
         add("github_scorecard_workflow", all(token in github_scorecard_text for token in ["Falsiflow Scorecard", "ossf/scorecard-action@v2.4.3", "results_format: sarif", "publish_results: false", "scorecard-results.sarif", "github/codeql-action/upload-sarif@v4", "security-events: write", "id-token: write"]), "GitHub Actions Scorecard workflow records OpenSSF Scorecard SARIF security signals with the current CodeQL SARIF uploader and without publishing to the Scorecard webapp under SARIF upload permissions.", github_scorecard_path)
