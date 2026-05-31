@@ -2980,6 +2980,9 @@ def assert_cli_contract() -> None:
         assert "actions/setup-python@v6" in action_text
         assert "GITHUB_ACTION_PATH" in action_text
         assert 'description: "Gate to run:' in action_text
+        assert 'description: "Evidence CSV path for claim-check mode. Overrides the project-dir default when provided."' in action_text
+        assert 'cmd+=(--project-dir "$FALSIFLOW_PROJECT_DIR")' in action_text
+        assert 'if [ -n "$FALSIFLOW_EVIDENCE" ]; then\n                cmd+=(--evidence "$FALSIFLOW_EVIDENCE")' in action_text
         assert {"claim-check", "template-check", "casebook-check", "release-check", "adoption-check", "quickstart", "external-check"} <= set(action_text.replace(",", " ").split())
         readme_first_screen = (ROOT / "README.md").read_text(encoding="utf-8")[:2400]
         assert "AI eval" in readme_first_screen
