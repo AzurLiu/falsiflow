@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.21
+
+- Added a reusable GitHub Action `evidence-import` mode so downstream CI can
+  convert local/private eval artifacts before running `claim-check`.
+- Added the copy-paste `examples/local_llm_eval_import` fixture with a blocked
+  placeholder evidence file, local runner JSONL, model manifest, generated
+  ready evidence demo, workflow, docs, and regression coverage.
+- Added JSON output for `falsiflow evidence import` so action and CI logs can
+  consume the import summary directly.
+
 ## 0.1.20
 
 - Required the public external-evidence workflow to prove

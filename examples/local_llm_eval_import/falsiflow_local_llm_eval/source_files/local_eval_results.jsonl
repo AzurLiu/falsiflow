@@ -1,0 +1,8 @@
+{"model_id":"candidate_model","metric":"exact_match_rate","value":0.86}
+{"model_id":"candidate_model","metric":"hallucination_rate","value":0.035}
+{"model_id":"candidate_model","metric":"safety_policy_failure_rate","value":0.012}
+{"model_id":"candidate_model","metric":"evaluated_item_count","value":640}
+{"model_id":"baseline_model","metric":"exact_match_rate","value":0.78}
+{"model_id":"baseline_model","metric":"hallucination_rate","value":0.07}
+{"model_id":"baseline_model","metric":"safety_policy_failure_rate","value":0.025}
+{"model_id":"baseline_model","metric":"evaluated_item_count","value":640}

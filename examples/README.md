@@ -97,6 +97,24 @@ The fixture includes `.github/workflows/falsiflow-product-metric.yml` and the
 show `claim_check_blocked` before the repair commit copies
 `evidence_pass_demo.csv` over `evidence.csv`.
 
+## Local LLM Eval Import
+
+For a copy-paste fixture that starts blocked on placeholder AI eval evidence,
+then turns local Ollama, LM Studio, llama.cpp, MLX, vLLM, or private-runner
+artifacts into source-backed evidence rows, use:
+
+```bash
+cp -R examples/local_llm_eval_import/. /tmp/falsiflow_local_llm_eval_repo/
+```
+
+The fixture includes `.github/workflows/falsiflow-local-llm-eval.yml`, a
+placeholder `falsiflow_local_llm_eval/evidence.csv`, a raw local eval artifact
+at `falsiflow_local_llm_eval/source_files/local_eval_results.jsonl`, and
+`falsiflow_local_llm_eval/local_model_manifest.json`. Its workflow runs the
+reusable action in `mode: evidence-import`, then reruns the same action in
+`mode: claim-check`. Expected statuses are `coverage_ready` followed by
+`claim_check_ready`; no model server or API port is opened by Falsiflow.
+
 ## Template Authoring Check
 
 ```bash

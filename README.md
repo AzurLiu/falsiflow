@@ -21,7 +21,7 @@ source-backed evidence -> claim_check_ready
 GitHub Action:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.20
+- uses: AzurLiu/falsiflow@v0.1.21
   with:
     mode: claim-check
     project-dir: falsiflow_ai_eval
@@ -279,7 +279,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: AzurLiu/falsiflow@v0.1.20
+      - uses: AzurLiu/falsiflow@v0.1.21
         with:
           mode: claim-check
           project-dir: my_falsiflow_project
@@ -287,8 +287,9 @@ jobs:
           strict: "true"
 ```
 
-The same `action.yml` supports `template-check`, `casebook-check`,
-`release-check`, `adoption-check`, `quickstart`, and `external-check` modes.
+The same `action.yml` supports `evidence-import`, `template-check`,
+`casebook-check`, `release-check`, `adoption-check`, `quickstart`, and
+`external-check` modes.
 The default `install-command` installs from the versioned action checkout via
 `GITHUB_ACTION_PATH`, which keeps the action independent from PyPI availability.
 Override `install-command` only when you want to install from PyPI, a fork, or a
@@ -985,6 +986,15 @@ falsiflow evidence import \
   --strict
 ```
 
+For a ready-to-copy local model fixture, use
+[examples/local_llm_eval_import](examples/local_llm_eval_import). It starts
+blocked on placeholder evidence, imports `source_files/local_eval_results.jsonl`
+plus `local_model_manifest.json` with `--profile local-llm-eval`, then reruns
+the same claim gate as `claim_check_ready`. Its workflow uses the reusable
+action's `mode: evidence-import` before `mode: claim-check`, so CI can convert
+local Ollama, LM Studio, llama.cpp, MLX, vLLM, or private-runner artifacts
+without Falsiflow opening an API port or running a model.
+
 ```bash
 falsiflow evidence import \
   --profile rag-eval \
@@ -1142,8 +1152,9 @@ with the active Falsiflow contract.
 
 - `falsiflow/`: package implementation.
 - `falsiflow/templates/`: packaged starter templates.
-- `action.yml`: reusable GitHub Action for claim, template, casebook, release,
-  adoption, quickstart, and external-readiness gates in downstream repositories.
+- `action.yml`: reusable GitHub Action for claim, evidence-import, template,
+  casebook, release, adoption, quickstart, and external-readiness gates in
+  downstream repositories.
 - `Makefile`: local install, start, test, release-check, and clean shortcuts.
 - `.github/workflows/falsiflow.yml`: full regression, release-check, template,
   and bundle CI gate.

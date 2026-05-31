@@ -64,7 +64,7 @@ jobs:
 
       - name: Run claim gate
         id: falsiflow
-        uses: AzurLiu/falsiflow@v0.1.20
+        uses: AzurLiu/falsiflow@v0.1.21
         with:
           mode: claim-check
           project-dir: falsiflow_ai_eval
@@ -204,9 +204,67 @@ change caused the metric movement or should ship.
 The default `install-command` is intentionally omitted. The action installs
 from the checked-out action directory via `GITHUB_ACTION_PATH`, which keeps this
 downstream smoke usable before PyPI exists. After a stable release is published,
-pin the action to a tag such as `AzurLiu/falsiflow@v0.1.20`; override
+pin the action to a tag such as `AzurLiu/falsiflow@v0.1.21`; override
 `install-command` only when installing from PyPI, a fork, or a local checkout is
 part of the thing you are testing.
+
+## Local LLM Eval Import And Claim Gate
+
+Use this when a downstream repository has local/private model artifacts from
+Ollama, LM Studio, llama.cpp, MLX, vLLM, or an internal runner. The first action
+step converts those artifacts into the Falsiflow evidence CSV; the second step
+runs the claim gate. Falsiflow does not run a model, call a hosted model, open
+an API port, or judge answer quality itself.
+
+The maintained fixture is
+[`examples/local_llm_eval_import`](../examples/local_llm_eval_import).
+
+```yaml
+name: Local LLM Eval Evidence Gate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  local-llm-eval:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Import local LLM eval artifacts
+        id: falsiflow_import
+        uses: AzurLiu/falsiflow@v0.1.21
+        with:
+          mode: evidence-import
+          profile: local-llm-eval
+          input: falsiflow_local_llm_eval/source_files/local_eval_results.jsonl
+          manifest: falsiflow_local_llm_eval/local_model_manifest.json
+          config: falsiflow_local_llm_eval/project.json
+          evidence: falsiflow_local_llm_eval/evidence.csv
+          source-file: source_files/local_eval_results.jsonl
+          out-dir: data/falsiflow/local_llm_import
+          strict: "true"
+
+      - name: Run Falsiflow claim gate
+        id: falsiflow
+        uses: AzurLiu/falsiflow@v0.1.21
+        with:
+          mode: claim-check
+          project-dir: falsiflow_local_llm_eval
+          evidence: falsiflow_local_llm_eval/evidence.csv
+          out-dir: data/falsiflow/local_llm_claim_check
+          strict: "true"
+```
+
+Expected outputs:
+
+- `falsiflow_import.outputs.summary-json` points to `import_summary.json`.
+- `data/falsiflow/local_llm_import/import_coverage.json` reports
+  `coverage_ready`.
+- The claim gate reports `claim_check_ready` only after the imported evidence
+  satisfies provenance, benchmark, and reproducibility rows.
 
 ## RAG Eval Downstream Claim Gate
 
@@ -247,7 +305,7 @@ jobs:
 
       - name: Run Falsiflow RAG claim gate
         id: falsiflow
-        uses: AzurLiu/falsiflow@v0.1.20
+        uses: AzurLiu/falsiflow@v0.1.21
         with:
           mode: claim-check
           project-dir: falsiflow_rag_eval
@@ -332,7 +390,7 @@ jobs:
 
       - name: Run Falsiflow claim gate
         id: falsiflow
-        uses: AzurLiu/falsiflow@v0.1.20
+        uses: AzurLiu/falsiflow@v0.1.21
         with:
           mode: claim-check
           project-dir: falsiflow_ai_eval
@@ -379,7 +437,7 @@ jobs:
 
       - name: Run AI claim quickstart
         id: falsiflow
-        uses: AzurLiu/falsiflow@v0.1.20
+        uses: AzurLiu/falsiflow@v0.1.21
         with:
           mode: quickstart
           template: ai_claim_evaluation
@@ -404,7 +462,7 @@ Expected result: `quickstart_ready` with a nested `claim_check_ready` report.
 The default install path is best for tagged action use:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.20
+- uses: AzurLiu/falsiflow@v0.1.21
   with:
     mode: claim-check
     project-dir: falsiflow_ai_eval
@@ -413,7 +471,7 @@ The default install path is best for tagged action use:
 Install from PyPI after publication:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.20
+- uses: AzurLiu/falsiflow@v0.1.21
   with:
     install-command: python -m pip install falsiflow
     mode: claim-check

@@ -90,6 +90,7 @@ python3 scripts/falsiflow.py publish-kit --out-dir /tmp/falsiflow_publish_kit_ch
 python3 scripts/falsiflow.py launch-kit --out-dir /tmp/falsiflow_launch_kit_check --force --json
 python3 scripts/falsiflow.py external-evidence --out /tmp/falsiflow_external_evidence.json --force --json
 python3 scripts/falsiflow.py external-check --out-dir /tmp/falsiflow_external_check --force
+python3 scripts/falsiflow.py evidence import --profile local-llm-eval --input examples/local_llm_eval_import/falsiflow_local_llm_eval/source_files/local_eval_results.jsonl --manifest examples/local_llm_eval_import/falsiflow_local_llm_eval/local_model_manifest.json --out /tmp/falsiflow_local_llm_evidence.csv --summary-out /tmp/falsiflow_local_llm_import_summary.json --config examples/local_llm_eval_import/falsiflow_local_llm_eval/project.json --coverage-out /tmp/falsiflow_local_llm_import_coverage.json --source-file source_files/local_eval_results.jsonl --strict --json
 python3 scripts/falsiflow.py casebook-check --out-dir data/falsiflow/casebook_check --force
 python3 scripts/falsiflow.py adoption-check --out-dir data/falsiflow/adoption_check --force
 python3 scripts/falsiflow.py release-check --out-dir data/falsiflow/release_check --force
@@ -106,6 +107,11 @@ The final `release-check` must report:
 - `publish_kit_ready` for the generated release handoff kit
 - `launch_kit_ready` for public copy, proof card, demo script, launch metrics,
   and maintainer checklist
+- reusable `action.yml` supports `evidence-import`, and
+  `examples/local_llm_eval_import` proves a local/private model JSONL plus
+  `local_model_manifest.json` can move from `claim_check_blocked` to
+  `coverage_ready` and `claim_check_ready` without Falsiflow running a model or
+  opening an API port
 - `external-evidence` has produced a structured evidence file for hosted demo,
   public PyPI package URL, checkout-based pipx smoke, public-package pipx
   smoke, public-package MCP selftest, Windows/PowerShell smoke results, the

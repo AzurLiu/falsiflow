@@ -390,6 +390,7 @@ Convert CSV, AI eval, local LLM eval, or RAG eval artifacts into Falsiflow evide
 falsiflow evidence import [-h] --input INPUT --out OUT
                                  [--summary-out SUMMARY_OUT] [--config CONFIG]
                                  [--coverage-out COVERAGE_OUT] [--strict]
+                                 [--json]
                                  [--profile {ai-eval,generic-wide,instrument-export,local-llm-eval,plate-reader,rag-eval,vendor-measurement}]
                                  [--manifest MANIFEST] [--gate-id GATE_ID]
                                  [--candidate-id CANDIDATE_ID]
@@ -419,6 +420,7 @@ falsiflow evidence import [-h] --input INPUT --out OUT
 | `--config` | `CONFIG` | `no` | `` | Optional project config for import coverage precheck. |
 | `--coverage-out` | `COVERAGE_OUT` | `no` | `` | Optional coverage precheck JSON output path. |
 | `--strict` | `` | `no` | `False` | Exit non-zero when project coverage is blocked. |
+| `--json` | `` | `no` | `False` | Print machine-readable import summary. |
 | `--profile` | `{ai-eval,generic-wide,instrument-export,local-llm-eval,plate-reader,rag-eval,vendor-measurement}` | `no` | `generic-wide` | Import profile for wide CSV, AI eval, local LLM eval, or RAG eval artifacts. |
 | `--manifest` | `MANIFEST` | `no` | `` | Optional JSON manifest for ai-eval, local-llm-eval, and rag-eval profiles. |
 | `--gate-id` | `GATE_ID` | `no` | `` | Gate id for wide CSV imports. |
@@ -440,6 +442,7 @@ falsiflow evidence import [-h] --input INPUT --out OUT
 | `--instrument-id-column` | `INSTRUMENT_ID_COLUMN` | `no` | `` |  |
 | `--notes` | `NOTES` | `no` | `` |  |
 | `--notes-column` | `NOTES_COLUMN` | `no` | `` |  |
+
 ### `falsiflow try`
 
 Run a 30-second starter demo and write a local browser launchpad.
@@ -1181,6 +1184,7 @@ Convert a wide lab CSV, or a selected eval artifact profile, into Falsiflow evid
 falsiflow ingest-wide-csv [-h] --input INPUT --out OUT
                                  [--summary-out SUMMARY_OUT] [--config CONFIG]
                                  [--coverage-out COVERAGE_OUT] [--strict]
+                                 [--json]
                                  [--profile {ai-eval,generic-wide,instrument-export,local-llm-eval,plate-reader,rag-eval,vendor-measurement}]
                                  [--manifest MANIFEST] [--gate-id GATE_ID]
                                  [--candidate-id CANDIDATE_ID]
@@ -1210,6 +1214,7 @@ falsiflow ingest-wide-csv [-h] --input INPUT --out OUT
 | `--config` | `CONFIG` | `no` | `` | Optional project config for import coverage precheck. |
 | `--coverage-out` | `COVERAGE_OUT` | `no` | `` | Optional coverage precheck JSON output path. |
 | `--strict` | `` | `no` | `False` | Exit non-zero when project coverage is blocked. |
+| `--json` | `` | `no` | `False` | Print machine-readable import summary. |
 | `--profile` | `{ai-eval,generic-wide,instrument-export,local-llm-eval,plate-reader,rag-eval,vendor-measurement}` | `no` | `generic-wide` | Import profile for wide CSV, AI eval, local LLM eval, or RAG eval artifacts. |
 | `--manifest` | `MANIFEST` | `no` | `` | Optional JSON manifest for ai-eval, local-llm-eval, and rag-eval profiles. |
 | `--gate-id` | `GATE_ID` | `no` | `` | Gate id for wide CSV imports. |

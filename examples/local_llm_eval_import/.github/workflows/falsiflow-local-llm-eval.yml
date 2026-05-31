@@ -1,0 +1,50 @@
+name: Falsiflow Local LLM Eval Import
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  local-llm-eval:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Import local LLM eval artifacts
+        id: falsiflow_import
+        uses: AzurLiu/falsiflow@v0.1.21
+        with:
+          mode: evidence-import
+          profile: local-llm-eval
+          input: falsiflow_local_llm_eval/source_files/local_eval_results.jsonl
+          manifest: falsiflow_local_llm_eval/local_model_manifest.json
+          config: falsiflow_local_llm_eval/project.json
+          evidence: falsiflow_local_llm_eval/evidence.csv
+          source-file: source_files/local_eval_results.jsonl
+          out-dir: data/falsiflow/local_llm_import
+          strict: "true"
+
+      - name: Run Falsiflow claim gate
+        id: falsiflow
+        uses: AzurLiu/falsiflow@v0.1.21
+        with:
+          mode: claim-check
+          project-dir: falsiflow_local_llm_eval
+          evidence: falsiflow_local_llm_eval/evidence.csv
+          out-dir: data/falsiflow/local_llm_claim_check
+          strict: "true"
+
+      - name: Upload Falsiflow local LLM reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: falsiflow-local-llm-eval-import
+          path: |
+            ${{ steps.falsiflow_import.outputs.summary-json }}
+            data/falsiflow/local_llm_import/import_coverage.json
+            ${{ steps.falsiflow.outputs.summary-json }}
+            ${{ steps.falsiflow.outputs.summary-md }}
+            data/falsiflow/local_llm_claim_check/evidence_bundle.zip
+            data/falsiflow/local_llm_claim_check/evidence_bundle_verify.md

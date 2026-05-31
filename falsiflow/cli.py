@@ -1109,6 +1109,10 @@ def cmd_ingest_wide_csv(args: argparse.Namespace) -> int:
         if args.summary_out is not None:
             args.summary_out.parent.mkdir(parents=True, exist_ok=True)
             args.summary_out.write_text(json.dumps(summary, indent=2, sort_keys=True), encoding="utf-8")
+    exit_code = 2 if args.strict and summary.get("coverage", {}).get("status") == "coverage_blocked" else 0
+    if args.json:
+        print(json.dumps(summary, indent=2, sort_keys=True))
+        return exit_code
     print(f"Falsiflow evidence import: {summary['status']}")
     print(f"Adapter profile: {summary.get('adapter_profile', '')}")
     print(f"Evidence rows: {summary['evidence_rows']}")
@@ -1126,9 +1130,7 @@ def cmd_ingest_wide_csv(args: argparse.Namespace) -> int:
         print(f"Wrote {args.coverage_out}")
     if args.summary_out:
         print(f"Wrote {args.summary_out}")
-    if args.strict and summary.get("coverage", {}).get("status") == "coverage_blocked":
-        return 2
-    return 0
+    return exit_code
 
 
 def cmd_templates(args: argparse.Namespace) -> int:
@@ -1876,6 +1878,7 @@ def add_wide_csv_arguments(target: argparse.ArgumentParser) -> None:
     target.add_argument("--config", type=Path, help="Optional project config for import coverage precheck.")
     target.add_argument("--coverage-out", type=Path, help="Optional coverage precheck JSON output path.")
     target.add_argument("--strict", action="store_true", help="Exit non-zero when project coverage is blocked.")
+    target.add_argument("--json", action="store_true", help="Print machine-readable import summary.")
     target.add_argument("--profile", choices=adapter_profile_names(), default="generic-wide", help="Import profile for wide CSV, AI eval, local LLM eval, or RAG eval artifacts.")
     target.add_argument("--manifest", type=Path, help="Optional JSON manifest for ai-eval, local-llm-eval, and rag-eval profiles.")
     target.add_argument("--gate-id", default="", help="Gate id for wide CSV imports.")

@@ -113,6 +113,30 @@ jobs:
           template: ai_claim_evaluation
           out-dir: /tmp/falsiflow_action_quickstart
           strict: "true"
+      - name: Prepare reusable action local LLM import smoke
+        run: cp -R examples/local_llm_eval_import /tmp/falsiflow_local_llm_eval_import
+      - name: Reusable action local LLM import smoke
+        uses: ./
+        with:
+          mode: evidence-import
+          working-directory: /tmp/falsiflow_local_llm_eval_import
+          profile: local-llm-eval
+          input: falsiflow_local_llm_eval/source_files/local_eval_results.jsonl
+          manifest: falsiflow_local_llm_eval/local_model_manifest.json
+          config: falsiflow_local_llm_eval/project.json
+          evidence: falsiflow_local_llm_eval/evidence.csv
+          source-file: source_files/local_eval_results.jsonl
+          out-dir: data/falsiflow/local_llm_import
+          strict: "true"
+      - name: Reusable action local LLM claim smoke
+        uses: ./
+        with:
+          mode: claim-check
+          working-directory: /tmp/falsiflow_local_llm_eval_import
+          project-dir: falsiflow_local_llm_eval
+          evidence: falsiflow_local_llm_eval/evidence.csv
+          out-dir: data/falsiflow/local_llm_claim_check
+          strict: "true"
       - name: Doctor
         run: |
           python scripts/falsiflow.py doctor \

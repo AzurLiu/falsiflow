@@ -3010,6 +3010,8 @@ def assert_cli_contract() -> None:
             "template_policy_docs",
             "template_release_docs",
             "template_gallery_docs",
+            "local_llm_eval_import_fixture",
+            "github_action_evidence_import_mode",
         } <= package_checks
         dist_checks = {check["check"]: check for check in release_summary["dist_checks"]}
         assert {"wheel_build", "sdist_build", "wheel_install", "installed_release_check", "installed_templates", "source_build_cache_cleanup"} <= set(dist_checks)
@@ -3029,16 +3031,20 @@ def assert_cli_contract() -> None:
         assert package_check_map["github_action_examples_rag_eval_snippet"]["status"] == "passed"
         assert package_check_map["downstream_ai_eval_smoke_fixture"]["status"] == "passed"
         assert package_check_map["downstream_product_metric_smoke_fixture"]["status"] == "passed"
+        assert package_check_map["local_llm_eval_import_fixture"]["status"] == "passed"
+        assert package_check_map["github_action_evidence_import_mode"]["status"] == "passed"
         assert package_check_map["downstream_ai_eval_live_proof_links"]["status"] == "passed"
         action_text = (ROOT / "action.yml").read_text(encoding="utf-8")
         assert "using: composite" in action_text
         assert "actions/setup-python@v6" in action_text
         assert "GITHUB_ACTION_PATH" in action_text
         assert 'description: "Gate to run:' in action_text
-        assert 'description: "Evidence CSV path for claim-check mode. Overrides the project-dir default when provided."' in action_text
+        assert 'description: "Evidence CSV path for claim-check mode, or output evidence CSV path for evidence-import mode."' in action_text
+        assert "evidence-import)" in action_text
+        assert 'cmd+=(evidence import --profile "$FALSIFLOW_PROFILE"' in action_text
         assert 'cmd+=(--project-dir "$FALSIFLOW_PROJECT_DIR")' in action_text
         assert 'if [ -n "$FALSIFLOW_EVIDENCE" ]; then\n                cmd+=(--evidence "$FALSIFLOW_EVIDENCE")' in action_text
-        assert {"claim-check", "template-check", "casebook-check", "release-check", "adoption-check", "quickstart", "external-check"} <= set(action_text.replace(",", " ").split())
+        assert {"claim-check", "evidence-import", "template-check", "casebook-check", "release-check", "adoption-check", "quickstart", "external-check"} <= set(action_text.replace(",", " ").split())
         readme_first_screen = (ROOT / "README.md").read_text(encoding="utf-8")[:2400]
         assert "AI eval" in readme_first_screen
         assert "falsiflow quickstart --template ai_claim_evaluation" in readme_first_screen
@@ -3690,6 +3696,88 @@ def assert_eval_artifact_import_contract() -> None:
         assert local_summary_json["profile_summary"]["local_model_metadata"]["runtime"] == "llama.cpp"
         assert json.loads(local_coverage.read_text(encoding="utf-8"))["status"] == "coverage_ready"
         assert "benchmark_quality,candidate_model,eval_run_001,exact_match_rate,0.86" in local_out.read_text(encoding="utf-8")
+
+        fixture_dir = tmp_dir / "local_llm_eval_import"
+        shutil.copytree(ROOT / "examples" / "local_llm_eval_import", fixture_dir)
+        fixture_project = fixture_dir / "falsiflow_local_llm_eval"
+        fixture_blocked = subprocess.run(
+            [
+                sys.executable,
+                str(CLI),
+                "claim-check",
+                "--project-dir",
+                str(fixture_project),
+                "--evidence",
+                str(fixture_project / "evidence.csv"),
+                "--out-dir",
+                str(tmp_dir / "local_llm_fixture_blocked"),
+                "--strict",
+                "--force",
+                "--json",
+            ],
+            cwd=fixture_dir,
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        assert fixture_blocked.returncode == 2
+        assert json.loads(fixture_blocked.stdout)["status"] == "claim_check_blocked"
+        fixture_import = subprocess.run(
+            [
+                sys.executable,
+                str(CLI),
+                "evidence",
+                "import",
+                "--profile",
+                "local-llm-eval",
+                "--input",
+                str(fixture_project / "source_files" / "local_eval_results.jsonl"),
+                "--manifest",
+                str(fixture_project / "local_model_manifest.json"),
+                "--out",
+                str(fixture_project / "evidence.csv"),
+                "--summary-out",
+                str(tmp_dir / "local_llm_fixture_import_summary.json"),
+                "--config",
+                str(fixture_project / "project.json"),
+                "--coverage-out",
+                str(tmp_dir / "local_llm_fixture_import_coverage.json"),
+                "--source-file",
+                "source_files/local_eval_results.jsonl",
+                "--strict",
+                "--json",
+            ],
+            cwd=fixture_dir,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        fixture_import_json = json.loads(fixture_import.stdout)
+        assert fixture_import_json["adapter_profile"] == "local-llm-eval"
+        assert fixture_import_json["coverage"]["status"] == "coverage_ready"
+        assert fixture_import_json["profile_summary"]["local_model_metadata"]["runtime"] == "llama.cpp"
+        assert (fixture_project / "evidence.csv").read_text(encoding="utf-8") == (fixture_project / "evidence_imported_demo.csv").read_text(encoding="utf-8")
+        fixture_ready = subprocess.run(
+            [
+                sys.executable,
+                str(CLI),
+                "claim-check",
+                "--project-dir",
+                str(fixture_project),
+                "--evidence",
+                str(fixture_project / "evidence.csv"),
+                "--out-dir",
+                str(tmp_dir / "local_llm_fixture_ready"),
+                "--strict",
+                "--force",
+                "--json",
+            ],
+            cwd=fixture_dir,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        assert json.loads(fixture_ready.stdout)["status"] == "claim_check_ready"
 
         rag_manifest = tmp_dir / "rag_manifest.json"
         rag_manifest.write_text(

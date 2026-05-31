@@ -1,0 +1,2 @@
+gate_id,candidate_id,sample_id,field,value,source_file,measured_at,operator_or_agent,instrument_id,notes
+eval_provenance,candidate_model,eval_run_001,dataset_version_recorded,dataset_pending,source_files/ai_eval_raw_export.csv,2026-05-26T08:00:00Z,falsiflow_eval_operator,eval_harness_001,Placeholder dataset version should block readiness.

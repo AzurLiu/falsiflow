@@ -53,7 +53,9 @@ Eval profiles import existing results; they do not run a model, execute a
 judge, upload data, or store experiments. They convert JSON, JSONL, or metric
 CSV artifacts into the same evidence CSV contract used by `claim-check`.
 For a copy-paste local model path with Ollama, LM Studio, llama.cpp, or another
-private runner, see [falsiflow_local_llm_eval.md](falsiflow_local_llm_eval.md).
+private runner, see [falsiflow_local_llm_eval.md](falsiflow_local_llm_eval.md)
+and the maintained
+[`examples/local_llm_eval_import`](../examples/local_llm_eval_import) fixture.
 
 Local/private model example:
 
@@ -89,6 +91,10 @@ or judge version, raw outputs, script hash, deterministic settings or seed, and
 CI run. `local-llm-eval` also records local runtime metadata such as
 `llama.cpp`, Ollama, LM Studio, vLLM, model file hash, quantization, adapter
 hash, and decode parameters in the import summary.
+
+The reusable GitHub Action can run the same conversion with
+`mode: evidence-import`, then a second action step can run `mode: claim-check`
+against the generated evidence CSV.
 
 ## Overrides
 

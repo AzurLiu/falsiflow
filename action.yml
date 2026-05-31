@@ -8,7 +8,7 @@ branding:
 
 inputs:
   mode:
-    description: "Gate to run: claim-check, template-check, casebook-check, release-check, adoption-check, quickstart, or external-check."
+    description: "Gate to run: claim-check, evidence-import, template-check, casebook-check, release-check, adoption-check, quickstart, or external-check."
     required: false
     default: claim-check
   python-version:
@@ -36,7 +36,43 @@ inputs:
     required: false
     default: ""
   evidence:
-    description: "Evidence CSV path for claim-check mode. Overrides the project-dir default when provided."
+    description: "Evidence CSV path for claim-check mode, or output evidence CSV path for evidence-import mode."
+    required: false
+    default: ""
+  profile:
+    description: "Import profile for evidence-import mode, such as local-llm-eval, ai-eval, rag-eval, or generic-wide."
+    required: false
+    default: generic-wide
+  input:
+    description: "Source artifact path for evidence-import mode. Use one path per line for multiple inputs."
+    required: false
+    default: ""
+  manifest:
+    description: "Manifest JSON path for ai-eval, local-llm-eval, and rag-eval evidence-import mode."
+    required: false
+    default: ""
+  source-file:
+    description: "Source file value to record in imported evidence rows for evidence-import mode."
+    required: false
+    default: ""
+  summary-out:
+    description: "Import summary JSON path for evidence-import mode."
+    required: false
+    default: ""
+  coverage-out:
+    description: "Coverage summary JSON path for evidence-import mode when config is provided."
+    required: false
+    default: ""
+  candidate-id:
+    description: "Candidate id override for evidence-import mode."
+    required: false
+    default: ""
+  baseline-candidate-id:
+    description: "Baseline candidate id override for ai-eval, local-llm-eval, and rag-eval evidence-import mode."
+    required: false
+    default: ""
+  sample-id:
+    description: "Eval run or sample id override for evidence-import mode."
     required: false
     default: ""
   template-dir:
@@ -104,6 +140,15 @@ runs:
         FALSIFLOW_PROJECT_DIR: ${{ inputs.project-dir }}
         FALSIFLOW_CONFIG: ${{ inputs.config }}
         FALSIFLOW_EVIDENCE: ${{ inputs.evidence }}
+        FALSIFLOW_PROFILE: ${{ inputs.profile }}
+        FALSIFLOW_INPUT: ${{ inputs.input }}
+        FALSIFLOW_MANIFEST: ${{ inputs.manifest }}
+        FALSIFLOW_SOURCE_FILE: ${{ inputs.source-file }}
+        FALSIFLOW_SUMMARY_OUT: ${{ inputs.summary-out }}
+        FALSIFLOW_COVERAGE_OUT: ${{ inputs.coverage-out }}
+        FALSIFLOW_CANDIDATE_ID: ${{ inputs.candidate-id }}
+        FALSIFLOW_BASELINE_CANDIDATE_ID: ${{ inputs.baseline-candidate-id }}
+        FALSIFLOW_SAMPLE_ID: ${{ inputs.sample-id }}
         FALSIFLOW_TEMPLATE_DIR: ${{ inputs.template-dir }}
         FALSIFLOW_TEMPLATE: ${{ inputs.template }}
         FALSIFLOW_EVIDENCE_FILE: ${{ inputs.evidence-file }}
@@ -152,6 +197,49 @@ runs:
             add_strict
             summary_json="$out_dir/claim_check.json"
             summary_md="$out_dir/claim_check.md"
+            ;;
+          evidence-import)
+            if [ -z "$FALSIFLOW_INPUT" ]; then
+              echo "evidence-import mode requires input." >&2
+              exit 2
+            fi
+            evidence_out="$FALSIFLOW_EVIDENCE"
+            if [ -z "$evidence_out" ]; then
+              evidence_out="$out_dir/evidence.csv"
+            fi
+            summary_json="$FALSIFLOW_SUMMARY_OUT"
+            if [ -z "$summary_json" ]; then
+              summary_json="$out_dir/import_summary.json"
+            fi
+            coverage_json="$FALSIFLOW_COVERAGE_OUT"
+            if [ -z "$coverage_json" ]; then
+              coverage_json="$out_dir/import_coverage.json"
+            fi
+            cmd+=(evidence import --profile "$FALSIFLOW_PROFILE" --out "$evidence_out" --summary-out "$summary_json")
+            while IFS= read -r input_path; do
+              if [ -n "$input_path" ]; then
+                cmd+=(--input "$input_path")
+              fi
+            done <<< "$FALSIFLOW_INPUT"
+            if [ -n "$FALSIFLOW_MANIFEST" ]; then
+              cmd+=(--manifest "$FALSIFLOW_MANIFEST")
+            fi
+            if [ -n "$FALSIFLOW_CONFIG" ]; then
+              cmd+=(--config "$FALSIFLOW_CONFIG" --coverage-out "$coverage_json")
+            fi
+            if [ -n "$FALSIFLOW_SOURCE_FILE" ]; then
+              cmd+=(--source-file "$FALSIFLOW_SOURCE_FILE")
+            fi
+            if [ -n "$FALSIFLOW_CANDIDATE_ID" ]; then
+              cmd+=(--candidate-id "$FALSIFLOW_CANDIDATE_ID")
+            fi
+            if [ -n "$FALSIFLOW_BASELINE_CANDIDATE_ID" ]; then
+              cmd+=(--baseline-candidate-id "$FALSIFLOW_BASELINE_CANDIDATE_ID")
+            fi
+            if [ -n "$FALSIFLOW_SAMPLE_ID" ]; then
+              cmd+=(--sample-id "$FALSIFLOW_SAMPLE_ID")
+            fi
+            add_strict
             ;;
           template-check)
             if [ -z "$FALSIFLOW_TEMPLATE_DIR" ]; then

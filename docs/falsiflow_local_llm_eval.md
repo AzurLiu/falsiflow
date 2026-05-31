@@ -9,6 +9,12 @@ Use this when a claim such as "the local model improved" should stay blocked in
 CI until the repository provides reviewable provenance, raw outputs, metric
 rows, and reproducibility metadata.
 
+For a maintained copy-paste fixture, see
+[`examples/local_llm_eval_import`](../examples/local_llm_eval_import). It
+contains a placeholder evidence file that blocks, a local runner JSONL export,
+a model manifest, the generated ready evidence demo, and a GitHub Actions
+workflow that imports artifacts before running the claim gate.
+
 ## Artifact Contract
 
 A local LLM eval handoff should include:
@@ -104,6 +110,15 @@ claim_check_ready
 bundle_verified
 ```
 
+The repository fixture runs the same repair path from checked-in artifacts:
+
+```bash
+cd examples/local_llm_eval_import
+falsiflow claim-check --project-dir falsiflow_local_llm_eval --evidence falsiflow_local_llm_eval/evidence.csv --out-dir data/falsiflow/local_llm_blocked --force
+falsiflow evidence import --profile local-llm-eval --input falsiflow_local_llm_eval/source_files/local_eval_results.jsonl --manifest falsiflow_local_llm_eval/local_model_manifest.json --out falsiflow_local_llm_eval/evidence.csv --summary-out data/falsiflow/local_llm_import/import_summary.json --config falsiflow_local_llm_eval/project.json --coverage-out data/falsiflow/local_llm_import/import_coverage.json --source-file source_files/local_eval_results.jsonl --strict
+falsiflow claim-check --project-dir falsiflow_local_llm_eval --evidence falsiflow_local_llm_eval/evidence.csv --out-dir data/falsiflow/local_llm_ready --strict --force
+```
+
 ## Mapping Runner Outputs
 
 Common local runner fields map naturally into the Falsiflow manifest:
@@ -128,11 +143,24 @@ model runner.
 In CI, commit or upload sanitized eval artifacts, then run the reusable action:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.20
+- uses: AzurLiu/falsiflow@v0.1.21
+  with:
+    mode: evidence-import
+    profile: local-llm-eval
+    input: local_llm_eval_gate/source_files/local_eval_results.jsonl
+    manifest: local_llm_eval_gate/local_model_manifest.json
+    config: local_llm_eval_gate/project.json
+    evidence: local_llm_eval_gate/evidence.csv
+    source-file: source_files/local_eval_results.jsonl
+    out-dir: data/falsiflow/local_llm_import
+    strict: "true"
+
+- uses: AzurLiu/falsiflow@v0.1.21
   with:
     mode: claim-check
     project-dir: local_llm_eval_gate
     evidence: local_llm_eval_gate/evidence.csv
+    out-dir: data/falsiflow/local_llm_claim_check
     strict: "true"
 ```
 

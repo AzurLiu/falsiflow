@@ -1,0 +1,22 @@
+{
+  "eval_run_id": "eval_run_001",
+  "candidate_model_id": "candidate_model",
+  "baseline_model_id": "baseline_model",
+  "dataset_version": "claims_eval_v2026_05_26",
+  "prompt_set_hash": "promptset_sha256_demo",
+  "model_file_hash": "gguf_sha256_demo",
+  "baseline_model_version": "baseline_llm_2026_05_01",
+  "evaluator_version": "eval_harness_0.4.0",
+  "eval_script_hash": "eval_script_sha256_demo",
+  "decode_params": {
+    "temperature": 0,
+    "top_p": 1,
+    "seed": 7
+  },
+  "raw_outputs_uri": "source_files/local_eval_results.jsonl",
+  "human_spotcheck_passed": true,
+  "ci_run_url": "local://llama-cpp-eval-run-001",
+  "runtime": "llama.cpp",
+  "quantization": "Q4_K_M",
+  "measured_at": "2026-05-26T12:00:00Z"
+}

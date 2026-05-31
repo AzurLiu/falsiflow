@@ -49,14 +49,16 @@ Create these as public issues before broad launch distribution:
    Labels: `documentation`, `help wanted`, `evidence-gate`
 
    Status: completed by
-   [docs/falsiflow_local_llm_eval.md](falsiflow_local_llm_eval.md) and tracked
-   in [issue #19](https://github.com/AzurLiu/falsiflow/issues/19).
+   [docs/falsiflow_local_llm_eval.md](falsiflow_local_llm_eval.md), the
+   `examples/local_llm_eval_import` copy-paste fixture, and tracked in
+   [issue #19](https://github.com/AzurLiu/falsiflow/issues/19).
 
    Goal: show how Ollama, LM Studio, llama.cpp, or another local model runner
    can produce source-backed eval evidence without Falsiflow opening an API
    server.
 
-   Evidence: `falsiflow quickstart --template ai_claim_evaluation` and
+   Evidence: `falsiflow quickstart --template ai_claim_evaluation`,
+   `falsiflow evidence import --profile local-llm-eval`, and
    `falsiflow doctor --strict` still pass.
 
 3. Promote the RAG quality gate proposal toward a starter template
