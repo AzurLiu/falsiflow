@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.17
+
+- Added a compact downstream RAG eval GitHub Action example that shows
+  `claim_check_blocked` on placeholder evidence and `claim_check_ready` after
+  source-backed RAG eval rows are supplied.
+- Recorded public PyPI README rendering proof for the v0.1.16 image URL fix
+  and added release-check coverage so the proof remains part of the release
+  runbook.
+
 ## 0.1.16
 
 - Switched README proof images to absolute HTTPS asset URLs so PyPI long
