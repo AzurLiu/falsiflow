@@ -1585,6 +1585,11 @@ def assert_cli_contract() -> None:
         github_repo_profile = (launch_kit_dir / "github_repo_profile.md").read_text(encoding="utf-8")
         assert "## Topics" in github_repo_profile
         assert "Demo PR playbook" in github_repo_profile
+        assert "Live AI eval downstream PR proof" in github_repo_profile
+        assert "Live RAG eval downstream PR proof" in github_repo_profile
+        assert "falsiflow-downstream-rag-eval-demo" in github_repo_profile
+        assert "26721829145" in github_repo_profile
+        assert "26721856616" in github_repo_profile
         assert (launch_kit_dir / "launch_posts.md").exists()
         launch_posts = (launch_kit_dir / "launch_posts.md").read_text(encoding="utf-8")
         assert "Show HN" in launch_posts
@@ -1592,6 +1597,11 @@ def assert_cli_contract() -> None:
         assert "falsiflow-downstream-ai-eval-demo" in launch_posts
         assert "26711652990" in launch_posts
         assert "26711669112" in launch_posts
+        assert "falsiflow-downstream-rag-eval-demo" in launch_posts
+        assert "26721829145" in launch_posts
+        assert "26721856616" in launch_posts
+        assert "AI eval downstream PR" in launch_posts
+        assert "RAG eval downstream PR" in launch_posts
         assert "Demo PR playbook" in launch_posts
         assert "Reply Bank" in launch_posts
         assert "Great Expectations" in launch_posts

@@ -67,7 +67,7 @@ The bundled workflow imports the local eval artifacts first, then runs the
 claim gate against the generated evidence CSV:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.32
+- uses: AzurLiu/falsiflow@v0.1.33
   with:
     mode: evidence-import
     profile: local-llm-eval

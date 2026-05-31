@@ -21,7 +21,7 @@ source-backed evidence -> claim_check_ready
 GitHub Action:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.32
+- uses: AzurLiu/falsiflow@v0.1.33
   with:
     mode: claim-check
     project-dir: falsiflow_ai_eval
@@ -299,7 +299,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: AzurLiu/falsiflow@v0.1.32
+      - uses: AzurLiu/falsiflow@v0.1.33
         with:
           mode: claim-check
           project-dir: my_falsiflow_project
@@ -386,12 +386,13 @@ tracker turns the 1k-star path into review windows for GitHub traffic,
 referrers, stars, forks, clones, demo visits, install/download signals, repeated
 questions, and docs or demo fixes. `launch_posts.md` includes a Channel Checklist
 for Hacker News, Reddit or community threads, LinkedIn, X, and awesome lists so
-public posting waits for the demo URL, PyPI status, release evidence, and
-responsible-use boundary. The nested public release rehearsal keeps the last-mile
-publish sequence reviewable before any announcement is posted. It reports
-`launch_kit_ready` when the local launch materials and publish handoff are
-ready, and the public evidence workflow proves hosted demo, pipx,
-Windows, PyPI, and other account-bound evidence with `external_ready`.
+public posting waits for the demo URL, PyPI status, AI/RAG downstream PR proof,
+release evidence, and responsible-use boundary. The nested public release
+rehearsal keeps the last-mile publish sequence reviewable before any
+announcement is posted. It reports `launch_kit_ready` when the local launch
+materials and publish handoff are ready, and the public evidence workflow proves
+hosted demo, pipx, Windows, PyPI, and other account-bound evidence with
+`external_ready`.
 After a launch window, use `launch_metrics.json` as the structured source and
 `launch_metrics.md` as the weekly maintainer review checklist. The checklist
 separates traction signals from local/private validation and turns repeated

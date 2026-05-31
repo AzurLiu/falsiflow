@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.33
+
+- Upgraded `falsiflow launch-kit` so generated Hacker News, Reddit,
+  LinkedIn, X, short-post, and reply-bank drafts include both live AI eval and
+  live RAG eval blocked-to-ready downstream PR proof.
+- Added RAG downstream proof links to generated GitHub repository profile
+  handoff material.
+- Added release-check and regression coverage so launch materials keep the
+  AI/RAG proof links, run IDs, and responsible-use reply framing.
+
 ## 0.1.32
 
 - Tightened the README first screen so new visitors see the claim, proof strip,
