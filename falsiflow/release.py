@@ -25,6 +25,7 @@ except ModuleNotFoundError:  # pragma: no cover - Python 3.10 fallback.
 
 
 EXPECTED_REQUIRES_PYTHON = ">=3.10"
+PYPI_PROJECT_URL_LABEL_MAX_LENGTH = 32
 EXPECTED_PYPROJECT_KEYWORDS = {
     "audit",
     "claim-checking",
@@ -77,10 +78,10 @@ EXPECTED_PROJECT_URLS = {
     "DownstreamRagPR": "https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/pull/1",
     "DownstreamRagBlockedRun": "https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721829145",
     "DownstreamRagReadyRun": "https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721856616",
-    "DownstreamProductMetricDemo": "https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo",
-    "DownstreamProductMetricPR": "https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/pull/1",
-    "DownstreamProductMetricBlockedRun": "https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726360229",
-    "DownstreamProductMetricReadyRun": "https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726392921",
+    "DownstreamPMDemo": "https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo",
+    "DownstreamPMPR": "https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/pull/1",
+    "DownstreamPMBlockedRun": "https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726360229",
+    "DownstreamPMReadyRun": "https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726392921",
     "Citation": "https://github.com/AzurLiu/falsiflow/blob/main/CITATION.cff",
     "Governance": "https://github.com/AzurLiu/falsiflow/blob/main/GOVERNANCE.md",
 }
@@ -668,6 +669,10 @@ def metadata_project_urls(metadata: Any) -> dict[str, str]:
     return urls
 
 
+def project_url_labels_within_pypi_limit(project_urls: dict[str, str]) -> bool:
+    return bool(project_urls) and all(len(label) <= PYPI_PROJECT_URL_LABEL_MAX_LENGTH for label in project_urls)
+
+
 def package_init_version(path: Path) -> str:
     if not path.exists():
         return ""
@@ -998,6 +1003,12 @@ def package_release_checks(root: Path) -> dict[str, object]:
             "Project metadata links homepage, docs, architecture, data contract, adapter profiles, casebook check, template authoring, troubleshooting, source, issues, changelog, demo, live PR proof links, downstream proof links, launch article, citation, and governance URLs.",
             pyproject_path,
         )
+        add(
+            "pyproject_project_url_labels_pypi_safe",
+            project_url_labels_within_pypi_limit(project_url_values) if data else True,
+            f"Project metadata URL labels fit PyPI's {PYPI_PROJECT_URL_LABEL_MAX_LENGTH}-character limit.",
+            pyproject_path,
+        )
         add("readme_declared", readme_value == "README.md" if data else 'readme = "README.md"' in pyproject_text, "pyproject readme points to README.md.", pyproject_path)
         license_files = get_nested(data, "project", "license-files") if data else []
         add("license_declared", license_value == "MIT" and "LICENSE" in (license_files if isinstance(license_files, list) else []) if data else 'license = "MIT"' in pyproject_text and 'license-files = ["LICENSE"]' in pyproject_text, "pyproject declares the MIT SPDX license and includes the LICENSE file.", pyproject_path)
@@ -1314,6 +1325,12 @@ def package_release_checks(root: Path) -> dict[str, object]:
                 "installed_project_urls",
                 EXPECTED_PROJECT_URLS.items() <= installed_project_urls.items(),
                 "Installed metadata links homepage, docs, architecture, data contract, adapter profiles, casebook check, template authoring, troubleshooting, source, issues, changelog, demo, live PR proof links, downstream proof links, launch article, citation, and governance URLs.",
+                root,
+            )
+            add(
+                "installed_project_url_labels_pypi_safe",
+                project_url_labels_within_pypi_limit(installed_project_urls),
+                f"Installed metadata URL labels fit PyPI's {PYPI_PROJECT_URL_LABEL_MAX_LENGTH}-character limit.",
                 root,
             )
             add(

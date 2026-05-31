@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.38
+
+- Shortened product-metric proof `Project-URL` labels so PyPI accepts the
+  release metadata while preserving the live downstream demo, PR, blocked run,
+  and ready run links.
+- Republished the `0.1.37` proof updates as a clean package release after the
+  GitHub release workflow exposed PyPI's 32-character project-url label limit.
+
 ## 0.1.37
 
 - Added a live downstream product-metric demo repository and PR that moves from

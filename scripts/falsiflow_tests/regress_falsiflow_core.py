@@ -2983,6 +2983,7 @@ def assert_cli_contract() -> None:
             "pyproject_keywords",
             "pyproject_classifiers",
             "pyproject_project_urls",
+            "pyproject_project_url_labels_pypi_safe",
             "manifest_release_docs",
             "readme_adoption_entry",
             "readme_community_health_entry",

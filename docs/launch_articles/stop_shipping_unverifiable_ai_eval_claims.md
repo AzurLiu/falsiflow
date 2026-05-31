@@ -143,7 +143,7 @@ falsiflow doctor --project-dir ai_claim_review --strict
 The GitHub Action path is the part that matters for teams:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.37
+- uses: AzurLiu/falsiflow@v0.1.38
   with:
     mode: claim-check
     project-dir: falsiflow_ai_eval
