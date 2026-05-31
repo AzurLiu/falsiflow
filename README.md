@@ -21,7 +21,7 @@ source-backed evidence -> claim_check_ready
 GitHub Action:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.36
+- uses: AzurLiu/falsiflow@v0.1.37
   with:
     mode: claim-check
     project-dir: falsiflow_ai_eval
@@ -53,6 +53,12 @@ blocks placeholder/missing RAG evidence in
 [run 26721829145](https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721829145),
 then passes after raw RAG eval evidence is added in
 [run 26721856616](https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721856616).
+[Product metric PR #1](https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/pull/1)
+blocks placeholder launch-metric evidence in
+[run 26726360229](https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726360229),
+then passes after metric provenance, lift, guardrail, and rollback evidence is
+source-backed in
+[run 26726392921](https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726392921).
 The shareable proof strip above is stored at
 [docs/assets/falsiflow_downstream_pr_proof_strip.svg](docs/assets/falsiflow_downstream_pr_proof_strip.svg).
 
@@ -78,11 +84,11 @@ or the walkthrough in
 [docs/falsiflow_github_action_examples.md](docs/falsiflow_github_action_examples.md).
 
 Current public status: hosted demo, PyPI, CI, cross-platform smoke tests,
-Scorecard, live downstream AI/RAG demo PRs, checkout pipx, public-package pipx,
-public-package first-run quickstart/doctor, public-package claim-check,
-public-package MCP selftest, Windows PowerShell smoke, and source installs are
-live. `Falsiflow External Evidence` reports `external_ready` for the current
-public release.
+Scorecard, live downstream AI/RAG/product-metric demo PRs, checkout pipx,
+public-package pipx, public-package first-run quickstart/doctor,
+public-package claim-check, public-package MCP selftest, Windows PowerShell
+smoke, and source installs are live. `Falsiflow External Evidence` reports
+`external_ready` for the current public release.
 
 Evidence gate flow:
 
@@ -299,7 +305,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: AzurLiu/falsiflow@v0.1.36
+      - uses: AzurLiu/falsiflow@v0.1.37
         with:
           mode: claim-check
           project-dir: my_falsiflow_project
@@ -386,7 +392,7 @@ tracker turns the 1k-star path into review windows for GitHub traffic,
 referrers, stars, forks, clones, demo visits, install/download signals, repeated
 questions, and docs or demo fixes. `launch_posts.md` includes a Channel Checklist
 for Hacker News, Reddit or community threads, LinkedIn, X, and awesome lists so
-public posting waits for the demo URL, PyPI status, AI/RAG downstream PR proof,
+public posting waits for the demo URL, PyPI status, AI/RAG/product-metric downstream PR proof,
 release evidence, and responsible-use boundary. The nested public release
 rehearsal keeps the last-mile publish sequence reviewable before any
 announcement is posted. It reports `launch_kit_ready` when the local launch

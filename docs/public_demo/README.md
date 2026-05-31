@@ -5,7 +5,8 @@ This directory is a static, zero-install Falsiflow demo package.
 ## Preview
 
 - Open `index.html` locally, or publish this directory with GitHub Pages, Netlify, or any static file server.
-- The launchpad starts with the live downstream PR story: PR #1 in the downstream AI eval demo blocks placeholder evidence in CI, then passes after source-backed evidence is added.
+- The launchpad starts with the live downstream PR story set: AI eval, RAG eval, and product-metric PRs block placeholder evidence in CI, then pass after source-backed evidence is added.
+- PR #1 in the downstream AI eval demo remains the smallest single-PR version of that story.
 - Workbench shell: `docs/public_demo/workbench.html`
 - Try report: `docs/public_demo/try_report.html`
 - Wizard: `docs/public_demo/falsiflow_wizard.html`

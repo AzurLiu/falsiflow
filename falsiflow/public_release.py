@@ -25,6 +25,10 @@ DOWNSTREAM_RAG_DEMO_URL = "https://github.com/AzurLiu/falsiflow-downstream-rag-e
 DOWNSTREAM_RAG_PR_URL = f"{DOWNSTREAM_RAG_DEMO_URL}/pull/1"
 DOWNSTREAM_RAG_BLOCKED_RUN_URL = f"{DOWNSTREAM_RAG_DEMO_URL}/actions/runs/26721829145"
 DOWNSTREAM_RAG_READY_RUN_URL = f"{DOWNSTREAM_RAG_DEMO_URL}/actions/runs/26721856616"
+DOWNSTREAM_PRODUCT_METRIC_DEMO_URL = "https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo"
+DOWNSTREAM_PRODUCT_METRIC_PR_URL = f"{DOWNSTREAM_PRODUCT_METRIC_DEMO_URL}/pull/1"
+DOWNSTREAM_PRODUCT_METRIC_BLOCKED_RUN_URL = f"{DOWNSTREAM_PRODUCT_METRIC_DEMO_URL}/actions/runs/26726360229"
+DOWNSTREAM_PRODUCT_METRIC_READY_RUN_URL = f"{DOWNSTREAM_PRODUCT_METRIC_DEMO_URL}/actions/runs/26726392921"
 
 
 class TryRunner(Protocol):
@@ -74,7 +78,8 @@ def render_demo_package_readme(summary: dict[str, object]) -> str:
         "## Preview",
         "",
         "- Open `index.html` locally, or publish this directory with GitHub Pages, Netlify, or any static file server.",
-        "- The launchpad starts with the live downstream PR story: PR #1 in the downstream AI eval demo blocks placeholder evidence in CI, then passes after source-backed evidence is added.",
+        "- The launchpad starts with the live downstream PR story set: AI eval, RAG eval, and product-metric PRs block placeholder evidence in CI, then pass after source-backed evidence is added.",
+        "- PR #1 in the downstream AI eval demo remains the smallest single-PR version of that story.",
         f"- Workbench shell: `{outputs.get('workbench', 'workbench.html')}`",
         f"- Try report: `{outputs.get('try_report', 'try_report.html')}`",
         f"- Wizard: `{outputs.get('wizard', 'falsiflow_wizard.html')}`",
@@ -1122,6 +1127,9 @@ def render_github_repo_profile(summary: dict[str, object]) -> str:
         f"- Live RAG eval downstream PR proof: {DOWNSTREAM_RAG_PR_URL}",
         f"- RAG eval blocked CI run: {DOWNSTREAM_RAG_BLOCKED_RUN_URL}",
         f"- RAG eval ready CI run: {DOWNSTREAM_RAG_READY_RUN_URL}",
+        f"- Live product metric downstream PR proof: {DOWNSTREAM_PRODUCT_METRIC_PR_URL}",
+        f"- Product metric blocked CI run: {DOWNSTREAM_PRODUCT_METRIC_BLOCKED_RUN_URL}",
+        f"- Product metric ready CI run: {DOWNSTREAM_PRODUCT_METRIC_READY_RUN_URL}",
         f"- Demo PR playbook: {demo_pr_playbook_url}",
         "- README proof strip: `docs/assets/falsiflow_proof_strip.svg`",
         "- 30-second README demo: `docs/assets/falsiflow_30_second_demo.svg`",
@@ -1178,9 +1186,12 @@ def render_launch_posts(summary: dict[str, object]) -> str:
         f"RAG eval downstream PR: {DOWNSTREAM_RAG_PR_URL}",
         f"RAG eval blocked run: {DOWNSTREAM_RAG_BLOCKED_RUN_URL}",
         f"RAG eval ready run: {DOWNSTREAM_RAG_READY_RUN_URL}",
+        f"Product metric downstream PR: {DOWNSTREAM_PRODUCT_METRIC_PR_URL}",
+        f"Product metric blocked run: {DOWNSTREAM_PRODUCT_METRIC_BLOCKED_RUN_URL}",
+        f"Product metric ready run: {DOWNSTREAM_PRODUCT_METRIC_READY_RUN_URL}",
         f"Demo PR playbook: {demo_pr_playbook_url}",
         "",
-        "The fastest demo is a pair of real downstream PRs: one AI-eval claim and one RAG-eval claim first fail because placeholder provenance backs the claim, then turn green after source-backed rows and raw export evidence are added. It is not an ELN/LIMS, not a regulatory system, and not scientific proof. It is a reproducible audit layer for deciding whether supplied evidence is complete enough to move forward.",
+        "The fastest demo is three real downstream PRs: AI eval, RAG eval, and product-metric claims first fail because placeholder provenance backs the claim, then turn green after source-backed rows and raw export evidence are added. It is not an ELN/LIMS, not a regulatory system, and not scientific proof. It is a reproducible audit layer for deciding whether supplied evidence is complete enough to move forward.",
         "",
         "## Reddit / Community Post",
         "",
@@ -1194,6 +1205,9 @@ def render_launch_posts(summary: dict[str, object]) -> str:
         f"- RAG eval downstream PR: {DOWNSTREAM_RAG_PR_URL}",
         f"- RAG eval blocked run: {DOWNSTREAM_RAG_BLOCKED_RUN_URL}",
         f"- RAG eval ready run: {DOWNSTREAM_RAG_READY_RUN_URL}",
+        f"- Product metric downstream PR: {DOWNSTREAM_PRODUCT_METRIC_PR_URL}",
+        f"- Product metric blocked run: {DOWNSTREAM_PRODUCT_METRIC_BLOCKED_RUN_URL}",
+        f"- Product metric ready run: {DOWNSTREAM_PRODUCT_METRIC_READY_RUN_URL}",
         f"- Demo PR playbook: {demo_pr_playbook_url}",
         "- Try locally: `make install-local && make start`",
         f"- CI gate: `uses: AzurLiu/falsiflow@v{FALSIFLOW_VERSION}` with `mode: claim-check`",
@@ -1203,7 +1217,7 @@ def render_launch_posts(summary: dict[str, object]) -> str:
         "",
         "Falsiflow is ready for public review: CI gates for claims that should not ship on vibes. It targets AI eval claims, product-metric launches, and R&D decisions where the sentence sounds simple but the evidence package matters.",
         "",
-        "The clean downstream PRs show the core behavior for both AI eval and RAG eval: placeholder evidence produces `claim_check_blocked`; source-backed evidence produces `claim_check_ready`; reviewers get JSON, Markdown, source manifests, dashboards, and a bundle verification report.",
+        "The clean downstream PRs show the core behavior for AI eval, RAG eval, and product-metric claims: placeholder evidence produces `claim_check_blocked`; source-backed evidence produces `claim_check_ready`; reviewers get JSON, Markdown, source manifests, dashboards, and a bundle verification report.",
         "",
         f"AI eval downstream PR: {DOWNSTREAM_PR_URL}",
         f"AI eval blocked run: {DOWNSTREAM_BLOCKED_RUN_URL}",
@@ -1211,6 +1225,9 @@ def render_launch_posts(summary: dict[str, object]) -> str:
         f"RAG eval downstream PR: {DOWNSTREAM_RAG_PR_URL}",
         f"RAG eval blocked run: {DOWNSTREAM_RAG_BLOCKED_RUN_URL}",
         f"RAG eval ready run: {DOWNSTREAM_RAG_READY_RUN_URL}",
+        f"Product metric downstream PR: {DOWNSTREAM_PRODUCT_METRIC_PR_URL}",
+        f"Product metric blocked run: {DOWNSTREAM_PRODUCT_METRIC_BLOCKED_RUN_URL}",
+        f"Product metric ready run: {DOWNSTREAM_PRODUCT_METRIC_READY_RUN_URL}",
         f"Demo PR playbook: {demo_pr_playbook_url}",
         "",
         "The goal is not to replace lab systems, eval harnesses, or product analytics. It is to make the handoff between claim, evidence, source files, and release checks explicit enough that reviewers can trust what moved forward and why.",
@@ -1221,13 +1238,15 @@ def render_launch_posts(summary: dict[str, object]) -> str:
         "",
         "1/ I built Falsiflow: CI gates for claims like \"the model improved\" or \"the launch metric passed.\" Claims stay blocked until evidence rows, source files, thresholds, and bundles agree.",
         "",
-        "2/ The quickest demo is two downstream PRs: placeholder AI/RAG eval evidence fails as `claim_check_blocked`; source-backed evidence passes as `claim_check_ready`.",
+        "2/ The quickest demo is three downstream PRs: placeholder AI/RAG/product-metric evidence fails as `claim_check_blocked`; source-backed evidence passes as `claim_check_ready`.",
         "",
         f"3/ AI PR: {DOWNSTREAM_PR_URL} Blocked: {DOWNSTREAM_BLOCKED_RUN_URL} Ready: {DOWNSTREAM_READY_RUN_URL}",
         "",
         f"4/ RAG PR: {DOWNSTREAM_RAG_PR_URL} Blocked: {DOWNSTREAM_RAG_BLOCKED_RUN_URL} Ready: {DOWNSTREAM_RAG_READY_RUN_URL}",
         "",
-        f"5/ Demo: {public_demo_url} Repo: {repo_url} Playbook: {demo_pr_playbook_url}",
+        f"5/ Product metric PR: {DOWNSTREAM_PRODUCT_METRIC_PR_URL} Blocked: {DOWNSTREAM_PRODUCT_METRIC_BLOCKED_RUN_URL} Ready: {DOWNSTREAM_PRODUCT_METRIC_READY_RUN_URL}",
+        "",
+        f"6/ Demo: {public_demo_url} Repo: {repo_url} Playbook: {demo_pr_playbook_url}",
         "",
         "## Reply Bank",
         "",
@@ -1243,13 +1262,13 @@ def render_launch_posts(summary: dict[str, object]) -> str:
         "",
         "No. It means the supplied evidence passed the repository's configured gates and provenance checks. It is not proof of safety, efficacy, regulatory compliance, or experimental truth.",
         "",
-        "**Why include both AI eval and RAG eval demos?**",
+        "**Why include AI eval, RAG eval, and product-metric demos?**",
         "",
-        "They fail for different evidence gaps. The AI eval story is about pinned benchmark provenance, raw outputs, baselines, thresholds, and evaluator metadata. The RAG story adds retrieval, faithfulness, citation coverage, reproducibility rows, and the raw RAG export.",
+        "They fail for different evidence gaps. The AI eval story is about pinned benchmark provenance, raw outputs, baselines, thresholds, and evaluator metadata. The RAG story adds retrieval, faithfulness, citation coverage, reproducibility rows, and the raw RAG export. The product-metric story adds metric provenance, lift, guardrails, rollback owner, and dashboard evidence.",
         "",
         "## Short Post",
         "",
-        f"Falsiflow turns AI eval, RAG eval, product metric, and R&D claims into auditable CI gates: claim -> evidence rows -> source provenance -> review bundle -> ready/blocked. AI PR: {DOWNSTREAM_PR_URL} RAG PR: {DOWNSTREAM_RAG_PR_URL} Demo: {public_demo_url} Repo: {repo_url}",
+        f"Falsiflow turns AI eval, RAG eval, product metric, and R&D claims into auditable CI gates: claim -> evidence rows -> source provenance -> review bundle -> ready/blocked. AI PR: {DOWNSTREAM_PR_URL} RAG PR: {DOWNSTREAM_RAG_PR_URL} Product metric PR: {DOWNSTREAM_PRODUCT_METRIC_PR_URL} Demo: {public_demo_url} Repo: {repo_url}",
         "",
     ])
 

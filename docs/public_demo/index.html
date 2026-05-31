@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Falsiflow Launchpad</title>
-  <meta name="description" content="Live downstream PR stories: Falsiflow blocks unverifiable AI and RAG eval evidence in CI, then passes the same claims after source-backed evidence is added.">
-  <meta property="og:title" content="Falsiflow: AI and RAG eval claims should fail CI without evidence">
-  <meta property="og:description" content="See downstream AI and RAG PRs move from claim_check_blocked to claim_check_ready after source-backed eval evidence is added.">
+  <meta name="description" content="Live downstream PR stories: Falsiflow blocks unverifiable AI, RAG, and product-metric evidence in CI, then passes the same claims after source-backed evidence is added.">
+  <meta property="og:title" content="Falsiflow: unverifiable AI, RAG, and product claims should fail CI">
+  <meta property="og:description" content="See downstream AI, RAG, and product-metric PRs move from claim_check_blocked to claim_check_ready after source-backed evidence is added.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://azurliu.github.io/falsiflow/">
   <meta property="og:image" content="https://raw.githubusercontent.com/AzurLiu/falsiflow/main/docs/assets/falsiflow_downstream_pr_proof_strip.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Falsiflow: AI and RAG eval claims should fail CI without evidence">
-  <meta name="twitter:description" content="Real PR stories: placeholder AI and RAG eval evidence is blocked, then source-backed evidence passes.">
+  <meta name="twitter:title" content="Falsiflow: unverifiable AI, RAG, and product claims should fail CI">
+  <meta name="twitter:description" content="Real PR stories: placeholder AI, RAG, and product evidence is blocked, then source-backed evidence passes.">
   <meta name="twitter:image" content="https://raw.githubusercontent.com/AzurLiu/falsiflow/main/docs/assets/falsiflow_downstream_pr_proof_strip.png">
   <style>
     :root {
@@ -77,7 +77,7 @@
     <header>
       <div>
         <h1>Falsiflow Launchpad</h1>
-        <p>CI gates for claims before they ship. Real AI and RAG eval PRs fail on placeholder evidence, then pass after the evidence is source-backed.</p>
+        <p>CI gates for claims before they ship. Real AI, RAG, and product-metric PRs fail on placeholder evidence, then pass after the evidence is source-backed.</p>
       </div>
       <div class="status ready">
         <span>Status</span>
@@ -122,6 +122,24 @@
           <h2>claim_check_ready</h2>
           <p>The same PR passes after source-backed retrieval, faithfulness, citation, reproducibility rows, and the raw export are added.</p>
           <a href="https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721856616">RAG ready run</a>
+        </article>
+        <article class="story-card neutral">
+          <span>7. Product metric PR</span>
+          <h2>Activation lifted</h2>
+          <p>A product repo tries to ship a launch metric before metric provenance, lift, guardrails, and rollback readiness are reviewable.</p>
+          <a href="https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/pull/1">Open product PR #1</a>
+        </article>
+        <article class="story-card blocked">
+          <span>8. Product CI blocks it</span>
+          <h2>claim_check_blocked</h2>
+          <p>Strict CI rejects placeholder analytics evidence before the launch claim can pass.</p>
+          <a href="https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726360229">Product blocked run</a>
+        </article>
+        <article class="story-card ready">
+          <span>9. Product evidence passes</span>
+          <h2>claim_check_ready</h2>
+          <p>The same PR passes after source-backed metric provenance, lift, guardrail, and rollback-readiness rows are added.</p>
+          <a href="https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726392921">Product ready run</a>
         </article>
       </div>
       <div class="story-reel">

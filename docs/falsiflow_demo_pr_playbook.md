@@ -30,6 +30,12 @@ shareable downstream proof strip at
 | Downstream RAG blocked CI run | [26721829145](https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721829145) | Placeholder/missing RAG evidence failed strict CI with `claim_check_blocked`, `sources_blocked`, and `bundle_blocked`. |
 | Downstream RAG ready CI run | [26721856616](https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721856616) | The same PR passed with `claim_check_ready`, `sources_ready`, and `bundle_verified` after raw RAG eval evidence was added. |
 
+| Product Metric Evidence | Link | What it proves |
+| --- | --- | --- |
+| Downstream product metric demo PR | [#1](https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/pull/1) | A launch-metric claim has a real downstream blocked-to-ready PR story. |
+| Downstream product metric blocked CI run | [26726360229](https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726360229) | Placeholder analytics evidence failed strict CI with `claim_check_blocked`. |
+| Downstream product metric ready CI run | [26726392921](https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726392921) | The same PR passed with `claim_check_ready`, `sources_ready`, and `bundle_verified` after metric provenance, lift, guardrail, and rollback evidence was added. |
+
 An internal repo version is also available in
 [PR #17](https://github.com/AzurLiu/falsiflow/pull/17), with blocked run
 [26708459093](https://github.com/AzurLiu/falsiflow/actions/runs/26708459093)
@@ -147,7 +153,7 @@ jobs:
 
       - name: Run Falsiflow claim gate
         id: falsiflow
-        uses: AzurLiu/falsiflow@v0.1.36
+        uses: AzurLiu/falsiflow@v0.1.37
         with:
           mode: claim-check
           project-dir: falsiflow_ai_eval

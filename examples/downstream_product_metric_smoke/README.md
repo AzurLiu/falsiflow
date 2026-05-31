@@ -7,6 +7,14 @@ metric claim. It starts in the same state a launch review PR often starts in:
 placeholder analytics evidence, so the workflow should fail with
 `claim_check_blocked`.
 
+Live proof:
+[AzurLiu/falsiflow-downstream-product-metric-demo PR #1](https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/pull/1)
+fails in
+[run 26726360229](https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726360229),
+then passes in
+[run 26726392921](https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726392921)
+after the placeholder row is replaced with source-backed metric evidence.
+
 ## Copy Into A Clean Repository
 
 ```bash

@@ -97,6 +97,13 @@ The fixture includes `.github/workflows/falsiflow-product-metric.yml` and the
 show `claim_check_blocked` before the repair commit copies
 `evidence_pass_demo.csv` over `evidence.csv`.
 
+Live proof:
+[AzurLiu/falsiflow-downstream-product-metric-demo PR #1](https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/pull/1)
+fails in
+[run 26726360229](https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726360229),
+then passes in
+[run 26726392921](https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726392921).
+
 ## Downstream RAG Eval Smoke
 
 For a copy-paste repository fixture that starts blocked on placeholder RAG eval

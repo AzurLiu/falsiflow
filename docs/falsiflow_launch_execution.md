@@ -27,6 +27,14 @@ follow-up checks. Use it after the current public release evidence is green.
   <https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721829145>
 - Downstream RAG ready run:
   <https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721856616>
+- Live downstream product-metric demo repo:
+  <https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo>
+- Live downstream product-metric PR:
+  <https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/pull/1>
+- Downstream product-metric blocked run:
+  <https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726360229>
+- Downstream product-metric ready run:
+  <https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726392921>
 - Shareable downstream proof strip:
   [docs/assets/falsiflow_downstream_pr_proof_strip.svg](assets/falsiflow_downstream_pr_proof_strip.svg)
 - Live PR demo: <https://github.com/AzurLiu/falsiflow/pull/17>
@@ -38,7 +46,7 @@ follow-up checks. Use it after the current public release evidence is green.
 - Pre-public-post baseline recorded on 2026-06-01 05:49 CST after the
   upload-ready social preview release:
   0 stars, 2 forks, 0 watchers, 8 total views, 1 unique view, 466 total clones,
-  283 unique clones, open issue #22, completed seed issues #26, #27, and #28,
+  283 unique clones, open issue #22, completed seed issues #26, #27, #28, and #30,
   and open PR #17. Treat clone counts as likely inflated by CI/release
   automation until public-post traffic arrives.
 - Latest external evidence workflow:
@@ -58,12 +66,12 @@ pre-launch queue keeps
 24-hour post-public-post metrics review,
 [issue #29](https://github.com/AzurLiu/falsiflow/issues/29) open as a
 `good first issue` for launch-article visual polish, and
-[issue #30](https://github.com/AzurLiu/falsiflow/issues/30) open as a
-`help wanted` product-metric downstream proof task. Completed seed issues #26,
-#27, and #28 cover release proof snippet generation, the live downstream RAG
-eval demo PR, and MCP client configuration examples.
-The live downstream RAG eval demo remains the canonical RAG proof link until a
-matching product-metric live PR is added.
+[issue #30](https://github.com/AzurLiu/falsiflow/issues/30) completed by the
+live product-metric downstream PR proof. Completed seed issues #26, #27, #28,
+and #30 cover release proof snippet generation, the live downstream RAG eval
+demo PR, MCP client configuration examples, and the live downstream
+product-metric demo PR.
+Summary phrase for release checks: release proof snippet generation, live downstream RAG eval demo, MCP client configuration examples, product-metric downstream proof.
 New public issues after launch should come from repeated external feedback, not
 from internal polish already completed before distribution.
 
@@ -111,6 +119,14 @@ The current release is intentionally small and boring:
   https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721829145
 - RAG ready run:
   https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721856616
+- real downstream product-metric PR where placeholder launch-metric evidence
+  fails CI, then source-backed metric provenance, lift, guardrail, and rollback
+  evidence passes:
+  https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/pull/1
+- product-metric blocked run:
+  https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726360229
+- product-metric ready run:
+  https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726392921
 - public demo: https://azurliu.github.io/falsiflow/
 - PyPI: https://pypi.org/project/falsiflow/
 - external evidence workflow proving demo, PyPI, pipx, and Windows smoke:
@@ -162,6 +178,9 @@ Ready run: https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/
 RAG downstream PR: https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/pull/1
 RAG blocked run: https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721829145
 RAG ready run: https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721856616
+Product metric downstream PR: https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/pull/1
+Product metric blocked run: https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726360229
+Product metric ready run: https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726392921
 Repo: https://github.com/AzurLiu/falsiflow
 PyPI: https://pypi.org/project/falsiflow/
 
@@ -193,6 +212,9 @@ Ready run: https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/
 RAG downstream PR: https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/pull/1
 RAG blocked run: https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721829145
 RAG ready run: https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721856616
+Product metric downstream PR: https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/pull/1
+Product metric blocked run: https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726360229
+Product metric ready run: https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726392921
 Repo: https://github.com/AzurLiu/falsiflow
 PyPI: https://pypi.org/project/falsiflow/
 ```
@@ -210,6 +232,7 @@ pipx install falsiflow
 Demo: https://azurliu.github.io/falsiflow/
 Downstream PR: https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1
 RAG downstream PR: https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/pull/1
+Product metric downstream PR: https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/pull/1
 Repo: https://github.com/AzurLiu/falsiflow
 ```
 

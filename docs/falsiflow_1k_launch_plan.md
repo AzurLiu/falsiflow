@@ -40,6 +40,8 @@ should say what is still pending instead of implying full external readiness.
   <https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo>.
 - Live downstream RAG proof repo:
   <https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo>.
+- Live downstream product-metric proof repo:
+  <https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo>.
 - Shareable downstream proof strip:
   [docs/assets/falsiflow_downstream_pr_proof_strip.svg](assets/falsiflow_downstream_pr_proof_strip.svg).
 - Comparison boundary: Falsiflow complements Great Expectations, Evidently,
@@ -74,6 +76,9 @@ Day 0:
   For RAG-focused readers, link the matching downstream RAG story:
   <https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/pull/1>.
   Use `examples/downstream_rag_eval_smoke` as the copy-paste fixture.
+  For product/growth readers, link the matching downstream product-metric
+  story:
+  <https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/pull/1>.
   Use `docs/assets/falsiflow_downstream_pr_proof_strip.svg` when a full screen
   recording is too heavy.
 - Share `examples/downstream_product_metric_smoke` with product or growth

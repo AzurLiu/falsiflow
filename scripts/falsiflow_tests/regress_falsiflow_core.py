@@ -1278,13 +1278,16 @@ def assert_cli_contract() -> None:
         assert 'name="twitter:card"' in launchpad
         assert "falsiflow_downstream_pr_proof_strip.svg" in launchpad
         assert "falsiflow_live_pr_story_reel.svg" in launchpad
-        assert "Falsiflow: AI and RAG eval claims should fail CI without evidence" in launchpad
+        assert "Falsiflow: unverifiable AI, RAG, and product claims should fail CI" in launchpad
         assert "https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1" in launchpad
         assert "https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711652990" in launchpad
         assert "https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711669112" in launchpad
         assert "https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/pull/1" in launchpad
         assert "https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721829145" in launchpad
         assert "https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721856616" in launchpad
+        assert "https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/pull/1" in launchpad
+        assert "https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726360229" in launchpad
+        assert "https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726392921" in launchpad
         assert "https://github.com/AzurLiu/falsiflow/pull/17" in launchpad
         assert "https://github.com/AzurLiu/falsiflow/actions/runs/26708459093" in launchpad
         assert "https://github.com/AzurLiu/falsiflow/actions/runs/26708472653" in launchpad
@@ -1592,9 +1595,13 @@ def assert_cli_contract() -> None:
         assert "Upload `social_preview.png`" in github_repo_profile
         assert "Live AI eval downstream PR proof" in github_repo_profile
         assert "Live RAG eval downstream PR proof" in github_repo_profile
+        assert "Live product metric downstream PR proof" in github_repo_profile
         assert "falsiflow-downstream-rag-eval-demo" in github_repo_profile
         assert "26721829145" in github_repo_profile
         assert "26721856616" in github_repo_profile
+        assert "falsiflow-downstream-product-metric-demo" in github_repo_profile
+        assert "26726360229" in github_repo_profile
+        assert "26726392921" in github_repo_profile
         assert (launch_kit_dir / "launch_posts.md").exists()
         launch_posts = (launch_kit_dir / "launch_posts.md").read_text(encoding="utf-8")
         assert "Show HN" in launch_posts
@@ -1605,8 +1612,12 @@ def assert_cli_contract() -> None:
         assert "falsiflow-downstream-rag-eval-demo" in launch_posts
         assert "26721829145" in launch_posts
         assert "26721856616" in launch_posts
+        assert "falsiflow-downstream-product-metric-demo" in launch_posts
+        assert "26726360229" in launch_posts
+        assert "26726392921" in launch_posts
         assert "AI eval downstream PR" in launch_posts
         assert "RAG eval downstream PR" in launch_posts
+        assert "Product metric downstream PR" in launch_posts
         assert "Demo PR playbook" in launch_posts
         assert "Reply Bank" in launch_posts
         assert "Great Expectations" in launch_posts
@@ -4354,6 +4365,9 @@ def assert_packaged_template_contract() -> None:
         assert "https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1" in packaged_launchpad
         assert "https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711652990" in packaged_launchpad
         assert "https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711669112" in packaged_launchpad
+        assert "https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/pull/1" in packaged_launchpad
+        assert "https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726360229" in packaged_launchpad
+        assert "https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726392921" in packaged_launchpad
         assert "https://github.com/AzurLiu/falsiflow/pull/17" in packaged_launchpad
         assert "Falsiflow Try" in (packaged_try_dir / "try_report.html").read_text(encoding="utf-8")
         assert "Falsiflow Browser Wizard" in (packaged_try_dir / "falsiflow_wizard.html").read_text(encoding="utf-8")

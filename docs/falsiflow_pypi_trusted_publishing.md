@@ -37,6 +37,8 @@ Public evidence:
   <https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1>
 - Expected downstream RAG PR link:
   <https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/pull/1>
+- Expected downstream product-metric PR link:
+  <https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/pull/1>
 - Release workflow:
   <https://github.com/AzurLiu/falsiflow/actions/runs/26716164341>
 - External evidence workflow:
@@ -56,6 +58,7 @@ assert data["info"]["version"] >= "0.1.16"
 assert "https://raw.githubusercontent.com/AzurLiu/falsiflow/main/docs/assets/falsiflow_downstream_pr_proof_strip.png" in desc
 assert "https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1" in desc
 assert "https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/pull/1" in desc
+assert "https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/pull/1" in desc
 assert not re.search(r"!\[[^\]]*\]\(docs/assets/", desc)
 print("pypi_description_rendering_inputs_ready")
 PY

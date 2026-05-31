@@ -499,7 +499,7 @@ def render_try_launchpad_html(summary: dict[str, object]) -> str:
     status_class = "ready" if ready else "blocked"
     headline = "CI gates for claims before they ship"
     summary_text = (
-        "Real AI and RAG eval PRs fail on placeholder evidence, then pass after the evidence is source-backed."
+        "Real AI, RAG, and product-metric PRs fail on placeholder evidence, then pass after the evidence is source-backed."
         if ready
         else "The local demo needs attention before it can be used as a clean starter."
     )
@@ -608,6 +608,30 @@ def render_try_launchpad_html(summary: dict[str, object]) -> str:
             "https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721856616",
             "ready",
         ),
+        (
+            "7. Product metric PR",
+            "Activation lifted",
+            "A product repo tries to ship a launch metric before metric provenance, lift, guardrails, and rollback readiness are reviewable.",
+            "Open product PR #1",
+            "https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/pull/1",
+            "neutral",
+        ),
+        (
+            "8. Product CI blocks it",
+            "claim_check_blocked",
+            "Strict CI rejects placeholder analytics evidence before the launch claim can pass.",
+            "Product blocked run",
+            "https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726360229",
+            "blocked",
+        ),
+        (
+            "9. Product evidence passes",
+            "claim_check_ready",
+            "The same PR passes after source-backed metric provenance, lift, guardrail, and rollback-readiness rows are added.",
+            "Product ready run",
+            "https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726392921",
+            "ready",
+        ),
     ]
     pr_story_html = "\n".join(
         f"""        <article class="story-card {escape(kind)}">
@@ -662,15 +686,15 @@ def render_try_launchpad_html(summary: dict[str, object]) -> str:
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Falsiflow Launchpad</title>
-  <meta name="description" content="Live downstream PR stories: Falsiflow blocks unverifiable AI and RAG eval evidence in CI, then passes the same claims after source-backed evidence is added.">
-  <meta property="og:title" content="Falsiflow: AI and RAG eval claims should fail CI without evidence">
-  <meta property="og:description" content="See downstream AI and RAG PRs move from claim_check_blocked to claim_check_ready after source-backed eval evidence is added.">
+  <meta name="description" content="Live downstream PR stories: Falsiflow blocks unverifiable AI, RAG, and product-metric evidence in CI, then passes the same claims after source-backed evidence is added.">
+  <meta property="og:title" content="Falsiflow: unverifiable AI, RAG, and product claims should fail CI">
+  <meta property="og:description" content="See downstream AI, RAG, and product-metric PRs move from claim_check_blocked to claim_check_ready after source-backed evidence is added.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://azurliu.github.io/falsiflow/">
   <meta property="og:image" content="https://raw.githubusercontent.com/AzurLiu/falsiflow/main/docs/assets/falsiflow_downstream_pr_proof_strip.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Falsiflow: AI and RAG eval claims should fail CI without evidence">
-  <meta name="twitter:description" content="Real PR stories: placeholder AI and RAG eval evidence is blocked, then source-backed evidence passes.">
+  <meta name="twitter:title" content="Falsiflow: unverifiable AI, RAG, and product claims should fail CI">
+  <meta name="twitter:description" content="Real PR stories: placeholder AI, RAG, and product evidence is blocked, then source-backed evidence passes.">
   <meta name="twitter:image" content="https://raw.githubusercontent.com/AzurLiu/falsiflow/main/docs/assets/falsiflow_downstream_pr_proof_strip.png">
   <style>
     :root {{

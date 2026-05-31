@@ -35,6 +35,16 @@ with `claim_check_blocked`, then passed in
 with `claim_check_ready` after source-backed RAG evidence and the raw eval
 export were added.
 
+Product metric downstream proof is available in
+[`AzurLiu/falsiflow-downstream-product-metric-demo`](https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo):
+[PR #1](https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/pull/1)
+first failed in
+[run 26726360229](https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726360229)
+with `claim_check_blocked`, then passed in
+[run 26726392921](https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726392921)
+with `claim_check_ready` after metric provenance, lift, guardrail, and
+rollback-readiness evidence was source-backed.
+
 Target layout:
 
 ```text
@@ -74,7 +84,7 @@ jobs:
 
       - name: Run claim gate
         id: falsiflow
-        uses: AzurLiu/falsiflow@v0.1.36
+        uses: AzurLiu/falsiflow@v0.1.37
         with:
           mode: claim-check
           project-dir: falsiflow_ai_eval
@@ -152,6 +162,13 @@ It mirrors the AI eval smoke: default placeholder evidence blocks CI, and
 `evidence_pass_demo.csv` provides source-backed metric, guardrail, and rollback
 rows.
 
+Live proof:
+[`AzurLiu/falsiflow-downstream-product-metric-demo` PR #1](https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/pull/1)
+shows the first commit blocked by strict CI in
+[run 26726360229](https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726360229),
+then the repair commit passing in
+[run 26726392921](https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726392921).
+
 Target layout:
 
 ```text
@@ -214,7 +231,7 @@ change caused the metric movement or should ship.
 The default `install-command` is intentionally omitted. The action installs
 from the checked-out action directory via `GITHUB_ACTION_PATH`, which keeps this
 downstream smoke usable before PyPI exists. After a stable release is published,
-pin the action to a tag such as `AzurLiu/falsiflow@v0.1.36`; override
+pin the action to a tag such as `AzurLiu/falsiflow@v0.1.37`; override
 `install-command` only when installing from PyPI, a fork, or a local checkout is
 part of the thing you are testing.
 
@@ -245,7 +262,7 @@ jobs:
 
       - name: Import local LLM eval artifacts
         id: falsiflow_import
-        uses: AzurLiu/falsiflow@v0.1.36
+        uses: AzurLiu/falsiflow@v0.1.37
         with:
           mode: evidence-import
           profile: local-llm-eval
@@ -259,7 +276,7 @@ jobs:
 
       - name: Run Falsiflow claim gate
         id: falsiflow
-        uses: AzurLiu/falsiflow@v0.1.36
+        uses: AzurLiu/falsiflow@v0.1.37
         with:
           mode: claim-check
           project-dir: falsiflow_local_llm_eval
@@ -329,7 +346,7 @@ jobs:
 
       - name: Run Falsiflow RAG claim gate
         id: falsiflow
-        uses: AzurLiu/falsiflow@v0.1.36
+        uses: AzurLiu/falsiflow@v0.1.37
         with:
           mode: claim-check
           project-dir: falsiflow_rag_eval
@@ -414,7 +431,7 @@ jobs:
 
       - name: Run Falsiflow claim gate
         id: falsiflow
-        uses: AzurLiu/falsiflow@v0.1.36
+        uses: AzurLiu/falsiflow@v0.1.37
         with:
           mode: claim-check
           project-dir: falsiflow_ai_eval
@@ -461,7 +478,7 @@ jobs:
 
       - name: Run AI claim quickstart
         id: falsiflow
-        uses: AzurLiu/falsiflow@v0.1.36
+        uses: AzurLiu/falsiflow@v0.1.37
         with:
           mode: quickstart
           template: ai_claim_evaluation
@@ -486,7 +503,7 @@ Expected result: `quickstart_ready` with a nested `claim_check_ready` report.
 The default install path is best for tagged action use:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.36
+- uses: AzurLiu/falsiflow@v0.1.37
   with:
     mode: claim-check
     project-dir: falsiflow_ai_eval
@@ -495,7 +512,7 @@ The default install path is best for tagged action use:
 Install from PyPI after publication:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.36
+- uses: AzurLiu/falsiflow@v0.1.37
   with:
     install-command: python -m pip install falsiflow
     mode: claim-check

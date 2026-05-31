@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
-  <title id="title">Falsiflow downstream PR proof: AI and RAG claims move from blocked to ready</title>
-  <desc id="desc">A proof strip showing two real downstream GitHub PRs. Placeholder AI eval and RAG eval evidence fail strict CI with claim_check_blocked, then source-backed evidence passes with claim_check_ready.</desc>
+  <title id="title">Falsiflow downstream PR proof: AI, RAG, and product metric claims move from blocked to ready</title>
+  <desc id="desc">A proof strip showing three real downstream GitHub PRs. Placeholder AI eval, RAG eval, and product metric evidence fail strict CI with claim_check_blocked, then source-backed evidence passes with claim_check_ready.</desc>
   <style>
     .sans { font-family: Inter, Segoe UI, Arial, sans-serif; }
     .mono { font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace; }
-    .panel { filter: drop-shadow(0 14px 24px rgba(15, 23, 42, 0.10)); }
+    .panel { filter: drop-shadow(0 12px 22px rgba(15, 23, 42, 0.10)); }
     .pulse-blocked { animation: pulseBlocked 8s ease-in-out infinite; }
     .pulse-ready { animation: pulseReady 8s ease-in-out infinite; animation-delay: 3.8s; }
     .trace { stroke-dasharray: 850; stroke-dashoffset: 850; animation: trace 8s ease-in-out infinite; }
@@ -31,81 +31,105 @@
   <rect x="28" y="28" width="1224" height="664" rx="24" fill="#ffffff" stroke="#d8e1ef"/>
 
   <g class="sans">
-    <text x="68" y="82" fill="#122033" font-size="34" font-weight="800">Real downstream PRs: CI blocks unverifiable AI and RAG eval claims</text>
-    <text x="68" y="118" fill="#53677f" font-size="20">Two public PRs fail on placeholder evidence, then pass only after source-backed rows and raw files are added.</text>
+    <text x="68" y="80" fill="#122033" font-size="30" font-weight="800">Real downstream PRs: CI blocks unverifiable AI, RAG, and product claims</text>
+    <text x="68" y="114" fill="#53677f" font-size="19">Three public PRs fail on placeholder evidence, then pass only after source-backed rows and raw files are added.</text>
   </g>
 
-  <g transform="translate(68 146)">
-    <rect width="1144" height="86" rx="16" fill="#0f172a"/>
-    <g class="mono" font-size="14">
-      <circle cx="30" cy="25" r="6" fill="#ff5f57"/>
-      <circle cx="50" cy="25" r="6" fill="#ffbd2e"/>
-      <circle cx="70" cy="25" r="6" fill="#28c840"/>
-      <text x="32" y="55" fill="#e5edf7">$ gh pr view AzurLiu/falsiflow-downstream-ai-eval-demo#1 --web</text>
-      <text x="590" y="55" fill="#e5edf7">$ gh pr view AzurLiu/falsiflow-downstream-rag-eval-demo#1 --web</text>
-      <text x="32" y="76" fill="#94a3b8">Proof target: evidence completeness in CI, not model quality or safety.</text>
+  <g transform="translate(68 136)">
+    <rect width="1144" height="82" rx="16" fill="#0f172a"/>
+    <g class="mono" font-size="11">
+      <circle cx="30" cy="24" r="6" fill="#ff5f57"/>
+      <circle cx="50" cy="24" r="6" fill="#ffbd2e"/>
+      <circle cx="70" cy="24" r="6" fill="#28c840"/>
+      <text x="32" y="50" fill="#e5edf7">AI PR #1: github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1</text>
+      <text x="32" y="69" fill="#e5edf7">RAG PR #1: github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/pull/1</text>
+      <text x="596" y="50" fill="#e5edf7">Product metric PR #1: github.com/AzurLiu/falsiflow-downstream-product-metric-demo#1</text>
+      <text x="596" y="69" fill="#94a3b8">Proof target: evidence completeness in CI, not quality or causality.</text>
     </g>
   </g>
 
   <g class="sans">
-    <g class="panel" transform="translate(68 274)">
-      <rect width="1144" height="150" rx="18" fill="#fff8ed" stroke="#ecc48d"/>
-      <text x="24" y="36" fill="#8a4b10" font-size="15" font-weight="800">AI Eval Downstream PR #1</text>
-      <text x="24" y="68" fill="#122033" font-size="24" font-weight="800">AI eval claim</text>
-      <text x="24" y="98" fill="#5f4630" font-size="16">placeholder evidence enters CI</text>
-      <g class="mono" font-size="13">
-        <rect x="332" y="30" width="212" height="90" rx="12" fill="#ffffff" stroke="#efd2ae"/>
-        <text x="350" y="58" fill="#8a4b10">evidence.csv</text>
-        <text x="350" y="82" fill="#b45309">dataset_pending</text>
-        <text x="350" y="104" fill="#64748b">raw output missing</text>
+    <g class="panel" transform="translate(68 246)">
+      <rect width="1144" height="104" rx="16" fill="#fff8ed" stroke="#ecc48d"/>
+      <text x="24" y="30" fill="#8a4b10" font-size="14" font-weight="800">AI Eval Downstream PR #1</text>
+      <text x="24" y="55" fill="#122033" font-size="21" font-weight="800">AI eval claim</text>
+      <text x="24" y="79" fill="#5f4630" font-size="14">placeholder eval evidence enters CI</text>
+      <g class="mono" font-size="12">
+        <rect x="318" y="20" width="214" height="66" rx="11" fill="#ffffff" stroke="#efd2ae"/>
+        <text x="334" y="46" fill="#8a4b10">evidence.csv</text>
+        <text x="334" y="67" fill="#b45309">dataset_pending</text>
       </g>
-      <path class="trace" d="M560 75 H690" fill="none" stroke="#aebdcd" stroke-width="6" stroke-linecap="round"/>
+      <path class="trace" d="M550 53 H620" fill="none" stroke="#aebdcd" stroke-width="5" stroke-linecap="round"/>
       <g class="pulse-blocked">
-        <rect x="710" y="30" width="176" height="90" rx="12" fill="#fff1f0" stroke="#eda8a1"/>
-        <text x="728" y="58" fill="#9b2d24" font-size="14" font-weight="800">blocked run</text>
-        <text class="mono" x="728" y="82" fill="#9b2d24" font-size="13">claim_check_blocked</text>
-        <text class="mono" x="728" y="104" fill="#64748b" font-size="13">26711652990</text>
+        <rect x="640" y="20" width="198" height="66" rx="11" fill="#fff1f0" stroke="#eda8a1"/>
+        <text x="656" y="45" fill="#9b2d24" font-size="13" font-weight="800">blocked run</text>
+        <text class="mono" x="656" y="67" fill="#9b2d24" font-size="12">claim_check_blocked</text>
+        <text class="mono" x="656" y="84" fill="#64748b" font-size="12">26711652990</text>
       </g>
       <g class="pulse-ready">
-        <rect x="914" y="30" width="198" height="90" rx="12" fill="#f0fbf4" stroke="#a8d8b4"/>
-        <text x="932" y="58" fill="#205e35" font-size="14" font-weight="800">ready run</text>
-        <text class="mono" x="932" y="82" fill="#205e35" font-size="13">claim_check_ready</text>
-        <text class="mono" x="932" y="104" fill="#64748b" font-size="13">26711669112</text>
+        <rect x="868" y="20" width="232" height="66" rx="11" fill="#f0fbf4" stroke="#a8d8b4"/>
+        <text x="884" y="45" fill="#205e35" font-size="13" font-weight="800">ready run</text>
+        <text class="mono" x="884" y="67" fill="#205e35" font-size="12">claim_check_ready</text>
+        <text class="mono" x="884" y="84" fill="#64748b" font-size="12">26711669112</text>
       </g>
     </g>
 
-    <g class="panel" transform="translate(68 444)">
-      <rect width="1144" height="150" rx="18" fill="#eef6ff" stroke="#a7cdf7"/>
-      <text x="24" y="36" fill="#1d5a9e" font-size="15" font-weight="800">RAG Eval Downstream PR #1</text>
-      <text x="24" y="68" fill="#122033" font-size="24" font-weight="800">RAG eval claim</text>
-      <text x="24" y="98" fill="#314d68" font-size="16">source-backed citations required</text>
-      <g class="mono" font-size="13">
-        <rect x="332" y="30" width="212" height="90" rx="12" fill="#ffffff" stroke="#c2dcf4"/>
-        <text x="350" y="58" fill="#1d5a9e">rag_quality_gate</text>
-        <text x="350" y="82" fill="#b45309">eval_set_pending</text>
-        <text x="350" y="104" fill="#64748b">source export missing</text>
+    <g class="panel" transform="translate(68 366)">
+      <rect width="1144" height="104" rx="16" fill="#eef6ff" stroke="#a7cdf7"/>
+      <text x="24" y="30" fill="#1d5a9e" font-size="14" font-weight="800">RAG Eval Downstream PR #1</text>
+      <text x="24" y="55" fill="#122033" font-size="21" font-weight="800">RAG eval claim</text>
+      <text x="24" y="79" fill="#314d68" font-size="14">source-backed citations required</text>
+      <g class="mono" font-size="12">
+        <rect x="318" y="20" width="214" height="66" rx="11" fill="#ffffff" stroke="#c2dcf4"/>
+        <text x="334" y="46" fill="#1d5a9e">rag_quality_gate</text>
+        <text x="334" y="67" fill="#b45309">eval_set_pending</text>
       </g>
-      <path class="trace" d="M560 75 H690" fill="none" stroke="#aebdcd" stroke-width="6" stroke-linecap="round"/>
+      <path class="trace" d="M550 53 H620" fill="none" stroke="#aebdcd" stroke-width="5" stroke-linecap="round"/>
       <g class="pulse-blocked">
-        <rect x="710" y="30" width="176" height="90" rx="12" fill="#fff1f0" stroke="#eda8a1"/>
-        <text x="728" y="58" fill="#9b2d24" font-size="14" font-weight="800">blocked run</text>
-        <text class="mono" x="728" y="82" fill="#9b2d24" font-size="13">claim_check_blocked</text>
-        <text class="mono" x="728" y="104" fill="#64748b" font-size="13">26721829145</text>
+        <rect x="640" y="20" width="198" height="66" rx="11" fill="#fff1f0" stroke="#eda8a1"/>
+        <text x="656" y="45" fill="#9b2d24" font-size="13" font-weight="800">blocked run</text>
+        <text class="mono" x="656" y="67" fill="#9b2d24" font-size="12">claim_check_blocked</text>
+        <text class="mono" x="656" y="84" fill="#64748b" font-size="12">26721829145</text>
       </g>
       <g class="pulse-ready">
-        <rect x="914" y="30" width="198" height="90" rx="12" fill="#f0fbf4" stroke="#a8d8b4"/>
-        <text x="932" y="58" fill="#205e35" font-size="14" font-weight="800">ready run</text>
-        <text class="mono" x="932" y="82" fill="#205e35" font-size="13">claim_check_ready</text>
-        <text class="mono" x="932" y="104" fill="#64748b" font-size="13">26721856616</text>
+        <rect x="868" y="20" width="232" height="66" rx="11" fill="#f0fbf4" stroke="#a8d8b4"/>
+        <text x="884" y="45" fill="#205e35" font-size="13" font-weight="800">ready run</text>
+        <text class="mono" x="884" y="67" fill="#205e35" font-size="12">claim_check_ready</text>
+        <text class="mono" x="884" y="84" fill="#64748b" font-size="12">26721856616</text>
+      </g>
+    </g>
+
+    <g class="panel" transform="translate(68 486)">
+      <rect width="1144" height="104" rx="16" fill="#f1f8f5" stroke="#a8d8c0"/>
+      <text x="24" y="30" fill="#17614a" font-size="14" font-weight="800">Product Metric Downstream PR #1</text>
+      <text x="24" y="55" fill="#122033" font-size="21" font-weight="800">Launch metric claim</text>
+      <text x="24" y="79" fill="#2d5a49" font-size="14">metric provenance and rollback proof required</text>
+      <g class="mono" font-size="12">
+        <rect x="318" y="20" width="214" height="66" rx="11" fill="#ffffff" stroke="#bedfcd"/>
+        <text x="334" y="46" fill="#17614a">product_metric</text>
+        <text x="334" y="67" fill="#b45309">analysis_pending</text>
+      </g>
+      <path class="trace" d="M550 53 H620" fill="none" stroke="#aebdcd" stroke-width="5" stroke-linecap="round"/>
+      <g class="pulse-blocked">
+        <rect x="640" y="20" width="198" height="66" rx="11" fill="#fff1f0" stroke="#eda8a1"/>
+        <text x="656" y="45" fill="#9b2d24" font-size="13" font-weight="800">blocked run</text>
+        <text class="mono" x="656" y="67" fill="#9b2d24" font-size="12">claim_check_blocked</text>
+        <text class="mono" x="656" y="84" fill="#64748b" font-size="12">26726360229</text>
+      </g>
+      <g class="pulse-ready">
+        <rect x="868" y="20" width="232" height="66" rx="11" fill="#f0fbf4" stroke="#a8d8b4"/>
+        <text x="884" y="45" fill="#205e35" font-size="13" font-weight="800">ready run</text>
+        <text class="mono" x="884" y="67" fill="#205e35" font-size="12">claim_check_ready</text>
+        <text class="mono" x="884" y="84" fill="#64748b" font-size="12">26726392921</text>
       </g>
     </g>
   </g>
 
-  <g class="sans" transform="translate(68 622)">
+  <g class="sans" transform="translate(68 612)">
     <rect width="1144" height="46" rx="14" fill="#f8fafc" stroke="#d9e2ef"/>
     <text x="24" y="29" fill="#122033" font-size="16" font-weight="800">Shareable proof strip</text>
-    <text x="230" y="29" fill="#53677f" font-size="14">AI blocked 26711652990 -> ready 26711669112 | RAG blocked 26721829145 -> ready 26721856616</text>
+    <text x="230" y="29" fill="#53677f" font-size="13">AI 26711652990 -> 26711669112 | RAG 26721829145 -> 26721856616 | Product 26726360229 -> 26726392921</text>
   </g>
 
-  <text class="mono" x="68" y="692" fill="#64748b" font-size="13">Boundary: claim_check_ready means the evidence package is complete enough for review. It does not prove the model is good, safe, or shippable.</text>
+  <text class="mono" x="68" y="678" fill="#64748b" font-size="12">Boundary: claim_check_ready means reviewable evidence. It does not prove the model, RAG system, or product change is good, safe, or shippable.</text>
 </svg>

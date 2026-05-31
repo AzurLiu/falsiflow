@@ -107,6 +107,15 @@ faithfulness, citation coverage, reproducibility rows, and the raw RAG eval
 export, [run 26721856616](https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721856616)
 passes with `claim_check_ready`.
 
+The product-metric version is the same failure mode outside evals:
+[AzurLiu/falsiflow-downstream-product-metric-demo PR #1](https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/pull/1)
+first fails strict CI in
+[run 26726360229](https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726360229)
+because the launch metric evidence is still `analysis_pending`; after the PR
+adds source-backed metric provenance, lift, guardrail, and rollback-readiness
+rows, [run 26726392921](https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726392921)
+passes with `claim_check_ready`.
+
 ## What Falsiflow Adds
 
 Falsiflow is a small CLI and GitHub Action for this specific boundary. It turns
@@ -134,7 +143,7 @@ falsiflow doctor --project-dir ai_claim_review --strict
 The GitHub Action path is the part that matters for teams:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.36
+- uses: AzurLiu/falsiflow@v0.1.37
   with:
     mode: claim-check
     project-dir: falsiflow_ai_eval

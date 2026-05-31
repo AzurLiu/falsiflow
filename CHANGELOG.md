@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.37
+
+- Added a live downstream product-metric demo repository and PR that moves from
+  `claim_check_blocked` on placeholder analytics evidence to
+  `claim_check_ready` after source-backed metric provenance, lift, guardrail,
+  and rollback-readiness rows are added.
+- Updated the README, public demo, proof strip, launch copy, Action examples,
+  and PyPI rendering checks so AI eval, RAG eval, and product-metric proof links
+  are all visible from the first public proof surface.
+- Tightened release and regression checks so launch materials keep the
+  product-metric PR, blocked run, ready run, and responsible-use boundary.
+
 ## 0.1.36
 
 - Re-opened the public contribution queue with concrete active work: a
