@@ -27,6 +27,7 @@ include docs/falsiflow_github_action_examples.md
 include docs/falsiflow_launch_execution.md
 include docs/falsiflow_mcp.md
 include docs/falsiflow_positioning.md
+include docs/falsiflow_public_issue_queue.md
 include docs/falsiflow_public_casebook.md
 include docs/falsiflow_rag_quality_gate_proposal.md
 include docs/falsiflow_pypi_trusted_publishing.md
@@ -41,5 +42,6 @@ include docs/assets/falsiflow_live_pr_story_reel.svg
 recursive-include falsiflow/assets *.svg
 recursive-include .github/workflows *.yml
 recursive-include .github/ISSUE_TEMPLATE *.yml
+include .github/ISSUE_TEMPLATE/launch_feedback.yml
 include .github/PULL_REQUEST_TEMPLATE.md
 include .github/dependabot.yml

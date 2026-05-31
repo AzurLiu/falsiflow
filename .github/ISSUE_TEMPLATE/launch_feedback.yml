@@ -1,0 +1,66 @@
+name: Launch feedback
+description: Report feedback from trying Falsiflow after a public launch post.
+title: "[Launch feedback]: "
+labels: ["launch", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for public-launch feedback, first-run confusion, install friction,
+        positioning questions, or unclear demo proof. Do not attach private
+        evidence files or sensitive source data.
+  - type: input
+    id: entry-point
+    attributes:
+      label: Entry point
+      description: Where did you first try or read about Falsiflow?
+      placeholder: "README, PyPI, public demo, Show HN, Reddit, LinkedIn, downstream PR"
+    validations:
+      required: true
+  - type: dropdown
+    id: feedback-type
+    attributes:
+      label: Feedback type
+      options:
+        - Install or first-run problem
+        - README or positioning confusion
+        - Public demo or downstream PR confusion
+        - GitHub Action adoption question
+        - Template or evidence-contract request
+        - Other launch feedback
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the exact confusion, failure, missing artifact, or unclear claim.
+      placeholder: "I expected ..., but saw ..."
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Commands or links
+      description: Paste commands, public links, or the GitHub Action snippet involved.
+      placeholder: |
+        pipx install falsiflow
+        falsiflow quickstart --template ai_claim_evaluation --out ai_claim_review --strict
+    validations:
+      required: false
+  - type: textarea
+    id: expected-improvement
+    attributes:
+      label: Expected improvement
+      description: What change would have made this clear or easy to verify?
+    validations:
+      required: false
+  - type: checkboxes
+    id: boundary
+    attributes:
+      label: Boundary check
+      options:
+        - label: I did not include private evidence files, secrets, or sensitive source data.
+          required: true
+        - label: I understand `claim_ready` means the configured evidence gate passed, not that the claim is scientifically or commercially true.
+          required: true

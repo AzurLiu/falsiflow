@@ -111,6 +111,9 @@ Evidence gate flow:
 - Use [docs/falsiflow_launch_execution.md](docs/falsiflow_launch_execution.md)
   for launch copy, channel-specific posts, awesome-list candidates, and metrics
   review windows.
+- Use [docs/falsiflow_public_issue_queue.md](docs/falsiflow_public_issue_queue.md)
+  for the first public `good first issue`, `help wanted`, launch, template, and
+  evidence-gate tasks after launch feedback starts arriving.
 - Open pull requests with `.github/PULL_REQUEST_TEMPLATE.md`, including the
   verification commands and responsible-use boundary.
 - Read [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md), [SUPPORT.md](SUPPORT.md),

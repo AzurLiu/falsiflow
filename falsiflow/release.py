@@ -603,6 +603,7 @@ def package_release_checks(root: Path) -> dict[str, object]:
     github_bug_template_path = root / ".github" / "ISSUE_TEMPLATE" / "bug_report.yml"
     github_feature_template_path = root / ".github" / "ISSUE_TEMPLATE" / "feature_request.yml"
     github_claim_gate_template_path = root / ".github" / "ISSUE_TEMPLATE" / "claim_gate_request.yml"
+    github_launch_feedback_template_path = root / ".github" / "ISSUE_TEMPLATE" / "launch_feedback.yml"
     github_pr_template_path = root / ".github" / "PULL_REQUEST_TEMPLATE.md"
     gitignore_path = root / ".gitignore"
     init_path = root / "falsiflow" / "__init__.py"
@@ -713,6 +714,7 @@ def package_release_checks(root: Path) -> dict[str, object]:
         github_bug_template_text = github_bug_template_path.read_text(encoding="utf-8") if github_bug_template_path.exists() else ""
         github_feature_template_text = github_feature_template_path.read_text(encoding="utf-8") if github_feature_template_path.exists() else ""
         github_claim_gate_template_text = github_claim_gate_template_path.read_text(encoding="utf-8") if github_claim_gate_template_path.exists() else ""
+        github_launch_feedback_template_text = github_launch_feedback_template_path.read_text(encoding="utf-8") if github_launch_feedback_template_path.exists() else ""
         github_pr_template_text = github_pr_template_path.read_text(encoding="utf-8") if github_pr_template_path.exists() else ""
         gitignore_text = gitignore_path.read_text(encoding="utf-8") if gitignore_path.exists() else ""
         gitignore_patterns = {line.strip() for line in gitignore_text.splitlines() if line.strip() and not line.lstrip().startswith("#")}
@@ -854,7 +856,10 @@ def package_release_checks(root: Path) -> dict[str, object]:
             "Success criteria" in github_feature_template_text,
             "Claim gate or template request" in github_claim_gate_template_text,
             "Responsible-use boundary" in github_claim_gate_template_text,
-        ]), "GitHub issue templates route bugs, feature requests, and claim-gate/template requests.", github_issue_config_path)
+            "Launch feedback" in github_launch_feedback_template_text,
+            "Entry point" in github_launch_feedback_template_text,
+            "claim_ready" in github_launch_feedback_template_text,
+        ]), "GitHub issue templates route bugs, feature requests, claim-gate/template requests, and public launch feedback.", github_issue_config_path)
         add("github_pr_template", all(token in github_pr_template_text for token in ["Verification", "claim_ready", "template-check", "Responsible use", "release-check"]), "GitHub pull request template asks for verification commands, evidence boundaries, and release impact.", github_pr_template_path)
         add("try_docs", all(token in readme_text for token in ["falsiflow try", "try_report.html", "Falsiflow Try", "dashboard.html"]), "README documents the low-friction local browser demo.", readme_path)
         add("launchpad_docs", all(token in readme_text for token in ["index.html", "Falsiflow Launchpad", "try_report_url", "wizard_url"]), "README documents the first-run local browser launchpad.", readme_path)
@@ -900,7 +905,7 @@ def package_release_checks(root: Path) -> dict[str, object]:
         add("rag_quality_gate_proposal_docs", all(token in rag_quality_gate_proposal_text for token in ["Falsiflow RAG Quality Gate Proposal", "rag_quality_gate", "evaluation-set provenance", "retrieval quality", "answer faithfulness", "source coverage", "eval_set_pending", "recall_at_5", "claim_check_blocked", "claim_check_ready", "template-check"]), "RAG quality gate proposal defines the future starter template, evidence fields, source files, blocked placeholder row, positive evidence row, and verification target.", rag_quality_gate_proposal_path)
         add("pypi_trusted_publishing_docs", all(token in pypi_trusted_publishing_text + readme_text + troubleshooting_text for token in ["Falsiflow PyPI Trusted Publishing", "invalid-publisher", "repo:AzurLiu/falsiflow:environment:pypi", "pending publisher", "existing-project trusted publisher", "project name: `falsiflow`", "falsiflow-publish.yml", "environment `pypi`", "workflow_dispatch rehearsal is not enough", "https://pypi.org/pypi/falsiflow/json", "0.1.2", "expected_version", "Falsiflow External Evidence", "falsiflow_expected_version.txt", "falsiflow_pypi_version.txt"]), "PyPI trusted publishing runbook documents the current account-bound publisher claim, pending publisher and existing-project setup paths, required PyPI settings, release-triggered publish verification, expected-version verification, and external evidence path.", pypi_trusted_publishing_path)
         add("walkthrough_commands", all(token in walkthrough_text for token in ["init", "claim-check", "claim_check_ready", "Downstream AI Eval Smoke", "claim_check_blocked", "audit", "sources", "bundle", "verify-bundle", "release-check", "bundle_verified"]), "examples/README.md documents the end-to-end verified-bundle walkthrough and downstream AI eval smoke fixture.", walkthrough_path)
-        add("manifest_release_docs", all(token in manifest_text for token in ["CHANGELOG.md", "CONTRIBUTING.md", "CITATION.cff", "CODE_OF_CONDUCT.md", "GOVERNANCE.md", "RELEASE.md", "SECURITY.md", "SUPPORT.md", "RESPONSIBLE_USE.md", "ROADMAP.md", "examples/README.md", "examples/downstream_ai_eval_smoke", "docs/falsiflow_adoption_priorities.md", "docs/falsiflow_1k_launch_plan.md", "docs/falsiflow_architecture.md", "docs/falsiflow_cli_reference.md", "docs/falsiflow_data_contract.md", "docs/falsiflow_adapter_profiles.md", "docs/falsiflow_casebook_check.md", "docs/falsiflow_demo_pr_playbook.md", "docs/falsiflow_github_action_examples.md", "docs/falsiflow_positioning.md", "docs/falsiflow_public_casebook.md", "docs/falsiflow_rag_quality_gate_proposal.md", "docs/falsiflow_pypi_trusted_publishing.md", "docs/falsiflow_security_posture.md", "docs/falsiflow_template_authoring.md", "docs/falsiflow_troubleshooting.md", "docs/launch_articles", "docs/assets", "falsiflow/assets", "falsiflow_30_second_demo.svg", "falsiflow_live_pr_story_reel.svg", "scripts/install_local.sh", "scripts/install_local.ps1", "Makefile", "action.yml", ".github/workflows", ".github/ISSUE_TEMPLATE", ".github/PULL_REQUEST_TEMPLATE.md", ".github/dependabot.yml"]), "MANIFEST.in includes release, security, support, conduct, roadmap, responsible-use, citation, governance, launch plan, launch articles, walkthrough, downstream smoke fixture, architecture, CLI reference, data contract, adapter profiles, casebook check, demo PR playbook, GitHub Action examples, positioning, public casebook, RAG quality gate proposal, PyPI trusted publishing, security posture, template authoring, troubleshooting, README visual assets, the 30-second demo visual, the live PR story reel, packaged static assets, installers, Makefile, reusable GitHub Action, workflows, community templates, dependency automation, and adoption docs in source distributions.", manifest_path)
+        add("manifest_release_docs", all(token in manifest_text for token in ["CHANGELOG.md", "CONTRIBUTING.md", "CITATION.cff", "CODE_OF_CONDUCT.md", "GOVERNANCE.md", "RELEASE.md", "SECURITY.md", "SUPPORT.md", "RESPONSIBLE_USE.md", "ROADMAP.md", "examples/README.md", "examples/downstream_ai_eval_smoke", "docs/falsiflow_adoption_priorities.md", "docs/falsiflow_1k_launch_plan.md", "docs/falsiflow_architecture.md", "docs/falsiflow_cli_reference.md", "docs/falsiflow_data_contract.md", "docs/falsiflow_adapter_profiles.md", "docs/falsiflow_casebook_check.md", "docs/falsiflow_demo_pr_playbook.md", "docs/falsiflow_github_action_examples.md", "docs/falsiflow_public_issue_queue.md", "docs/falsiflow_positioning.md", "docs/falsiflow_public_casebook.md", "docs/falsiflow_rag_quality_gate_proposal.md", "docs/falsiflow_pypi_trusted_publishing.md", "docs/falsiflow_security_posture.md", "docs/falsiflow_template_authoring.md", "docs/falsiflow_troubleshooting.md", "docs/launch_articles", "docs/assets", "falsiflow/assets", "falsiflow_30_second_demo.svg", "falsiflow_live_pr_story_reel.svg", "scripts/install_local.sh", "scripts/install_local.ps1", "Makefile", "action.yml", ".github/workflows", ".github/ISSUE_TEMPLATE", "launch_feedback.yml", ".github/PULL_REQUEST_TEMPLATE.md", ".github/dependabot.yml"]), "MANIFEST.in includes release, security, support, conduct, roadmap, responsible-use, citation, governance, launch plan, launch articles, walkthrough, downstream smoke fixture, architecture, CLI reference, data contract, adapter profiles, casebook check, demo PR playbook, GitHub Action examples, public issue queue, positioning, public casebook, RAG quality gate proposal, PyPI trusted publishing, security posture, template authoring, troubleshooting, README visual assets, the 30-second demo visual, the live PR story reel, packaged static assets, installers, Makefile, reusable GitHub Action, workflows, community templates, launch feedback template, dependency automation, and adoption docs in source distributions.", manifest_path)
         add("gitignore_build_artifacts", {"build/", "dist/", "*.egg-info/"} <= gitignore_patterns, ".gitignore excludes local build caches and package metadata artifacts.", gitignore_path)
     else:
         add("installed_metadata_mode", True, "Source metadata files are absent; checking installed package metadata.", root)
@@ -1063,6 +1068,7 @@ def dist_release_checks(root: Path, artifact_root: Path, run_dist: bool) -> dict
                 f"{base}/.github/ISSUE_TEMPLATE/bug_report.yml",
                 f"{base}/.github/ISSUE_TEMPLATE/feature_request.yml",
                 f"{base}/.github/ISSUE_TEMPLATE/claim_gate_request.yml",
+                f"{base}/.github/ISSUE_TEMPLATE/launch_feedback.yml",
                 f"{base}/.github/PULL_REQUEST_TEMPLATE.md",
                 f"{base}/.github/dependabot.yml",
                 f"{base}/docs/falsiflow_adoption_priorities.md",
@@ -1073,6 +1079,7 @@ def dist_release_checks(root: Path, artifact_root: Path, run_dist: bool) -> dict
                 f"{base}/docs/falsiflow_casebook_check.md",
                 f"{base}/docs/falsiflow_demo_pr_playbook.md",
                 f"{base}/docs/falsiflow_github_action_examples.md",
+                f"{base}/docs/falsiflow_public_issue_queue.md",
                 f"{base}/docs/falsiflow_positioning.md",
                 f"{base}/docs/falsiflow_public_casebook.md",
                 f"{base}/docs/falsiflow_rag_quality_gate_proposal.md",

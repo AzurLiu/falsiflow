@@ -29,6 +29,15 @@ follow-up checks. Use it after the current public release evidence is green.
 Falsiflow is a Python CLI and GitHub Action that keeps AI eval, product metric,
 R&D, and vendor handoff claims blocked until the evidence package is complete.
 
+## Public Issue Queue
+
+Before broad launch distribution, seed a small public queue from
+[falsiflow_public_issue_queue.md](falsiflow_public_issue_queue.md). Keep the
+first issues narrow: one downstream PR proof clip, one local LLM eval note, one
+RAG template path, one product-metric downstream smoke example, and one launch
+metrics review. Each issue should include labels and a verification command or
+public URL.
+
 ## Show HN
 
 Title:
