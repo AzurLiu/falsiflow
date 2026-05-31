@@ -1280,7 +1280,7 @@ def run_release_check(
             launch_content_checks = {
                 "launch_posts": (
                     launch_kit_dir / "launch_posts.md",
-                    ["Channel Checklist", "Hacker News / Show HN", "Reddit / community threads", "LinkedIn", "Awesome lists / ecosystem repos", "responsible-use boundary", "launch_metrics.md", "Show HN", "unsupported AI eval claims", "Demo PR playbook", "Reply Bank", "Great Expectations", "GITHUB_ACTION_PATH", "claim_check_blocked", "claim_check_ready"],
+                    ["Channel Checklist", "Hacker News / Show HN", "Reddit / community threads", "LinkedIn", "Awesome lists / ecosystem repos", "responsible-use boundary", "launch_metrics.md", "Show HN", "unverifiable AI eval claims", "falsiflow-downstream-ai-eval-demo", "26711652990", "26711669112", "Live downstream PR", "Demo PR playbook", "Reply Bank", "Great Expectations", "GITHUB_ACTION_PATH", "claim_check_blocked", "claim_check_ready"],
                 ),
                 "launch_announcement": (
                     launch_kit_dir / "announcement.md",

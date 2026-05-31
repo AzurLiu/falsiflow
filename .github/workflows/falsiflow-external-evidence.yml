@@ -16,7 +16,7 @@ on:
         required: true
         type: string
       expected_version:
-        description: "Expected PyPI package version, for example 0.1.12. Defaults to pyproject.toml."
+        description: "Expected PyPI package version, for example 0.1.13. Defaults to pyproject.toml."
         required: false
         type: string
 

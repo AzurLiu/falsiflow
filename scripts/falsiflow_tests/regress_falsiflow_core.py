@@ -1575,7 +1575,10 @@ def assert_cli_contract() -> None:
         assert (launch_kit_dir / "launch_posts.md").exists()
         launch_posts = (launch_kit_dir / "launch_posts.md").read_text(encoding="utf-8")
         assert "Show HN" in launch_posts
-        assert "unsupported AI eval claims" in launch_posts
+        assert "unverifiable AI eval claims" in launch_posts
+        assert "falsiflow-downstream-ai-eval-demo" in launch_posts
+        assert "26711652990" in launch_posts
+        assert "26711669112" in launch_posts
         assert "Demo PR playbook" in launch_posts
         assert "Reply Bank" in launch_posts
         assert "Great Expectations" in launch_posts

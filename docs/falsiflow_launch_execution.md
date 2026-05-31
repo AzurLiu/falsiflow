@@ -11,6 +11,14 @@ follow-up checks. Use it after the current public release evidence is green.
 - Release: <https://github.com/AzurLiu/falsiflow/releases/latest>
 - External evidence workflow:
   <https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-external-evidence.yml>
+- Live downstream demo repo:
+  <https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo>
+- Live downstream PR:
+  <https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1>
+- Downstream blocked run:
+  <https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711652990>
+- Downstream ready run:
+  <https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711669112>
 - Live PR demo: <https://github.com/AzurLiu/falsiflow/pull/17>
 - Blocked PR run: <https://github.com/AzurLiu/falsiflow/actions/runs/26708459093>
 - Ready PR run: <https://github.com/AzurLiu/falsiflow/actions/runs/26708472653>
@@ -26,7 +34,7 @@ R&D, and vendor handoff claims blocked until the evidence package is complete.
 Title:
 
 ```text
-Show HN: Falsiflow - CI gates for AI eval and product metric claims
+Show HN: Falsiflow - stop unverifiable AI eval claims from passing CI
 ```
 
 URL:
@@ -51,8 +59,13 @@ The current release is intentionally small and boring:
 
 - pipx install falsiflow
 - GitHub Action support for downstream repos
-- real PR demo where placeholder AI eval evidence fails CI, then source-backed
-  evidence passes: https://github.com/AzurLiu/falsiflow/pull/17
+- real downstream PR where placeholder AI eval evidence fails CI, then
+  source-backed evidence passes:
+  https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1
+- blocked run:
+  https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711652990
+- ready run:
+  https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711669112
 - public demo: https://azurliu.github.io/falsiflow/
 - PyPI: https://pypi.org/project/falsiflow/
 - external evidence workflow proving demo, PyPI, pipx, and Windows smoke:
@@ -77,7 +90,7 @@ Falsiflow: fail CI when AI eval or product metric claims lack evidence
 Body:
 
 ```text
-I released Falsiflow 0.1.12, a Python CLI and GitHub Action for evidence-gating
+I released Falsiflow 0.1.13, a Python CLI and GitHub Action for evidence-gating
 claims before they ship.
 
 The problem it targets is not scoring itself. Teams already have benchmark
@@ -98,7 +111,9 @@ pipx install falsiflow
 falsiflow quickstart --template ai_claim_evaluation --out ai_claim_review --strict
 
 Demo: https://azurliu.github.io/falsiflow/
-Real PR demo: https://github.com/AzurLiu/falsiflow/pull/17
+Live downstream PR: https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1
+Blocked run: https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711652990
+Ready run: https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711669112
 Repo: https://github.com/AzurLiu/falsiflow
 PyPI: https://pypi.org/project/falsiflow/
 
@@ -113,7 +128,7 @@ becomes a claim that should fail a build if its evidence package is incomplete.
 LinkedIn:
 
 ```text
-I released Falsiflow 0.1.12.
+I released Falsiflow 0.1.13.
 
 It is a Python CLI and GitHub Action for one specific problem: claims like "the
 model improved", "activation lifted", or "the experiment is ready" should not
@@ -124,7 +139,9 @@ claims become claim_check_ready only after required rows, metadata, source
 files, audit reports, and bundle verification line up.
 
 Demo: https://azurliu.github.io/falsiflow/
-Real PR demo: https://github.com/AzurLiu/falsiflow/pull/17
+Live downstream PR: https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1
+Blocked run: https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711652990
+Ready run: https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711669112
 Repo: https://github.com/AzurLiu/falsiflow
 PyPI: https://pypi.org/project/falsiflow/
 ```
@@ -132,7 +149,7 @@ PyPI: https://pypi.org/project/falsiflow/
 X / short post:
 
 ```text
-Released Falsiflow 0.1.12.
+Released Falsiflow 0.1.13.
 
 It fails CI when AI eval, product metric, R&D, or vendor handoff claims do not
 have enough evidence to review.
@@ -140,7 +157,7 @@ have enough evidence to review.
 pipx install falsiflow
 
 Demo: https://azurliu.github.io/falsiflow/
-PR demo: https://github.com/AzurLiu/falsiflow/pull/17
+Downstream PR: https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1
 Repo: https://github.com/AzurLiu/falsiflow
 ```
 

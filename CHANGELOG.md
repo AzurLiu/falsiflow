@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.13
+
+- Updated the generated launch posts, GitHub repo profile handoff, and launch
+  execution copy to lead with the live downstream AI eval PR, blocked CI run,
+  and ready CI run.
+- Added release-check coverage so generated launch-kit posts keep the
+  downstream proof links and `claim_check_blocked` / `claim_check_ready`
+  narrative in future releases.
+
 ## 0.1.12
 
 - Tightened the README/PyPI first screen around the one-sentence value
