@@ -24,7 +24,13 @@ follow-up checks. Use it after the current public release evidence is green.
 - Live PR demo: <https://github.com/AzurLiu/falsiflow/pull/17>
 - Blocked PR run: <https://github.com/AzurLiu/falsiflow/actions/runs/26708459093>
 - Ready PR run: <https://github.com/AzurLiu/falsiflow/actions/runs/26708472653>
-- Launch baseline on 2026-05-31: 0 stars, 0 forks, 0 open issues.
+- v0.1.17 pre-public-post baseline on 2026-05-31 23:36 CST:
+  0 stars, 2 forks, 0 watchers, 8 total views, 1 unique view, 466 total clones,
+  283 unique clones, open issue #22 only, and open PR #17 only. Treat clone
+  counts as likely inflated by CI/release automation until public-post traffic
+  arrives.
+- v0.1.17 external evidence:
+  <https://github.com/AzurLiu/falsiflow/actions/runs/26716828570>
 
 ## One-Line Positioning
 
@@ -34,11 +40,12 @@ R&D, and vendor handoff claims blocked until the evidence package is complete.
 ## Public Issue Queue
 
 Before broad launch distribution, seed a small public queue from
-[falsiflow_public_issue_queue.md](falsiflow_public_issue_queue.md). Keep the
-first issues narrow: one downstream PR proof clip, one local LLM eval note, one
-RAG template path, one product-metric downstream smoke example, and one launch
-metrics review. Each issue should include labels and a verification command or
-public URL.
+[falsiflow_public_issue_queue.md](falsiflow_public_issue_queue.md). The current
+pre-launch seed queue is complete; the only open launch issue should be
+[issue #22](https://github.com/AzurLiu/falsiflow/issues/22), which records the
+24-hour post-public-post metrics review. New public issues after launch should
+come from repeated external feedback, not from internal polish already completed
+before distribution.
 
 ## Show HN
 

@@ -2923,6 +2923,8 @@ def assert_cli_contract() -> None:
             "publish_kit_docs",
             "launch_kit_docs",
             "launch_metrics_docs",
+            "launch_execution_exists",
+            "launch_execution_docs",
             "external_check_docs",
             "readme_github_action_docs",
             "github_action_examples_rag_eval_snippet",
@@ -3013,6 +3015,7 @@ def assert_cli_contract() -> None:
         assert package_check_map["package_downstream_pr_proof_strip_matches_docs"]["status"] == "passed"
         assert package_check_map["readme_downstream_pr_proof_strip_asset"]["status"] == "passed"
         assert package_check_map["readme_pypi_renderable_image_urls"]["status"] == "passed"
+        assert package_check_map["launch_execution_docs"]["status"] == "passed"
         assert package_check_map["github_action_examples_rag_eval_snippet"]["status"] == "passed"
         assert package_check_map["downstream_ai_eval_smoke_fixture"]["status"] == "passed"
         assert package_check_map["downstream_product_metric_smoke_fixture"]["status"] == "passed"
