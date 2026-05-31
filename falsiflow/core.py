@@ -2326,13 +2326,14 @@ def external_evidence_json_schema() -> dict[str, Any]:
             "instructions": {"type": "string"},
             "checks": {
                 "type": "object",
-                "required": ["public_repo_url", "public_demo_url", "pypi_package_url", "pipx_smoke", "pipx_public_package", "mcp_public_package_selftest", "windows_powershell"],
+                "required": ["public_repo_url", "public_demo_url", "pypi_package_url", "pipx_smoke", "pipx_public_package", "public_package_first_run", "mcp_public_package_selftest", "windows_powershell"],
                 "properties": {
                     "public_repo_url": evidence_record,
                     "public_demo_url": evidence_record,
                     "pypi_package_url": evidence_record,
                     "pipx_smoke": evidence_record,
                     "pipx_public_package": evidence_record,
+                    "public_package_first_run": evidence_record,
                     "mcp_public_package_selftest": evidence_record,
                     "windows_powershell": evidence_record,
                 },

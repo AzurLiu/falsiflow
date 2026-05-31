@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.22
+
+- Required the public external-evidence workflow to prove the published PyPI
+  package README first-run path: `quickstart --template ai_claim_evaluation`
+  followed by strict `doctor`.
+- Added `public_package_first_run` to the external evidence schema,
+  external-check gate, release evidence ledger, workflow artifacts,
+  release-check coverage, and README/release docs.
+
 ## 0.1.21
 
 - Added a reusable GitHub Action `evidence-import` mode so downstream CI can
