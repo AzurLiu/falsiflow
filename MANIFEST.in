@@ -31,6 +31,7 @@ include docs/falsiflow_template_authoring.md
 include docs/falsiflow_troubleshooting.md
 recursive-include docs/launch_articles *.md
 recursive-include docs/assets *.svg
+recursive-include docs/assets *.png
 include docs/assets/falsiflow_30_second_demo.svg
 recursive-include .github/workflows *.yml
 recursive-include .github/ISSUE_TEMPLATE *.yml

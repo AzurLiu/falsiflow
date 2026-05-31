@@ -1,13 +1,31 @@
 # Falsiflow PyPI Trusted Publishing
 
-This runbook records the account-bound PyPI setup needed before Falsiflow can be
-called externally ready.
+This runbook records the account-bound PyPI setup and the successful v0.1.2
+trusted-publishing recovery for Falsiflow.
 
-## Current Blocker
+## Current Status
 
-The `Falsiflow Publish` workflow builds and checks the distributions, but PyPI
-rejected the trusted-publishing token exchange with `invalid-publisher` because
-no PyPI trusted publisher matches the GitHub OIDC claims.
+Completed on 2026-05-31:
+
+- PyPI project: <https://pypi.org/project/falsiflow/>
+- PyPI JSON API: <https://pypi.org/pypi/falsiflow/json>
+- Published version: `0.1.2`
+- Successful release-triggered publish run:
+  <https://github.com/AzurLiu/falsiflow/actions/runs/26704442265>
+- Successful external evidence run:
+  <https://github.com/AzurLiu/falsiflow/actions/runs/26705116249>
+- `external-check --strict` status: `external_ready`
+
+The original failure was resolved by adding a PyPI account-level pending
+publisher for project `falsiflow`. On first successful publish, PyPI converted
+that pending publisher into the project's trusted publisher.
+
+## Historical Blocker
+
+Before the publisher was registered, the `Falsiflow Publish` workflow built and
+checked the distributions, but PyPI rejected the trusted-publishing token
+exchange with `invalid-publisher` because no PyPI trusted publisher matched the
+GitHub OIDC claims.
 
 Observed claim from the failed `v0.1.2` release run:
 
@@ -17,21 +35,24 @@ Observed claim from the failed `v0.1.2` release run:
 - `ref`: `refs/tags/v0.1.2`
 - `environment`: `pypi`
 
-Evidence:
+Failure evidence:
 
 - Release: <https://github.com/AzurLiu/falsiflow/releases/tag/v0.1.2>
-- Failed release-triggered publish run:
+- Original failed release-triggered publish run:
   <https://github.com/AzurLiu/falsiflow/actions/runs/26704442265>
 - Successful build job in that run: distribution build, `twine check`, and
   `release-check`.
 - Failed job: `publish-pypi`, step `Publish to PyPI`, with
   `invalid-publisher`.
+- The same run later succeeded after rerunning the failed job with the PyPI
+  pending publisher configured.
 
-## Required PyPI Project Setup
+## Required PyPI Project Setup For Future Releases
 
-Because `https://pypi.org/pypi/falsiflow/json` currently returns 404, use the
-PyPI account-level pending publisher path unless the project has appeared since
-this runbook was last checked.
+For new projects, use the PyPI account-level pending publisher path until the
+project exists. For the existing `falsiflow` project, open the project
+management page, choose **Publishing**, and verify or repair the existing
+trusted publisher instead.
 
 For a new PyPI project:
 
@@ -39,10 +60,10 @@ For a new PyPI project:
 2. Open the account sidebar's **Publishing** page.
 3. Add a new **pending publisher** for GitHub Actions.
 4. Fill in the exact fields below.
-5. Save the pending publisher, then rerun the failed `publish-pypi` job from
-   the `v0.1.2` release workflow soon after saving it. A pending publisher does
-   not reserve the project name; it is converted into a normal trusted publisher
-   only when the first publish succeeds.
+5. Save the pending publisher, then publish or rerun the release workflow soon
+   after saving it. A pending publisher does not reserve the project name; it is
+   converted into a normal trusted publisher only when the first publish
+   succeeds.
 
 If the PyPI project already exists, open the project management page, choose
 **Publishing**, and add the same GitHub trusted publisher there instead of using
@@ -66,22 +87,22 @@ References:
   <https://docs.pypi.org/trusted-publishers/using-a-publisher/>
 
 The `v0.1.2` GitHub release is already published and points at commit
-`c7efa3301e32e04df86e1828bcbec7158e2b65ba`. After saving the publisher, rerun
-the failed release workflow instead of creating a new release tag:
+`c7efa3301e32e04df86e1828bcbec7158e2b65ba`. The recovery used this rerun path:
 
 ```bash
 gh run rerun 26704442265 --repo AzurLiu/falsiflow --failed
 gh run watch 26704442265 --repo AzurLiu/falsiflow --exit-status
 ```
 
-If a new code change is needed before PyPI publication, publish a new version
+If a new code change is needed after PyPI publication, publish a new version
 instead of replacing the already-published `v0.1.2` artifacts.
 
 ## Verification
 
-The release is not externally ready until all of these are true:
+The v0.1.2 verification is complete. For future releases, do not call the
+release externally ready until all of these are true:
 
-1. The PyPI pending publisher or existing-project publisher is saved with the
+1. The PyPI pending publisher or existing-project publisher exists with the
    exact fields above.
 2. The release-triggered `Falsiflow Publish` workflow for `v0.1.2` has a successful
    `publish-pypi` job. A workflow_dispatch rehearsal is not enough because that
@@ -107,7 +128,7 @@ gh workflow run "Falsiflow External Evidence" \
   --field expected_version="0.1.2"
 ```
 
-If the release-triggered publish fails again with `invalid-publisher`, compare
-the failed job's OIDC claims against the five fields above. The most likely
+If a release-triggered publish fails again with `invalid-publisher`, compare the
+failed job's OIDC claims against the five fields above. The most likely
 mismatches are the workflow filename, repository owner casing, or the GitHub
 Actions environment name.

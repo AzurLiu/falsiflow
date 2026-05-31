@@ -7,8 +7,9 @@ they ship.
 [![Falsiflow Cross Platform](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-cross-platform.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-cross-platform.yml)
 [![Falsiflow Scorecard](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-scorecard.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-scorecard.yml)
 
-Public demo: <https://azurliu.github.io/falsiflow/>. PyPI trusted publishing is
-still tracked in #6.
+Public demo: <https://azurliu.github.io/falsiflow/>. PyPI package:
+<https://pypi.org/project/falsiflow/>. PyPI trusted publishing: completed.
+External evidence: <https://github.com/AzurLiu/falsiflow/actions/runs/26705116249>.
 
 ![Falsiflow evidence-gated claim workflow](docs/assets/falsiflow_proof_strip.svg)
 
@@ -21,7 +22,14 @@ acceptance rules. A claim only becomes ready when the project config is valid,
 the evidence CSV is structurally sound, required metadata and raw-source files
 are present, and every configured gate passes.
 
-Run the AI-claim gate from source:
+Run the AI-claim gate from PyPI:
+
+```bash
+pipx install falsiflow
+falsiflow quickstart --template ai_claim_evaluation --out falsiflow_ai_demo --strict
+```
+
+Or run from source while contributing:
 
 ```bash
 git clone https://github.com/AzurLiu/falsiflow.git
@@ -37,8 +45,8 @@ reviewable JSON, Markdown, source manifest, dashboard, and bundle artifacts;
 placeholder evidence returns a blocked status and next repair action.
 
 Drop the same gate into another repository with the reusable GitHub Action. The
-action installs from its versioned checkout by default, so downstream CI does
-not depend on PyPI availability:
+action installs from its versioned checkout by default, so downstream CI can use
+the action even when a team wants to avoid public package index dependency:
 
 ```yaml
 - uses: AzurLiu/falsiflow@main
@@ -48,10 +56,10 @@ not depend on PyPI availability:
     strict: "true"
 ```
 
-Current public status: hosted demo, CI, cross-platform smoke tests, Scorecard,
-and source installs are live. PyPI trusted publishing is tracked in
-[#6](https://github.com/AzurLiu/falsiflow/issues/6); until that issue is closed,
-use source installs or the action's default self-install path.
+Current public status: hosted demo, PyPI, CI, cross-platform smoke tests,
+Scorecard, checkout pipx, public-package pipx, Windows PowerShell smoke, and
+source installs are live. `Falsiflow External Evidence` reports
+`external_ready` for v0.1.2.
 
 ## Fast Paths
 
@@ -246,7 +254,7 @@ jobs:
 The same `action.yml` supports `template-check`, `casebook-check`,
 `release-check`, `adoption-check`, `quickstart`, and `external-check` modes.
 The default `install-command` installs from the versioned action checkout via
-`GITHUB_ACTION_PATH`, which makes the action usable before PyPI publication.
+`GITHUB_ACTION_PATH`, which keeps the action independent from PyPI availability.
 Override `install-command` only when you want to install from PyPI, a fork, or a
 repository-local editable checkout.
 For copy-paste AI eval workflows, artifact uploads, and install override
@@ -262,6 +270,15 @@ root `netlify.toml`, and a GitHub Pages workflow. The current public demo is
 Vercel URLs as alternate public demo candidates until `Falsiflow External
 Evidence` fetches the hosted page and `external-check --strict` reports
 `external_ready`. See `docs/static_hosting.md`.
+
+Public demo screenshots captured from the live Pages demo after v0.1.2 external
+evidence passed:
+
+| Launchpad | Ready report |
+| --- | --- |
+| ![Falsiflow public demo launchpad](docs/assets/falsiflow_public_demo_launchpad.png) | ![Falsiflow public demo ready report](docs/assets/falsiflow_public_demo_report.png) |
+| Claim dashboard | Workbench |
+| ![Falsiflow public demo claim dashboard](docs/assets/falsiflow_public_demo_dashboard.png) | ![Falsiflow public demo workbench](docs/assets/falsiflow_public_demo_workbench.png) |
 
 To prepare a publish-ready static demo directory with hosting metadata:
 
@@ -315,8 +332,8 @@ public posting waits for the demo URL, PyPI status, release evidence, and
 responsible-use boundary. The nested public release rehearsal keeps the last-mile
 publish sequence reviewable before any announcement is posted. It reports
 `launch_kit_ready` when the local launch materials and publish handoff are
-ready, while preserving `external_blocked` until hosted demo, pipx, Windows,
-PyPI, and other account-bound evidence pass `external-check --strict`.
+ready, and the v0.1.2 public evidence workflow now proves hosted demo, pipx,
+Windows, PyPI, and other account-bound evidence with `external_ready`.
 After a launch window, use `launch_metrics.json` as the structured source and
 `launch_metrics.md` as the weekly maintainer review checklist. The checklist
 separates traction signals from local/private validation and turns repeated
@@ -359,9 +376,9 @@ structured `FALSIFLOW_EXTERNAL_EVIDENCE` file, or with
 `FALSIFLOW_PIPX_PUBLIC_VALIDATED=1`, and `FALSIFLOW_WINDOWS_VALIDATED=1` for
 compatibility.
 
-If PyPI trusted publishing returns `invalid-publisher`, configure the PyPI
-publisher with owner `AzurLiu`, repository `falsiflow`, workflow
-`falsiflow-publish.yml`, and environment `pypi`. The full runbook is
+If a future PyPI trusted-publishing run returns `invalid-publisher`, configure
+or repair the PyPI publisher with owner `AzurLiu`, repository `falsiflow`,
+workflow `falsiflow-publish.yml`, and environment `pypi`. The recovery record is
 [docs/falsiflow_pypi_trusted_publishing.md](docs/falsiflow_pypi_trusted_publishing.md).
 
 If you prefer to write static files without starting a localhost server:

@@ -27,8 +27,8 @@ should say what is still pending instead of implying full external readiness.
 - README headline: CI gates for claims before they ship.
 - Public demo: a ready/blocked proof surface for AI eval, product metric, R&D,
   and vendor handoff claims.
-- One command path: `pipx install falsiflow` after PyPI, or source install
-  before PyPI.
+- One command path: `pipx install falsiflow`, with source installs kept for
+  contributors.
 - Reusable GitHub Action snippet for downstream repositories.
 - Comparison boundary: Falsiflow complements Great Expectations, Evidently,
   Deepchecks, MLflow, and plain GitHub Actions rather than replacing them.
@@ -48,7 +48,7 @@ The public demo and launch posts should repeat the same compact story:
 
 Day 0:
 
-- Publish v0.1.2 after PyPI trusted publishing and external evidence pass.
+- Use the v0.1.2 PyPI and external-evidence proof as the launch trust baseline.
 - Update the release body with the demo URL, PyPI URL, CI runs, publish run,
   external-evidence run, and responsible-use boundary.
 - Post a concise Show HN or equivalent launch thread.
@@ -96,8 +96,8 @@ Day 7 and Day 14:
 
 ## Stop Conditions
 
-- Do not publish a release announcement if PyPI still returns 404 for the
-  package JSON API.
+- Do not publish a release announcement if PyPI returns 404 for the package JSON
+  API.
 - Do not call the project externally ready until `external-check --strict`
   reports `external_ready`.
 - Do not frame stars as quality proof. Track stars as distribution feedback,
