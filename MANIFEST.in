@@ -13,6 +13,8 @@ include Makefile
 include scripts/install_local.sh
 include scripts/install_local.ps1
 include examples/README.md
+recursive-include examples/downstream_ai_eval_smoke *
+recursive-include examples/downstream_ai_eval_smoke/.github/workflows *.yml
 include docs/falsiflow_adoption_priorities.md
 include docs/falsiflow_1k_launch_plan.md
 include docs/falsiflow_architecture.md

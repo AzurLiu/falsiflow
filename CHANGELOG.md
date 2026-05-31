@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Added a maintained `examples/downstream_ai_eval_smoke` fixture that can be
+  copied into a clean repository to show a placeholder AI eval claim failing CI
+  before source-backed evidence makes the same workflow pass.
+
 ## 0.1.10
 
 - Moved the secondary 30-second CLI visual below the install/status block so the

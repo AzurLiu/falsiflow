@@ -1,0 +1,34 @@
+name: Falsiflow Downstream AI Eval Smoke
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  claim-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Run Falsiflow claim gate
+        id: falsiflow
+        uses: AzurLiu/falsiflow@v0.1.10
+        with:
+          mode: claim-check
+          project-dir: falsiflow_ai_eval
+          evidence: falsiflow_ai_eval/evidence.csv
+          out-dir: data/falsiflow/downstream_smoke
+          strict: "true"
+
+      - name: Upload Falsiflow reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: falsiflow-downstream-ai-eval-smoke
+          path: |
+            ${{ steps.falsiflow.outputs.summary-json }}
+            ${{ steps.falsiflow.outputs.summary-md }}
+            data/falsiflow/downstream_smoke/evidence_bundle.zip
+            data/falsiflow/downstream_smoke/evidence_bundle_verify.md

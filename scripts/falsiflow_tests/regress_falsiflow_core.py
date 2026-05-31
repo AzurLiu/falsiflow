@@ -2908,6 +2908,8 @@ def assert_cli_contract() -> None:
             "launch_metrics_docs",
             "external_check_docs",
             "readme_github_action_docs",
+            "downstream_ai_eval_smoke_fixture_exists",
+            "downstream_ai_eval_smoke_fixture",
             "workbench_docs",
             "discover_docs",
             "public_interface_docs",
@@ -2985,6 +2987,7 @@ def assert_cli_contract() -> None:
         assert package_check_map["github_external_evidence_workflow"]["status"] == "passed"
         assert package_check_map["pypi_trusted_publishing_docs"]["status"] == "passed"
         assert package_check_map["readme_github_action_docs"]["status"] == "passed"
+        assert package_check_map["downstream_ai_eval_smoke_fixture"]["status"] == "passed"
         action_text = (ROOT / "action.yml").read_text(encoding="utf-8")
         assert "using: composite" in action_text
         assert "actions/setup-python@v6" in action_text

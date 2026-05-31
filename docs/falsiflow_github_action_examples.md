@@ -11,6 +11,11 @@ repository-local editable checkout.
 Use this recipe when the downstream repository does not contain Falsiflow yet
 and you want a copy-paste smoke test before wiring it into real release checks.
 
+The maintained fixture lives in
+[`examples/downstream_ai_eval_smoke`](../examples/downstream_ai_eval_smoke).
+Copy that directory into a clean repository when you want the smallest
+blocked-then-ready PR story without hand-assembling files from prose.
+
 Target layout:
 
 ```text

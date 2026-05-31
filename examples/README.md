@@ -64,6 +64,21 @@ The gallery shows the neural-materials, RFQ vendor evidence,
 biointerface-coatings, and wetware-support-hardware starters side by side before
 you choose a template to copy.
 
+## Downstream AI Eval Smoke
+
+For a copy-paste repository fixture that starts blocked in CI and turns ready
+after source-backed eval evidence is added, use:
+
+```bash
+cp -R examples/downstream_ai_eval_smoke/. /tmp/falsiflow_downstream_repo/
+```
+
+The fixture includes `.github/workflows/falsiflow-ai-eval.yml` and the
+`falsiflow_ai_eval/` project files expected by the workflow. Its initial
+`evidence.csv` is intentionally the placeholder demo, so a downstream PR should
+show `claim_check_blocked` before the repair commit copies
+`evidence_pass_demo.csv` over `evidence.csv`.
+
 The sections below show the same flow step by step.
 
 ## Template Authoring Check

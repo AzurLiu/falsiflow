@@ -30,6 +30,8 @@ should say what is still pending instead of implying full external readiness.
 - One command path: `pipx install falsiflow`, with source installs kept for
   contributors.
 - Reusable GitHub Action snippet for downstream repositories.
+- Maintained downstream smoke fixture:
+  `examples/downstream_ai_eval_smoke`.
 - Comparison boundary: Falsiflow complements Great Expectations, Evidently,
   Deepchecks, MLflow, and plain GitHub Actions rather than replacing them.
 
@@ -56,6 +58,7 @@ Day 0:
 - Post a concise Show HN or equivalent launch thread.
 - Post the longer launch note in one MLOps or evaluation community.
 - Share the GitHub Action snippet with a copy-paste downstream smoke example.
+  Use `examples/downstream_ai_eval_smoke` as the maintained fixture.
 
 Day 1:
 
