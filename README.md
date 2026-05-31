@@ -7,7 +7,9 @@ they ship.
 [![Falsiflow Cross Platform](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-cross-platform.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-cross-platform.yml)
 [![Falsiflow Scorecard](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-scorecard.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-scorecard.yml)
 
-Public demo: <https://falsiflow-demo.netlify.app>
+Public demo source: `docs/public_demo`. Hosted demo URLs must pass
+`Falsiflow External Evidence` before public launch. PyPI trusted publishing is
+still tracked in #6.
 
 ![Falsiflow evidence-gated claim workflow](docs/assets/falsiflow_proof_strip.svg)
 
@@ -252,11 +254,11 @@ For a public demo PR script that first blocks placeholder evidence and then
 turns green with source-backed evidence, see
 [docs/falsiflow_demo_pr_playbook.md](docs/falsiflow_demo_pr_playbook.md).
 
-This repository also includes a prebuilt public demo at `docs/public_demo` and a
-root `netlify.toml`, so Netlify publishes `docs` and opens the demo without
-GitHub Pages. The current public demo is <https://falsiflow-demo.netlify.app>.
-For Cloudflare Pages or Vercel, use `docs` as the output directory and leave the
-build command empty. See `docs/static_hosting.md`.
+This repository also includes a prebuilt public demo at `docs/public_demo`, a
+root `netlify.toml`, and a GitHub Pages workflow. Treat Netlify, GitHub Pages,
+Cloudflare Pages, or Vercel URLs as public demo candidates until
+`Falsiflow External Evidence` fetches the hosted page and
+`external-check --strict` reports `external_ready`. See `docs/static_hosting.md`.
 
 To prepare a publish-ready static demo directory with hosting metadata:
 
