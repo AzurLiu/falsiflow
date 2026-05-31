@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.14
+
+- Added a local LLM eval quickstart for turning local model outputs into
+  Falsiflow evidence rows without sending prompts, outputs, or raw artifacts to
+  a hosted service.
+- Added a shareable downstream PR proof strip that leads the README, launch
+  article, demo PR playbook, and launch plan with the real blocked-to-ready AI
+  eval PR story.
+- Added a copy-paste downstream product-metric smoke fixture that blocks
+  placeholder launch evidence and passes only after source-backed metric rows
+  are provided.
+- Promoted the bundled RAG quality gate acceptance path by supporting
+  `falsiflow template-check --strict` and covering it in release checks.
+
 ## 0.1.13
 
 - Updated the generated launch posts, GitHub repo profile handoff, and launch

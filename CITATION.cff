@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If Falsiflow helps your research or tooling, cite the software and the version you used."
 title: "Falsiflow"
 type: software
-version: "0.1.13"
+version: "0.1.14"
 abstract: "Evidence-gated CLI and CI action for AI eval, product-metric, and R&D claims."
 authors:
   - name: "Falsiflow contributors"

@@ -21,7 +21,7 @@ source-backed evidence -> claim_check_ready
 GitHub Action:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.13
+- uses: AzurLiu/falsiflow@v0.1.14
   with:
     mode: claim-check
     project-dir: falsiflow_ai_eval
@@ -279,7 +279,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: AzurLiu/falsiflow@v0.1.13
+      - uses: AzurLiu/falsiflow@v0.1.14
         with:
           mode: claim-check
           project-dir: my_falsiflow_project
