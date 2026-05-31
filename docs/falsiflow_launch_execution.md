@@ -1,0 +1,201 @@
+# Falsiflow Launch Execution
+
+This page turns the 1k-star launch plan into concrete copy, channels, and
+follow-up checks. Use it after the v0.1.2 public release evidence is green.
+
+## Launch State
+
+- Repository: <https://github.com/AzurLiu/falsiflow>
+- Public demo: <https://azurliu.github.io/falsiflow/>
+- PyPI: <https://pypi.org/project/falsiflow/>
+- Release: <https://github.com/AzurLiu/falsiflow/releases/tag/v0.1.2>
+- External evidence: <https://github.com/AzurLiu/falsiflow/actions/runs/26705116249>
+- Launch baseline on 2026-05-31: 0 stars, 0 forks, 0 open issues.
+
+## One-Line Positioning
+
+Falsiflow is a Python CLI and GitHub Action that keeps AI eval, product metric,
+R&D, and vendor handoff claims blocked until the evidence package is complete.
+
+## Show HN
+
+Title:
+
+```text
+Show HN: Falsiflow - CI gates for AI eval and product metric claims
+```
+
+URL:
+
+```text
+https://github.com/AzurLiu/falsiflow
+```
+
+First comment:
+
+```text
+I built Falsiflow for the moment a team writes "the model improved",
+"activation went up", or "this experiment is ready" and the sentence starts
+moving toward a release note.
+
+Falsiflow turns that sentence into a CI gate. A placeholder claim stays
+claim_check_blocked. A source-backed claim can become claim_check_ready only
+when required rows, metadata, source files, audit reports, and bundle
+verification line up.
+
+The v0.1.2 release is intentionally small and boring:
+
+- pipx install falsiflow
+- GitHub Action support for downstream repos
+- public demo: https://azurliu.github.io/falsiflow/
+- PyPI: https://pypi.org/project/falsiflow/
+- external evidence workflow proving demo, PyPI, pipx, and Windows smoke:
+  https://github.com/AzurLiu/falsiflow/actions/runs/26705116249
+
+Boundary: claim_ready does not mean the model is safe, the product should ship,
+or the science is true. It means the configured evidence package passed and is
+ready for human review.
+
+I would especially like feedback on the evidence contract, the GitHub Action
+shape, and whether the blocked/ready demo explains the idea quickly enough.
+```
+
+## MLOps Community Post
+
+Title:
+
+```text
+Falsiflow: fail CI when AI eval or product metric claims lack evidence
+```
+
+Body:
+
+```text
+I released Falsiflow 0.1.2, a Python CLI and GitHub Action for evidence-gating
+claims before they ship.
+
+The problem it targets is not scoring itself. Teams already have benchmark
+tools, dashboards, notebooks, and eval harnesses. The weak point is when a score
+becomes a claim in a PR, release note, launch doc, or vendor handoff.
+
+Falsiflow makes that claim reviewable:
+
+- project.json declares the claim, gates, thresholds, and source policy
+- evidence CSV rows record measured values and required metadata
+- source manifests prove raw files exist
+- audit reports explain ready or blocked status
+- bundles let humans inspect the same artifacts CI checked
+
+Install:
+
+pipx install falsiflow
+falsiflow quickstart --template ai_claim_evaluation --out ai_claim_review --strict
+
+Demo: https://azurliu.github.io/falsiflow/
+Repo: https://github.com/AzurLiu/falsiflow
+PyPI: https://pypi.org/project/falsiflow/
+
+I am looking for feedback on where this should sit alongside Great Expectations,
+Evidently, Deepchecks, MLflow, and plain GitHub Actions. My current framing is:
+use those tools for measurement and pipelines; use Falsiflow when a measurement
+becomes a claim that should fail a build if its evidence package is incomplete.
+```
+
+## Short Social Posts
+
+LinkedIn:
+
+```text
+I released Falsiflow 0.1.2.
+
+It is a Python CLI and GitHub Action for one specific problem: claims like "the
+model improved", "activation lifted", or "the experiment is ready" should not
+ship unless the evidence package is complete.
+
+Falsiflow keeps placeholder claims claim_check_blocked and lets source-backed
+claims become claim_check_ready only after required rows, metadata, source
+files, audit reports, and bundle verification line up.
+
+Demo: https://azurliu.github.io/falsiflow/
+Repo: https://github.com/AzurLiu/falsiflow
+PyPI: https://pypi.org/project/falsiflow/
+```
+
+X / short post:
+
+```text
+Released Falsiflow 0.1.2.
+
+It fails CI when AI eval, product metric, R&D, or vendor handoff claims do not
+have enough evidence to review.
+
+pipx install falsiflow
+
+Demo: https://azurliu.github.io/falsiflow/
+Repo: https://github.com/AzurLiu/falsiflow
+```
+
+## Awesome-List Candidates
+
+Submit only after the first public feedback pass, and open small PRs with a
+neutral one-line description.
+
+- Awesome AI Eval: <https://github.com/Vvkmnn/awesome-ai-eval>
+- Awesome MLOps: <https://github.com/kelvins/awesome-mlops>
+- Awesome data quality: <https://github.com/MigoXLab/awesome-data-quality>
+- Awesome Actions: <https://github.com/sdras/awesome-actions>
+
+Suggested entry:
+
+```markdown
+- [Falsiflow](https://github.com/AzurLiu/falsiflow) - Python CLI and GitHub
+  Action that gates AI eval, product metric, R&D, and vendor handoff claims on
+  source-backed evidence before they ship.
+```
+
+## Reply Bank
+
+What is this replacing?
+
+```text
+It is not trying to replace Great Expectations, Evidently, Deepchecks, MLflow,
+or GitHub Actions. Those tools are useful for checks, monitoring, evals, and
+pipelines. Falsiflow sits at the promotion step: when a result becomes a claim,
+it asks whether the evidence package is complete enough to review.
+```
+
+Does `claim_ready` mean the claim is true?
+
+```text
+No. `claim_ready` means the configured gate passed and the evidence package is
+complete enough for review. It does not prove scientific truth, safety,
+regulatory compliance, or product impact.
+```
+
+Why a CSV instead of a database?
+
+```text
+The first release optimizes for boring reviewability. CSV, JSON, Markdown, HTML,
+and zip bundles make it easy to inspect artifacts in CI and in a pull request.
+Connectors can come later if repeated users need them.
+```
+
+## Metrics Review Windows
+
+Record snapshots at 24 hours, 72 hours, 7 days, and 14 days after the first
+public post.
+
+| Window | Signals | Action |
+| --- | --- | --- |
+| 24 hours | stars, forks, install failures, repeated questions | Fix README/demo confusion first. |
+| 72 hours | issue quality, community replies, PyPI install path, demo clicks | Convert repeated confusion into issues. |
+| 7 days | stars, forks, clone/download trend, first external PRs | Publish the first article and one docs improvement. |
+| 14 days | contribution activity, repeated use cases, awesome-list outcomes | Add or refine one starter template only if demand is concrete. |
+
+## Do Not Overclaim
+
+- Do not call stars a quality signal.
+- Do not imply Falsiflow proves a model, launch, or experiment is correct.
+- Do not post the same copy into multiple communities without adapting it.
+- Do not submit to awesome lists until the README, PyPI, demo, and evidence
+  links stay stable after the first feedback pass.

@@ -1,7 +1,10 @@
 # Falsiflow
 
-CI gates for claims: prove AI eval, product metric, and R&D results before
-they ship.
+Stop unverifiable AI eval, product metric, and R&D claims from passing CI.
+
+Falsiflow blocks "the model improved" until the repo provides pinned eval
+provenance, source-backed evidence rows, raw files, thresholds, and a review
+bundle.
 
 [![Falsiflow](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow.yml)
 [![Falsiflow Cross Platform](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-cross-platform.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-cross-platform.yml)
@@ -13,20 +16,40 @@ External evidence: <https://github.com/AzurLiu/falsiflow/actions/runs/2670511624
 
 ![Falsiflow evidence-gated claim workflow](docs/assets/falsiflow_proof_strip.svg)
 
+30-second demo:
+
 ![Falsiflow 30-second ready vs blocked demo](docs/assets/falsiflow_30_second_demo.svg)
 
-Falsiflow is for the moment a team says "the model improved," "the launch
-metric passed," or "this experiment is ready." It turns that claim into explicit
-gates, required evidence rows, source-file policy, derived metrics, and
-acceptance rules. A claim only becomes ready when the project config is valid,
-the evidence CSV is structurally sound, required metadata and raw-source files
-are present, and every configured gate passes.
-
-Run the AI-claim gate from PyPI:
+## 30 Seconds
 
 ```bash
 pipx install falsiflow
 falsiflow quickstart --template ai_claim_evaluation --out falsiflow_ai_demo --strict
+falsiflow doctor --project-dir falsiflow_ai_demo --strict
+```
+
+Expected status:
+
+```text
+quickstart        -> quickstart_ready
+placeholder evidence  -> claim_check_blocked
+source-backed evidence -> claim_check_ready
+```
+
+Real PR demo:
+[docs/falsiflow_demo_pr_playbook.md](docs/falsiflow_demo_pr_playbook.md)
+shows a public demo PR where placeholder evidence fails CI, then
+source-backed evidence makes the same AI/RAG eval claim pass.
+
+Drop the same gate into another repository with the GitHub Action:
+
+```yaml
+- uses: AzurLiu/falsiflow@main
+  with:
+    mode: claim-check
+    project-dir: falsiflow_ai_eval
+    evidence: falsiflow_ai_eval/evidence.csv
+    strict: "true"
 ```
 
 Or run from source while contributing:
@@ -36,24 +59,6 @@ git clone https://github.com/AzurLiu/falsiflow.git
 cd falsiflow
 python3 -m pip install -e .
 falsiflow quickstart --template ai_claim_evaluation --out falsiflow_ai_demo --strict
-```
-
-Expected result: `quickstart_ready` with a nested `claim_check_ready` report.
-Placeholder evidence remains `claim_check_blocked`, which is the point.
-The strip above shows the same 30-second demo: positive evidence produces
-reviewable JSON, Markdown, source manifest, dashboard, and bundle artifacts;
-placeholder evidence returns a blocked status and next repair action.
-
-Drop the same gate into another repository with the reusable GitHub Action. The
-action installs from its versioned checkout by default, so downstream CI can use
-the action even when a team wants to avoid public package index dependency:
-
-```yaml
-- uses: AzurLiu/falsiflow@main
-  with:
-    mode: claim-check
-    project-dir: my_falsiflow_project
-    strict: "true"
 ```
 
 Current public status: hosted demo, PyPI, CI, cross-platform smoke tests,
@@ -86,6 +91,9 @@ source installs are live. `Falsiflow External Evidence` reports
   `.github/ISSUE_TEMPLATE/feature_request.yml`.
 - Request or review evidence-gate template work with
   `.github/ISSUE_TEMPLATE/claim_gate_request.yml`.
+- Use [docs/falsiflow_launch_execution.md](docs/falsiflow_launch_execution.md)
+  for launch copy, channel-specific posts, awesome-list candidates, and metrics
+  review windows.
 - Open pull requests with `.github/PULL_REQUEST_TEMPLATE.md`, including the
   verification commands and responsible-use boundary.
 - Read [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md), [SUPPORT.md](SUPPORT.md),

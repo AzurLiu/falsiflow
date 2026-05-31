@@ -1,60 +1,73 @@
 # Falsiflow Demo PR Playbook
 
-Use this playbook to create the public demo reviewers understand fastest: one
-pull request is blocked because the AI-eval claim is backed only by placeholder
-evidence, then the same pull request turns green after the evidence is replaced
-with source-backed measurements.
+This is the launch demo reviewers understand fastest: a pull request says a
+model or RAG system improved, CI blocks it because the eval evidence is only a
+placeholder, then the same PR turns green after the author adds source-backed
+eval evidence.
 
-The goal is not to prove a real model is good. The goal is to show that
-Falsiflow keeps the sentence "the model improved" out of release notes until
-the claim package is reviewable by CI and humans.
+The point is not to prove the model is good. The point is to show that
+Falsiflow keeps "the model improved" out of release notes until the claim
+package is reviewable by CI and humans.
+
+## The Story
+
+Use this PR narrative:
+
+```text
+PR title: Claim candidate_model is ready for public eval comparison
+
+The author wants to publish:
+"candidate_model improves answer quality over baseline_model on the pinned
+claims_eval_v2026_05_26 task set."
+```
+
+For a RAG audience, use the same evidence gate and call the claim:
+
+```text
+"the RAG assistant has better grounded-answer quality than the pinned baseline."
+```
+
+The gate still asks for the same things developers expect to see before
+trusting the claim: dataset or task-set version, prompt-set hash, model and
+baseline versions, evaluator version, raw outputs, item count, safety or
+hallucination metrics, script hash, and a regression CI run.
+
+## What The Reviewer Sees
+
+| PR Moment | Evidence State | CI Result | Reviewer Takeaway |
+| --- | --- | --- | --- |
+| First commit | `evidence.csv` contains `dataset_pending` and missing rows. | `claim_check_blocked`; strict CI fails. | A benchmark headline cannot pass as evidence. |
+| Second commit | `evidence.csv` is replaced with source-backed eval rows. | `claim_check_ready`; strict CI passes. | The claim now has pinned versions, thresholds, raw sources, and a bundle to inspect. |
+
+Expected blocked summary:
+
+```text
+status: claim_check_blocked
+blocking_stage: gate_evidence
+audit_status: claim_blocked
+source_status: sources_ready
+verification_status: bundle_blocked
+```
+
+Expected ready summary:
+
+```text
+status: claim_check_ready
+blocking_stage: ready_for_human_review
+audit_status: claim_ready
+source_status: sources_ready
+verification_status: bundle_verified
+```
+
+`claim_check_ready` still does not prove the model is good, safe, fair, or
+useful. It means the repository supplied the evidence package required by its
+own claim gate.
 
 ## Tiny LLM Eval Fixture
 
-For an AI-tool audience, frame the demo as a small LLM eval regression gate:
-
-```text
-Claim: candidate_model is ready to claim better answer quality than the pinned
-baseline on claims_eval_v2026_05_26.
-```
-
-The blocked version can be this single placeholder row in
-`falsiflow_ai_eval/evidence.csv`:
-
-```csv
-gate_id,candidate_id,sample_id,field,value,source_file,measured_at,operator_or_agent,instrument_id,notes
-eval_provenance,candidate_model,eval_run_001,dataset_version_recorded,dataset_pending,source_files/ai_eval_raw_export.csv,2026-05-26T08:00:00Z,falsiflow_eval_operator,eval_harness_001,Placeholder dataset version should block readiness.
-```
-
-Expected result: `claim_check_blocked`. The blocker is intentional: the dataset
-version is not pinned, and the placeholder marker keeps the claim out of release
-notes.
-
-The ready version should use the full bundled `evidence_pass_demo.csv`, because
-the gate requires provenance, benchmark quality, baseline comparison, and
-reproducibility rows. This is the representative LLM eval row reviewers should
-recognize in the ready diff:
-
-```csv
-gate_id,candidate_id,sample_id,field,value,source_file,measured_at,operator_or_agent,instrument_id,notes
-benchmark_quality,candidate_model,eval_run_001,exact_match_rate,0.86,source_files/ai_eval_raw_export.csv,2026-05-26T09:00:00Z,falsiflow_eval_operator,eval_harness_001,Candidate exact-match metric.
-```
-
-Expected result after copying the complete `evidence_pass_demo.csv`:
-`claim_check_ready`. The ready state still does not prove the model is truly
-better; it only proves the repository supplied the evidence package required by
-its own LLM eval claim gate.
-
-## Demo Shape
-
-| Step | Branch State | Expected CI Status | Reviewer Takeaway |
-| --- | --- | --- | --- |
-| Blocked PR | `evidence.csv` is copied from `evidence_placeholder_demo.csv`. | `claim_check_blocked` and the strict GitHub Action job fails. | Placeholder values cannot become launch claims. |
-| Ready PR | `evidence.csv` is copied from `evidence_pass_demo.csv`. | `claim_check_ready` and the GitHub Action job passes. | Versioned eval evidence, source files, and thresholds are enough to review. |
-
-## Repository Setup
-
-Copy the AI claim starter into a downstream repository:
+The bundled `ai_claim_evaluation` template is intentionally small enough to
+copy into a clean downstream repository. The same fixture can be narrated as a
+RAG eval gate when the public claim is about grounded-answer quality:
 
 ```bash
 mkdir -p falsiflow_ai_eval
@@ -62,12 +75,34 @@ cp -R examples/falsiflow/ai_claim_evaluation/. falsiflow_ai_eval/
 cp falsiflow_ai_eval/evidence_placeholder_demo.csv falsiflow_ai_eval/evidence.csv
 ```
 
-Commit `falsiflow_ai_eval/project.json`, `falsiflow_ai_eval/evidence.csv`, and
-`falsiflow_ai_eval/source_files/ai_eval_raw_export.csv`. Keep
-`evidence_pass_demo.csv` and `evidence_placeholder_demo.csv` in the same
-directory if you want the PR description to show the before/after diff.
+Commit these files:
+
+```text
+falsiflow_ai_eval/project.json
+falsiflow_ai_eval/evidence.csv
+falsiflow_ai_eval/evidence_pass_demo.csv
+falsiflow_ai_eval/evidence_placeholder_demo.csv
+falsiflow_ai_eval/source_files/ai_eval_raw_export.csv
+```
+
+The blocked fixture contains the row reviewers should notice immediately:
+
+```csv
+gate_id,candidate_id,sample_id,field,value,source_file,measured_at,operator_or_agent,instrument_id,notes
+eval_provenance,candidate_model,eval_run_001,dataset_version_recorded,dataset_pending,source_files/ai_eval_raw_export.csv,2026-05-26T08:00:00Z,falsiflow_eval_operator,eval_harness_001,Placeholder dataset version should block readiness.
+```
+
+The ready fixture contains the full evidence package. This is the recognizable
+benchmark row in the diff:
+
+```csv
+gate_id,candidate_id,sample_id,field,value,source_file,measured_at,operator_or_agent,instrument_id,notes
+benchmark_quality,candidate_model,eval_run_001,exact_match_rate,0.86,source_files/ai_eval_raw_export.csv,2026-05-26T09:00:00Z,falsiflow_eval_operator,eval_harness_001,Candidate exact-match metric.
+```
 
 ## Copyable GitHub Action
+
+Create `.github/workflows/falsiflow-ai-eval.yml`:
 
 ```yaml
 name: AI Eval Claim Gate
@@ -105,44 +140,54 @@ jobs:
             data/falsiflow/ai_eval_claim_check/evidence_bundle_verify.md
 ```
 
-The action installs from its checked-out `GITHUB_ACTION_PATH`, so the demo works
-before PyPI is published. After PyPI trusted publishing is complete, the demo can
-switch to `install-command: python -m pip install falsiflow`.
+The action installs from its checked-out `GITHUB_ACTION_PATH` by default, so a
+tagged action can run even when a downstream project does not want to depend on
+PyPI. To force the published package path, add:
 
-## Blocked PR
+```yaml
+          install-command: python -m pip install falsiflow
+```
 
-Create a branch and open the first version of the PR:
+## Blocked PR Commit
+
+Create the intentionally failing branch:
 
 ```bash
-git checkout -b demo/blocked-ai-claim
+git checkout -b demo/blocked-ai-eval-claim
 cp falsiflow_ai_eval/evidence_placeholder_demo.csv falsiflow_ai_eval/evidence.csv
 git add falsiflow_ai_eval .github/workflows/falsiflow-ai-eval.yml
 git commit -m "Demo blocked AI eval claim"
-git push -u origin demo/blocked-ai-claim
-```
-
-Suggested PR title:
-
-```text
-Demo: block unsupported AI model improvement claim
+git push -u origin demo/blocked-ai-eval-claim
 ```
 
 Suggested PR body:
 
 ```markdown
-This PR intentionally claims an AI evaluation result with placeholder evidence.
+This PR intentionally tries to publish an AI/RAG eval claim with placeholder
+evidence.
 
 Expected Falsiflow result:
 
 - `claim_check_blocked`
 - strict CI job fails
-- uploaded report names `evidence_placeholder_demo.csv`
+- `blocking_stage: gate_evidence`
 - repair action asks for source-backed eval evidence
+
+This is the behavior we want: placeholder evidence should not pass CI.
 ```
 
-## Ready PR Update
+Reviewers should open the uploaded `claim_check.md` and see that the missing
+evidence is named directly. The first repair actions should be:
 
-Replace the placeholder evidence with the positive demo evidence:
+```text
+fill_eval_provenance_evidence
+fill_benchmark_quality_evidence
+fill_reproducibility_package_evidence
+```
+
+## Ready PR Commit
+
+Now replace the placeholder with source-backed evidence:
 
 ```bash
 cp falsiflow_ai_eval/evidence_pass_demo.csv falsiflow_ai_eval/evidence.csv
@@ -151,39 +196,72 @@ git commit -m "Add source-backed AI eval evidence"
 git push
 ```
 
-Expected Falsiflow result:
+Expected CI result:
 
-- `claim_check_ready`
-- strict CI job passes
-- uploaded report includes `claim_check.md`
-- bundle verification report points to a SHA-256 checked evidence zip
-- reviewer can inspect `source_files/ai_eval_raw_export.csv`
+```text
+claim_check_ready
+bundle_verified
+```
 
-## Local Proof
+The reviewer can inspect:
+
+- `claim_check.md` for the ready/blocked decision.
+- `source_manifest.md` for raw source provenance.
+- `evidence_bundle_verify.md` for zip integrity.
+- `evidence_bundle.zip` for the portable review package.
+- `source_files/ai_eval_raw_export.csv` for the raw eval export used by the
+  evidence rows.
+
+## Local Rehearsal
 
 Run the same transition locally before recording or sharing the demo:
 
 ```bash
 cp falsiflow_ai_eval/evidence_placeholder_demo.csv falsiflow_ai_eval/evidence.csv
-falsiflow claim-check --project-dir falsiflow_ai_eval --evidence falsiflow_ai_eval/evidence.csv --out-dir data/falsiflow/demo_pr_blocked --force
-jq -r '.status' data/falsiflow/demo_pr_blocked/claim_check.json
+falsiflow claim-check \
+  --project-dir falsiflow_ai_eval \
+  --evidence falsiflow_ai_eval/evidence.csv \
+  --out-dir data/falsiflow/demo_pr_blocked \
+  --force
+jq -r '.status, .blocking_stage, .audit_status, .verification_status' \
+  data/falsiflow/demo_pr_blocked/claim_check.json
 
 cp falsiflow_ai_eval/evidence_pass_demo.csv falsiflow_ai_eval/evidence.csv
-falsiflow claim-check --project-dir falsiflow_ai_eval --evidence falsiflow_ai_eval/evidence.csv --out-dir data/falsiflow/demo_pr_ready --strict --force
-jq -r '.status' data/falsiflow/demo_pr_ready/claim_check.json
+falsiflow claim-check \
+  --project-dir falsiflow_ai_eval \
+  --evidence falsiflow_ai_eval/evidence.csv \
+  --out-dir data/falsiflow/demo_pr_ready \
+  --strict \
+  --force
+jq -r '.status, .blocking_stage, .audit_status, .verification_status' \
+  data/falsiflow/demo_pr_ready/claim_check.json
 ```
 
-The expected statuses are `claim_check_blocked` first and `claim_check_ready`
-second.
+Expected output:
+
+```text
+claim_check_blocked
+gate_evidence
+claim_blocked
+bundle_blocked
+
+claim_check_ready
+ready_for_human_review
+claim_ready
+bundle_verified
+```
 
 ## 30-second Recording Script
 
-1. Show the PR title and failing `AI Eval Claim Gate` job.
-2. Open the uploaded `claim_check.md` report and highlight `claim_check_blocked`.
-3. Show the one-line evidence change from placeholder values to source-backed
-   rows.
+1. Show the PR title and the failing `AI Eval Claim Gate` job.
+2. Open the uploaded `claim_check.md` and highlight `claim_check_blocked`.
+3. Show the evidence diff changing `dataset_pending` into source-backed rows.
 4. Re-run CI and show `claim_check_ready`.
-5. End on the bundle verification artifact and the README 30-second strip.
+5. End on `evidence_bundle_verify.md` and the raw eval source file.
 
-Do not say Falsiflow proves the model is better. Say it proves the repository
-has supplied the evidence package its own claim gate requires.
+Use this closing line:
+
+```text
+Falsiflow does not decide that the model is good. It decides whether the claim
+has enough pinned, source-backed evidence to pass CI.
+```
