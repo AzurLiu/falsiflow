@@ -153,6 +153,10 @@ do not call the release externally ready until all of these are true:
    release other than the version in `pyproject.toml`.
 5. `falsiflow external-check --out-dir falsiflow_external_check --evidence falsiflow_external_evidence.json --force --strict`
    reports `external_ready`.
+6. `falsiflow release-proof --evidence falsiflow_external_evidence.json --readiness falsiflow_external_check/external_readiness.json --out release_proof.md`
+   generates release-note copy containing the External Evidence run URL,
+   `pypi_version_match=passed`, `public_package_claim_check=passed`,
+   `claim_check_ready`, `bundle_verified`, and `external_ready`.
 
 Useful post-publish commands:
 
@@ -164,6 +168,12 @@ gh workflow run "Falsiflow External Evidence" \
   --field public_demo_url="$FALSIFLOW_PUBLIC_DEMO_URL" \
   --field pypi_package_url="https://pypi.org/project/falsiflow/" \
   --field expected_version="$expected_version"
+gh run download <RUN_ID> --name falsiflow-external-evidence --dir external-evidence-artifacts
+find external-evidence-artifacts -name falsiflow_external_evidence.json -o -name external_readiness.json
+falsiflow release-proof \
+  --evidence external-evidence-artifacts/falsiflow/falsiflow/falsiflow_external_evidence.json \
+  --readiness external-evidence-artifacts/falsiflow/falsiflow/falsiflow_external_check/external_readiness.json \
+  --out release_proof.md
 ```
 
 If a release-triggered publish fails again with `invalid-publisher`, compare the

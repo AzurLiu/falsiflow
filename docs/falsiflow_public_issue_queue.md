@@ -31,20 +31,7 @@ seed contributor-friendly work.
 Use this short queue as the public contribution entry point while the first
 launch feedback is still small:
 
-1. [Generate a release proof snippet from External Evidence artifacts](https://github.com/AzurLiu/falsiflow/issues/26)
-
-   Labels: `good first issue`, `documentation`, `release`
-
-   Goal: make the public proof contract easier to maintain by generating or
-   documenting a copy-paste release-note snippet from
-   `external_readiness.json` and `falsiflow_external_evidence.json`.
-
-   Evidence: the snippet includes the exact External Evidence run URL,
-   `pypi_version_match`, `public_package_claim_check=passed`,
-   `claim_check_ready`, `bundle_verified`, and `external_ready`; then
-   `release-check` still reports `release_ready`.
-
-2. [Create a live downstream RAG eval claim-gate demo PR](https://github.com/AzurLiu/falsiflow/issues/27)
+1. [Create a live downstream RAG eval claim-gate demo PR](https://github.com/AzurLiu/falsiflow/issues/27)
 
    Labels: `help wanted`, `template`, `evidence-gate`, `launch`
 
@@ -56,22 +43,53 @@ launch feedback is still small:
    `template-check` for `falsiflow/templates/rag_quality_gate` and
    `release-check` still pass.
 
-3. [Add copy-paste MCP client configuration examples](https://github.com/AzurLiu/falsiflow/issues/28)
+2. [Run the first launch metrics review](https://github.com/AzurLiu/falsiflow/issues/22)
 
-   Labels: `good first issue`, `documentation`, `evidence-gate`
+   Labels: `help wanted`, `launch`
 
-   Goal: add exact stdio client configuration snippets for local MCP use while
-   preserving the no-network-listener and no-model-execution boundary.
+   Goal: review public-post traffic, stars, forks, clone/download signals,
+   repeated questions, install failures, and docs gaps using
+   `launch_metrics.md`.
 
-   Evidence: `docs/falsiflow_mcp.md` includes at least two copy-paste snippets;
-   `falsiflow mcp --selftest --json` reports `mcp_selftest_ready`; and
-   `release-check` still reports `release_ready`.
+   Evidence: update the issue with the 24-hour, 72-hour, 7-day, and 14-day
+   review notes and turn repeated external feedback into concrete follow-up
+   issues with verification commands.
 
 ## Completed Seed Issues
 
 Create these as public issues before broad launch distribution:
 
-1. Capture a short downstream PR proof clip
+1. Generate a release proof snippet from External Evidence artifacts
+
+   Labels: `good first issue`, `documentation`, `release`
+
+   Status: completed by `falsiflow release-proof`, tracked in
+   [issue #26](https://github.com/AzurLiu/falsiflow/issues/26).
+
+   Goal: make the public proof contract easier to maintain by generating a
+   copy-paste release-note snippet from `external_readiness.json` and
+   `falsiflow_external_evidence.json`.
+
+   Evidence: the snippet includes the exact External Evidence run URL,
+   `pypi_version_match=passed`, `public_package_claim_check=passed`,
+   `claim_check_ready`, `bundle_verified`, and `external_ready`; then
+   `release-check` still reports `release_ready`.
+
+2. Add copy-paste MCP client configuration examples
+
+   Labels: `good first issue`, `documentation`, `evidence-gate`
+
+   Status: completed by [docs/falsiflow_mcp.md](falsiflow_mcp.md), tracked in
+   [issue #28](https://github.com/AzurLiu/falsiflow/issues/28).
+
+   Goal: add exact stdio client configuration snippets for local MCP use while
+   preserving the no-network-listener and no-model-execution boundary.
+
+   Evidence: `docs/falsiflow_mcp.md` includes generic, Claude Desktop, and
+   local checkout snippets; `falsiflow mcp --selftest --json` reports
+   `mcp_selftest_ready`; and `release-check` still reports `release_ready`.
+
+3. Capture a short downstream PR proof clip
 
    Labels: `launch`, `documentation`, `good first issue`
 
@@ -85,7 +103,7 @@ Create these as public issues before broad launch distribution:
    Evidence: link the downstream PR, blocked run, ready run, and generated
    asset path.
 
-2. Add a local LLM eval quickstart note
+4. Add a local LLM eval quickstart note
 
    Labels: `documentation`, `help wanted`, `evidence-gate`
 
@@ -102,7 +120,7 @@ Create these as public issues before broad launch distribution:
    `falsiflow evidence import --profile local-llm-eval`, and
    `falsiflow doctor --strict` still pass.
 
-3. Promote the RAG quality gate proposal toward a starter template
+5. Promote the RAG quality gate proposal toward a starter template
 
    Labels: `template`, `evidence-gate`, `help wanted`
 

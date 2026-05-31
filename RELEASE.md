@@ -128,6 +128,12 @@ The final `release-check` must report:
   `external_readiness.json`, and `external_readiness.md` for the final public
   demo URL and PyPI package; the PyPI JSON `published_version` must match the
   workflow `expected_version` input or the version in `pyproject.toml`
+- after downloading the `falsiflow-external-evidence` workflow artifact, run
+  `falsiflow release-proof --evidence falsiflow_external_evidence.json --readiness falsiflow_external_check/external_readiness.json --out release_proof.md`
+  to generate a release-note proof snippet. The snippet must include the exact
+  External Evidence run URL, `pypi_version_match=passed`,
+  `public_package_claim_check=passed`, `claim_check_ready`,
+  `bundle_verified`, and `external_ready`.
 - `external_check_status` is `external_ready` for a public release, or
   `external_blocked` only while public repo/demo/PyPI URLs, pipx public-package
   smoke, public-package first-run quickstart/doctor, public-package claim-check,

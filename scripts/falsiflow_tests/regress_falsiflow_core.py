@@ -1686,6 +1686,8 @@ def assert_cli_contract() -> None:
         evidence_doc["checks"]["public_package_first_run"]["workflow_url"] = "https://github.com/AzurLiu/falsiflow/actions/runs/5"
         evidence_doc["checks"]["public_package_claim_check"]["status"] = "passed"
         evidence_doc["checks"]["public_package_claim_check"]["workflow_url"] = "https://github.com/AzurLiu/falsiflow/actions/runs/6"
+        evidence_doc["checks"]["public_package_claim_check"]["claim_check_status"] = "claim_check_ready"
+        evidence_doc["checks"]["public_package_claim_check"]["bundle_verification_status"] = "bundle_verified"
         evidence_doc["checks"]["mcp_public_package_selftest"]["status"] = "passed"
         evidence_doc["checks"]["mcp_public_package_selftest"]["workflow_url"] = "https://github.com/AzurLiu/falsiflow/actions/runs/4"
         evidence_doc["checks"]["windows_powershell"]["status"] = "passed"
@@ -1722,6 +1724,36 @@ def assert_cli_contract() -> None:
         assert ready_checks["public_package_claim_check"]["status"] == "passed"
         assert ready_checks["mcp_public_package_selftest"]["status"] == "passed"
 
+        release_proof_path = Path(tmp) / "release_proof.md"
+        release_proof = subprocess.run(
+            [
+                sys.executable,
+                str(CLI),
+                "release-proof",
+                "--evidence",
+                str(external_evidence_path),
+                "--readiness",
+                str(external_ready_dir / "external_readiness.json"),
+                "--out",
+                str(release_proof_path),
+                "--json",
+            ],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        release_proof_summary = json.loads(release_proof.stdout)
+        assert release_proof_summary["status"] == "external_proof_ready"
+        assert release_proof_summary["external_evidence_run_url"] == "https://github.com/AzurLiu/falsiflow/actions/runs/6"
+        release_proof_text = release_proof_path.read_text(encoding="utf-8")
+        assert "External Evidence run" in release_proof_text
+        assert "pypi_version_match=passed" in release_proof_text
+        assert "public_package_claim_check=passed" in release_proof_text
+        assert "claim_check_ready" in release_proof_text
+        assert "bundle_verified" in release_proof_text
+        assert "external_ready" in release_proof_text
+
         cli_reference_md = Path(tmp) / "cli_reference.md"
         cli_reference_json = Path(tmp) / "cli_reference.json"
         cli_reference = subprocess.run(
@@ -1743,7 +1775,7 @@ def assert_cli_contract() -> None:
         cli_reference_summary = json.loads(cli_reference.stdout)
         assert cli_reference_summary["status"] == "cli_reference_ready"
         commands = {record["command"] for record in cli_reference_summary["commands"]}
-        assert {"start", "cli-reference", "release-check", "external-evidence", "casebook-check", "evidence import", "template-release"} <= commands
+        assert {"start", "cli-reference", "release-check", "release-proof", "external-evidence", "casebook-check", "evidence import", "template-release"} <= commands
         assert cli_reference_summary["command_count"] >= 50
         assert cli_reference_md.exists()
         assert cli_reference_json.exists()
@@ -4495,6 +4527,7 @@ def assert_packaged_template_contract() -> None:
         assert packaged_cli_reference_summary["status"] == "cli_reference_ready"
         packaged_commands = {record["command"] for record in packaged_cli_reference_summary["commands"]}
         assert "casebook-check" in packaged_commands
+        assert "release-proof" in packaged_commands
         assert packaged_cli_reference_md.exists()
         packaged_external_check_dir = work_dir / "external_check"
         packaged_external_check = subprocess.run(

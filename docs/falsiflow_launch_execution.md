@@ -26,9 +26,9 @@ follow-up checks. Use it after the current public release evidence is green.
 - Ready PR run: <https://github.com/AzurLiu/falsiflow/actions/runs/26708472653>
 - Pre-public-post baseline recorded on 2026-05-31 23:36 CST:
   0 stars, 2 forks, 0 watchers, 8 total views, 1 unique view, 466 total clones,
-  283 unique clones, open issue #22 only, and open PR #17 only. Treat clone
-  counts as likely inflated by CI/release automation until public-post traffic
-  arrives.
+  283 unique clones, open issues #22 and #27, completed seed issues #26 and
+  #28, and open PR #17. Treat clone counts as likely inflated by CI/release
+  automation until public-post traffic arrives.
 - Latest external evidence workflow:
   <https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-external-evidence.yml>
 
@@ -41,11 +41,13 @@ R&D, and vendor handoff claims blocked until the evidence package is complete.
 
 Before broad launch distribution, seed a small public queue from
 [falsiflow_public_issue_queue.md](falsiflow_public_issue_queue.md). The current
-pre-launch seed queue is complete; the only open launch issue should be
-[issue #22](https://github.com/AzurLiu/falsiflow/issues/22), which records the
-24-hour post-public-post metrics review. New public issues after launch should
-come from repeated external feedback, not from internal polish already completed
-before distribution.
+pre-launch seed queue keeps [issue #27](https://github.com/AzurLiu/falsiflow/issues/27)
+open for the live downstream RAG eval demo PR and
+[issue #22](https://github.com/AzurLiu/falsiflow/issues/22) open for the
+24-hour post-public-post metrics review. Completed seed issues #26 and #28
+cover release proof snippet generation and MCP client configuration examples.
+New public issues after launch should come from repeated external feedback, not
+from internal polish already completed before distribution.
 
 ## Show HN
 
@@ -108,7 +110,7 @@ Falsiflow: fail CI when AI eval or product metric claims lack evidence
 Body:
 
 ```text
-I released Falsiflow 0.1.26, a Python CLI and GitHub Action for evidence-gating
+I released Falsiflow 0.1.27, a Python CLI and GitHub Action for evidence-gating
 claims before they ship.
 
 The problem it targets is not scoring itself. Teams already have benchmark
@@ -146,7 +148,7 @@ becomes a claim that should fail a build if its evidence package is incomplete.
 LinkedIn:
 
 ```text
-I released Falsiflow 0.1.26.
+I released Falsiflow 0.1.27.
 
 It is a Python CLI and GitHub Action for one specific problem: claims like "the
 model improved", "activation lifted", or "the experiment is ready" should not
@@ -167,7 +169,7 @@ PyPI: https://pypi.org/project/falsiflow/
 X / short post:
 
 ```text
-Released Falsiflow 0.1.26.
+Released Falsiflow 0.1.27.
 
 It fails CI when AI eval, product metric, R&D, or vendor handoff claims do not
 have enough evidence to review.

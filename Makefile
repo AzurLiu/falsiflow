@@ -1,4 +1,4 @@
-.PHONY: install-local pipx-install pipx-start start start-check onboard-check static-demo demo-package publish-kit launch-kit external-evidence external-check cli-reference casebook-check test release-check clean
+.PHONY: install-local pipx-install pipx-start start start-check onboard-check static-demo demo-package publish-kit launch-kit external-evidence external-check release-proof cli-reference casebook-check test release-check clean
 
 PYTHON ?= python3
 FALSIFLOW_OUT ?= falsiflow_start
@@ -38,6 +38,9 @@ external-evidence: install-local
 
 external-check: install-local
 	falsiflow external-check --out-dir falsiflow_external_check --force
+
+release-proof: install-local
+	falsiflow release-proof --evidence falsiflow_external_evidence.json --readiness falsiflow_external_check/external_readiness.json --out release_proof.md
 
 cli-reference: install-local
 	falsiflow cli-reference --out docs/falsiflow_cli_reference.md

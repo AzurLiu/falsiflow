@@ -68,6 +68,7 @@ from .public_release import (
     run_external_check as run_external_check_core,
     run_launch_kit as run_launch_kit_core,
     run_publish_kit as run_publish_kit_core,
+    run_release_proof as run_release_proof_core,
     run_static_demo as run_static_demo_core,
 )
 from .template_check import run_template_check, safe_template_child_path
@@ -749,6 +750,10 @@ def run_external_check(out_dir: Path, force: bool = False, evidence: Path | None
     return run_external_check_core(out_dir, force=force, root=ROOT, evidence_path=evidence)
 
 
+def run_release_proof(evidence: Path, readiness: Path, out: Path | None = None) -> dict[str, object]:
+    return run_release_proof_core(evidence, readiness, out=out)
+
+
 def cmd_static_demo(args: argparse.Namespace) -> int:
     static_summary = run_static_demo(args.template, args.out_dir, args.template_root, force=args.force)
     if args.open:
@@ -856,6 +861,17 @@ def cmd_external_check(args: argparse.Namespace) -> int:
             if isinstance(blocker, dict):
                 print(f"blocked: {blocker.get('check', '')}: {blocker.get('message', '')}")
     return 0 if summary["status"] == "external_ready" or not args.strict else 2
+
+
+def cmd_release_proof(args: argparse.Namespace) -> int:
+    summary = run_release_proof(args.evidence, args.readiness, out=args.out)
+    if args.json:
+        print(json.dumps(summary, indent=2, sort_keys=True))
+    else:
+        print(summary["snippet"], end="")
+        if args.out:
+            print(f"Wrote {summary['outputs']['snippet']}", file=sys.stderr)
+    return 0 if summary["status"] == "external_proof_ready" else 2
 
 
 def resolve_doctor_paths(args: argparse.Namespace) -> tuple[Path | None, Path, Path, Path]:
@@ -1974,7 +1990,7 @@ def cli_command_category(command: str) -> str:
         return "Discovery and evidence import"
     if root in {"template-scaffold", "templates", "template-gallery", "template-check", "template-pack", "verify-template-pack", "template-registry", "template-lock", "template-attest", "verify-template-attestation", "template-policy", "verify-template-policy", "template-release", "verify-template-release", "template-install"}:
         return "Template supply chain"
-    if root in {"static-demo", "demo-package", "publish-kit", "launch-kit", "casebook-check", "external-evidence", "external-check", "adoption-check", "release-check", "selftest", "schema", "cli-reference"}:
+    if root in {"static-demo", "demo-package", "publish-kit", "launch-kit", "casebook-check", "external-evidence", "external-check", "release-proof", "adoption-check", "release-check", "selftest", "schema", "cli-reference"}:
         return "Release and public adoption"
     if root in {"validate", "render", "audit", "claim-check", "bundle", "verify-bundle", "next", "sources", "portfolio", "demo"}:
         return "Core audit and bundle operations"
@@ -2180,6 +2196,13 @@ def build_parser() -> argparse.ArgumentParser:
     external_check.add_argument("--strict", action="store_true", help="Exit non-zero unless every external readiness check passes.")
     external_check.add_argument("--json", action="store_true", help="Print machine-readable external readiness summary.")
     external_check.set_defaults(func=cmd_external_check)
+
+    release_proof = sub.add_parser("release-proof", help="Generate a copy-paste release proof snippet from External Evidence artifacts.")
+    release_proof.add_argument("--evidence", type=Path, default=Path("falsiflow_external_evidence.json"), help="Path to falsiflow_external_evidence.json from the External Evidence workflow artifact.")
+    release_proof.add_argument("--readiness", type=Path, default=Path("falsiflow_external_check/external_readiness.json"), help="Path to external_readiness.json from external-check.")
+    release_proof.add_argument("--out", type=Path, default=None, help="Optional Markdown path for the generated release proof snippet.")
+    release_proof.add_argument("--json", action="store_true", help="Print machine-readable proof summary including the Markdown snippet.")
+    release_proof.set_defaults(func=cmd_release_proof)
 
     discover = sub.add_parser("discover", help="Generate a structured, non-AI discovery candidate queue and project draft.")
     add_discovery_arguments(discover)

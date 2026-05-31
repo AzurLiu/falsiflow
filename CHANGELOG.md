@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.27
+
+- Added `falsiflow release-proof` to generate a copy-paste release-note proof
+  block from `falsiflow_external_evidence.json` and
+  `external_readiness.json`.
+- Updated External Evidence metadata, README/PyPI guidance, release docs,
+  public issue queue docs, and release-check coverage so public proof snippets
+  include the exact run URL, PyPI version match, published-package claim-check
+  status, `claim_check_ready`, `bundle_verified`, and `external_ready`.
+- Added a compact MCP client config block to the README/PyPI description.
+
 ## 0.1.26
 
 - Added copy-paste MCP client configuration examples for generic stdio clients,

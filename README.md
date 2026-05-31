@@ -21,7 +21,7 @@ source-backed evidence -> claim_check_ready
 GitHub Action:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.26
+- uses: AzurLiu/falsiflow@v0.1.27
   with:
     mode: claim-check
     project-dir: falsiflow_ai_eval
@@ -157,6 +157,21 @@ artifact-first Ollama, LM Studio, llama.cpp, or private runner handoffs, see
 [docs/falsiflow_local_llm_eval.md](docs/falsiflow_local_llm_eval.md).
 For the local stdio MCP server and one-command agent selftest, see
 [docs/falsiflow_mcp.md](docs/falsiflow_mcp.md).
+Copy-paste client shape:
+
+```json
+{
+  "mcpServers": {
+    "falsiflow": {
+      "command": "falsiflow",
+      "args": ["mcp"]
+    }
+  }
+}
+```
+
+It uses stdio, opens no HTTP listener or API port, does not run a model, and
+keeps local project files local to the client process.
 For blocked command recovery, install/start problems, template failures,
 `claim_check_blocked`, and `external_blocked`, see
 [docs/falsiflow_troubleshooting.md](docs/falsiflow_troubleshooting.md).
@@ -282,7 +297,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: AzurLiu/falsiflow@v0.1.26
+      - uses: AzurLiu/falsiflow@v0.1.27
         with:
           mode: claim-check
           project-dir: my_falsiflow_project
@@ -425,6 +440,22 @@ structured `FALSIFLOW_EXTERNAL_EVIDENCE` file, or with
 `FALSIFLOW_PUBLIC_PACKAGE_CLAIM_CHECK_VALIDATED=1`,
 `FALSIFLOW_MCP_PUBLIC_SELFTEST_VALIDATED=1`, and
 `FALSIFLOW_WINDOWS_VALIDATED=1` for compatibility.
+
+To turn a completed External Evidence workflow artifact into release-note copy,
+download the `falsiflow-external-evidence` artifact, locate
+`falsiflow_external_evidence.json` and `external_readiness.json`, then run:
+
+```bash
+falsiflow release-proof \
+  --evidence falsiflow_external_evidence.json \
+  --readiness falsiflow_external_check/external_readiness.json \
+  --out release_proof.md
+```
+
+The generated proof block includes the exact External Evidence run URL,
+`pypi_version_match=passed`, `public_package_claim_check=passed`,
+`claim_check_ready`, `bundle_verified`, and `external_ready` so release notes do
+not need a hand-written proof summary.
 
 If a future PyPI trusted-publishing run returns `invalid-publisher`, configure
 or repair the PyPI publisher with owner `AzurLiu`, repository `falsiflow`,

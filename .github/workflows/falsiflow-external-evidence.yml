@@ -274,7 +274,9 @@ jobs:
                       "command": "python -m pipx run --spec falsiflow falsiflow claim-check --project-dir <quickstart-project> --strict --force --json",
                       "workflow_url": workflow_url,
                       "artifact": "falsiflow_public_package_claim_check.json",
-                      "notes": "Ubuntu pipx run from the published package proved the generated AI eval starter claim gate reaches claim_check_ready.",
+                      "claim_check_status": "claim_check_ready",
+                      "bundle_verification_status": "bundle_verified",
+                      "notes": "Ubuntu pipx run from the published package proved the generated AI eval starter claim gate reaches claim_check_ready and bundle_verified.",
                   },
                   "windows_powershell": {
                       "status": "passed",

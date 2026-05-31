@@ -222,7 +222,9 @@ def external_evidence_template(repo_url: str = "", public_demo_url: str = "", py
                 "command": "pipx run --spec falsiflow falsiflow claim-check --project-dir <quickstart-project> --strict --force --json",
                 "workflow_url": "",
                 "artifact_url": "",
-                "notes": "Record a public CI run or artifact proving the published package AI eval starter claim-check path reaches claim_check_ready.",
+                "claim_check_status": "",
+                "bundle_verification_status": "",
+                "notes": "Record a public CI run or artifact proving the published package AI eval starter claim-check path reaches claim_check_ready and bundle_verified.",
             },
             "mcp_public_package_selftest": {
                 "status": "pending",
@@ -259,7 +261,7 @@ def render_external_evidence_report(summary: dict[str, object]) -> str:
         "| `pipx_smoke` | Public CI run or artifact proving checkout-based pipx install and `falsiflow start --check --json` passed. |",
         "| `pipx_public_package` | Public CI run or artifact proving `pipx run --spec falsiflow falsiflow start --check --json` passed from the published package. |",
         "| `public_package_first_run` | Public CI run or artifact proving `pipx run --spec falsiflow falsiflow quickstart --template ai_claim_evaluation --strict --json` and `doctor --strict --json` passed from the published package. |",
-        "| `public_package_claim_check` | Public CI run or artifact proving `pipx run --spec falsiflow falsiflow claim-check --project-dir <quickstart-project> --strict --force --json` reaches `claim_check_ready` from the published package. |",
+        "| `public_package_claim_check` | Public CI run or artifact proving `pipx run --spec falsiflow falsiflow claim-check --project-dir <quickstart-project> --strict --force --json` reaches `claim_check_ready` and `bundle_verified` from the published package. |",
         "| `mcp_public_package_selftest` | Public CI run or artifact proving `pipx run --spec falsiflow falsiflow mcp --selftest --json` passed from the published package. |",
         "| `windows_powershell` | Public Windows workflow run or artifact proving `install_local.ps1 -Check` passed. |",
         "",
@@ -1786,6 +1788,122 @@ def render_external_check_report(summary: dict[str, object]) -> str:
                 lines.append(f"- `{blocker.get('check', '')}`: {blocker.get('message', '')}")
     lines.append("")
     return "\n".join(lines)
+
+def load_json_artifact(path: Path, label: str) -> dict[str, object]:
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise SystemExit(f"Could not read {label} JSON from {path}: {exc}") from exc
+    if not isinstance(data, dict):
+        raise SystemExit(f"{label} JSON must contain an object: {path}")
+    return data
+
+def external_readiness_check_record(readiness: dict[str, object], check_id: str) -> dict[str, object]:
+    checks = readiness.get("checks", [])
+    if not isinstance(checks, list):
+        return {}
+    for check in checks:
+        if isinstance(check, dict) and check.get("check") == check_id:
+            return check
+    return {}
+
+def external_evidence_run_url(evidence: dict[str, object]) -> str:
+    checks = evidence.get("checks", {})
+    if not isinstance(checks, dict):
+        return ""
+    for check_id in [
+        "pypi_package_url",
+        "public_package_claim_check",
+        "mcp_public_package_selftest",
+        "public_package_first_run",
+        "pipx_public_package",
+        "public_demo_url",
+        "public_repo_url",
+    ]:
+        record = checks.get(check_id)
+        if not isinstance(record, dict):
+            continue
+        for key in ["workflow_url", "evidence_url", "artifact_url", "report_url", "ci_url"]:
+            value = str(record.get(key, "")).strip()
+            if public_https_url(value) and "/actions/runs/" in value:
+                return value
+    for record in checks.values():
+        if not isinstance(record, dict):
+            continue
+        value = first_public_evidence_url(record)
+        if value:
+            return value
+    return ""
+
+def render_release_proof_snippet(summary: dict[str, object]) -> str:
+    return "\n".join([
+        "## Falsiflow Public Release Proof",
+        "",
+        f"- External Evidence run: {summary.get('external_evidence_run_url', '')}",
+        f"- PyPI version match: `pypi_version_match={summary.get('pypi_version_match_status', '')}` (`expected_version={summary.get('expected_version', '')}`, `published_version={summary.get('published_version', '')}`)",
+        f"- Published-package claim gate: `public_package_claim_check={summary.get('public_package_claim_check_status', '')}`, `{summary.get('claim_check_status', '')}`, `{summary.get('bundle_verification_status', '')}`",
+        f"- External readiness: `{summary.get('external_readiness_status', '')}`",
+        "",
+    ])
+
+def run_release_proof(
+    evidence_path: Path,
+    readiness_path: Path,
+    out: Path | None = None,
+) -> dict[str, object]:
+    evidence = load_json_artifact(evidence_path, "External Evidence")
+    readiness = load_json_artifact(readiness_path, "external readiness")
+    pypi_record = external_evidence_record(evidence, "pypi_package_url")
+    claim_record = external_evidence_record(evidence, "public_package_claim_check")
+    pypi_match_record = external_readiness_check_record(readiness, "pypi_version_match")
+    expected_version = str(pypi_record.get("expected_version", "")).strip()
+    published_version = str(pypi_record.get("published_version", "") or pypi_record.get("pypi_version", "")).strip()
+    pypi_version_match_status = str(pypi_match_record.get("status", "")).strip()
+    if not pypi_version_match_status and expected_version and published_version == expected_version and ready_external_status(pypi_record.get("status", "")):
+        pypi_version_match_status = "passed"
+    public_package_claim_check_status = str(claim_record.get("status", "")).strip()
+    claim_check_status = str(claim_record.get("claim_check_status", "") or claim_record.get("claim_status", "")).strip()
+    if not claim_check_status and ready_external_status(public_package_claim_check_status):
+        claim_check_status = "claim_check_ready"
+    bundle_verification_status = str(claim_record.get("bundle_verification_status", "") or claim_record.get("verification_status", "")).strip()
+    if not bundle_verification_status and claim_check_status == "claim_check_ready":
+        bundle_verification_status = "bundle_verified"
+    summary: dict[str, object] = {
+        "status": "external_proof_blocked",
+        "external_evidence": str(evidence_path),
+        "external_readiness": str(readiness_path),
+        "external_evidence_run_url": external_evidence_run_url(evidence),
+        "expected_version": expected_version,
+        "published_version": published_version,
+        "pypi_version_match_status": pypi_version_match_status,
+        "public_package_claim_check_status": public_package_claim_check_status,
+        "claim_check_status": claim_check_status,
+        "bundle_verification_status": bundle_verification_status,
+        "external_readiness_status": str(readiness.get("status", "")).strip(),
+        "checks": [],
+        "outputs": {},
+    }
+    checks = [
+        external_check_item("external_evidence_run_url", bool(summary["external_evidence_run_url"]), "External Evidence run URL is present.", str(summary["external_evidence_run_url"])),
+        external_check_item("pypi_version_match", summary["pypi_version_match_status"] == "passed", "PyPI expected_version matches published_version.", str(summary["published_version"]), f"expected={summary['expected_version']}"),
+        external_check_item("public_package_claim_check", summary["public_package_claim_check_status"] == "passed", "Published-package claim-check evidence passed.", str(summary["public_package_claim_check_status"])),
+        external_check_item("claim_check_ready", summary["claim_check_status"] == "claim_check_ready", "Published-package claim-check reached claim_check_ready.", str(summary["claim_check_status"])),
+        external_check_item("bundle_verified", summary["bundle_verification_status"] == "bundle_verified", "Published-package claim-check bundle verification is recorded or implied by the passing strict claim-check artifact.", str(summary["bundle_verification_status"])),
+        external_check_item("external_ready", summary["external_readiness_status"] == "external_ready", "external-check strict readiness passed.", str(summary["external_readiness_status"])),
+    ]
+    summary["checks"] = checks
+    blockers = [check for check in checks if check.get("status") != "passed"]
+    summary["blocker_count"] = len(blockers)
+    summary["blockers"] = blockers
+    if not blockers:
+        summary["status"] = "external_proof_ready"
+    snippet = render_release_proof_snippet(summary)
+    summary["snippet"] = snippet
+    if out is not None:
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(snippet, encoding="utf-8")
+        summary["outputs"] = {"snippet": str(out)}
+    return summary
 
 def run_external_check(
     out_dir: Path,
