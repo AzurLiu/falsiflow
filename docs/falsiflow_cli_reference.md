@@ -716,6 +716,7 @@ Validate an external or bundled starter template end to end.
 ```text
 falsiflow template-check [-h] --template-dir TEMPLATE_DIR
                                 --out-dir OUT_DIR [--json] [--force]
+                                [--strict]
 ```
 
 | Argument | Value | Required | Default | Help |
@@ -724,6 +725,7 @@ falsiflow template-check [-h] --template-dir TEMPLATE_DIR
 | `--out-dir` | `OUT_DIR` | `yes` | `` | Directory for template-check artifacts and reports. |
 | `--json` | `` | `no` | `False` | Print machine-readable template-check summary. |
 | `--force` | `` | `no` | `False` | Allow writing into a non-empty template-check directory. |
+| `--strict` | `` | `no` | `False` | Compatibility flag; template-check already exits non-zero unless the template is ready. |
 
 ### `falsiflow template-pack`
 
@@ -1227,4 +1229,3 @@ falsiflow ingest-wide-csv [-h] --input INPUT --out OUT
 | `--instrument-id-column` | `INSTRUMENT_ID_COLUMN` | `no` | `` |  |
 | `--notes` | `NOTES` | `no` | `` |  |
 | `--notes-column` | `NOTES_COLUMN` | `no` | `` |  |
-

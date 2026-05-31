@@ -135,6 +135,7 @@ The template should pass:
 python3 scripts/falsiflow.py template-check \
   --template-dir examples/falsiflow/rag_quality_gate \
   --out-dir data/falsiflow/rag_quality_gate_check \
+  --strict \
   --force
 ```
 

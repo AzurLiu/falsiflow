@@ -2358,6 +2358,7 @@ def build_parser() -> argparse.ArgumentParser:
     template_check.add_argument("--out-dir", type=Path, required=True, help="Directory for template-check artifacts and reports.")
     template_check.add_argument("--json", action="store_true", help="Print machine-readable template-check summary.")
     template_check.add_argument("--force", action="store_true", help="Allow writing into a non-empty template-check directory.")
+    template_check.add_argument("--strict", action="store_true", help="Compatibility flag; template-check already exits non-zero unless the template is ready.")
     template_check.set_defaults(func=cmd_template_check)
 
     template_pack = sub.add_parser("template-pack", help="Package a checked starter template into a verifiable zip artifact.")

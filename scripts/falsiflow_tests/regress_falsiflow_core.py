@@ -2106,6 +2106,7 @@ def assert_cli_contract() -> None:
                 str(EXAMPLE_TEMPLATE_ROOT / "neural_materials"),
                 "--out-dir",
                 str(template_check_out),
+                "--strict",
                 "--json",
             ],
             cwd=ROOT,

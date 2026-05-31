@@ -63,6 +63,9 @@ Create these as public issues before broad launch distribution:
 
    Labels: `template`, `evidence-gate`, `help wanted`
 
+   Status: completed by the bundled `rag_quality_gate` starter template and
+   tracked in [issue #20](https://github.com/AzurLiu/falsiflow/issues/20).
+
    Goal: turn the documented RAG gate proposal into a bundled template only
    after the evidence contract, raw export fixture, placeholder blocker, and
    responsible-use boundary are clear.
