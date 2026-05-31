@@ -36,7 +36,7 @@ inputs:
     required: false
     default: ""
   evidence:
-    description: "Evidence CSV path for claim-check mode when project-dir is not used."
+    description: "Evidence CSV path for claim-check mode. Overrides the project-dir default when provided."
     required: false
     default: ""
   template-dir:
@@ -138,6 +138,9 @@ runs:
             cmd+=(claim-check --out-dir "$out_dir")
             if [ -n "$FALSIFLOW_PROJECT_DIR" ]; then
               cmd+=(--project-dir "$FALSIFLOW_PROJECT_DIR")
+              if [ -n "$FALSIFLOW_EVIDENCE" ]; then
+                cmd+=(--evidence "$FALSIFLOW_EVIDENCE")
+              fi
             else
               if [ -z "$FALSIFLOW_CONFIG" ] || [ -z "$FALSIFLOW_EVIDENCE" ]; then
                 echo "claim-check mode requires project-dir, or both config and evidence." >&2
