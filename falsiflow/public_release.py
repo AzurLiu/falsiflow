@@ -210,6 +210,13 @@ def external_evidence_template(repo_url: str = "", public_demo_url: str = "", py
                 "artifact_url": "",
                 "notes": "Record a public CI run or artifact proving a clean pipx run from the published package passed.",
             },
+            "mcp_public_package_selftest": {
+                "status": "pending",
+                "command": "pipx run --spec falsiflow falsiflow mcp --selftest --json",
+                "workflow_url": "",
+                "artifact_url": "",
+                "notes": "Record a public CI run or artifact proving the published package MCP selftest passed without opening a network listener.",
+            },
             "windows_powershell": {
                 "status": "pending",
                 "command": ".\\scripts\\install_local.ps1 -FromLocal . -Check",
@@ -237,6 +244,7 @@ def render_external_evidence_report(summary: dict[str, object]) -> str:
         "| `pypi_package_url` | Public PyPI project URL plus `https://pypi.org/pypi/falsiflow/json` evidence whose `published_version` matches `expected_version` after trusted publishing succeeds. |",
         "| `pipx_smoke` | Public CI run or artifact proving checkout-based pipx install and `falsiflow start --check --json` passed. |",
         "| `pipx_public_package` | Public CI run or artifact proving `pipx run --spec falsiflow falsiflow start --check --json` passed from the published package. |",
+        "| `mcp_public_package_selftest` | Public CI run or artifact proving `pipx run --spec falsiflow falsiflow mcp --selftest --json` passed from the published package. |",
         "| `windows_powershell` | Public Windows workflow run or artifact proving `install_local.ps1 -Check` passed. |",
         "",
         "After filling the JSON evidence file, run:",
@@ -292,6 +300,8 @@ def render_publish_env_example(repo_url: str, public_demo_url: str) -> str:
         "FALSIFLOW_PIPX_VALIDATED=0",
         "# Set to 1 only after a clean pipx run from the published package passes.",
         "FALSIFLOW_PIPX_PUBLIC_VALIDATED=0",
+        "# Set to 1 only after a clean published-package MCP selftest passes.",
+        "FALSIFLOW_MCP_PUBLIC_SELFTEST_VALIDATED=0",
         "# Set to 1 only after the Windows PowerShell workflow passes.",
         "FALSIFLOW_WINDOWS_VALIDATED=0",
         "",
@@ -473,7 +483,7 @@ def public_release_rehearsal(summary: dict[str, object]) -> dict[str, object]:
                 "owner": "GitHub Actions",
                 "command": "gh workflow run \"Falsiflow External Evidence\" --field public_demo_url=\"$FALSIFLOW_PUBLIC_DEMO_URL\" --field pypi_package_url=\"$FALSIFLOW_PYPI_PACKAGE_URL\" --field expected_version=\"$FALSIFLOW_EXPECTED_VERSION\"",
                 "expected_artifact": "falsiflow_external_evidence.json and falsiflow_pypi_project.json workflow artifacts",
-                "success_signal": "Hosted demo fetch, PyPI JSON fetch with expected-version match, checkout pipx, public-package pipx, and Windows smoke jobs pass.",
+                "success_signal": "Hosted demo fetch, PyPI JSON fetch with expected-version match, checkout pipx, public-package pipx, public-package MCP selftest, and Windows smoke jobs pass.",
                 "status": "pending_external",
             },
             {
@@ -619,6 +629,14 @@ def public_release_evidence_ledger(summary: dict[str, object]) -> dict[str, obje
                 "proof": "pipx run from the published package and start smoke artifact.",
                 "command": "python -m pipx run --spec falsiflow falsiflow start --check --json",
                 "artifact": "falsiflow_public_package_start.json",
+            },
+            {
+                "id": "public_package_mcp_selftest",
+                "status": "pending_external",
+                "owner": "GitHub Actions",
+                "proof": "pipx run from the published package and MCP selftest artifact.",
+                "command": "python -m pipx run --spec falsiflow falsiflow mcp --selftest --json",
+                "artifact": "falsiflow_public_package_mcp_selftest.json",
             },
             {
                 "id": "windows_powershell_smoke",
@@ -1756,6 +1774,8 @@ def run_external_check(
     pipx_validated = bool(pipx_path) or truthy_env("FALSIFLOW_PIPX_VALIDATED") or pipx_evidence_ready
     pipx_public_evidence_ready, pipx_public_evidence_value = external_evidence_ready(external_evidence, "pipx_public_package")
     pipx_public_validated = truthy_env("FALSIFLOW_PIPX_PUBLIC_VALIDATED") or pipx_public_evidence_ready
+    mcp_public_evidence_ready, mcp_public_evidence_value = external_evidence_ready(external_evidence, "mcp_public_package_selftest")
+    mcp_public_validated = truthy_env("FALSIFLOW_MCP_PUBLIC_SELFTEST_VALIDATED") or mcp_public_evidence_ready
     powershell_path = shutil.which("pwsh") or shutil.which("powershell") or ""
     windows_evidence_ready, windows_evidence_value = external_evidence_ready(external_evidence, "windows_powershell")
     windows_validated = sys.platform.startswith("win") or truthy_env("FALSIFLOW_WINDOWS_VALIDATED") or windows_evidence_ready
@@ -1791,6 +1811,7 @@ def run_external_check(
     checks.extend([
         external_check_item("pipx_available", pipx_validated, "pipx is available, FALSIFLOW_PIPX_VALIDATED is set, or external evidence records a passing checkout-based pipx smoke test.", pipx_path or os.environ.get("FALSIFLOW_PIPX_VALIDATED", "") or pipx_evidence_value, pipx_evidence_value),
         external_check_item("pipx_public_package", pipx_public_validated, "FALSIFLOW_PIPX_PUBLIC_VALIDATED is set, or external evidence records a passing pipx smoke test from the published package.", os.environ.get("FALSIFLOW_PIPX_PUBLIC_VALIDATED", "") or pipx_public_evidence_value, pipx_public_evidence_value),
+        external_check_item("mcp_public_package_selftest", mcp_public_validated, "FALSIFLOW_MCP_PUBLIC_SELFTEST_VALIDATED is set, or external evidence records a passing published-package MCP selftest.", os.environ.get("FALSIFLOW_MCP_PUBLIC_SELFTEST_VALIDATED", "") or mcp_public_evidence_value, mcp_public_evidence_value),
         external_check_item("powershell_available", bool(powershell_path) or windows_validated, "PowerShell is available here, FALSIFLOW_WINDOWS_VALIDATED is set, or external evidence records a passing Windows smoke test.", powershell_path or os.environ.get("FALSIFLOW_WINDOWS_VALIDATED", "") or windows_evidence_value, windows_evidence_value),
         external_check_item("python_available", bool(sys.executable), "Python executable is available for local install and release checks.", sys.executable),
         external_check_item("demo_package_command", True, "`falsiflow demo-package` can prepare hostable static demo artifacts.", "falsiflow demo-package"),

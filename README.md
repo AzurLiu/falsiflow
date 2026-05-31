@@ -21,7 +21,7 @@ source-backed evidence -> claim_check_ready
 GitHub Action:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.19
+- uses: AzurLiu/falsiflow@v0.1.20
   with:
     mode: claim-check
     project-dir: falsiflow_ai_eval
@@ -74,8 +74,8 @@ falsiflow quickstart --template ai_claim_evaluation --out falsiflow_ai_demo --st
 ```
 
 Current public status: hosted demo, PyPI, CI, cross-platform smoke tests,
-Scorecard, checkout pipx, public-package pipx, Windows PowerShell smoke, and
-source installs are live. `Falsiflow External Evidence` reports
+Scorecard, checkout pipx, public-package pipx, public-package MCP selftest,
+Windows PowerShell smoke, and source installs are live. `Falsiflow External Evidence` reports
 `external_ready` for the current public release.
 
 [![Falsiflow](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow.yml)
@@ -279,7 +279,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: AzurLiu/falsiflow@v0.1.19
+      - uses: AzurLiu/falsiflow@v0.1.20
         with:
           mode: claim-check
           project-dir: my_falsiflow_project
@@ -340,8 +340,9 @@ falsiflow publish-kit --out-dir falsiflow_publish_kit --force
 `public_release_evidence.md`, `release_rehearsal.json`,
 `release_rehearsal.md`, and a nested public demo package. The public release
 evidence ledger links the required repository, hosted demo, PyPI, checkout-pipx,
-public-package-pipx, Windows, Scorecard, release-check, casebook-replay, and
-launch-metrics evidence in one review surface. The public release rehearsal adds
+public-package-pipx, public-package MCP selftest, Windows, Scorecard,
+release-check, casebook-replay, and launch-metrics evidence in one review
+surface. The public release rehearsal adds
 the ordered preflight commands, expected artifacts, success signals, and stop
 conditions for the final account-bound publish path. It marks
 `account_action_required=true`, because GitHub login, repository creation, Pages
@@ -385,7 +386,8 @@ falsiflow external-evidence --out falsiflow_external_evidence.json --force
 
 Fill `falsiflow_external_evidence.json` with the hosted demo URL, public PyPI
 package URL, checkout-based pipx smoke CI run, public-package pipx smoke CI
-run, and Windows/PowerShell CI run, then run:
+run, public-package MCP selftest CI run, and Windows/PowerShell CI run, then
+run:
 
 ```bash
 falsiflow external-check --out-dir falsiflow_external_check --evidence falsiflow_external_evidence.json --force
@@ -394,8 +396,9 @@ falsiflow external-check --out-dir falsiflow_external_check --evidence falsiflow
 `falsiflow external-check` writes `external_readiness.json` and
 `external_readiness.md`. It returns `external_ready` only when the public repo
 URL, hosted demo URL, public PyPI package URL, checkout-based pipx smoke,
-public-package pipx smoke, and Windows/PowerShell validation evidence are
-present; otherwise it returns `external_blocked` with concrete next actions.
+public-package pipx smoke, public-package MCP selftest, and Windows/PowerShell
+validation evidence are present; otherwise it returns `external_blocked` with
+concrete next actions.
 After GitHub Pages or another static host is live, run the
 `Falsiflow External Evidence` workflow with the hosted demo URL and
 `FALSIFLOW_PYPI_PACKAGE_URL` such as `https://pypi.org/project/falsiflow/`.
@@ -403,14 +406,16 @@ Optionally pass `expected_version`; when it is omitted, the workflow reads the
 version from `pyproject.toml`.
 It verifies the demo over HTTPS, fetches `https://pypi.org/pypi/falsiflow/json`
 to prove the PyPI package name and confirm `published_version` matches
-`expected_version`, runs checkout pipx, public-package pipx, and Windows
-PowerShell smoke tests, writes `falsiflow_external_evidence.json`, runs
-`external-check --strict`, and uploads the evidence/readiness artifact for the
-final release review. CI can also record successful smoke tests with a
+`expected_version`, runs checkout pipx, public-package pipx,
+public-package MCP selftest, and Windows PowerShell smoke tests, writes
+`falsiflow_external_evidence.json`, runs `external-check --strict`, and uploads
+the evidence/readiness artifact for the final release review. CI can also record
+successful smoke tests with a
 structured `FALSIFLOW_EXTERNAL_EVIDENCE` file, or with
 `FALSIFLOW_PIPX_VALIDATED=1`,
-`FALSIFLOW_PIPX_PUBLIC_VALIDATED=1`, and `FALSIFLOW_WINDOWS_VALIDATED=1` for
-compatibility.
+`FALSIFLOW_PIPX_PUBLIC_VALIDATED=1`,
+`FALSIFLOW_MCP_PUBLIC_SELFTEST_VALIDATED=1`, and
+`FALSIFLOW_WINDOWS_VALIDATED=1` for compatibility.
 
 If a future PyPI trusted-publishing run returns `invalid-publisher`, configure
 or repair the PyPI publisher with owner `AzurLiu`, repository `falsiflow`,
@@ -1147,7 +1152,8 @@ with the active Falsiflow contract.
 - `.github/workflows/falsiflow-cross-platform.yml`: Linux, macOS, Windows,
   pipx, installer, browser-entry, and external-check smoke tests.
 - `.github/workflows/falsiflow-external-evidence.yml`: hosted demo, pipx,
-  Windows, and external-check evidence capture for public launch review.
+  public-package MCP selftest, Windows, and external-check evidence capture for
+  public launch review.
 - `.github/workflows/falsiflow-scorecard.yml`: OpenSSF Scorecard SARIF security
   signal upload for public repository trust review.
 - `.github/workflows/falsiflow-publish.yml`: wheel/sdist build, `twine check`,

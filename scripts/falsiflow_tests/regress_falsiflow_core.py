@@ -404,6 +404,7 @@ def assert_schema_contract() -> None:
     assert "pypi_package_url" in external_evidence_schema["properties"]["checks"]["required"]
     assert "pipx_smoke" in external_evidence_schema["properties"]["checks"]["required"]
     assert "pipx_public_package" in external_evidence_schema["properties"]["checks"]["required"]
+    assert "mcp_public_package_selftest" in external_evidence_schema["properties"]["checks"]["required"]
     pypi_evidence_properties = external_evidence_schema["properties"]["checks"]["properties"]["pypi_package_url"]["properties"]
     assert "expected_version" in pypi_evidence_properties
     assert "published_version" in pypi_evidence_properties
@@ -1630,7 +1631,7 @@ def assert_cli_contract() -> None:
         assert external_check_summary["status"] in {"external_ready", "external_blocked"}
         assert external_check_summary["check_count"] >= 8
         external_check_ids = {check["check"] for check in external_check_summary["checks"]}
-        assert {"pypi_package_url", "pipx_public_package"} <= external_check_ids
+        assert {"pypi_package_url", "pipx_public_package", "mcp_public_package_selftest"} <= external_check_ids
         assert (external_check_dir / "external_readiness.json").exists()
         assert (external_check_dir / "external_readiness.md").exists()
 
@@ -1661,6 +1662,7 @@ def assert_cli_contract() -> None:
         evidence_doc = json.loads(external_evidence_path.read_text(encoding="utf-8"))
         assert "pypi_package_url" in evidence_doc["checks"]
         assert "pipx_public_package" in evidence_doc["checks"]
+        assert "mcp_public_package_selftest" in evidence_doc["checks"]
         assert evidence_doc["checks"]["pypi_package_url"]["verification_url"] == "https://pypi.org/pypi/falsiflow/json"
         assert evidence_doc["checks"]["pypi_package_url"]["artifact"] == "falsiflow_pypi_project.json"
         assert evidence_doc["checks"]["pypi_package_url"]["expected_version"] == FALSIFLOW_VERSION
@@ -1676,6 +1678,8 @@ def assert_cli_contract() -> None:
         evidence_doc["checks"]["pipx_smoke"]["workflow_url"] = "https://github.com/AzurLiu/falsiflow/actions/runs/1"
         evidence_doc["checks"]["pipx_public_package"]["status"] = "passed"
         evidence_doc["checks"]["pipx_public_package"]["workflow_url"] = "https://github.com/AzurLiu/falsiflow/actions/runs/3"
+        evidence_doc["checks"]["mcp_public_package_selftest"]["status"] = "passed"
+        evidence_doc["checks"]["mcp_public_package_selftest"]["workflow_url"] = "https://github.com/AzurLiu/falsiflow/actions/runs/4"
         evidence_doc["checks"]["windows_powershell"]["status"] = "passed"
         evidence_doc["checks"]["windows_powershell"]["workflow_url"] = "https://github.com/AzurLiu/falsiflow/actions/runs/2"
         external_evidence_path.write_text(json.dumps(evidence_doc, indent=2, sort_keys=True), encoding="utf-8")
@@ -1706,6 +1710,7 @@ def assert_cli_contract() -> None:
         assert ready_checks["pypi_package_url"]["status"] == "passed"
         assert ready_checks["pypi_version_match"]["status"] == "passed"
         assert ready_checks["pipx_public_package"]["status"] == "passed"
+        assert ready_checks["mcp_public_package_selftest"]["status"] == "passed"
 
         cli_reference_md = Path(tmp) / "cli_reference.md"
         cli_reference_json = Path(tmp) / "cli_reference.json"
@@ -2822,6 +2827,7 @@ def assert_cli_contract() -> None:
         assert release_summary["external_check_status"] in {"external_ready", "external_blocked"}
         assert release_summary["external_check_summary"]["check_count"] >= 8
         assert any(check["check"] == "pipx_public_package" for check in release_summary["external_check_summary"]["checks"])
+        assert any(check["check"] == "mcp_public_package_selftest" for check in release_summary["external_check_summary"]["checks"])
         assert release_summary["quickstart_status"] == "quickstart_ready"
         assert release_summary["quickstart_summary"]["claim_check_status"] == "claim_check_ready"
         assert release_summary["quickstart_summary"]["verification_status"] == "bundle_verified"

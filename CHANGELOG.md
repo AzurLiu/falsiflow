@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.20
+
+- Required the public external-evidence workflow to prove
+  `falsiflow mcp --selftest --json` from the published PyPI package, so local
+  MCP integration claims are gated by the same public artifact chain as the
+  hosted demo, PyPI page, pipx smoke, and Windows smoke.
+- Added `mcp_public_package_selftest` to the external evidence schema,
+  external-check readiness gate, release evidence ledger, README/release docs,
+  and regression coverage.
+
 ## 0.1.19
 
 - Added `falsiflow mcp --selftest --json` so local agent integrations can
