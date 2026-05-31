@@ -472,7 +472,7 @@ def render_try_launchpad_html(summary: dict[str, object]) -> str:
     status_class = "ready" if ready else "blocked"
     headline = "CI gates for claims before they ship"
     summary_text = (
-        "See how placeholder AI eval, product metric, and R&D evidence stays blocked, then inspect a source-backed ready claim."
+        "See how placeholder AI eval, product metric, and R&D claims stay blocked, then inspect a source-backed ready claim."
         if ready
         else "The local demo needs attention before it can be used as a clean starter."
     )
