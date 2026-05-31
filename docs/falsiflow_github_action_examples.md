@@ -208,6 +208,109 @@ pin the action to a tag such as `AzurLiu/falsiflow@v0.1.16`; override
 `install-command` only when installing from PyPI, a fork, or a local checkout is
 part of the thing you are testing.
 
+## RAG Eval Downstream Claim Gate
+
+Use this when a downstream repository already has RAG eval artifacts from an
+eval runner, retrieval harness, or CI job and wants release-note claims to fail
+until the evidence rows are source-backed. The bundled
+[`rag_quality_gate`](../falsiflow/templates/rag_quality_gate) starter and
+[RAG quality gate proposal](falsiflow_rag_quality_gate_proposal.md) define the
+small demo contract: evaluation-set provenance, retrieval quality, answer
+faithfulness, source coverage, and reproducibility rows.
+
+Target layout:
+
+```text
+.github/workflows/falsiflow-rag-eval.yml
+falsiflow_rag_eval/project.json
+falsiflow_rag_eval/evidence.csv
+falsiflow_rag_eval/evidence_pass_demo.csv
+falsiflow_rag_eval/evidence_placeholder_demo.csv
+falsiflow_rag_eval/source_files/rag_eval_raw_export.csv
+```
+
+One-screen Action snippet:
+
+```yaml
+name: RAG Eval Evidence Gate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  rag-eval-evidence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Run Falsiflow RAG claim gate
+        id: falsiflow
+        uses: AzurLiu/falsiflow@v0.1.16
+        with:
+          mode: claim-check
+          project-dir: falsiflow_rag_eval
+          evidence: falsiflow_rag_eval/evidence.csv
+          out-dir: data/falsiflow/rag_eval_claim_check
+          strict: "true"
+
+      - name: Upload RAG claim reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: falsiflow-rag-eval-claim-check
+          path: |
+            ${{ steps.falsiflow.outputs.summary-json }}
+            ${{ steps.falsiflow.outputs.summary-md }}
+            data/falsiflow/rag_eval_claim_check/evidence_bundle.zip
+            data/falsiflow/rag_eval_claim_check/evidence_bundle_verify.md
+```
+
+Expected blocked run:
+
+```bash
+falsiflow quickstart --template rag_quality_gate --out falsiflow_rag_eval --strict
+cp falsiflow_rag_eval/evidence_placeholder_demo.csv falsiflow_rag_eval/evidence.csv
+git add .github/workflows/falsiflow-rag-eval.yml falsiflow_rag_eval
+git commit -m "Add blocked Falsiflow RAG eval gate"
+```
+
+The strict job should fail with `claim_check_blocked` because the placeholder
+row keeps evaluation-set provenance unpinned.
+
+Expected ready run:
+
+```bash
+cp falsiflow_rag_eval/evidence_pass_demo.csv falsiflow_rag_eval/evidence.csv
+git add falsiflow_rag_eval/evidence.csv
+git commit -m "Add source-backed RAG eval evidence"
+```
+
+The same workflow should pass with `claim_check_ready` and upload the JSON,
+Markdown, bundle, and bundle-verification reports.
+
+Local reproduction before pushing:
+
+```bash
+falsiflow claim-check \
+  --project-dir falsiflow_rag_eval \
+  --evidence falsiflow_rag_eval/evidence.csv \
+  --out-dir data/falsiflow/rag_eval_blocked \
+  --force
+cp falsiflow_rag_eval/evidence_pass_demo.csv falsiflow_rag_eval/evidence.csv
+falsiflow claim-check \
+  --project-dir falsiflow_rag_eval \
+  --evidence falsiflow_rag_eval/evidence.csv \
+  --out-dir data/falsiflow/rag_eval_ready \
+  --strict \
+  --force
+```
+
+This is artifact-first. Falsiflow does not call a hosted model, open an API
+port, or judge answer quality itself; it checks the evidence files your RAG eval
+runner already produced.
+
 ## AI Eval Claim Gate
 
 Use this when the repository already contains a Falsiflow project directory with

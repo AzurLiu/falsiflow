@@ -860,6 +860,32 @@ def package_release_checks(root: Path) -> dict[str, object]:
         versioned_action_ref = f"AzurLiu/falsiflow@v{current_version}"
         add("github_action_examples_docs", all(token in github_action_examples_text for token in ["Clean Downstream Smoke Repo", "examples/downstream_ai_eval_smoke", "examples/downstream_product_metric_smoke", "falsiflow-downstream-ai-eval-demo", "26711652990", "26711669112", "falsiflow_ai_eval/project.json", "falsiflow_ai_eval/evidence.csv", "falsiflow_product_metric/project.json", "falsiflow_product_metric/evidence.csv", "evidence_placeholder_demo.csv", "evidence_pass_demo.csv", "Product Metric Downstream Smoke", "product_metric_blocked", "product_metric_ready", "Local reproduction before pushing", "python3 -m venv .venv", "downstream_blocked", "downstream_ready", "AI Eval Claim Gate", "actions/checkout@v6", versioned_action_ref, "actions/upload-artifact@v7", "summary-json", "summary-md", "GITHUB_ACTION_PATH", "install-command", "claim_check_ready", "claim_check_blocked", "falsiflow_demo_pr_playbook.md"]), "GitHub Action examples document maintained AI eval and product metric downstream smoke fixtures, live downstream proof repo, exact local venv reproduction, claim gates, artifact uploads, default action checkout installs, install overrides, ready/blocked statuses, and the public demo PR playbook.", github_action_examples_path)
         add(
+            "github_action_examples_rag_eval_snippet",
+            all(
+                token in github_action_examples_text
+                for token in [
+                    "RAG Eval Downstream Claim Gate",
+                    "rag_quality_gate",
+                    "falsiflow_rag_quality_gate_proposal.md",
+                    "falsiflow_rag_eval/project.json",
+                    "falsiflow_rag_eval/evidence.csv",
+                    "uses: AzurLiu/falsiflow@v",
+                    versioned_action_ref,
+                    "mode: claim-check",
+                    "project-dir: falsiflow_rag_eval",
+                    "evidence: falsiflow_rag_eval/evidence.csv",
+                    "rag_eval_blocked",
+                    "rag_eval_ready",
+                    "claim_check_blocked",
+                    "claim_check_ready",
+                    "artifact-first",
+                    "does not call a hosted model, open an API",
+                ]
+            ),
+            "GitHub Action examples include a compact downstream RAG eval claim-gate snippet with artifact-first boundaries, blocked and ready statuses, and links to the bundled RAG quality gate.",
+            github_action_examples_path,
+        )
+        add(
             "downstream_ai_eval_live_proof_links",
             all(token in readme_text + github_action_examples_text + launch_plan_text for token in ["falsiflow-downstream-ai-eval-demo", "26711652990", "26711669112", "https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1"]),
             "README, GitHub Action examples, and launch plan link the live downstream blocked-to-ready AI eval PR proof.",
