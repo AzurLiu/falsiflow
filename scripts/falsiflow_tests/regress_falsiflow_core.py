@@ -3022,6 +3022,8 @@ def assert_cli_contract() -> None:
             "launch_metrics_docs",
             "launch_execution_exists",
             "launch_execution_docs",
+            "launch_article_exists",
+            "launch_article_visual_docs",
             "external_check_docs",
             "readme_github_action_docs",
             "github_action_examples_rag_eval_snippet",

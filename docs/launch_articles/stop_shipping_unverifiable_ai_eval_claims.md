@@ -50,6 +50,14 @@ claim has a machine-checkable contract.
 
 ## The Demo That Explains It
 
+![Falsiflow downstream PR proof strip: AI/RAG/product-metric claims move from blocked to ready](../assets/falsiflow_downstream_pr_proof_strip.svg)
+
+Caption: live downstream AI eval, RAG eval, and product-metric PRs fail as
+`claim_check_blocked` on placeholder evidence, then pass as
+`claim_check_ready` only after source-backed rows and raw files are added.
+`claim_check_ready` means evidence-package readiness for review; it is not
+model quality, RAG safety, or product impact.
+
 The fastest way to show the idea is a deliberately failing PR in a clean
 downstream repository, not a screenshot of a tool UI.
 
@@ -181,10 +189,6 @@ repair commit, the GitHub Action, the uploaded reports, and the 30-second
 recording script:
 
 [docs/falsiflow_demo_pr_playbook.md](../falsiflow_demo_pr_playbook.md)
-
-The shareable downstream proof strip is here:
-
-![Falsiflow downstream PR proof strip](../assets/falsiflow_downstream_pr_proof_strip.svg)
 
 Start with the failing PR. It explains the project faster than any feature
 list.

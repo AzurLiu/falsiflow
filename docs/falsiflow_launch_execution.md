@@ -46,9 +46,9 @@ follow-up checks. Use it after the current public release evidence is green.
 - Pre-public-post baseline recorded on 2026-06-01 05:49 CST after the
   upload-ready social preview release:
   0 stars, 2 forks, 0 watchers, 8 total views, 1 unique view, 466 total clones,
-  283 unique clones, open issue #22, completed seed issues #26, #27, #28, and #30,
-  and open PR #17. Treat clone counts as likely inflated by CI/release
-  automation until public-post traffic arrives.
+  283 unique clones, open issues #22 and #31, completed seed issues #26, #27, #28, #29, and #30, and open PR #17.
+  Treat clone counts as likely inflated by CI/release automation until
+  public-post traffic arrives.
 - Latest external evidence workflow:
   <https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-external-evidence.yml>
 
@@ -64,14 +64,16 @@ Before broad launch distribution, seed a small public queue from
 pre-launch queue keeps
 [issue #22](https://github.com/AzurLiu/falsiflow/issues/22) open for the
 24-hour post-public-post metrics review,
-[issue #29](https://github.com/AzurLiu/falsiflow/issues/29) open as a
-`good first issue` for launch-article visual polish, and
+[issue #31](https://github.com/AzurLiu/falsiflow/issues/31) open as a
+`good first issue` for product-metric launch-article proof links,
+[issue #29](https://github.com/AzurLiu/falsiflow/issues/29) completed by the
+launch-article blocked-to-ready visual, and
 [issue #30](https://github.com/AzurLiu/falsiflow/issues/30) completed by the
 live product-metric downstream PR proof. Completed seed issues #26, #27, #28,
-and #30 cover release proof snippet generation, the live downstream RAG eval
-demo PR, MCP client configuration examples, and the live downstream
-product-metric demo PR.
-Summary phrase for release checks: release proof snippet generation, live downstream RAG eval demo, MCP client configuration examples, product-metric downstream proof.
+#29, and #30 cover release proof snippet generation, the live downstream RAG
+eval demo PR, MCP client configuration examples, launch-article visual polish,
+and the live downstream product-metric demo PR.
+Summary phrase for release checks: release proof snippet generation, live downstream RAG eval demo, MCP client configuration examples, launch-article visual polish, product-metric downstream proof.
 New public issues after launch should come from repeated external feedback, not
 from internal polish already completed before distribution.
 
