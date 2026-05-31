@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.32
+
+- Tightened the README first screen so new visitors see the claim, proof strip,
+  three-command quickstart, blocked-vs-ready output, and GitHub Action snippet
+  before longer release-proof details.
+- Moved public evidence, live downstream PR links, current status, and source
+  contributor guidance into scannable follow-up sections.
+- Corrected the live in-repo demo PR copy to describe PR #17 as the AI eval
+  gate story it actually proves.
+
 ## 0.1.31
 
 - Added a release-check downstream smoke replay gate that runs the maintained

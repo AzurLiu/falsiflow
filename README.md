@@ -21,13 +21,19 @@ source-backed evidence -> claim_check_ready
 GitHub Action:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.31
+- uses: AzurLiu/falsiflow@v0.1.32
   with:
     mode: claim-check
     project-dir: falsiflow_ai_eval
     evidence: falsiflow_ai_eval/evidence.csv
     strict: "true"
 ```
+
+[![Falsiflow](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow.yml)
+[![Falsiflow Cross Platform](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-cross-platform.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-cross-platform.yml)
+[![Falsiflow Scorecard](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-scorecard.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-scorecard.yml)
+
+## Live Proof
 
 Public demo: <https://azurliu.github.io/falsiflow/>. PyPI package:
 <https://pypi.org/project/falsiflow/>. PyPI trusted publishing: completed.
@@ -59,7 +65,7 @@ provenance, source-backed evidence rows, raw files, thresholds, and a review
 bundle.
 
 Live PR Story: [PR #17](https://github.com/AzurLiu/falsiflow/pull/17)
-shows the same AI/RAG eval gate inside this repository:
+shows the same AI eval gate inside this repository:
 [blocked run](https://github.com/AzurLiu/falsiflow/actions/runs/26708459093),
 then [ready run](https://github.com/AzurLiu/falsiflow/actions/runs/26708472653).
 
@@ -71,25 +77,12 @@ evidence, then pass after source-backed rows are added, use
 or the walkthrough in
 [docs/falsiflow_github_action_examples.md](docs/falsiflow_github_action_examples.md).
 
-Or run from source while contributing:
-
-```bash
-git clone https://github.com/AzurLiu/falsiflow.git
-cd falsiflow
-python3 -m pip install -e .
-falsiflow quickstart --template ai_claim_evaluation --out falsiflow_ai_demo --strict
-```
-
 Current public status: hosted demo, PyPI, CI, cross-platform smoke tests,
 Scorecard, live downstream AI/RAG demo PRs, checkout pipx, public-package pipx,
 public-package first-run quickstart/doctor, public-package claim-check,
 public-package MCP selftest, Windows PowerShell smoke, and source installs are
 live. `Falsiflow External Evidence` reports `external_ready` for the current
 public release.
-
-[![Falsiflow](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow.yml)
-[![Falsiflow Cross Platform](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-cross-platform.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-cross-platform.yml)
-[![Falsiflow Scorecard](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-scorecard.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-scorecard.yml)
 
 Evidence gate flow:
 
@@ -102,6 +95,9 @@ Evidence gate flow:
 - CLI users: run `falsiflow quickstart --template biointerface_coatings --out
   my_falsiflow_project --strict`, then `falsiflow doctor --project-dir
   my_falsiflow_project --strict`.
+- Source contributors: clone the repo, run `python3 -m pip install -e .`, then
+  `falsiflow quickstart --template ai_claim_evaluation --out
+  falsiflow_ai_demo --strict`.
 - Template authors: start with `falsiflow template-gallery`, then use
   `template-check`, `template-pack`, `template-release`, and
   `template-install` before sharing a template.
@@ -303,7 +299,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: AzurLiu/falsiflow@v0.1.31
+      - uses: AzurLiu/falsiflow@v0.1.32
         with:
           mode: claim-check
           project-dir: my_falsiflow_project
