@@ -16,6 +16,15 @@ The maintained fixture lives in
 Copy that directory into a clean repository when you want the smallest
 blocked-then-ready PR story without hand-assembling files from prose.
 
+Live downstream proof is available in
+[`AzurLiu/falsiflow-downstream-ai-eval-demo`](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo):
+[PR #1](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1)
+first failed in
+[run 26711652990](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711652990),
+then passed in
+[run 26711669112](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711669112)
+after source-backed eval evidence replaced the placeholder row.
+
 Target layout:
 
 ```text

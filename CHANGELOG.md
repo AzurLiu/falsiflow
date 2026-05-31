@@ -5,6 +5,8 @@
 - Added a maintained `examples/downstream_ai_eval_smoke` fixture that can be
   copied into a clean repository to show a placeholder AI eval claim failing CI
   before source-backed evidence makes the same workflow pass.
+- Linked the live downstream proof repository and PR that show the same
+  blocked-to-ready AI eval claim gate outside the Falsiflow repository.
 
 ## 0.1.10
 

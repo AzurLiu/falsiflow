@@ -59,6 +59,11 @@ AI eval evidence, then passes after source-backed rows are added, use
 [examples/downstream_ai_eval_smoke](examples/downstream_ai_eval_smoke) or the
 walkthrough in
 [docs/falsiflow_github_action_examples.md](docs/falsiflow_github_action_examples.md).
+Live downstream proof:
+[repo](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo),
+[PR #1](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1),
+[blocked run](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711652990),
+[ready run](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711669112).
 
 Or run from source while contributing:
 
