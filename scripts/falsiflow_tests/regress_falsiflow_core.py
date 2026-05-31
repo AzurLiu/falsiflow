@@ -2895,6 +2895,7 @@ def assert_cli_contract() -> None:
             "readme_architecture_entry",
             "readme_data_contract_entry",
             "readme_adapter_profiles_entry",
+            "readme_mcp_entry",
             "readme_template_authoring_entry",
             "readme_troubleshooting_entry",
             "readme_security_posture_entry",
@@ -2963,6 +2964,8 @@ def assert_cli_contract() -> None:
             "adapter_profiles_docs",
             "local_llm_eval_quickstart_exists",
             "local_llm_eval_quickstart_docs",
+            "mcp_docs_exists",
+            "mcp_docs",
             "casebook_check_exists",
             "casebook_check_docs",
             "template_authoring_exists",
@@ -3016,6 +3019,7 @@ def assert_cli_contract() -> None:
         assert package_check_map["readme_downstream_pr_proof_strip_asset"]["status"] == "passed"
         assert package_check_map["readme_pypi_renderable_image_urls"]["status"] == "passed"
         assert package_check_map["launch_execution_docs"]["status"] == "passed"
+        assert package_check_map["mcp_docs"]["status"] == "passed"
         assert package_check_map["github_action_examples_rag_eval_snippet"]["status"] == "passed"
         assert package_check_map["downstream_ai_eval_smoke_fixture"]["status"] == "passed"
         assert package_check_map["downstream_product_metric_smoke_fixture"]["status"] == "passed"
@@ -3811,6 +3815,21 @@ def assert_eval_artifact_import_contract() -> None:
 
 
 def assert_mcp_server_contract() -> None:
+    selftest = subprocess.run(
+        [sys.executable, str(CLI), "mcp", "--selftest", "--json"],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    selftest_summary = json.loads(selftest.stdout)
+    assert selftest_summary["status"] == "mcp_selftest_ready"
+    assert selftest_summary["tool_count"] >= 4
+    assert selftest_summary["resource_count"] >= 5
+    assert selftest_summary["checked_tool_statuses"]["falsiflow.validate_claims"] == "claim_check_ready"
+    assert selftest_summary["checked_tool_statuses"]["falsiflow.check_bundle"] == "bundle_verified"
+    assert selftest_summary["checked_tool_statuses"]["falsiflow.create_evidence_todo"] == "evidence_todo_ready"
+
     proc = subprocess.Popen(
         [sys.executable, str(CLI), "mcp"],
         cwd=ROOT,

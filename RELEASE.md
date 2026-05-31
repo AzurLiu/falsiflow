@@ -18,14 +18,16 @@ Use this checklist before tagging or publishing a Falsiflow release.
    [docs/falsiflow_architecture.md](docs/falsiflow_architecture.md) plus
    [docs/falsiflow_data_contract.md](docs/falsiflow_data_contract.md),
    [docs/falsiflow_adapter_profiles.md](docs/falsiflow_adapter_profiles.md),
+   [docs/falsiflow_mcp.md](docs/falsiflow_mcp.md),
    [docs/falsiflow_casebook_check.md](docs/falsiflow_casebook_check.md),
    [docs/falsiflow_security_posture.md](docs/falsiflow_security_posture.md),
    [docs/falsiflow_template_authoring.md](docs/falsiflow_template_authoring.md),
    [docs/falsiflow_troubleshooting.md](docs/falsiflow_troubleshooting.md),
    and [docs/falsiflow_1k_launch_plan.md](docs/falsiflow_1k_launch_plan.md)
    describe the current citation, community, governance, security,
-   architecture, data contract, adapter profiles, casebook proof, template
-   authoring, troubleshooting, launch, supply-chain, and release posture.
+   architecture, data contract, adapter profiles, MCP agent boundary, casebook
+   proof, template authoring, troubleshooting, launch, supply-chain, and
+   release posture.
 5. Confirm [SECURITY.md](SECURITY.md) and
    [RESPONSIBLE_USE.md](RESPONSIBLE_USE.md) still match the release behavior and
    evidence-boundary language.
@@ -52,6 +54,8 @@ python3 -m py_compile \
   falsiflow/core.py \
   falsiflow/cli.py \
   falsiflow/adapters.py \
+  falsiflow/api.py \
+  falsiflow/mcp_server.py \
   falsiflow/release.py \
   falsiflow/adoption.py \
   falsiflow/casebook_check.py \
@@ -77,6 +81,7 @@ python3 -m py_compile \
   scripts/falsiflow_tests/regress_falsiflow_core.py
 
 python3 scripts/falsiflow_tests/regress_falsiflow_core.py
+python3 scripts/falsiflow.py mcp --selftest --json
 scripts/install_local.sh --from-local . --prefix /tmp/falsiflow_install_check --check
 python3 scripts/falsiflow.py onboard --out-dir /tmp/falsiflow_onboard_check --check --json
 python3 scripts/falsiflow.py static-demo --out-dir /tmp/falsiflow_static_demo_check --force --json
@@ -126,6 +131,9 @@ The final `release-check` must report:
 - one-command `doctor --project-dir` reports `doctor_ready`
 - `doctor_summary.json` includes a `repair_checklist`
 - one-command `claim-check --project-dir` reports `claim_check_ready`
+- `mcp --selftest --json` reports `mcp_selftest_ready`, lists the local
+  claim/bundle/blocker/todo tools, lists local resources, runs a source-backed
+  bundled claim check, verifies its bundle, and reads the blocker context
 - audit review decision cards generated and bundled
 - all starter bundles verified
 - template gallery ready with the bundled cross-domain starters

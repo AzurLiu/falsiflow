@@ -521,8 +521,19 @@ def cmd_agent_discover(args: argparse.Namespace) -> int:
 
 
 def cmd_mcp(args: argparse.Namespace) -> int:
-    from .mcp_server import serve
+    from .mcp_server import run_selftest, serve
 
+    if args.selftest:
+        summary = run_selftest()
+        if args.json:
+            print(json.dumps(summary, indent=2, sort_keys=True))
+        else:
+            print(f"Falsiflow MCP selftest: {summary['status']}")
+            print(f"Tools: {summary['tool_count']}")
+            print(f"Resources: {summary['resource_count']}")
+            for check in summary["checks"]:
+                print(f"- {check['check']}: {check['status']}")
+        return 0 if summary["status"] == "mcp_selftest_ready" else 2
     return serve()
 
 
@@ -2178,6 +2189,8 @@ def build_parser() -> argparse.ArgumentParser:
     agent_discover.set_defaults(func=cmd_agent_discover)
 
     mcp = sub.add_parser("mcp", help="Run the experimental local stdio MCP server for AI coding agents.")
+    mcp.add_argument("--selftest", action="store_true", help="Exercise initialize, tools, resources, claim-check, bundle verification, and blocker explanation without starting a long-running server.")
+    mcp.add_argument("--json", action="store_true", help="Print machine-readable MCP selftest output with status mcp_selftest_ready on success.")
     mcp.set_defaults(func=cmd_mcp)
 
     candidate = sub.add_parser("candidate", help="Candidate queue utilities.")

@@ -21,7 +21,7 @@ source-backed evidence -> claim_check_ready
 GitHub Action:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.18
+- uses: AzurLiu/falsiflow@v0.1.19
   with:
     mode: claim-check
     project-dir: falsiflow_ai_eval
@@ -152,7 +152,7 @@ eval, and RAG eval adapter profiles, see
 [docs/falsiflow_adapter_profiles.md](docs/falsiflow_adapter_profiles.md). For
 artifact-first Ollama, LM Studio, llama.cpp, or private runner handoffs, see
 [docs/falsiflow_local_llm_eval.md](docs/falsiflow_local_llm_eval.md).
-For the local stdio MCP server used by AI coding agents, see
+For the local stdio MCP server and one-command agent selftest, see
 [docs/falsiflow_mcp.md](docs/falsiflow_mcp.md).
 For blocked command recovery, install/start problems, template failures,
 `claim_check_blocked`, and `external_blocked`, see
@@ -279,7 +279,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: AzurLiu/falsiflow@v0.1.18
+      - uses: AzurLiu/falsiflow@v0.1.19
         with:
           mode: claim-check
           project-dir: my_falsiflow_project
@@ -996,8 +996,15 @@ Run the local agent interface when an AI coding agent should check evidence
 before CI does:
 
 ```bash
+falsiflow mcp --selftest --json
 falsiflow mcp
 ```
+
+The selftest should report `mcp_selftest_ready` after exercising the local stdio
+server identity, tools, resources, source-backed claim check, bundle
+verification, blocker explanation, and evidence todo path. The server has no
+hosted API, no network listener, and does not run models; it lets agent clients
+inspect local evidence contracts before CI enforces the same claim gate.
 
 Write a source-file provenance manifest for an evidence pack:
 
@@ -1151,8 +1158,8 @@ with the active Falsiflow contract.
   ready AI-eval claim gates.
 - `docs/falsiflow_rag_quality_gate_proposal.md`: bundled RAG quality gate
   starter notes with placeholder-blocked and source-backed evidence rows.
-- `docs/falsiflow_mcp.md`: local stdio MCP server boundary and tool list for
-  AI coding agents.
+- `docs/falsiflow_mcp.md`: local stdio MCP server boundary, selftest, and tool
+  list for AI coding agents.
 - `docs/assets/falsiflow_downstream_pr_proof_strip.svg`: shareable downstream
   PR proof strip showing PR #1 moving from `claim_check_blocked` to
   `claim_check_ready`.

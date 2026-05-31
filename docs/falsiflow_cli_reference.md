@@ -316,10 +316,13 @@ falsiflow agent discover [-h] --goal GOAL [--out-dir OUT_DIR] [--force]
 Run the experimental local stdio MCP server for AI coding agents.
 
 ```text
-falsiflow mcp [-h]
+falsiflow mcp [-h] [--selftest] [--json]
 ```
 
-No command-specific arguments.
+| Argument | Value | Required | Default | Help |
+| --- | --- | --- | --- | --- |
+| `--selftest` | `` | `no` | `False` | Exercise initialize, tools, resources, claim-check, bundle verification, and blocker explanation without starting a long-running server. |
+| `--json` | `` | `no` | `False` | Print machine-readable MCP selftest output with status mcp_selftest_ready on success. |
 
 ### `falsiflow candidate`
 
@@ -437,7 +440,6 @@ falsiflow evidence import [-h] --input INPUT --out OUT
 | `--instrument-id-column` | `INSTRUMENT_ID_COLUMN` | `no` | `` |  |
 | `--notes` | `NOTES` | `no` | `` |  |
 | `--notes-column` | `NOTES_COLUMN` | `no` | `` |  |
-
 ### `falsiflow try`
 
 Run a 30-second starter demo and write a local browser launchpad.

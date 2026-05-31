@@ -55,6 +55,9 @@ The current track is adoption readiness:
   a placeholder project draft while keeping `claim_ready=false`.
 - Focused public interfaces for the same contract: `agent discover`,
   `candidate rank`, `assay-plan`, and `evidence import`.
+- A local stdio MCP server with `falsiflow mcp --selftest --json` so AI coding
+  agents can inspect claim, bundle, blocker, and evidence-todo context without
+  Falsiflow opening a network API or running models.
 - A `demo-package` command that prepares GitHub Pages/Netlify-friendly static
   demo artifacts, plus an `external-check` gate for public repo/demo URLs,
   public PyPI package URL, checkout-based pipx, public-package pipx, and

@@ -24,6 +24,9 @@ to try, hard to misuse, and straightforward to verify before publication.
 - Keep public casebook reviewer replay artifacts for Bash and PowerShell so
   positive demos and placeholder blocked-path fixtures can be reproduced without
   hand-copying commands from prose.
+- Keep the local stdio MCP server selftestable so coding-agent integrations can
+  prove claim, bundle, blocker, and evidence-todo tools without opening a
+  network API or running models.
 - Keep launch metrics artifacts in the public launch kit so GitHub traffic,
   referrers, stars, forks, clones, demo visits, install/download signals, and
   repeated questions are reviewed after launch instead of guessed from memory.

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.19
+
+- Added `falsiflow mcp --selftest --json` so local agent integrations can
+  verify MCP initialize, tool listing, resource listing, source-backed claim
+  checking, bundle verification, blocker explanation, and evidence todo output
+  before wiring a stdio client.
+- Expanded MCP, README, release, roadmap, CLI reference, adoption, and
+  release-check coverage for the local stdio/no-network/no-model boundary.
+
 ## 0.1.18
 
 - Synced the launch execution baseline into the release line and made the
