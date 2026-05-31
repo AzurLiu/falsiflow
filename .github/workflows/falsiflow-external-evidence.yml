@@ -126,12 +126,13 @@ jobs:
           if parsed.scheme != "https" or parsed.netloc != "pypi.org" or parsed.path.rstrip("/") + "/" != expected_path:
               raise SystemExit(f"Expected https://pypi.org/project/falsiflow/, got {url}")
           PY
-          curl -fsSL "https://pypi.org/pypi/falsiflow/json" -o "$RUNNER_TEMP/falsiflow_pypi_project.json"
           python - <<'PY'
           import json
           import os
           import pathlib
+          import time
           import tomllib
+          import urllib.request
 
           root = pathlib.Path.cwd()
           expected_version = os.environ.get("FALSIFLOW_EXPECTED_VERSION", "").strip()
@@ -142,15 +143,29 @@ jobs:
               raise SystemExit("Expected PyPI package version was empty")
 
           runner_temp = pathlib.Path(os.environ["RUNNER_TEMP"])
-          payload = json.loads((runner_temp / "falsiflow_pypi_project.json").read_text(encoding="utf-8"))
-          info = payload.get("info", {})
-          if str(info.get("name", "")).lower() != "falsiflow":
-              raise SystemExit("PyPI JSON did not describe the falsiflow package")
-          published_version = str(info.get("version", "")).strip()
-          if not published_version:
-              raise SystemExit("PyPI JSON did not include a released version")
-          if published_version != expected_version:
+          request = urllib.request.Request(
+              "https://pypi.org/pypi/falsiflow/json",
+              headers={"Cache-Control": "no-cache", "Pragma": "no-cache"},
+          )
+          payload = {}
+          published_version = ""
+          for attempt in range(1, 13):
+              with urllib.request.urlopen(request, timeout=20) as response:
+                  payload = json.loads(response.read().decode("utf-8"))
+              info = payload.get("info", {})
+              if str(info.get("name", "")).lower() != "falsiflow":
+                  raise SystemExit("PyPI JSON did not describe the falsiflow package")
+              published_version = str(info.get("version", "")).strip()
+              if not published_version:
+                  raise SystemExit("PyPI JSON did not include a released version")
+              if published_version == expected_version:
+                  break
+              print(f"PyPI JSON attempt {attempt}: expected {expected_version}, got {published_version}; retrying...")
+              time.sleep(5)
+          else:
               raise SystemExit(f"Expected PyPI version {expected_version}, got {published_version}")
+
+          (runner_temp / "falsiflow_pypi_project.json").write_text(json.dumps(payload, indent=2, sort_keys=True), encoding="utf-8")
           (runner_temp / "falsiflow_expected_version.txt").write_text(expected_version, encoding="utf-8")
           (runner_temp / "falsiflow_pypi_version.txt").write_text(published_version, encoding="utf-8")
           PY
