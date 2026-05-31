@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.35
+
+- Removed stale `0.1.29` wording from the static launch execution copy so
+  copied MLOps, LinkedIn, and short-post drafts describe the current public
+  release instead of an old version.
+- Added launch execution guidance for generating and uploading
+  `social_preview.png` from `falsiflow launch-kit`.
+- Tightened `release-check` so stale versioned launch-copy phrases are blocked
+  and generated launch posts must include the current reusable Action tag.
+
 ## 0.1.34
 
 - Added an upload-ready `social_preview.png` to `falsiflow launch-kit`, generated

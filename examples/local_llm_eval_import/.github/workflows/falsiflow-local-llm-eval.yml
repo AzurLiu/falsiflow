@@ -14,7 +14,7 @@ jobs:
 
       - name: Import local LLM eval artifacts
         id: falsiflow_import
-        uses: AzurLiu/falsiflow@v0.1.34
+        uses: AzurLiu/falsiflow@v0.1.35
         with:
           mode: evidence-import
           profile: local-llm-eval
@@ -28,7 +28,7 @@ jobs:
 
       - name: Run Falsiflow claim gate
         id: falsiflow
-        uses: AzurLiu/falsiflow@v0.1.34
+        uses: AzurLiu/falsiflow@v0.1.35
         with:
           mode: claim-check
           project-dir: falsiflow_local_llm_eval

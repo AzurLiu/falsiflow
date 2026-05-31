@@ -15,6 +15,7 @@ import venv
 from collections.abc import Callable
 from typing import Any
 
+from . import __version__ as FALSIFLOW_VERSION
 from .bundle import markdown_cell
 
 try:
@@ -1043,7 +1044,34 @@ def package_release_checks(root: Path) -> dict[str, object]:
         add("launch_kit_docs", all(token in readme_text for token in ["falsiflow launch-kit", "launch_summary.json", "proof_card.md", "announcement.md", "demo_script.md", "readme_proof_strip.svg", "social_preview.png", "social_preview.svg", "github_repo_profile.md", "launch_posts.md", "Channel Checklist", "Hacker News", "Reddit", "LinkedIn", "awesome lists", "AI/RAG downstream PR proof", "launch_metrics.json", "launch_metrics.md", "public_release_evidence.md", "release_rehearsal.md", "maintainer_checklist.md"]), "README documents public launch materials, proof-card generation, upload-ready social preview PNG plus SVG source, repo profile, channel-aware AI/RAG launch posts, launch metrics, publish evidence ledger, release rehearsal, and README proof-strip asset.", readme_path)
         add("launch_metrics_docs", all(token in readme_text + adoption_priorities_text + roadmap_text for token in ["launch metrics tracker", "GitHub traffic", "referrers", "stars", "forks", "clones", "demo visits", "install/download signals", "Post-Launch Metrics Review", "launch_metrics.json", "launch_metrics.md", "weekly maintainer review", "traction signals", "local/private validation", "concrete follow-up issues", "verification command"]), "README, adoption priorities, and roadmap document post-launch metrics tracking, weekly review, validation boundaries, and concrete follow-up issues for the 1k-star path.", readme_path)
         add("public_issue_queue_docs", all(token in public_issue_queue_text for token in ["Active Public Issues", "issues/22", "launch metrics review", "issues/26", "Generate a release proof snippet", "issues/27", "live downstream RAG eval claim-gate demo", "falsiflow-downstream-rag-eval-demo", "26721829145", "26721856616", "issues/28", "MCP client configuration examples", "Completed Seed Issues", "falsiflow release-proof", "good first issue", "help wanted", "release-check", "mcp_selftest_ready"]), "Public issue queue doc links current contributor-facing issue plus completed seed issues with labels, goals, verification commands, and live RAG downstream proof links.", public_issue_queue_path)
-        add("launch_execution_docs", all(token in launch_execution_text for token in ["Falsiflow Launch Execution", "Pre-public-post baseline", "0 stars", "2 forks", "open issue #22", "completed seed issues #26, #27, and #28", "open PR #17", "falsiflow-external-evidence.yml", "release proof snippet generation", "live downstream RAG eval demo", "MCP client configuration examples", "24-hour post-public-post metrics review", "claim_check_blocked", "claim_check_ready", "falsiflow-downstream-rag-eval-demo", "26721829145", "26721856616"]), "Launch execution doc records the current pre-public-post baseline, active queue, completed seed issues, external evidence workflow, AI/RAG downstream proof, and blocked-to-ready launch copy.", launch_execution_path)
+        launch_execution_has_current_copy = all(
+            token in launch_execution_text
+            for token in [
+                "Falsiflow Launch Execution",
+                "Pre-public-post baseline",
+                "upload-ready social preview release",
+                "social_preview.png",
+                "0 stars",
+                "2 forks",
+                "open issue #22",
+                "completed seed issues #26, #27, and #28",
+                "open PR #17",
+                "falsiflow-external-evidence.yml",
+                "release proof snippet generation",
+                "live downstream RAG eval demo",
+                "MCP client configuration examples",
+                "24-hour post-public-post metrics review",
+                "I released Falsiflow, a Python CLI",
+                "Released Falsiflow.",
+                "claim_check_blocked",
+                "claim_check_ready",
+                "falsiflow-downstream-rag-eval-demo",
+                "26721829145",
+                "26721856616",
+            ]
+        )
+        launch_execution_has_stale_versioned_copy = bool(re.search(r"\bFalsiflow 0\.1\.\d+\b", launch_execution_text))
+        add("launch_execution_docs", launch_execution_has_current_copy and not launch_execution_has_stale_versioned_copy, "Launch execution doc records the current pre-public-post baseline, social-preview handoff, active queue, completed seed issues, external evidence workflow, AI/RAG downstream proof, and non-stale blocked-to-ready launch copy.", launch_execution_path)
         add("external_check_docs", all(token in readme_text for token in ["falsiflow external-evidence", "falsiflow external-check", "falsiflow release-proof", "external_readiness.json", "external_ready", "external_blocked", "release_proof.md", "--evidence", "--readiness", "FALSIFLOW_EXTERNAL_EVIDENCE", "FALSIFLOW_PYPI_PACKAGE_URL", "https://pypi.org/pypi/falsiflow/json", "expected_version", "published_version", "FALSIFLOW_PIPX_PUBLIC_VALIDATED", "FALSIFLOW_PUBLIC_PACKAGE_FIRST_RUN_VALIDATED", "FALSIFLOW_PUBLIC_PACKAGE_CLAIM_CHECK_VALIDATED", "FALSIFLOW_MCP_PUBLIC_SELFTEST_VALIDATED", "public-package pipx", "public-package first-run quickstart/doctor", "public-package claim-check", "public-package MCP selftest", "Falsiflow External Evidence", "exact", "quickstart_ready", "doctor_ready", "claim_check_ready", "bundle_verified", "pypi_version_match=passed", "public_package_claim_check=passed", "falsiflow_external_evidence.json"]), "README documents structured external evidence, release proof snippets, public package evidence, PyPI JSON expected-version verification, exact release evidence run proof, public-package first-run, claim-check, and MCP selftest evidence, CI evidence capture, and publication readiness checks.", readme_path)
         action_ref_ready = f"uses: AzurLiu/falsiflow@v{current_version}" in readme_text
         add("readme_github_action_docs", action_ref_ready and all(token in readme_text for token in ["action.yml", "mode: claim-check", "mode: evidence-import", "install-command", "GITHUB_ACTION_PATH", "falsiflow_github_action_examples.md", "examples/downstream_ai_eval_smoke", "examples/downstream_product_metric_smoke", "examples/downstream_rag_eval_smoke", "examples/local_llm_eval_import", "falsiflow-downstream-ai-eval-demo", "falsiflow-downstream-rag-eval-demo", "26721829145", "26721856616", "template-check", "external-check"]), "README documents downstream reusable GitHub Action adoption, versioned action pinning, evidence-import mode, default action-checkout installation, install override, live AI/RAG downstream proof, and copy-paste examples.", readme_path)
@@ -1673,7 +1701,7 @@ def run_release_check(
             launch_content_checks = {
                 "launch_posts": (
                     launch_kit_dir / "launch_posts.md",
-                    ["Channel Checklist", "Hacker News / Show HN", "Reddit / community threads", "LinkedIn", "Awesome lists / ecosystem repos", "responsible-use boundary", "launch_metrics.md", "Show HN", "unverifiable AI eval claims", "falsiflow-downstream-ai-eval-demo", "26711652990", "26711669112", "falsiflow-downstream-rag-eval-demo", "26721829145", "26721856616", "AI eval downstream PR", "RAG eval downstream PR", "Demo PR playbook", "Reply Bank", "Great Expectations", "GITHUB_ACTION_PATH", "claim_check_blocked", "claim_check_ready"],
+                    ["Channel Checklist", "Hacker News / Show HN", "Reddit / community threads", "LinkedIn", "Awesome lists / ecosystem repos", "responsible-use boundary", "launch_metrics.md", "Show HN", "unverifiable AI eval claims", f"AzurLiu/falsiflow@v{FALSIFLOW_VERSION}", "falsiflow-downstream-ai-eval-demo", "26711652990", "26711669112", "falsiflow-downstream-rag-eval-demo", "26721829145", "26721856616", "AI eval downstream PR", "RAG eval downstream PR", "Demo PR playbook", "Reply Bank", "Great Expectations", "GITHUB_ACTION_PATH", "claim_check_blocked", "claim_check_ready"],
                 ),
                 "launch_github_repo_profile": (
                     launch_kit_dir / "github_repo_profile.md",
