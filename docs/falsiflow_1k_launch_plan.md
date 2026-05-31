@@ -34,6 +34,8 @@ should say what is still pending instead of implying full external readiness.
   `examples/downstream_ai_eval_smoke`.
 - Live downstream proof repo:
   <https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo>.
+- Shareable downstream proof strip:
+  [docs/assets/falsiflow_downstream_pr_proof_strip.svg](assets/falsiflow_downstream_pr_proof_strip.svg).
 - Comparison boundary: Falsiflow complements Great Expectations, Evidently,
   Deepchecks, MLflow, and plain GitHub Actions rather than replacing them.
 
@@ -63,6 +65,8 @@ Day 0:
   Use `examples/downstream_ai_eval_smoke` as the maintained fixture.
   Link the live downstream PR story:
   <https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1>.
+  Use `docs/assets/falsiflow_downstream_pr_proof_strip.svg` when a full screen
+  recording is too heavy.
 
 Day 1:
 

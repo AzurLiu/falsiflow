@@ -2895,6 +2895,8 @@ def assert_cli_contract() -> None:
             "readme_public_casebook_entry",
             "readme_rag_quality_gate_proposal_entry",
             "readme_casebook_check_entry",
+            "downstream_pr_proof_strip_exists",
+            "readme_downstream_pr_proof_strip_asset",
             "readme_proof_strip_exists",
             "readme_visual_asset",
             "readme_first_screen_story",
@@ -2993,6 +2995,7 @@ def assert_cli_contract() -> None:
         assert package_check_map["github_external_evidence_workflow"]["status"] == "passed"
         assert package_check_map["pypi_trusted_publishing_docs"]["status"] == "passed"
         assert package_check_map["readme_github_action_docs"]["status"] == "passed"
+        assert package_check_map["readme_downstream_pr_proof_strip_asset"]["status"] == "passed"
         assert package_check_map["downstream_ai_eval_smoke_fixture"]["status"] == "passed"
         assert package_check_map["downstream_ai_eval_live_proof_links"]["status"] == "passed"
         action_text = (ROOT / "action.yml").read_text(encoding="utf-8")

@@ -11,18 +11,25 @@ package is reviewable by CI and humans.
 
 ## Public Demo Evidence
 
-The live demo is
-[PR #17](https://github.com/AzurLiu/falsiflow/pull/17). It contains the same
-AI eval claim moving from placeholder evidence to source-backed evidence.
+The cleanest live demo is the downstream
+[PR #1](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1).
+It shows Falsiflow running as a reusable GitHub Action in another repository,
+not only inside the Falsiflow repo.
 For social posts or docs where a full screen recording is too heavy, use the
-shareable reel at
-[`docs/assets/falsiflow_live_pr_story_reel.svg`](assets/falsiflow_live_pr_story_reel.svg).
+shareable downstream proof strip at
+[`docs/assets/falsiflow_downstream_pr_proof_strip.svg`](assets/falsiflow_downstream_pr_proof_strip.svg).
 
 | Evidence | Link | What it proves |
 | --- | --- | --- |
-| Demo PR | [#17](https://github.com/AzurLiu/falsiflow/pull/17) | The claim-gate story is a real GitHub PR, not a static screenshot. |
-| Blocked CI run | [26708459093](https://github.com/AzurLiu/falsiflow/actions/runs/26708459093) | `falsiflow_ai_eval/evidence.csv` used placeholder/missing eval evidence and strict CI failed with `claim_check_blocked`. |
-| Ready CI run | [26708472653](https://github.com/AzurLiu/falsiflow/actions/runs/26708472653) | The same PR passed after `evidence.csv` was replaced with source-backed eval evidence. |
+| Downstream demo PR | [#1](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1) | The claim-gate story is a real downstream GitHub PR, not a static screenshot. |
+| Downstream blocked CI run | [26711652990](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711652990) | `falsiflow_ai_eval/evidence.csv` used placeholder/missing eval evidence and strict CI failed with `claim_check_blocked`. |
+| Downstream ready CI run | [26711669112](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711669112) | The same PR passed after `evidence.csv` was replaced with source-backed eval evidence. |
+
+An internal repo version is also available in
+[PR #17](https://github.com/AzurLiu/falsiflow/pull/17), with blocked run
+[26708459093](https://github.com/AzurLiu/falsiflow/actions/runs/26708459093)
+and ready run
+[26708472653](https://github.com/AzurLiu/falsiflow/actions/runs/26708472653).
 
 ## The Story
 

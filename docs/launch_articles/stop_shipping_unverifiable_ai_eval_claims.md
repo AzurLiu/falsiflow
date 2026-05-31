@@ -164,9 +164,9 @@ recording script:
 
 [docs/falsiflow_demo_pr_playbook.md](../falsiflow_demo_pr_playbook.md)
 
-The shareable reel is here:
+The shareable downstream proof strip is here:
 
-![Falsiflow Live PR Story reel](../assets/falsiflow_live_pr_story_reel.svg)
+![Falsiflow downstream PR proof strip](../assets/falsiflow_downstream_pr_proof_strip.svg)
 
 Start with the failing PR. It explains the project faster than any feature
 list.

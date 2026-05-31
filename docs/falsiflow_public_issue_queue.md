@@ -34,6 +34,10 @@ Create these as public issues before broad launch distribution:
 
    Labels: `launch`, `documentation`, `good first issue`
 
+   Status: completed by
+   `docs/assets/falsiflow_downstream_pr_proof_strip.svg` and tracked in
+   [issue #18](https://github.com/AzurLiu/falsiflow/issues/18).
+
    Goal: add a short GIF/video or screenshot sequence that shows the
    downstream PR moving from `claim_check_blocked` to `claim_check_ready`.
 
@@ -43,6 +47,10 @@ Create these as public issues before broad launch distribution:
 2. Add a local LLM eval quickstart note
 
    Labels: `documentation`, `help wanted`, `evidence-gate`
+
+   Status: completed by
+   [docs/falsiflow_local_llm_eval.md](falsiflow_local_llm_eval.md) and tracked
+   in [issue #19](https://github.com/AzurLiu/falsiflow/issues/19).
 
    Goal: show how Ollama, LM Studio, llama.cpp, or another local model runner
    can produce source-backed eval evidence without Falsiflow opening an API

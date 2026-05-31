@@ -19,6 +19,8 @@ follow-up checks. Use it after the current public release evidence is green.
   <https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711652990>
 - Downstream ready run:
   <https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711669112>
+- Shareable downstream proof strip:
+  [docs/assets/falsiflow_downstream_pr_proof_strip.svg](assets/falsiflow_downstream_pr_proof_strip.svg)
 - Live PR demo: <https://github.com/AzurLiu/falsiflow/pull/17>
 - Blocked PR run: <https://github.com/AzurLiu/falsiflow/actions/runs/26708459093>
 - Ready PR run: <https://github.com/AzurLiu/falsiflow/actions/runs/26708472653>

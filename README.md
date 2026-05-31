@@ -2,7 +2,7 @@
 
 Stop unverifiable AI eval, product metric, and R&D claims from passing CI.
 
-![Falsiflow Live PR Story reel](docs/assets/falsiflow_live_pr_story_reel.svg)
+![Falsiflow downstream PR proof strip](docs/assets/falsiflow_downstream_pr_proof_strip.svg)
 
 ## 30 Seconds
 
@@ -41,6 +41,8 @@ Live downstream proof:
 [ready run](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711669112).
 The public demo PR blocks placeholder evidence, then turns ready only after
 source-backed evidence is added.
+The shareable proof strip above is stored at
+[docs/assets/falsiflow_downstream_pr_proof_strip.svg](docs/assets/falsiflow_downstream_pr_proof_strip.svg).
 
 30-second demo (CLI):
 
@@ -1150,6 +1152,9 @@ with the active Falsiflow contract.
   starter notes with placeholder-blocked and source-backed evidence rows.
 - `docs/falsiflow_mcp.md`: local stdio MCP server boundary and tool list for
   AI coding agents.
+- `docs/assets/falsiflow_downstream_pr_proof_strip.svg`: shareable downstream
+  PR proof strip showing PR #1 moving from `claim_check_blocked` to
+  `claim_check_ready`.
 - `docs/assets/falsiflow_live_pr_story_reel.svg`: shareable visual reel showing
   PR #17 moving from `claim_check_blocked` to `claim_check_ready`.
 - `docs/assets/falsiflow_30_second_demo.svg`: README visual showing the
