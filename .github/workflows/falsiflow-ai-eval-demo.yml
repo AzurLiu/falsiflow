@@ -1,0 +1,34 @@
+name: AI Eval Claim Gate Demo
+
+on:
+  pull_request:
+    paths:
+      - "falsiflow_ai_eval/**"
+      - ".github/workflows/falsiflow-ai-eval-demo.yml"
+
+jobs:
+  claim-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Run Falsiflow claim gate
+        id: falsiflow
+        uses: AzurLiu/falsiflow@main
+        with:
+          mode: claim-check
+          project-dir: falsiflow_ai_eval
+          evidence: falsiflow_ai_eval/evidence.csv
+          out-dir: data/falsiflow/ai_eval_claim_check
+          strict: "true"
+
+      - name: Upload Falsiflow reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: falsiflow-ai-eval-claim-check
+          path: |
+            ${{ steps.falsiflow.outputs.summary-json }}
+            ${{ steps.falsiflow.outputs.summary-md }}
+            data/falsiflow/ai_eval_claim_check/evidence_bundle.zip
+            data/falsiflow/ai_eval_claim_check/evidence_bundle_verify.md
