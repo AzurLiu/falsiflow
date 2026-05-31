@@ -46,7 +46,7 @@ then source-backed evidence passing in the
 Drop the same gate into another repository with the GitHub Action:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.10
+- uses: AzurLiu/falsiflow@v0.1.11
   with:
     mode: claim-check
     project-dir: falsiflow_ai_eval
@@ -271,7 +271,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: AzurLiu/falsiflow@v0.1.10
+      - uses: AzurLiu/falsiflow@v0.1.11
         with:
           mode: claim-check
           project-dir: my_falsiflow_project

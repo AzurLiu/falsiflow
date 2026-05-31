@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.1.11
 
 - Added a maintained `examples/downstream_ai_eval_smoke` fixture that can be
   copied into a clean repository to show a placeholder AI eval claim failing CI

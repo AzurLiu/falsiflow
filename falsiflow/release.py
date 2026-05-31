@@ -68,6 +68,10 @@ EXPECTED_PROJECT_URLS = {
     "BlockedRun": "https://github.com/AzurLiu/falsiflow/actions/runs/26708459093",
     "ReadyRun": "https://github.com/AzurLiu/falsiflow/actions/runs/26708472653",
     "LaunchArticle": "https://github.com/AzurLiu/falsiflow/blob/main/docs/launch_articles/stop_shipping_unverifiable_ai_eval_claims.md",
+    "DownstreamDemo": "https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo",
+    "DownstreamPR": "https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1",
+    "DownstreamBlockedRun": "https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711652990",
+    "DownstreamReadyRun": "https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711669112",
     "Citation": "https://github.com/AzurLiu/falsiflow/blob/main/CITATION.cff",
     "Governance": "https://github.com/AzurLiu/falsiflow/blob/main/GOVERNANCE.md",
 }
@@ -761,7 +765,7 @@ def package_release_checks(root: Path) -> dict[str, object]:
         add(
             "pyproject_project_urls",
             EXPECTED_PROJECT_URLS.items() <= project_url_values.items() if data else all(name in pyproject_text and url in pyproject_text for name, url in EXPECTED_PROJECT_URLS.items()),
-            "Project metadata links homepage, docs, architecture, data contract, adapter profiles, casebook check, template authoring, troubleshooting, source, issues, changelog, demo, live PR proof links, launch article, citation, and governance URLs.",
+            "Project metadata links homepage, docs, architecture, data contract, adapter profiles, casebook check, template authoring, troubleshooting, source, issues, changelog, demo, live PR proof links, downstream proof links, launch article, citation, and governance URLs.",
             pyproject_path,
         )
         add("readme_declared", readme_value == "README.md" if data else 'readme = "README.md"' in pyproject_text, "pyproject readme points to README.md.", pyproject_path)
@@ -930,7 +934,7 @@ def package_release_checks(root: Path) -> dict[str, object]:
             add(
                 "installed_project_urls",
                 EXPECTED_PROJECT_URLS.items() <= installed_project_urls.items(),
-                "Installed metadata links homepage, docs, architecture, data contract, adapter profiles, casebook check, template authoring, troubleshooting, source, issues, changelog, demo, live PR proof links, launch article, citation, and governance URLs.",
+                "Installed metadata links homepage, docs, architecture, data contract, adapter profiles, casebook check, template authoring, troubleshooting, source, issues, changelog, demo, live PR proof links, downstream proof links, launch article, citation, and governance URLs.",
                 root,
             )
             add(
