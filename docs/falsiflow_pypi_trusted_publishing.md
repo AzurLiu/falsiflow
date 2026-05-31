@@ -9,13 +9,23 @@ The `Falsiflow Publish` workflow builds and checks the distributions, but PyPI
 rejected the trusted-publishing token exchange with `invalid-publisher` because
 no PyPI trusted publisher matches the GitHub OIDC claims.
 
-Observed claim from the failed `v0.1.1` release run:
+Observed claim from the failed `v0.1.2` release run:
 
 - `sub`: `repo:AzurLiu/falsiflow:environment:pypi`
 - `repository`: `AzurLiu/falsiflow`
-- `workflow_ref`: `AzurLiu/falsiflow/.github/workflows/falsiflow-publish.yml@refs/tags/v0.1.1`
-- `ref`: `refs/tags/v0.1.1`
+- `workflow_ref`: `AzurLiu/falsiflow/.github/workflows/falsiflow-publish.yml@refs/tags/v0.1.2`
+- `ref`: `refs/tags/v0.1.2`
 - `environment`: `pypi`
+
+Evidence:
+
+- Release: <https://github.com/AzurLiu/falsiflow/releases/tag/v0.1.2>
+- Failed release-triggered publish run:
+  <https://github.com/AzurLiu/falsiflow/actions/runs/26704442265>
+- Successful build job in that run: distribution build, `twine check`, and
+  `release-check`.
+- Failed job: `publish-pypi`, step `Publish to PyPI`, with
+  `invalid-publisher`.
 
 ## Required PyPI Project Setup
 
@@ -29,10 +39,10 @@ For a new PyPI project:
 2. Open the account sidebar's **Publishing** page.
 3. Add a new **pending publisher** for GitHub Actions.
 4. Fill in the exact fields below.
-5. Save the pending publisher, then publish the `v0.1.2` GitHub release soon
-   after saving it. A pending publisher does not reserve the project name; it is
-   converted into a normal trusted publisher only when the first publish
-   succeeds.
+5. Save the pending publisher, then rerun the failed `publish-pypi` job from
+   the `v0.1.2` release workflow soon after saving it. A pending publisher does
+   not reserve the project name; it is converted into a normal trusted publisher
+   only when the first publish succeeds.
 
 If the PyPI project already exists, open the project management page, choose
 **Publishing**, and add the same GitHub trusted publisher there instead of using
@@ -55,26 +65,25 @@ References:
 - PyPI trusted publishing workflow requirements:
   <https://docs.pypi.org/trusted-publishers/using-a-publisher/>
 
-After saving the publisher, publish a new release tag whose package version
-matches `pyproject.toml`.
+The `v0.1.2` GitHub release is already published and points at commit
+`c7efa3301e32e04df86e1828bcbec7158e2b65ba`. After saving the publisher, rerun
+the failed release workflow instead of creating a new release tag:
 
-Current main is prepared for `0.1.2`. Prefer publishing a new `v0.1.2` GitHub
-release after the trusted publisher is configured, rather than rerunning the old
-`v0.1.1` release, so the PyPI package includes the product-metric template,
-README 30-second demo, demo PR playbook, named neighboring-tool boundaries, and
-sharpened launch kit.
+```bash
+gh run rerun 26704442265 --repo AzurLiu/falsiflow --failed
+gh run watch 26704442265 --repo AzurLiu/falsiflow --exit-status
+```
 
-Do not publish the `v0.1.2` release tag until the PyPI project or pending
-publisher has the exact trusted-publisher settings above; otherwise the release
-workflow will build successfully and fail again at the PyPI token exchange.
+If a new code change is needed before PyPI publication, publish a new version
+instead of replacing the already-published `v0.1.2` artifacts.
 
 ## Verification
 
 The release is not externally ready until all of these are true:
 
-1. The `v0.1.2` draft GitHub release is published after the pending publisher
-   or existing-project publisher is saved.
-2. The release-triggered `Falsiflow Publish` workflow has a successful
+1. The PyPI pending publisher or existing-project publisher is saved with the
+   exact fields above.
+2. The release-triggered `Falsiflow Publish` workflow for `v0.1.2` has a successful
    `publish-pypi` job. A workflow_dispatch rehearsal is not enough because that
    path intentionally skips `publish-pypi`.
 3. `https://pypi.org/pypi/falsiflow/json` returns JSON whose package name is
