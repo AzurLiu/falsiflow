@@ -1269,11 +1269,15 @@ def assert_cli_contract() -> None:
         launchpad = (try_dir / "index.html").read_text(encoding="utf-8")
         assert "Falsiflow Launchpad" in launchpad
         assert "CI gates for claims before they ship" in launchpad
-        assert "Live PR Story" in launchpad
+        assert "Live Downstream PR Story" in launchpad
         assert 'property="og:title"' in launchpad
         assert 'name="twitter:card"' in launchpad
+        assert "falsiflow_downstream_pr_proof_strip.svg" in launchpad
         assert "falsiflow_live_pr_story_reel.svg" in launchpad
         assert "Falsiflow: AI eval claims should fail CI without evidence" in launchpad
+        assert "https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1" in launchpad
+        assert "https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711652990" in launchpad
+        assert "https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711669112" in launchpad
         assert "https://github.com/AzurLiu/falsiflow/pull/17" in launchpad
         assert "https://github.com/AzurLiu/falsiflow/actions/runs/26708459093" in launchpad
         assert "https://github.com/AzurLiu/falsiflow/actions/runs/26708472653" in launchpad
@@ -1474,7 +1478,9 @@ def assert_cli_contract() -> None:
         assert (demo_package_dir / ".nojekyll").exists()
         assert (demo_package_dir / "netlify.toml").exists()
         assert (demo_package_dir / "publish_checklist.md").exists()
-        assert "Live PR Story" in (demo_package_dir / "README.md").read_text(encoding="utf-8")
+        demo_package_readme = (demo_package_dir / "README.md").read_text(encoding="utf-8")
+        assert "live downstream PR story" in demo_package_readme
+        assert "PR #1 in the downstream AI eval demo" in demo_package_readme
 
         publish_kit_dir = Path(tmp) / "publish_kit"
         publish_kit = subprocess.run(
@@ -2896,8 +2902,11 @@ def assert_cli_contract() -> None:
             "readme_public_casebook_entry",
             "readme_rag_quality_gate_proposal_entry",
             "readme_casebook_check_entry",
+            "package_downstream_pr_proof_strip_exists",
             "downstream_pr_proof_strip_exists",
+            "downstream_pr_proof_strip_png_exists",
             "readme_downstream_pr_proof_strip_asset",
+            "package_downstream_pr_proof_strip_matches_docs",
             "readme_proof_strip_exists",
             "readme_visual_asset",
             "readme_first_screen_story",
@@ -2998,6 +3007,7 @@ def assert_cli_contract() -> None:
         assert package_check_map["github_external_evidence_workflow"]["status"] == "passed"
         assert package_check_map["pypi_trusted_publishing_docs"]["status"] == "passed"
         assert package_check_map["readme_github_action_docs"]["status"] == "passed"
+        assert package_check_map["package_downstream_pr_proof_strip_matches_docs"]["status"] == "passed"
         assert package_check_map["readme_downstream_pr_proof_strip_asset"]["status"] == "passed"
         assert package_check_map["downstream_ai_eval_smoke_fixture"]["status"] == "passed"
         assert package_check_map["downstream_product_metric_smoke_fixture"]["status"] == "passed"
@@ -4122,10 +4132,14 @@ def assert_packaged_template_contract() -> None:
         assert packaged_try_summary["outputs"]["wizard"].endswith("falsiflow_wizard.html")
         packaged_launchpad = (packaged_try_dir / "index.html").read_text(encoding="utf-8")
         assert "Falsiflow Launchpad" in packaged_launchpad
-        assert "Live PR Story" in packaged_launchpad
+        assert "Live Downstream PR Story" in packaged_launchpad
         assert 'property="og:title"' in packaged_launchpad
         assert 'name="twitter:card"' in packaged_launchpad
+        assert "falsiflow_downstream_pr_proof_strip.svg" in packaged_launchpad
         assert "falsiflow_live_pr_story_reel.svg" in packaged_launchpad
+        assert "https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1" in packaged_launchpad
+        assert "https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711652990" in packaged_launchpad
+        assert "https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711669112" in packaged_launchpad
         assert "https://github.com/AzurLiu/falsiflow/pull/17" in packaged_launchpad
         assert "Falsiflow Try" in (packaged_try_dir / "try_report.html").read_text(encoding="utf-8")
         assert "Falsiflow Browser Wizard" in (packaged_try_dir / "falsiflow_wizard.html").read_text(encoding="utf-8")
@@ -4245,7 +4259,9 @@ def assert_packaged_template_contract() -> None:
         assert packaged_demo_package_summary["status"] == "demo_package_ready"
         assert (packaged_demo_package_dir / "demo_package_summary.json").exists()
         assert (packaged_demo_package_dir / ".nojekyll").exists()
-        assert "Live PR Story" in (packaged_demo_package_dir / "README.md").read_text(encoding="utf-8")
+        packaged_demo_package_readme = (packaged_demo_package_dir / "README.md").read_text(encoding="utf-8")
+        assert "live downstream PR story" in packaged_demo_package_readme
+        assert "PR #1 in the downstream AI eval demo" in packaged_demo_package_readme
         packaged_publish_kit_dir = work_dir / "publish_kit"
         packaged_publish_kit = subprocess.run(
             [

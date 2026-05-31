@@ -577,6 +577,7 @@ def package_release_checks(root: Path) -> dict[str, object]:
     template_authoring_path = root / "docs" / "falsiflow_template_authoring.md"
     troubleshooting_path = root / "docs" / "falsiflow_troubleshooting.md"
     downstream_pr_proof_strip_path = root / "docs" / "assets" / "falsiflow_downstream_pr_proof_strip.svg"
+    downstream_pr_proof_strip_png_path = root / "docs" / "assets" / "falsiflow_downstream_pr_proof_strip.png"
     readme_pr_story_reel_path = root / "docs" / "assets" / "falsiflow_live_pr_story_reel.svg"
     readme_proof_strip_path = root / "docs" / "assets" / "falsiflow_proof_strip.svg"
     readme_demo_strip_path = root / "docs" / "assets" / "falsiflow_30_second_demo.svg"
@@ -618,10 +619,12 @@ def package_release_checks(root: Path) -> dict[str, object]:
     gitignore_path = root / ".gitignore"
     init_path = root / "falsiflow" / "__init__.py"
     templates_path = root / "falsiflow" / "templates"
+    package_downstream_pr_proof_strip_path = root / "falsiflow" / "assets" / "falsiflow_downstream_pr_proof_strip.svg"
     package_pr_story_reel_path = root / "falsiflow" / "assets" / "falsiflow_live_pr_story_reel.svg"
     init_version = package_init_version(init_path)
 
     add("package_init_exists", init_path.exists(), "falsiflow/__init__.py exists.", init_path)
+    add("package_downstream_pr_proof_strip_exists", package_downstream_pr_proof_strip_path.exists() and package_downstream_pr_proof_strip_path.stat().st_size > 0, "Packaged downstream PR proof-strip asset exists and is non-empty.", package_downstream_pr_proof_strip_path)
     add("package_pr_story_reel_exists", package_pr_story_reel_path.exists() and package_pr_story_reel_path.stat().st_size > 0, "Packaged live PR story reel asset exists and is non-empty.", package_pr_story_reel_path)
 
     if pyproject_path.exists():
@@ -655,6 +658,7 @@ def package_release_checks(root: Path) -> dict[str, object]:
         add("template_authoring_exists", template_authoring_path.exists() and template_authoring_path.stat().st_size > 0, "Template authoring doc exists and is non-empty.", template_authoring_path)
         add("troubleshooting_exists", troubleshooting_path.exists() and troubleshooting_path.stat().st_size > 0, "Troubleshooting doc exists and is non-empty.", troubleshooting_path)
         add("downstream_pr_proof_strip_exists", downstream_pr_proof_strip_path.exists() and downstream_pr_proof_strip_path.stat().st_size > 0, "Downstream PR proof-strip SVG exists and is non-empty.", downstream_pr_proof_strip_path)
+        add("downstream_pr_proof_strip_png_exists", downstream_pr_proof_strip_png_path.exists() and downstream_pr_proof_strip_png_path.stat().st_size > 0, "Downstream PR proof-strip PNG exists and is non-empty for social previews.", downstream_pr_proof_strip_png_path)
         add("readme_pr_story_reel_exists", readme_pr_story_reel_path.exists() and readme_pr_story_reel_path.stat().st_size > 0, "README live PR story reel SVG exists and is non-empty.", readme_pr_story_reel_path)
         add("readme_proof_strip_exists", readme_proof_strip_path.exists() and readme_proof_strip_path.stat().st_size > 0, "README proof-strip SVG exists and is non-empty.", readme_proof_strip_path)
         add("readme_demo_strip_exists", readme_demo_strip_path.exists() and readme_demo_strip_path.stat().st_size > 0, "README 30-second demo SVG exists and is non-empty.", readme_demo_strip_path)
@@ -828,6 +832,7 @@ def package_release_checks(root: Path) -> dict[str, object]:
         add("readme_casebook_check_entry", all(token in readme_text for token in ["falsiflow_casebook_check.md", "casebook-check", "positive demos", "placeholder blockers"]), "README links the casebook check and documents machine-verifiable public proof paths.", readme_path)
         add("readme_demo_pr_entry", all(token in readme_text for token in ["falsiflow_demo_pr_playbook.md", "public demo PR", "placeholder evidence", "source-backed evidence"]), "README links the public demo PR playbook for blocked and ready claim-gate demonstrations.", readme_path)
         add("readme_downstream_pr_proof_strip_asset", all(token in readme_text + demo_pr_playbook_text + launch_plan_text for token in ["docs/assets/falsiflow_downstream_pr_proof_strip.svg", "falsiflow-downstream-ai-eval-demo", "26711652990", "26711669112"]) and all(token in downstream_pr_proof_strip_text for token in ["Downstream PR #1", "claim_check_blocked", "claim_check_ready", "26711652990", "26711669112", "does not prove the model is good, safe, or shippable"]), "README and launch docs embed or link the shareable downstream PR proof strip with blocked and ready CI proof links.", downstream_pr_proof_strip_path)
+        add("package_downstream_pr_proof_strip_matches_docs", package_downstream_pr_proof_strip_path.read_text(encoding="utf-8") == downstream_pr_proof_strip_text if package_downstream_pr_proof_strip_path.exists() and downstream_pr_proof_strip_text else False, "Packaged downstream PR proof strip matches the README/docs asset.", package_downstream_pr_proof_strip_path)
         add("readme_live_pr_story_reel_asset", "docs/assets/falsiflow_live_pr_story_reel.svg" in readme_text and all(token in readme_pr_story_reel_text for token in ["Live PR Story", "PR #17", "claim_check_blocked", "claim_check_ready", "26708459093", "26708472653"]), "README documents the packaged live PR story reel with blocked and ready CI proof links.", readme_pr_story_reel_path)
         add("package_pr_story_reel_matches_docs", package_pr_story_reel_path.read_text(encoding="utf-8") == readme_pr_story_reel_text if package_pr_story_reel_path.exists() and readme_pr_story_reel_text else False, "Packaged live PR story reel matches the README/docs asset.", package_pr_story_reel_path)
         add("readme_visual_asset", all(token in readme_text for token in ["docs/assets/falsiflow_proof_strip.svg", "Falsiflow evidence-gated claim workflow"]) and all(token in readme_proof_strip_text for token in ["claim_ready after proof", "claim_blocked on gaps", "Source files", "Review + release checks"]), "README embeds a first-screen proof-strip visual that explains the evidence gate flow.", readme_proof_strip_path)
@@ -1130,6 +1135,7 @@ def dist_release_checks(root: Path, artifact_root: Path, run_dist: bool) -> dict
                 f"{base}/docs/falsiflow_template_authoring.md",
                 f"{base}/docs/falsiflow_troubleshooting.md",
                 f"{base}/docs/assets/falsiflow_downstream_pr_proof_strip.svg",
+                f"{base}/docs/assets/falsiflow_downstream_pr_proof_strip.png",
                 f"{base}/docs/assets/falsiflow_live_pr_story_reel.svg",
                 f"{base}/docs/assets/falsiflow_proof_strip.svg",
                 f"{base}/docs/assets/falsiflow_30_second_demo.svg",
@@ -1149,6 +1155,7 @@ def dist_release_checks(root: Path, artifact_root: Path, run_dist: bool) -> dict
                 f"{base}/falsiflow/claim_check.py",
                 f"{base}/falsiflow/cli.py",
                 f"{base}/falsiflow/core.py",
+                f"{base}/falsiflow/assets/falsiflow_downstream_pr_proof_strip.svg",
                 f"{base}/falsiflow/assets/falsiflow_live_pr_story_reel.svg",
                 f"{base}/falsiflow/demo.py",
                 f"{base}/falsiflow/discovery.py",

@@ -4,16 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Falsiflow Launchpad</title>
-  <meta name="description" content="A live PR story: Falsiflow blocks unverifiable AI eval evidence in CI, then passes the same claim after source-backed evidence is added.">
+  <meta name="description" content="A live downstream PR story: Falsiflow blocks unverifiable AI eval evidence in CI, then passes the same claim after source-backed evidence is added.">
   <meta property="og:title" content="Falsiflow: AI eval claims should fail CI without evidence">
-  <meta property="og:description" content="See PR #17 move from claim_check_blocked to claim_check_ready after source-backed eval evidence is added.">
+  <meta property="og:description" content="See a downstream PR move from claim_check_blocked to claim_check_ready after source-backed eval evidence is added.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://azurliu.github.io/falsiflow/">
-  <meta property="og:image" content="https://raw.githubusercontent.com/AzurLiu/falsiflow/main/docs/assets/falsiflow_public_demo_launchpad.png">
+  <meta property="og:image" content="https://raw.githubusercontent.com/AzurLiu/falsiflow/main/docs/assets/falsiflow_downstream_pr_proof_strip.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Falsiflow: AI eval claims should fail CI without evidence">
   <meta name="twitter:description" content="A real PR story: placeholder AI eval evidence is blocked, then source-backed evidence passes.">
-  <meta name="twitter:image" content="https://raw.githubusercontent.com/AzurLiu/falsiflow/main/docs/assets/falsiflow_public_demo_launchpad.png">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/AzurLiu/falsiflow/main/docs/assets/falsiflow_downstream_pr_proof_strip.png">
   <style>
     :root {
       --ink: #1f2933;
@@ -46,6 +46,7 @@
     .story-card.ready h2 { color: var(--ready); }
     .story-reel { margin-top: 14px; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: #f8fafc; }
     .story-reel img { display: block; width: 100%; height: auto; }
+    .replay-links { margin-top: 12px; }
     .proof-grid, .case-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
     .case-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     .proof { min-height: 128px; }
@@ -84,30 +85,38 @@
       </div>
     </header>
     <section>
-      <h2>Live PR Story</h2>
+      <h2>Live Downstream PR Story</h2>
       <div class="story-grid">
         <article class="story-card neutral">
-          <span>1. Risky claim</span>
+          <span>1. Downstream PR</span>
           <h2>AI eval improved</h2>
-          <p>A PR tries to ship an eval claim before the dataset, raw outputs, baseline, and metadata are reviewable.</p>
-          <a href="https://github.com/AzurLiu/falsiflow/pull/17">Open PR #17</a>
+          <p>A separate repo tries to ship an eval claim before the dataset, raw outputs, baseline, and metadata are reviewable.</p>
+          <a href="https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1">Open downstream PR #1</a>
         </article>
         <article class="story-card blocked">
           <span>2. CI blocks it</span>
           <h2>claim_check_blocked</h2>
           <p>Strict CI refuses placeholder evidence and keeps the claim out of release notes.</p>
-          <a href="https://github.com/AzurLiu/falsiflow/actions/runs/26708459093">Blocked run</a>
+          <a href="https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711652990">Blocked run</a>
         </article>
         <article class="story-card ready">
           <span>3. Evidence passes</span>
           <h2>claim_check_ready</h2>
           <p>The same PR passes after source-backed eval rows, pinned versions, raw artifacts, and a review bundle are added.</p>
-          <a href="https://github.com/AzurLiu/falsiflow/actions/runs/26708472653">Ready run</a>
+          <a href="https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711669112">Ready run</a>
         </article>
       </div>
       <div class="story-reel">
-        <img src="assets/falsiflow_live_pr_story_reel.svg" alt="Falsiflow Live PR Story reel">
+        <img src="assets/falsiflow_downstream_pr_proof_strip.svg" alt="Falsiflow downstream PR proof strip">
       </div>
+      <div class="story-reel">
+        <img src="assets/falsiflow_live_pr_story_reel.svg" alt="Falsiflow in-repo PR replay reel">
+      </div>
+      <p class="replay-links">In-repo replay:
+        <a href="https://github.com/AzurLiu/falsiflow/pull/17">PR #17</a>,
+        <a href="https://github.com/AzurLiu/falsiflow/actions/runs/26708459093">blocked run 26708459093</a>,
+        <a href="https://github.com/AzurLiu/falsiflow/actions/runs/26708472653">ready run 26708472653</a>.
+      </p>
     </section>
     <div class="metrics">
       <div class="metric"><span>Example</span><strong>biointerface_coatings</strong></div>

@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Falsiflow downstream PR proof: blocked AI eval claim becomes source-backed</title>
+  <desc id="desc">A four-step screenshot strip showing downstream PR 1, a blocked GitHub Actions run with claim_check_blocked, a source-backed evidence repair, and a ready run with claim_check_ready.</desc>
+  <style>
+    .sans { font-family: Inter, Segoe UI, Arial, sans-serif; }
+    .mono { font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace; }
+    .panel { filter: drop-shadow(0 14px 24px rgba(15, 23, 42, 0.10)); }
+    .pulse-blocked { animation: pulseBlocked 7s ease-in-out infinite; }
+    .pulse-ready { animation: pulseReady 7s ease-in-out infinite; animation-delay: 3.5s; }
+    .trace { stroke-dasharray: 720; stroke-dashoffset: 720; animation: trace 7s ease-in-out infinite; }
+    .cursor { animation: cursorMove 7s ease-in-out infinite; }
+    @keyframes pulseBlocked {
+      0%, 100% { opacity: 0.95; }
+      15%, 28% { opacity: 1; filter: drop-shadow(0 12px 24px rgba(190, 45, 37, 0.28)); }
+    }
+    @keyframes pulseReady {
+      0%, 100% { opacity: 0.95; }
+      15%, 28% { opacity: 1; filter: drop-shadow(0 12px 24px rgba(28, 122, 67, 0.28)); }
+    }
+    @keyframes trace {
+      0% { stroke-dashoffset: 720; }
+      20% { stroke-dashoffset: 540; }
+      45% { stroke-dashoffset: 340; }
+      72%, 100% { stroke-dashoffset: 0; }
+    }
+    @keyframes cursorMove {
+      0%, 18% { transform: translate(232px, 417px); }
+      42% { transform: translate(504px, 417px); }
+      66% { transform: translate(776px, 417px); }
+      86%, 100% { transform: translate(1048px, 417px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .pulse-blocked, .pulse-ready, .trace, .cursor { animation: none; }
+      .trace { stroke-dashoffset: 0; }
+    }
+  </style>
+
+  <rect width="1280" height="720" rx="28" fill="#f6f8fb"/>
+  <rect x="28" y="28" width="1224" height="664" rx="24" fill="#ffffff" stroke="#d8e1ef"/>
+
+  <g class="sans">
+    <text x="68" y="82" fill="#122033" font-size="36" font-weight="800">Real downstream PR: CI blocks unverifiable AI eval claims</text>
+    <text x="68" y="118" fill="#53677f" font-size="20">PR #1 fails on placeholder provenance, then passes after source-backed eval evidence is added.</text>
+  </g>
+
+  <g transform="translate(68 146)">
+    <rect width="1144" height="86" rx="16" fill="#0f172a"/>
+    <g class="mono" font-size="15">
+      <circle cx="30" cy="25" r="6" fill="#ff5f57"/>
+      <circle cx="50" cy="25" r="6" fill="#ffbd2e"/>
+      <circle cx="70" cy="25" r="6" fill="#28c840"/>
+      <text x="32" y="56" fill="#e5edf7">$ gh pr view AzurLiu/falsiflow-downstream-ai-eval-demo#1 --web</text>
+      <text x="32" y="77" fill="#94a3b8">Proof target: claim evidence completeness, not model quality or safety.</text>
+    </g>
+  </g>
+
+  <path class="trace" d="M232 417 C322 367 416 467 504 417 S686 367 776 417 S958 467 1048 417" fill="none" stroke="#8da1b7" stroke-width="7" stroke-linecap="round"/>
+  <g class="cursor">
+    <circle r="13" fill="#122033"/>
+    <circle r="5" fill="#ffffff"/>
+  </g>
+
+  <g class="sans">
+    <g class="panel" transform="translate(68 286)">
+      <rect width="246" height="238" rx="16" fill="#fff8ed" stroke="#ecc48d"/>
+      <text x="20" y="34" fill="#8a4b10" font-size="15" font-weight="800">Downstream PR #1</text>
+      <text x="20" y="74" fill="#122033" font-size="23" font-weight="800">Claim enters CI</text>
+      <text x="20" y="106" fill="#5f4630" font-size="16">"candidate_model improved"</text>
+      <g class="mono" font-size="13">
+        <rect x="20" y="132" width="206" height="66" rx="10" fill="#ffffff" stroke="#efd2ae"/>
+        <text x="34" y="158" fill="#8a4b10">evidence.csv</text>
+        <text x="34" y="179" fill="#b45309">dataset_pending</text>
+        <text x="34" y="194" fill="#64748b">raw output missing</text>
+      </g>
+      <text x="20" y="224" fill="#7a6041" font-size="14">A claim is not evidence.</text>
+    </g>
+
+    <g class="panel pulse-blocked" transform="translate(340 286)">
+      <rect width="246" height="238" rx="16" fill="#fff1f0" stroke="#eda8a1"/>
+      <g transform="translate(20 22)">
+        <circle cx="15" cy="15" r="12" fill="#d84b3f"/>
+        <path d="M10 10l10 10m0-10L10 20" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/>
+        <text x="38" y="21" fill="#9b2d24" font-size="15" font-weight="800">blocked run</text>
+      </g>
+      <text x="20" y="74" fill="#122033" font-size="23" font-weight="800">CI stops it</text>
+      <text x="20" y="106" fill="#6f413a" font-size="16">strict gate rejects placeholders</text>
+      <g class="mono" font-size="13">
+        <rect x="20" y="132" width="206" height="66" rx="10" fill="#ffffff" stroke="#efc4bf"/>
+        <text x="34" y="158" fill="#9b2d24">claim_check_blocked</text>
+        <text x="34" y="179" fill="#64748b">run 26711652990</text>
+        <text x="34" y="194" fill="#64748b">repair action emitted</text>
+      </g>
+      <text x="20" y="224" fill="#7a4b45" font-size="14">No source, no green check.</text>
+    </g>
+
+    <g class="panel" transform="translate(612 286)">
+      <rect width="246" height="238" rx="16" fill="#eef6ff" stroke="#a7cdf7"/>
+      <text x="20" y="34" fill="#1d5a9e" font-size="15" font-weight="800">Evidence repair</text>
+      <text x="20" y="74" fill="#122033" font-size="23" font-weight="800">Add proof rows</text>
+      <text x="20" y="106" fill="#314d68" font-size="16">dataset, baseline, raw export</text>
+      <g class="mono" font-size="13">
+        <rect x="20" y="132" width="206" height="66" rx="10" fill="#ffffff" stroke="#c2dcf4"/>
+        <text x="34" y="158" fill="#1d5a9e">exact_match_rate 0.86</text>
+        <text x="34" y="179" fill="#64748b">source_files/*.csv</text>
+        <text x="34" y="194" fill="#64748b">model + prompt pinned</text>
+      </g>
+      <text x="20" y="224" fill="#46627c" font-size="14">Evidence travels with files.</text>
+    </g>
+
+    <g class="panel pulse-ready" transform="translate(884 286)">
+      <rect width="246" height="238" rx="16" fill="#f0fbf4" stroke="#a8d8b4"/>
+      <g transform="translate(20 22)">
+        <circle cx="15" cy="15" r="12" fill="#2e9d52"/>
+        <path d="M8 15l5 5 10-13" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="38" y="21" fill="#205e35" font-size="15" font-weight="800">ready run</text>
+      </g>
+      <text x="20" y="74" fill="#122033" font-size="23" font-weight="800">Same gate passes</text>
+      <text x="20" y="106" fill="#345045" font-size="16">now ready for review</text>
+      <g class="mono" font-size="13">
+        <rect x="20" y="132" width="206" height="66" rx="10" fill="#ffffff" stroke="#cde8d6"/>
+        <text x="34" y="158" fill="#205e35">claim_check_ready</text>
+        <text x="34" y="179" fill="#64748b">run 26711669112</text>
+        <text x="34" y="194" fill="#64748b">bundle_verified</text>
+      </g>
+      <text x="20" y="224" fill="#41634c" font-size="14">Humans still review the claim.</text>
+    </g>
+  </g>
+
+  <g class="sans" transform="translate(68 574)">
+    <rect width="1144" height="70" rx="18" fill="#f8fafc" stroke="#d9e2ef"/>
+    <text x="28" y="30" fill="#122033" font-size="18" font-weight="800">Shareable proof strip</text>
+    <text x="28" y="54" fill="#53677f" font-size="15">Repo: AzurLiu/falsiflow-downstream-ai-eval-demo | PR #1 | blocked 26711652990 | ready 26711669112</text>
+  </g>
+
+  <text class="mono" x="68" y="678" fill="#64748b" font-size="13">Boundary: claim_check_ready means the evidence package is complete enough for review. It does not prove the model is good, safe, or shippable.</text>
+</svg>

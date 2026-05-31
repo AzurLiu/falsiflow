@@ -17,6 +17,7 @@
     "claim_check": "docs/public_demo/project/claim_check/claim_check.json",
     "claim_check_report": "docs/public_demo/project/claim_check/claim_check.md",
     "dashboard": "docs/public_demo/project/claim_check/evidence_bundle/audit/dashboard.html",
+    "downstream_proof_strip": "docs/public_demo/assets/falsiflow_downstream_pr_proof_strip.svg",
     "evidence_bundle_zip": "docs/public_demo/project/claim_check/evidence_bundle.zip",
     "launchpad": "docs/public_demo/index.html",
     "project_dir": "docs/public_demo/project",

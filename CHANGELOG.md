@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.15
+
+- Updated the generated browser launchpad and checked-in public demo to lead
+  with the real downstream AI eval PR #1, including blocked and ready CI links,
+  before keeping the in-repo PR #17 replay as a secondary proof path.
+- Packaged the downstream PR proof strip so `falsiflow try` and
+  `falsiflow demo-package` produce the same stronger public demo from source
+  installs and PyPI installs.
+- Added a downstream proof-strip PNG for social preview metadata so shared
+  public demo links show the blocked-to-ready downstream PR story.
+
 ## 0.1.14
 
 - Added a local LLM eval quickstart for turning local model outputs into

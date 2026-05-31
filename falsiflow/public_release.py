@@ -68,7 +68,7 @@ def render_demo_package_readme(summary: dict[str, object]) -> str:
         "## Preview",
         "",
         "- Open `index.html` locally, or publish this directory with GitHub Pages, Netlify, or any static file server.",
-        "- The launchpad starts with the Live PR Story: PR #17 blocks placeholder AI/RAG eval evidence in CI, then passes after source-backed evidence is added.",
+        "- The launchpad starts with the live downstream PR story: PR #1 in the downstream AI eval demo blocks placeholder evidence in CI, then passes after source-backed evidence is added.",
         f"- Workbench shell: `{outputs.get('workbench', 'workbench.html')}`",
         f"- Try report: `{outputs.get('try_report', 'try_report.html')}`",
         f"- Wizard: `{outputs.get('wizard', 'falsiflow_wizard.html')}`",

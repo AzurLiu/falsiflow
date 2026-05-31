@@ -18,6 +18,8 @@ from .quickstart import prepare_output_directory
 
 LIVE_PR_STORY_REEL = "falsiflow_live_pr_story_reel.svg"
 LIVE_PR_STORY_REEL_RELATIVE = f"assets/{LIVE_PR_STORY_REEL}"
+DOWNSTREAM_PR_PROOF_STRIP = "falsiflow_downstream_pr_proof_strip.svg"
+DOWNSTREAM_PR_PROOF_STRIP_RELATIVE = f"assets/{DOWNSTREAM_PR_PROOF_STRIP}"
 
 
 class QuickstartRunner(Protocol):
@@ -68,15 +70,23 @@ def html_file_link(report_dir: Path, label: str, path_text: object) -> str:
     return f'<a href="{escape(file_href(report_dir, text), quote=True)}">{escape(label)}</a>'
 
 
-def copy_live_pr_story_reel(out_dir: Path) -> Path:
-    target = out_dir / LIVE_PR_STORY_REEL_RELATIVE
+def copy_packaged_demo_asset(out_dir: Path, asset_name: str, relative_path: str) -> Path:
+    target = out_dir / relative_path
     target.parent.mkdir(parents=True, exist_ok=True)
     try:
-        reel_text = resources.files("falsiflow").joinpath("assets", LIVE_PR_STORY_REEL).read_text(encoding="utf-8")
+        asset_text = resources.files("falsiflow").joinpath("assets", asset_name).read_text(encoding="utf-8")
     except (FileNotFoundError, ModuleNotFoundError, OSError):
-        reel_text = (Path(__file__).resolve().parents[1] / "docs" / "assets" / LIVE_PR_STORY_REEL).read_text(encoding="utf-8")
-    target.write_text(reel_text, encoding="utf-8")
+        asset_text = (Path(__file__).resolve().parents[1] / "docs" / "assets" / asset_name).read_text(encoding="utf-8")
+    target.write_text(asset_text, encoding="utf-8")
     return target
+
+
+def copy_live_pr_story_reel(out_dir: Path) -> Path:
+    return copy_packaged_demo_asset(out_dir, LIVE_PR_STORY_REEL, LIVE_PR_STORY_REEL_RELATIVE)
+
+
+def copy_downstream_pr_proof_strip(out_dir: Path) -> Path:
+    return copy_packaged_demo_asset(out_dir, DOWNSTREAM_PR_PROOF_STRIP, DOWNSTREAM_PR_PROOF_STRIP_RELATIVE)
 
 
 def render_workbench_html() -> str:
@@ -546,11 +556,11 @@ def render_try_launchpad_html(summary: dict[str, object]) -> str:
     )
     pr_story = [
         (
-            "1. Risky claim",
+            "1. Downstream PR",
             "AI eval improved",
-            "A PR tries to ship an eval claim before the dataset, raw outputs, baseline, and metadata are reviewable.",
-            "Open PR #17",
-            "https://github.com/AzurLiu/falsiflow/pull/17",
+            "A separate repo tries to ship an eval claim before the dataset, raw outputs, baseline, and metadata are reviewable.",
+            "Open downstream PR #1",
+            "https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1",
             "neutral",
         ),
         (
@@ -558,7 +568,7 @@ def render_try_launchpad_html(summary: dict[str, object]) -> str:
             "claim_check_blocked",
             "Strict CI refuses placeholder evidence and keeps the claim out of release notes.",
             "Blocked run",
-            "https://github.com/AzurLiu/falsiflow/actions/runs/26708459093",
+            "https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711652990",
             "blocked",
         ),
         (
@@ -566,7 +576,7 @@ def render_try_launchpad_html(summary: dict[str, object]) -> str:
             "claim_check_ready",
             "The same PR passes after source-backed eval rows, pinned versions, raw artifacts, and a review bundle are added.",
             "Ready run",
-            "https://github.com/AzurLiu/falsiflow/actions/runs/26708472653",
+            "https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711669112",
             "ready",
         ),
     ]
@@ -579,6 +589,7 @@ def render_try_launchpad_html(summary: dict[str, object]) -> str:
         </article>"""
         for kicker, title, body, link_label, href, kind in pr_story
     )
+    downstream_proof_strip_src = file_href(report_dir, outputs.get("downstream_proof_strip", report_dir / DOWNSTREAM_PR_PROOF_STRIP_RELATIVE))
     story_reel_src = file_href(report_dir, outputs.get("story_reel", report_dir / LIVE_PR_STORY_REEL_RELATIVE))
     cards = [
         (
@@ -622,16 +633,16 @@ def render_try_launchpad_html(summary: dict[str, object]) -> str:
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Falsiflow Launchpad</title>
-  <meta name="description" content="A live PR story: Falsiflow blocks unverifiable AI eval evidence in CI, then passes the same claim after source-backed evidence is added.">
+  <meta name="description" content="A live downstream PR story: Falsiflow blocks unverifiable AI eval evidence in CI, then passes the same claim after source-backed evidence is added.">
   <meta property="og:title" content="Falsiflow: AI eval claims should fail CI without evidence">
-  <meta property="og:description" content="See PR #17 move from claim_check_blocked to claim_check_ready after source-backed eval evidence is added.">
+  <meta property="og:description" content="See a downstream PR move from claim_check_blocked to claim_check_ready after source-backed eval evidence is added.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://azurliu.github.io/falsiflow/">
-  <meta property="og:image" content="https://raw.githubusercontent.com/AzurLiu/falsiflow/main/docs/assets/falsiflow_public_demo_launchpad.png">
+  <meta property="og:image" content="https://raw.githubusercontent.com/AzurLiu/falsiflow/main/docs/assets/falsiflow_downstream_pr_proof_strip.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Falsiflow: AI eval claims should fail CI without evidence">
   <meta name="twitter:description" content="A real PR story: placeholder AI eval evidence is blocked, then source-backed evidence passes.">
-  <meta name="twitter:image" content="https://raw.githubusercontent.com/AzurLiu/falsiflow/main/docs/assets/falsiflow_public_demo_launchpad.png">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/AzurLiu/falsiflow/main/docs/assets/falsiflow_downstream_pr_proof_strip.png">
   <style>
     :root {{
       --ink: #1f2933;
@@ -664,6 +675,7 @@ def render_try_launchpad_html(summary: dict[str, object]) -> str:
     .story-card.ready h2 {{ color: var(--ready); }}
     .story-reel {{ margin-top: 14px; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: #f8fafc; }}
     .story-reel img {{ display: block; width: 100%; height: auto; }}
+    .replay-links {{ margin-top: 12px; }}
     .proof-grid, .case-grid {{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }}
     .case-grid {{ grid-template-columns: repeat(4, minmax(0, 1fr)); }}
     .proof {{ min-height: 128px; }}
@@ -702,13 +714,21 @@ def render_try_launchpad_html(summary: dict[str, object]) -> str:
       </div>
     </header>
     <section>
-      <h2>Live PR Story</h2>
+      <h2>Live Downstream PR Story</h2>
       <div class="story-grid">
 {pr_story_html}
       </div>
       <div class="story-reel">
-        <img src="{escape(story_reel_src, quote=True)}" alt="Falsiflow Live PR Story reel">
+        <img src="{escape(downstream_proof_strip_src, quote=True)}" alt="Falsiflow downstream PR proof strip">
       </div>
+      <div class="story-reel">
+        <img src="{escape(story_reel_src, quote=True)}" alt="Falsiflow in-repo PR replay reel">
+      </div>
+      <p class="replay-links">In-repo replay:
+        <a href="https://github.com/AzurLiu/falsiflow/pull/17">PR #17</a>,
+        <a href="https://github.com/AzurLiu/falsiflow/actions/runs/26708459093">blocked run 26708459093</a>,
+        <a href="https://github.com/AzurLiu/falsiflow/actions/runs/26708472653">ready run 26708472653</a>.
+      </p>
     </section>
     <div class="metrics">
       <div class="metric"><span>Example</span><strong>{escape(str(summary.get("template", "")))}</strong></div>
@@ -753,8 +773,10 @@ def refresh_try_browser_assets(out_dir: Path, summary: dict[str, object]) -> dic
     outputs.setdefault("workbench", str(out_dir / "workbench.html"))
     outputs.setdefault("wizard", str(out_dir / "falsiflow_wizard.html"))
     outputs.setdefault("story_reel", str(out_dir / LIVE_PR_STORY_REEL_RELATIVE))
+    outputs.setdefault("downstream_proof_strip", str(out_dir / DOWNSTREAM_PR_PROOF_STRIP_RELATIVE))
     summary.setdefault("out_dir", str(out_dir))
     copy_live_pr_story_reel(out_dir)
+    copy_downstream_pr_proof_strip(out_dir)
     wizard_path = Path(str(outputs["wizard"]))
     if not wizard_path.exists():
         wizard_path.parent.mkdir(parents=True, exist_ok=True)
@@ -810,6 +832,7 @@ def run_try(
         "bundle_verification_report": str(quickstart_outputs.get("bundle_verification_report", project_dir / "claim_check" / "evidence_bundle_verify.md")),
     }
     outputs["story_reel"] = str(copy_live_pr_story_reel(out_dir))
+    outputs["downstream_proof_strip"] = str(copy_downstream_pr_proof_strip(out_dir))
     summary: dict[str, object] = {
         "status": status,
         "template": template,
