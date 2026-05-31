@@ -146,7 +146,9 @@ CI/ELN/LIMS integration boundaries, see
 [docs/falsiflow_data_contract.md](docs/falsiflow_data_contract.md).
 For vendor, instrument, plate-reader, generic wide-CSV, AI eval, local LLM
 eval, and RAG eval adapter profiles, see
-[docs/falsiflow_adapter_profiles.md](docs/falsiflow_adapter_profiles.md).
+[docs/falsiflow_adapter_profiles.md](docs/falsiflow_adapter_profiles.md). For
+artifact-first Ollama, LM Studio, llama.cpp, or private runner handoffs, see
+[docs/falsiflow_local_llm_eval.md](docs/falsiflow_local_llm_eval.md).
 For the local stdio MCP server used by AI coding agents, see
 [docs/falsiflow_mcp.md](docs/falsiflow_mcp.md).
 For blocked command recovery, install/start problems, template failures,

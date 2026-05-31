@@ -2942,6 +2942,8 @@ def assert_cli_contract() -> None:
             "data_contract_docs",
             "adapter_profiles_exists",
             "adapter_profiles_docs",
+            "local_llm_eval_quickstart_exists",
+            "local_llm_eval_quickstart_docs",
             "casebook_check_exists",
             "casebook_check_docs",
             "template_authoring_exists",
