@@ -14,6 +14,22 @@ unit, analysis window, sample size, guardrail movement, or whether the metric
 definition changed. A launch decision needs those details to be explicit enough
 for CI and humans to review.
 
+## Live Proof
+
+The product-metric version of the blocked-to-ready story is live in
+[AzurLiu/falsiflow-downstream-product-metric-demo PR #1](https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/pull/1).
+The first PR state kept the launch-metric evidence at `analysis_pending`, so
+strict CI failed in
+[run 26726360229](https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726360229)
+with `claim_check_blocked`. After source-backed metric provenance, lift,
+guardrail, and rollback-readiness rows were added, the same PR passed in
+[run 26726392921](https://github.com/AzurLiu/falsiflow-downstream-product-metric-demo/actions/runs/26726392921)
+with `claim_check_ready`.
+
+That is the useful boundary: `claim_check_ready` means the launch claim has a
+reviewable evidence package. It does not prove product impact, launch safety,
+or that the rollout should continue.
+
 ## The Template
 
 The `product_metric_launch` starter template checks:
