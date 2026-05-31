@@ -64,7 +64,7 @@ falsiflow quickstart --template ai_claim_evaluation --out falsiflow_ai_demo --st
 Current public status: hosted demo, PyPI, CI, cross-platform smoke tests,
 Scorecard, checkout pipx, public-package pipx, Windows PowerShell smoke, and
 source installs are live. `Falsiflow External Evidence` reports
-`external_ready` for v0.1.2.
+`external_ready` for the current public release.
 
 ## Fast Paths
 

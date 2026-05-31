@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.3
+
+- Sharpened the README first screen around the AI/RAG eval claim-gate story:
+  one-line CI positioning, PyPI quickstart, blocked-vs-ready output, and a
+  copy-paste GitHub Action snippet.
+- Reworked the public demo PR playbook into a complete failing-PR-to-ready-PR
+  story for AI/RAG eval claims with local rehearsal commands, expected CI
+  statuses, report artifacts, and a 30-second recording script.
+- Rewrote the launch article `Stop Shipping Unverifiable AI Eval Claims` around
+  the industry failure mode first, then introduced Falsiflow as the CI evidence
+  gate.
+- Added launch-execution copy and included it in the source distribution so
+  public posts, channels, and metrics review notes ship with the package.
+
 ## 0.1.2
 
 - Added the `product_metric_launch` starter template and public casebook

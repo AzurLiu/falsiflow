@@ -1642,7 +1642,7 @@ def assert_cli_contract() -> None:
         assert "pipx_public_package" in evidence_doc["checks"]
         assert evidence_doc["checks"]["pypi_package_url"]["verification_url"] == "https://pypi.org/pypi/falsiflow/json"
         assert evidence_doc["checks"]["pypi_package_url"]["artifact"] == "falsiflow_pypi_project.json"
-        assert evidence_doc["checks"]["pypi_package_url"]["expected_version"] == "0.1.2"
+        assert evidence_doc["checks"]["pypi_package_url"]["expected_version"] == "0.1.3"
         assert evidence_doc["checks"]["pypi_package_url"]["published_version"] == ""
         evidence_doc["checks"]["public_repo_url"]["status"] = "passed"
         evidence_doc["checks"]["public_repo_url"]["evidence_url"] = "https://github.com/AzurLiu/falsiflow"
