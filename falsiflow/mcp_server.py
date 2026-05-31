@@ -8,11 +8,12 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
+from . import __version__
 from .api import check_claim, create_evidence_todo, explain_blockers, validate_bundle
 from .core import falsiflow_schema
 
 
-SERVER_INFO = {"name": "falsiflow", "version": "0.1.3"}
+SERVER_INFO = {"name": "falsiflow", "version": __version__}
 
 
 def text_result(payload: object) -> dict[str, object]:

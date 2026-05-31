@@ -17,6 +17,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
+from falsiflow import __version__ as FALSIFLOW_VERSION  # noqa: E402
 from falsiflow.adapters import build_project_from_evidence, limina_source_value_to_evidence  # noqa: E402
 from falsiflow.cli import (  # noqa: E402
     adoption_release_validation_status,
@@ -1643,7 +1644,7 @@ def assert_cli_contract() -> None:
         assert "pipx_public_package" in evidence_doc["checks"]
         assert evidence_doc["checks"]["pypi_package_url"]["verification_url"] == "https://pypi.org/pypi/falsiflow/json"
         assert evidence_doc["checks"]["pypi_package_url"]["artifact"] == "falsiflow_pypi_project.json"
-        assert evidence_doc["checks"]["pypi_package_url"]["expected_version"] == "0.1.3"
+        assert evidence_doc["checks"]["pypi_package_url"]["expected_version"] == FALSIFLOW_VERSION
         assert evidence_doc["checks"]["pypi_package_url"]["published_version"] == ""
         evidence_doc["checks"]["public_repo_url"]["status"] = "passed"
         evidence_doc["checks"]["public_repo_url"]["evidence_url"] = "https://github.com/AzurLiu/falsiflow"

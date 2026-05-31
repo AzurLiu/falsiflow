@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.1.4
+
+- Added a live public AI/RAG eval PR demo:
+  [PR #17](https://github.com/AzurLiu/falsiflow/pull/17) now shows placeholder
+  eval evidence failing CI and source-backed evidence passing the same claim
+  gate.
+- Added the bundled `rag_quality_gate` starter template plus `rag-eval`,
+  `local-llm-eval`, and `ai-eval` artifact import coverage for JSON, JSONL,
+  CSV, and manifest-backed eval outputs.
+- Added local agent integration surfaces: `falsiflow/api.py`,
+  `falsiflow mcp`, and MCP documentation for local stdio use by AI coding
+  agents.
+- Improved GitHub Action summaries with top blockers, evidence todo items, and
+  next evidence actions for blocked claim checks.
+- Fixed the reusable GitHub Action so `evidence:` overrides the project-dir
+  default evidence file in `claim-check` mode.
+
 ## 0.1.3
 
 - Sharpened the README first screen around the AI/RAG eval claim-gate story:

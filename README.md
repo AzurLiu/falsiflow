@@ -36,10 +36,11 @@ placeholder evidence  -> claim_check_blocked
 source-backed evidence -> claim_check_ready
 ```
 
-Real PR demo:
-[docs/falsiflow_demo_pr_playbook.md](docs/falsiflow_demo_pr_playbook.md)
-shows a public demo PR where placeholder evidence fails CI, then
-source-backed evidence makes the same AI/RAG eval claim pass.
+Real PR demo: [PR #17](https://github.com/AzurLiu/falsiflow/pull/17)
+shows placeholder AI/RAG eval evidence failing CI in the
+[blocked run](https://github.com/AzurLiu/falsiflow/actions/runs/26708459093),
+then source-backed evidence passing in the
+[ready run](https://github.com/AzurLiu/falsiflow/actions/runs/26708472653).
 
 Drop the same gate into another repository with the GitHub Action:
 
@@ -282,7 +283,7 @@ Vercel URLs as alternate public demo candidates until `Falsiflow External
 Evidence` fetches the hosted page and `external-check --strict` reports
 `external_ready`. See `docs/static_hosting.md`.
 
-Public demo screenshots captured from the live Pages demo after v0.1.2 external
+Public demo screenshots captured from the live Pages demo after external
 evidence passed:
 
 | Launchpad | Ready report |
@@ -343,7 +344,7 @@ public posting waits for the demo URL, PyPI status, release evidence, and
 responsible-use boundary. The nested public release rehearsal keeps the last-mile
 publish sequence reviewable before any announcement is posted. It reports
 `launch_kit_ready` when the local launch materials and publish handoff are
-ready, and the v0.1.2 public evidence workflow now proves hosted demo, pipx,
+ready, and the public evidence workflow proves hosted demo, pipx,
 Windows, PyPI, and other account-bound evidence with `external_ready`.
 After a launch window, use `launch_metrics.json` as the structured source and
 `launch_metrics.md` as the weekly maintainer review checklist. The checklist

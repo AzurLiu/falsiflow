@@ -121,14 +121,14 @@ should produce `claim_check_ready` and exit successfully in strict mode.
 The default `install-command` is intentionally omitted. The action installs
 from the checked-out action directory via `GITHUB_ACTION_PATH`, which keeps this
 downstream smoke usable before PyPI exists. After a stable release is published,
-pin the action to a tag such as `AzurLiu/falsiflow@v0.1.2`; override
+pin the action to a tag such as `AzurLiu/falsiflow@v0.1.4`; override
 `install-command` only when installing from PyPI, a fork, or a local checkout is
 part of the thing you are testing.
 
 ## AI Eval Claim Gate
 
 Use this when the repository already contains a Falsiflow project directory with
-`project.json`, `evidence_pass_demo.csv`, and the referenced source files.
+`project.json`, `evidence.csv`, and the referenced source files.
 
 ```yaml
 name: AI Eval Evidence Gate
@@ -150,6 +150,7 @@ jobs:
         with:
           mode: claim-check
           project-dir: falsiflow_ai_eval
+          evidence: falsiflow_ai_eval/evidence.csv
           out-dir: data/falsiflow/ai_eval_claim_check
           strict: "true"
 

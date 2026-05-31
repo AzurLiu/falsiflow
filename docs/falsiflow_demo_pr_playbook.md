@@ -9,6 +9,18 @@ The point is not to prove the model is good. The point is to show that
 Falsiflow keeps "the model improved" out of release notes until the claim
 package is reviewable by CI and humans.
 
+## Public Demo Evidence
+
+The live demo is
+[PR #17](https://github.com/AzurLiu/falsiflow/pull/17). It contains the same
+AI eval claim moving from placeholder evidence to source-backed evidence.
+
+| Evidence | Link | What it proves |
+| --- | --- | --- |
+| Demo PR | [#17](https://github.com/AzurLiu/falsiflow/pull/17) | The claim-gate story is a real GitHub PR, not a static screenshot. |
+| Blocked CI run | [26708459093](https://github.com/AzurLiu/falsiflow/actions/runs/26708459093) | `falsiflow_ai_eval/evidence.csv` used placeholder/missing eval evidence and strict CI failed with `claim_check_blocked`. |
+| Ready CI run | [26708472653](https://github.com/AzurLiu/falsiflow/actions/runs/26708472653) | The same PR passed after `evidence.csv` was replaced with source-backed eval evidence. |
+
 ## The Story
 
 Use this PR narrative:

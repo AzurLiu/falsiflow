@@ -50,7 +50,12 @@ claim has a machine-checkable contract.
 
 ## The Demo That Explains It
 
-The fastest way to show the idea is a deliberately failing PR.
+The fastest way to show the idea is a deliberately failing PR. The public
+version is [Falsiflow PR #17](https://github.com/AzurLiu/falsiflow/pull/17):
+the [blocked run](https://github.com/AzurLiu/falsiflow/actions/runs/26708459093)
+fails strict CI on placeholder eval evidence, and the
+[ready run](https://github.com/AzurLiu/falsiflow/actions/runs/26708472653)
+passes after the PR adds source-backed evidence.
 
 First commit:
 
@@ -148,9 +153,7 @@ The public demo PR playbook walks through the blocked commit, the evidence
 repair commit, the GitHub Action, the uploaded reports, and the 30-second
 recording script:
 
-```text
-docs/falsiflow_demo_pr_playbook.md
-```
+[docs/falsiflow_demo_pr_playbook.md](../falsiflow_demo_pr_playbook.md)
 
 Start with the failing PR. It explains the project faster than any feature
 list.
