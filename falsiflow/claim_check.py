@@ -161,6 +161,53 @@ def claim_check_next_actions(
     return actions
 
 
+def blocker_repair_hint(blocker: dict[str, object]) -> str:
+    reasons = [str(reason) for reason in blocker.get("reasons", [])]
+    reason_text = " ".join(reasons).lower()
+    if "missing evidence row" in reason_text:
+        return "Add the missing evidence row with a non-placeholder value, source_file, measured_at, and operator_or_agent."
+    if "placeholder" in reason_text:
+        return "Replace placeholder values with measured or recorded evidence and required metadata."
+    if "source_file" in reason_text or "source-file" in reason_text:
+        return "Attach the referenced raw source file under an allowed source root and rerun the claim gate."
+    if "acceptance" in reason_text or "must" in reason_text or "threshold" in reason_text:
+        return "Review the threshold failure, update the evidence only if the underlying source supports it, or narrow the claim."
+    return "Repair this blocker in the evidence CSV or project gate definition, then rerun claim-check."
+
+
+def claim_check_evidence_todo(audit_review: dict[str, object], limit: int = 8) -> list[dict[str, object]]:
+    todos: list[dict[str, object]] = []
+    seen: set[tuple[str, str, str, str]] = set()
+    for blocker in audit_review.get("top_blockers", []):
+        if not isinstance(blocker, dict):
+            continue
+        key = (
+            str(blocker.get("gate_id", "")),
+            str(blocker.get("candidate_id", "")),
+            str(blocker.get("sample_id", "")),
+            str(blocker.get("field", "")),
+        )
+        if key in seen:
+            continue
+        seen.add(key)
+        item = {
+            "rank": len(todos) + 1,
+            "gate_id": key[0],
+            "candidate_id": key[1],
+            "sample_id": key[2],
+            "field": key[3],
+            "reasons": [str(reason) for reason in blocker.get("reasons", [])],
+            "repair_hint": blocker_repair_hint(blocker),
+        }
+        for key in ["actual", "operator", "expected"]:
+            if key in blocker:
+                item[key] = blocker[key]
+        todos.append(item)
+        if len(todos) >= limit:
+            break
+    return todos
+
+
 def render_claim_check_report(summary: dict[str, object]) -> str:
     out_dir = Path(str(summary.get("out_dir", ".")))
     lines = [
@@ -229,6 +276,29 @@ def render_claim_check_report(summary: dict[str, object]) -> str:
                     markdown_cell(action.get("rank", "")),
                     f"`{markdown_cell(action.get('action_id', ''))}`",
                     markdown_cell(action.get("why", "")),
+                ])
+                + " |"
+            )
+
+    evidence_todo = summary.get("evidence_todo", [])
+    lines.extend(["", "## Evidence Todo", ""])
+    if not evidence_todo:
+        lines.append("No evidence todo items recorded.")
+    else:
+        lines.extend(["| Rank | Gate | Candidate | Sample | Field | Reasons | Repair Hint |", "| ---: | --- | --- | --- | --- | --- | --- |"])
+        for item in evidence_todo:
+            if not isinstance(item, dict):
+                continue
+            lines.append(
+                "| "
+                + " | ".join([
+                    markdown_cell(item.get("rank", "")),
+                    f"`{markdown_cell(item.get('gate_id', ''))}`",
+                    f"`{markdown_cell(item.get('candidate_id', ''))}`",
+                    f"`{markdown_cell(item.get('sample_id', ''))}`",
+                    f"`{markdown_cell(item.get('field', ''))}`",
+                    markdown_cell("; ".join(str(reason) for reason in item.get("reasons", []))),
+                    markdown_cell(item.get("repair_hint", "")),
                 ])
                 + " |"
             )
@@ -335,6 +405,8 @@ def run_claim_check(config: Path, evidence: Path, out_dir: Path, force: bool = F
         "failures": failures,
         "outputs": outputs,
         "next_actions": claim_check_next_actions(audit_review, source_summary, bundle, verification),
+        "top_blockers": audit_review.get("top_blockers", [])[:12] if isinstance(audit_review.get("top_blockers", []), list) else [],
+        "evidence_todo": claim_check_evidence_todo(audit_review),
         "bundle_summary": bundle,
         "bundle_verification_summary": verification,
     }

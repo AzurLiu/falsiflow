@@ -47,6 +47,7 @@ EXPECTED_TEMPLATE_IDS = {
     "biointerface_coatings",
     "wetware_support_hardware",
     "ai_claim_evaluation",
+    "rag_quality_gate",
     "product_metric_launch",
 }
 EXPECTED_TEMPLATE_COUNT = len(EXPECTED_TEMPLATE_IDS)
@@ -3552,6 +3553,210 @@ def assert_wide_ingest_contract() -> None:
         assert {item["field"] for item in missing["missing_keys"]} == {"ph_final"}
 
 
+def assert_eval_artifact_import_contract() -> None:
+    with tempfile.TemporaryDirectory() as tmp:
+        tmp_dir = Path(tmp)
+        local_manifest = tmp_dir / "local_model_manifest.json"
+        local_manifest.write_text(
+            json.dumps({
+                "eval_run_id": "eval_run_001",
+                "candidate_model_id": "candidate_model",
+                "baseline_model_id": "baseline_model",
+                "dataset_version": "claims_eval_v2026_05_26",
+                "prompt_set_hash": "promptset_sha256_demo",
+                "model_file_hash": "gguf_sha256_demo",
+                "baseline_model_version": "baseline_llm_2026_05_01",
+                "evaluator_version": "eval_harness_0.4.0",
+                "eval_script_hash": "eval_script_sha256_demo",
+                "random_seed": 7,
+                "raw_outputs_uri": "artifacts/candidate_raw_outputs.jsonl",
+                "human_spotcheck_passed": True,
+                "ci_run_url": "https://github.example/actions/runs/1",
+                "runtime": "llama.cpp",
+                "quantization": "Q4_K_M",
+                "measured_at": "2026-05-26T12:00:00Z",
+            }),
+            encoding="utf-8",
+        )
+        local_results = tmp_dir / "local_eval_results.jsonl"
+        local_results.write_text(
+            "\n".join([
+                json.dumps({"model_id": "candidate_model", "metric": "exact_match_rate", "value": 0.86}),
+                json.dumps({"model_id": "candidate_model", "metric": "hallucination_rate", "value": 0.035}),
+                json.dumps({"model_id": "candidate_model", "metric": "safety_policy_failure_rate", "value": 0.012}),
+                json.dumps({"model_id": "candidate_model", "metric": "evaluated_item_count", "value": 640}),
+                json.dumps({"model_id": "baseline_model", "metric": "exact_match_rate", "value": 0.78}),
+                json.dumps({"model_id": "baseline_model", "metric": "hallucination_rate", "value": 0.07}),
+                json.dumps({"model_id": "baseline_model", "metric": "safety_policy_failure_rate", "value": 0.025}),
+                json.dumps({"model_id": "baseline_model", "metric": "evaluated_item_count", "value": 640}),
+            ]),
+            encoding="utf-8",
+        )
+        local_out = tmp_dir / "local_llm_evidence.csv"
+        local_summary = tmp_dir / "local_llm_summary.json"
+        local_coverage = tmp_dir / "local_llm_coverage.json"
+        subprocess.run(
+            [
+                sys.executable,
+                str(CLI),
+                "evidence",
+                "import",
+                "--profile",
+                "local-llm-eval",
+                "--input",
+                str(local_results),
+                "--manifest",
+                str(local_manifest),
+                "--out",
+                str(local_out),
+                "--summary-out",
+                str(local_summary),
+                "--config",
+                str(ROOT / "examples" / "falsiflow" / "ai_claim_evaluation" / "project.json"),
+                "--coverage-out",
+                str(local_coverage),
+                "--source-file",
+                "source_files/ai_eval_raw_export.csv",
+                "--strict",
+            ],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        local_summary_json = json.loads(local_summary.read_text(encoding="utf-8"))
+        assert local_summary_json["adapter_profile"] == "local-llm-eval"
+        assert local_summary_json["adapter_kind"] == "eval-artifact"
+        assert local_summary_json["profile_summary"]["local_model_metadata"]["runtime"] == "llama.cpp"
+        assert json.loads(local_coverage.read_text(encoding="utf-8"))["status"] == "coverage_ready"
+        assert "benchmark_quality,candidate_model,eval_run_001,exact_match_rate,0.86" in local_out.read_text(encoding="utf-8")
+
+        rag_manifest = tmp_dir / "rag_manifest.json"
+        rag_manifest.write_text(
+            json.dumps({
+                "rag_eval_run_id": "rag_eval_001",
+                "candidate_rag_id": "candidate_rag",
+                "baseline_rag_id": "baseline_rag",
+                "eval_set_version": "rag_eval_v2026_05_26",
+                "query_set_hash": "queryset_sha256_demo",
+                "candidate_rag_version": "candidate_rag@abc123",
+                "baseline_rag_version": "baseline_rag@def456",
+                "judge_version": "rag_judge_0.3.0",
+                "retrieval_run_sha256": "retrieval_sha256_demo",
+                "raw_answers_sha256": "answers_sha256_demo",
+                "eval_script_hash": "rag_eval_script_sha256_demo",
+                "ci_run_url": "https://github.example/actions/runs/2",
+                "measured_at": "2026-05-26T12:30:00Z",
+            }),
+            encoding="utf-8",
+        )
+        rag_results = tmp_dir / "rag_results.json"
+        rag_results.write_text(
+            json.dumps({
+                "candidate_metrics": {
+                    "recall_at_5": 0.86,
+                    "mrr_at_10": 0.74,
+                    "retrieval_coverage_rate": 0.98,
+                    "faithfulness_rate": 0.94,
+                    "unsupported_answer_rate": 0.025,
+                    "answer_correctness_rate": 0.87,
+                    "judged_item_count": 420,
+                    "citation_precision": 0.93,
+                    "source_coverage_rate": 0.97,
+                    "missing_source_rate": 0.01,
+                },
+                "baseline_metrics": {
+                    "recall_at_5": 0.80,
+                    "mrr_at_10": 0.68,
+                    "retrieval_coverage_rate": 0.95,
+                },
+            }),
+            encoding="utf-8",
+        )
+        rag_out = tmp_dir / "rag_evidence.csv"
+        rag_coverage = tmp_dir / "rag_coverage.json"
+        subprocess.run(
+            [
+                sys.executable,
+                str(CLI),
+                "evidence",
+                "import",
+                "--profile",
+                "rag-eval",
+                "--input",
+                str(rag_results),
+                "--manifest",
+                str(rag_manifest),
+                "--out",
+                str(rag_out),
+                "--config",
+                str(ROOT / "examples" / "falsiflow" / "rag_quality_gate" / "project.json"),
+                "--coverage-out",
+                str(rag_coverage),
+                "--source-file",
+                "source_files/rag_eval_raw_export.csv",
+                "--strict",
+            ],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        assert json.loads(rag_coverage.read_text(encoding="utf-8"))["status"] == "coverage_ready"
+        rag_evidence = rag_out.read_text(encoding="utf-8")
+        assert "retrieval_quality,candidate_rag,rag_eval_001,recall_at_5,0.86" in rag_evidence
+        assert "source_coverage,candidate_rag,rag_eval_001,citation_precision,0.93" in rag_evidence
+
+
+def assert_mcp_server_contract() -> None:
+    proc = subprocess.Popen(
+        [sys.executable, str(CLI), "mcp"],
+        cwd=ROOT,
+        stdin=subprocess.PIPE,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+    )
+
+    def request(payload: dict[str, object]) -> dict[str, object]:
+        assert proc.stdin is not None
+        assert proc.stdout is not None
+        proc.stdin.write(json.dumps(payload) + "\n")
+        proc.stdin.flush()
+        line = proc.stdout.readline()
+        assert line, "MCP server did not respond"
+        return json.loads(line)
+
+    try:
+        initialized = request({"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {}})
+        assert initialized["result"]["serverInfo"]["name"] == "falsiflow"
+        tools = request({"jsonrpc": "2.0", "id": 2, "method": "tools/list", "params": {}})
+        tool_names = {tool["name"] for tool in tools["result"]["tools"]}
+        assert {"falsiflow.validate_claims", "falsiflow.check_bundle", "falsiflow.explain_blockers", "falsiflow.create_evidence_todo"} <= tool_names
+        todo = request({
+            "jsonrpc": "2.0",
+            "id": 3,
+            "method": "tools/call",
+            "params": {
+                "name": "falsiflow.create_evidence_todo",
+                "arguments": {"config": str(ROOT / "examples" / "falsiflow" / "rag_quality_gate" / "project.json")},
+            },
+        })
+        todo_text = todo["result"]["content"][0]["text"]
+        assert "evidence_todo_ready" in todo_text
+        resources = request({"jsonrpc": "2.0", "id": 4, "method": "resources/list", "params": {}})
+        resource_uris = {resource["uri"] for resource in resources["result"]["resources"]}
+        assert "falsiflow://templates/local-llm-eval" in resource_uris
+    finally:
+        if proc.stdin is not None:
+            proc.stdin.close()
+        proc.terminate()
+        try:
+            proc.wait(timeout=5)
+        except subprocess.TimeoutExpired:
+            proc.kill()
+
+
 def assert_packaged_template_contract() -> None:
     with tempfile.TemporaryDirectory() as tmp:
         tmp_dir = Path(tmp)
@@ -4810,6 +5015,8 @@ def main() -> int:
     assert_limina_adapter_contract()
     assert_rule_filter_contract()
     assert_wide_ingest_contract()
+    assert_eval_artifact_import_contract()
+    assert_mcp_server_contract()
     assert_packaged_template_contract()
     print("Falsiflow regression passed.")
     return 0

@@ -36,7 +36,7 @@ jobs:
           python-version: "3.11"
       - name: Compile
         run: |
-          python -m py_compile falsiflow/core.py falsiflow/cli.py falsiflow/adapters.py falsiflow/release.py falsiflow/adoption.py falsiflow/casebook_check.py falsiflow/bundle.py falsiflow/browser_demo.py falsiflow/demo.py falsiflow/discovery.py falsiflow/local_server.py falsiflow/public_release.py falsiflow/claim_check.py falsiflow/doctor.py falsiflow/quickstart.py falsiflow/scaffold.py falsiflow/template_discovery.py falsiflow/template_gallery.py falsiflow/template_check.py falsiflow/template_pack.py falsiflow/template_registry.py falsiflow/template_provenance.py falsiflow/template_release.py falsiflow/template_install.py scripts/falsiflow.py scripts/falsiflow_tests/regress_falsiflow_core.py
+          python -m py_compile falsiflow/core.py falsiflow/cli.py falsiflow/adapters.py falsiflow/api.py falsiflow/mcp_server.py falsiflow/release.py falsiflow/adoption.py falsiflow/casebook_check.py falsiflow/bundle.py falsiflow/browser_demo.py falsiflow/demo.py falsiflow/discovery.py falsiflow/local_server.py falsiflow/public_release.py falsiflow/claim_check.py falsiflow/doctor.py falsiflow/quickstart.py falsiflow/scaffold.py falsiflow/template_discovery.py falsiflow/template_gallery.py falsiflow/template_check.py falsiflow/template_pack.py falsiflow/template_registry.py falsiflow/template_provenance.py falsiflow/template_release.py falsiflow/template_install.py scripts/falsiflow.py scripts/falsiflow_tests/regress_falsiflow_core.py
       - name: Local installer smoke (Unix)
         if: runner.os != 'Windows'
         shell: bash

@@ -27,6 +27,8 @@ jobs:
             falsiflow/core.py \
             falsiflow/cli.py \
             falsiflow/adapters.py \
+            falsiflow/api.py \
+            falsiflow/mcp_server.py \
             falsiflow/release.py \
             falsiflow/adoption.py \
             falsiflow/casebook_check.py \

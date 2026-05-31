@@ -1,0 +1,270 @@
+{
+  "project": {
+    "id": "falsiflow_rag_quality_gate_demo",
+    "name": "Falsiflow RAG quality gate demo",
+    "domain": "rag-quality-and-citation-claims",
+    "version": "0.1.0"
+  },
+  "claim": {
+    "id": "rag_claim_ready_for_release_note",
+    "statement": "A RAG quality claim is ready for release notes only after evaluation provenance, retrieval quality, answer faithfulness, source coverage, and reproducibility gates pass.",
+    "requires_gates": [
+      "evaluation_provenance",
+      "retrieval_quality",
+      "answer_faithfulness",
+      "source_coverage",
+      "reproducibility_package"
+    ]
+  },
+  "evidence_policy": {
+    "require_source_files": true,
+    "reject_placeholder_values": true,
+    "allowed_source_roots": [
+      "source_files"
+    ],
+    "required_metadata_fields": [
+      "source_file",
+      "measured_at",
+      "operator_or_agent"
+    ],
+    "placeholder_markers": [
+      "eval_set_pending",
+      "query_hash_pending",
+      "rag_version_pending",
+      "raw_answers_pending",
+      "not_measured",
+      "todo"
+    ]
+  },
+  "gates": [
+    {
+      "id": "evaluation_provenance",
+      "title": "Evaluation provenance",
+      "samples": [
+        {
+          "candidate_id": "candidate_rag",
+          "sample_id": "rag_eval_001"
+        }
+      ],
+      "required_fields": [
+        "eval_set_version_recorded",
+        "query_set_hash_recorded",
+        "candidate_rag_version_recorded",
+        "baseline_rag_version_recorded",
+        "judge_version_recorded"
+      ],
+      "acceptance_rules": [
+        {
+          "field": "eval_set_version_recorded",
+          "operator": "==",
+          "value": true,
+          "reason": "RAG eval-set version must be recorded before claiming improvement."
+        },
+        {
+          "field": "query_set_hash_recorded",
+          "operator": "==",
+          "value": true,
+          "reason": "Query-set hash must be recorded before comparing retrieval or answer quality."
+        },
+        {
+          "field": "candidate_rag_version_recorded",
+          "operator": "==",
+          "value": true,
+          "reason": "Candidate RAG pipeline version must be pinned."
+        },
+        {
+          "field": "baseline_rag_version_recorded",
+          "operator": "==",
+          "value": true,
+          "reason": "Baseline RAG pipeline version must be pinned."
+        },
+        {
+          "field": "judge_version_recorded",
+          "operator": "==",
+          "value": true,
+          "reason": "Judge or evaluator version must be pinned."
+        }
+      ]
+    },
+    {
+      "id": "retrieval_quality",
+      "title": "Retrieval quality",
+      "samples": [
+        {
+          "candidate_id": "candidate_rag",
+          "sample_id": "rag_eval_001"
+        },
+        {
+          "candidate_id": "baseline_rag",
+          "sample_id": "rag_eval_001"
+        }
+      ],
+      "required_fields": [
+        "recall_at_5",
+        "mrr_at_10",
+        "retrieval_coverage_rate"
+      ],
+      "derived_fields": [
+        {
+          "field": "recall_ratio_vs_baseline",
+          "operation": "ratio",
+          "numerator": "recall_at_5",
+          "denominator": {
+            "candidate_id": "baseline_rag",
+            "sample_id": "rag_eval_001",
+            "field": "recall_at_5"
+          }
+        }
+      ],
+      "acceptance_rules": [
+        {
+          "field": "recall_at_5",
+          "operator": ">=",
+          "value": 0.82,
+          "candidate_id": "candidate_rag",
+          "reason": "Candidate retriever must clear the absolute recall floor."
+        },
+        {
+          "field": "mrr_at_10",
+          "operator": ">=",
+          "value": 0.70,
+          "candidate_id": "candidate_rag",
+          "reason": "Candidate retriever must clear the ranking-quality floor."
+        },
+        {
+          "field": "retrieval_coverage_rate",
+          "operator": ">=",
+          "value": 0.95,
+          "candidate_id": "candidate_rag",
+          "reason": "Candidate retriever must cover the pinned query set."
+        },
+        {
+          "field": "recall_ratio_vs_baseline",
+          "operator": ">=",
+          "value": 1.05,
+          "candidate_id": "candidate_rag",
+          "reason": "Candidate retriever must beat the pinned baseline recall."
+        }
+      ]
+    },
+    {
+      "id": "answer_faithfulness",
+      "title": "Answer faithfulness",
+      "samples": [
+        {
+          "candidate_id": "candidate_rag",
+          "sample_id": "rag_eval_001"
+        }
+      ],
+      "required_fields": [
+        "faithfulness_rate",
+        "unsupported_answer_rate",
+        "answer_correctness_rate",
+        "judged_item_count"
+      ],
+      "acceptance_rules": [
+        {
+          "field": "faithfulness_rate",
+          "operator": ">=",
+          "value": 0.92,
+          "reason": "Candidate answers must stay faithful to retrieved sources."
+        },
+        {
+          "field": "unsupported_answer_rate",
+          "operator": "<=",
+          "value": 0.04,
+          "reason": "Unsupported answer rate must stay inside the release claim boundary."
+        },
+        {
+          "field": "answer_correctness_rate",
+          "operator": ">=",
+          "value": 0.84,
+          "reason": "Candidate answers must clear the correctness floor."
+        },
+        {
+          "field": "judged_item_count",
+          "operator": ">=",
+          "value": 300,
+          "reason": "The answer-quality evaluation must cover enough judged items."
+        }
+      ]
+    },
+    {
+      "id": "source_coverage",
+      "title": "Source coverage",
+      "samples": [
+        {
+          "candidate_id": "candidate_rag",
+          "sample_id": "rag_eval_001"
+        }
+      ],
+      "required_fields": [
+        "citation_precision",
+        "source_coverage_rate",
+        "missing_source_rate"
+      ],
+      "acceptance_rules": [
+        {
+          "field": "citation_precision",
+          "operator": ">=",
+          "value": 0.90,
+          "reason": "Citations must point to relevant supporting sources."
+        },
+        {
+          "field": "source_coverage_rate",
+          "operator": ">=",
+          "value": 0.95,
+          "reason": "The report must cover the sources used by the answer set."
+        },
+        {
+          "field": "missing_source_rate",
+          "operator": "<=",
+          "value": 0.02,
+          "reason": "Missing-source findings must remain near zero."
+        }
+      ]
+    },
+    {
+      "id": "reproducibility_package",
+      "title": "Reproducibility package",
+      "samples": [
+        {
+          "candidate_id": "candidate_rag",
+          "sample_id": "rag_eval_001"
+        }
+      ],
+      "required_fields": [
+        "retrieval_run_archived",
+        "raw_answers_archived",
+        "eval_script_hash_recorded",
+        "regression_ci_run_recorded"
+      ],
+      "acceptance_rules": [
+        {
+          "field": "retrieval_run_archived",
+          "operator": "==",
+          "value": true,
+          "reason": "Raw retrieval runs must be archived for review."
+        },
+        {
+          "field": "raw_answers_archived",
+          "operator": "==",
+          "value": true,
+          "reason": "Raw RAG answers must be archived for review."
+        },
+        {
+          "field": "eval_script_hash_recorded",
+          "operator": "==",
+          "value": true,
+          "reason": "Evaluation script hash must be recorded."
+        },
+        {
+          "field": "regression_ci_run_recorded",
+          "operator": "==",
+          "value": true,
+          "reason": "A regression CI run must be recorded before publishing the RAG claim."
+        }
+      ]
+    }
+  ]
+}

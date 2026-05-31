@@ -1,0 +1,20 @@
+record_type,run_id,system_id,eval_set_version,query_set_hash,metric,value,artifact_uri,notes
+manifest,rag_eval_001,candidate_rag,rag_eval_v2026_05_26,queryset_sha256_demo,judge_version,rag_judge_0.3.0,artifacts/rag_eval_manifest.json,Versioned RAG eval manifest.
+manifest,rag_eval_001,baseline_rag,rag_eval_v2026_05_26,queryset_sha256_demo,judge_version,rag_judge_0.3.0,artifacts/rag_eval_manifest.json,Versioned baseline RAG manifest.
+metric,rag_eval_001,candidate_rag,rag_eval_v2026_05_26,queryset_sha256_demo,recall_at_5,0.86,artifacts/retrieval_runs.jsonl,Candidate retrieval recall.
+metric,rag_eval_001,candidate_rag,rag_eval_v2026_05_26,queryset_sha256_demo,mrr_at_10,0.74,artifacts/retrieval_runs.jsonl,Candidate retrieval MRR.
+metric,rag_eval_001,candidate_rag,rag_eval_v2026_05_26,queryset_sha256_demo,retrieval_coverage_rate,0.98,artifacts/retrieval_runs.jsonl,Candidate retrieval coverage.
+metric,rag_eval_001,baseline_rag,rag_eval_v2026_05_26,queryset_sha256_demo,recall_at_5,0.80,artifacts/baseline_retrieval_runs.jsonl,Baseline retrieval recall.
+metric,rag_eval_001,baseline_rag,rag_eval_v2026_05_26,queryset_sha256_demo,mrr_at_10,0.68,artifacts/baseline_retrieval_runs.jsonl,Baseline retrieval MRR.
+metric,rag_eval_001,baseline_rag,rag_eval_v2026_05_26,queryset_sha256_demo,retrieval_coverage_rate,0.95,artifacts/baseline_retrieval_runs.jsonl,Baseline retrieval coverage.
+metric,rag_eval_001,candidate_rag,rag_eval_v2026_05_26,queryset_sha256_demo,faithfulness_rate,0.94,artifacts/answer_judgments.csv,Candidate answer faithfulness.
+metric,rag_eval_001,candidate_rag,rag_eval_v2026_05_26,queryset_sha256_demo,unsupported_answer_rate,0.025,artifacts/answer_judgments.csv,Candidate unsupported answer rate.
+metric,rag_eval_001,candidate_rag,rag_eval_v2026_05_26,queryset_sha256_demo,answer_correctness_rate,0.87,artifacts/answer_judgments.csv,Candidate answer correctness.
+metric,rag_eval_001,candidate_rag,rag_eval_v2026_05_26,queryset_sha256_demo,judged_item_count,420,artifacts/answer_judgments.csv,Judged answer count.
+metric,rag_eval_001,candidate_rag,rag_eval_v2026_05_26,queryset_sha256_demo,citation_precision,0.93,artifacts/source_attribution_report.csv,Citation precision.
+metric,rag_eval_001,candidate_rag,rag_eval_v2026_05_26,queryset_sha256_demo,source_coverage_rate,0.97,artifacts/source_attribution_report.csv,Source coverage.
+metric,rag_eval_001,candidate_rag,rag_eval_v2026_05_26,queryset_sha256_demo,missing_source_rate,0.01,artifacts/source_attribution_report.csv,Missing source rate.
+artifact,rag_eval_001,candidate_rag,rag_eval_v2026_05_26,queryset_sha256_demo,retrieval_run_archived,true,artifacts/retrieval_runs.jsonl,Retrieval run retained.
+artifact,rag_eval_001,candidate_rag,rag_eval_v2026_05_26,queryset_sha256_demo,raw_answers_archived,true,artifacts/raw_answers.jsonl,Raw answers retained.
+artifact,rag_eval_001,candidate_rag,rag_eval_v2026_05_26,queryset_sha256_demo,eval_script_hash_recorded,true,artifacts/rag_eval_script.sha256,Evaluation script hash retained.
+artifact,rag_eval_001,candidate_rag,rag_eval_v2026_05_26,queryset_sha256_demo,regression_ci_run_recorded,true,artifacts/ci_run_url.txt,Regression CI run retained.

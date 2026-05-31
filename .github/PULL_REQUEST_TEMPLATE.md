@@ -7,7 +7,7 @@ Describe the user-visible behavior, command, report, template, packaging, or doc
 Paste the commands you ran and the final status:
 
 ```bash
-python3 -m py_compile falsiflow/core.py falsiflow/cli.py falsiflow/adapters.py falsiflow/casebook_check.py scripts/falsiflow.py scripts/falsiflow_tests/regress_falsiflow_core.py
+python3 -m py_compile falsiflow/core.py falsiflow/cli.py falsiflow/adapters.py falsiflow/api.py falsiflow/mcp_server.py falsiflow/casebook_check.py scripts/falsiflow.py scripts/falsiflow_tests/regress_falsiflow_core.py
 python3 scripts/falsiflow_tests/regress_falsiflow_core.py
 falsiflow adoption-check --out-dir data/falsiflow/adoption_check --force
 falsiflow release-check --out-dir data/falsiflow/release_check --force

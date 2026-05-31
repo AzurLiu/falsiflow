@@ -20,6 +20,7 @@ experimental truth.
 | Biointerface coating screen | `biointerface_coatings` | Whether a coating is ready for early cell-contact screening. | Formulation provenance, extract stability, bioresponse screen, source files. |
 | Neural materials interface | `neural_materials` | Whether a low-dose neural interface material can advance past acellular and early response checks. | Medium stability, electrical interface benefit, matched-control response. |
 | AI claim evaluation | `ai_claim_evaluation` | Whether an AI model quality claim is ready for public comparison. | Dataset and model versions, benchmark deltas, raw outputs, reproducibility artifacts. |
+| RAG quality gate | `rag_quality_gate` | Whether a RAG answer-quality claim is ready for release notes. | Eval set, query hash, retrieval quality, answer faithfulness, source coverage, raw artifacts. |
 | Product metric launch | `product_metric_launch` | Whether a product metric improvement is ready to ship. | Metric provenance, activation lift, guardrail safety, rollback readiness. |
 | Vendor or external-lab handoff | `rfq_vendor_evidence` | Whether a vendor reply is ready to support a measured-data work package. | Contact provenance, scope confirmation, measured-data return requirements. |
 | Wetware support hardware | `wetware_support_hardware` | Whether support hardware can be used around living wetware experiments. | Material lot provenance, medium-contact stability, operational safety. |
@@ -113,7 +114,39 @@ provenance in `source_manifest.md`, and the portable `evidence_bundle.zip`.
 **Blocked-path proof:** Use `evidence_placeholder_demo.csv` to confirm a
 pending dataset or model version keeps the public comparison claim blocked.
 
-## 4. Product Metric Launch
+## 4. RAG Quality Gate
+
+**Scenario:** A team wants to claim its RAG system improved answer quality. The
+risk is shipping a release note without pinned eval sets, query hashes,
+retrieval runs, answer judgments, source-coverage reports, or raw outputs.
+
+**Evidence contract:**
+
+- `evaluation_provenance` requires the eval set, query hash, candidate and
+  baseline RAG versions, and judge version.
+- `retrieval_quality` checks recall, MRR, coverage, and improvement against a
+  pinned baseline.
+- `answer_faithfulness` and `source_coverage` keep unsupported answers,
+  citation quality, source coverage, and missing-source findings inside the
+  claim boundary.
+- `reproducibility_package` requires retrieval runs, raw answers, script hash,
+  and a regression CI run.
+
+**Try it:**
+
+```bash
+falsiflow quickstart --template rag_quality_gate --out case_rag_quality --strict
+falsiflow doctor --project-dir case_rag_quality --strict
+falsiflow claim-check --project-dir case_rag_quality --strict --force
+```
+
+**What to inspect:** retrieval ratios in `claim_audit.md`, source coverage in
+`audit_review.md`, and raw eval provenance in `source_manifest.md`.
+
+**Blocked-path proof:** Use `evidence_placeholder_demo.csv` to show that
+`eval_set_pending` prevents a RAG quality claim from passing CI.
+
+## 5. Product Metric Launch
 
 **Scenario:** A product team wants to ship a change because activation improved.
 The risk is turning a dashboard screenshot into a launch claim without pinning
@@ -144,7 +177,7 @@ portable `evidence_bundle.zip`.
 **Blocked-path proof:** Use `evidence_placeholder_demo.csv` to show that a
 pending metric definition keeps the launch claim blocked.
 
-## 5. Vendor Or External-Lab Handoff
+## 6. Vendor Or External-Lab Handoff
 
 **Scenario:** A vendor says they can run the requested work package. The team
 needs a gate that keeps contact claims, scope statements, and measured-data
@@ -172,7 +205,7 @@ reply source file, and the bundle verification report.
 vendor statement is not treated as measured evidence without the required
 source-backed rows.
 
-## 6. Wetware Support Hardware
+## 7. Wetware Support Hardware
 
 **Scenario:** A cartridge, manifold, tubing path, or optical window may look
 mechanically acceptable but still needs provenance, medium-contact stability,

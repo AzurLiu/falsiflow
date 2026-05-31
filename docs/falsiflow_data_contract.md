@@ -138,11 +138,16 @@ they consume, then check `status`, failure counts, and repair fields.
 ## Integration Guidance
 
 - Use `falsiflow evidence import` or `ingest-wide-csv` to convert wide lab,
-  vendor, or instrument exports into long-form evidence rows.
+  vendor, instrument, AI eval, local LLM eval, or RAG eval exports into
+  long-form evidence rows.
 - Use `--profile generic-wide`, `--profile vendor-measurement`,
-  `--profile instrument-export`, or `--profile plate-reader` for common CSV
-  shapes. Adapter-profile details live in
+  `--profile instrument-export`, `--profile plate-reader`,
+  `--profile ai-eval`, `--profile local-llm-eval`, or `--profile rag-eval`
+  for common evidence shapes. Adapter-profile details live in
   [falsiflow_adapter_profiles.md](falsiflow_adapter_profiles.md).
+- Keep model execution, RAG retrieval, LLM judging, experiment tracking, and
+  dashboards outside Falsiflow. Falsiflow consumes their artifacts and decides
+  whether the claim has reviewable evidence for CI.
 - Keep ELN/LIMS or vendor systems as the source of record; point Falsiflow rows
   at exported raw files through `source_file`.
 - In CI, run commands with `--json` where available and `--strict` when a

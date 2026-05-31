@@ -12,7 +12,7 @@ import webbrowser
 from pathlib import Path
 
 
-from .adapters import adapter_profile_names, write_limina_conversion, write_wide_lab_conversion
+from .adapters import adapter_profile_kind, adapter_profile_names, write_eval_artifact_import, write_limina_conversion, write_wide_lab_conversion
 from .adoption import (
     adoption_release_validation_status,
     adoption_repair_checklist,
@@ -377,6 +377,17 @@ def cmd_claim_check(args: argparse.Namespace) -> int:
         print(f"Bundle: {summary['bundle_status']}")
         print(f"Verification: {summary['verification_status']}")
         print(f"Failures: {summary['failure_count']}")
+        evidence_todo = summary.get("evidence_todo", [])
+        if isinstance(evidence_todo, list) and evidence_todo:
+            print("Evidence todo:")
+            for item in evidence_todo[:5]:
+                if not isinstance(item, dict):
+                    continue
+                reasons = "; ".join(str(reason) for reason in item.get("reasons", []))
+                print(
+                    f"- {item.get('gate_id', '')}/{item.get('candidate_id', '')}/"
+                    f"{item.get('sample_id', '')}/{item.get('field', '')}: {reasons}"
+                )
         print(f"Wrote {out_dir / 'claim_check.json'}")
         print(f"Wrote {out_dir / 'claim_check.md'}")
         print(f"Wrote {out_dir / 'evidence_bundle.zip'}")
@@ -507,6 +518,12 @@ def cmd_agent_discover(args: argparse.Namespace) -> int:
         print(f"Wrote {summary['outputs']['candidate_queue']}")
         print(f"Wrote {summary['outputs']['project_draft']}")
     return 0
+
+
+def cmd_mcp(args: argparse.Namespace) -> int:
+    from .mcp_server import serve
+
+    return serve()
 
 
 def cmd_candidate_rank(args: argparse.Namespace) -> int:
@@ -1023,29 +1040,50 @@ def evidence_coverage_report(project: dict[str, object], evidence_rows: list[dic
 
 
 def cmd_ingest_wide_csv(args: argparse.Namespace) -> int:
-    summary = write_wide_lab_conversion(
-        inputs=args.input,
-        evidence_out=args.out,
-        summary_out=args.summary_out,
-        profile=args.profile,
-        gate_id=args.gate_id,
-        candidate_id=args.candidate_id,
-        sample_id_column=args.sample_id_column,
-        field_columns=args.field,
-        exclude_columns=args.exclude_column,
-        gate_id_column=args.gate_id_column,
-        candidate_id_column=args.candidate_id_column,
-        source_file=args.source_file,
-        source_file_column=args.source_file_column,
-        measured_at=args.measured_at,
-        measured_at_column=args.measured_at_column,
-        operator_or_agent=args.operator_or_agent,
-        operator_or_agent_column=args.operator_or_agent_column,
-        instrument_id=args.instrument_id,
-        instrument_id_column=args.instrument_id_column,
-        notes=args.notes,
-        notes_column=args.notes_column,
-    )
+    if adapter_profile_kind(args.profile) == "eval-artifact":
+        summary = write_eval_artifact_import(
+            inputs=args.input,
+            manifest=args.manifest,
+            evidence_out=args.out,
+            summary_out=args.summary_out,
+            profile=args.profile,
+            source_file=args.source_file,
+            measured_at=args.measured_at,
+            operator_or_agent=args.operator_or_agent,
+            instrument_id=args.instrument_id,
+            notes=args.notes,
+            sample_id=args.sample_id,
+            candidate_id=args.candidate_id,
+            baseline_candidate_id=args.baseline_candidate_id,
+        )
+    else:
+        if not args.gate_id:
+            raise SystemExit("--gate-id is required for wide CSV profiles.")
+        if not args.candidate_id:
+            raise SystemExit("--candidate-id is required for wide CSV profiles.")
+        summary = write_wide_lab_conversion(
+            inputs=args.input,
+            evidence_out=args.out,
+            summary_out=args.summary_out,
+            profile=args.profile,
+            gate_id=args.gate_id,
+            candidate_id=args.candidate_id,
+            sample_id_column=args.sample_id_column,
+            field_columns=args.field,
+            exclude_columns=args.exclude_column,
+            gate_id_column=args.gate_id_column,
+            candidate_id_column=args.candidate_id_column,
+            source_file=args.source_file,
+            source_file_column=args.source_file_column,
+            measured_at=args.measured_at,
+            measured_at_column=args.measured_at_column,
+            operator_or_agent=args.operator_or_agent,
+            operator_or_agent_column=args.operator_or_agent_column,
+            instrument_id=args.instrument_id,
+            instrument_id_column=args.instrument_id_column,
+            notes=args.notes,
+            notes_column=args.notes_column,
+        )
     if args.config is not None:
         project = load_project(args.config)
         evidence_rows, evidence_issues = read_csv_rows_with_diagnostics(args.out)
@@ -1060,7 +1098,7 @@ def cmd_ingest_wide_csv(args: argparse.Namespace) -> int:
         if args.summary_out is not None:
             args.summary_out.parent.mkdir(parents=True, exist_ok=True)
             args.summary_out.write_text(json.dumps(summary, indent=2, sort_keys=True), encoding="utf-8")
-    print(f"Falsiflow wide CSV ingest: {summary['status']}")
+    print(f"Falsiflow evidence import: {summary['status']}")
     print(f"Adapter profile: {summary.get('adapter_profile', '')}")
     print(f"Evidence rows: {summary['evidence_rows']}")
     print(f"Skipped rows: {summary['skipped_rows']}")
@@ -1821,15 +1859,18 @@ def add_discovery_arguments(target: argparse.ArgumentParser, default_out_dir: Pa
 
 
 def add_wide_csv_arguments(target: argparse.ArgumentParser) -> None:
-    target.add_argument("--input", type=Path, action="append", required=True, help="Wide lab CSV. Repeatable.")
+    target.add_argument("--input", type=Path, action="append", required=True, help="Source artifact to import. Wide CSV profiles read CSV; eval profiles read JSON, JSONL, or CSV. Repeatable.")
     target.add_argument("--out", type=Path, required=True, help="Falsiflow evidence CSV to write.")
     target.add_argument("--summary-out", type=Path, help="Optional conversion summary JSON.")
     target.add_argument("--config", type=Path, help="Optional project config for import coverage precheck.")
     target.add_argument("--coverage-out", type=Path, help="Optional coverage precheck JSON output path.")
     target.add_argument("--strict", action="store_true", help="Exit non-zero when project coverage is blocked.")
-    target.add_argument("--profile", choices=adapter_profile_names(), default="generic-wide", help="Column mapping profile for common lab, vendor, or instrument CSV shapes.")
-    target.add_argument("--gate-id", required=True)
-    target.add_argument("--candidate-id", required=True)
+    target.add_argument("--profile", choices=adapter_profile_names(), default="generic-wide", help="Import profile for wide CSV, AI eval, local LLM eval, or RAG eval artifacts.")
+    target.add_argument("--manifest", type=Path, help="Optional JSON manifest for ai-eval, local-llm-eval, and rag-eval profiles.")
+    target.add_argument("--gate-id", default="", help="Gate id for wide CSV imports.")
+    target.add_argument("--candidate-id", default="", help="Fallback candidate id for wide CSV or eval artifact imports.")
+    target.add_argument("--baseline-candidate-id", default="", help="Baseline candidate id for ai-eval, local-llm-eval, and rag-eval profiles.")
+    target.add_argument("--sample-id", default="", help="Eval run or sample id override for ai-eval, local-llm-eval, and rag-eval profiles.")
     target.add_argument("--sample-id-column", default="", help="Column containing sample ids. Defaults to the selected profile.")
     target.add_argument("--field", action="append", default=[], help="Value column to import. Repeatable. Defaults to all non-metadata columns.")
     target.add_argument("--exclude-column", action="append", default=[], help="Column to ignore when auto-selecting value columns.")
@@ -1915,7 +1956,7 @@ def cli_command_category(command: str) -> str:
     root = command.split()[0]
     if root in {"start", "onboard", "try", "serve", "wizard", "quickstart", "doctor"}:
         return "First-run and browser workflows"
-    if root in {"discover", "agent", "candidate", "assay-plan", "evidence", "ingest-wide-csv", "ingest-limina-source-values"}:
+    if root in {"discover", "agent", "mcp", "candidate", "assay-plan", "evidence", "ingest-wide-csv", "ingest-limina-source-values"}:
         return "Discovery and evidence import"
     if root in {"template-scaffold", "templates", "template-gallery", "template-check", "template-pack", "verify-template-pack", "template-registry", "template-lock", "template-attest", "verify-template-attestation", "template-policy", "verify-template-policy", "template-release", "verify-template-release", "template-install"}:
         return "Template supply chain"
@@ -2136,6 +2177,9 @@ def build_parser() -> argparse.ArgumentParser:
     add_discovery_arguments(agent_discover)
     agent_discover.set_defaults(func=cmd_agent_discover)
 
+    mcp = sub.add_parser("mcp", help="Run the experimental local stdio MCP server for AI coding agents.")
+    mcp.set_defaults(func=cmd_mcp)
+
     candidate = sub.add_parser("candidate", help="Candidate queue utilities.")
     candidate_sub = candidate.add_subparsers(dest="candidate_command", required=True)
     candidate_rank = candidate_sub.add_parser("rank", help="Rank candidate recipes for a research goal and write ranking artifacts.")
@@ -2148,7 +2192,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     evidence = sub.add_parser("evidence", help="Evidence import utilities.")
     evidence_sub = evidence.add_subparsers(dest="evidence_command", required=True)
-    evidence_import = evidence_sub.add_parser("import", help="Convert a wide lab CSV into Falsiflow evidence rows.")
+    evidence_import = evidence_sub.add_parser("import", help="Convert CSV, AI eval, local LLM eval, or RAG eval artifacts into Falsiflow evidence rows.")
     add_wide_csv_arguments(evidence_import)
     evidence_import.set_defaults(func=cmd_ingest_wide_csv)
 
@@ -2528,7 +2572,7 @@ def build_parser() -> argparse.ArgumentParser:
     ingest.add_argument("--allowed-source-root", action="append", default=["data/source_files"])
     ingest.set_defaults(func=cmd_ingest_limina_source_values)
 
-    wide = sub.add_parser("ingest-wide-csv", help="Convert a wide lab CSV into Falsiflow evidence rows.")
+    wide = sub.add_parser("ingest-wide-csv", help="Convert a wide lab CSV, or a selected eval artifact profile, into Falsiflow evidence rows.")
     add_wide_csv_arguments(wide)
     wide.set_defaults(func=cmd_ingest_wide_csv)
     return parser

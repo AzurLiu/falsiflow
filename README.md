@@ -124,8 +124,11 @@ For the module map, command flow, release invariants, and extension points, see
 For evidence CSV fields, JSON status contracts, report artifacts, schemas, and
 CI/ELN/LIMS integration boundaries, see
 [docs/falsiflow_data_contract.md](docs/falsiflow_data_contract.md).
-For vendor, instrument, plate-reader, and generic wide-CSV adapter profiles,
-see [docs/falsiflow_adapter_profiles.md](docs/falsiflow_adapter_profiles.md).
+For vendor, instrument, plate-reader, generic wide-CSV, AI eval, local LLM
+eval, and RAG eval adapter profiles, see
+[docs/falsiflow_adapter_profiles.md](docs/falsiflow_adapter_profiles.md).
+For the local stdio MCP server used by AI coding agents, see
+[docs/falsiflow_mcp.md](docs/falsiflow_mcp.md).
 For blocked command recovery, install/start problems, template failures,
 `claim_check_blocked`, and `external_blocked`, see
 [docs/falsiflow_troubleshooting.md](docs/falsiflow_troubleshooting.md).
@@ -138,12 +141,12 @@ harnesses, materials databases, and workflow orchestrators, see
 the boundary with Great Expectations, Evidently, Deepchecks, MLflow, and plain
 GitHub Actions.
 For concrete public case cards across Biointerface coatings, neural materials,
-AI claim evaluation, product metric launches, vendor handoffs, and wetware
-support hardware, see
+AI claim evaluation, RAG quality gates, product metric launches, vendor
+handoffs, and wetware support hardware, see
 [docs/falsiflow_public_casebook.md](docs/falsiflow_public_casebook.md).
-For a proposed RAG quality gate starter template with evaluation-set
-provenance, retrieval quality, answer faithfulness, source coverage, and
-placeholder-blocked evidence rows, see
+For the bundled RAG quality gate starter template with evaluation-set
+provenance, retrieval quality, answer faithfulness, source coverage, local
+import coverage, and placeholder-blocked evidence rows, see
 [docs/falsiflow_rag_quality_gate_proposal.md](docs/falsiflow_rag_quality_gate_proposal.md).
 For machine-verifiable casebook proof across positive demos and placeholder
 blockers, run `falsiflow casebook-check` and see
@@ -608,6 +611,8 @@ Included templates:
   and operational safety workflow.
 - `ai_claim_evaluation`: versioned AI evaluation provenance, benchmark quality,
   and reproducibility-package workflow.
+- `rag_quality_gate`: evaluation-set provenance, retrieval quality, answer
+  faithfulness, source coverage, and reproducibility-package workflow.
 - `product_metric_launch`: activation lift, guardrail safety, and rollback
   readiness workflow for launch claims.
 
@@ -931,8 +936,43 @@ falsiflow evidence import \
 The summary records `adapter_profile` and `adapter_settings`, so reviewers can
 see which column mapping produced the long-form evidence rows. Built-in
 profiles include `generic-wide`, `vendor-measurement`, `instrument-export`, and
-`plate-reader`; see
+`plate-reader`, plus eval artifact profiles `ai-eval`, `local-llm-eval`, and
+`rag-eval`; see
 [docs/falsiflow_adapter_profiles.md](docs/falsiflow_adapter_profiles.md).
+
+Import existing local/private model or RAG eval artifacts without running a
+model inside Falsiflow:
+
+```bash
+falsiflow evidence import \
+  --profile local-llm-eval \
+  --input eval_results.jsonl \
+  --manifest model_manifest.json \
+  --out falsiflow_ai_eval/evidence.csv \
+  --config falsiflow_ai_eval/project.json \
+  --coverage-out falsiflow_ai_eval/import_coverage.json \
+  --source-file source_files/eval_results.jsonl \
+  --strict
+```
+
+```bash
+falsiflow evidence import \
+  --profile rag-eval \
+  --input rag_results.json \
+  --manifest rag_eval_manifest.json \
+  --out falsiflow_rag_eval/evidence.csv \
+  --config falsiflow_rag_eval/project.json \
+  --coverage-out falsiflow_rag_eval/import_coverage.json \
+  --source-file source_files/rag_results.json \
+  --strict
+```
+
+Run the local agent interface when an AI coding agent should check evidence
+before CI does:
+
+```bash
+falsiflow mcp
+```
 
 Write a source-file provenance manifest for an evidence pack:
 
@@ -1084,9 +1124,10 @@ with the active Falsiflow contract.
   publishing setup and `invalid-publisher` recovery runbook.
 - `docs/falsiflow_demo_pr_playbook.md`: public demo PR script for blocked and
   ready AI-eval claim gates.
-- `docs/falsiflow_rag_quality_gate_proposal.md`: proposal for a future RAG
-  quality gate starter template with placeholder-blocked and source-backed
-  evidence rows.
+- `docs/falsiflow_rag_quality_gate_proposal.md`: bundled RAG quality gate
+  starter notes with placeholder-blocked and source-backed evidence rows.
+- `docs/falsiflow_mcp.md`: local stdio MCP server boundary and tool list for
+  AI coding agents.
 - `docs/assets/falsiflow_30_second_demo.svg`: README visual showing the
   ready-vs-blocked AI claim demo path.
 - `.github/dependabot.yml`: weekly Dependabot updates for GitHub Actions and

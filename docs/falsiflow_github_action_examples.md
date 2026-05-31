@@ -79,7 +79,10 @@ git commit -m "Add blocked Falsiflow downstream smoke"
 ```
 
 The strict job should fail with `claim_check_blocked`, while the uploaded JSON
-and Markdown reports show the placeholder evidence repair action.
+and Markdown reports show the placeholder evidence repair action. The GitHub
+Step Summary also prints the status, blocking stage, top blockers, and
+evidence todo so reviewers can see which rows to add before downloading
+artifacts.
 
 Expected ready run:
 

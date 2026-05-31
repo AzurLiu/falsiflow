@@ -212,10 +212,63 @@ runs:
         cmd+=(--json)
 
         echo "Running: ${cmd[*]}"
+        set +e
         "${cmd[@]}"
+        falsiflow_status=$?
+        set -e
+
+        if [ -n "$summary_json" ] && [ -f "$summary_json" ] && [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
+          python - "$summary_json" "$mode" <<'PY' >> "$GITHUB_STEP_SUMMARY"
+import json
+import sys
+
+path, mode = sys.argv[1:3]
+summary = json.load(open(path, encoding="utf-8"))
+status = summary.get("status", "")
+claim = summary.get("claim_id") or summary.get("project_id") or summary.get("template") or mode
+blocking_stage = summary.get("blocking_stage", "")
+print("## Falsiflow evidence gate")
+print()
+print(f"- Mode: `{mode}`")
+print(f"- Status: `{status}`")
+print(f"- Subject: `{claim}`")
+if blocking_stage:
+    print(f"- Blocking stage: `{blocking_stage}`")
+print(f"- Summary JSON: `{path}`")
+
+blockers = []
+for blocker in summary.get("top_blockers", [])[:5]:
+    if isinstance(blocker, dict):
+        blockers.append((blocker.get("gate_id", ""), blocker))
+if blockers:
+    print()
+    print("### Top blockers")
+    for gate_id, blocker in blockers:
+        reasons = "; ".join(str(reason) for reason in blocker.get("reasons", []))
+        print(f"- `{gate_id}` `{blocker.get('sample_id', '')}` `{blocker.get('field', '')}`: {reasons}")
+
+actions = summary.get("next_actions", [])
+if isinstance(actions, list) and actions:
+    print()
+    print("### Next evidence to add")
+    for action in actions[:5]:
+        if isinstance(action, dict):
+            print(f"- `{action.get('action_id', '')}`: {action.get('why', '')}")
+
+todo = summary.get("evidence_todo", [])
+if isinstance(todo, list) and todo:
+    print()
+    print("### Evidence todo")
+    for item in todo[:5]:
+        if isinstance(item, dict):
+            print(f"- `{item.get('gate_id', '')}/{item.get('sample_id', '')}/{item.get('field', '')}`: {item.get('repair_hint', '')}")
+PY
+        fi
 
         {
           echo "out-dir=$out_dir"
           echo "summary-json=$summary_json"
           echo "summary-md=$summary_md"
         } >> "$GITHUB_OUTPUT"
+
+        exit "$falsiflow_status"

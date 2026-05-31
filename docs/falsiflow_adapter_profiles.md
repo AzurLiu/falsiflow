@@ -18,6 +18,9 @@ logic, acceptance rules, source provenance checks, or bundle verification.
 | `vendor-measurement` | External lab or vendor measurement return. | `sample` | `article`, `source_file`, `measured_at`, `vendor_contact`, `instrument_id`, `notes`. |
 | `instrument-export` | Instrument export with timestamped measured columns. | `sample_id` | `candidate_id`, `raw_file`, `timestamp`, `operator`, `instrument_id`, `notes`. |
 | `plate-reader` | Plate-reader style export. | `well_id` | `sample_name`, `raw_file`, `read_at`, `operator`, `plate_reader_id`, `notes`. |
+| `ai-eval` | AI eval JSON, JSONL, or metric CSV plus optional manifest. | manifest/run id | `dataset_version`, `prompt_set_hash`, model ids, evaluator version, raw-output artifact, CI run. |
+| `local-llm-eval` | Local or private model eval artifacts plus runtime/model manifest. | manifest/run id | `runtime`, model file hash, quantization, decode settings, dataset, baseline, evaluator, raw outputs. |
+| `rag-eval` | RAG eval JSON, JSONL, or metric CSV plus optional manifest. | manifest/run id | eval set, query hash, RAG versions, judge version, retrieval metrics, answer/source metrics, raw artifacts. |
 
 ## Vendor Return Example
 
@@ -43,6 +46,47 @@ The summary records:
 - `evidence_rows`
 - `skipped_rows`
 - `skipped_values`
+
+## AI, Local LLM, And RAG Eval Artifacts
+
+Eval profiles import existing results; they do not run a model, execute a
+judge, upload data, or store experiments. They convert JSON, JSONL, or metric
+CSV artifacts into the same evidence CSV contract used by `claim-check`.
+
+Local/private model example:
+
+```bash
+falsiflow evidence import \
+  --profile local-llm-eval \
+  --input eval_results.jsonl \
+  --manifest model_manifest.json \
+  --out falsiflow_ai_eval/evidence.csv \
+  --config falsiflow_ai_eval/project.json \
+  --coverage-out falsiflow_ai_eval/import_coverage.json \
+  --source-file source_files/eval_results.jsonl \
+  --strict
+```
+
+RAG example:
+
+```bash
+falsiflow evidence import \
+  --profile rag-eval \
+  --input rag_results.json \
+  --manifest rag_eval_manifest.json \
+  --out falsiflow_rag_eval/evidence.csv \
+  --config falsiflow_rag_eval/project.json \
+  --coverage-out falsiflow_rag_eval/import_coverage.json \
+  --source-file source_files/rag_results.json \
+  --strict
+```
+
+The manifest should pin the evidence needed to review the claim: dataset or
+eval-set version, prompt/query hash, candidate and baseline versions, evaluator
+or judge version, raw outputs, script hash, deterministic settings or seed, and
+CI run. `local-llm-eval` also records local runtime metadata such as
+`llama.cpp`, Ollama, LM Studio, vLLM, model file hash, quantization, adapter
+hash, and decode parameters in the import summary.
 
 ## Overrides
 
@@ -87,8 +131,8 @@ requires.
 
 ## Boundary
 
-Profiles are deliberately simple. They are not plugins, executable scripts, or
-hidden transformation code. If a CSV shape needs calculations, row joins, or
-domain-specific normalization, convert it before Falsiflow or add a reviewed
-adapter with schema coverage, documentation, tests, and `release-check`
-coverage.
+Profiles are deliberately simple. They are not plugins, executable scripts,
+model runners, judges, or hidden transformation code. If an artifact shape
+needs calculations, row joins, or domain-specific normalization, convert it
+before Falsiflow or add a reviewed adapter with schema coverage, documentation,
+tests, and `release-check` coverage.

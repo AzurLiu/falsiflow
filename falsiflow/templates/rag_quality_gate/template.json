@@ -1,0 +1,9 @@
+{
+  "id": "rag_quality_gate",
+  "name": "RAG quality gate",
+  "domain": "rag-quality-and-citation-claims",
+  "description": "Evidence-gated workflow for RAG claims that depend on retrieval quality, answer faithfulness, source coverage, and reproducibility artifacts.",
+  "project_config": "project.json",
+  "demo_evidence": "evidence_pass_demo.csv",
+  "placeholder_evidence": "evidence_placeholder_demo.csv"
+}

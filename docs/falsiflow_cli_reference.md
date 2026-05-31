@@ -3,7 +3,7 @@
 This reference is generated from the active `argparse` command tree.
 
 - Status: `cli_reference_ready`
-- Commands: 56
+- Commands: 57
 
 Regenerate it with:
 
@@ -14,7 +14,7 @@ falsiflow cli-reference --out docs/falsiflow_cli_reference.md
 ## Command Families
 
 - Core audit and bundle operations: `falsiflow demo`, `falsiflow validate`, `falsiflow portfolio`, `falsiflow render`, `falsiflow audit`, `falsiflow claim-check`, `falsiflow bundle`, `falsiflow verify-bundle`, `falsiflow next`, `falsiflow sources`
-- Discovery and evidence import: `falsiflow discover`, `falsiflow agent`, `falsiflow agent discover`, `falsiflow candidate`, `falsiflow candidate rank`, `falsiflow assay-plan`, `falsiflow evidence`, `falsiflow evidence import`, `falsiflow ingest-limina-source-values`, `falsiflow ingest-wide-csv`
+- Discovery and evidence import: `falsiflow discover`, `falsiflow agent`, `falsiflow agent discover`, `falsiflow mcp`, `falsiflow candidate`, `falsiflow candidate rank`, `falsiflow assay-plan`, `falsiflow evidence`, `falsiflow evidence import`, `falsiflow ingest-limina-source-values`, `falsiflow ingest-wide-csv`
 - First-run and browser workflows: `falsiflow start`, `falsiflow onboard`, `falsiflow try`, `falsiflow wizard`, `falsiflow serve`, `falsiflow quickstart`, `falsiflow doctor`
 - Project setup: `falsiflow init`, `falsiflow scaffold`
 - Release and public adoption: `falsiflow static-demo`, `falsiflow demo-package`, `falsiflow publish-kit`, `falsiflow launch-kit`, `falsiflow external-evidence`, `falsiflow external-check`, `falsiflow casebook-check`, `falsiflow cli-reference`, `falsiflow schema`, `falsiflow selftest`, `falsiflow adoption-check`, `falsiflow release-check`
@@ -36,11 +36,12 @@ falsiflow cli-reference --out docs/falsiflow_cli_reference.md
 | `falsiflow discover` | Generate a structured, non-AI discovery candidate queue and project draft. |
 | `falsiflow agent` | Optional agent interfaces that still emit auditable Falsiflow artifacts. |
 | `falsiflow agent discover` | Generate a structured discovery package through the agent-facing interface. |
+| `falsiflow mcp` | Run the experimental local stdio MCP server for AI coding agents. |
 | `falsiflow candidate` | Candidate queue utilities. |
 | `falsiflow candidate rank` | Rank candidate recipes for a research goal and write ranking artifacts. |
 | `falsiflow assay-plan` | Draft assay and RFQ packages for the top candidate from a research goal. |
 | `falsiflow evidence` | Evidence import utilities. |
-| `falsiflow evidence import` | Convert a wide lab CSV into Falsiflow evidence rows. |
+| `falsiflow evidence import` | Convert CSV, AI eval, local LLM eval, or RAG eval artifacts into Falsiflow evidence rows. |
 | `falsiflow try` | Run a 30-second starter demo and write a local browser launchpad. |
 | `falsiflow wizard` | Write a static browser wizard for drafting a claim gate. |
 | `falsiflow serve` | Generate and serve the local Falsiflow browser demo on localhost. |
@@ -79,7 +80,7 @@ falsiflow cli-reference --out docs/falsiflow_cli_reference.md
 | `falsiflow next` | Print the next evidence-filling actions. |
 | `falsiflow sources` | Write a source-file provenance manifest for evidence rows. |
 | `falsiflow ingest-limina-source-values` | Convert LIMINA source-value sheets into Falsiflow evidence. |
-| `falsiflow ingest-wide-csv` | Convert a wide lab CSV into Falsiflow evidence rows. |
+| `falsiflow ingest-wide-csv` | Convert a wide lab CSV, or a selected eval artifact profile, into Falsiflow evidence rows. |
 
 ## Commands
 
@@ -310,6 +311,16 @@ falsiflow agent discover [-h] --goal GOAL [--out-dir OUT_DIR] [--force]
 | `--force` | `` | `no` | `False` | Allow replacing an existing discovery directory. |
 | `--json` | `` | `no` | `False` | Print machine-readable discovery summary. |
 
+### `falsiflow mcp`
+
+Run the experimental local stdio MCP server for AI coding agents.
+
+```text
+falsiflow mcp [-h]
+```
+
+No command-specific arguments.
+
 ### `falsiflow candidate`
 
 Candidate queue utilities.
@@ -370,14 +381,17 @@ No command-specific arguments.
 
 ### `falsiflow evidence import`
 
-Convert a wide lab CSV into Falsiflow evidence rows.
+Convert CSV, AI eval, local LLM eval, or RAG eval artifacts into Falsiflow evidence rows.
 
 ```text
 falsiflow evidence import [-h] --input INPUT --out OUT
                                  [--summary-out SUMMARY_OUT] [--config CONFIG]
                                  [--coverage-out COVERAGE_OUT] [--strict]
-                                 [--profile {generic-wide,instrument-export,plate-reader,vendor-measurement}]
-                                 --gate-id GATE_ID --candidate-id CANDIDATE_ID
+                                 [--profile {ai-eval,generic-wide,instrument-export,local-llm-eval,plate-reader,rag-eval,vendor-measurement}]
+                                 [--manifest MANIFEST] [--gate-id GATE_ID]
+                                 [--candidate-id CANDIDATE_ID]
+                                 [--baseline-candidate-id BASELINE_CANDIDATE_ID]
+                                 [--sample-id SAMPLE_ID]
                                  [--sample-id-column SAMPLE_ID_COLUMN]
                                  [--field FIELD]
                                  [--exclude-column EXCLUDE_COLUMN]
@@ -396,15 +410,18 @@ falsiflow evidence import [-h] --input INPUT --out OUT
 
 | Argument | Value | Required | Default | Help |
 | --- | --- | --- | --- | --- |
-| `--input` | `INPUT` | `yes` | `` | Wide lab CSV. Repeatable. |
+| `--input` | `INPUT` | `yes` | `` | Source artifact to import. Wide CSV profiles read CSV; eval profiles read JSON, JSONL, or CSV. Repeatable. |
 | `--out` | `OUT` | `yes` | `` | Falsiflow evidence CSV to write. |
 | `--summary-out` | `SUMMARY_OUT` | `no` | `` | Optional conversion summary JSON. |
 | `--config` | `CONFIG` | `no` | `` | Optional project config for import coverage precheck. |
 | `--coverage-out` | `COVERAGE_OUT` | `no` | `` | Optional coverage precheck JSON output path. |
 | `--strict` | `` | `no` | `False` | Exit non-zero when project coverage is blocked. |
-| `--profile` | `{generic-wide,instrument-export,plate-reader,vendor-measurement}` | `no` | `generic-wide` | Column mapping profile for common lab, vendor, or instrument CSV shapes. |
-| `--gate-id` | `GATE_ID` | `yes` | `` |  |
-| `--candidate-id` | `CANDIDATE_ID` | `yes` | `` |  |
+| `--profile` | `{ai-eval,generic-wide,instrument-export,local-llm-eval,plate-reader,rag-eval,vendor-measurement}` | `no` | `generic-wide` | Import profile for wide CSV, AI eval, local LLM eval, or RAG eval artifacts. |
+| `--manifest` | `MANIFEST` | `no` | `` | Optional JSON manifest for ai-eval, local-llm-eval, and rag-eval profiles. |
+| `--gate-id` | `GATE_ID` | `no` | `` | Gate id for wide CSV imports. |
+| `--candidate-id` | `CANDIDATE_ID` | `no` | `` | Fallback candidate id for wide CSV or eval artifact imports. |
+| `--baseline-candidate-id` | `BASELINE_CANDIDATE_ID` | `no` | `` | Baseline candidate id for ai-eval, local-llm-eval, and rag-eval profiles. |
+| `--sample-id` | `SAMPLE_ID` | `no` | `` | Eval run or sample id override for ai-eval, local-llm-eval, and rag-eval profiles. |
 | `--sample-id-column` | `SAMPLE_ID_COLUMN` | `no` | `` | Column containing sample ids. Defaults to the selected profile. |
 | `--field` | `FIELD` | `no` | `[]` | Value column to import. Repeatable. Defaults to all non-metadata columns. |
 | `--exclude-column` | `EXCLUDE_COLUMN` | `no` | `[]` | Column to ignore when auto-selecting value columns. |
@@ -1154,14 +1171,17 @@ falsiflow ingest-limina-source-values [-h] --input INPUT --out OUT
 
 ### `falsiflow ingest-wide-csv`
 
-Convert a wide lab CSV into Falsiflow evidence rows.
+Convert a wide lab CSV, or a selected eval artifact profile, into Falsiflow evidence rows.
 
 ```text
 falsiflow ingest-wide-csv [-h] --input INPUT --out OUT
                                  [--summary-out SUMMARY_OUT] [--config CONFIG]
                                  [--coverage-out COVERAGE_OUT] [--strict]
-                                 [--profile {generic-wide,instrument-export,plate-reader,vendor-measurement}]
-                                 --gate-id GATE_ID --candidate-id CANDIDATE_ID
+                                 [--profile {ai-eval,generic-wide,instrument-export,local-llm-eval,plate-reader,rag-eval,vendor-measurement}]
+                                 [--manifest MANIFEST] [--gate-id GATE_ID]
+                                 [--candidate-id CANDIDATE_ID]
+                                 [--baseline-candidate-id BASELINE_CANDIDATE_ID]
+                                 [--sample-id SAMPLE_ID]
                                  [--sample-id-column SAMPLE_ID_COLUMN]
                                  [--field FIELD]
                                  [--exclude-column EXCLUDE_COLUMN]
@@ -1180,15 +1200,18 @@ falsiflow ingest-wide-csv [-h] --input INPUT --out OUT
 
 | Argument | Value | Required | Default | Help |
 | --- | --- | --- | --- | --- |
-| `--input` | `INPUT` | `yes` | `` | Wide lab CSV. Repeatable. |
+| `--input` | `INPUT` | `yes` | `` | Source artifact to import. Wide CSV profiles read CSV; eval profiles read JSON, JSONL, or CSV. Repeatable. |
 | `--out` | `OUT` | `yes` | `` | Falsiflow evidence CSV to write. |
 | `--summary-out` | `SUMMARY_OUT` | `no` | `` | Optional conversion summary JSON. |
 | `--config` | `CONFIG` | `no` | `` | Optional project config for import coverage precheck. |
 | `--coverage-out` | `COVERAGE_OUT` | `no` | `` | Optional coverage precheck JSON output path. |
 | `--strict` | `` | `no` | `False` | Exit non-zero when project coverage is blocked. |
-| `--profile` | `{generic-wide,instrument-export,plate-reader,vendor-measurement}` | `no` | `generic-wide` | Column mapping profile for common lab, vendor, or instrument CSV shapes. |
-| `--gate-id` | `GATE_ID` | `yes` | `` |  |
-| `--candidate-id` | `CANDIDATE_ID` | `yes` | `` |  |
+| `--profile` | `{ai-eval,generic-wide,instrument-export,local-llm-eval,plate-reader,rag-eval,vendor-measurement}` | `no` | `generic-wide` | Import profile for wide CSV, AI eval, local LLM eval, or RAG eval artifacts. |
+| `--manifest` | `MANIFEST` | `no` | `` | Optional JSON manifest for ai-eval, local-llm-eval, and rag-eval profiles. |
+| `--gate-id` | `GATE_ID` | `no` | `` | Gate id for wide CSV imports. |
+| `--candidate-id` | `CANDIDATE_ID` | `no` | `` | Fallback candidate id for wide CSV or eval artifact imports. |
+| `--baseline-candidate-id` | `BASELINE_CANDIDATE_ID` | `no` | `` | Baseline candidate id for ai-eval, local-llm-eval, and rag-eval profiles. |
+| `--sample-id` | `SAMPLE_ID` | `no` | `` | Eval run or sample id override for ai-eval, local-llm-eval, and rag-eval profiles. |
 | `--sample-id-column` | `SAMPLE_ID_COLUMN` | `no` | `` | Column containing sample ids. Defaults to the selected profile. |
 | `--field` | `FIELD` | `no` | `[]` | Value column to import. Repeatable. Defaults to all non-metadata columns. |
 | `--exclude-column` | `EXCLUDE_COLUMN` | `no` | `[]` | Column to ignore when auto-selecting value columns. |
