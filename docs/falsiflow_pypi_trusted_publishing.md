@@ -1,7 +1,7 @@
 # Falsiflow PyPI Trusted Publishing
 
-This runbook records the account-bound PyPI setup and the successful v0.1.2
-trusted-publishing recovery for Falsiflow.
+This runbook records the account-bound PyPI setup, current publish evidence,
+and the original successful v0.1.2 trusted-publishing recovery for Falsiflow.
 
 ## Current Status
 
@@ -9,16 +9,16 @@ Completed on 2026-05-31:
 
 - PyPI project: <https://pypi.org/project/falsiflow/>
 - PyPI JSON API: <https://pypi.org/pypi/falsiflow/json>
-- Published version: `0.1.2`
+- Published version: `0.1.4`
 - Successful release-triggered publish run:
-  <https://github.com/AzurLiu/falsiflow/actions/runs/26704442265>
+  <https://github.com/AzurLiu/falsiflow/actions/runs/26708643927>
 - Successful external evidence run:
-  <https://github.com/AzurLiu/falsiflow/actions/runs/26705116249>
+  <https://github.com/AzurLiu/falsiflow/actions/runs/26708718559>
 - `external-check --strict` status: `external_ready`
 
-The original failure was resolved by adding a PyPI account-level pending
-publisher for project `falsiflow`. On first successful publish, PyPI converted
-that pending publisher into the project's trusted publisher.
+The original v0.1.2 failure was resolved by adding a PyPI account-level
+pending publisher for project `falsiflow`. On first successful publish, PyPI
+converted that pending publisher into the project's trusted publisher.
 
 ## Historical Blocker
 
