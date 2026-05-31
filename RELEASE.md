@@ -233,6 +233,7 @@ Inspect these generated files before publishing:
 - `data/falsiflow/release_check/launch_kit/announcement.md`
 - `data/falsiflow/release_check/launch_kit/demo_script.md`
 - `data/falsiflow/release_check/launch_kit/readme_proof_strip.svg`
+- `data/falsiflow/release_check/launch_kit/social_preview.png`
 - `data/falsiflow/release_check/launch_kit/social_preview.svg`
 - `data/falsiflow/release_check/launch_kit/github_repo_profile.md`
 - `data/falsiflow/release_check/launch_kit/launch_posts.md`

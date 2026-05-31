@@ -21,7 +21,7 @@ source-backed evidence -> claim_check_ready
 GitHub Action:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.33
+- uses: AzurLiu/falsiflow@v0.1.34
   with:
     mode: claim-check
     project-dir: falsiflow_ai_eval
@@ -299,7 +299,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: AzurLiu/falsiflow@v0.1.33
+      - uses: AzurLiu/falsiflow@v0.1.34
         with:
           mode: claim-check
           project-dir: my_falsiflow_project
@@ -378,8 +378,8 @@ falsiflow launch-kit --out-dir falsiflow_launch_kit --force
 
 `falsiflow launch-kit` writes `launch_summary.json`, `README.md`,
 `proof_card.json`, `proof_card.md`, `announcement.md`, `demo_script.md`,
-`readme_proof_strip.svg`, `social_preview.svg`, `github_repo_profile.md`,
-`launch_posts.md`, `launch_metrics.json`, `launch_metrics.md`,
+`readme_proof_strip.svg`, `social_preview.png`, `social_preview.svg`,
+`github_repo_profile.md`, `launch_posts.md`, `launch_metrics.json`, `launch_metrics.md`,
 `maintainer_checklist.md`, and a nested publish kit with
 `public_release_evidence.md` and `release_rehearsal.md`. The launch metrics
 tracker turns the 1k-star path into review windows for GitHub traffic,

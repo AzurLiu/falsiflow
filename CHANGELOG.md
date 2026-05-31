@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.34
+
+- Added an upload-ready `social_preview.png` to `falsiflow launch-kit`, generated
+  with the standard library so maintainers can set GitHub's repository social
+  preview without extra image tooling.
+- Kept `social_preview.svg` as the editable source and updated the generated
+  GitHub repo profile handoff to point maintainers at the PNG upload artifact.
+- Added regression and release-check coverage so README, launch-kit output, and
+  repo-profile guidance continue to ship the PNG plus SVG source together.
+
 ## 0.1.33
 
 - Upgraded `falsiflow launch-kit` so generated Hacker News, Reddit,

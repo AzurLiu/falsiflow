@@ -144,7 +144,8 @@ ordered commands, expected artifacts, success signals, and stop conditions.
 `launch-kit` adds
 `launch_summary.json`,
 `proof_card.md`, `announcement.md`, `demo_script.md`,
-`readme_proof_strip.svg`, `social_preview.svg`, `github_repo_profile.md`,
+`readme_proof_strip.svg`, `social_preview.png`, `social_preview.svg`,
+`github_repo_profile.md`,
 `launch_posts.md`, `launch_metrics.json`, `launch_metrics.md`, and
 `maintainer_checklist.md` so public launch copy, GitHub repository profile
 settings, social preview imagery, proof points, and 1k-star launch tracking are

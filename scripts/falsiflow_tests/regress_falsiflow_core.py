@@ -1581,10 +1581,15 @@ def assert_cli_contract() -> None:
         assert "claim_ready after proof" in (launch_kit_dir / "readme_proof_strip.svg").read_text(encoding="utf-8")
         assert (launch_kit_dir / "social_preview.svg").exists()
         assert "Falsiflow GitHub social preview" in (launch_kit_dir / "social_preview.svg").read_text(encoding="utf-8")
+        social_preview_png = launch_kit_dir / "social_preview.png"
+        assert social_preview_png.exists()
+        assert social_preview_png.read_bytes().startswith(b"\x89PNG\r\n\x1a\n")
+        assert social_preview_png.stat().st_size > 1000
         assert (launch_kit_dir / "github_repo_profile.md").exists()
         github_repo_profile = (launch_kit_dir / "github_repo_profile.md").read_text(encoding="utf-8")
         assert "## Topics" in github_repo_profile
         assert "Demo PR playbook" in github_repo_profile
+        assert "Upload `social_preview.png`" in github_repo_profile
         assert "Live AI eval downstream PR proof" in github_repo_profile
         assert "Live RAG eval downstream PR proof" in github_repo_profile
         assert "falsiflow-downstream-rag-eval-demo" in github_repo_profile
@@ -4521,6 +4526,7 @@ def assert_packaged_template_contract() -> None:
         assert (packaged_launch_kit_dir / "proof_card.md").exists()
         assert (packaged_launch_kit_dir / "readme_proof_strip.svg").exists()
         assert (packaged_launch_kit_dir / "social_preview.svg").exists()
+        assert (packaged_launch_kit_dir / "social_preview.png").exists()
         assert (packaged_launch_kit_dir / "github_repo_profile.md").exists()
         assert (packaged_launch_kit_dir / "launch_posts.md").exists()
         assert (packaged_launch_kit_dir / "launch_metrics.json").exists()
