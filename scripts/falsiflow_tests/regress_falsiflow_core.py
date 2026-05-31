@@ -6,6 +6,7 @@ import csv
 import hashlib
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -2909,6 +2910,7 @@ def assert_cli_contract() -> None:
             "package_downstream_pr_proof_strip_matches_docs",
             "readme_proof_strip_exists",
             "readme_visual_asset",
+            "readme_pypi_renderable_image_urls",
             "readme_first_screen_story",
             "start_docs",
             "install_docs",
@@ -3009,6 +3011,7 @@ def assert_cli_contract() -> None:
         assert package_check_map["readme_github_action_docs"]["status"] == "passed"
         assert package_check_map["package_downstream_pr_proof_strip_matches_docs"]["status"] == "passed"
         assert package_check_map["readme_downstream_pr_proof_strip_asset"]["status"] == "passed"
+        assert package_check_map["readme_pypi_renderable_image_urls"]["status"] == "passed"
         assert package_check_map["downstream_ai_eval_smoke_fixture"]["status"] == "passed"
         assert package_check_map["downstream_product_metric_smoke_fixture"]["status"] == "passed"
         assert package_check_map["downstream_ai_eval_live_proof_links"]["status"] == "passed"
@@ -3025,6 +3028,8 @@ def assert_cli_contract() -> None:
         assert "AI eval" in readme_first_screen
         assert "falsiflow quickstart --template ai_claim_evaluation" in readme_first_screen
         assert "claim_check_blocked" in readme_first_screen
+        readme_text = (ROOT / "README.md").read_text(encoding="utf-8")
+        assert re.search(r"!\[[^\]]*\]\(docs/assets/", readme_text) is None
         assert "release_validation_ready" in (ROOT / "RELEASE.md").read_text(encoding="utf-8")
         assert release_summary["template_count"] == EXPECTED_TEMPLATE_COUNT
         assert release_summary["bundle_verified_count"] == EXPECTED_TEMPLATE_COUNT

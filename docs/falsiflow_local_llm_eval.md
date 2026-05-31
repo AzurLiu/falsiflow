@@ -128,7 +128,7 @@ model runner.
 In CI, commit or upload sanitized eval artifacts, then run the reusable action:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.15
+- uses: AzurLiu/falsiflow@v0.1.16
   with:
     mode: claim-check
     project-dir: local_llm_eval_gate

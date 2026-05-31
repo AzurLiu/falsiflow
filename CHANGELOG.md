@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.16
+
+- Switched README proof images to absolute HTTPS asset URLs so PyPI long
+  descriptions and other external renderers can show the downstream proof
+  strip instead of depending on repository-relative image paths.
+- Added release-check coverage to keep README image embeds PyPI-renderable for
+  future launch hardening releases.
+
 ## 0.1.15
 
 - Updated the generated browser launchpad and checked-in public demo to lead

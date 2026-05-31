@@ -771,6 +771,10 @@ def package_release_checks(root: Path) -> dict[str, object]:
         package_data = get_nested(data, "tool", "setuptools", "package-data", "falsiflow") if data else None
         current_version = str(project_version or init_version)
         readme_first_screen = readme_text[:2400]
+        readme_image_targets = re.findall(r"!\[[^\]]*\]\(([^)\s]+)", readme_text)
+        relative_readme_asset_images = [
+            target for target in readme_image_targets if target.startswith("docs/assets/")
+        ]
 
         add("pyproject_name", project_name == "falsiflow" if data else 'name = "falsiflow"' in pyproject_text, "Project name is falsiflow.", pyproject_path)
         add("pyproject_version", bool(project_version) if data else bool(re.search(r'^version\s*=\s*"[^"]+"', pyproject_text, flags=re.MULTILINE)), "Project version is declared.", pyproject_path)
@@ -837,6 +841,7 @@ def package_release_checks(root: Path) -> dict[str, object]:
         add("package_pr_story_reel_matches_docs", package_pr_story_reel_path.read_text(encoding="utf-8") == readme_pr_story_reel_text if package_pr_story_reel_path.exists() and readme_pr_story_reel_text else False, "Packaged live PR story reel matches the README/docs asset.", package_pr_story_reel_path)
         add("readme_visual_asset", all(token in readme_text for token in ["docs/assets/falsiflow_proof_strip.svg", "Falsiflow evidence-gated claim workflow"]) and all(token in readme_proof_strip_text for token in ["claim_ready after proof", "claim_blocked on gaps", "Source files", "Review + release checks"]), "README embeds a first-screen proof-strip visual that explains the evidence gate flow.", readme_proof_strip_path)
         add("readme_30_second_demo_asset", all(token in readme_text for token in ["docs/assets/falsiflow_30_second_demo.svg", "Falsiflow 30-second ready vs blocked demo", "30-second demo"]) and all(token in readme_demo_strip_text for token in ["30-second AI claim demo", "quickstart_ready", "claim_check_ready", "claim_check_blocked", "evidence_placeholder_demo.csv", "next actions"]), "README embeds a 30-second demo visual showing ready and blocked AI-claim paths.", readme_demo_strip_path)
+        add("readme_pypi_renderable_image_urls", bool(readme_image_targets) and not relative_readme_asset_images and all(target.startswith("https://") for target in readme_image_targets), "README embeds images with absolute HTTPS URLs so PyPI long descriptions can render proof assets instead of keeping repository-relative paths.", readme_path)
         add("readme_first_screen_story", all(token in readme_first_screen for token in ["AI eval", "product metric", "R&D", "falsiflow quickstart --template ai_claim_evaluation", "quickstart_ready", "claim_check_ready", "claim_check_blocked", "GitHub Action", "Public demo", "PyPI trusted publishing"]), "README first screen names broad use cases, public demo, AI-claim quickstart, blocked placeholder behavior, GitHub Action adoption, and current PyPI trusted-publishing status.", readme_path)
         add("start_docs", all(token in readme_text for token in ["falsiflow start", "free localhost port", "falsiflow start --check --json", "beginner entry point"]), "README documents the beginner local app command.", readme_path)
         add("install_docs", all(token in readme_text for token in ["scripts/install_local.sh", "make install-local", "make start", "FALSIFLOW_REPO_URL", "virtual environment"]), "README documents one-command local installation.", readme_path)

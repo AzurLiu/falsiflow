@@ -2,7 +2,7 @@
 
 Stop unverifiable AI eval, product metric, and R&D claims from passing CI.
 
-![Falsiflow downstream PR proof strip](docs/assets/falsiflow_downstream_pr_proof_strip.svg)
+![Falsiflow downstream PR proof strip](https://raw.githubusercontent.com/AzurLiu/falsiflow/main/docs/assets/falsiflow_downstream_pr_proof_strip.png)
 
 ## 30 Seconds
 
@@ -21,7 +21,7 @@ source-backed evidence -> claim_check_ready
 GitHub Action:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.15
+- uses: AzurLiu/falsiflow@v0.1.16
   with:
     mode: claim-check
     project-dir: falsiflow_ai_eval
@@ -46,7 +46,7 @@ The shareable proof strip above is stored at
 
 30-second demo (CLI):
 
-![Falsiflow 30-second ready vs blocked demo](docs/assets/falsiflow_30_second_demo.svg)
+![Falsiflow 30-second ready vs blocked demo](https://raw.githubusercontent.com/AzurLiu/falsiflow/main/docs/assets/falsiflow_30_second_demo.svg)
 
 Falsiflow blocks "the model improved" until the repo provides pinned eval
 provenance, source-backed evidence rows, raw files, thresholds, and a review
@@ -84,7 +84,7 @@ source installs are live. `Falsiflow External Evidence` reports
 
 Evidence gate flow:
 
-![Falsiflow evidence-gated claim workflow](docs/assets/falsiflow_proof_strip.svg)
+![Falsiflow evidence-gated claim workflow](https://raw.githubusercontent.com/AzurLiu/falsiflow/main/docs/assets/falsiflow_proof_strip.svg)
 
 ## Fast Paths
 
@@ -279,7 +279,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: AzurLiu/falsiflow@v0.1.15
+      - uses: AzurLiu/falsiflow@v0.1.16
         with:
           mode: claim-check
           project-dir: my_falsiflow_project
@@ -312,9 +312,9 @@ evidence passed:
 
 | Launchpad | Ready report |
 | --- | --- |
-| ![Falsiflow public demo launchpad](docs/assets/falsiflow_public_demo_launchpad.png) | ![Falsiflow public demo ready report](docs/assets/falsiflow_public_demo_report.png) |
+| ![Falsiflow public demo launchpad](https://raw.githubusercontent.com/AzurLiu/falsiflow/main/docs/assets/falsiflow_public_demo_launchpad.png) | ![Falsiflow public demo ready report](https://raw.githubusercontent.com/AzurLiu/falsiflow/main/docs/assets/falsiflow_public_demo_report.png) |
 | Claim dashboard | Workbench |
-| ![Falsiflow public demo claim dashboard](docs/assets/falsiflow_public_demo_dashboard.png) | ![Falsiflow public demo workbench](docs/assets/falsiflow_public_demo_workbench.png) |
+| ![Falsiflow public demo claim dashboard](https://raw.githubusercontent.com/AzurLiu/falsiflow/main/docs/assets/falsiflow_public_demo_dashboard.png) | ![Falsiflow public demo workbench](https://raw.githubusercontent.com/AzurLiu/falsiflow/main/docs/assets/falsiflow_public_demo_workbench.png) |
 
 To prepare a publish-ready static demo directory with hosting metadata:
 
