@@ -2,19 +2,19 @@
   "boundary": "Static demo package only; public hosting and repository URLs must be verified separately.",
   "external_url_required": true,
   "github_pages_ready": true,
-  "local_preview": "public_demo/index.html",
+  "local_preview": "docs/public_demo/index.html",
   "netlify_ready": true,
   "outputs": {
-    "github_pages_marker": "public_demo/.nojekyll",
-    "index": "public_demo/index.html",
-    "netlify_config": "public_demo/netlify.toml",
-    "publish_checklist": "public_demo/publish_checklist.md",
-    "readme": "public_demo/README.md",
-    "static_demo_summary": "public_demo/static_demo_summary.json",
-    "summary": "public_demo/demo_package_summary.json",
-    "try_report": "public_demo/try_report.html",
-    "wizard": "public_demo/falsiflow_wizard.html",
-    "workbench": "public_demo/workbench.html"
+    "github_pages_marker": "docs/public_demo/.nojekyll",
+    "index": "docs/public_demo/index.html",
+    "netlify_config": "docs/public_demo/netlify.toml",
+    "publish_checklist": "docs/public_demo/publish_checklist.md",
+    "readme": "docs/public_demo/README.md",
+    "static_demo_summary": "docs/public_demo/static_demo_summary.json",
+    "summary": "docs/public_demo/demo_package_summary.json",
+    "try_report": "docs/public_demo/try_report.html",
+    "wizard": "docs/public_demo/falsiflow_wizard.html",
+    "workbench": "docs/public_demo/workbench.html"
   },
   "public_hosting_required": true,
   "publishable": true,
@@ -22,7 +22,7 @@
     "FALSIFLOW_REPO_URL",
     "FALSIFLOW_PUBLIC_DEMO_URL"
   ],
-  "site_dir": "public_demo",
+  "site_dir": "docs/public_demo",
   "status": "demo_package_ready",
   "template": "biointerface_coatings",
   "try_summary": {
@@ -33,28 +33,28 @@
     "failure_count": 0,
     "failures": [],
     "next_commands": [
-      "falsiflow doctor --project-dir public_demo/project --strict",
-      "falsiflow claim-check --project-dir public_demo/project --strict --force",
-      "open public_demo/index.html",
-      "open public_demo/falsiflow_wizard.html"
+      "falsiflow doctor --project-dir docs/public_demo/project --strict",
+      "falsiflow claim-check --project-dir docs/public_demo/project --strict --force",
+      "open docs/public_demo/index.html",
+      "open docs/public_demo/falsiflow_wizard.html"
     ],
-    "out_dir": "public_demo",
+    "out_dir": "docs/public_demo",
     "outputs": {
-      "bundle_verification_report": "public_demo/project/claim_check/evidence_bundle_verify.md",
-      "claim_check": "public_demo/project/claim_check/claim_check.json",
-      "claim_check_report": "public_demo/project/claim_check/claim_check.md",
-      "dashboard": "public_demo/project/claim_check/evidence_bundle/audit/dashboard.html",
-      "evidence_bundle_zip": "public_demo/project/claim_check/evidence_bundle.zip",
-      "launchpad": "public_demo/index.html",
-      "project_dir": "public_demo/project",
-      "quickstart_report": "public_demo/project/quickstart_summary.md",
-      "quickstart_summary": "public_demo/project/quickstart_summary.json",
-      "try_report": "public_demo/try_report.html",
-      "try_summary": "public_demo/try_summary.json",
-      "wizard": "public_demo/falsiflow_wizard.html",
-      "workbench": "public_demo/workbench.html"
+      "bundle_verification_report": "docs/public_demo/project/claim_check/evidence_bundle_verify.md",
+      "claim_check": "docs/public_demo/project/claim_check/claim_check.json",
+      "claim_check_report": "docs/public_demo/project/claim_check/claim_check.md",
+      "dashboard": "docs/public_demo/project/claim_check/evidence_bundle/audit/dashboard.html",
+      "evidence_bundle_zip": "docs/public_demo/project/claim_check/evidence_bundle.zip",
+      "launchpad": "docs/public_demo/index.html",
+      "project_dir": "docs/public_demo/project",
+      "quickstart_report": "docs/public_demo/project/quickstart_summary.md",
+      "quickstart_summary": "docs/public_demo/project/quickstart_summary.json",
+      "try_report": "docs/public_demo/try_report.html",
+      "try_summary": "docs/public_demo/try_summary.json",
+      "wizard": "docs/public_demo/falsiflow_wizard.html",
+      "workbench": "docs/public_demo/workbench.html"
     },
-    "project_dir": "public_demo/project",
+    "project_dir": "docs/public_demo/project",
     "quickstart_status": "quickstart_ready",
     "quickstart_summary": {
       "audit_review_status": "review_ready",
@@ -131,16 +131,16 @@
               "sha256": "593f6935f7ec1d64081ea85ef731cc50fd78ddb3cebf11f0e040f6b73a375cad"
             },
             {
-              "bytes": 4514,
+              "bytes": 4529,
               "path": "source_manifest.json",
               "role": "source_manifest",
-              "sha256": "f3537096999f6b70304e4adcaeb065c7d315cc2c91c0f945bde0d3e74fa4ffb0"
+              "sha256": "afeb16eabcf82d1516655388fc475802507ec4b97345bfbe4778fd41647b2455"
             },
             {
-              "bytes": 686,
+              "bytes": 691,
               "path": "source_manifest.md",
               "role": "source_manifest_report",
-              "sha256": "19d2a1190768de850b336f1dc565c0192a7af9b1b94021693428eb3ec2645fe4"
+              "sha256": "ad1693661275208315f40141e64277019fd70c88095e6eab9fe48ea5c39b0964"
             },
             {
               "bytes": 1479,
@@ -164,11 +164,11 @@
           "source_file_count": 1,
           "source_status": "sources_ready",
           "status": "bundle_ready",
-          "zip_path": "public_demo/project/claim_check/evidence_bundle.zip"
+          "zip_path": "docs/public_demo/project/claim_check/evidence_bundle.zip"
         },
         "bundle_verification_summary": {
           "artifact_count": 13,
-          "bundle_dir": "public_demo/project/claim_check/evidence_bundle.zip",
+          "bundle_dir": "docs/public_demo/project/claim_check/evidence_bundle.zip",
           "bundle_status": "bundle_ready",
           "bytes_mismatch_count": 0,
           "checked_artifact_count": 13,
@@ -176,11 +176,11 @@
           "error_count": 0,
           "hash_mismatch_count": 0,
           "input_format": "zip",
-          "input_path": "public_demo/project/claim_check/evidence_bundle.zip",
+          "input_path": "docs/public_demo/project/claim_check/evidence_bundle.zip",
           "integrity_status": "integrity_verified",
           "issue_count": 0,
           "issues": [],
-          "manifest_path": "public_demo/project/claim_check/evidence_bundle.zip:bundle_manifest.json",
+          "manifest_path": "docs/public_demo/project/claim_check/evidence_bundle.zip:bundle_manifest.json",
           "missing_artifact_count": 0,
           "status": "bundle_verified",
           "unmanifested_file_count": 0,
@@ -190,15 +190,15 @@
           "zip_extracted_file_count": 14,
           "zip_issue_count": 0,
           "zip_member_count": 14,
-          "zip_path": "public_demo/project/claim_check/evidence_bundle.zip"
+          "zip_path": "docs/public_demo/project/claim_check/evidence_bundle.zip"
         },
         "checked_artifact_count": 13,
         "claim_check_ready": true,
         "claim_id": "coating_ready_for_cell_contact_screen",
         "claim_ready": true,
         "completion_pct": 100.0,
-        "config_path": "public_demo/project/project.json",
-        "evidence_path": "public_demo/project/evidence_pass_demo.csv",
+        "config_path": "docs/public_demo/project/project.json",
+        "evidence_path": "docs/public_demo/project/evidence_pass_demo.csv",
         "failure_count": 0,
         "failures": [],
         "gate_count": 3,
@@ -211,25 +211,90 @@
             "why": "All required gates passed with source-backed evidence."
           }
         ],
-        "out_dir": "public_demo/project/claim_check",
+        "out_dir": "docs/public_demo/project/claim_check",
         "outputs": {
-          "audit_review": "public_demo/project/claim_check/evidence_bundle/audit/audit_review.json",
-          "audit_review_report": "public_demo/project/claim_check/evidence_bundle/audit/audit_review.md",
-          "bundle_manifest": "public_demo/project/claim_check/evidence_bundle/bundle_manifest.json",
-          "bundle_verification": "public_demo/project/claim_check/evidence_bundle_verify.json",
-          "bundle_verification_report": "public_demo/project/claim_check/evidence_bundle_verify.md",
-          "bundle_zip": "public_demo/project/claim_check/evidence_bundle.zip",
-          "claim_audit": "public_demo/project/claim_check/evidence_bundle/audit/claim_audit.json",
-          "claim_audit_report": "public_demo/project/claim_check/evidence_bundle/audit/claim_audit.md",
-          "claim_check": "public_demo/project/claim_check/claim_check.json",
-          "claim_check_report": "public_demo/project/claim_check/claim_check.md",
-          "claim_summary": "public_demo/project/claim_check/evidence_bundle/audit/claim_summary.json",
-          "dashboard": "public_demo/project/claim_check/evidence_bundle/audit/dashboard.html",
-          "next_actions": "public_demo/project/claim_check/evidence_bundle/audit/next_actions.json",
-          "source_manifest": "public_demo/project/claim_check/evidence_bundle/source_manifest.json",
-          "source_manifest_report": "public_demo/project/claim_check/evidence_bundle/source_manifest.md"
+          "audit_review": "docs/public_demo/project/claim_check/evidence_bundle/audit/audit_review.json",
+          "audit_review_report": "docs/public_demo/project/claim_check/evidence_bundle/audit/audit_review.md",
+          "bundle_manifest": "docs/public_demo/project/claim_check/evidence_bundle/bundle_manifest.json",
+          "bundle_verification": "docs/public_demo/project/claim_check/evidence_bundle_verify.json",
+          "bundle_verification_report": "docs/public_demo/project/claim_check/evidence_bundle_verify.md",
+          "bundle_zip": "docs/public_demo/project/claim_check/evidence_bundle.zip",
+          "claim_audit": "docs/public_demo/project/claim_check/evidence_bundle/audit/claim_audit.json",
+          "claim_audit_report": "docs/public_demo/project/claim_check/evidence_bundle/audit/claim_audit.md",
+          "claim_check": "docs/public_demo/project/claim_check/claim_check.json",
+          "claim_check_report": "docs/public_demo/project/claim_check/claim_check.md",
+          "claim_summary": "docs/public_demo/project/claim_check/evidence_bundle/audit/claim_summary.json",
+          "dashboard": "docs/public_demo/project/claim_check/evidence_bundle/audit/dashboard.html",
+          "next_actions": "docs/public_demo/project/claim_check/evidence_bundle/audit/next_actions.json",
+          "source_manifest": "docs/public_demo/project/claim_check/evidence_bundle/source_manifest.json",
+          "source_manifest_report": "docs/public_demo/project/claim_check/evidence_bundle/source_manifest.md"
         },
         "project_id": "falsiflow_biointerface_coatings_demo",
+        "review_artifact_index": [
+          {
+            "artifact": "Claim-check report",
+            "key": "claim_check_report",
+            "path": "docs/public_demo/project/claim_check/claim_check.md",
+            "purpose": "Top-level ready/blocked decision, blocking stage, failures, and next actions.",
+            "status": "claim_check_ready"
+          },
+          {
+            "artifact": "Claim-check JSON",
+            "key": "claim_check",
+            "path": "docs/public_demo/project/claim_check/claim_check.json",
+            "purpose": "Machine-readable status for CI, release-check, and browser handoffs.",
+            "status": "claim_check_ready"
+          },
+          {
+            "artifact": "Audit review",
+            "key": "audit_review_report",
+            "path": "docs/public_demo/project/claim_check/evidence_bundle/audit/audit_review.md",
+            "purpose": "Human review card for gate results, blockers, and decision boundaries.",
+            "status": "review_ready"
+          },
+          {
+            "artifact": "Claim audit",
+            "key": "claim_audit_report",
+            "path": "docs/public_demo/project/claim_check/evidence_bundle/audit/claim_audit.md",
+            "purpose": "Detailed measured evidence evaluation for the claim gates.",
+            "status": "claim_ready"
+          },
+          {
+            "artifact": "Source manifest",
+            "key": "source_manifest_report",
+            "path": "docs/public_demo/project/claim_check/evidence_bundle/source_manifest.md",
+            "purpose": "Raw source-file provenance, missing files, allowed roots, and blank source rows.",
+            "status": "sources_ready"
+          },
+          {
+            "artifact": "Bundle manifest",
+            "key": "bundle_manifest",
+            "path": "docs/public_demo/project/claim_check/evidence_bundle/bundle_manifest.json",
+            "purpose": "Declared bundle contents with byte counts and SHA-256 hashes.",
+            "status": "bundle_ready"
+          },
+          {
+            "artifact": "Bundle verification",
+            "key": "bundle_verification_report",
+            "path": "docs/public_demo/project/claim_check/evidence_bundle_verify.md",
+            "purpose": "Independent zip integrity check for the review bundle.",
+            "status": "bundle_verified"
+          },
+          {
+            "artifact": "Claim dashboard",
+            "key": "dashboard",
+            "path": "docs/public_demo/project/claim_check/evidence_bundle/audit/dashboard.html",
+            "purpose": "Browser-readable evidence dashboard for non-CLI reviewers.",
+            "status": "claim_check_ready"
+          },
+          {
+            "artifact": "Evidence bundle",
+            "key": "bundle_zip",
+            "path": "docs/public_demo/project/claim_check/evidence_bundle.zip",
+            "purpose": "Portable review package containing inputs, audit outputs, source manifest, and copied sources.",
+            "status": "bundle_ready"
+          }
+        ],
         "source_blocker_count": 0,
         "source_file_count": 1,
         "source_status": "sources_ready",
@@ -238,28 +303,28 @@
         "verification_status": "bundle_verified"
       },
       "claim_ready": true,
-      "config_path": "public_demo/project/project.json",
-      "evidence_path": "public_demo/project/evidence_pass_demo.csv",
+      "config_path": "docs/public_demo/project/project.json",
+      "evidence_path": "docs/public_demo/project/evidence_pass_demo.csv",
       "failure_count": 0,
       "failures": [],
       "next_commands": [
-        "falsiflow doctor --project-dir public_demo/project --strict",
-        "falsiflow claim-check --project-dir public_demo/project --strict --force"
+        "falsiflow doctor --project-dir docs/public_demo/project --strict",
+        "falsiflow claim-check --project-dir docs/public_demo/project --strict --force"
       ],
       "outputs": {
-        "bundle_verification": "public_demo/project/claim_check/evidence_bundle_verify.json",
-        "bundle_verification_report": "public_demo/project/claim_check/evidence_bundle_verify.md",
-        "claim_check": "public_demo/project/claim_check/claim_check.json",
-        "claim_check_report": "public_demo/project/claim_check/claim_check.md",
-        "dashboard": "public_demo/project/claim_check/evidence_bundle/audit/dashboard.html",
-        "evidence": "public_demo/project/evidence_pass_demo.csv",
-        "evidence_bundle_zip": "public_demo/project/claim_check/evidence_bundle.zip",
-        "project_config": "public_demo/project/project.json",
-        "project_dir": "public_demo/project",
-        "quickstart_report": "public_demo/project/quickstart_summary.md",
-        "quickstart_summary": "public_demo/project/quickstart_summary.json"
+        "bundle_verification": "docs/public_demo/project/claim_check/evidence_bundle_verify.json",
+        "bundle_verification_report": "docs/public_demo/project/claim_check/evidence_bundle_verify.md",
+        "claim_check": "docs/public_demo/project/claim_check/claim_check.json",
+        "claim_check_report": "docs/public_demo/project/claim_check/claim_check.md",
+        "dashboard": "docs/public_demo/project/claim_check/evidence_bundle/audit/dashboard.html",
+        "evidence": "docs/public_demo/project/evidence_pass_demo.csv",
+        "evidence_bundle_zip": "docs/public_demo/project/claim_check/evidence_bundle.zip",
+        "project_config": "docs/public_demo/project/project.json",
+        "project_dir": "docs/public_demo/project",
+        "quickstart_report": "docs/public_demo/project/quickstart_summary.md",
+        "quickstart_summary": "docs/public_demo/project/quickstart_summary.json"
       },
-      "project_dir": "public_demo/project",
+      "project_dir": "docs/public_demo/project",
       "source_status": "sources_ready",
       "status": "quickstart_ready",
       "template": "biointerface_coatings",

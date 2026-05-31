@@ -62,16 +62,16 @@
       "sha256": "593f6935f7ec1d64081ea85ef731cc50fd78ddb3cebf11f0e040f6b73a375cad"
     },
     {
-      "bytes": 4514,
+      "bytes": 4529,
       "path": "source_manifest.json",
       "role": "source_manifest",
-      "sha256": "f3537096999f6b70304e4adcaeb065c7d315cc2c91c0f945bde0d3e74fa4ffb0"
+      "sha256": "afeb16eabcf82d1516655388fc475802507ec4b97345bfbe4778fd41647b2455"
     },
     {
-      "bytes": 686,
+      "bytes": 691,
       "path": "source_manifest.md",
       "role": "source_manifest_report",
-      "sha256": "19d2a1190768de850b336f1dc565c0192a7af9b1b94021693428eb3ec2645fe4"
+      "sha256": "ad1693661275208315f40141e64277019fd70c88095e6eab9fe48ea5c39b0964"
     },
     {
       "bytes": 1479,
@@ -95,5 +95,5 @@
   "source_file_count": 1,
   "source_status": "sources_ready",
   "status": "bundle_ready",
-  "zip_path": "public_demo/project/claim_check/evidence_bundle.zip"
+  "zip_path": "docs/public_demo/project/claim_check/evidence_bundle.zip"
 }

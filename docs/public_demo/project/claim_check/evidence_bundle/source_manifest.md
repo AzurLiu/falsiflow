@@ -16,4 +16,4 @@
 
 | Source file | Status | References | Resolved path | Issue |
 | --- | --- | ---: | --- | --- |
-| source_files/coating_raw_export.csv | present | 14 | /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/public_demo/project/source_files/coating_raw_export.csv |  |
+| source_files/coating_raw_export.csv | present | 14 | /Users/azur/Documents/Codex/2026-05-23/applications-mentioned-by-the-user-appshot/docs/public_demo/project/source_files/coating_raw_export.csv |  |

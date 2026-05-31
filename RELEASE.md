@@ -21,10 +21,11 @@ Use this checklist before tagging or publishing a Falsiflow release.
    [docs/falsiflow_casebook_check.md](docs/falsiflow_casebook_check.md),
    [docs/falsiflow_security_posture.md](docs/falsiflow_security_posture.md),
    [docs/falsiflow_template_authoring.md](docs/falsiflow_template_authoring.md),
-   and [docs/falsiflow_troubleshooting.md](docs/falsiflow_troubleshooting.md)
+   [docs/falsiflow_troubleshooting.md](docs/falsiflow_troubleshooting.md),
+   and [docs/falsiflow_1k_launch_plan.md](docs/falsiflow_1k_launch_plan.md)
    describe the current citation, community, governance, security,
-   architecture, data contract, adapter profiles, casebook proof, template authoring, troubleshooting,
-   supply-chain, and release posture.
+   architecture, data contract, adapter profiles, casebook proof, template
+   authoring, troubleshooting, launch, supply-chain, and release posture.
 5. Confirm [SECURITY.md](SECURITY.md) and
    [RESPONSIBLE_USE.md](RESPONSIBLE_USE.md) still match the release behavior and
    evidence-boundary language.

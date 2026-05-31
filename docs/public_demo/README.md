@@ -5,9 +5,9 @@ This directory is a static, zero-install Falsiflow demo package.
 ## Preview
 
 - Open `index.html` locally, or publish this directory with GitHub Pages, Netlify, or any static file server.
-- Workbench shell: `public_demo/workbench.html`
-- Try report: `public_demo/try_report.html`
-- Wizard: `public_demo/falsiflow_wizard.html`
+- Workbench shell: `docs/public_demo/workbench.html`
+- Try report: `docs/public_demo/try_report.html`
+- Wizard: `docs/public_demo/falsiflow_wizard.html`
 
 ## Publish Checklist
 

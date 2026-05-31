@@ -1,0 +1,105 @@
+# Falsiflow 1k-Star Launch Plan
+
+This plan turns the adoption priorities into concrete public-launch work. It is
+not a promise that stars will arrive; it is the checklist for making the project
+easy to understand, safe to try, and worth sharing.
+
+## Launch Gate
+
+Do not start broad distribution until these checks are green and linked from
+the release notes:
+
+- GitHub Pages public demo loads at <https://azurliu.github.io/falsiflow/>.
+- `make test` passes on the release commit.
+- `falsiflow release-check --out-dir data/falsiflow/release_check --force`
+  reports `release_ready`, `package_ready`, and `adoption_ready`.
+- `Falsiflow Publish` has a successful release-triggered `publish-pypi` job.
+- `https://pypi.org/pypi/falsiflow/json` reports package `falsiflow` at the
+  release version.
+- `Falsiflow External Evidence` reports `external_ready` with the public demo,
+  PyPI, checkout pipx, public-package pipx, and Windows smoke evidence.
+
+If any item is missing, the launch can still be prepared, but public posts
+should say what is still pending instead of implying full external readiness.
+
+## First-Screen Conversion Assets
+
+- README headline: CI gates for claims before they ship.
+- Public demo: a ready/blocked proof surface for AI eval, product metric, R&D,
+  and vendor handoff claims.
+- One command path: `pipx install falsiflow` after PyPI, or source install
+  before PyPI.
+- Reusable GitHub Action snippet for downstream repositories.
+- Comparison boundary: Falsiflow complements Great Expectations, Evidently,
+  Deepchecks, MLflow, and plain GitHub Actions rather than replacing them.
+
+## Demo Narrative
+
+The public demo and launch posts should repeat the same compact story:
+
+1. A team writes a claim such as "the model improved" or "activation lifted."
+2. Placeholder evidence stays `claim_check_blocked`.
+3. Source-backed rows, required metadata, source files, audit reports, and
+   bundle verification can make the same claim `claim_check_ready`.
+4. `claim_ready` means the configured evidence gate passed. It is not proof of
+   scientific truth, safety, regulatory approval, or business impact.
+
+## Distribution Sequence
+
+Day 0:
+
+- Publish v0.1.2 after PyPI trusted publishing and external evidence pass.
+- Update the release body with the demo URL, PyPI URL, CI runs, publish run,
+  external-evidence run, and responsible-use boundary.
+- Post a concise Show HN or equivalent launch thread.
+- Post the longer launch note in one MLOps or evaluation community.
+- Share the GitHub Action snippet with a copy-paste downstream smoke example.
+
+Day 1:
+
+- Reply to install failures and unclear positioning questions first.
+- Convert repeated questions into issues with labels, owner, affected artifact,
+  and verification command.
+- Submit to one or two relevant awesome lists only after the README and PyPI
+  path are stable.
+
+Day 3:
+
+- Publish the first article draft from `docs/launch_articles/`.
+- Add screenshots or short clips captured from the live Pages demo.
+- Review traffic, stars, forks, clones, demo visits, installs, and repeated
+  questions in `launch_metrics.md`.
+
+Day 7 and Day 14:
+
+- Publish the second and third articles.
+- Ship one docs/demo improvement based on real user confusion.
+- Add or refine one starter template only if the request includes a clear claim,
+  evidence contract, source-file fixture, and responsible-use boundary.
+
+## 1k-Star Workstreams
+
+| Workstream | Outcome | Evidence |
+| --- | --- | --- |
+| Release trust | PyPI, CI, external evidence, and release notes are coherent. | Release body, CI URLs, PyPI JSON, external-readiness artifact. |
+| Fast try | A new visitor can understand and run the project in minutes. | README first screen, Pages demo, quickstart, GitHub Action example. |
+| Strong positioning | The project has a crisp reason to exist. | Positioning doc, comparison table, launch posts, replies to common questions. |
+| Case breadth | The workflow is not a one-domain toy. | Public casebook, `casebook-check`, AI eval, product metric, R&D, vendor cases. |
+| Contribution path | New contributors can help without touching the core engine. | Good-first issues, issue templates, contributing guide, docs/demo tasks. |
+| Repeatable launch review | Growth work creates maintainable follow-up, not vague activity. | `launch_metrics.json`, `launch_metrics.md`, weekly maintainer review. |
+
+## Article Drafts
+
+- [Stop Shipping Unverifiable AI Eval Claims](launch_articles/stop_shipping_unverifiable_ai_eval_claims.md)
+- [Benchmarks Should Fail Builds](launch_articles/benchmarks_should_fail_builds.md)
+- [Evidence Gates For Product Metrics](launch_articles/evidence_gates_for_product_metrics.md)
+
+## Stop Conditions
+
+- Do not publish a release announcement if PyPI still returns 404 for the
+  package JSON API.
+- Do not call the project externally ready until `external-check --strict`
+  reports `external_ready`.
+- Do not frame stars as quality proof. Track stars as distribution feedback,
+  then judge the project by install success, issue quality, contributor pull
+  requests, and repeated use cases.

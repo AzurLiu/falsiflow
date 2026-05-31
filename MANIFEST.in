@@ -14,6 +14,7 @@ include scripts/install_local.sh
 include scripts/install_local.ps1
 include examples/README.md
 include docs/falsiflow_adoption_priorities.md
+include docs/falsiflow_1k_launch_plan.md
 include docs/falsiflow_architecture.md
 include docs/falsiflow_cli_reference.md
 include docs/falsiflow_data_contract.md
@@ -28,6 +29,7 @@ include docs/falsiflow_pypi_trusted_publishing.md
 include docs/falsiflow_security_posture.md
 include docs/falsiflow_template_authoring.md
 include docs/falsiflow_troubleshooting.md
+recursive-include docs/launch_articles *.md
 recursive-include docs/assets *.svg
 include docs/assets/falsiflow_30_second_demo.svg
 recursive-include .github/workflows *.yml

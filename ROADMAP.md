@@ -46,8 +46,10 @@ to try, hard to misuse, and straightforward to verify before publication.
   behavior, and coverage checks can be documented and tested.
 - Expand release evidence around PyPI, GitHub Pages, and cross-platform smoke
   artifacts once the public repository is live.
-- Add a product-metric launch gate and a more opinionated AI-eval GitHub Action
-  example once the initial PyPI and external-evidence loop is closed.
+- Expand the RAG quality gate proposal into a bundled starter template once the
+  initial PyPI and external-evidence loop is closed.
+- Add more opinionated downstream examples for AI eval and product-metric
+  repositories after the reusable action is pinned to a public release tag.
 
 ## Later
 

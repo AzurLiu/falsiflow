@@ -41,7 +41,11 @@ def file_href(report_dir: Path, path_text: object) -> str:
         return "#"
     path = Path(raw).expanduser()
     if not path.is_absolute():
-        path = (report_dir / path).resolve()
+        report_parts = report_dir.parts
+        if report_parts and path.parts[: len(report_parts)] == report_parts:
+            path = path.resolve()
+        else:
+            path = (report_dir / path).resolve()
     else:
         path = path.resolve()
     try:
@@ -466,13 +470,63 @@ def render_try_launchpad_html(summary: dict[str, object]) -> str:
     status = str(summary.get("status", ""))
     ready = status == "try_ready"
     status_class = "ready" if ready else "blocked"
-    headline = "A local app for checking whether a project decision has enough evidence"
+    headline = "CI gates for claims before they ship"
     summary_text = (
-        "No account or upload is needed. Start with the example result, then use the wizard to make your own evidence checklist."
+        "See how placeholder AI eval, product metric, and R&D evidence stays blocked, then inspect a source-backed ready claim."
         if ready
         else "The local demo needs attention before it can be used as a clean starter."
     )
     first_command = str(next_commands[0]) if next_commands else "falsiflow doctor --project-dir falsiflow_try/project --strict"
+    proof_rows = [
+        (
+            "Blocked placeholder",
+            "claim_check_blocked",
+            "Missing source files, placeholder values, or unpinned benchmark metadata stop the claim before it reaches release notes.",
+        ),
+        (
+            "Source-backed pass",
+            str(summary.get("claim_check_status", "")),
+            "Measured rows, required metadata, source manifests, audit reports, and bundle verification agree.",
+        ),
+    ]
+    proof_html = "\n".join(
+        f"""        <article class="proof {escape('ready' if 'ready' in status else 'blocked')}">
+          <span>{escape(kicker)}</span>
+          <strong>{escape(status)}</strong>
+          <p>{escape(body)}</p>
+        </article>"""
+        for kicker, status, body in proof_rows
+    )
+    use_cases = [
+        (
+            "AI eval claim",
+            "Model beats baseline",
+            "Blocks public comparison until dataset, model, raw-output, and reproducibility evidence are pinned.",
+        ),
+        (
+            "Product metric",
+            "Activation improved",
+            "Blocks launch until metric definition, exposure, guardrails, rollback owner, and dashboard evidence are present.",
+        ),
+        (
+            "R&D result",
+            "Experiment is ready",
+            "Blocks advancement until measured evidence, raw source files, thresholds, and review artifacts line up.",
+        ),
+        (
+            "Vendor handoff",
+            "Supplier can run it",
+            "Keeps contact claims, scope confirmation, and measured-data return requirements separate.",
+        ),
+    ]
+    use_case_html = "\n".join(
+        f"""        <article class="case">
+          <span>{escape(label)}</span>
+          <h2>{escape(claim)}</h2>
+          <p>{escape(body)}</p>
+        </article>"""
+        for label, claim, body in use_cases
+    )
     cards = [
         (
             "1. Run your own check",
@@ -540,6 +594,12 @@ def render_try_launchpad_html(summary: dict[str, object]) -> str:
     .metric, article, section {{ background: var(--panel); border: 1px solid var(--line); border-radius: 6px; }}
     .metric {{ padding: 14px; min-height: 76px; }}
     .metric strong {{ font-size: 18px; overflow-wrap: anywhere; }}
+    .proof-grid, .case-grid {{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }}
+    .case-grid {{ grid-template-columns: repeat(4, minmax(0, 1fr)); }}
+    .proof {{ min-height: 128px; }}
+    .proof strong {{ display: block; font-size: 22px; margin-bottom: 8px; color: var(--blocked); overflow-wrap: anywhere; }}
+    .proof.ready strong {{ color: var(--ready); }}
+    .case {{ min-height: 168px; }}
     .cards {{ display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 12px 0; }}
     article {{ padding: 16px; min-height: 188px; display: flex; flex-direction: column; gap: 10px; }}
     article h2 {{ font-size: 17px; margin: 0; letter-spacing: 0; }}
@@ -552,10 +612,10 @@ def render_try_launchpad_html(summary: dict[str, object]) -> str:
     @media (max-width: 900px) {{
       header {{ grid-template-columns: 1fr; }}
       .status {{ text-align: left; }}
-      .metrics, .cards {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }}
+      .metrics, .cards, .case-grid {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }}
     }}
     @media (max-width: 620px) {{
-      .metrics, .cards {{ grid-template-columns: 1fr; }}
+      .metrics, .cards, .proof-grid, .case-grid {{ grid-template-columns: 1fr; }}
     }}
   </style>
 </head>
@@ -577,6 +637,18 @@ def render_try_launchpad_html(summary: dict[str, object]) -> str:
       <div class="metric"><span>Source files</span><strong>{escape(str(summary.get("source_status", "")))}</strong></div>
       <div class="metric"><span>Review package</span><strong>{escape(str(summary.get("verification_status", "")))}</strong></div>
     </div>
+    <section>
+      <h2>Ready Or Blocked</h2>
+      <div class="proof-grid">
+{proof_html}
+      </div>
+    </section>
+    <section>
+      <h2>Claims This Demo Targets</h2>
+      <div class="case-grid">
+{use_case_html}
+      </div>
+    </section>
     <div class="cards">
 {card_html}
     </div>

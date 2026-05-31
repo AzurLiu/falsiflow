@@ -7,8 +7,7 @@ they ship.
 [![Falsiflow Cross Platform](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-cross-platform.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-cross-platform.yml)
 [![Falsiflow Scorecard](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-scorecard.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-scorecard.yml)
 
-Public demo source: `docs/public_demo`. Hosted demo URLs must pass
-`Falsiflow External Evidence` before public launch. PyPI trusted publishing is
+Public demo: <https://azurliu.github.io/falsiflow/>. PyPI trusted publishing is
 still tracked in #6.
 
 ![Falsiflow evidence-gated claim workflow](docs/assets/falsiflow_proof_strip.svg)
@@ -101,6 +100,9 @@ Falsiflow is being optimized for open-source adoption in this order:
 
 The maintained priority record is
 [docs/falsiflow_adoption_priorities.md](docs/falsiflow_adoption_priorities.md).
+For the 1k-star launch checklist, distribution sequence, stop conditions, and
+article drafts, see
+[docs/falsiflow_1k_launch_plan.md](docs/falsiflow_1k_launch_plan.md).
 For the module map, command flow, release invariants, and extension points, see
 [docs/falsiflow_architecture.md](docs/falsiflow_architecture.md).
 For evidence CSV fields, JSON status contracts, report artifacts, schemas, and
@@ -255,10 +257,11 @@ turns green with source-backed evidence, see
 [docs/falsiflow_demo_pr_playbook.md](docs/falsiflow_demo_pr_playbook.md).
 
 This repository also includes a prebuilt public demo at `docs/public_demo`, a
-root `netlify.toml`, and a GitHub Pages workflow. Treat Netlify, GitHub Pages,
-Cloudflare Pages, or Vercel URLs as public demo candidates until
-`Falsiflow External Evidence` fetches the hosted page and
-`external-check --strict` reports `external_ready`. See `docs/static_hosting.md`.
+root `netlify.toml`, and a GitHub Pages workflow. The current public demo is
+<https://azurliu.github.io/falsiflow/>. Treat Netlify, Cloudflare Pages, or
+Vercel URLs as alternate public demo candidates until `Falsiflow External
+Evidence` fetches the hosted page and `external-check --strict` reports
+`external_ready`. See `docs/static_hosting.md`.
 
 To prepare a publish-ready static demo directory with hosting metadata:
 

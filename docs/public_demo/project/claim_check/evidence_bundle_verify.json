@@ -1,6 +1,6 @@
 {
   "artifact_count": 13,
-  "bundle_dir": "public_demo/project/claim_check/evidence_bundle.zip",
+  "bundle_dir": "docs/public_demo/project/claim_check/evidence_bundle.zip",
   "bundle_status": "bundle_ready",
   "bytes_mismatch_count": 0,
   "checked_artifact_count": 13,
@@ -8,11 +8,11 @@
   "error_count": 0,
   "hash_mismatch_count": 0,
   "input_format": "zip",
-  "input_path": "public_demo/project/claim_check/evidence_bundle.zip",
+  "input_path": "docs/public_demo/project/claim_check/evidence_bundle.zip",
   "integrity_status": "integrity_verified",
   "issue_count": 0,
   "issues": [],
-  "manifest_path": "public_demo/project/claim_check/evidence_bundle.zip:bundle_manifest.json",
+  "manifest_path": "docs/public_demo/project/claim_check/evidence_bundle.zip:bundle_manifest.json",
   "missing_artifact_count": 0,
   "status": "bundle_verified",
   "unmanifested_file_count": 0,
@@ -22,5 +22,5 @@
   "zip_extracted_file_count": 14,
   "zip_issue_count": 0,
   "zip_member_count": 14,
-  "zip_path": "public_demo/project/claim_check/evidence_bundle.zip"
+  "zip_path": "docs/public_demo/project/claim_check/evidence_bundle.zip"
 }

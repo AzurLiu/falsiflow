@@ -76,6 +76,9 @@ The current track is adoption readiness:
 - GitHub Actions workflows for the public static demo, cross-platform
   Linux/macOS/Windows and pipx smoke tests, public-package pipx smoke tests,
   and PyPI trusted-publishing release builds.
+- A 1k-star launch plan with release gates, distribution windows, stop
+  conditions, and article drafts so public growth work is tied to verifiable
+  release evidence instead of vague promotion.
 - A reusable root `action.yml` so downstream repositories can run claim,
   template, casebook, release, adoption, quickstart, or external-readiness gates
   with one GitHub Actions `uses:` step.

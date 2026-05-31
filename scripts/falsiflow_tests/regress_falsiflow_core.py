@@ -1266,10 +1266,14 @@ def assert_cli_contract() -> None:
         assert (try_dir / "project" / "claim_check" / "claim_check.json").exists()
         launchpad = (try_dir / "index.html").read_text(encoding="utf-8")
         assert "Falsiflow Launchpad" in launchpad
-        assert "No account or upload is needed" in launchpad
+        assert "CI gates for claims before they ship" in launchpad
+        assert "Ready Or Blocked" in launchpad
+        assert "claim_check_blocked" in launchpad
+        assert "Claims This Demo Targets" in launchpad
         assert "See the example result" in launchpad
         assert "Make your own checklist" in launchpad
         assert "Advanced CLI Handoff" in launchpad
+        assert 'href="workbench.html"' in launchpad
         assert "Open report" in launchpad
         assert "Open wizard" in launchpad
         try_report = (try_dir / "try_report.html").read_text(encoding="utf-8")
