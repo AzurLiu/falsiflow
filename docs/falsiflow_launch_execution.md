@@ -24,13 +24,13 @@ follow-up checks. Use it after the current public release evidence is green.
 - Live PR demo: <https://github.com/AzurLiu/falsiflow/pull/17>
 - Blocked PR run: <https://github.com/AzurLiu/falsiflow/actions/runs/26708459093>
 - Ready PR run: <https://github.com/AzurLiu/falsiflow/actions/runs/26708472653>
-- v0.1.17 pre-public-post baseline on 2026-05-31 23:36 CST:
+- Pre-public-post baseline recorded on 2026-05-31 23:36 CST:
   0 stars, 2 forks, 0 watchers, 8 total views, 1 unique view, 466 total clones,
   283 unique clones, open issue #22 only, and open PR #17 only. Treat clone
   counts as likely inflated by CI/release automation until public-post traffic
   arrives.
-- v0.1.17 external evidence:
-  <https://github.com/AzurLiu/falsiflow/actions/runs/26716828570>
+- Latest external evidence workflow:
+  <https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-external-evidence.yml>
 
 ## One-Line Positioning
 
@@ -108,7 +108,7 @@ Falsiflow: fail CI when AI eval or product metric claims lack evidence
 Body:
 
 ```text
-I released Falsiflow 0.1.17, a Python CLI and GitHub Action for evidence-gating
+I released Falsiflow 0.1.18, a Python CLI and GitHub Action for evidence-gating
 claims before they ship.
 
 The problem it targets is not scoring itself. Teams already have benchmark
@@ -146,7 +146,7 @@ becomes a claim that should fail a build if its evidence package is incomplete.
 LinkedIn:
 
 ```text
-I released Falsiflow 0.1.17.
+I released Falsiflow 0.1.18.
 
 It is a Python CLI and GitHub Action for one specific problem: claims like "the
 model improved", "activation lifted", or "the experiment is ready" should not
@@ -167,7 +167,7 @@ PyPI: https://pypi.org/project/falsiflow/
 X / short post:
 
 ```text
-Released Falsiflow 0.1.17.
+Released Falsiflow 0.1.18.
 
 It fails CI when AI eval, product metric, R&D, or vendor handoff claims do not
 have enough evidence to review.

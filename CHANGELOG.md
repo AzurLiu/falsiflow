@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.18
+
+- Synced the launch execution baseline into the release line and made the
+  baseline wording version-neutral so future patch releases do not make the
+  pre-public-post launch copy stale.
+- Added release-check coverage for the launch execution baseline, completed
+  seed queue, external-evidence workflow, and blocked-to-ready launch copy.
+
 ## 0.1.17
 
 - Added a compact downstream RAG eval GitHub Action example that shows

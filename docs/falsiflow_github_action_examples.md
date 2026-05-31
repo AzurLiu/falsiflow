@@ -64,7 +64,7 @@ jobs:
 
       - name: Run claim gate
         id: falsiflow
-        uses: AzurLiu/falsiflow@v0.1.17
+        uses: AzurLiu/falsiflow@v0.1.18
         with:
           mode: claim-check
           project-dir: falsiflow_ai_eval
@@ -204,7 +204,7 @@ change caused the metric movement or should ship.
 The default `install-command` is intentionally omitted. The action installs
 from the checked-out action directory via `GITHUB_ACTION_PATH`, which keeps this
 downstream smoke usable before PyPI exists. After a stable release is published,
-pin the action to a tag such as `AzurLiu/falsiflow@v0.1.17`; override
+pin the action to a tag such as `AzurLiu/falsiflow@v0.1.18`; override
 `install-command` only when installing from PyPI, a fork, or a local checkout is
 part of the thing you are testing.
 
@@ -247,7 +247,7 @@ jobs:
 
       - name: Run Falsiflow RAG claim gate
         id: falsiflow
-        uses: AzurLiu/falsiflow@v0.1.17
+        uses: AzurLiu/falsiflow@v0.1.18
         with:
           mode: claim-check
           project-dir: falsiflow_rag_eval
@@ -332,7 +332,7 @@ jobs:
 
       - name: Run Falsiflow claim gate
         id: falsiflow
-        uses: AzurLiu/falsiflow@v0.1.17
+        uses: AzurLiu/falsiflow@v0.1.18
         with:
           mode: claim-check
           project-dir: falsiflow_ai_eval
@@ -379,7 +379,7 @@ jobs:
 
       - name: Run AI claim quickstart
         id: falsiflow
-        uses: AzurLiu/falsiflow@v0.1.17
+        uses: AzurLiu/falsiflow@v0.1.18
         with:
           mode: quickstart
           template: ai_claim_evaluation
@@ -404,7 +404,7 @@ Expected result: `quickstart_ready` with a nested `claim_check_ready` report.
 The default install path is best for tagged action use:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.17
+- uses: AzurLiu/falsiflow@v0.1.18
   with:
     mode: claim-check
     project-dir: falsiflow_ai_eval
@@ -413,7 +413,7 @@ The default install path is best for tagged action use:
 Install from PyPI after publication:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.17
+- uses: AzurLiu/falsiflow@v0.1.18
   with:
     install-command: python -m pip install falsiflow
     mode: claim-check
