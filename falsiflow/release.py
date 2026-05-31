@@ -566,6 +566,7 @@ def package_release_checks(root: Path) -> dict[str, object]:
     security_posture_path = root / "docs" / "falsiflow_security_posture.md"
     template_authoring_path = root / "docs" / "falsiflow_template_authoring.md"
     troubleshooting_path = root / "docs" / "falsiflow_troubleshooting.md"
+    readme_pr_story_reel_path = root / "docs" / "assets" / "falsiflow_live_pr_story_reel.svg"
     readme_proof_strip_path = root / "docs" / "assets" / "falsiflow_proof_strip.svg"
     readme_demo_strip_path = root / "docs" / "assets" / "falsiflow_30_second_demo.svg"
     walkthrough_path = root / "examples" / "README.md"
@@ -589,9 +590,11 @@ def package_release_checks(root: Path) -> dict[str, object]:
     gitignore_path = root / ".gitignore"
     init_path = root / "falsiflow" / "__init__.py"
     templates_path = root / "falsiflow" / "templates"
+    package_pr_story_reel_path = root / "falsiflow" / "assets" / "falsiflow_live_pr_story_reel.svg"
     init_version = package_init_version(init_path)
 
     add("package_init_exists", init_path.exists(), "falsiflow/__init__.py exists.", init_path)
+    add("package_pr_story_reel_exists", package_pr_story_reel_path.exists() and package_pr_story_reel_path.stat().st_size > 0, "Packaged live PR story reel asset exists and is non-empty.", package_pr_story_reel_path)
 
     if pyproject_path.exists():
         add("pyproject_exists", True, "pyproject.toml exists.", pyproject_path)
@@ -622,6 +625,7 @@ def package_release_checks(root: Path) -> dict[str, object]:
         add("security_posture_exists", security_posture_path.exists() and security_posture_path.stat().st_size > 0, "Security posture doc exists and is non-empty.", security_posture_path)
         add("template_authoring_exists", template_authoring_path.exists() and template_authoring_path.stat().st_size > 0, "Template authoring doc exists and is non-empty.", template_authoring_path)
         add("troubleshooting_exists", troubleshooting_path.exists() and troubleshooting_path.stat().st_size > 0, "Troubleshooting doc exists and is non-empty.", troubleshooting_path)
+        add("readme_pr_story_reel_exists", readme_pr_story_reel_path.exists() and readme_pr_story_reel_path.stat().st_size > 0, "README live PR story reel SVG exists and is non-empty.", readme_pr_story_reel_path)
         add("readme_proof_strip_exists", readme_proof_strip_path.exists() and readme_proof_strip_path.stat().st_size > 0, "README proof-strip SVG exists and is non-empty.", readme_proof_strip_path)
         add("readme_demo_strip_exists", readme_demo_strip_path.exists() and readme_demo_strip_path.stat().st_size > 0, "README 30-second demo SVG exists and is non-empty.", readme_demo_strip_path)
         add("walkthrough_exists", walkthrough_path.exists() and walkthrough_path.stat().st_size > 0, "examples/README.md exists and is non-empty.", walkthrough_path)
@@ -656,6 +660,7 @@ def package_release_checks(root: Path) -> dict[str, object]:
         security_posture_text = security_posture_path.read_text(encoding="utf-8") if security_posture_path.exists() else ""
         template_authoring_text = template_authoring_path.read_text(encoding="utf-8") if template_authoring_path.exists() else ""
         troubleshooting_text = troubleshooting_path.read_text(encoding="utf-8") if troubleshooting_path.exists() else ""
+        readme_pr_story_reel_text = readme_pr_story_reel_path.read_text(encoding="utf-8") if readme_pr_story_reel_path.exists() else ""
         readme_proof_strip_text = readme_proof_strip_path.read_text(encoding="utf-8") if readme_proof_strip_path.exists() else ""
         readme_demo_strip_text = readme_demo_strip_path.read_text(encoding="utf-8") if readme_demo_strip_path.exists() else ""
         walkthrough_text = walkthrough_path.read_text(encoding="utf-8") if walkthrough_path.exists() else ""
@@ -735,7 +740,7 @@ def package_release_checks(root: Path) -> dict[str, object]:
         add("license_declared", license_value == "MIT" and "LICENSE" in (license_files if isinstance(license_files, list) else []) if data else 'license = "MIT"' in pyproject_text and 'license-files = ["LICENSE"]' in pyproject_text, "pyproject declares the MIT SPDX license and includes the LICENSE file.", pyproject_path)
         add("console_script", isinstance(scripts, dict) and scripts.get("falsiflow") == "falsiflow.cli:main" if data else 'falsiflow = "falsiflow.cli:main"' in pyproject_text, "Console script points to falsiflow.cli:main.", pyproject_path)
         add("setuptools_package", isinstance(packages, list) and "falsiflow" in packages if data else 'packages = ["falsiflow"]' in pyproject_text, "setuptools includes the falsiflow package.", pyproject_path)
-        expected_data_patterns = {"templates/*/*.json", "templates/*/*.csv", "templates/*/source_files/*.csv"}
+        expected_data_patterns = {"assets/*.svg", "templates/*/*.json", "templates/*/*.csv", "templates/*/source_files/*.csv"}
         if data:
             package_data_set = set(package_data) if isinstance(package_data, list) else set()
             package_data_ready = expected_data_patterns <= package_data_set
@@ -758,6 +763,8 @@ def package_release_checks(root: Path) -> dict[str, object]:
         add("readme_rag_quality_gate_proposal_entry", all(token in readme_text for token in ["falsiflow_rag_quality_gate_proposal.md", "RAG quality gate", "evaluation-set", "provenance", "retrieval quality", "answer faithfulness", "placeholder-blocked evidence rows"]), "README links the proposed RAG quality gate starter template and names its evidence dimensions.", readme_path)
         add("readme_casebook_check_entry", all(token in readme_text for token in ["falsiflow_casebook_check.md", "casebook-check", "positive demos", "placeholder blockers"]), "README links the casebook check and documents machine-verifiable public proof paths.", readme_path)
         add("readme_demo_pr_entry", all(token in readme_text for token in ["falsiflow_demo_pr_playbook.md", "public demo PR", "placeholder evidence", "source-backed evidence"]), "README links the public demo PR playbook for blocked and ready claim-gate demonstrations.", readme_path)
+        add("readme_live_pr_story_reel_asset", all(token in readme_text for token in ["docs/assets/falsiflow_live_pr_story_reel.svg", "Falsiflow Live PR Story reel"]) and all(token in readme_pr_story_reel_text for token in ["Live PR Story", "PR #17", "claim_check_blocked", "claim_check_ready", "26708459093", "26708472653"]), "README embeds a shareable live PR story reel with blocked and ready CI proof links.", readme_pr_story_reel_path)
+        add("package_pr_story_reel_matches_docs", package_pr_story_reel_path.read_text(encoding="utf-8") == readme_pr_story_reel_text if package_pr_story_reel_path.exists() and readme_pr_story_reel_text else False, "Packaged live PR story reel matches the README/docs asset.", package_pr_story_reel_path)
         add("readme_visual_asset", all(token in readme_text for token in ["docs/assets/falsiflow_proof_strip.svg", "Falsiflow evidence-gated claim workflow"]) and all(token in readme_proof_strip_text for token in ["claim_ready after proof", "claim_blocked on gaps", "Source files", "Review + release checks"]), "README embeds a first-screen proof-strip visual that explains the evidence gate flow.", readme_proof_strip_path)
         add("readme_30_second_demo_asset", all(token in readme_text for token in ["docs/assets/falsiflow_30_second_demo.svg", "Falsiflow 30-second ready vs blocked demo", "30-second demo"]) and all(token in readme_demo_strip_text for token in ["30-second AI claim demo", "quickstart_ready", "claim_check_ready", "claim_check_blocked", "evidence_placeholder_demo.csv", "next actions"]), "README embeds a 30-second demo visual showing ready and blocked AI-claim paths.", readme_demo_strip_path)
         add("readme_first_screen_story", all(token in readme_first_screen for token in ["AI eval", "product metric", "R&D", "falsiflow quickstart --template ai_claim_evaluation", "quickstart_ready", "claim_check_ready", "claim_check_blocked", "GitHub Action", "Public demo", "PyPI trusted publishing"]), "README first screen names broad use cases, public demo, AI-claim quickstart, blocked placeholder behavior, GitHub Action adoption, and current PyPI trusted-publishing status.", readme_path)
@@ -843,7 +850,7 @@ def package_release_checks(root: Path) -> dict[str, object]:
         add("rag_quality_gate_proposal_docs", all(token in rag_quality_gate_proposal_text for token in ["Falsiflow RAG Quality Gate Proposal", "rag_quality_gate", "evaluation-set provenance", "retrieval quality", "answer faithfulness", "source coverage", "eval_set_pending", "recall_at_5", "claim_check_blocked", "claim_check_ready", "template-check"]), "RAG quality gate proposal defines the future starter template, evidence fields, source files, blocked placeholder row, positive evidence row, and verification target.", rag_quality_gate_proposal_path)
         add("pypi_trusted_publishing_docs", all(token in pypi_trusted_publishing_text + readme_text + troubleshooting_text for token in ["Falsiflow PyPI Trusted Publishing", "invalid-publisher", "repo:AzurLiu/falsiflow:environment:pypi", "pending publisher", "existing-project trusted publisher", "project name: `falsiflow`", "falsiflow-publish.yml", "environment `pypi`", "workflow_dispatch rehearsal is not enough", "https://pypi.org/pypi/falsiflow/json", "0.1.2", "expected_version", "Falsiflow External Evidence", "falsiflow_expected_version.txt", "falsiflow_pypi_version.txt"]), "PyPI trusted publishing runbook documents the current account-bound publisher claim, pending publisher and existing-project setup paths, required PyPI settings, release-triggered publish verification, expected-version verification, and external evidence path.", pypi_trusted_publishing_path)
         add("walkthrough_commands", all(token in walkthrough_text for token in ["init", "claim-check", "claim_check_ready", "audit", "sources", "bundle", "verify-bundle", "release-check", "bundle_verified"]), "examples/README.md documents the end-to-end verified-bundle walkthrough.", walkthrough_path)
-        add("manifest_release_docs", all(token in manifest_text for token in ["CHANGELOG.md", "CONTRIBUTING.md", "CITATION.cff", "CODE_OF_CONDUCT.md", "GOVERNANCE.md", "RELEASE.md", "SECURITY.md", "SUPPORT.md", "RESPONSIBLE_USE.md", "ROADMAP.md", "examples/README.md", "docs/falsiflow_adoption_priorities.md", "docs/falsiflow_1k_launch_plan.md", "docs/falsiflow_architecture.md", "docs/falsiflow_cli_reference.md", "docs/falsiflow_data_contract.md", "docs/falsiflow_adapter_profiles.md", "docs/falsiflow_casebook_check.md", "docs/falsiflow_demo_pr_playbook.md", "docs/falsiflow_github_action_examples.md", "docs/falsiflow_positioning.md", "docs/falsiflow_public_casebook.md", "docs/falsiflow_rag_quality_gate_proposal.md", "docs/falsiflow_pypi_trusted_publishing.md", "docs/falsiflow_security_posture.md", "docs/falsiflow_template_authoring.md", "docs/falsiflow_troubleshooting.md", "docs/launch_articles", "docs/assets", "falsiflow_30_second_demo.svg", "scripts/install_local.sh", "scripts/install_local.ps1", "Makefile", "action.yml", ".github/workflows", ".github/ISSUE_TEMPLATE", ".github/PULL_REQUEST_TEMPLATE.md", ".github/dependabot.yml"]), "MANIFEST.in includes release, security, support, conduct, roadmap, responsible-use, citation, governance, launch plan, launch articles, walkthrough, architecture, CLI reference, data contract, adapter profiles, casebook check, demo PR playbook, GitHub Action examples, positioning, public casebook, RAG quality gate proposal, PyPI trusted publishing, security posture, template authoring, troubleshooting, README visual assets, the 30-second demo visual, installers, Makefile, reusable GitHub Action, workflows, community templates, dependency automation, and adoption docs in source distributions.", manifest_path)
+        add("manifest_release_docs", all(token in manifest_text for token in ["CHANGELOG.md", "CONTRIBUTING.md", "CITATION.cff", "CODE_OF_CONDUCT.md", "GOVERNANCE.md", "RELEASE.md", "SECURITY.md", "SUPPORT.md", "RESPONSIBLE_USE.md", "ROADMAP.md", "examples/README.md", "docs/falsiflow_adoption_priorities.md", "docs/falsiflow_1k_launch_plan.md", "docs/falsiflow_architecture.md", "docs/falsiflow_cli_reference.md", "docs/falsiflow_data_contract.md", "docs/falsiflow_adapter_profiles.md", "docs/falsiflow_casebook_check.md", "docs/falsiflow_demo_pr_playbook.md", "docs/falsiflow_github_action_examples.md", "docs/falsiflow_positioning.md", "docs/falsiflow_public_casebook.md", "docs/falsiflow_rag_quality_gate_proposal.md", "docs/falsiflow_pypi_trusted_publishing.md", "docs/falsiflow_security_posture.md", "docs/falsiflow_template_authoring.md", "docs/falsiflow_troubleshooting.md", "docs/launch_articles", "docs/assets", "falsiflow/assets", "falsiflow_30_second_demo.svg", "falsiflow_live_pr_story_reel.svg", "scripts/install_local.sh", "scripts/install_local.ps1", "Makefile", "action.yml", ".github/workflows", ".github/ISSUE_TEMPLATE", ".github/PULL_REQUEST_TEMPLATE.md", ".github/dependabot.yml"]), "MANIFEST.in includes release, security, support, conduct, roadmap, responsible-use, citation, governance, launch plan, launch articles, walkthrough, architecture, CLI reference, data contract, adapter profiles, casebook check, demo PR playbook, GitHub Action examples, positioning, public casebook, RAG quality gate proposal, PyPI trusted publishing, security posture, template authoring, troubleshooting, README visual assets, the 30-second demo visual, the live PR story reel, packaged static assets, installers, Makefile, reusable GitHub Action, workflows, community templates, dependency automation, and adoption docs in source distributions.", manifest_path)
         add("gitignore_build_artifacts", {"build/", "dist/", "*.egg-info/"} <= gitignore_patterns, ".gitignore excludes local build caches and package metadata artifacts.", gitignore_path)
     else:
         add("installed_metadata_mode", True, "Source metadata files are absent; checking installed package metadata.", root)
@@ -1023,6 +1030,7 @@ def dist_release_checks(root: Path, artifact_root: Path, run_dist: bool) -> dict
                 f"{base}/docs/falsiflow_security_posture.md",
                 f"{base}/docs/falsiflow_template_authoring.md",
                 f"{base}/docs/falsiflow_troubleshooting.md",
+                f"{base}/docs/assets/falsiflow_live_pr_story_reel.svg",
                 f"{base}/docs/assets/falsiflow_proof_strip.svg",
                 f"{base}/docs/assets/falsiflow_30_second_demo.svg",
                 f"{base}/examples/README.md",
@@ -1034,6 +1042,7 @@ def dist_release_checks(root: Path, artifact_root: Path, run_dist: bool) -> dict
                 f"{base}/falsiflow/claim_check.py",
                 f"{base}/falsiflow/cli.py",
                 f"{base}/falsiflow/core.py",
+                f"{base}/falsiflow/assets/falsiflow_live_pr_story_reel.svg",
                 f"{base}/falsiflow/demo.py",
                 f"{base}/falsiflow/discovery.py",
                 f"{base}/falsiflow/doctor.py",

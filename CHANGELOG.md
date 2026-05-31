@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.9
+
+- Added a shareable Live PR Story reel SVG that shows PR #17 moving from a
+  risky AI/RAG eval claim to `claim_check_blocked`, source-backed repair, and
+  `claim_check_ready`.
+- Embedded the reel in the README, launch article, demo PR playbook, and public
+  demo launchpad so the blocked-to-ready story is visible without opening the
+  full playbook first.
+- Added release-check coverage for the reel asset, README embedding, manifest
+  inclusion, and packaged launchpad references.
+
 ## 0.1.8
 
 - Added description, Open Graph, and Twitter card metadata to the public demo

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "falsiflow"
-version = "0.1.8"
+version = "0.1.9"
 description = "Evidence-gated CLI and CI action for AI eval, product-metric, and R&D claims."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -68,6 +68,7 @@ packages = ["falsiflow"]
 
 [tool.setuptools.package-data]
 falsiflow = [
+  "assets/*.svg",
   "templates/*/*.json",
   "templates/*/*.csv",
   "templates/*/source_files/*.csv"

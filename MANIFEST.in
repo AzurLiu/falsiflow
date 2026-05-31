@@ -35,6 +35,8 @@ recursive-include docs/launch_articles *.md
 recursive-include docs/assets *.svg
 recursive-include docs/assets *.png
 include docs/assets/falsiflow_30_second_demo.svg
+include docs/assets/falsiflow_live_pr_story_reel.svg
+recursive-include falsiflow/assets *.svg
 recursive-include .github/workflows *.yml
 recursive-include .github/ISSUE_TEMPLATE *.yml
 include .github/PULL_REQUEST_TEMPLATE.md

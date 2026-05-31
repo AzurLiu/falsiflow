@@ -1272,6 +1272,7 @@ def assert_cli_contract() -> None:
         assert "Live PR Story" in launchpad
         assert 'property="og:title"' in launchpad
         assert 'name="twitter:card"' in launchpad
+        assert "falsiflow_live_pr_story_reel.svg" in launchpad
         assert "Falsiflow: AI eval claims should fail CI without evidence" in launchpad
         assert "https://github.com/AzurLiu/falsiflow/pull/17" in launchpad
         assert "https://github.com/AzurLiu/falsiflow/actions/runs/26708459093" in launchpad
@@ -4107,6 +4108,7 @@ def assert_packaged_template_contract() -> None:
         assert "Live PR Story" in packaged_launchpad
         assert 'property="og:title"' in packaged_launchpad
         assert 'name="twitter:card"' in packaged_launchpad
+        assert "falsiflow_live_pr_story_reel.svg" in packaged_launchpad
         assert "https://github.com/AzurLiu/falsiflow/pull/17" in packaged_launchpad
         assert "Falsiflow Try" in (packaged_try_dir / "try_report.html").read_text(encoding="utf-8")
         assert "Falsiflow Browser Wizard" in (packaged_try_dir / "falsiflow_wizard.html").read_text(encoding="utf-8")

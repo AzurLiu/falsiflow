@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import base64
+from importlib import resources
 import json
 import os
 from html import escape
@@ -13,6 +14,10 @@ import urllib.parse
 
 from .doctor import default_project_evidence_path, run_doctor
 from .quickstart import prepare_output_directory
+
+
+LIVE_PR_STORY_REEL = "falsiflow_live_pr_story_reel.svg"
+LIVE_PR_STORY_REEL_RELATIVE = f"assets/{LIVE_PR_STORY_REEL}"
 
 
 class QuickstartRunner(Protocol):
@@ -61,6 +66,18 @@ def html_file_link(report_dir: Path, label: str, path_text: object) -> str:
     if not text:
         return ""
     return f'<a href="{escape(file_href(report_dir, text), quote=True)}">{escape(label)}</a>'
+
+
+def copy_live_pr_story_reel(out_dir: Path) -> Path:
+    target = out_dir / LIVE_PR_STORY_REEL_RELATIVE
+    target.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        reel_text = resources.files("falsiflow").joinpath("assets", LIVE_PR_STORY_REEL).read_text(encoding="utf-8")
+    except (FileNotFoundError, ModuleNotFoundError, OSError):
+        reel_text = (Path(__file__).resolve().parents[1] / "docs" / "assets" / LIVE_PR_STORY_REEL).read_text(encoding="utf-8")
+    target.write_text(reel_text, encoding="utf-8")
+    return target
+
 
 def render_workbench_html() -> str:
     return """<!doctype html>
@@ -562,6 +579,7 @@ def render_try_launchpad_html(summary: dict[str, object]) -> str:
         </article>"""
         for kicker, title, body, link_label, href, kind in pr_story
     )
+    story_reel_src = file_href(report_dir, outputs.get("story_reel", report_dir / LIVE_PR_STORY_REEL_RELATIVE))
     cards = [
         (
             "1. Run your own check",
@@ -644,6 +662,8 @@ def render_try_launchpad_html(summary: dict[str, object]) -> str:
     .story-card h2 {{ font-size: 20px; }}
     .story-card.blocked h2 {{ color: var(--blocked); }}
     .story-card.ready h2 {{ color: var(--ready); }}
+    .story-reel {{ margin-top: 14px; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: #f8fafc; }}
+    .story-reel img {{ display: block; width: 100%; height: auto; }}
     .proof-grid, .case-grid {{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }}
     .case-grid {{ grid-template-columns: repeat(4, minmax(0, 1fr)); }}
     .proof {{ min-height: 128px; }}
@@ -685,6 +705,9 @@ def render_try_launchpad_html(summary: dict[str, object]) -> str:
       <h2>Live PR Story</h2>
       <div class="story-grid">
 {pr_story_html}
+      </div>
+      <div class="story-reel">
+        <img src="{escape(story_reel_src, quote=True)}" alt="Falsiflow Live PR Story reel">
       </div>
     </section>
     <div class="metrics">
@@ -729,7 +752,9 @@ def refresh_try_browser_assets(out_dir: Path, summary: dict[str, object]) -> dic
     outputs.setdefault("try_report", str(out_dir / "try_report.html"))
     outputs.setdefault("workbench", str(out_dir / "workbench.html"))
     outputs.setdefault("wizard", str(out_dir / "falsiflow_wizard.html"))
+    outputs.setdefault("story_reel", str(out_dir / LIVE_PR_STORY_REEL_RELATIVE))
     summary.setdefault("out_dir", str(out_dir))
+    copy_live_pr_story_reel(out_dir)
     wizard_path = Path(str(outputs["wizard"]))
     if not wizard_path.exists():
         wizard_path.parent.mkdir(parents=True, exist_ok=True)
@@ -784,6 +809,7 @@ def run_try(
         "evidence_bundle_zip": str(quickstart_outputs.get("evidence_bundle_zip", project_dir / "claim_check" / "evidence_bundle.zip")),
         "bundle_verification_report": str(quickstart_outputs.get("bundle_verification_report", project_dir / "claim_check" / "evidence_bundle_verify.md")),
     }
+    outputs["story_reel"] = str(copy_live_pr_story_reel(out_dir))
     summary: dict[str, object] = {
         "status": status,
         "template": template,

@@ -29,6 +29,7 @@
       "project_dir": "docs/public_demo/project",
       "quickstart_report": "docs/public_demo/project/quickstart_summary.md",
       "quickstart_summary": "docs/public_demo/project/quickstart_summary.json",
+      "story_reel": "docs/public_demo/assets/falsiflow_live_pr_story_reel.svg",
       "try_report": "docs/public_demo/try_report.html",
       "try_summary": "docs/public_demo/try_summary.json",
       "wizard": "docs/public_demo/falsiflow_wizard.html",

@@ -44,6 +44,8 @@
     .story-card h2 { font-size: 20px; }
     .story-card.blocked h2 { color: var(--blocked); }
     .story-card.ready h2 { color: var(--ready); }
+    .story-reel { margin-top: 14px; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: #f8fafc; }
+    .story-reel img { display: block; width: 100%; height: auto; }
     .proof-grid, .case-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
     .case-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     .proof { min-height: 128px; }
@@ -102,6 +104,9 @@
           <p>The same PR passes after source-backed eval rows, pinned versions, raw artifacts, and a review bundle are added.</p>
           <a href="https://github.com/AzurLiu/falsiflow/actions/runs/26708472653">Ready run</a>
         </article>
+      </div>
+      <div class="story-reel">
+        <img src="assets/falsiflow_live_pr_story_reel.svg" alt="Falsiflow Live PR Story reel">
       </div>
     </section>
     <div class="metrics">

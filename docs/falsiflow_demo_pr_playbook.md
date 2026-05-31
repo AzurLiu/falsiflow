@@ -14,6 +14,9 @@ package is reviewable by CI and humans.
 The live demo is
 [PR #17](https://github.com/AzurLiu/falsiflow/pull/17). It contains the same
 AI eval claim moving from placeholder evidence to source-backed evidence.
+For social posts or docs where a full screen recording is too heavy, use the
+shareable reel at
+[`docs/assets/falsiflow_live_pr_story_reel.svg`](assets/falsiflow_live_pr_story_reel.svg).
 
 | Evidence | Link | What it proves |
 | --- | --- | --- |

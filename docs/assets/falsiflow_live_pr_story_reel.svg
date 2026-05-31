@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Falsiflow Live PR Story: blocked AI eval claim becomes source-backed</title>
+  <desc id="desc">A four-step demo reel showing PR 17 opening with an unverifiable AI eval claim, CI blocking placeholder evidence, source-backed evidence being added, and the same claim passing as claim_check_ready.</desc>
+  <style>
+    .sans { font-family: Inter, Segoe UI, Arial, sans-serif; }
+    .mono { font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace; }
+    .step { animation: stepPulse 8s ease-in-out infinite; }
+    .step2 { animation-delay: 2s; }
+    .step3 { animation-delay: 4s; }
+    .step4 { animation-delay: 6s; }
+    .trace { stroke-dasharray: 680; stroke-dashoffset: 680; animation: trace 8s ease-in-out infinite; }
+    .cursor { animation: cursorMove 8s ease-in-out infinite; }
+    .blink { animation: blink 1.15s ease-in-out infinite; }
+    @keyframes stepPulse {
+      0%, 20%, 100% { filter: none; opacity: 0.94; }
+      7%, 13% { filter: drop-shadow(0 12px 24px rgba(31, 41, 55, 0.18)); opacity: 1; }
+    }
+    @keyframes trace {
+      0% { stroke-dashoffset: 680; }
+      12% { stroke-dashoffset: 510; }
+      34% { stroke-dashoffset: 350; }
+      58% { stroke-dashoffset: 170; }
+      82%, 100% { stroke-dashoffset: 0; }
+    }
+    @keyframes cursorMove {
+      0%, 12% { transform: translate(236px, 424px); }
+      34% { transform: translate(506px, 424px); }
+      58% { transform: translate(777px, 424px); }
+      82%, 100% { transform: translate(1048px, 424px); }
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.28; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .step, .trace, .cursor, .blink { animation: none; }
+      .trace { stroke-dashoffset: 0; }
+    }
+  </style>
+
+  <rect width="1280" height="720" rx="28" fill="#f5f7fb"/>
+  <rect x="28" y="28" width="1224" height="664" rx="24" fill="#ffffff" stroke="#d9e2ef"/>
+
+  <g class="sans">
+    <text x="68" y="86" fill="#122033" font-size="38" font-weight="800">Live PR Story: CI blocks unverifiable AI eval claims</text>
+    <text x="68" y="122" fill="#53677f" font-size="20">PR #17 moves from placeholder AI/RAG eval evidence to source-backed rows, then the same gate passes.</text>
+  </g>
+
+  <g transform="translate(68 152)">
+    <rect width="1144" height="92" rx="16" fill="#0f172a"/>
+    <g class="mono" font-size="16">
+      <circle cx="30" cy="26" r="6" fill="#ff5f57"/>
+      <circle cx="50" cy="26" r="6" fill="#ffbd2e"/>
+      <circle cx="70" cy="26" r="6" fill="#28c840"/>
+      <text x="32" y="57" fill="#e5edf7">$ falsiflow claim-check --project-dir falsiflow_ai_eval --strict</text>
+      <text x="32" y="80" fill="#94a3b8">CI decides whether "model improved" has reviewable evidence, not whether the model is good.</text>
+    </g>
+  </g>
+
+  <path class="trace" d="M236 424 C330 372 420 476 506 424 S690 372 777 424 S955 476 1048 424" fill="none" stroke="#8aa0b8" stroke-width="7" stroke-linecap="round"/>
+  <g class="cursor">
+    <circle r="13" fill="#122033"/>
+    <circle r="5" fill="#ffffff"/>
+  </g>
+
+  <g class="sans">
+    <g class="step" transform="translate(68 292)">
+      <rect width="246" height="236" rx="16" fill="#fff7ed" stroke="#efc28c"/>
+      <rect x="20" y="20" width="88" height="32" rx="16" fill="#ffedd5" stroke="#efc28c"/>
+      <text x="38" y="42" fill="#8a4b10" font-size="15" font-weight="800">PR #17</text>
+      <text x="20" y="80" fill="#122033" font-size="23" font-weight="800">Risky claim</text>
+      <text x="20" y="112" fill="#5f4630" font-size="16">"candidate_model improved"</text>
+      <g class="mono" font-size="13">
+        <rect x="20" y="140" width="206" height="54" rx="10" fill="#ffffff" stroke="#efd2ae"/>
+        <text x="34" y="164" fill="#8a4b10">dataset_version</text>
+        <text x="34" y="184" fill="#b45309">dataset_pending</text>
+      </g>
+      <text x="20" y="218" fill="#7a6041" font-size="14">A headline is not evidence.</text>
+    </g>
+
+    <g class="step step2" transform="translate(339 292)">
+      <rect width="246" height="236" rx="16" fill="#fff1f0" stroke="#eda8a1"/>
+      <rect x="20" y="20" width="106" height="32" rx="16" fill="#ffe4e1" stroke="#eda8a1"/>
+      <circle cx="40" cy="36" r="9" fill="#d84b3f"/>
+      <path d="M36 32l8 8m0-8l-8 8" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+      <text x="58" y="42" fill="#9b2d24" font-size="15" font-weight="800">blocked</text>
+      <text x="20" y="80" fill="#122033" font-size="23" font-weight="800">CI fails</text>
+      <text x="20" y="112" fill="#6f413a" font-size="16">strict gate rejects the PR</text>
+      <g class="mono" font-size="13">
+        <rect x="20" y="140" width="206" height="54" rx="10" fill="#ffffff" stroke="#efc4bf"/>
+        <text x="34" y="164" fill="#9b2d24">claim_check_blocked</text>
+        <text x="34" y="184" fill="#64748b">run 26708459093</text>
+      </g>
+      <text x="20" y="218" fill="#7a4b45" font-size="14">Reviewers get blockers.</text>
+    </g>
+
+    <g class="step step3" transform="translate(610 292)">
+      <rect width="246" height="236" rx="16" fill="#eef6ff" stroke="#a7cdf7"/>
+      <rect x="20" y="20" width="104" height="32" rx="16" fill="#ddecff" stroke="#a7cdf7"/>
+      <text x="39" y="42" fill="#1d5a9e" font-size="15" font-weight="800">repair</text>
+      <text x="20" y="80" fill="#122033" font-size="23" font-weight="800">Add proof</text>
+      <text x="20" y="112" fill="#314d68" font-size="16">source-backed eval rows</text>
+      <g class="mono" font-size="13">
+        <rect x="20" y="140" width="206" height="54" rx="10" fill="#ffffff" stroke="#c2dcf4"/>
+        <text x="34" y="164" fill="#1d5a9e">raw_outputs_sha256</text>
+        <text x="34" y="184" fill="#64748b">model + baseline pinned</text>
+      </g>
+      <text x="20" y="218" fill="#46627c" font-size="14">Evidence travels with files.</text>
+    </g>
+
+    <g class="step step4" transform="translate(881 292)">
+      <rect width="246" height="236" rx="16" fill="#f0fbf4" stroke="#a8d8b4"/>
+      <rect x="20" y="20" width="94" height="32" rx="16" fill="#dcf7e6" stroke="#a8d8b4"/>
+      <circle cx="40" cy="36" r="9" fill="#2e9d52"/>
+      <path d="M35 36l4 4 8-10" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="58" y="42" fill="#205e35" font-size="15" font-weight="800">ready</text>
+      <text x="20" y="80" fill="#122033" font-size="23" font-weight="800">Same gate passes</text>
+      <text x="20" y="112" fill="#345045" font-size="16">claim is reviewable now</text>
+      <g class="mono" font-size="13">
+        <rect x="20" y="140" width="206" height="54" rx="10" fill="#ffffff" stroke="#cde8d6"/>
+        <text x="34" y="164" fill="#205e35">claim_check_ready</text>
+        <text x="34" y="184" fill="#64748b">run 26708472653</text>
+      </g>
+      <text x="20" y="218" fill="#41634c" font-size="14">Bundle verified for humans.</text>
+    </g>
+  </g>
+
+  <g class="sans" transform="translate(68 578)">
+    <rect width="1144" height="64" rx="18" fill="#f8fafc" stroke="#d9e2ef"/>
+    <text x="28" y="27" fill="#122033" font-size="18" font-weight="800">What travels through the PR</text>
+    <text x="28" y="50" fill="#53677f" font-size="15">dataset version, prompt hash, model IDs, raw outputs, thresholds, source files, audit report, bundle SHA-256</text>
+    <circle class="blink" cx="1084" cy="32" r="9" fill="#2e9d52"/>
+    <text x="1104" y="38" fill="#205e35" font-size="15" font-weight="800">source-backed</text>
+  </g>
+
+  <text class="mono" x="68" y="676" fill="#64748b" font-size="13">Proof links: github.com/AzurLiu/falsiflow/pull/17 | blocked 26708459093 | ready 26708472653</text>
+</svg>

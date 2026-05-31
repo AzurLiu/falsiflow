@@ -155,5 +155,9 @@ recording script:
 
 [docs/falsiflow_demo_pr_playbook.md](../falsiflow_demo_pr_playbook.md)
 
+The shareable reel is here:
+
+![Falsiflow Live PR Story reel](../assets/falsiflow_live_pr_story_reel.svg)
+
 Start with the failing PR. It explains the project faster than any feature
 list.

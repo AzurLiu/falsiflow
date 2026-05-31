@@ -15,9 +15,9 @@ Public demo with the Live PR Story: <https://azurliu.github.io/falsiflow/>. PyPI
 External evidence workflow:
 <https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-external-evidence.yml>.
 
-![Falsiflow evidence-gated claim workflow](docs/assets/falsiflow_proof_strip.svg)
+![Falsiflow Live PR Story reel](docs/assets/falsiflow_live_pr_story_reel.svg)
 
-30-second demo:
+30-second demo (CLI):
 
 ![Falsiflow 30-second ready vs blocked demo](docs/assets/falsiflow_30_second_demo.svg)
 
@@ -67,6 +67,10 @@ Current public status: hosted demo, PyPI, CI, cross-platform smoke tests,
 Scorecard, checkout pipx, public-package pipx, Windows PowerShell smoke, and
 source installs are live. `Falsiflow External Evidence` reports
 `external_ready` for the current public release.
+
+Evidence gate flow:
+
+![Falsiflow evidence-gated claim workflow](docs/assets/falsiflow_proof_strip.svg)
 
 ## Fast Paths
 
@@ -1130,6 +1134,8 @@ with the active Falsiflow contract.
   starter notes with placeholder-blocked and source-backed evidence rows.
 - `docs/falsiflow_mcp.md`: local stdio MCP server boundary and tool list for
   AI coding agents.
+- `docs/assets/falsiflow_live_pr_story_reel.svg`: shareable visual reel showing
+  PR #17 moving from `claim_check_blocked` to `claim_check_ready`.
 - `docs/assets/falsiflow_30_second_demo.svg`: README visual showing the
   ready-vs-blocked AI claim demo path.
 - `.github/dependabot.yml`: weekly Dependabot updates for GitHub Actions and
