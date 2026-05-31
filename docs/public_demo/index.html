@@ -29,6 +29,11 @@
     .metric, article, section { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; }
     .metric { padding: 14px; min-height: 76px; }
     .metric strong { font-size: 18px; overflow-wrap: anywhere; }
+    .story-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .story-card { min-height: 202px; }
+    .story-card h2 { font-size: 20px; }
+    .story-card.blocked h2 { color: var(--blocked); }
+    .story-card.ready h2 { color: var(--ready); }
     .proof-grid, .case-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
     .case-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     .proof { min-height: 128px; }
@@ -47,10 +52,10 @@
     @media (max-width: 900px) {
       header { grid-template-columns: 1fr; }
       .status { text-align: left; }
-      .metrics, .cards, .case-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .metrics, .cards, .case-grid, .story-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 620px) {
-      .metrics, .cards, .proof-grid, .case-grid { grid-template-columns: 1fr; }
+      .metrics, .cards, .proof-grid, .case-grid, .story-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -59,13 +64,36 @@
     <header>
       <div>
         <h1>Falsiflow Launchpad</h1>
-        <p>CI gates for claims before they ship. See how placeholder AI eval, product metric, and R&amp;D claims stay blocked, then inspect a source-backed ready claim.</p>
+        <p>CI gates for claims before they ship. See a real AI eval PR fail on placeholder evidence, then pass after the evidence is source-backed.</p>
       </div>
       <div class="status ready">
         <span>Status</span>
         <strong>try_ready</strong>
       </div>
     </header>
+    <section>
+      <h2>Live PR Story</h2>
+      <div class="story-grid">
+        <article class="story-card neutral">
+          <span>1. Risky claim</span>
+          <h2>AI eval improved</h2>
+          <p>A PR tries to ship an eval claim before the dataset, raw outputs, baseline, and metadata are reviewable.</p>
+          <a href="https://github.com/AzurLiu/falsiflow/pull/17">Open PR #17</a>
+        </article>
+        <article class="story-card blocked">
+          <span>2. CI blocks it</span>
+          <h2>claim_check_blocked</h2>
+          <p>Strict CI refuses placeholder evidence and keeps the claim out of release notes.</p>
+          <a href="https://github.com/AzurLiu/falsiflow/actions/runs/26708459093">Blocked run</a>
+        </article>
+        <article class="story-card ready">
+          <span>3. Evidence passes</span>
+          <h2>claim_check_ready</h2>
+          <p>The same PR passes after source-backed eval rows, pinned versions, raw artifacts, and a review bundle are added.</p>
+          <a href="https://github.com/AzurLiu/falsiflow/actions/runs/26708472653">Ready run</a>
+        </article>
+      </div>
+    </section>
     <div class="metrics">
       <div class="metric"><span>Example</span><strong>biointerface_coatings</strong></div>
       <div class="metric"><span>Decision check</span><strong>claim_check_ready</strong></div>

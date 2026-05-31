@@ -54,6 +54,10 @@
 | ---: | --- | --- |
 | 1 | `review_claim_for_release` | All required gates passed with source-backed evidence. |
 
+## Evidence Todo
+
+No evidence todo items recorded.
+
 ## Failures
 
 No failures found.

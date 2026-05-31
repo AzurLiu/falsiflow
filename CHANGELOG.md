@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.7
+
+- Put the live AI eval PR story on the public demo launchpad: PR #17 now appears
+  as a first-screen sequence from risky claim to blocked CI to source-backed
+  ready CI.
+- Updated `falsiflow try` and `falsiflow demo-package` output so regenerated
+  static demos keep the same real PR proof path instead of leading with only a
+  static starter example.
+- Refreshed the checked-in `docs/public_demo` package with the new launchpad.
+
 ## 0.1.6
 
 - Fixed `rag-eval` CSV imports so manifest and artifact rows are promoted into

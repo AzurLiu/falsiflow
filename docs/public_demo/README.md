@@ -5,6 +5,8 @@ This directory is a static, zero-install Falsiflow demo package.
 ## Preview
 
 - Open `index.html` locally, or publish this directory with GitHub Pages, Netlify, or any static file server.
+- The launchpad starts with the live PR #17 story: placeholder AI eval evidence
+  is blocked by CI, then source-backed evidence passes the same gate.
 - Workbench shell: `docs/public_demo/workbench.html`
 - Try report: `docs/public_demo/try_report.html`
 - Wizard: `docs/public_demo/falsiflow_wizard.html`

@@ -141,6 +141,7 @@
     "completion_pct": 100.0,
     "config_path": "docs/public_demo/project/project.json",
     "evidence_path": "docs/public_demo/project/evidence_pass_demo.csv",
+    "evidence_todo": [],
     "failure_count": 0,
     "failures": [],
     "gate_count": 3,
@@ -241,6 +242,7 @@
     "source_file_count": 1,
     "source_status": "sources_ready",
     "status": "claim_check_ready",
+    "top_blockers": [],
     "verification_issue_count": 0,
     "verification_status": "bundle_verified"
   },

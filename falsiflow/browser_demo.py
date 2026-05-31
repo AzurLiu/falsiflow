@@ -472,7 +472,7 @@ def render_try_launchpad_html(summary: dict[str, object]) -> str:
     status_class = "ready" if ready else "blocked"
     headline = "CI gates for claims before they ship"
     summary_text = (
-        "See how placeholder AI eval, product metric, and R&D claims stay blocked, then inspect a source-backed ready claim."
+        "See a real AI eval PR fail on placeholder evidence, then pass after the evidence is source-backed."
         if ready
         else "The local demo needs attention before it can be used as a clean starter."
     )
@@ -526,6 +526,41 @@ def render_try_launchpad_html(summary: dict[str, object]) -> str:
           <p>{escape(body)}</p>
         </article>"""
         for label, claim, body in use_cases
+    )
+    pr_story = [
+        (
+            "1. Risky claim",
+            "AI eval improved",
+            "A PR tries to ship an eval claim before the dataset, raw outputs, baseline, and metadata are reviewable.",
+            "Open PR #17",
+            "https://github.com/AzurLiu/falsiflow/pull/17",
+            "neutral",
+        ),
+        (
+            "2. CI blocks it",
+            "claim_check_blocked",
+            "Strict CI refuses placeholder evidence and keeps the claim out of release notes.",
+            "Blocked run",
+            "https://github.com/AzurLiu/falsiflow/actions/runs/26708459093",
+            "blocked",
+        ),
+        (
+            "3. Evidence passes",
+            "claim_check_ready",
+            "The same PR passes after source-backed eval rows, pinned versions, raw artifacts, and a review bundle are added.",
+            "Ready run",
+            "https://github.com/AzurLiu/falsiflow/actions/runs/26708472653",
+            "ready",
+        ),
+    ]
+    pr_story_html = "\n".join(
+        f"""        <article class="story-card {escape(kind)}">
+          <span>{escape(kicker)}</span>
+          <h2>{escape(title)}</h2>
+          <p>{escape(body)}</p>
+          <a href="{escape(href)}">{escape(link_label)}</a>
+        </article>"""
+        for kicker, title, body, link_label, href, kind in pr_story
     )
     cards = [
         (
@@ -594,6 +629,11 @@ def render_try_launchpad_html(summary: dict[str, object]) -> str:
     .metric, article, section {{ background: var(--panel); border: 1px solid var(--line); border-radius: 6px; }}
     .metric {{ padding: 14px; min-height: 76px; }}
     .metric strong {{ font-size: 18px; overflow-wrap: anywhere; }}
+    .story-grid {{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }}
+    .story-card {{ min-height: 202px; }}
+    .story-card h2 {{ font-size: 20px; }}
+    .story-card.blocked h2 {{ color: var(--blocked); }}
+    .story-card.ready h2 {{ color: var(--ready); }}
     .proof-grid, .case-grid {{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }}
     .case-grid {{ grid-template-columns: repeat(4, minmax(0, 1fr)); }}
     .proof {{ min-height: 128px; }}
@@ -612,10 +652,10 @@ def render_try_launchpad_html(summary: dict[str, object]) -> str:
     @media (max-width: 900px) {{
       header {{ grid-template-columns: 1fr; }}
       .status {{ text-align: left; }}
-      .metrics, .cards, .case-grid {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }}
+      .metrics, .cards, .case-grid, .story-grid {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }}
     }}
     @media (max-width: 620px) {{
-      .metrics, .cards, .proof-grid, .case-grid {{ grid-template-columns: 1fr; }}
+      .metrics, .cards, .proof-grid, .case-grid, .story-grid {{ grid-template-columns: 1fr; }}
     }}
   </style>
 </head>
@@ -631,6 +671,12 @@ def render_try_launchpad_html(summary: dict[str, object]) -> str:
         <strong>{escape(status)}</strong>
       </div>
     </header>
+    <section>
+      <h2>Live PR Story</h2>
+      <div class="story-grid">
+{pr_story_html}
+      </div>
+    </section>
     <div class="metrics">
       <div class="metric"><span>Example</span><strong>{escape(str(summary.get("template", "")))}</strong></div>
       <div class="metric"><span>Decision check</span><strong>{escape(str(summary.get("claim_check_status", "")))}</strong></div>

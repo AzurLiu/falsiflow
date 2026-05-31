@@ -1269,6 +1269,10 @@ def assert_cli_contract() -> None:
         launchpad = (try_dir / "index.html").read_text(encoding="utf-8")
         assert "Falsiflow Launchpad" in launchpad
         assert "CI gates for claims before they ship" in launchpad
+        assert "Live PR Story" in launchpad
+        assert "https://github.com/AzurLiu/falsiflow/pull/17" in launchpad
+        assert "https://github.com/AzurLiu/falsiflow/actions/runs/26708459093" in launchpad
+        assert "https://github.com/AzurLiu/falsiflow/actions/runs/26708472653" in launchpad
         assert "Ready Or Blocked" in launchpad
         assert "claim_check_blocked" in launchpad
         assert "Claims This Demo Targets" in launchpad
@@ -4094,7 +4098,10 @@ def assert_packaged_template_contract() -> None:
         assert packaged_try_summary["outputs"]["launchpad"].endswith("index.html")
         assert packaged_try_summary["outputs"]["try_report"].endswith("try_report.html")
         assert packaged_try_summary["outputs"]["wizard"].endswith("falsiflow_wizard.html")
-        assert "Falsiflow Launchpad" in (packaged_try_dir / "index.html").read_text(encoding="utf-8")
+        packaged_launchpad = (packaged_try_dir / "index.html").read_text(encoding="utf-8")
+        assert "Falsiflow Launchpad" in packaged_launchpad
+        assert "Live PR Story" in packaged_launchpad
+        assert "https://github.com/AzurLiu/falsiflow/pull/17" in packaged_launchpad
         assert "Falsiflow Try" in (packaged_try_dir / "try_report.html").read_text(encoding="utf-8")
         assert "Falsiflow Browser Wizard" in (packaged_try_dir / "falsiflow_wizard.html").read_text(encoding="utf-8")
         packaged_serve = subprocess.run(

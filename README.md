@@ -10,7 +10,7 @@ bundle.
 [![Falsiflow Cross Platform](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-cross-platform.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-cross-platform.yml)
 [![Falsiflow Scorecard](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-scorecard.yml/badge.svg)](https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-scorecard.yml)
 
-Public demo: <https://azurliu.github.io/falsiflow/>. PyPI package:
+Public demo with the real PR story: <https://azurliu.github.io/falsiflow/>. PyPI package:
 <https://pypi.org/project/falsiflow/>. PyPI trusted publishing: completed.
 External evidence workflow:
 <https://github.com/AzurLiu/falsiflow/actions/workflows/falsiflow-external-evidence.yml>.
