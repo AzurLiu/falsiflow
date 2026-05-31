@@ -3711,6 +3711,58 @@ def assert_eval_artifact_import_contract() -> None:
         assert "retrieval_quality,candidate_rag,rag_eval_001,recall_at_5,0.86" in rag_evidence
         assert "source_coverage,candidate_rag,rag_eval_001,citation_precision,0.93" in rag_evidence
 
+        raw_rag_out = tmp_dir / "raw_rag_evidence.csv"
+        raw_rag_coverage = tmp_dir / "raw_rag_coverage.json"
+        subprocess.run(
+            [
+                sys.executable,
+                str(CLI),
+                "evidence",
+                "import",
+                "--profile",
+                "rag-eval",
+                "--input",
+                str(ROOT / "examples" / "falsiflow" / "rag_quality_gate" / "source_files" / "rag_eval_raw_export.csv"),
+                "--out",
+                str(raw_rag_out),
+                "--config",
+                str(ROOT / "examples" / "falsiflow" / "rag_quality_gate" / "project.json"),
+                "--coverage-out",
+                str(raw_rag_coverage),
+                "--source-file",
+                "source_files/rag_eval_raw_export.csv",
+                "--strict",
+            ],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        assert json.loads(raw_rag_coverage.read_text(encoding="utf-8"))["status"] == "coverage_ready"
+        raw_rag_evidence = raw_rag_out.read_text(encoding="utf-8")
+        assert "evaluation_provenance,candidate_rag,rag_eval_001,candidate_rag_version_recorded,true" in raw_rag_evidence
+        assert "reproducibility_package,candidate_rag,rag_eval_001,retrieval_run_archived,true" in raw_rag_evidence
+        raw_claim_check = subprocess.run(
+            [
+                sys.executable,
+                str(CLI),
+                "claim-check",
+                "--config",
+                str(ROOT / "examples" / "falsiflow" / "rag_quality_gate" / "project.json"),
+                "--evidence",
+                str(raw_rag_out),
+                "--out-dir",
+                str(tmp_dir / "raw_rag_claim_check"),
+                "--strict",
+                "--json",
+            ],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        assert json.loads(raw_claim_check.stdout)["status"] == "claim_check_ready"
+
 
 def assert_mcp_server_contract() -> None:
     proc = subprocess.Popen(

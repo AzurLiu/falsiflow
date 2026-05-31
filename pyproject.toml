@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "falsiflow"
-version = "0.1.5"
+version = "0.1.6"
 description = "Evidence-gated CLI and CI action for AI eval, product-metric, and R&D claims."
 readme = "README.md"
 requires-python = ">=3.10"

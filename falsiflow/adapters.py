@@ -671,6 +671,72 @@ def truth_recorded(mapping: dict[str, Any], keys: list[str]) -> str:
     return "false"
 
 
+FALSEY_RECORDED_VALUES = {"false", "0", "no", "none", "null", "missing", "not_recorded", "not available", "n/a"}
+
+
+def recorded_truth(value: Any) -> str:
+    text = clean(value)
+    if not text:
+        return "false"
+    return "false" if text.lower() in FALSEY_RECORDED_VALUES else "true"
+
+
+def record_metric_value(records: list[dict[str, Any]], metric_names: list[str], system_id: str = "") -> str:
+    expected = {name.lower() for name in metric_names}
+    for record in records:
+        actor = first_clean(record, ["candidate_id", "model_id", "system_id", "rag_id"])
+        if system_id and actor and actor != system_id:
+            continue
+        metric = first_clean(record, ["metric", "field", "name"])
+        if metric.lower() not in expected:
+            continue
+        value = first_clean(record, ["value", "score", "artifact_uri", "uri", "path"])
+        if value:
+            return value
+    return ""
+
+
+def records_recorded(records: list[dict[str, Any]], keys: list[str], metric_names: list[str] | None = None, system_id: str = "") -> str:
+    for key in keys:
+        value = first_record_value(records, [key])
+        if value:
+            return recorded_truth(value)
+    metric_value = record_metric_value(records, metric_names or keys, system_id=system_id)
+    if metric_value:
+        return recorded_truth(metric_value)
+    return "false"
+
+
+def truth_recorded_with_records(
+    manifest: dict[str, Any],
+    records: list[dict[str, Any]],
+    keys: list[str],
+    metric_names: list[str] | None = None,
+    system_id: str = "",
+) -> str:
+    manifest_truth = truth_recorded(manifest, keys)
+    if manifest_truth == "true":
+        return "true"
+    return records_recorded(records, keys, metric_names=metric_names, system_id=system_id)
+
+
+def first_eval_actor(records: list[dict[str, Any]], role: str) -> str:
+    for record in records:
+        actor = first_clean(record, ["candidate_id", "model_id", "system_id", "rag_id"])
+        if not actor:
+            continue
+        marker = " ".join([
+            first_clean(record, ["role", "record_type", "kind"]).lower(),
+            actor.lower(),
+        ])
+        is_baseline = "baseline" in marker or "control" in marker
+        if role == "baseline" and is_baseline:
+            return actor
+        if role == "candidate" and not is_baseline:
+            return actor
+    return ""
+
+
 def add_metric_values(metrics: dict[str, dict[str, str]], candidate_id: str, values: Any) -> None:
     if not isinstance(values, dict):
         return
@@ -812,21 +878,21 @@ def rag_eval_rows(
     baseline_candidate_id: str,
 ) -> tuple[list[dict[str, str]], dict[str, Any]]:
     run_id = sample_id or first_clean(manifest, ["rag_eval_run_id", "eval_run_id", "run_id", "sample_id"]) or first_record_value(records, ["eval_run_id", "run_id", "sample_id"]) or "rag_eval_001"
-    candidate = candidate_id or first_clean(manifest, ["candidate_rag_id", "candidate_id", "system_id"]) or "candidate_rag"
-    baseline = baseline_candidate_id or first_clean(manifest, ["baseline_rag_id", "baseline_candidate_id", "baseline_id"]) or "baseline_rag"
+    candidate = candidate_id or first_clean(manifest, ["candidate_rag_id", "candidate_id", "system_id"]) or first_eval_actor(records, "candidate") or "candidate_rag"
+    baseline = baseline_candidate_id or first_clean(manifest, ["baseline_rag_id", "baseline_candidate_id", "baseline_id"]) or first_eval_actor(records, "baseline") or "baseline_rag"
     src = eval_source_file(source_file, inputs)
-    at = measured_at or first_clean(manifest, ["measured_at", "evaluated_at", "timestamp"])
+    at = measured_at or first_clean(manifest, ["measured_at", "evaluated_at", "timestamp"]) or first_record_value(records, ["measured_at", "evaluated_at", "timestamp"])
     operator = operator_or_agent or first_clean(manifest, ["operator_or_agent", "evaluator", "operator", "agent"]) or "falsiflow_rag_eval_import"
     instrument = instrument_id or first_clean(manifest, ["instrument_id", "harness_id", "judge_version", "evaluator_version"]) or "rag_eval_harness"
     base_notes = notes or ADAPTER_PROFILES[profile]["description"]
     metrics = collect_eval_metrics(records, manifest, candidate, baseline)
 
     rows = [
-        evidence_row("evaluation_provenance", candidate, run_id, "eval_set_version_recorded", truth_recorded(manifest, ["eval_set_version", "dataset_version", "eval_set_id", "dataset_hash"]), src, at, operator, instrument, "RAG eval set version from manifest."),
-        evidence_row("evaluation_provenance", candidate, run_id, "query_set_hash_recorded", truth_recorded(manifest, ["query_set_hash", "prompt_set_hash", "query_hash"]), src, at, operator, instrument, "RAG query set hash from manifest."),
-        evidence_row("evaluation_provenance", candidate, run_id, "candidate_rag_version_recorded", truth_recorded(manifest, ["candidate_rag_version", "candidate_rag_revision", "candidate_rag_id", "retriever_version"]), src, at, operator, instrument, "Candidate RAG pipeline version from manifest."),
-        evidence_row("evaluation_provenance", candidate, run_id, "baseline_rag_version_recorded", truth_recorded(manifest, ["baseline_rag_version", "baseline_rag_revision", "baseline_rag_id", "baseline_retriever_version"]), src, at, operator, instrument, "Baseline RAG pipeline version from manifest."),
-        evidence_row("evaluation_provenance", candidate, run_id, "judge_version_recorded", truth_recorded(manifest, ["judge_version", "evaluator_version", "eval_harness_version"]), src, at, operator, instrument, "Judge or evaluator version from manifest."),
+        evidence_row("evaluation_provenance", candidate, run_id, "eval_set_version_recorded", truth_recorded_with_records(manifest, records, ["eval_set_version", "dataset_version", "eval_set_id", "dataset_hash"], system_id=candidate), src, at, operator, instrument, "RAG eval set version from manifest."),
+        evidence_row("evaluation_provenance", candidate, run_id, "query_set_hash_recorded", truth_recorded_with_records(manifest, records, ["query_set_hash", "prompt_set_hash", "query_hash"], system_id=candidate), src, at, operator, instrument, "RAG query set hash from manifest."),
+        evidence_row("evaluation_provenance", candidate, run_id, "candidate_rag_version_recorded", truth_recorded_with_records(manifest, records, ["candidate_rag_version", "candidate_rag_revision", "candidate_rag_id", "retriever_version"], metric_names=["candidate_rag_version", "candidate_rag_revision", "candidate_rag_id", "retriever_version"], system_id=candidate), src, at, operator, instrument, "Candidate RAG pipeline version from manifest."),
+        evidence_row("evaluation_provenance", candidate, run_id, "baseline_rag_version_recorded", truth_recorded_with_records(manifest, records, ["baseline_rag_version", "baseline_rag_revision", "baseline_rag_id", "baseline_retriever_version"], metric_names=["baseline_rag_version", "baseline_rag_revision", "baseline_rag_id", "baseline_retriever_version"], system_id=baseline), src, at, operator, instrument, "Baseline RAG pipeline version from manifest."),
+        evidence_row("evaluation_provenance", candidate, run_id, "judge_version_recorded", truth_recorded_with_records(manifest, records, ["judge_version", "evaluator_version", "eval_harness_version"], metric_names=["judge_version", "evaluator_version", "eval_harness_version"], system_id=candidate), src, at, operator, instrument, "Judge or evaluator version from manifest."),
     ]
     for actor in [candidate, baseline]:
         for field in ["recall_at_5", "mrr_at_10", "retrieval_coverage_rate"]:
@@ -842,10 +908,10 @@ def rag_eval_rows(
         if value:
             rows.append(evidence_row("source_coverage", candidate, run_id, field, value, src, at, operator, instrument, f"{field} imported from RAG eval artifact."))
     rows.extend([
-        evidence_row("reproducibility_package", candidate, run_id, "retrieval_run_archived", truth_recorded(manifest, ["retrieval_run_uri", "retrieval_run_path", "retrieval_run_sha256"]), src, at, operator, instrument, "Retrieval run artifact from manifest."),
-        evidence_row("reproducibility_package", candidate, run_id, "raw_answers_archived", truth_recorded(manifest, ["raw_answers_uri", "raw_outputs_uri", "raw_answers_sha256"]), src, at, operator, instrument, "Raw answer artifact from manifest."),
-        evidence_row("reproducibility_package", candidate, run_id, "eval_script_hash_recorded", truth_recorded(manifest, ["eval_script_hash", "eval_script_sha256", "harness_commit"]), src, at, operator, instrument, "Evaluation script or harness hash from manifest."),
-        evidence_row("reproducibility_package", candidate, run_id, "regression_ci_run_recorded", truth_recorded(manifest, ["regression_ci_run", "ci_run_url", "ci_run_id"]), src, at, operator, instrument, "Regression CI run from manifest."),
+        evidence_row("reproducibility_package", candidate, run_id, "retrieval_run_archived", truth_recorded_with_records(manifest, records, ["retrieval_run_uri", "retrieval_run_path", "retrieval_run_sha256"], metric_names=["retrieval_run_archived", "retrieval_run_uri", "retrieval_run_path", "retrieval_run_sha256"], system_id=candidate), src, at, operator, instrument, "Retrieval run artifact from manifest."),
+        evidence_row("reproducibility_package", candidate, run_id, "raw_answers_archived", truth_recorded_with_records(manifest, records, ["raw_answers_uri", "raw_outputs_uri", "raw_answers_sha256"], metric_names=["raw_answers_archived", "raw_outputs_archived", "raw_answers_uri", "raw_outputs_uri", "raw_answers_sha256"], system_id=candidate), src, at, operator, instrument, "Raw answer artifact from manifest."),
+        evidence_row("reproducibility_package", candidate, run_id, "eval_script_hash_recorded", truth_recorded_with_records(manifest, records, ["eval_script_hash", "eval_script_sha256", "harness_commit"], metric_names=["eval_script_hash_recorded", "eval_script_hash", "eval_script_sha256", "harness_commit"], system_id=candidate), src, at, operator, instrument, "Evaluation script or harness hash from manifest."),
+        evidence_row("reproducibility_package", candidate, run_id, "regression_ci_run_recorded", truth_recorded_with_records(manifest, records, ["regression_ci_run", "ci_run_url", "ci_run_id"], metric_names=["regression_ci_run_recorded", "regression_ci_run", "ci_run_url", "ci_run_id"], system_id=candidate), src, at, operator, instrument, "Regression CI run from manifest."),
     ])
     return rows, {
         "sample_id": run_id,

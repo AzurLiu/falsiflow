@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.6
+
+- Fixed `rag-eval` CSV imports so manifest and artifact rows are promoted into
+  provenance and reproducibility evidence, allowing the bundled RAG raw eval
+  export to import and pass `claim-check` without a separate JSON manifest.
+- Added timestamps and explicit candidate/baseline RAG version rows to the RAG
+  quality gate raw export used by examples and quickstart templates.
+- Added regression coverage for the real path: raw RAG eval export -> evidence
+  import -> `claim_check_ready`.
+
 ## 0.1.5
 
 - Updated launch execution copy from the older v0.1.2 trust baseline to the
