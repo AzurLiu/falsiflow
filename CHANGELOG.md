@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.25
+
+- Seeded the real public contribution queue with current issues for release
+  proof snippet generation, a live downstream RAG eval demo PR, and MCP client
+  configuration examples.
+- Updated `docs/falsiflow_public_issue_queue.md` with the active issue links,
+  labels, goals, and verification commands, and added release-check coverage so
+  the queue cannot silently become stale or empty again.
+
 ## 0.1.24
 
 - Moved the public proof contract into the README/PyPI first screen so visitors

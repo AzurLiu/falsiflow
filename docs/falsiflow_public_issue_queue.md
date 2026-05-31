@@ -26,7 +26,48 @@ seed contributor-friendly work.
 - `evidence-gate`: claim gate, evidence contract, or provenance behavior.
 - `documentation`: README, guide, troubleshooting, or launch copy.
 
-## Seed Issues
+## Active Public Issues
+
+Use this short queue as the public contribution entry point while the first
+launch feedback is still small:
+
+1. [Generate a release proof snippet from External Evidence artifacts](https://github.com/AzurLiu/falsiflow/issues/26)
+
+   Labels: `good first issue`, `documentation`, `release`
+
+   Goal: make the public proof contract easier to maintain by generating or
+   documenting a copy-paste release-note snippet from
+   `external_readiness.json` and `falsiflow_external_evidence.json`.
+
+   Evidence: the snippet includes the exact External Evidence run URL,
+   `pypi_version_match`, `public_package_claim_check=passed`,
+   `claim_check_ready`, `bundle_verified`, and `external_ready`; then
+   `release-check` still reports `release_ready`.
+
+2. [Create a live downstream RAG eval claim-gate demo PR](https://github.com/AzurLiu/falsiflow/issues/27)
+
+   Labels: `help wanted`, `template`, `evidence-gate`, `launch`
+
+   Goal: mirror the live AI eval downstream proof with the bundled
+   `rag_quality_gate` starter, including one blocked placeholder CI run and one
+   ready source-backed CI run.
+
+   Evidence: link the downstream PR, blocked run, ready run, and docs update;
+   `template-check` for `falsiflow/templates/rag_quality_gate` and
+   `release-check` still pass.
+
+3. [Add copy-paste MCP client configuration examples](https://github.com/AzurLiu/falsiflow/issues/28)
+
+   Labels: `good first issue`, `documentation`, `evidence-gate`
+
+   Goal: add exact stdio client configuration snippets for local MCP use while
+   preserving the no-network-listener and no-model-execution boundary.
+
+   Evidence: `docs/falsiflow_mcp.md` includes at least two copy-paste snippets;
+   `falsiflow mcp --selftest --json` reports `mcp_selftest_ready`; and
+   `release-check` still reports `release_ready`.
+
+## Completed Seed Issues
 
 Create these as public issues before broad launch distribution:
 
