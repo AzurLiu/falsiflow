@@ -14,7 +14,7 @@ jobs:
 
       - name: Run Falsiflow product metric claim gate
         id: falsiflow
-        uses: AzurLiu/falsiflow@v0.1.22
+        uses: AzurLiu/falsiflow@v0.1.23
         with:
           mode: claim-check
           project-dir: falsiflow_product_metric

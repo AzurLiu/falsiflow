@@ -217,6 +217,13 @@ def external_evidence_template(repo_url: str = "", public_demo_url: str = "", py
                 "artifact_url": "",
                 "notes": "Record a public CI run or artifact proving the published package README first-run quickstart and doctor path passed.",
             },
+            "public_package_claim_check": {
+                "status": "pending",
+                "command": "pipx run --spec falsiflow falsiflow claim-check --project-dir <quickstart-project> --strict --force --json",
+                "workflow_url": "",
+                "artifact_url": "",
+                "notes": "Record a public CI run or artifact proving the published package AI eval starter claim-check path reaches claim_check_ready.",
+            },
             "mcp_public_package_selftest": {
                 "status": "pending",
                 "command": "pipx run --spec falsiflow falsiflow mcp --selftest --json",
@@ -252,6 +259,7 @@ def render_external_evidence_report(summary: dict[str, object]) -> str:
         "| `pipx_smoke` | Public CI run or artifact proving checkout-based pipx install and `falsiflow start --check --json` passed. |",
         "| `pipx_public_package` | Public CI run or artifact proving `pipx run --spec falsiflow falsiflow start --check --json` passed from the published package. |",
         "| `public_package_first_run` | Public CI run or artifact proving `pipx run --spec falsiflow falsiflow quickstart --template ai_claim_evaluation --strict --json` and `doctor --strict --json` passed from the published package. |",
+        "| `public_package_claim_check` | Public CI run or artifact proving `pipx run --spec falsiflow falsiflow claim-check --project-dir <quickstart-project> --strict --force --json` reaches `claim_check_ready` from the published package. |",
         "| `mcp_public_package_selftest` | Public CI run or artifact proving `pipx run --spec falsiflow falsiflow mcp --selftest --json` passed from the published package. |",
         "| `windows_powershell` | Public Windows workflow run or artifact proving `install_local.ps1 -Check` passed. |",
         "",
@@ -310,6 +318,8 @@ def render_publish_env_example(repo_url: str, public_demo_url: str) -> str:
         "FALSIFLOW_PIPX_PUBLIC_VALIDATED=0",
         "# Set to 1 only after the published package first-run quickstart and doctor path passes.",
         "FALSIFLOW_PUBLIC_PACKAGE_FIRST_RUN_VALIDATED=0",
+        "# Set to 1 only after the published package AI eval starter claim-check path reaches claim_check_ready.",
+        "FALSIFLOW_PUBLIC_PACKAGE_CLAIM_CHECK_VALIDATED=0",
         "# Set to 1 only after a clean published-package MCP selftest passes.",
         "FALSIFLOW_MCP_PUBLIC_SELFTEST_VALIDATED=0",
         "# Set to 1 only after the Windows PowerShell workflow passes.",
@@ -493,7 +503,7 @@ def public_release_rehearsal(summary: dict[str, object]) -> dict[str, object]:
                 "owner": "GitHub Actions",
                 "command": "gh workflow run \"Falsiflow External Evidence\" --field public_demo_url=\"$FALSIFLOW_PUBLIC_DEMO_URL\" --field pypi_package_url=\"$FALSIFLOW_PYPI_PACKAGE_URL\" --field expected_version=\"$FALSIFLOW_EXPECTED_VERSION\"",
                 "expected_artifact": "falsiflow_external_evidence.json and falsiflow_pypi_project.json workflow artifacts",
-                "success_signal": "Hosted demo fetch, PyPI JSON fetch with expected-version match, checkout pipx, public-package pipx, public-package first-run quickstart/doctor, public-package MCP selftest, and Windows smoke jobs pass.",
+                "success_signal": "Hosted demo fetch, PyPI JSON fetch with expected-version match, checkout pipx, public-package pipx, public-package first-run quickstart/doctor, public-package claim-check, public-package MCP selftest, and Windows smoke jobs pass.",
                 "status": "pending_external",
             },
             {
@@ -655,6 +665,14 @@ def public_release_evidence_ledger(summary: dict[str, object]) -> dict[str, obje
                 "proof": "pipx run from the published package and README first-run quickstart/doctor artifacts.",
                 "command": "python -m pipx run --spec falsiflow falsiflow quickstart --template ai_claim_evaluation --strict --json && python -m pipx run --spec falsiflow falsiflow doctor --strict --json",
                 "artifact": "falsiflow_public_package_first_run_quickstart.json and falsiflow_public_package_first_run_doctor.json",
+            },
+            {
+                "id": "public_package_claim_check",
+                "status": "pending_external",
+                "owner": "GitHub Actions",
+                "proof": "pipx run from the published package and AI eval starter claim-check artifact.",
+                "command": "python -m pipx run --spec falsiflow falsiflow claim-check --project-dir <quickstart-project> --strict --force --json",
+                "artifact": "falsiflow_public_package_claim_check.json",
             },
             {
                 "id": "windows_powershell_smoke",
@@ -1794,6 +1812,8 @@ def run_external_check(
     pipx_public_validated = truthy_env("FALSIFLOW_PIPX_PUBLIC_VALIDATED") or pipx_public_evidence_ready
     first_run_evidence_ready, first_run_evidence_value = external_evidence_ready(external_evidence, "public_package_first_run")
     first_run_validated = truthy_env("FALSIFLOW_PUBLIC_PACKAGE_FIRST_RUN_VALIDATED") or first_run_evidence_ready
+    claim_check_evidence_ready, claim_check_evidence_value = external_evidence_ready(external_evidence, "public_package_claim_check")
+    claim_check_validated = truthy_env("FALSIFLOW_PUBLIC_PACKAGE_CLAIM_CHECK_VALIDATED") or claim_check_evidence_ready
     mcp_public_evidence_ready, mcp_public_evidence_value = external_evidence_ready(external_evidence, "mcp_public_package_selftest")
     mcp_public_validated = truthy_env("FALSIFLOW_MCP_PUBLIC_SELFTEST_VALIDATED") or mcp_public_evidence_ready
     powershell_path = shutil.which("pwsh") or shutil.which("powershell") or ""
@@ -1832,6 +1852,7 @@ def run_external_check(
         external_check_item("pipx_available", pipx_validated, "pipx is available, FALSIFLOW_PIPX_VALIDATED is set, or external evidence records a passing checkout-based pipx smoke test.", pipx_path or os.environ.get("FALSIFLOW_PIPX_VALIDATED", "") or pipx_evidence_value, pipx_evidence_value),
         external_check_item("pipx_public_package", pipx_public_validated, "FALSIFLOW_PIPX_PUBLIC_VALIDATED is set, or external evidence records a passing pipx smoke test from the published package.", os.environ.get("FALSIFLOW_PIPX_PUBLIC_VALIDATED", "") or pipx_public_evidence_value, pipx_public_evidence_value),
         external_check_item("public_package_first_run", first_run_validated, "FALSIFLOW_PUBLIC_PACKAGE_FIRST_RUN_VALIDATED is set, or external evidence records a passing published-package quickstart and doctor first-run path.", os.environ.get("FALSIFLOW_PUBLIC_PACKAGE_FIRST_RUN_VALIDATED", "") or first_run_evidence_value, first_run_evidence_value),
+        external_check_item("public_package_claim_check", claim_check_validated, "FALSIFLOW_PUBLIC_PACKAGE_CLAIM_CHECK_VALIDATED is set, or external evidence records a passing published-package AI eval starter claim-check path.", os.environ.get("FALSIFLOW_PUBLIC_PACKAGE_CLAIM_CHECK_VALIDATED", "") or claim_check_evidence_value, claim_check_evidence_value),
         external_check_item("mcp_public_package_selftest", mcp_public_validated, "FALSIFLOW_MCP_PUBLIC_SELFTEST_VALIDATED is set, or external evidence records a passing published-package MCP selftest.", os.environ.get("FALSIFLOW_MCP_PUBLIC_SELFTEST_VALIDATED", "") or mcp_public_evidence_value, mcp_public_evidence_value),
         external_check_item("powershell_available", bool(powershell_path) or windows_validated, "PowerShell is available here, FALSIFLOW_WINDOWS_VALIDATED is set, or external evidence records a passing Windows smoke test.", powershell_path or os.environ.get("FALSIFLOW_WINDOWS_VALIDATED", "") or windows_evidence_value, windows_evidence_value),
         external_check_item("python_available", bool(sys.executable), "Python executable is available for local install and release checks.", sys.executable),

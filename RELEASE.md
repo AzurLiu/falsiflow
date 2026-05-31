@@ -115,22 +115,23 @@ The final `release-check` must report:
 - `external-evidence` has produced a structured evidence file for hosted demo,
   public PyPI package URL, checkout-based pipx smoke, public-package pipx
   smoke, public-package first-run quickstart/doctor, public-package MCP selftest,
-  public-package first-run and MCP selftest proof, Windows/PowerShell
-  smoke results, the expected PyPI package version,
+  public-package claim-check, public-package first-run and MCP selftest proof,
+  Windows/PowerShell smoke results, the expected PyPI package version,
   and the PyPI JSON API response
 - the `Falsiflow External Evidence` workflow artifact includes
   `falsiflow_external_evidence.json`, `falsiflow_pypi_project.json`,
   `falsiflow_expected_version.txt`, `falsiflow_pypi_version.txt`,
   `falsiflow_public_package_first_run_quickstart.json`,
   `falsiflow_public_package_first_run_doctor.json`,
+  `falsiflow_public_package_claim_check.json`,
   `falsiflow_public_package_mcp_selftest.json`,
   `external_readiness.json`, and `external_readiness.md` for the final public
   demo URL and PyPI package; the PyPI JSON `published_version` must match the
   workflow `expected_version` input or the version in `pyproject.toml`
 - `external_check_status` is `external_ready` for a public release, or
   `external_blocked` only while public repo/demo/PyPI URLs, pipx public-package
-  smoke, public-package first-run quickstart/doctor, public-package MCP selftest,
-  or Windows validation are intentionally pending
+  smoke, public-package first-run quickstart/doctor, public-package claim-check,
+  public-package MCP selftest, or Windows validation are intentionally pending
 - if PyPI returns `invalid-publisher`, the maintainer has followed
   [docs/falsiflow_pypi_trusted_publishing.md](docs/falsiflow_pypi_trusted_publishing.md)
   and configured the pending publisher or existing-project trusted publisher

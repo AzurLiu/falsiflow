@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.23
+
+- Required the public external-evidence workflow to prove the published PyPI
+  package can run the generated AI eval starter through
+  `claim-check --strict --force --json` and reach `claim_check_ready`.
+- Added `public_package_claim_check` to the external evidence schema,
+  external-check gate, release evidence ledger, workflow artifacts,
+  release-check coverage, and README/release docs.
+
 ## 0.1.22
 
 - Required the public external-evidence workflow to prove the published PyPI
