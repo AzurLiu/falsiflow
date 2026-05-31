@@ -1003,7 +1003,30 @@ def package_release_checks(root: Path) -> dict[str, object]:
         add("data_contract_docs", all(token in data_contract_text for token in ["Stable Inputs", "Evidence CSV", "JSON Status Contract", "Report Artifacts", "Source Provenance", "JSON Schemas", "Integration Guidance", "claim_check_ready", "external_ready", "source_file"]), "Data contract doc explains stable inputs, evidence CSV fields, JSON status, report artifacts, source provenance, schemas, integration guidance, and ready statuses.", data_contract_path)
         add("adapter_profiles_docs", all(token in adapter_profiles_text for token in ["Falsiflow Adapter Profiles", "generic-wide", "vendor-measurement", "instrument-export", "plate-reader", "local-llm-eval", "falsiflow_local_llm_eval.md", "examples/local_llm_eval_import", "mode: evidence-import", "adapter_profile", "adapter_settings"]), "Adapter profile doc explains built-in CSV import profiles, local LLM eval handoff, maintained fixture, action import mode, summary fields, overrides, and coverage checks.", adapter_profiles_path)
         add("local_llm_eval_quickstart_docs", all(token in local_llm_eval_text for token in ["Falsiflow Local LLM Eval Quickstart", "Falsiflow does not need to run your local model, expose an API port", "Ollama", "LM Studio", "llama.cpp", "examples/local_llm_eval_import", "falsiflow quickstart --template ai_claim_evaluation", "source_files/local_eval_results.jsonl", "local_model_manifest.json", "--profile local-llm-eval", "mode: evidence-import", "falsiflow doctor --project-dir . --strict", "claim_check_ready", "bundle_verified"]), "Local LLM eval quickstart documents artifact-first runner handoff, maintained fixture, required manifest fields, action import mode, import command, doctor/claim-check path, and no-server boundary.", local_llm_eval_path)
-        add("mcp_docs", all(token in mcp_text for token in ["Falsiflow MCP Server", "falsiflow mcp --selftest --json", "mcp_selftest_ready", "falsiflow mcp", "\"command\": \"falsiflow\"", "\"args\": [\"mcp\"]", "falsiflow.validate_claims", "falsiflow.check_bundle", "falsiflow.explain_blockers", "falsiflow.create_evidence_todo", "no network listener", "does not run models", "Why Stdio, Not An API Port?"]), "MCP docs explain the local stdio boundary, one-command selftest, generic client command shape, tools, resources, and no-network/no-model API boundary.", mcp_path)
+        mcp_doc_tokens = [
+            "Falsiflow MCP Server",
+            "falsiflow mcp --selftest --json",
+            "mcp_selftest_ready",
+            "falsiflow mcp",
+            "Copy-Paste Client Configs",
+            "Generic MCP client",
+            "Claude Desktop",
+            "mcpServers",
+            "\"command\": \"falsiflow\"",
+            "\"args\": [\"mcp\"]",
+            "falsiflow-dev",
+            "\"cwd\": \"/absolute/path/to/falsiflow\"",
+            "falsiflow.validate_claims",
+            "falsiflow.check_bundle",
+            "falsiflow.explain_blockers",
+            "falsiflow.create_evidence_todo",
+            "no HTTP listener",
+            "API port",
+            "do not run a model",
+            "local project files local",
+            "Why Stdio, Not An API Port?",
+        ]
+        add("mcp_docs", all(token in mcp_text for token in mcp_doc_tokens), "MCP docs explain the local stdio boundary, one-command selftest, copy-paste client configs, tools, resources, and no-network/no-model API boundary.", mcp_path)
         add("casebook_check_docs", all(token in casebook_check_text for token in ["Falsiflow Casebook Check", "casebook_check_ready", "Positive Demo Proof", "Blocked-path Proof", "Reviewer Replay Scripts", "casebook_reviewer_replay.sh", "casebook_reviewer_replay.ps1", "casebook_check.json", "template_check.json", "positive demos", "placeholder blockers"]), "Casebook check doc explains machine-verifiable casebook proofs, positive demos, placeholder blockers, reviewer replay scripts, and review artifacts.", casebook_check_path)
         add("demo_pr_playbook_docs", all(token in demo_pr_playbook_text for token in ["Falsiflow Demo PR Playbook", "Tiny LLM Eval Fixture", "dataset_pending", "exact_match_rate", "does not prove", "Blocked PR", "Ready PR", "evidence_placeholder_demo.csv", "evidence_pass_demo.csv", "claim_check_blocked", "claim_check_ready", versioned_action_ref, "actions/upload-artifact@v7", "GITHUB_ACTION_PATH", "30-second Recording Script"]), "Demo PR playbook documents a public blocked-to-ready AI eval claim gate demonstration, tiny LLM eval fixture, reusable action setup, recording guidance, and responsible-use boundary.", demo_pr_playbook_path)
         add("template_authoring_docs", all(token in template_authoring_text for token in ["Template Layout", "Evidence Contract", "Positive And Placeholder Demos", "Authoring Flow", "Admission Checklist", "template-check", "template-pack", "template-release", "source_files", "claim_ready"]), "Template authoring doc explains layout, evidence contract, placeholder demos, authoring flow, admission checklist, and verified template release commands.", template_authoring_path)

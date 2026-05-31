@@ -57,6 +57,68 @@ Generic stdio client shape:
 }
 ```
 
+## Copy-Paste Client Configs
+
+All examples below use stdio. They create no HTTP listener or API port, do not run a model,
+and keep local project files local to the client process.
+
+Generic MCP client:
+
+```json
+{
+  "mcpServers": {
+    "falsiflow": {
+      "command": "falsiflow",
+      "args": ["mcp"]
+    }
+  }
+}
+```
+
+Claude Desktop:
+
+```json
+{
+  "mcpServers": {
+    "falsiflow": {
+      "command": "falsiflow",
+      "args": ["mcp"]
+    }
+  }
+}
+```
+
+Paste the Claude Desktop snippet into the top-level `mcpServers` object of your
+MCP client config. Client config file paths vary by OS and app version, so this
+doc pins the portable JSON shape instead of an app-specific path.
+
+Local checkout development:
+
+```json
+{
+  "mcpServers": {
+    "falsiflow-dev": {
+      "command": "python3",
+      "args": ["scripts/falsiflow.py", "mcp"],
+      "cwd": "/absolute/path/to/falsiflow"
+    }
+  }
+}
+```
+
+Replace `cwd` with the absolute path to your checkout. Before connecting any
+client, verify the server contract:
+
+```bash
+falsiflow mcp --selftest --json
+```
+
+Expected status:
+
+```text
+mcp_selftest_ready
+```
+
 ## Tools
 
 - `falsiflow.validate_claims`

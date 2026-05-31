@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.26
+
+- Added copy-paste MCP client configuration examples for generic stdio clients,
+  Claude Desktop, and local checkout development.
+- Added release-check coverage for the MCP client snippets and local
+  no-HTTP/no-model boundary so agent integration docs stay verifiable.
+
 ## 0.1.25
 
 - Seeded the real public contribution queue with current issues for release
