@@ -17,10 +17,6 @@ External evidence workflow:
 
 ![Falsiflow Live PR Story reel](docs/assets/falsiflow_live_pr_story_reel.svg)
 
-30-second demo (CLI):
-
-![Falsiflow 30-second ready vs blocked demo](docs/assets/falsiflow_30_second_demo.svg)
-
 ## 30 Seconds
 
 ```bash
@@ -37,6 +33,10 @@ placeholder evidence  -> claim_check_blocked
 source-backed evidence -> claim_check_ready
 ```
 
+30-second demo (CLI):
+
+![Falsiflow 30-second ready vs blocked demo](docs/assets/falsiflow_30_second_demo.svg)
+
 Live PR Story: [PR #17](https://github.com/AzurLiu/falsiflow/pull/17)
 shows placeholder AI/RAG eval evidence failing CI in the
 [blocked run](https://github.com/AzurLiu/falsiflow/actions/runs/26708459093),
@@ -46,13 +46,17 @@ then source-backed evidence passing in the
 Drop the same gate into another repository with the GitHub Action:
 
 ```yaml
-- uses: AzurLiu/falsiflow@main
+- uses: AzurLiu/falsiflow@v0.1.10
   with:
     mode: claim-check
     project-dir: falsiflow_ai_eval
     evidence: falsiflow_ai_eval/evidence.csv
     strict: "true"
 ```
+
+For a six-file downstream smoke repo that intentionally fails on placeholder
+AI eval evidence, then passes after source-backed rows are added, use
+[docs/falsiflow_github_action_examples.md](docs/falsiflow_github_action_examples.md).
 
 Or run from source while contributing:
 
@@ -260,7 +264,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: AzurLiu/falsiflow@main
+      - uses: AzurLiu/falsiflow@v0.1.10
         with:
           mode: claim-check
           project-dir: my_falsiflow_project

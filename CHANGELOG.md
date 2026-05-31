@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.10
+
+- Moved the secondary 30-second CLI visual below the install/status block so the
+  README first screen gets to copy-paste commands faster.
+- Added PyPI project URLs for the Live PR Story, blocked CI run, ready CI run,
+  and launch article so package readers can jump to proof links without relying
+  on rendered README images.
+- Pinned copy-paste GitHub Action snippets to `AzurLiu/falsiflow@v0.1.10` and
+  surfaced the six-file downstream AI eval smoke recipe from the README.
+
 ## 0.1.9
 
 - Added a shareable Live PR Story reel SVG that shows PR #17 moving from a
