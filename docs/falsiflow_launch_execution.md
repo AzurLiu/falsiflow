@@ -53,11 +53,17 @@ R&D, and vendor handoff claims blocked until the evidence package is complete.
 
 Before broad launch distribution, seed a small public queue from
 [falsiflow_public_issue_queue.md](falsiflow_public_issue_queue.md). The current
-pre-launch seed queue keeps
+pre-launch queue keeps
 [issue #22](https://github.com/AzurLiu/falsiflow/issues/22) open for the
-24-hour post-public-post metrics review. Completed seed issues #26, #27, and
-#28 cover release proof snippet generation, the live downstream RAG eval demo
-PR, and MCP client configuration examples.
+24-hour post-public-post metrics review,
+[issue #29](https://github.com/AzurLiu/falsiflow/issues/29) open as a
+`good first issue` for launch-article visual polish, and
+[issue #30](https://github.com/AzurLiu/falsiflow/issues/30) open as a
+`help wanted` product-metric downstream proof task. Completed seed issues #26,
+#27, and #28 cover release proof snippet generation, the live downstream RAG
+eval demo PR, and MCP client configuration examples.
+The live downstream RAG eval demo remains the canonical RAG proof link until a
+matching product-metric live PR is added.
 New public issues after launch should come from repeated external feedback, not
 from internal polish already completed before distribution.
 

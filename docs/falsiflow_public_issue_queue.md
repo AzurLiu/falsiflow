@@ -29,7 +29,9 @@ seed contributor-friendly work.
 ## Active Public Issues
 
 Use this short queue as the public contribution entry point while the first
-launch feedback is still small:
+launch feedback is still small. Keep at least one concrete `good first issue`
+open, plus one higher-context `help wanted` issue, so visitors can contribute
+without touching the core claim engine.
 
 1. [Run the first launch metrics review](https://github.com/AzurLiu/falsiflow/issues/22)
 
@@ -42,6 +44,34 @@ launch feedback is still small:
    Evidence: update the issue with the 24-hour, 72-hour, 7-day, and 14-day
    review notes and turn repeated external feedback into concrete follow-up
    issues with verification commands.
+
+2. [Add a launch-article visual for the AI/RAG blocked-to-ready story](https://github.com/AzurLiu/falsiflow/issues/29)
+
+   Labels: `good first issue`, `documentation`, `launch`
+
+   Goal: make the long-form AI eval launch article easier to scan by adding a
+   compact visual or existing proof-strip asset near the first third of the
+   article.
+
+   Evidence: update
+   `docs/launch_articles/stop_shipping_unverifiable_ai_eval_claims.md` with
+   descriptive alt text or a caption, keep the responsible-use boundary, and
+   run `python3 scripts/falsiflow.py release-check --out-dir
+   /tmp/falsiflow_article_visual_check --force --skip-dist --json`.
+
+3. [Create a live product-metric downstream PR proof](https://github.com/AzurLiu/falsiflow/issues/30)
+
+   Labels: `help wanted`, `template`, `evidence-gate`, `launch`
+
+   Goal: mirror the live AI/RAG downstream stories for product-metric claims,
+   using placeholder evidence that fails as `claim_check_blocked` and
+   source-backed evidence that passes as `claim_check_ready`.
+
+   Evidence: link one blocked run and one ready run, or record why the live
+   downstream product-metric repo is deferred; if live runs are added, update
+   the launch/docs proof links and run `python3 scripts/falsiflow.py
+   release-check --out-dir /tmp/falsiflow_product_metric_live_check --force
+   --json`.
 
 ## Completed Seed Issues
 

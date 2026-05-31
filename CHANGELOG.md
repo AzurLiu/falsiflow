@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.36
+
+- Re-opened the public contribution queue with concrete active work: a
+  `good first issue` for adding a launch-article visual and a `help wanted`
+  product-metric downstream proof issue.
+- Updated the public issue queue and launch execution docs so launch visitors
+  see #22, #29, and #30 as the current small contributor-facing queue.
+- Tightened `release-check` so the queue cannot drift back to only historical
+  seed issues without a current good-first/help-wanted path.
+
 ## 0.1.35
 
 - Removed stale `0.1.29` wording from the static launch execution copy so
