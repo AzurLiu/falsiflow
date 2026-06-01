@@ -48,6 +48,10 @@ blocks placeholder evidence in
 [run 26711652990](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711652990),
 then passes after source-backed rows in
 [run 26711669112](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/actions/runs/26711669112).
+That run pair is also the benchmark-shaped proof behind
+[Benchmarks Should Fail Builds](docs/launch_articles/benchmarks_should_fail_builds.md):
+Falsiflow validates evidence-package readiness, not benchmark correctness or
+model quality.
 [RAG eval PR #1](https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/pull/1)
 blocks placeholder/missing RAG evidence in
 [run 26721829145](https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721829145),

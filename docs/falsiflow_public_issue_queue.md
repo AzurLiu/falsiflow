@@ -45,19 +45,19 @@ without touching the core claim engine.
    review notes and turn repeated external feedback into concrete follow-up
    issues with verification commands.
 
-2. [Add benchmark proof links to the README proof section](https://github.com/AzurLiu/falsiflow/issues/33)
+2. [Add a local LLM eval import proof snippet to the local model guide](https://github.com/AzurLiu/falsiflow/issues/34)
 
-   Labels: `good first issue`, `documentation`, `launch`
+   Labels: `good first issue`, `documentation`, `evidence-gate`
 
-   Goal: make the README first proof section point readers to the
-   benchmark-shaped CI story without lengthening the first screen.
+   Goal: give local/private model users a copy-paste proof snippet that imports
+   existing eval output and validates the evidence gate without Falsiflow
+   opening an API server.
 
-   Evidence: update `README.md` with a short link to
-   `docs/launch_articles/benchmarks_should_fail_builds.md`, the live AI eval
-   PR, blocked run, ready run, and benchmark evidence-package boundary; then
-   run
+   Evidence: update `docs/falsiflow_local_llm_eval.md` using the existing
+   `examples/local_llm_eval_import` fixture, keep the no-model-execution
+   boundary explicit, then run
    `python3 scripts/falsiflow.py release-check --out-dir
-   /tmp/falsiflow_readme_benchmark_proof_check --force --skip-dist --json`.
+   /tmp/falsiflow_local_llm_doc_check --force --skip-dist --json`.
 
 ## Completed Seed Issues
 
@@ -112,7 +112,23 @@ Create these as public issues before broad launch distribution:
    ready run `26711669112`, and the benchmark correctness/model-quality
    boundary.
 
-4. Create a live product-metric downstream PR proof
+4. Add benchmark proof links to the README proof section
+
+   Labels: `good first issue`, `documentation`, `launch`
+
+   Status: completed in `README.md`, tracked in
+   [issue #33](https://github.com/AzurLiu/falsiflow/issues/33).
+
+   Goal: make the README first proof section point readers to the
+   benchmark-shaped CI story without lengthening the first screen.
+
+   Evidence: README links
+   `docs/launch_articles/benchmarks_should_fail_builds.md`, the live AI eval
+   PR, blocked run `26711652990`, ready run `26711669112`, and the
+   evidence-package readiness boundary that this is not benchmark correctness
+   or model quality.
+
+5. Create a live product-metric downstream PR proof
 
    Labels: `help wanted`, `template`, `evidence-gate`, `launch`
 
@@ -131,7 +147,7 @@ Create these as public issues before broad launch distribution:
    after metric provenance, lift, guardrail, and rollback-readiness rows were
    added.
 
-5. Create a live downstream RAG eval claim-gate demo PR
+6. Create a live downstream RAG eval claim-gate demo PR
 
    Labels: `help wanted`, `template`, `evidence-gate`, `launch`
 
@@ -149,7 +165,7 @@ Create these as public issues before broad launch distribution:
    [run 26721856616](https://github.com/AzurLiu/falsiflow-downstream-rag-eval-demo/actions/runs/26721856616)
    after source-backed rows and the raw RAG eval export were added.
 
-6. Generate a release proof snippet from External Evidence artifacts
+7. Generate a release proof snippet from External Evidence artifacts
 
    Labels: `good first issue`, `documentation`, `release`
 
@@ -165,7 +181,7 @@ Create these as public issues before broad launch distribution:
    `claim_check_ready`, `bundle_verified`, and `external_ready`; then
    `release-check` still reports `release_ready`.
 
-7. Add copy-paste MCP client configuration examples
+8. Add copy-paste MCP client configuration examples
 
    Labels: `good first issue`, `documentation`, `evidence-gate`
 
@@ -179,7 +195,7 @@ Create these as public issues before broad launch distribution:
    local checkout snippets; `falsiflow mcp --selftest --json` reports
    `mcp_selftest_ready`; and `release-check` still reports `release_ready`.
 
-8. Capture a short downstream PR proof clip
+9. Capture a short downstream PR proof clip
 
    Labels: `launch`, `documentation`, `good first issue`
 
@@ -193,7 +209,7 @@ Create these as public issues before broad launch distribution:
    Evidence: link the downstream PR, blocked run, ready run, and generated
    asset path.
 
-9. Add a local LLM eval quickstart note
+10. Add a local LLM eval quickstart note
 
    Labels: `documentation`, `help wanted`, `evidence-gate`
 
@@ -210,7 +226,7 @@ Create these as public issues before broad launch distribution:
    `falsiflow evidence import --profile local-llm-eval`, and
    `falsiflow doctor --strict` still pass.
 
-10. Promote the RAG quality gate proposal toward a starter template
+11. Promote the RAG quality gate proposal toward a starter template
 
    Labels: `template`, `evidence-gate`, `help wanted`
 
@@ -223,7 +239,7 @@ Create these as public issues before broad launch distribution:
 
    Evidence: `template-check`, `casebook-check`, and `release-check` pass.
 
-11. Add a product-metric downstream smoke example
+12. Add a product-metric downstream smoke example
 
    Labels: `template`, `launch`, `good first issue`
 
@@ -237,7 +253,7 @@ Create these as public issues before broad launch distribution:
    Evidence: the example has one blocked placeholder run and one ready
    source-backed run.
 
-12. Run the first launch metrics review
+13. Run the first launch metrics review
 
    Labels: `launch`, `help wanted`
 
