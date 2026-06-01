@@ -79,6 +79,14 @@ shows the same AI eval gate inside this repository:
 [blocked run](https://github.com/AzurLiu/falsiflow/actions/runs/26708459093),
 then [ready run](https://github.com/AzurLiu/falsiflow/actions/runs/26708472653).
 
+Benchmark proof: the same downstream AI eval
+[PR #1](https://github.com/AzurLiu/falsiflow-downstream-ai-eval-demo/pull/1)
+demonstrates the `claim_check_blocked` →
+`claim_check_ready` transition behind
+[Benchmarks Should Fail Builds](docs/launch_articles/benchmarks_should_fail_builds.md).
+Falsiflow validates benchmark evidence-package readiness, not benchmark
+correctness or model quality.
+
 For copy-paste downstream smoke repos that intentionally fail on placeholder
 evidence, then pass after source-backed rows are added, use
 [examples/downstream_ai_eval_smoke](examples/downstream_ai_eval_smoke),
