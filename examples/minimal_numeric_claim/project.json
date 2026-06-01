@@ -1,0 +1,80 @@
+{
+  "project": {
+    "id": "minimal_numeric_claim",
+    "name": "Minimal numeric claim",
+    "domain": "claim-gate",
+    "version": "0.1.0"
+  },
+  "claim": {
+    "id": "activation_lift_claim",
+    "statement": "The variant is ready only if activation is at least 5% better than baseline with source-backed evidence.",
+    "requires_gates": [
+      "metric_lift"
+    ]
+  },
+  "evidence_policy": {
+    "require_source_files": true,
+    "reject_placeholder_values": true,
+    "allowed_source_roots": [
+      "source_files"
+    ],
+    "required_metadata_fields": [
+      "source_file",
+      "measured_at",
+      "operator_or_agent"
+    ],
+    "placeholder_markers": [
+      "pending",
+      "todo",
+      "unknown",
+      "not_measured"
+    ]
+  },
+  "gates": [
+    {
+      "id": "metric_lift",
+      "title": "Metric lift",
+      "samples": [
+        {
+          "candidate_id": "baseline",
+          "sample_id": "experiment_001"
+        },
+        {
+          "candidate_id": "variant",
+          "sample_id": "experiment_001"
+        }
+      ],
+      "required_fields": [
+        "activation_rate"
+      ],
+      "derived_fields": [
+        {
+          "field": "activation_ratio_vs_baseline",
+          "operation": "ratio",
+          "numerator": "activation_rate",
+          "denominator": {
+            "candidate_id": "baseline",
+            "sample_id": "experiment_001",
+            "field": "activation_rate"
+          }
+        }
+      ],
+      "acceptance_rules": [
+        {
+          "field": "activation_rate",
+          "operator": ">=",
+          "value": 0.12,
+          "candidate_id": "variant",
+          "reason": "Variant must clear the absolute activation-rate floor."
+        },
+        {
+          "field": "activation_ratio_vs_baseline",
+          "operator": ">=",
+          "value": 1.05,
+          "candidate_id": "variant",
+          "reason": "Variant must beat baseline by at least 5%."
+        }
+      ]
+    }
+  ]
+}

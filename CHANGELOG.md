@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Added `falsiflow check` as the smallest public claim-gate entry point:
+  `--config` plus `--evidence` in, `claim_ready` or `claim_blocked` with
+  reasons out.
+- Added `examples/minimal_numeric_claim` to show placeholder evidence blocked,
+  weak numeric lift blocked, and source-backed evidence ready without the
+  launch/demo machinery.
 - Hid maintainer launch-material generation from the public CLI reference and
   Makefile so Falsiflow's visible surface stays focused on claim gates,
   evidence import, release checks, and reusable CI workflows.

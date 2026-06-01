@@ -1,0 +1,3 @@
+experiment_id,arm,metric,value,artifact_uri,observed_at,notes
+experiment_001,baseline,activation_rate,0.118,warehouse://metrics/activation/2026-05-31,2026-05-31T09:00:00Z,Baseline activation export.
+experiment_001,variant,activation_rate,0.128,warehouse://metrics/activation/2026-05-31,2026-05-31T09:00:00Z,Variant activation export.
