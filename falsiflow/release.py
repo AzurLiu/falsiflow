@@ -1078,10 +1078,14 @@ def package_release_checks(root: Path) -> dict[str, object]:
                     "Active Public Issues",
                     "issues/22",
                     "launch metrics review",
+                    "issues/39",
+                    "short launch GIF",
+                    "falsiflow_live_pr_story_reel.svg",
+                    "falsiflow_launch_gif_check",
                     "issues/38",
                     "adapter profile proof links",
                     "docs/falsiflow_adapter_profiles.md",
-                    "/tmp/falsiflow_adapter_profile_proof_check",
+                    "falsiflow_adapter_profiles.md",
                     "issues/37",
                     "README RAG section",
                     "README RAG import proof link",
@@ -1237,9 +1241,11 @@ def package_release_checks(root: Path) -> dict[str, object]:
                 "social_preview.png",
                 "0 stars",
                 "2 forks",
-                "open issues #22 and #38",
-                "completed seed issues #26, #27, #28, #29, #30, #31, #32, #33, #34, #35, #36, and #37",
+                "open issues #22 and #39",
+                "completed seed issues #26, #27, #28, #29, #30, #31, #32, #33, #34, #35, #36, #37, and #38",
                 "open PR #17",
+                "issue #39",
+                "short launch GIF",
                 "issue #38",
                 "adapter profile proof links",
                 "issue #37",
@@ -1258,6 +1264,7 @@ def package_release_checks(root: Path) -> dict[str, object]:
                 "product-metric launch-article proof links",
                 "README local LLM proof links",
                 "README RAG import proof links",
+                "adapter profile proof links",
                 "issue #29",
                 "launch-article visual polish",
                 "issue #30",
@@ -1433,7 +1440,7 @@ def package_release_checks(root: Path) -> dict[str, object]:
         add("release_checklist", all(token in release_text for token in ["release_ready", "package_ready", "dist_ready", "release_validation_ready", "demo_package_ready", "publish_kit_ready", "launch_kit_ready", "downstream_smoke_replay_ready", "launch_metrics.json", "launch_metrics.md", "public_release_evidence.json", "public_release_evidence.md", "release_rehearsal.json", "release_rehearsal.md", "public release rehearsal", "casebook_check_ready", "mcp --selftest --json", "mcp_selftest_ready", "external-evidence", "external_check_status", "falsiflow release-proof", "release_proof.md", "pypi_version_match=passed", "public_package_claim_check=passed", "public PyPI package URL", "PyPI JSON API", "expected_version", "published_version", "falsiflow_pypi_project.json", "falsiflow_expected_version.txt", "falsiflow_pypi_version.txt", "falsiflow_public_package_first_run_quickstart.json", "falsiflow_public_package_first_run_doctor.json", "falsiflow_public_package_claim_check.json", "falsiflow_public_package_mcp_selftest.json", "invalid-publisher", "falsiflow-publish.yml", "public-package pipx", "public-package first-run quickstart/doctor", "public-package claim-check", "public-package MCP selftest", "Falsiflow External Evidence", "falsiflow_external_evidence.json", "release-check", "casebook-check", "Release Review Artifact Index", "Review Artifact Index", "PyPI package metadata", "requires-python", "classifiers", "project URLs", "action.yml", "GitHub Action", "evidence-import", "examples/downstream_ai_eval_smoke", "examples/downstream_product_metric_smoke", "examples/downstream_rag_eval_smoke", "examples/local_llm_eval_import", "reusable-action quickstart smoke", "CODE_OF_CONDUCT.md", "SUPPORT.md", "ROADMAP.md", "CITATION.cff", "GOVERNANCE.md", "falsiflow_architecture.md", "falsiflow_data_contract.md", "falsiflow_adapter_profiles.md", "falsiflow_mcp.md", "falsiflow_casebook_check.md", "falsiflow_security_posture.md", "falsiflow_template_authoring.md", "falsiflow_troubleshooting.md", "falsiflow_1k_launch_plan.md", "Dependabot", "Falsiflow Scorecard"]), "RELEASE.md documents required release gates, MCP selftest, review artifact indexes, launch metrics, 1k launch plan, public release evidence ledger, release rehearsal, release-proof snippets, reusable GitHub Action evidence import, downstream fixture replay, local LLM fixture, public package, public-package first-run, claim-check, and MCP selftest, and PyPI JSON expected-version evidence, PyPI trusted-publisher recovery, casebook proof artifacts, external evidence workflow artifacts, package metadata checks, community trust files, citation/governance files, architecture docs, data-contract docs, adapter-profile docs, MCP docs, template authoring docs, troubleshooting docs, and security automation.", release_path)
         add("architecture_docs", all(token in architecture_text for token in ["Core Data Model", "Command Flow", "Module Map", "Release Invariants", "Extension Points", "falsiflow_data_contract.md", "claim_ready", "release-check"]), "Architecture doc explains data model, command flow, module map, release invariants, extension points, data contract, and release-check coverage.", architecture_path)
         add("data_contract_docs", all(token in data_contract_text for token in ["Stable Inputs", "Evidence CSV", "JSON Status Contract", "Report Artifacts", "Source Provenance", "JSON Schemas", "Integration Guidance", "claim_check_ready", "external_ready", "source_file"]), "Data contract doc explains stable inputs, evidence CSV fields, JSON status, report artifacts, source provenance, schemas, integration guidance, and ready statuses.", data_contract_path)
-        add("adapter_profiles_docs", all(token in adapter_profiles_text for token in ["Falsiflow Adapter Profiles", "generic-wide", "vendor-measurement", "instrument-export", "plate-reader", "local-llm-eval", "falsiflow_local_llm_eval.md", "examples/local_llm_eval_import", "mode: evidence-import", "adapter_profile", "adapter_settings"]), "Adapter profile doc explains built-in CSV import profiles, local LLM eval handoff, maintained fixture, action import mode, summary fields, overrides, and coverage checks.", adapter_profiles_path)
+        add("adapter_profiles_docs", all(token in adapter_profiles_text for token in ["Falsiflow Adapter Profiles", "generic-wide", "vendor-measurement", "instrument-export", "plate-reader", "local-llm-eval", "rag-eval", "falsiflow_local_llm_eval.md", "falsiflow_rag_quality_gate_proposal.md", "examples/local_llm_eval_import", "examples/downstream_rag_eval_smoke", "coverage_ready", "claim_check_ready", "evidence-package readiness", "mode: evidence-import", "adapter_profile", "adapter_settings"]), "Adapter profile doc explains built-in CSV import profiles, local LLM and RAG eval proof handoffs, maintained fixtures, action import mode, summary fields, overrides, and coverage checks.", adapter_profiles_path)
         add("local_llm_eval_quickstart_docs", all(token in local_llm_eval_text for token in ["Falsiflow Local LLM Eval Quickstart", "Falsiflow does not need to run your local model, expose an API port", "Ollama", "LM Studio", "llama.cpp", "examples/local_llm_eval_import", "falsiflow quickstart --template ai_claim_evaluation", "source_files/local_eval_results.jsonl", "local_model_manifest.json", "--profile local-llm-eval", "mode: evidence-import", "falsiflow doctor --project-dir . --strict", "claim_check_ready", "bundle_verified"]), "Local LLM eval quickstart documents artifact-first runner handoff, maintained fixture, required manifest fields, action import mode, import command, doctor/claim-check path, and no-server boundary.", local_llm_eval_path)
         add("local_llm_eval_fixture_proof_snippet_docs", all(token in local_llm_eval_text for token in ["## Fixture Proof Snippet", "without running a model or opening an API server", "cd examples/local_llm_eval_import", "falsiflow evidence import", "--profile local-llm-eval", "--summary-out data/falsiflow/local_llm_proof/import_summary.json", "--coverage-out data/falsiflow/local_llm_proof/import_coverage.json", "falsiflow claim-check", "--out-dir data/falsiflow/local_llm_proof/claim_check", "import coverage -> coverage_ready", "claim gate      -> claim_check_ready", "bundle          -> bundle_verified", "sanitized runner artifacts", "validates provenance", "does not run the model", "open a network listener", "decide whether the model is good"]), "Local LLM eval guide includes a concise copy-paste fixture proof snippet with import, strict claim-check, expected ready statuses, and the no-model/no-network boundary.", local_llm_eval_path)
         mcp_doc_tokens = [

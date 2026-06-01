@@ -56,6 +56,13 @@ For a copy-paste local model path with Ollama, LM Studio, llama.cpp, or another
 private runner, see [falsiflow_local_llm_eval.md](falsiflow_local_llm_eval.md)
 and the maintained
 [`examples/local_llm_eval_import`](../examples/local_llm_eval_import) fixture.
+For the maintained RAG import path, see
+[falsiflow_rag_quality_gate_proposal.md](falsiflow_rag_quality_gate_proposal.md)
+and [`examples/downstream_rag_eval_smoke`](../examples/downstream_rag_eval_smoke).
+Both proof paths import existing artifacts, check `coverage_ready`, then pass
+the same `claim_check_ready` gate while keeping the boundary explicit:
+evidence-package readiness, not model quality, retrieval safety, or deployment
+approval.
 
 Local/private model example:
 

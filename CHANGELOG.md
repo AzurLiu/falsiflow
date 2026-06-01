@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.39
+
+- Linked adapter profile readers directly to the maintained local LLM and RAG
+  import proof paths, including `coverage_ready`, `claim_check_ready`, and the
+  evidence-package readiness boundary.
+- Added README RAG import proof links to the published long description path so
+  PyPI readers can reach the same downstream RAG eval evidence story as GitHub
+  readers.
+- Generated an evergreen social preview handoff asset without a versioned
+  filename for launch posts and repository profile updates.
+
 ## 0.1.38
 
 - Shortened product-metric proof `Project-URL` labels so PyPI accepts the

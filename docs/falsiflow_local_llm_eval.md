@@ -180,7 +180,7 @@ model runner.
 In CI, commit or upload sanitized eval artifacts, then run the reusable action:
 
 ```yaml
-- uses: AzurLiu/falsiflow@v0.1.38
+- uses: AzurLiu/falsiflow@v0.1.39
   with:
     mode: evidence-import
     profile: local-llm-eval
@@ -192,7 +192,7 @@ In CI, commit or upload sanitized eval artifacts, then run the reusable action:
     out-dir: data/falsiflow/local_llm_import
     strict: "true"
 
-- uses: AzurLiu/falsiflow@v0.1.38
+- uses: AzurLiu/falsiflow@v0.1.39
   with:
     mode: claim-check
     project-dir: local_llm_eval_gate
