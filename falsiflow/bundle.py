@@ -70,12 +70,6 @@ def bundle_review_artifact_index(report: dict[str, object]) -> list[dict[str, ob
             "purpose": "Source-file provenance, missing-file, blank-row, and allowed-root review.",
         },
         {
-            "artifact": "Dashboard",
-            "status": bundle_status,
-            "path": bundle_member_path(report, "audit/dashboard.html"),
-            "purpose": "Browser-readable view of measured evidence and claim state.",
-        },
-        {
             "artifact": "Integrity issues",
             "status": integrity,
             "path": str(report.get("input_path", "") or report.get("bundle_dir", "")),
@@ -123,14 +117,12 @@ def write_bundle_manifest(
     for path, role in [
         (out_dir / "inputs" / "project.json", "project_config"),
         (out_dir / "inputs" / "evidence.csv", "evidence_csv"),
-        (out_dir / "audit" / "measurement_template.csv", "measurement_template"),
         (out_dir / "audit" / "claim_audit.json", "claim_audit"),
         (out_dir / "audit" / "claim_audit.md", "claim_audit_report"),
         (out_dir / "audit" / "audit_review.json", "audit_review"),
         (out_dir / "audit" / "audit_review.md", "audit_review_report"),
         (out_dir / "audit" / "claim_summary.json", "claim_summary"),
         (out_dir / "audit" / "next_actions.json", "next_actions"),
-        (out_dir / "audit" / "dashboard.html", "dashboard"),
         (out_dir / "source_manifest.json", "source_manifest"),
         (out_dir / "source_manifest.md", "source_manifest_report"),
     ]:
@@ -307,14 +299,12 @@ def verify_bundle(bundle_dir: Path, input_path: Path | None = None, input_format
     required_roles = {
         "project_config",
         "evidence_csv",
-        "measurement_template",
         "claim_audit",
         "claim_audit_report",
         "audit_review",
         "audit_review_report",
         "claim_summary",
         "next_actions",
-        "dashboard",
         "source_manifest",
         "source_manifest_report",
     }

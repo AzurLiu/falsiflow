@@ -1,5 +1,5 @@
 name: Falsiflow
-description: "Install Falsiflow and run evidence gates in GitHub Actions."
+description: "Install Falsiflow and block numeric claims without reviewable evidence."
 author: Falsiflow contributors
 
 branding:
@@ -8,111 +8,49 @@ branding:
 
 inputs:
   mode:
-    description: "Gate to run: claim-check, evidence-import, template-check, casebook-check, release-check, adoption-check, quickstart, or external-check."
+    description: "Gate to run: check. claim-check is accepted as a legacy alias."
     required: false
-    default: claim-check
+    default: check
   python-version:
     description: "Python version for actions/setup-python."
     required: false
     default: "3.11"
   install-command:
-    description: "Command that installs Falsiflow before running the gate. Defaults to the versioned action checkout."
+    description: "Command that installs Falsiflow before running the gate."
     required: false
     default: 'python -m pip install "$GITHUB_ACTION_PATH"'
   working-directory:
     description: "Directory where the Falsiflow command should run."
     required: false
     default: "."
+  config:
+    description: "Project config JSON path."
+    required: true
+  evidence:
+    description: "Evidence CSV path."
+    required: true
   out-dir:
     description: "Output directory for generated Falsiflow artifacts."
     required: false
-    default: data/falsiflow/action_check
-  project-dir:
-    description: "Project directory for claim-check mode."
-    required: false
-    default: ""
-  config:
-    description: "Project config path for claim-check mode when project-dir is not used."
-    required: false
-    default: ""
-  evidence:
-    description: "Evidence CSV path for claim-check mode, or output evidence CSV path for evidence-import mode."
-    required: false
-    default: ""
-  profile:
-    description: "Import profile for evidence-import mode, such as local-llm-eval, ai-eval, rag-eval, or generic-wide."
-    required: false
-    default: generic-wide
-  input:
-    description: "Source artifact path for evidence-import mode. Use one path per line for multiple inputs."
-    required: false
-    default: ""
-  manifest:
-    description: "Manifest JSON path for ai-eval, local-llm-eval, and rag-eval evidence-import mode."
-    required: false
-    default: ""
-  source-file:
-    description: "Source file value to record in imported evidence rows for evidence-import mode."
-    required: false
-    default: ""
-  summary-out:
-    description: "Import summary JSON path for evidence-import mode."
-    required: false
-    default: ""
-  coverage-out:
-    description: "Coverage summary JSON path for evidence-import mode when config is provided."
-    required: false
-    default: ""
-  candidate-id:
-    description: "Candidate id override for evidence-import mode."
-    required: false
-    default: ""
-  baseline-candidate-id:
-    description: "Baseline candidate id override for ai-eval, local-llm-eval, and rag-eval evidence-import mode."
-    required: false
-    default: ""
-  sample-id:
-    description: "Eval run or sample id override for evidence-import mode."
-    required: false
-    default: ""
-  template-dir:
-    description: "Template directory for template-check mode."
-    required: false
-    default: ""
-  template:
-    description: "Starter template for quickstart mode."
-    required: false
-    default: biointerface_coatings
-  evidence-file:
-    description: "Structured external evidence JSON for external-check mode."
-    required: false
-    default: ""
+    default: data/falsiflow/check
   strict:
-    description: "Use strict mode for claim-check, quickstart, and external-check."
+    description: "Exit non-zero unless the claim is ready."
     required: false
     default: "true"
   force:
-    description: "Replace existing Falsiflow output directories."
+    description: "Replace an existing Falsiflow output directory."
     required: false
     default: "true"
-  skip-dist:
-    description: "Skip distribution build inside release-check."
-    required: false
-    default: "false"
-  extra-args:
-    description: "Additional shell-split arguments appended to the Falsiflow command."
-    required: false
-    default: ""
 
 outputs:
   out-dir:
     description: "Directory containing generated Falsiflow artifacts."
     value: ${{ steps.falsiflow.outputs.out-dir }}
   summary-json:
-    description: "Main machine-readable summary file produced by the selected mode."
+    description: "Machine-readable check summary."
     value: ${{ steps.falsiflow.outputs.summary-json }}
   summary-md:
-    description: "Main human-readable Markdown report produced by the selected mode when available."
+    description: "Human-readable Markdown report."
     value: ${{ steps.falsiflow.outputs.summary-md }}
 
 runs:
@@ -136,230 +74,40 @@ runs:
       shell: bash
       env:
         FALSIFLOW_MODE: ${{ inputs.mode }}
-        FALSIFLOW_OUT_DIR: ${{ inputs.out-dir }}
-        FALSIFLOW_PROJECT_DIR: ${{ inputs.project-dir }}
         FALSIFLOW_CONFIG: ${{ inputs.config }}
         FALSIFLOW_EVIDENCE: ${{ inputs.evidence }}
-        FALSIFLOW_PROFILE: ${{ inputs.profile }}
-        FALSIFLOW_INPUT: ${{ inputs.input }}
-        FALSIFLOW_MANIFEST: ${{ inputs.manifest }}
-        FALSIFLOW_SOURCE_FILE: ${{ inputs.source-file }}
-        FALSIFLOW_SUMMARY_OUT: ${{ inputs.summary-out }}
-        FALSIFLOW_COVERAGE_OUT: ${{ inputs.coverage-out }}
-        FALSIFLOW_CANDIDATE_ID: ${{ inputs.candidate-id }}
-        FALSIFLOW_BASELINE_CANDIDATE_ID: ${{ inputs.baseline-candidate-id }}
-        FALSIFLOW_SAMPLE_ID: ${{ inputs.sample-id }}
-        FALSIFLOW_TEMPLATE_DIR: ${{ inputs.template-dir }}
-        FALSIFLOW_TEMPLATE: ${{ inputs.template }}
-        FALSIFLOW_EVIDENCE_FILE: ${{ inputs.evidence-file }}
+        FALSIFLOW_OUT_DIR: ${{ inputs.out-dir }}
         FALSIFLOW_STRICT: ${{ inputs.strict }}
         FALSIFLOW_FORCE: ${{ inputs.force }}
-        FALSIFLOW_SKIP_DIST: ${{ inputs.skip-dist }}
-        FALSIFLOW_EXTRA_ARGS: ${{ inputs.extra-args }}
       run: |
         set -euo pipefail
         cd "${{ inputs.working-directory }}"
 
         mode="$FALSIFLOW_MODE"
-        out_dir="$FALSIFLOW_OUT_DIR"
-        summary_json=""
-        summary_md=""
-        cmd=(falsiflow)
-
-        add_force() {
-          if [ "$FALSIFLOW_FORCE" = "true" ]; then
-            cmd+=(--force)
-          fi
-        }
-
-        add_strict() {
-          if [ "$FALSIFLOW_STRICT" = "true" ]; then
-            cmd+=(--strict)
-          fi
-        }
-
-        case "$mode" in
-          claim-check)
-            cmd+=(claim-check --out-dir "$out_dir")
-            if [ -n "$FALSIFLOW_PROJECT_DIR" ]; then
-              cmd+=(--project-dir "$FALSIFLOW_PROJECT_DIR")
-              if [ -n "$FALSIFLOW_EVIDENCE" ]; then
-                cmd+=(--evidence "$FALSIFLOW_EVIDENCE")
-              fi
-            else
-              if [ -z "$FALSIFLOW_CONFIG" ] || [ -z "$FALSIFLOW_EVIDENCE" ]; then
-                echo "claim-check mode requires project-dir, or both config and evidence." >&2
-                exit 2
-              fi
-              cmd+=(--config "$FALSIFLOW_CONFIG" --evidence "$FALSIFLOW_EVIDENCE")
-            fi
-            add_force
-            add_strict
-            summary_json="$out_dir/claim_check.json"
-            summary_md="$out_dir/claim_check.md"
-            ;;
-          evidence-import)
-            if [ -z "$FALSIFLOW_INPUT" ]; then
-              echo "evidence-import mode requires input." >&2
-              exit 2
-            fi
-            evidence_out="$FALSIFLOW_EVIDENCE"
-            if [ -z "$evidence_out" ]; then
-              evidence_out="$out_dir/evidence.csv"
-            fi
-            summary_json="$FALSIFLOW_SUMMARY_OUT"
-            if [ -z "$summary_json" ]; then
-              summary_json="$out_dir/import_summary.json"
-            fi
-            coverage_json="$FALSIFLOW_COVERAGE_OUT"
-            if [ -z "$coverage_json" ]; then
-              coverage_json="$out_dir/import_coverage.json"
-            fi
-            cmd+=(evidence import --profile "$FALSIFLOW_PROFILE" --out "$evidence_out" --summary-out "$summary_json")
-            while IFS= read -r input_path; do
-              if [ -n "$input_path" ]; then
-                cmd+=(--input "$input_path")
-              fi
-            done <<< "$FALSIFLOW_INPUT"
-            if [ -n "$FALSIFLOW_MANIFEST" ]; then
-              cmd+=(--manifest "$FALSIFLOW_MANIFEST")
-            fi
-            if [ -n "$FALSIFLOW_CONFIG" ]; then
-              cmd+=(--config "$FALSIFLOW_CONFIG" --coverage-out "$coverage_json")
-            fi
-            if [ -n "$FALSIFLOW_SOURCE_FILE" ]; then
-              cmd+=(--source-file "$FALSIFLOW_SOURCE_FILE")
-            fi
-            if [ -n "$FALSIFLOW_CANDIDATE_ID" ]; then
-              cmd+=(--candidate-id "$FALSIFLOW_CANDIDATE_ID")
-            fi
-            if [ -n "$FALSIFLOW_BASELINE_CANDIDATE_ID" ]; then
-              cmd+=(--baseline-candidate-id "$FALSIFLOW_BASELINE_CANDIDATE_ID")
-            fi
-            if [ -n "$FALSIFLOW_SAMPLE_ID" ]; then
-              cmd+=(--sample-id "$FALSIFLOW_SAMPLE_ID")
-            fi
-            add_strict
-            ;;
-          template-check)
-            if [ -z "$FALSIFLOW_TEMPLATE_DIR" ]; then
-              echo "template-check mode requires template-dir." >&2
-              exit 2
-            fi
-            cmd+=(template-check --template-dir "$FALSIFLOW_TEMPLATE_DIR" --out-dir "$out_dir")
-            add_force
-            summary_json="$out_dir/template_check.json"
-            summary_md="$out_dir/template_check.md"
-            ;;
-          casebook-check)
-            cmd+=(casebook-check --out-dir "$out_dir")
-            add_force
-            summary_json="$out_dir/casebook_check.json"
-            summary_md="$out_dir/casebook_check.md"
-            ;;
-          release-check)
-            cmd+=(release-check --out-dir "$out_dir")
-            add_force
-            if [ "$FALSIFLOW_SKIP_DIST" = "true" ]; then
-              cmd+=(--skip-dist)
-            fi
-            summary_json="$out_dir/release_check.json"
-            summary_md="$out_dir/release_check.md"
-            ;;
-          adoption-check)
-            cmd+=(adoption-check --out-dir "$out_dir")
-            add_force
-            summary_json="$out_dir/adoption_check.json"
-            summary_md="$out_dir/adoption_check.md"
-            ;;
-          quickstart)
-            cmd+=(quickstart --template "$FALSIFLOW_TEMPLATE" --out "$out_dir")
-            add_force
-            add_strict
-            summary_json="$out_dir/quickstart_summary.json"
-            summary_md="$out_dir/quickstart_summary.md"
-            ;;
-          external-check)
-            cmd+=(external-check --out-dir "$out_dir")
-            if [ -n "$FALSIFLOW_EVIDENCE_FILE" ]; then
-              cmd+=(--evidence "$FALSIFLOW_EVIDENCE_FILE")
-            fi
-            add_force
-            add_strict
-            summary_json="$out_dir/external_readiness.json"
-            summary_md="$out_dir/external_readiness.md"
-            ;;
-          *)
-            echo "Unsupported Falsiflow action mode: $mode" >&2
-            exit 2
-            ;;
-        esac
-
-        if [ -n "$FALSIFLOW_EXTRA_ARGS" ]; then
-          # shellcheck disable=SC2206
-          extra_args=($FALSIFLOW_EXTRA_ARGS)
-          cmd+=("${extra_args[@]}")
+        if [ "$mode" = "claim-check" ]; then
+          mode="check"
         fi
-        cmd+=(--json)
-
-        echo "Running: ${cmd[*]}"
-        set +e
-        "${cmd[@]}"
-        falsiflow_status=$?
-        set -e
-
-        if [ -n "$summary_json" ] && [ -f "$summary_json" ] && [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
-          python - "$summary_json" "$mode" <<'PY' >> "$GITHUB_STEP_SUMMARY"
-        import json
-        import sys
-
-        path, mode = sys.argv[1:3]
-        summary = json.load(open(path, encoding="utf-8"))
-        status = summary.get("status", "")
-        claim = summary.get("claim_id") or summary.get("project_id") or summary.get("template") or mode
-        blocking_stage = summary.get("blocking_stage", "")
-        print("## Falsiflow evidence gate")
-        print()
-        print(f"- Mode: `{mode}`")
-        print(f"- Status: `{status}`")
-        print(f"- Subject: `{claim}`")
-        if blocking_stage:
-            print(f"- Blocking stage: `{blocking_stage}`")
-        print(f"- Summary JSON: `{path}`")
-
-        blockers = []
-        for blocker in summary.get("top_blockers", [])[:5]:
-            if isinstance(blocker, dict):
-                blockers.append((blocker.get("gate_id", ""), blocker))
-        if blockers:
-            print()
-            print("### Top blockers")
-            for gate_id, blocker in blockers:
-                reasons = "; ".join(str(reason) for reason in blocker.get("reasons", []))
-                print(f"- `{gate_id}` `{blocker.get('sample_id', '')}` `{blocker.get('field', '')}`: {reasons}")
-
-        actions = summary.get("next_actions", [])
-        if isinstance(actions, list) and actions:
-            print()
-            print("### Next evidence to add")
-            for action in actions[:5]:
-                if isinstance(action, dict):
-                    print(f"- `{action.get('action_id', '')}`: {action.get('why', '')}")
-
-        todo = summary.get("evidence_todo", [])
-        if isinstance(todo, list) and todo:
-            print()
-            print("### Evidence todo")
-            for item in todo[:5]:
-                if isinstance(item, dict):
-                    print(f"- `{item.get('gate_id', '')}/{item.get('sample_id', '')}/{item.get('field', '')}`: {item.get('repair_hint', '')}")
-        PY
+        if [ "$mode" != "check" ]; then
+          echo "Unsupported Falsiflow mode: $FALSIFLOW_MODE. Use mode: check." >&2
+          exit 2
         fi
+        if [ -z "$FALSIFLOW_CONFIG" ] || [ -z "$FALSIFLOW_EVIDENCE" ]; then
+          echo "Falsiflow check requires config and evidence." >&2
+          exit 2
+        fi
+
+        cmd=(falsiflow check --config "$FALSIFLOW_CONFIG" --evidence "$FALSIFLOW_EVIDENCE" --out-dir "$FALSIFLOW_OUT_DIR" --json)
+        if [ "$FALSIFLOW_STRICT" = "true" ]; then
+          cmd+=(--strict)
+        fi
+        if [ "$FALSIFLOW_FORCE" = "true" ]; then
+          cmd+=(--force)
+        fi
+        mkdir -p "$FALSIFLOW_OUT_DIR"
+        "${cmd[@]}" | tee "$FALSIFLOW_OUT_DIR/check_stdout.json"
 
         {
-          echo "out-dir=$out_dir"
-          echo "summary-json=$summary_json"
-          echo "summary-md=$summary_md"
+          echo "out-dir=$FALSIFLOW_OUT_DIR"
+          echo "summary-json=$FALSIFLOW_OUT_DIR/claim_check.json"
+          echo "summary-md=$FALSIFLOW_OUT_DIR/claim_check.md"
         } >> "$GITHUB_OUTPUT"
-
-        exit "$falsiflow_status"

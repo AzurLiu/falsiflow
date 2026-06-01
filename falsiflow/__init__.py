@@ -1,5 +1,5 @@
-"""Falsiflow: evidence-gated R&D workflow primitives."""
+"""Falsiflow: tiny evidence gates for numeric claims."""
 
 __all__ = ["__version__"]
 
-__version__ = "0.1.39"
+__version__ = "0.2.0"
