@@ -1050,6 +1050,10 @@ the same claim gate as `claim_check_ready`. Its workflow uses the reusable
 action's `mode: evidence-import` before `mode: claim-check`, so CI can convert
 local Ollama, LM Studio, llama.cpp, MLX, vLLM, or private-runner artifacts
 without Falsiflow opening an API port or running a model.
+For the short local proof path, see
+[docs/falsiflow_local_llm_eval.md](docs/falsiflow_local_llm_eval.md): it
+replays the fixture as `coverage_ready` and `claim_check_ready` with a
+no-model-execution, no-network-listener boundary.
 
 ```bash
 falsiflow evidence import \

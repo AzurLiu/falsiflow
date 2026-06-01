@@ -46,7 +46,7 @@ follow-up checks. Use it after the current public release evidence is green.
 - Pre-public-post baseline recorded on 2026-06-01 05:49 CST after the
   upload-ready social preview release:
   0 stars, 2 forks, 0 watchers, 8 total views, 1 unique view, 466 total clones,
-  283 unique clones, open issues #22 and #35, completed seed issues #26, #27, #28, #29, #30, #31, #32, #33, and #34, and open PR #17.
+  283 unique clones, open issues #22 and #36, completed seed issues #26, #27, #28, #29, #30, #31, #32, #33, #34, and #35, and open PR #17.
   Treat clone counts as likely inflated by CI/release automation until
   public-post traffic arrives.
 - Latest external evidence workflow:
@@ -64,8 +64,10 @@ Before broad launch distribution, seed a small public queue from
 pre-launch queue keeps
 [issue #22](https://github.com/AzurLiu/falsiflow/issues/22) open for the
 24-hour post-public-post metrics review,
-[issue #35](https://github.com/AzurLiu/falsiflow/issues/35) open as a
-`good first issue` for a README local LLM proof link,
+[issue #36](https://github.com/AzurLiu/falsiflow/issues/36) open as a
+`good first issue` for a RAG eval import proof snippet,
+[issue #35](https://github.com/AzurLiu/falsiflow/issues/35) completed by the
+README local LLM proof link,
 [issue #34](https://github.com/AzurLiu/falsiflow/issues/34) completed by the
 local LLM fixture proof snippet,
 [issue #33](https://github.com/AzurLiu/falsiflow/issues/33) completed by the
@@ -78,12 +80,13 @@ product-metric launch-article proof links,
 launch-article blocked-to-ready visual, and
 [issue #30](https://github.com/AzurLiu/falsiflow/issues/30) completed by the
 live product-metric downstream PR proof. Completed seed issues #26, #27, #28,
-#29, #30, #31, #32, #33, and #34 cover release proof snippet generation, the
-live downstream RAG eval demo PR, MCP client configuration examples,
+#29, #30, #31, #32, #33, #34, and #35 cover release proof snippet generation,
+the live downstream RAG eval demo PR, MCP client configuration examples,
 launch-article visual polish, the live downstream product-metric demo PR,
 product-metric launch-article proof links, benchmark launch-article proof
-links, README benchmark proof links, and the local LLM fixture proof snippet.
-Summary phrase for release checks: release proof snippet generation, live downstream RAG eval demo, MCP client configuration examples, launch-article visual polish, product-metric downstream proof, product-metric launch-article proof links, benchmark launch-article proof links, README benchmark proof links, local LLM fixture proof snippet.
+links, README benchmark proof links, the local LLM fixture proof snippet, and
+README local LLM proof links.
+Summary phrase for release checks: release proof snippet generation, live downstream RAG eval demo, MCP client configuration examples, launch-article visual polish, product-metric downstream proof, product-metric launch-article proof links, benchmark launch-article proof links, README benchmark proof links, local LLM fixture proof snippet, README local LLM proof links.
 New public issues after launch should come from repeated external feedback, not
 from internal polish already completed before distribution.
 
