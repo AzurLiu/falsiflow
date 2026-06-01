@@ -60,39 +60,17 @@ R&D, and vendor handoff claims blocked until the evidence package is complete.
 ## Public Issue Queue
 
 Before broad launch distribution, seed a small public queue from
-[falsiflow_public_issue_queue.md](falsiflow_public_issue_queue.md). The current
-pre-launch queue keeps open issues #22 and #39:
-[issue #22](https://github.com/AzurLiu/falsiflow/issues/22) open for the
-24-hour post-public-post metrics review,
-[issue #39](https://github.com/AzurLiu/falsiflow/issues/39) open as a
-`good first issue` for a short launch GIF from the live PR story,
-[issue #38](https://github.com/AzurLiu/falsiflow/issues/38) completed by the
-adapter profile proof links,
-[issue #37](https://github.com/AzurLiu/falsiflow/issues/37) completed by the
-README RAG import proof link,
-[issue #36](https://github.com/AzurLiu/falsiflow/issues/36) completed by the
-RAG eval import proof snippet,
-[issue #35](https://github.com/AzurLiu/falsiflow/issues/35) completed by the
-README local LLM proof link,
-[issue #34](https://github.com/AzurLiu/falsiflow/issues/34) completed by the
-local LLM fixture proof snippet,
-[issue #33](https://github.com/AzurLiu/falsiflow/issues/33) completed by the
-README benchmark proof links,
-[issue #32](https://github.com/AzurLiu/falsiflow/issues/32) completed by the
-benchmark launch-article proof links,
-[issue #31](https://github.com/AzurLiu/falsiflow/issues/31) completed by the
-product-metric launch-article proof links,
-[issue #29](https://github.com/AzurLiu/falsiflow/issues/29) completed by the
-launch-article blocked-to-ready visual, and
-[issue #30](https://github.com/AzurLiu/falsiflow/issues/30) completed by the
-live product-metric downstream PR proof. The completed seed issues #26, #27, #28, #29, #30, #31, #32, #33, #34, #35, #36, #37, and #38 cover release proof snippet
-generation, the live downstream RAG eval demo PR, MCP client configuration
-examples, launch-article visual polish, the live downstream product-metric demo
-PR, product-metric launch-article proof links, benchmark launch-article proof
-links, README benchmark proof links, the local LLM fixture proof snippet,
-README local LLM proof links, the RAG eval import proof snippet, and README
-RAG import proof links, and adapter profile proof links.
-Summary phrase for release checks: release proof snippet generation, live downstream RAG eval demo, MCP client configuration examples, launch-article visual polish, product-metric downstream proof, product-metric launch-article proof links, benchmark launch-article proof links, README benchmark proof links, local LLM fixture proof snippet, README local LLM proof links, RAG eval import proof snippet, README RAG import proof links, adapter profile proof links.
+[falsiflow_public_issue_queue.md](falsiflow_public_issue_queue.md). GitHub
+issues are the source of truth; do not mirror every closed seed issue here.
+
+Current public entry points keep open issues #22 and #39:
+[issue #22](https://github.com/AzurLiu/falsiflow/issues/22) tracks the
+24-hour post-public-post metrics review, and
+[issue #39](https://github.com/AzurLiu/falsiflow/issues/39) is the current
+`good first issue` for a short launch GIF from the live PR story.
+
+Completed proof work remains discoverable through closed GitHub issues and the
+live AI/RAG/product-metric downstream PR links in this document.
 New public issues after launch should come from repeated external feedback, not
 from internal polish already completed before distribution.
 

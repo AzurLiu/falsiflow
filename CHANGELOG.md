@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+- Reduced public issue queue and launch execution docs so GitHub issues remain
+  the source of truth instead of mirroring every closed seed issue.
+- Relaxed release-check coverage for narrative launch docs while keeping the
+  key README, reusable Action, downstream proof, and release gates protected.
+- Switched long-form documentation snippets to `AzurLiu/falsiflow@vX.Y.Z`
+  placeholders so patch releases no longer require mechanical updates across
+  launch articles and guide prose.
+
 ## 0.1.39
 
 - Linked adapter profile readers directly to the maintained local LLM and RAG

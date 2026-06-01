@@ -153,7 +153,7 @@ jobs:
 
       - name: Run Falsiflow claim gate
         id: falsiflow
-        uses: AzurLiu/falsiflow@v0.1.39
+        uses: AzurLiu/falsiflow@vX.Y.Z
         with:
           mode: claim-check
           project-dir: falsiflow_ai_eval
