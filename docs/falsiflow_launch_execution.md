@@ -61,11 +61,13 @@ R&D, and vendor handoff claims blocked until the evidence package is complete.
 
 Before broad launch distribution, seed a small public queue from
 [falsiflow_public_issue_queue.md](falsiflow_public_issue_queue.md). The current
-pre-launch queue keeps
+pre-launch queue keeps open issues #22 and #38:
 [issue #22](https://github.com/AzurLiu/falsiflow/issues/22) open for the
 24-hour post-public-post metrics review,
-[issue #37](https://github.com/AzurLiu/falsiflow/issues/37) open as a
-`good first issue` for a README RAG import proof link,
+[issue #38](https://github.com/AzurLiu/falsiflow/issues/38) open as a
+`good first issue` for adapter profile proof links,
+[issue #37](https://github.com/AzurLiu/falsiflow/issues/37) completed by the
+README RAG import proof link,
 [issue #36](https://github.com/AzurLiu/falsiflow/issues/36) completed by the
 RAG eval import proof snippet,
 [issue #35](https://github.com/AzurLiu/falsiflow/issues/35) completed by the
@@ -81,14 +83,14 @@ product-metric launch-article proof links,
 [issue #29](https://github.com/AzurLiu/falsiflow/issues/29) completed by the
 launch-article blocked-to-ready visual, and
 [issue #30](https://github.com/AzurLiu/falsiflow/issues/30) completed by the
-live product-metric downstream PR proof. Completed seed issues #26, #27, #28,
-#29, #30, #31, #32, #33, #34, #35, and #36 cover release proof snippet
+live product-metric downstream PR proof. The completed seed issues #26, #27, #28, #29, #30, #31, #32, #33, #34, #35, #36, and #37 cover release proof snippet
 generation, the live downstream RAG eval demo PR, MCP client configuration
 examples, launch-article visual polish, the live downstream product-metric demo
 PR, product-metric launch-article proof links, benchmark launch-article proof
 links, README benchmark proof links, the local LLM fixture proof snippet,
-README local LLM proof links, and the RAG eval import proof snippet.
-Summary phrase for release checks: release proof snippet generation, live downstream RAG eval demo, MCP client configuration examples, launch-article visual polish, product-metric downstream proof, product-metric launch-article proof links, benchmark launch-article proof links, README benchmark proof links, local LLM fixture proof snippet, README local LLM proof links, RAG eval import proof snippet.
+README local LLM proof links, the RAG eval import proof snippet, and README
+RAG import proof links.
+Summary phrase for release checks: release proof snippet generation, live downstream RAG eval demo, MCP client configuration examples, launch-article visual polish, product-metric downstream proof, product-metric launch-article proof links, benchmark launch-article proof links, README benchmark proof links, local LLM fixture proof snippet, README local LLM proof links, RAG eval import proof snippet, README RAG import proof links.
 New public issues after launch should come from repeated external feedback, not
 from internal polish already completed before distribution.
 

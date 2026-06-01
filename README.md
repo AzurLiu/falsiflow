@@ -1067,6 +1067,13 @@ falsiflow evidence import \
   --strict
 ```
 
+For the RAG import proof path, see
+[docs/falsiflow_rag_quality_gate_proposal.md](docs/falsiflow_rag_quality_gate_proposal.md):
+it replays
+[examples/downstream_rag_eval_smoke](examples/downstream_rag_eval_smoke) as
+`coverage_ready` and `claim_check_ready` while keeping the
+RAG evidence-package readiness boundary explicit.
+
 Run the local agent interface when an AI coding agent should check evidence
 before CI does:
 

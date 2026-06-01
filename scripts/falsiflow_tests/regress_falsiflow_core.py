@@ -3006,6 +3006,7 @@ def assert_cli_contract() -> None:
             "readme_downstream_pr_proof_strip_asset",
             "readme_benchmark_proof_links",
             "readme_local_llm_proof_links",
+            "readme_rag_import_proof_links",
             "package_downstream_pr_proof_strip_matches_docs",
             "readme_proof_strip_exists",
             "readme_visual_asset",
