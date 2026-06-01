@@ -242,7 +242,6 @@ falsiflow template-gallery --out data/falsiflow/template_gallery.md --json-out d
 falsiflow casebook-check --out-dir data/falsiflow/casebook_check --force
 falsiflow quickstart --template biointerface_coatings --out public_case_demo --strict
 falsiflow claim-check --project-dir public_case_demo --strict --force
-falsiflow launch-kit --out-dir falsiflow_launch_kit --force
 ```
 
 End the demo by opening the local launchpad or hosted static demo, then show

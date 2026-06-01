@@ -54,8 +54,8 @@ release artifacts all agree.
   verified installs.
 - `falsiflow.adoption` and `falsiflow.release`: adoption priority checks,
   distribution checks, package surface checks, and release report rendering.
-- `falsiflow.public_release`: static demo, publish kit, launch kit, and
-  external evidence/readiness handoff artifacts.
+- `falsiflow.public_release`: static demo, publish handoff, and external
+  evidence/readiness artifacts.
 
 ## Release Invariants
 

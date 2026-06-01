@@ -1624,7 +1624,6 @@ def run_release_check(artifact_root: Path, run_dist: bool = True) -> dict[str, o
         demo_package_runner=run_demo_package,
         external_check_runner=run_external_check,
         publish_kit_runner=run_publish_kit,
-        launch_kit_runner=run_launch_kit,
         quickstart_runner=run_quickstart,
         doctor_runner=run_doctor,
         default_evidence_path=default_project_evidence_path,
@@ -1669,7 +1668,6 @@ def cmd_release_check(args: argparse.Namespace) -> int:
         print(f"Demo: {summary['demo_status']}")
         print(f"Demo package: {summary['demo_package_status']}")
         print(f"Publish kit: {summary['publish_kit_status']}")
-        print(f"Launch kit: {summary['launch_kit_status']}")
         print(f"External readiness: {summary['external_check_status']}")
         print(f"Schemas: {summary['schema_count']}")
         print(f"Template gallery: {summary['template_gallery_status']}")
@@ -1942,6 +1940,8 @@ def action_value_label(action: argparse.Action) -> str:
 def cli_argument_record(action: argparse.Action) -> dict[str, object] | None:
     if action.dest in {"help", "func"} or is_subparser_action(action):
         return None
+    if action.help is argparse.SUPPRESS:
+        return None
     names = list(action.option_strings) if action.option_strings else [action.metavar or action.dest]
     default = getattr(action, "default", None)
     if default is argparse.SUPPRESS or default is None:
@@ -1965,6 +1965,8 @@ def parser_command_records(parser: argparse.ArgumentParser, prefix: tuple[str, .
             continue
         for name, subparser in action.choices.items():
             command = (*prefix, name)
+            if subparser_help(action, name) == str(argparse.SUPPRESS):
+                continue
             child_records = parser_command_records(subparser, command)
             options = [
                 record
@@ -1990,7 +1992,7 @@ def cli_command_category(command: str) -> str:
         return "Discovery and evidence import"
     if root in {"template-scaffold", "templates", "template-gallery", "template-check", "template-pack", "verify-template-pack", "template-registry", "template-lock", "template-attest", "verify-template-attestation", "template-policy", "verify-template-policy", "template-release", "verify-template-release", "template-install"}:
         return "Template supply chain"
-    if root in {"static-demo", "demo-package", "publish-kit", "launch-kit", "casebook-check", "external-evidence", "external-check", "release-proof", "adoption-check", "release-check", "selftest", "schema", "cli-reference"}:
+    if root in {"static-demo", "demo-package", "publish-kit", "casebook-check", "external-evidence", "external-check", "release-proof", "adoption-check", "release-check", "selftest", "schema", "cli-reference"}:
         return "Release and public adoption"
     if root in {"validate", "render", "audit", "claim-check", "bundle", "verify-bundle", "next", "sources", "portfolio", "demo"}:
         return "Core audit and bundle operations"
@@ -2089,7 +2091,7 @@ def cmd_cli_reference(args: argparse.Namespace) -> int:
     markdown = render_cli_reference_markdown(reference)
     if args.out:
         args.out.parent.mkdir(parents=True, exist_ok=True)
-        args.out.write_text(f"{markdown}\n", encoding="utf-8")
+        args.out.write_text(markdown.rstrip() + "\n", encoding="utf-8")
     if args.json_out:
         args.json_out.parent.mkdir(parents=True, exist_ok=True)
         args.json_out.write_text(json.dumps(reference, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -2104,6 +2106,24 @@ def cmd_cli_reference(args: argparse.Namespace) -> int:
     else:
         print(markdown)
     return 0
+
+
+def add_launch_kit_arguments(target: argparse.ArgumentParser) -> None:
+    target.add_argument("--template", default="biointerface_coatings", help="Starter template to use in the nested public demo package.")
+    target.add_argument("--template-root", type=Path, action="append", default=[], help="Extra template root to search before bundled templates. Repeatable.")
+    target.add_argument("--out-dir", type=Path, default=Path("falsiflow_launch_kit"), help="Directory for public launch materials.")
+    target.add_argument("--repo-slug", default="", help="Optional GitHub repo slug such as OWNER/falsiflow.")
+    target.add_argument("--public-demo-url", default="", help="Optional hosted public demo URL.")
+    target.add_argument("--tag", default="v0.1.1", help="Release tag to include in launch materials.")
+    target.add_argument("--force", action="store_true", help="Allow replacing an existing launch-kit directory.")
+    target.add_argument("--json", action="store_true", help="Print machine-readable launch kit summary.")
+    target.set_defaults(func=cmd_launch_kit)
+
+
+def build_launch_kit_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(prog="falsiflow launch-kit", description="Maintainer-only launch material generator.")
+    add_launch_kit_arguments(parser)
+    return parser
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -2168,17 +2188,6 @@ def build_parser() -> argparse.ArgumentParser:
     publish_kit.add_argument("--force", action="store_true", help="Allow replacing an existing publish-kit directory.")
     publish_kit.add_argument("--json", action="store_true", help="Print machine-readable publish handoff summary.")
     publish_kit.set_defaults(func=cmd_publish_kit)
-
-    launch_kit = sub.add_parser("launch-kit", help="Generate public launch copy, demo script, proof card, and maintainer checklist.")
-    launch_kit.add_argument("--template", default="biointerface_coatings", help="Starter template to use in the nested public demo package.")
-    launch_kit.add_argument("--template-root", type=Path, action="append", default=[], help="Extra template root to search before bundled templates. Repeatable.")
-    launch_kit.add_argument("--out-dir", type=Path, default=Path("falsiflow_launch_kit"), help="Directory for public launch materials.")
-    launch_kit.add_argument("--repo-slug", default="", help="Optional GitHub repo slug such as OWNER/falsiflow.")
-    launch_kit.add_argument("--public-demo-url", default="", help="Optional hosted public demo URL.")
-    launch_kit.add_argument("--tag", default="v0.1.1", help="Release tag to include in launch materials.")
-    launch_kit.add_argument("--force", action="store_true", help="Allow replacing an existing launch-kit directory.")
-    launch_kit.add_argument("--json", action="store_true", help="Print machine-readable launch kit summary.")
-    launch_kit.set_defaults(func=cmd_launch_kit)
 
     external_evidence = sub.add_parser("external-evidence", help="Write a structured JSON template for hosted demo, PyPI, pipx, and Windows validation evidence.")
     external_evidence.add_argument("--out", type=Path, default=Path("falsiflow_external_evidence.json"), help="Path for the external evidence JSON template.")
@@ -2619,8 +2628,12 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: list[str] | None = None) -> int:
+    argv_list = list(sys.argv[1:] if argv is None else argv)
+    if argv_list[:1] == ["launch-kit"]:
+        args = build_launch_kit_parser().parse_args(argv_list[1:])
+        return args.func(args)
     parser = build_parser()
-    args = parser.parse_args(argv)
+    args = parser.parse_args(argv_list)
     return args.func(args)
 
 

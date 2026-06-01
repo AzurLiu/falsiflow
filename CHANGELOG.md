@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Hid maintainer launch-material generation from the public CLI reference and
+  Makefile so Falsiflow's visible surface stays focused on claim gates,
+  evidence import, release checks, and reusable CI workflows.
+- Removed launch-kit generation from `release-check`; public launch copy,
+  social posts, and launch metrics are no longer release readiness gates.
 - Reduced public issue queue and launch execution docs so GitHub issues remain
   the source of truth instead of mirroring every closed seed issue.
 - Relaxed release-check coverage for narrative launch docs while keeping the
