@@ -6,13 +6,13 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for reporting a concrete failure. Please include commands and generated artifacts when you can.
+        Thanks for reporting a concrete failure. Please include the command and generated artifacts when you can.
   - type: textarea
     id: command
     attributes:
       label: Command or workflow
-      description: Paste the exact command, Make target, CI job, or browser workflow that failed.
-      placeholder: falsiflow release-check --out-dir data/falsiflow/release_check --force
+      description: Paste the exact command or CI job that failed.
+      placeholder: falsiflow check --config project.json --evidence evidence.csv --strict
     validations:
       required: true
   - type: textarea
@@ -20,7 +20,7 @@ body:
     attributes:
       label: Expected result
       description: What status, artifact, report, or behavior did you expect?
-      placeholder: release_ready with package_ready, dist_ready, and release_validation_ready.
+      placeholder: claim_ready with claim_check.json, claim_check.md, and evidence_bundle.zip.
     validations:
       required: true
   - type: textarea
@@ -28,7 +28,7 @@ body:
     attributes:
       label: Actual result
       description: Include the first failing status, traceback, report excerpt, or CI link.
-      placeholder: release_blocked because sdist_required_files failed.
+      placeholder: claim_blocked because acceptance_rules failed.
     validations:
       required: true
   - type: textarea
@@ -36,15 +36,15 @@ body:
     attributes:
       label: Environment
       description: Include OS, Python version, install method, and whether this was local, pipx, or CI.
-      placeholder: macOS 15, Python 3.12, editable install with python3 -m pip install -e .
+      placeholder: macOS 15, Python 3.12, pipx install falsiflow
     validations:
       required: true
   - type: textarea
     id: artifacts
     attributes:
       label: Relevant artifacts
-      description: Link or paste paths for release_check.json, adoption_check.json, claim_check.json, bundle verification, or template verification reports.
-      placeholder: data/falsiflow/release_check/release_check.json
+      description: Link or paste paths for claim_check.json, claim_check.md, or evidence_bundle.zip.
+      placeholder: falsiflow_out/claim_check.json
     validations:
       required: false
   - type: checkboxes
@@ -52,7 +52,7 @@ body:
     attributes:
       label: Checks before filing
       options:
-        - label: I checked that this is not a claim that Falsiflow should treat as scientific proof, safety proof, regulatory approval, or clinical validation.
+        - label: I checked that this is a claim-readiness issue, not a request for Falsiflow to prove model quality, scientific truth, safety, or regulatory approval.
           required: true
         - label: I removed secrets, private raw data, and credentials from shared logs or artifacts.
           required: true

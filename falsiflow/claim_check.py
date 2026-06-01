@@ -13,22 +13,34 @@ from .bundle import (
     render_bundle_verification_report,
     verify_bundle_zip,
 )
-from .release import failure_record
-from .template_registry import read_json_object
 
 
 CLAIM_REVIEW_ARTIFACTS = [
     ("claim_check_report", "Claim-check report", "status", "Top-level ready/blocked decision, blocking stage, failures, and next actions."),
-    ("claim_check", "Claim-check JSON", "status", "Machine-readable status for CI, release-check, and browser handoffs."),
+    ("claim_check", "Claim-check JSON", "status", "Machine-readable status for CI and review handoffs."),
     ("audit_review_report", "Audit review", "audit_review_status", "Human review card for gate results, blockers, and decision boundaries."),
     ("claim_audit_report", "Claim audit", "audit_status", "Detailed measured evidence evaluation for the claim gates."),
     ("source_manifest_report", "Source manifest", "source_status", "Raw source-file provenance, missing files, allowed roots, and blank source rows."),
     ("bundle_manifest", "Bundle manifest", "bundle_status", "Declared bundle contents with byte counts and SHA-256 hashes."),
     ("bundle_verification_report", "Bundle verification", "verification_status", "Independent zip integrity check for the review bundle."),
-    ("dashboard", "Claim dashboard", "status", "Browser-readable evidence dashboard for non-CLI reviewers."),
     ("bundle_zip", "Evidence bundle", "bundle_status", "Portable review package containing inputs, audit outputs, source manifest, and copied sources."),
-    ("template_release_verification_report", "Template release verification", "template_release_verification_status", "Template-release integrity report when this claim-check is embedded in a release workflow."),
 ]
+
+
+def failure_record(stage: str, identifier: str, message: str) -> dict[str, str]:
+    return {"stage": stage, "id": identifier, "message": message}
+
+
+def read_json_object(path: Path, label: str) -> dict[str, object]:
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except FileNotFoundError as exc:
+        raise SystemExit(f"Missing {label}: {path}") from exc
+    except json.JSONDecodeError as exc:
+        raise SystemExit(f"Invalid {label} JSON at {path}: {exc}") from exc
+    if not isinstance(data, dict):
+        raise SystemExit(f"Expected {label} JSON object at {path}")
+    return data
 
 
 def markdown_path_link(label: str, path_text: object, base_dir: Path | None = None) -> str:
@@ -369,7 +381,6 @@ def run_claim_check(config: Path, evidence: Path, out_dir: Path, force: bool = F
         "audit_review_report": str(bundle_dir / "audit" / "audit_review.md"),
         "claim_summary": str(bundle_dir / "audit" / "claim_summary.json"),
         "next_actions": str(bundle_dir / "audit" / "next_actions.json"),
-        "dashboard": str(bundle_dir / "audit" / "dashboard.html"),
         "source_manifest": str(bundle_dir / "source_manifest.json"),
         "source_manifest_report": str(bundle_dir / "source_manifest.md"),
         "bundle_manifest": str(bundle_dir / "bundle_manifest.json"),

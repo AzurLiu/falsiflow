@@ -1,56 +1,11 @@
 include CHANGELOG.md
 include CONTRIBUTING.md
-include CITATION.cff
-include CODE_OF_CONDUCT.md
-include GOVERNANCE.md
-include RELEASE.md
+include LICENSE
+include README.md
 include SECURITY.md
-include SUPPORT.md
-include RESPONSIBLE_USE.md
-include ROADMAP.md
 include action.yml
 include Makefile
-include scripts/install_local.sh
-include scripts/install_local.ps1
-include examples/README.md
 recursive-include examples/minimal_numeric_claim *
-recursive-include examples/downstream_ai_eval_smoke *
-recursive-include examples/downstream_ai_eval_smoke/.github/workflows *.yml
-recursive-include examples/downstream_product_metric_smoke *
-recursive-include examples/downstream_product_metric_smoke/.github/workflows *.yml
-recursive-include examples/downstream_rag_eval_smoke *
-recursive-include examples/downstream_rag_eval_smoke/.github/workflows *.yml
-recursive-include examples/local_llm_eval_import *
-recursive-include examples/local_llm_eval_import/.github/workflows *.yml
-include docs/falsiflow_adoption_priorities.md
-include docs/falsiflow_1k_launch_plan.md
-include docs/falsiflow_architecture.md
-include docs/falsiflow_cli_reference.md
-include docs/falsiflow_data_contract.md
-include docs/falsiflow_adapter_profiles.md
-include docs/falsiflow_casebook_check.md
-include docs/falsiflow_demo_pr_playbook.md
-include docs/falsiflow_github_action_examples.md
-include docs/falsiflow_launch_execution.md
-include docs/falsiflow_local_llm_eval.md
-include docs/falsiflow_mcp.md
-include docs/falsiflow_positioning.md
-include docs/falsiflow_public_issue_queue.md
-include docs/falsiflow_public_casebook.md
-include docs/falsiflow_rag_quality_gate_proposal.md
-include docs/falsiflow_pypi_trusted_publishing.md
-include docs/falsiflow_security_posture.md
-include docs/falsiflow_template_authoring.md
-include docs/falsiflow_troubleshooting.md
-recursive-include docs/launch_articles *.md
-recursive-include docs/assets *.svg
-recursive-include docs/assets *.png
-include docs/assets/falsiflow_downstream_pr_proof_strip.svg
-include docs/assets/falsiflow_30_second_demo.svg
-include docs/assets/falsiflow_live_pr_story_reel.svg
-recursive-include falsiflow/assets *.svg
 recursive-include .github/workflows *.yml
-recursive-include .github/ISSUE_TEMPLATE *.yml
-include .github/ISSUE_TEMPLATE/launch_feedback.yml
 include .github/PULL_REQUEST_TEMPLATE.md
 include .github/dependabot.yml

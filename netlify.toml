@@ -1,8 +1,0 @@
-[build]
-  publish = "docs"
-  command = ""
-
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Content-Type-Options = "nosniff"
