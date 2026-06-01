@@ -15,6 +15,43 @@ contains a placeholder evidence file that blocks, a local runner JSONL export,
 a model manifest, the generated ready evidence demo, and a GitHub Actions
 workflow that imports artifacts before running the claim gate.
 
+## Fixture Proof Snippet
+
+Use the checked-in fixture when you want to prove the local-model boundary
+without running a model or opening an API server:
+
+```bash
+cd examples/local_llm_eval_import
+falsiflow evidence import \
+  --profile local-llm-eval \
+  --input falsiflow_local_llm_eval/source_files/local_eval_results.jsonl \
+  --manifest falsiflow_local_llm_eval/local_model_manifest.json \
+  --out falsiflow_local_llm_eval/evidence.csv \
+  --summary-out data/falsiflow/local_llm_proof/import_summary.json \
+  --config falsiflow_local_llm_eval/project.json \
+  --coverage-out data/falsiflow/local_llm_proof/import_coverage.json \
+  --source-file source_files/local_eval_results.jsonl \
+  --strict
+falsiflow claim-check \
+  --project-dir falsiflow_local_llm_eval \
+  --evidence falsiflow_local_llm_eval/evidence.csv \
+  --out-dir data/falsiflow/local_llm_proof/claim_check \
+  --strict \
+  --force
+```
+
+Expected proof:
+
+```text
+import coverage -> coverage_ready
+claim gate      -> claim_check_ready
+bundle          -> bundle_verified
+```
+
+That is the whole contract for local/private models: Falsiflow imports
+sanitized runner artifacts and validates provenance. It does not run the model,
+call the model, open a network listener, or decide whether the model is good.
+
 ## Artifact Contract
 
 A local LLM eval handoff should include:

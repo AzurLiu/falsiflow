@@ -3069,6 +3069,7 @@ def assert_cli_contract() -> None:
             "adapter_profiles_docs",
             "local_llm_eval_quickstart_exists",
             "local_llm_eval_quickstart_docs",
+            "local_llm_eval_fixture_proof_snippet_docs",
             "mcp_docs_exists",
             "mcp_docs",
             "casebook_check_exists",
