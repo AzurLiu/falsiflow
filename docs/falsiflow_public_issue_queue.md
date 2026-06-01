@@ -45,9 +45,8 @@ one higher-context `help wanted` issue while launch feedback is still small.
    `docs/assets/falsiflow_live_pr_story_reel.svg`, keep
    `claim_check_blocked`, `claim_check_ready`, and the evidence-package
    readiness boundary visible, then run `python3 scripts/falsiflow.py
-   launch-kit --out-dir /tmp/falsiflow_launch_gif_check --force --json` and
-   `python3 scripts/falsiflow.py release-check --out-dir
-   /tmp/falsiflow_launch_gif_release_check --force --skip-dist --json`.
+   release-check --out-dir /tmp/falsiflow_launch_gif_release_check --force
+   --skip-dist --json`.
 
 ## Completed Work
 

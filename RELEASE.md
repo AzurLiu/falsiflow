@@ -87,7 +87,6 @@ python3 scripts/falsiflow.py onboard --out-dir /tmp/falsiflow_onboard_check --ch
 python3 scripts/falsiflow.py static-demo --out-dir /tmp/falsiflow_static_demo_check --force --json
 python3 scripts/falsiflow.py demo-package --out-dir /tmp/falsiflow_public_demo_check --force --json
 python3 scripts/falsiflow.py publish-kit --out-dir /tmp/falsiflow_publish_kit_check --force --json
-python3 scripts/falsiflow.py launch-kit --out-dir /tmp/falsiflow_launch_kit_check --force --json
 python3 scripts/falsiflow.py external-evidence --out /tmp/falsiflow_external_evidence.json --force --json
 python3 scripts/falsiflow.py external-check --out-dir /tmp/falsiflow_external_check --force
 python3 scripts/falsiflow.py evidence import --profile local-llm-eval --input examples/local_llm_eval_import/falsiflow_local_llm_eval/source_files/local_eval_results.jsonl --manifest examples/local_llm_eval_import/falsiflow_local_llm_eval/local_model_manifest.json --out /tmp/falsiflow_local_llm_evidence.csv --summary-out /tmp/falsiflow_local_llm_import_summary.json --config examples/local_llm_eval_import/falsiflow_local_llm_eval/project.json --coverage-out /tmp/falsiflow_local_llm_import_coverage.json --source-file source_files/local_eval_results.jsonl --strict --json
@@ -105,8 +104,6 @@ The final `release-check` must report:
 - `dist_ready`
 - `demo_package_ready`
 - `publish_kit_ready` for the generated release handoff kit
-- `launch_kit_ready` for public copy, proof card, demo script, launch metrics,
-  and maintainer checklist
 - `downstream_smoke_replay_ready`, proving the maintained downstream AI eval,
   product metric, and RAG eval fixtures replay as placeholder
   `claim_check_blocked` and source-backed `claim_check_ready` with
@@ -228,20 +225,6 @@ Inspect these generated files before publishing:
 - `data/falsiflow/release_check/publish_kit/release_rehearsal.md`
   for the public release rehearsal commands, expected artifacts, success
   signals, and strict external stop conditions
-- `data/falsiflow/release_check/launch_kit/launch_summary.json`
-- `data/falsiflow/release_check/launch_kit/proof_card.md`
-- `data/falsiflow/release_check/launch_kit/announcement.md`
-- `data/falsiflow/release_check/launch_kit/demo_script.md`
-- `data/falsiflow/release_check/launch_kit/readme_proof_strip.svg`
-- `data/falsiflow/release_check/launch_kit/social_preview.png`
-- `data/falsiflow/release_check/launch_kit/social_preview.svg`
-- `data/falsiflow/release_check/launch_kit/github_repo_profile.md`
-- `data/falsiflow/release_check/launch_kit/launch_posts.md`
-- `data/falsiflow/release_check/launch_kit/launch_metrics.json`
-- `data/falsiflow/release_check/launch_kit/launch_metrics.md`
-- `data/falsiflow/release_check/launch_kit/maintainer_checklist.md`
-- `data/falsiflow/release_check/launch_kit/publish_kit/public_release_evidence.md`
-- `data/falsiflow/release_check/launch_kit/publish_kit/release_rehearsal.md`
 - `data/falsiflow/release_check/publish_kit/external_evidence_template.json`
 - `data/falsiflow/release_check/external_readiness/external_readiness.json`
 - `data/falsiflow/release_check/external_readiness/external_readiness.md`

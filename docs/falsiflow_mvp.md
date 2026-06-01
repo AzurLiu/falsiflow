@@ -121,9 +121,6 @@ python3 scripts/falsiflow.py demo-package \
 python3 scripts/falsiflow.py publish-kit \
   --out-dir data/falsiflow/publish_kit \
   --force
-python3 scripts/falsiflow.py launch-kit \
-  --out-dir data/falsiflow/launch_kit \
-  --force
 python3 scripts/falsiflow.py external-evidence \
   --out data/falsiflow/external_evidence.json \
   --force
@@ -141,17 +138,7 @@ and `publish_checklist.md`. `publish-kit` writes `publish_handoff.json`,
 package so account-bound GitHub/Pages/PyPI steps have a reviewable handoff
 artifact, a one-page final evidence ledger, and a public release rehearsal with
 ordered commands, expected artifacts, success signals, and stop conditions.
-`launch-kit` adds
-`launch_summary.json`,
-`proof_card.md`, `announcement.md`, `demo_script.md`,
-`readme_proof_strip.svg`, `social_preview.png`, `social_preview.svg`,
-`github_repo_profile.md`,
-`launch_posts.md`, `launch_metrics.json`, `launch_metrics.md`, and
-`maintainer_checklist.md` so public launch copy, GitHub repository profile
-settings, social preview imagery, proof points, and 1k-star launch tracking are
-reviewed before account-bound publishing. The nested publish handoff also
-includes `release_rehearsal.md` so launch reviewers can rehearse the final
-public release path before announcements. `external-evidence` writes a fillable JSON
+`external-evidence` writes a fillable JSON
 template for hosted demo, public PyPI package URL plus PyPI JSON API proof,
 checkout-based pipx smoke, public-package pipx smoke, and Windows/PowerShell
 smoke evidence.

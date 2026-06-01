@@ -3,7 +3,7 @@
 This reference is generated from the active `argparse` command tree.
 
 - Status: `cli_reference_ready`
-- Commands: 58
+- Commands: 57
 
 Regenerate it with:
 
@@ -17,7 +17,7 @@ falsiflow cli-reference --out docs/falsiflow_cli_reference.md
 - Discovery and evidence import: `falsiflow discover`, `falsiflow agent`, `falsiflow agent discover`, `falsiflow mcp`, `falsiflow candidate`, `falsiflow candidate rank`, `falsiflow assay-plan`, `falsiflow evidence`, `falsiflow evidence import`, `falsiflow ingest-limina-source-values`, `falsiflow ingest-wide-csv`
 - First-run and browser workflows: `falsiflow start`, `falsiflow onboard`, `falsiflow try`, `falsiflow wizard`, `falsiflow serve`, `falsiflow quickstart`, `falsiflow doctor`
 - Project setup: `falsiflow init`, `falsiflow scaffold`
-- Release and public adoption: `falsiflow static-demo`, `falsiflow demo-package`, `falsiflow publish-kit`, `falsiflow launch-kit`, `falsiflow external-evidence`, `falsiflow external-check`, `falsiflow release-proof`, `falsiflow casebook-check`, `falsiflow cli-reference`, `falsiflow schema`, `falsiflow selftest`, `falsiflow adoption-check`, `falsiflow release-check`
+- Release and public adoption: `falsiflow static-demo`, `falsiflow demo-package`, `falsiflow publish-kit`, `falsiflow external-evidence`, `falsiflow external-check`, `falsiflow release-proof`, `falsiflow casebook-check`, `falsiflow cli-reference`, `falsiflow schema`, `falsiflow selftest`, `falsiflow adoption-check`, `falsiflow release-check`
 - Template supply chain: `falsiflow template-scaffold`, `falsiflow templates`, `falsiflow template-gallery`, `falsiflow template-check`, `falsiflow template-pack`, `falsiflow verify-template-pack`, `falsiflow template-registry`, `falsiflow template-lock`, `falsiflow template-attest`, `falsiflow verify-template-attestation`, `falsiflow template-policy`, `falsiflow verify-template-policy`, `falsiflow template-release`, `falsiflow verify-template-release`, `falsiflow template-install`
 
 ## Command Index
@@ -30,7 +30,6 @@ falsiflow cli-reference --out docs/falsiflow_cli_reference.md
 | `falsiflow static-demo` | Export a hostable static demo site for zero-install visitors. |
 | `falsiflow demo-package` | Prepare a GitHub Pages/Netlify-ready static demo package. |
 | `falsiflow publish-kit` | Generate a local handoff kit for GitHub Pages, external readiness, and PyPI release steps. |
-| `falsiflow launch-kit` | Generate public launch copy, demo script, proof card, and maintainer checklist. |
 | `falsiflow external-evidence` | Write a structured JSON template for hosted demo, PyPI, pipx, and Windows validation evidence. |
 | `falsiflow external-check` | Check public release dependencies such as hosted demo URL, repo URL, PyPI package URL, pipx, and Windows validation. |
 | `falsiflow release-proof` | Generate a copy-paste release proof snippet from External Evidence artifacts. |
@@ -206,29 +205,6 @@ falsiflow publish-kit [-h] [--template TEMPLATE]
 | `--tag` | `TAG` | `no` | `v0.1.1` | Release tag to include in generated GitHub commands. |
 | `--force` | `` | `no` | `False` | Allow replacing an existing publish-kit directory. |
 | `--json` | `` | `no` | `False` | Print machine-readable publish handoff summary. |
-
-### `falsiflow launch-kit`
-
-Generate public launch copy, demo script, proof card, and maintainer checklist.
-
-```text
-falsiflow launch-kit [-h] [--template TEMPLATE]
-                            [--template-root TEMPLATE_ROOT]
-                            [--out-dir OUT_DIR] [--repo-slug REPO_SLUG]
-                            [--public-demo-url PUBLIC_DEMO_URL] [--tag TAG]
-                            [--force] [--json]
-```
-
-| Argument | Value | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--template` | `TEMPLATE` | `no` | `biointerface_coatings` | Starter template to use in the nested public demo package. |
-| `--template-root` | `TEMPLATE_ROOT` | `no` | `[]` | Extra template root to search before bundled templates. Repeatable. |
-| `--out-dir` | `OUT_DIR` | `no` | `falsiflow_launch_kit` | Directory for public launch materials. |
-| `--repo-slug` | `REPO_SLUG` | `no` | `` | Optional GitHub repo slug such as OWNER/falsiflow. |
-| `--public-demo-url` | `PUBLIC_DEMO_URL` | `no` | `` | Optional hosted public demo URL. |
-| `--tag` | `TAG` | `no` | `v0.1.1` | Release tag to include in launch materials. |
-| `--force` | `` | `no` | `False` | Allow replacing an existing launch-kit directory. |
-| `--json` | `` | `no` | `False` | Print machine-readable launch kit summary. |
 
 ### `falsiflow external-evidence`
 
@@ -459,6 +435,7 @@ falsiflow evidence import [-h] --input INPUT --out OUT
 | `--instrument-id-column` | `INSTRUMENT_ID_COLUMN` | `no` | `` |  |
 | `--notes` | `NOTES` | `no` | `` |  |
 | `--notes-column` | `NOTES_COLUMN` | `no` | `` |  |
+
 ### `falsiflow try`
 
 Run a 30-second starter demo and write a local browser launchpad.

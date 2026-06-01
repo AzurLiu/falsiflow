@@ -106,8 +106,6 @@ def release_review_artifact_index(summary: dict[str, object]) -> list[dict[str, 
     claim_outputs = claim_summary.get("outputs", {}) if isinstance(claim_summary, dict) and isinstance(claim_summary.get("outputs"), dict) else {}
     template_release_verification = summary.get("template_release_verification_summary", {})
     release_artifacts = template_release_verification if isinstance(template_release_verification, dict) else {}
-    launch_kit_summary = summary.get("launch_kit_summary", {})
-    launch_outputs = launch_kit_summary.get("outputs", {}) if isinstance(launch_kit_summary, dict) and isinstance(launch_kit_summary.get("outputs"), dict) else {}
     demo_package_summary = summary.get("demo_package_summary", {})
     demo_outputs = demo_package_summary.get("outputs", {}) if isinstance(demo_package_summary, dict) and isinstance(demo_package_summary.get("outputs"), dict) else {}
     publish_kit_summary = summary.get("publish_kit_summary", {})
@@ -167,24 +165,6 @@ def release_review_artifact_index(summary: dict[str, object]) -> list[dict[str, 
             "status": str(summary.get("demo_package_status", "")),
             "path": str(demo_outputs.get("summary", "") or artifact_root / "public_demo" / "demo_package_summary.json"),
             "purpose": "Hostable static demo package used for zero-install public review.",
-        },
-        {
-            "artifact": "Launch proof card",
-            "status": str(summary.get("launch_kit_status", "")),
-            "path": str(launch_outputs.get("proof_card_report", "") or artifact_root / "launch_kit" / "proof_card.md"),
-            "purpose": "Concise public proof points, try commands, verification commands, and responsible-use boundary.",
-        },
-        {
-            "artifact": "Launch metrics tracker",
-            "status": str(launch_kit_summary.get("launch_metrics_status", "") if isinstance(launch_kit_summary, dict) else ""),
-            "path": str(launch_outputs.get("launch_metrics_report", "") or artifact_root / "launch_kit" / "launch_metrics.md"),
-            "purpose": "1k-star launch tracking for traffic, referrers, stars, demo visits, install signals, questions, and follow-up fixes.",
-        },
-        {
-            "artifact": "Launch posts",
-            "status": str(summary.get("launch_kit_status", "")),
-            "path": str(launch_outputs.get("launch_posts", "") or artifact_root / "launch_kit" / "launch_posts.md"),
-            "purpose": "Draft public launch copy for review before account-bound publishing.",
         },
         {
             "artifact": "External readiness report",
@@ -251,7 +231,6 @@ def render_release_check_report(summary: dict[str, object]) -> str:
         f"- Verified bundles: {summary.get('bundle_verified_count', 0)}",
         f"- Demo package: `{summary.get('demo_package_status', '')}`",
         f"- Publish kit: `{summary.get('publish_kit_status', '')}`",
-        f"- Launch kit: `{summary.get('launch_kit_status', '')}`",
         f"- External readiness: `{summary.get('external_check_status', '')}`",
         f"- Failures: {summary.get('failure_count', 0)}",
         "",
@@ -1144,8 +1123,8 @@ def package_release_checks(root: Path) -> dict[str, object]:
         add("onboard_docs", all(token in cli_docs_text + makefile_text for token in ["falsiflow onboard", "onboard-check:"]), "CLI docs document beginner onboarding.", cli_reference_path)
         add("static_demo_docs", all(token in launch_docs_text + cli_reference_text + makefile_text for token in ["falsiflow static-demo", "static-demo:", "GitHub Pages"]), "CLI and launch docs document static zero-install demo export.", cli_reference_path)
         add("demo_package_docs", all(token in launch_docs_text + cli_reference_text for token in ["falsiflow demo-package", "demo_package_summary.json", "FALSIFLOW_PUBLIC_DEMO_URL"]), "CLI and launch docs document public demo packaging and hosted URL handoff.", cli_reference_path)
-        add("publish_kit_docs", all(token in launch_docs_text + cli_reference_text for token in ["falsiflow publish-kit", "publish_handoff.json", "public_release_evidence.json", "release_rehearsal.json", "Scorecard"]), "CLI and release docs document the public release handoff kit, evidence ledger, and account-bound rehearsal.", release_path)
-        add("launch_kit_docs", all(token in launch_docs_text + cli_reference_text for token in ["falsiflow launch-kit", "launch_summary.json", "proof_card.md", "social_preview.png", "launch_metrics.json", "public_release_evidence.md", "maintainer_checklist.md"]), "CLI and launch docs document public launch materials, proof-card generation, social preview assets, launch metrics, publish evidence, and maintainer checklist.", launch_plan_path)
+        add("publish_kit_docs", all(token in launch_docs_text + cli_reference_text for token in ["falsiflow publish-kit", "publish_handoff.json", "public_release_evidence.json", "release_rehearsal.json", "Scorecard"]) and "falsiflow launch-kit" not in cli_reference_text, "CLI and release docs document the public release handoff kit while generated launch materials stay out of the public CLI reference.", release_path)
+        add("public_cli_no_launch_kit", "falsiflow launch-kit" not in cli_reference_text + makefile_text, "Public CLI reference and Makefile no longer advertise maintainer launch-material generation as a user-facing command.", cli_reference_path)
         add("launch_metrics_docs", all(token in launch_docs_text for token in ["launch metrics", "GitHub traffic", "stars", "forks", "demo visits", "install/download signals", "launch_metrics.json", "launch_metrics.md", "local/private validation"]), "Launch docs, adoption priorities, and roadmap document post-launch metrics tracking and validation boundaries for the 1k-star path.", adoption_priorities_path)
         add(
             "public_issue_queue_docs",
@@ -1160,7 +1139,7 @@ def package_release_checks(root: Path) -> dict[str, object]:
                     "issues/39",
                     "short launch GIF",
                     "falsiflow_live_pr_story_reel.svg",
-                    "falsiflow_launch_gif_check",
+                    "falsiflow_launch_gif_release_check",
                     "help wanted",
                     "good first issue",
                     "claim_check_blocked",
@@ -1263,7 +1242,7 @@ def package_release_checks(root: Path) -> dict[str, object]:
                 "Falsiflow Launch Execution",
                 "Pre-public-post baseline",
                 "upload-ready social preview release",
-                "social_preview.png",
+                "docs/assets/",
                 "0 stars",
                 "2 forks",
                 "open issues #22 and #39",
@@ -1396,7 +1375,7 @@ def package_release_checks(root: Path) -> dict[str, object]:
         add("workbench_docs", all(token in docs_reference_text for token in ["workbench.html", "ready/blocked status", "review flow", "evidence lineage", "repair checklist", "source manifest", "bundle verification"]), "Docs document the browser workbench closed loop without crowding the README launch surface.", adoption_priorities_path)
         add("discover_docs", all(token in public_interface_docs_text + docs_reference_text for token in ["falsiflow discover", "evidence_records.json", "candidate_queue.json", "claim_ready=false"]), "CLI and architecture docs document structured discovery outputs and the non-claim boundary.", cli_reference_path)
         add("public_interface_docs", all(token in public_interface_docs_text for token in ["falsiflow agent discover", "falsiflow candidate rank", "falsiflow assay-plan", "falsiflow evidence import"]), "CLI docs document the structured discovery and evidence public interfaces.", cli_reference_path)
-        add("makefile_entrypoints", all(token in makefile_text for token in ["install-local:", "pipx-install:", "start:", "start-check:", "onboard-check:", "static-demo:", "demo-package:", "publish-kit:", "launch-kit:", "external-evidence:", "external-check:", "release-proof:", "cli-reference:", "casebook-check:", "release-check:"]), "Makefile exposes install, pipx, start, onboarding, static-demo, demo-package, publish-kit, launch-kit, external-evidence, external-check, release-proof, cli-reference, casebook-check, and release-check shortcuts.", makefile_path)
+        add("makefile_entrypoints", all(token in makefile_text for token in ["install-local:", "pipx-install:", "start:", "start-check:", "onboard-check:", "static-demo:", "demo-package:", "publish-kit:", "external-evidence:", "external-check:", "release-proof:", "cli-reference:", "casebook-check:", "release-check:"]), "Makefile exposes install, pipx, start, onboarding, demo, release, external-readiness, and casebook shortcuts without surfacing maintainer launch-material generation.", makefile_path)
         add("github_ci_workflow", all(token in github_ci_text for token in ["regress_falsiflow_core.py", "release-check", "template-pack", "template-release", "demo-package", "agent discover", "evidence import", "evidence-record", "Reusable action smoke", "Reusable action local LLM import smoke", "mode: evidence-import", "uses: ./", "ai_claim_evaluation"]), "GitHub Actions CI workflow covers regression, release-check, public interfaces, template supply-chain gates, reusable-action smoke, and local LLM evidence-import smoke.", github_ci_path)
         add("github_action_entrypoint", all(token in action_text for token in ["using: composite", "actions/setup-python@v6", "install-command", "GITHUB_ACTION_PATH", "mode", "claim-check", "evidence-import", "template-check", "casebook-check", "release-check", "adoption-check", "quickstart", "external-check", "summary-json", "GITHUB_OUTPUT"]), "Reusable GitHub Action exposes supported Falsiflow gates, evidence import, current Python setup action, default action-checkout install, install override, and output metadata.", action_path)
         add("github_action_yaml_safe", not action_description_colon_conflicts and 'description: "Gate to run:' in action_text, "Reusable GitHub Action metadata quotes colon-bearing descriptions for YAML safety.", action_path)
@@ -1441,7 +1420,7 @@ def package_release_checks(root: Path) -> dict[str, object]:
         add("license_mit", "MIT License" in license_text, "LICENSE declares MIT License.", license_path)
         add("changelog_current_version", bool(current_version) and current_version in changelog_text, "CHANGELOG includes the current version.", changelog_path)
         add("contributing_gates", all(token in contributing_text for token in ["release-check", "casebook-check", "claim_ready", "CHANGELOG.md", "CODE_OF_CONDUCT.md", "SUPPORT.md", "GOVERNANCE.md", "CITATION.cff", "ROADMAP.md", "falsiflow_architecture.md", "falsiflow_data_contract.md", "falsiflow_adapter_profiles.md", "falsiflow_casebook_check.md", "falsiflow_template_authoring.md", "falsiflow_troubleshooting.md"]), "CONTRIBUTING.md documents gates, tests, changelog, and community, citation, governance, architecture, data-contract, adapter-profile, casebook-check, template authoring, and troubleshooting expectations.", contributing_path)
-        add("release_checklist", all(token in release_text for token in ["release_ready", "package_ready", "dist_ready", "release_validation_ready", "demo_package_ready", "publish_kit_ready", "launch_kit_ready", "downstream_smoke_replay_ready", "launch_metrics.json", "launch_metrics.md", "public_release_evidence.json", "public_release_evidence.md", "release_rehearsal.json", "release_rehearsal.md", "public release rehearsal", "casebook_check_ready", "mcp --selftest --json", "mcp_selftest_ready", "external-evidence", "external_check_status", "falsiflow release-proof", "release_proof.md", "pypi_version_match=passed", "public_package_claim_check=passed", "public PyPI package URL", "PyPI JSON API", "expected_version", "published_version", "falsiflow_pypi_project.json", "falsiflow_expected_version.txt", "falsiflow_pypi_version.txt", "falsiflow_public_package_first_run_quickstart.json", "falsiflow_public_package_first_run_doctor.json", "falsiflow_public_package_claim_check.json", "falsiflow_public_package_mcp_selftest.json", "invalid-publisher", "falsiflow-publish.yml", "public-package pipx", "public-package first-run quickstart/doctor", "public-package claim-check", "public-package MCP selftest", "Falsiflow External Evidence", "falsiflow_external_evidence.json", "release-check", "casebook-check", "Release Review Artifact Index", "Review Artifact Index", "PyPI package metadata", "requires-python", "classifiers", "project URLs", "action.yml", "GitHub Action", "evidence-import", "examples/downstream_ai_eval_smoke", "examples/downstream_product_metric_smoke", "examples/downstream_rag_eval_smoke", "examples/local_llm_eval_import", "reusable-action quickstart smoke", "CODE_OF_CONDUCT.md", "SUPPORT.md", "ROADMAP.md", "CITATION.cff", "GOVERNANCE.md", "falsiflow_architecture.md", "falsiflow_data_contract.md", "falsiflow_adapter_profiles.md", "falsiflow_mcp.md", "falsiflow_casebook_check.md", "falsiflow_security_posture.md", "falsiflow_template_authoring.md", "falsiflow_troubleshooting.md", "falsiflow_1k_launch_plan.md", "Dependabot", "Falsiflow Scorecard"]), "RELEASE.md documents required release gates, MCP selftest, review artifact indexes, launch metrics, 1k launch plan, public release evidence ledger, release rehearsal, release-proof snippets, reusable GitHub Action evidence import, downstream fixture replay, local LLM fixture, public package, public-package first-run, claim-check, and MCP selftest, and PyPI JSON expected-version evidence, PyPI trusted-publisher recovery, casebook proof artifacts, external evidence workflow artifacts, package metadata checks, community trust files, citation/governance files, architecture docs, data-contract docs, adapter-profile docs, MCP docs, template authoring docs, troubleshooting docs, and security automation.", release_path)
+        add("release_checklist", all(token in release_text for token in ["release_ready", "package_ready", "dist_ready", "release_validation_ready", "demo_package_ready", "publish_kit_ready", "downstream_smoke_replay_ready", "public_release_evidence.json", "public_release_evidence.md", "release_rehearsal.json", "release_rehearsal.md", "public release rehearsal", "casebook_check_ready", "mcp --selftest --json", "mcp_selftest_ready", "external-evidence", "external_check_status", "falsiflow release-proof", "release_proof.md", "pypi_version_match=passed", "public_package_claim_check=passed", "public PyPI package URL", "PyPI JSON API", "expected_version", "published_version", "falsiflow_pypi_project.json", "falsiflow_expected_version.txt", "falsiflow_pypi_version.txt", "falsiflow_public_package_first_run_quickstart.json", "falsiflow_public_package_first_run_doctor.json", "falsiflow_public_package_claim_check.json", "falsiflow_public_package_mcp_selftest.json", "invalid-publisher", "falsiflow-publish.yml", "public-package pipx", "public-package first-run quickstart/doctor", "public-package claim-check", "public-package MCP selftest", "Falsiflow External Evidence", "falsiflow_external_evidence.json", "release-check", "casebook-check", "Release Review Artifact Index", "Review Artifact Index", "PyPI package metadata", "requires-python", "classifiers", "project URLs", "action.yml", "GitHub Action", "evidence-import", "examples/downstream_ai_eval_smoke", "examples/downstream_product_metric_smoke", "examples/downstream_rag_eval_smoke", "examples/local_llm_eval_import", "reusable-action quickstart smoke", "CODE_OF_CONDUCT.md", "SUPPORT.md", "ROADMAP.md", "CITATION.cff", "GOVERNANCE.md", "falsiflow_architecture.md", "falsiflow_data_contract.md", "falsiflow_adapter_profiles.md", "falsiflow_mcp.md", "falsiflow_casebook_check.md", "falsiflow_security_posture.md", "falsiflow_template_authoring.md", "falsiflow_troubleshooting.md", "falsiflow_1k_launch_plan.md", "Dependabot", "Falsiflow Scorecard"]) and "launch_kit_ready" not in release_text, "RELEASE.md documents required release gates, MCP selftest, review artifact indexes, public release evidence ledger, release rehearsal, release-proof snippets, reusable GitHub Action evidence import, downstream fixture replay, local LLM fixture, public package, public-package first-run, claim-check, and MCP selftest without making launch copy a release gate.", release_path)
         add("architecture_docs", all(token in architecture_text for token in ["Core Data Model", "Command Flow", "Module Map", "Release Invariants", "Extension Points", "falsiflow_data_contract.md", "claim_ready", "release-check"]), "Architecture doc explains data model, command flow, module map, release invariants, extension points, data contract, and release-check coverage.", architecture_path)
         add("data_contract_docs", all(token in data_contract_text for token in ["Stable Inputs", "Evidence CSV", "JSON Status Contract", "Report Artifacts", "Source Provenance", "JSON Schemas", "Integration Guidance", "claim_check_ready", "external_ready", "source_file"]), "Data contract doc explains stable inputs, evidence CSV fields, JSON status, report artifacts, source provenance, schemas, integration guidance, and ready statuses.", data_contract_path)
         add("adapter_profiles_docs", all(token in adapter_profiles_text for token in ["Falsiflow Adapter Profiles", "generic-wide", "vendor-measurement", "instrument-export", "plate-reader", "local-llm-eval", "rag-eval", "falsiflow_local_llm_eval.md", "falsiflow_rag_quality_gate_proposal.md", "examples/local_llm_eval_import", "examples/downstream_rag_eval_smoke", "coverage_ready", "claim_check_ready", "evidence-package readiness", "mode: evidence-import", "adapter_profile", "adapter_settings"]), "Adapter profile doc explains built-in CSV import profiles, local LLM and RAG eval proof handoffs, maintained fixtures, action import mode, summary fields, overrides, and coverage checks.", adapter_profiles_path)
@@ -1829,7 +1808,6 @@ def run_release_check(
     demo_package_runner: Callable[..., Any],
     external_check_runner: Callable[..., Any],
     publish_kit_runner: Callable[..., Any],
-    launch_kit_runner: Callable[..., Any],
     quickstart_runner: Callable[..., Any],
     doctor_runner: Callable[..., Any],
     default_evidence_path: Callable[..., Any],
@@ -1923,49 +1901,6 @@ def run_release_check(
     except Exception as exc:  # pragma: no cover - defensive CLI boundary.
         publish_kit_summary = {"status": "publish_kit_failed", "message": str(exc)}
         failures.append(failure_record("publish_kit", "handoff", str(exc)))
-
-    try:
-        launch_kit_summary = launch_kit_runner(artifact_root / "launch_kit", "biointerface_coatings", [], force=True)
-        if launch_kit_summary.get("status") != "launch_kit_ready":
-            failures.append(failure_record("launch_kit", "handoff", f"Launch kit ended as {launch_kit_summary.get('status', '')}."))
-        else:
-            launch_kit_dir = artifact_root / "launch_kit"
-            launch_content_checks = {
-                "launch_posts": (
-                    launch_kit_dir / "launch_posts.md",
-                    ["Channel Checklist", "Hacker News / Show HN", "Reddit / community threads", "LinkedIn", "Awesome lists / ecosystem repos", "responsible-use boundary", "launch_metrics.md", "Show HN", "unverifiable AI eval claims", f"AzurLiu/falsiflow@v{FALSIFLOW_VERSION}", "falsiflow-downstream-ai-eval-demo", "26711652990", "26711669112", "falsiflow-downstream-rag-eval-demo", "26721829145", "26721856616", "falsiflow-downstream-product-metric-demo", "26726360229", "26726392921", "AI eval downstream PR", "RAG eval downstream PR", "Product metric downstream PR", "Demo PR playbook", "Reply Bank", "Great Expectations", "GITHUB_ACTION_PATH", "claim_check_blocked", "claim_check_ready"],
-                ),
-                "launch_github_repo_profile": (
-                    launch_kit_dir / "github_repo_profile.md",
-                    ["Upload `social_preview.png`", "social_preview.svg", "Live AI eval downstream PR proof", "AI eval blocked CI run", "AI eval ready CI run", "Live RAG eval downstream PR proof", "RAG eval blocked CI run", "RAG eval ready CI run", "Live product metric downstream PR proof", "Product metric blocked CI run", "Product metric ready CI run", "falsiflow-downstream-ai-eval-demo", "falsiflow-downstream-rag-eval-demo", "falsiflow-downstream-product-metric-demo", "26711652990", "26711669112", "26721829145", "26721856616", "26726360229", "26726392921"],
-                ),
-                "launch_announcement": (
-                    launch_kit_dir / "announcement.md",
-                    ["Falsiflow is a CI gate for claims", "falsiflow_demo_pr_playbook.md", "claim_check_blocked", "claim_check_ready", "Public Release Boundary"],
-                ),
-                "launch_demo_script": (
-                    launch_kit_dir / "demo_script.md",
-                    ["## 2:15 Demo PR", "evidence_placeholder_demo.csv", "evidence_pass_demo.csv", "claim_check_blocked", "claim_check_ready"],
-                ),
-                "launch_maintainer_checklist": (
-                    launch_kit_dir / "maintainer_checklist.md",
-                    ["falsiflow_demo_pr_playbook.md", "claim_check_blocked", "claim_check_ready", "Launch Metrics"],
-                ),
-                "launch_metrics": (
-                    launch_kit_dir / "launch_metrics.md",
-                    ["demo PR playbook", "demo PR replay", "day-14", "Falsiflow 1k-Star Launch Tracker"],
-                ),
-            }
-            for check_id, (path, tokens) in launch_content_checks.items():
-                text = path.read_text(encoding="utf-8") if path.exists() else ""
-                missing_tokens = [token for token in tokens if token not in text]
-                if missing_tokens:
-                    failures.append(failure_record("launch_kit_content", check_id, f"Missing launch-kit content tokens: {', '.join(missing_tokens)}"))
-                if check_id in {"launch_announcement", "launch_demo_script", "launch_posts"} and text.count("```") % 2:
-                    failures.append(failure_record("launch_kit_content", check_id, "Markdown code fences are not balanced."))
-    except Exception as exc:  # pragma: no cover - defensive CLI boundary.
-        launch_kit_summary = {"status": "launch_kit_failed", "message": str(exc)}
-        failures.append(failure_record("launch_kit", "handoff", str(exc)))
 
     quickstart_summary: dict[str, object]
     try:
@@ -2444,8 +2379,6 @@ def run_release_check(
         "external_check_summary": external_check_summary,
         "publish_kit_status": publish_kit_summary.get("status", ""),
         "publish_kit_summary": publish_kit_summary,
-        "launch_kit_status": launch_kit_summary.get("status", ""),
-        "launch_kit_summary": launch_kit_summary,
         "quickstart_status": quickstart_summary.get("status", ""),
         "quickstart_summary": quickstart_summary,
         "doctor_status": doctor_summary.get("status", ""),

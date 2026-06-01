@@ -171,22 +171,19 @@ falsiflow release-check --out-dir data/falsiflow/release_check --force
 
 ### Public Launch
 
-Use Falsiflow when the repository needs a public demo, launch copy, proof card,
-release rehearsal, and external validation evidence before calling a release
-externally ready.
+Use Falsiflow when the repository needs a public demo, release rehearsal, and
+external validation evidence before calling a release externally ready.
 
 Proof path:
 
 ```bash
-falsiflow launch-kit --out-dir falsiflow_launch_kit --force
 falsiflow external-evidence --out falsiflow_external_evidence.json --force
 falsiflow external-check --out-dir falsiflow_external_check --evidence falsiflow_external_evidence.json --force
 ```
 
 The generated `release_rehearsal.md` keeps the last-mile sequence explicit:
-local regression, release-check, casebook replay, launch-kit review, external
-evidence capture, `external-check --strict`, and public announcement stop
-conditions.
+local regression, release-check, casebook replay, external evidence capture,
+`external-check --strict`, and public announcement stop conditions.
 
 ## Decision Rubric
 

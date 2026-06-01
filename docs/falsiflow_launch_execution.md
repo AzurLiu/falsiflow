@@ -40,9 +40,9 @@ follow-up checks. Use it after the current public release evidence is green.
 - Live PR demo: <https://github.com/AzurLiu/falsiflow/pull/17>
 - Blocked PR run: <https://github.com/AzurLiu/falsiflow/actions/runs/26708459093>
 - Ready PR run: <https://github.com/AzurLiu/falsiflow/actions/runs/26708472653>
-- Social preview source: run
-  `falsiflow launch-kit --out-dir falsiflow_launch_kit --force`, then review
-  and upload `social_preview.png` in GitHub repository settings.
+- Social preview source: use the checked-in proof-strip assets under
+  `docs/assets/`, then review and upload the chosen PNG in GitHub repository
+  settings.
 - Pre-public-post baseline recorded on 2026-06-01 05:49 CST after the
   upload-ready social preview release:
   0 stars, 2 forks, 0 watchers, 8 total views, 1 unique view, 466 total clones,

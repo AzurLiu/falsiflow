@@ -435,7 +435,6 @@ def assert_schema_contract() -> None:
     assert "demo_package_status" in release_schema["required"]
     assert "external_check_status" in release_schema["required"]
     assert "publish_kit_status" in release_schema["required"]
-    assert "launch_kit_status" in release_schema["required"]
     assert "template_check_ready_count" in release_schema["required"]
     assert "template_pack_verification_status" in release_schema["required"]
     assert "template_install_status" in release_schema["required"]
@@ -1805,6 +1804,7 @@ def assert_cli_contract() -> None:
         assert cli_reference_summary["status"] == "cli_reference_ready"
         commands = {record["command"] for record in cli_reference_summary["commands"]}
         assert {"start", "cli-reference", "release-check", "release-proof", "external-evidence", "casebook-check", "evidence import", "template-release"} <= commands
+        assert "launch-kit" not in commands
         assert cli_reference_summary["command_count"] >= 50
         assert cli_reference_md.exists()
         assert cli_reference_json.exists()
@@ -3021,7 +3021,7 @@ def assert_cli_contract() -> None:
             "static_demo_docs",
             "demo_package_docs",
             "publish_kit_docs",
-            "launch_kit_docs",
+            "public_cli_no_launch_kit",
             "launch_metrics_docs",
             "launch_execution_exists",
             "launch_execution_docs",
@@ -3159,7 +3159,7 @@ def assert_cli_contract() -> None:
         assert release_summary["template_count"] == EXPECTED_TEMPLATE_COUNT
         assert release_summary["bundle_verified_count"] == EXPECTED_TEMPLATE_COUNT
         assert release_summary["failure_count"] == 0
-        assert any(artifact["artifact"] == "Launch metrics tracker" for artifact in release_summary["release_review_artifact_index"])
+        assert not any("Launch" in artifact["artifact"] for artifact in release_summary["release_review_artifact_index"])
         assert any(artifact["artifact"] == "Public release evidence ledger" for artifact in release_summary["release_review_artifact_index"])
         assert any(artifact["artifact"] == "Public release rehearsal" for artifact in release_summary["release_review_artifact_index"])
         assert (release_check_out / "release_check.json").exists()
@@ -3179,9 +3179,6 @@ def assert_cli_contract() -> None:
         assert (release_check_out / "casebook_check" / "casebook_reviewer_replay.ps1").exists()
         assert (release_check_out / "claim_check" / "claim_check.json").exists()
         assert (release_check_out / "claim_check" / "claim_check.md").exists()
-        assert (release_check_out / "launch_kit" / "launch_summary.json").exists()
-        assert (release_check_out / "launch_kit" / "launch_metrics.json").exists()
-        assert (release_check_out / "launch_kit" / "launch_metrics.md").exists()
         assert (release_check_out / "publish_kit" / "public_release_evidence.json").exists()
         assert (release_check_out / "publish_kit" / "public_release_evidence.md").exists()
         assert (release_check_out / "publish_kit" / "release_rehearsal.json").exists()
@@ -3190,7 +3187,6 @@ def assert_cli_contract() -> None:
         assert "Adoption Repair Checklist" in release_report
         assert "Release Review Artifact Index" in release_report
         assert "Template release verification" in release_report
-        assert "Launch metrics tracker" in release_report
         assert "Public release evidence ledger" in release_report
         assert "Public release rehearsal" in release_report
         assert "Downstream Smoke Replay" in release_report
@@ -3204,7 +3200,6 @@ def assert_cli_contract() -> None:
         assert (release_check_out / "downstream_smoke_replay" / "downstream_rag_eval_smoke" / "blocked" / "claim_check.json").exists()
         assert (release_check_out / "downstream_smoke_replay" / "downstream_rag_eval_smoke" / "ready" / "claim_check.json").exists()
         assert "claim_check/claim_check.md" in release_report
-        assert "launch_kit/launch_metrics.md" in release_report
         assert "publish_kit/public_release_evidence.md" in release_report
         assert "publish_kit/release_rehearsal.md" in release_report
         assert "Release validation: `release_validation_ready`" in release_report
