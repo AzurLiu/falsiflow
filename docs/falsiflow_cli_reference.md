@@ -3,7 +3,7 @@
 This reference is generated from the active `argparse` command tree.
 
 - Status: `cli_reference_ready`
-- Commands: 57
+- Commands: 58
 
 Regenerate it with:
 
@@ -13,7 +13,7 @@ falsiflow cli-reference --out docs/falsiflow_cli_reference.md
 
 ## Command Families
 
-- Core audit and bundle operations: `falsiflow demo`, `falsiflow validate`, `falsiflow portfolio`, `falsiflow render`, `falsiflow audit`, `falsiflow claim-check`, `falsiflow bundle`, `falsiflow verify-bundle`, `falsiflow next`, `falsiflow sources`
+- Core audit and bundle operations: `falsiflow demo`, `falsiflow validate`, `falsiflow portfolio`, `falsiflow render`, `falsiflow audit`, `falsiflow check`, `falsiflow claim-check`, `falsiflow bundle`, `falsiflow verify-bundle`, `falsiflow next`, `falsiflow sources`
 - Discovery and evidence import: `falsiflow discover`, `falsiflow agent`, `falsiflow agent discover`, `falsiflow mcp`, `falsiflow candidate`, `falsiflow candidate rank`, `falsiflow assay-plan`, `falsiflow evidence`, `falsiflow evidence import`, `falsiflow ingest-limina-source-values`, `falsiflow ingest-wide-csv`
 - First-run and browser workflows: `falsiflow start`, `falsiflow onboard`, `falsiflow try`, `falsiflow wizard`, `falsiflow serve`, `falsiflow quickstart`, `falsiflow doctor`
 - Project setup: `falsiflow init`, `falsiflow scaffold`
@@ -74,6 +74,7 @@ falsiflow cli-reference --out docs/falsiflow_cli_reference.md
 | `falsiflow portfolio` | Aggregate claim_summary.json files into a portfolio dashboard. |
 | `falsiflow render` | Render measurement templates and an audit report. |
 | `falsiflow audit` | Audit evidence against configured gates. |
+| `falsiflow check` | Check whether a numeric claim has reviewable evidence. |
 | `falsiflow claim-check` | Run audit, source provenance, evidence bundle, and zip verification in one command. |
 | `falsiflow bundle` | Build a portable evidence bundle with audit artifacts, sources, and hashes. |
 | `falsiflow verify-bundle` | Verify a bundle directory or zip archive against its manifest and hashes. |
@@ -1048,6 +1049,24 @@ falsiflow audit [-h] --config CONFIG --evidence EVIDENCE
 | `--evidence` | `EVIDENCE` | `yes` | `` |  |
 | `--out-dir` | `OUT_DIR` | `yes` | `` |  |
 | `--strict` | `` | `no` | `False` | Exit non-zero when claim_ready is false. |
+
+### `falsiflow check`
+
+Check whether a numeric claim has reviewable evidence.
+
+```text
+falsiflow check [-h] --config CONFIG --evidence EVIDENCE
+                       [--out-dir OUT_DIR] [--strict] [--force] [--json]
+```
+
+| Argument | Value | Required | Default | Help |
+| --- | --- | --- | --- | --- |
+| `--config` | `CONFIG` | `yes` | `` | Project config JSON path. |
+| `--evidence` | `EVIDENCE` | `yes` | `` | Evidence CSV path. |
+| `--out-dir` | `OUT_DIR` | `no` | `falsiflow_check` | Output directory for check artifacts. |
+| `--strict` | `` | `no` | `False` | Exit non-zero unless the claim is ready. |
+| `--force` | `` | `no` | `False` | Allow writing into a non-empty check directory. |
+| `--json` | `` | `no` | `False` | Print machine-readable check summary. |
 
 ### `falsiflow claim-check`
 

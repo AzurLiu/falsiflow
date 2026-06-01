@@ -40,6 +40,10 @@ from falsiflow.core import (  # noqa: E402
 PROJECT_PATH = ROOT / "examples" / "falsiflow" / "neural_materials" / "project.json"
 PASS_EVIDENCE = ROOT / "examples" / "falsiflow" / "neural_materials" / "evidence_pass_demo.csv"
 PLACEHOLDER_EVIDENCE = ROOT / "examples" / "falsiflow" / "neural_materials" / "evidence_placeholder_demo.csv"
+MINIMAL_CLAIM_CONFIG = ROOT / "examples" / "minimal_numeric_claim" / "project.json"
+MINIMAL_PLACEHOLDER_EVIDENCE = ROOT / "examples" / "minimal_numeric_claim" / "evidence_placeholder.csv"
+MINIMAL_BLOCKED_EVIDENCE = ROOT / "examples" / "minimal_numeric_claim" / "evidence_blocked.csv"
+MINIMAL_READY_EVIDENCE = ROOT / "examples" / "minimal_numeric_claim" / "evidence_ready.csv"
 CLI = ROOT / "scripts" / "falsiflow.py"
 EXAMPLE_TEMPLATE_ROOT = ROOT / "examples" / "falsiflow"
 PACKAGE_TEMPLATE_ROOT = ROOT / "falsiflow" / "templates"
@@ -617,6 +621,73 @@ def assert_cli_contract() -> None:
         assert blocked_review["decision"] == "blocked_before_release"
         assert blocked_review["blocking_stage"] == "gate_evidence"
         assert blocked_review["top_blockers"]
+
+        placeholder_check = subprocess.run(
+            [
+                sys.executable,
+                str(CLI),
+                "check",
+                "--config",
+                str(MINIMAL_CLAIM_CONFIG),
+                "--evidence",
+                str(MINIMAL_PLACEHOLDER_EVIDENCE),
+                "--out-dir",
+                str(Path(tmp) / "minimal_placeholder_check"),
+                "--strict",
+                "--force",
+            ],
+            cwd=ROOT,
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        assert placeholder_check.returncode == 2
+        assert placeholder_check.stdout.splitlines()[0] == "claim_blocked"
+        assert "value is blank or placeholder" in placeholder_check.stdout
+
+        weak_lift_check = subprocess.run(
+            [
+                sys.executable,
+                str(CLI),
+                "check",
+                "--config",
+                str(MINIMAL_CLAIM_CONFIG),
+                "--evidence",
+                str(MINIMAL_BLOCKED_EVIDENCE),
+                "--out-dir",
+                str(Path(tmp) / "minimal_weak_lift_check"),
+                "--strict",
+                "--force",
+            ],
+            cwd=ROOT,
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        assert weak_lift_check.returncode == 2
+        assert weak_lift_check.stdout.splitlines()[0] == "claim_blocked"
+        assert "Variant must beat baseline by at least 5%" in weak_lift_check.stdout
+
+        ready_check = subprocess.run(
+            [
+                sys.executable,
+                str(CLI),
+                "check",
+                "--config",
+                str(MINIMAL_CLAIM_CONFIG),
+                "--evidence",
+                str(MINIMAL_READY_EVIDENCE),
+                "--out-dir",
+                str(Path(tmp) / "minimal_ready_check"),
+                "--strict",
+                "--force",
+            ],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        assert ready_check.stdout.splitlines()[0] == "claim_ready"
 
         missing_evidence = subprocess.run(
             [
@@ -1803,7 +1874,7 @@ def assert_cli_contract() -> None:
         cli_reference_summary = json.loads(cli_reference.stdout)
         assert cli_reference_summary["status"] == "cli_reference_ready"
         commands = {record["command"] for record in cli_reference_summary["commands"]}
-        assert {"start", "cli-reference", "release-check", "release-proof", "external-evidence", "casebook-check", "evidence import", "template-release"} <= commands
+        assert {"start", "check", "cli-reference", "release-check", "release-proof", "external-evidence", "casebook-check", "evidence import", "template-release"} <= commands
         assert "launch-kit" not in commands
         assert cli_reference_summary["command_count"] >= 50
         assert cli_reference_md.exists()
@@ -3151,8 +3222,8 @@ def assert_cli_contract() -> None:
         assert {"claim-check", "evidence-import", "template-check", "casebook-check", "release-check", "adoption-check", "quickstart", "external-check"} <= set(action_text.replace(",", " ").split())
         readme_first_screen = (ROOT / "README.md").read_text(encoding="utf-8")[:2400]
         assert "AI eval" in readme_first_screen
-        assert "falsiflow quickstart --template ai_claim_evaluation" in readme_first_screen
-        assert "claim_check_blocked" in readme_first_screen
+        assert "falsiflow check --config" in readme_first_screen
+        assert "claim_blocked" in readme_first_screen
         readme_text = (ROOT / "README.md").read_text(encoding="utf-8")
         assert re.search(r"!\[[^\]]*\]\(docs/assets/", readme_text) is None
         assert "release_validation_ready" in (ROOT / "RELEASE.md").read_text(encoding="utf-8")

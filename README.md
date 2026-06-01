@@ -15,20 +15,24 @@ completed. Current release: `v0.1.39`.
 ## 30 Seconds
 
 ```bash
-pipx install falsiflow
-falsiflow quickstart --template ai_claim_evaluation --out falsiflow_ai_demo --strict
-falsiflow doctor --project-dir falsiflow_ai_demo --strict
+git clone https://github.com/AzurLiu/falsiflow
+cd falsiflow
+pipx install .
+EX=examples/minimal_numeric_claim
+falsiflow check --config "$EX/project.json" --evidence "$EX/evidence_placeholder.csv"
+falsiflow check --config "$EX/project.json" --evidence "$EX/evidence_blocked.csv"
+falsiflow check --config "$EX/project.json" --evidence "$EX/evidence_ready.csv" --strict
 ```
 
 ```text
-quickstart             -> quickstart_ready
-placeholder evidence   -> claim_check_blocked
-source-backed evidence -> claim_check_ready
+placeholder evidence   -> claim_blocked
+weak numeric lift      -> claim_blocked
+source-backed evidence -> claim_ready
 ```
 
-Falsiflow turns vague claims like "the model improved" into a checked evidence
-package: project contract, evidence CSV, source files, source manifest, review
-report, and bundle verification.
+At its core, Falsiflow is a numeric-claim gate: project config, evidence CSV,
+and source file -> `claim_ready` or `claim_blocked` with reasons. It turns
+vague claims like "the model improved" into a checked evidence package.
 
 ## Live Proof
 
@@ -73,6 +77,7 @@ jobs:
 ```
 
 Downstream examples:
+[minimal numeric claim](examples/minimal_numeric_claim),
 [AI eval](examples/downstream_ai_eval_smoke),
 [RAG eval](examples/downstream_rag_eval_smoke),
 [product metric](examples/downstream_product_metric_smoke), and

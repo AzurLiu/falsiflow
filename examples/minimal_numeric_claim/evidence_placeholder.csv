@@ -1,0 +1,3 @@
+gate_id,candidate_id,sample_id,field,value,source_file,measured_at,operator_or_agent,instrument_id,notes
+metric_lift,baseline,experiment_001,activation_rate,0.118,source_files/metrics.csv,2026-05-31T09:00:00Z,analytics_export,warehouse_job,Baseline activation rate.
+metric_lift,variant,experiment_001,activation_rate,pending,source_files/metrics.csv,2026-05-31T09:00:00Z,analytics_export,warehouse_job,Placeholder value should block the claim.

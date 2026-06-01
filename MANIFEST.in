@@ -13,6 +13,7 @@ include Makefile
 include scripts/install_local.sh
 include scripts/install_local.ps1
 include examples/README.md
+recursive-include examples/minimal_numeric_claim *
 recursive-include examples/downstream_ai_eval_smoke *
 recursive-include examples/downstream_ai_eval_smoke/.github/workflows *.yml
 recursive-include examples/downstream_product_metric_smoke *

@@ -363,6 +363,52 @@ def resolve_claim_check_paths(args: argparse.Namespace) -> tuple[Path, Path, Pat
     return config, evidence, out_dir
 
 
+def cmd_check(args: argparse.Namespace) -> int:
+    config = args.config.expanduser()
+    evidence = args.evidence.expanduser()
+    out_dir = args.out_dir.expanduser()
+    if not config.exists():
+        raise SystemExit(f"Project config does not exist: {config}")
+    if not evidence.exists():
+        raise SystemExit(f"Evidence file does not exist: {evidence}")
+
+    summary = run_claim_check(config, evidence, out_dir, force=args.force)
+    check_status = "claim_ready" if summary["status"] == "claim_check_ready" else "claim_blocked"
+    if args.json:
+        compact = {
+            "status": check_status,
+            "claim_check_status": summary["status"],
+            "claim_ready": bool(summary.get("claim_ready")),
+            "blocking_stage": summary.get("blocking_stage", ""),
+            "failure_count": summary.get("failure_count", 0),
+            "blocker_count": summary.get("blocker_count", 0),
+            "report": str(out_dir / "claim_check.md"),
+            "bundle": str(out_dir / "evidence_bundle.zip"),
+            "evidence_todo": summary.get("evidence_todo", []),
+        }
+        print(json.dumps(compact, indent=2, sort_keys=True))
+    else:
+        print(check_status)
+        print(f"stage: {summary.get('blocking_stage', '')}")
+        print(f"failures: {summary.get('failure_count', 0)}")
+        evidence_todo = summary.get("evidence_todo", [])
+        if isinstance(evidence_todo, list) and evidence_todo:
+            print("reasons:")
+            for item in evidence_todo[:5]:
+                if not isinstance(item, dict):
+                    continue
+                key = "/".join(
+                    str(item.get(part, "") or "")
+                    for part in ["gate_id", "candidate_id", "sample_id", "field"]
+                    if item.get(part)
+                )
+                reasons = "; ".join(str(reason) for reason in item.get("reasons", []))
+                print(f"- {key}: {reasons}")
+        print(f"report: {out_dir / 'claim_check.md'}")
+        print(f"bundle: {out_dir / 'evidence_bundle.zip'}")
+    return 0 if check_status == "claim_ready" or not args.strict else 2
+
+
 def cmd_claim_check(args: argparse.Namespace) -> int:
     config, evidence, out_dir = resolve_claim_check_paths(args)
     summary = run_claim_check(config, evidence, out_dir, force=args.force)
@@ -1994,7 +2040,7 @@ def cli_command_category(command: str) -> str:
         return "Template supply chain"
     if root in {"static-demo", "demo-package", "publish-kit", "casebook-check", "external-evidence", "external-check", "release-proof", "adoption-check", "release-check", "selftest", "schema", "cli-reference"}:
         return "Release and public adoption"
-    if root in {"validate", "render", "audit", "claim-check", "bundle", "verify-bundle", "next", "sources", "portfolio", "demo"}:
+    if root in {"validate", "render", "audit", "check", "claim-check", "bundle", "verify-bundle", "next", "sources", "portfolio", "demo"}:
         return "Core audit and bundle operations"
     return "Project setup"
 
@@ -2558,6 +2604,15 @@ def build_parser() -> argparse.ArgumentParser:
     audit.add_argument("--out-dir", type=Path, required=True)
     audit.add_argument("--strict", action="store_true", help="Exit non-zero when claim_ready is false.")
     audit.set_defaults(func=cmd_audit)
+
+    check = sub.add_parser("check", help="Check whether a numeric claim has reviewable evidence.")
+    check.add_argument("--config", type=Path, required=True, help="Project config JSON path.")
+    check.add_argument("--evidence", type=Path, required=True, help="Evidence CSV path.")
+    check.add_argument("--out-dir", type=Path, default=Path("falsiflow_check"), help="Output directory for check artifacts.")
+    check.add_argument("--strict", action="store_true", help="Exit non-zero unless the claim is ready.")
+    check.add_argument("--force", action="store_true", help="Allow writing into a non-empty check directory.")
+    check.add_argument("--json", action="store_true", help="Print machine-readable check summary.")
+    check.set_defaults(func=cmd_check)
 
     claim_check = sub.add_parser("claim-check", help="Run audit, source provenance, evidence bundle, and zip verification in one command.")
     claim_check.add_argument("--project-dir", type=Path, help="Project directory containing project.json and evidence_pass_demo.csv; defaults --out-dir to PROJECT_DIR/claim_check.")
