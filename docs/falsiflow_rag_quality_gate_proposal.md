@@ -26,6 +26,42 @@ The bundled first version keeps all demo evidence local and reviewable:
   rows. Real projects can point rows at separate JSON, JSONL, CSV, and CI
   artifacts.
 
+## Import Proof Snippet
+
+Use the maintained downstream fixture when you want to prove the `rag-eval`
+import path from existing artifacts:
+
+```bash
+cd examples/downstream_rag_eval_smoke
+falsiflow evidence import \
+  --profile rag-eval \
+  --input falsiflow_rag_eval/source_files/rag_eval_raw_export.csv \
+  --out falsiflow_rag_eval/evidence.csv \
+  --summary-out data/falsiflow/rag_eval_import/import_summary.json \
+  --config falsiflow_rag_eval/project.json \
+  --coverage-out data/falsiflow/rag_eval_import/import_coverage.json \
+  --source-file source_files/rag_eval_raw_export.csv \
+  --strict
+falsiflow claim-check \
+  --project-dir falsiflow_rag_eval \
+  --evidence falsiflow_rag_eval/evidence.csv \
+  --out-dir data/falsiflow/rag_eval_import/claim_check \
+  --strict \
+  --force
+```
+
+Expected proof:
+
+```text
+import coverage -> coverage_ready
+claim gate      -> claim_check_ready
+bundle          -> bundle_verified
+```
+
+That is the useful boundary: Falsiflow validates RAG evidence-package
+readiness for review. It does not prove RAG answer quality, retrieval safety,
+or that the system should ship.
+
 ## Gates And Evidence Fields
 
 ### Evaluation Provenance

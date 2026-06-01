@@ -3084,6 +3084,7 @@ def assert_cli_contract() -> None:
             "public_casebook",
             "rag_quality_gate_proposal_exists",
             "rag_quality_gate_proposal_docs",
+            "rag_quality_gate_import_proof_snippet_docs",
             "pypi_trusted_publishing_exists",
             "pypi_trusted_publishing_docs",
             "security_posture_exists",
