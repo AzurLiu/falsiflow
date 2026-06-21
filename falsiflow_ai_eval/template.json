@@ -1,0 +1,9 @@
+{
+  "id": "ai_claim_evaluation",
+  "name": "AI claim evaluation readiness",
+  "domain": "ai-evaluation-and-benchmark-claims",
+  "description": "Evidence-gated workflow for deciding whether an AI model quality claim is ready for public comparison.",
+  "project_config": "project.json",
+  "demo_evidence": "evidence_pass_demo.csv",
+  "placeholder_evidence": "evidence_placeholder_demo.csv"
+}

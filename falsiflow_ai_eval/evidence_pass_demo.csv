@@ -1,0 +1,19 @@
+gate_id,candidate_id,sample_id,field,value,source_file,measured_at,operator_or_agent,instrument_id,notes
+eval_provenance,candidate_model,eval_run_001,dataset_version_recorded,true,source_files/ai_eval_raw_export.csv,2026-05-26T08:00:00Z,falsiflow_eval_operator,eval_harness_001,Dataset version pinned in evaluation manifest.
+eval_provenance,candidate_model,eval_run_001,prompt_set_hash_recorded,true,source_files/ai_eval_raw_export.csv,2026-05-26T08:00:00Z,falsiflow_eval_operator,eval_harness_001,Prompt set hash pinned in evaluation manifest.
+eval_provenance,candidate_model,eval_run_001,candidate_model_version_recorded,true,source_files/ai_eval_raw_export.csv,2026-05-26T08:00:00Z,falsiflow_eval_operator,eval_harness_001,Candidate model revision recorded.
+eval_provenance,candidate_model,eval_run_001,baseline_model_version_recorded,true,source_files/ai_eval_raw_export.csv,2026-05-26T08:00:00Z,falsiflow_eval_operator,eval_harness_001,Baseline model revision recorded.
+eval_provenance,candidate_model,eval_run_001,evaluator_version_recorded,true,source_files/ai_eval_raw_export.csv,2026-05-26T08:00:00Z,falsiflow_eval_operator,eval_harness_001,Evaluator harness version recorded.
+benchmark_quality,candidate_model,eval_run_001,exact_match_rate,0.86,source_files/ai_eval_raw_export.csv,2026-05-26T09:00:00Z,falsiflow_eval_operator,eval_harness_001,Candidate exact-match metric.
+benchmark_quality,candidate_model,eval_run_001,hallucination_rate,0.035,source_files/ai_eval_raw_export.csv,2026-05-26T09:00:00Z,falsiflow_eval_operator,eval_harness_001,Candidate hallucination audit metric.
+benchmark_quality,candidate_model,eval_run_001,safety_policy_failure_rate,0.012,source_files/ai_eval_raw_export.csv,2026-05-26T09:00:00Z,falsiflow_eval_operator,eval_harness_001,Candidate safety-policy failure metric.
+benchmark_quality,candidate_model,eval_run_001,evaluated_item_count,640,source_files/ai_eval_raw_export.csv,2026-05-26T09:00:00Z,falsiflow_eval_operator,eval_harness_001,Candidate evaluation item count.
+benchmark_quality,baseline_model,eval_run_001,exact_match_rate,0.78,source_files/ai_eval_raw_export.csv,2026-05-26T09:00:00Z,falsiflow_eval_operator,eval_harness_001,Baseline exact-match metric.
+benchmark_quality,baseline_model,eval_run_001,hallucination_rate,0.07,source_files/ai_eval_raw_export.csv,2026-05-26T09:00:00Z,falsiflow_eval_operator,eval_harness_001,Baseline hallucination audit metric.
+benchmark_quality,baseline_model,eval_run_001,safety_policy_failure_rate,0.025,source_files/ai_eval_raw_export.csv,2026-05-26T09:00:00Z,falsiflow_eval_operator,eval_harness_001,Baseline safety-policy failure metric.
+benchmark_quality,baseline_model,eval_run_001,evaluated_item_count,640,source_files/ai_eval_raw_export.csv,2026-05-26T09:00:00Z,falsiflow_eval_operator,eval_harness_001,Baseline evaluation item count.
+reproducibility_package,candidate_model,eval_run_001,eval_script_hash_recorded,true,source_files/ai_eval_raw_export.csv,2026-05-26T10:00:00Z,falsiflow_eval_operator,eval_harness_001,Evaluation script hash recorded.
+reproducibility_package,candidate_model,eval_run_001,random_seed_logged,true,source_files/ai_eval_raw_export.csv,2026-05-26T10:00:00Z,falsiflow_eval_operator,eval_harness_001,Random seed logged.
+reproducibility_package,candidate_model,eval_run_001,raw_outputs_archived,true,source_files/ai_eval_raw_export.csv,2026-05-26T10:00:00Z,falsiflow_eval_operator,eval_harness_001,Raw model outputs archived.
+reproducibility_package,candidate_model,eval_run_001,human_spotcheck_passed,true,source_files/ai_eval_raw_export.csv,2026-05-26T10:00:00Z,falsiflow_eval_operator,eval_harness_001,Human spotcheck passed.
+reproducibility_package,candidate_model,eval_run_001,regression_ci_run_recorded,true,source_files/ai_eval_raw_export.csv,2026-05-26T10:00:00Z,falsiflow_eval_operator,eval_harness_001,Regression CI run recorded.
