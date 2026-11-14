@@ -38,7 +38,7 @@ jobs:
   claim-gate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: AzurLiu/falsiflow@v0.2.0
         with:
           config: examples/minimal_numeric_claim/project.json
